@@ -34,7 +34,8 @@ public class BlockInit {
     public static Block polished_shale_stairs;
     public static Block shale_slab;
     public static Block shale_stairs;
-    //special blocks
+    //misc blocks
+    public static Block stone_brick_pillar;
     public static Block elytrine_ore;
     public static Block glowshroom;
     public static Block glowshroom_cap;

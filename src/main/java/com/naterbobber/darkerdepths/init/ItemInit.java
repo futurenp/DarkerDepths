@@ -33,7 +33,8 @@ public class ItemInit {
     public static Item polished_shale_stairs;
     public static Item shale_slab;
     public static Item shale_stairs;
-    //special blocks
+    //misc blocks
+    public static Item stone_brick_pillar;
     public static Item elytrine_ore;
     public static Item glowshroom;
     public static Item glowshroom_cap;
