@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "darkerdepths:block/shale",
+    "top": "darkerdepths:block/shale",
+    "side": "darkerdepths:block/shale"
+  }
+}

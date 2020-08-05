@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "darkerdepths:block/petrified_log",
+    "side": "darkerdepths:block/petrified_log"
+  }
+}
