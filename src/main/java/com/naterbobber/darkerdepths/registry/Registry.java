@@ -39,6 +39,7 @@ public class Registry {
                         ItemInit.petrified_button = new BlockItem(BlockInit.petrified_button, new Item.Properties().group(DARKER_DEPTHS)).setRegistryName(BlockInit.petrified_button.getRegistryName()),
                         ItemInit.petrified_stairs = new BlockItem(BlockInit.petrified_stairs, new Item.Properties().group(DARKER_DEPTHS)).setRegistryName(BlockInit.petrified_stairs.getRegistryName()),
                         ItemInit.petrified_door = new BlockItem(BlockInit.petrified_door, new Item.Properties().group(DARKER_DEPTHS)).setRegistryName(BlockInit.petrified_door.getRegistryName()),
+                        ItemInit.petrified_boat = new Item(new Item.Properties().group(DARKER_DEPTHS)).setRegistryName(location("petrified_boat")),
                         //limestone
                         ItemInit.limestone = new BlockItem(BlockInit.limestone, new Item.Properties().group(DARKER_DEPTHS)).setRegistryName(BlockInit.limestone.getRegistryName()),
                         ItemInit.polished_limestone = new BlockItem(BlockInit.polished_limestone, new Item.Properties().group(DARKER_DEPTHS)).setRegistryName(BlockInit.polished_limestone.getRegistryName()),
@@ -62,7 +63,7 @@ public class Registry {
                         ItemInit.glowshroom_cap = new com.naterbobber.darkerdepths.items.GlowshroomCap(BlockInit.glowshroom_cap, new Item.Properties().group(DARKER_DEPTHS)).setRegistryName(BlockInit.glowshroom_cap.getRegistryName()),
                         ItemInit.speleothem = new BlockItem(BlockInit.speleothem, new Item.Properties().group(DARKER_DEPTHS)).setRegistryName(BlockInit.speleothem.getRegistryName()),
                         //items
-                        ItemInit.petrified_boat = new Item(new Item.Properties().group(DARKER_DEPTHS)).setRegistryName(location("petrified_boat"))
+                        ItemInit.elytrine_crystal = new Item(new Item.Properties().group(DARKER_DEPTHS)).setRegistryName(location("elytrine_crystal"))
                         );
         DarkerDepths.LOGGER.info("Items registered.");
     }

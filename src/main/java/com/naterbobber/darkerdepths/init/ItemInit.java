@@ -17,6 +17,7 @@ public class ItemInit {
     public static Item petrified_button;
     public static Item petrified_stairs;
     public static Item petrified_door;
+    public static Item petrified_boat;
     //limestone
     public static Item limestone;
     public static Item polished_limestone;
@@ -40,6 +41,6 @@ public class ItemInit {
     public static Item glowshroom_cap;
     public static Item speleothem;
     //items
-    public static Item petrified_boat;
+    public static Item elytrine_crystal;
 
 }
