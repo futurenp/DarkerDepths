@@ -114,7 +114,7 @@ public class GlowshroomMonsterModel <T extends GlowshroomMonsterEntity> extends 
     public void setRotationAngles(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         this.head.rotateAngleX = headPitch * ((float)Math.PI / 180F);
         this.head.rotateAngleY = netHeadYaw * ((float)Math.PI / 180F);
-        this.body.rotateAngleX = ((float)3);
+        this.body.rotateAngleX = ((float)100);
         this.right_leg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
         this.left_leg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
         this.right_arm.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
