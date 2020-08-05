@@ -1,5 +1,6 @@
 package com.naterbobber.darkerdepths;
 
+import com.naterbobber.darkerdepths.client.render.BlockRenderHandler;
 import com.naterbobber.darkerdepths.entities.GlowshroomMonsterEntity;
 import com.naterbobber.darkerdepths.entities.MagmaMinionEntity;
 import com.naterbobber.darkerdepths.init.EntityTypesInit;
@@ -46,6 +47,7 @@ public class DarkerDepths
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {
+        BlockRenderHandler.blockRenders();
         LOGGER.info("Performed client-side tasks.");
     }
 
