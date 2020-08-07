@@ -50,26 +50,6 @@ public class RopeBlock extends Block implements IBucketPickupHandler, ILiquidCon
         return (worldIn.getBlockState(pos.up()).isSolidSide(worldIn, pos, Direction.DOWN) || worldIn.getBlockState(pos.up()).getBlock() instanceof RopeBlock) && (!(worldIn.getBlockState(pos.up()).getBlock() instanceof AirBlock));
     }
 
-/*    @Override
-    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult rayTraceResult) {
-        if (player.getHeldItem(hand).getItem() == ItemInit.rope && rayTraceResult.getFace() != Direction.DOWN) {
-            boolean flag = false;
-            int j = 1;
-            while (!flag) {
-                BlockPos checkingPos = pos.down(j);
-                if (world.getBlockState(checkingPos).getMaterial().isReplaceable()) {
-                    world.setBlockState(checkingPos, this.getDefaultState().with(PART, RopePart.BOTTOM));
-                    break;
-                } else if (world.getBlockState(checkingPos).getBlock() instanceof RopeBlock) {
-                    j++;
-                } else {
-                    flag = true;
-                }
-            }
-        }
-        return super.onBlockActivated(state, world, pos, player, hand, rayTraceResult);
-    }*/
-
     @Override
     public BlockState getStateForPlacement(BlockItemUseContext context) {
         boolean water = context.getWorld().getBlockState(context.getPos()).getBlock() == Blocks.WATER;
