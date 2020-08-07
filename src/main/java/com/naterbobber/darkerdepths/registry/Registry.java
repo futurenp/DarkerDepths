@@ -62,6 +62,8 @@ public class Registry {
                         ItemInit.glowshroom = new BlockItem(BlockInit.glowshroom, new Item.Properties().group(DARKER_DEPTHS)).setRegistryName(BlockInit.glowshroom.getRegistryName()),
                         ItemInit.glowshroom_cap = new com.naterbobber.darkerdepths.items.GlowshroomCap(BlockInit.glowshroom_cap, new Item.Properties().group(DARKER_DEPTHS)).setRegistryName(BlockInit.glowshroom_cap.getRegistryName()),
                         ItemInit.speleothem = new BlockItem(BlockInit.speleothem, new Item.Properties().group(DARKER_DEPTHS)).setRegistryName(BlockInit.speleothem.getRegistryName()),
+                        ItemInit.rope = new BlockItem(BlockInit.rope, new Item.Properties().group(DARKER_DEPTHS)).setRegistryName(BlockInit.rope.getRegistryName()),
+
                         //items
                         ItemInit.elytrine_crystal = new Item(new Item.Properties().group(DARKER_DEPTHS)).setRegistryName(location("elytrine_crystal"))
                         );
@@ -109,7 +111,8 @@ public class Registry {
                         BlockInit.elytrine_ore = new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(2.5f, 6.0f).harvestTool(ToolType.PICKAXE).harvestLevel(3).sound(SoundType.STONE)).setRegistryName(location("elytrine_ore")),
                         BlockInit.glowshroom = new Glowshroom().setRegistryName(location("glowshroom")),
                         BlockInit.glowshroom_cap = new GlowshroomCap().setRegistryName(location("glowshroom_cap")),
-                        BlockInit.speleothem = new Speleothem().setRegistryName(location("speleothem"))
+                        BlockInit.speleothem = new Speleothem().setRegistryName(location("speleothem")),
+                        BlockInit.rope = new RopeBlock(RopeBlock.Properties.create(Material.WOOL).hardnessAndResistance(0.0F, 1.0F).sound(SoundType.CLOTH)).setRegistryName(location("rope"))
                 );
         DarkerDepths.LOGGER.info("Blocks registered.");
     }

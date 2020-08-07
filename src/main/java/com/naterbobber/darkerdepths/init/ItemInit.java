@@ -40,6 +40,7 @@ public class ItemInit {
     public static Item glowshroom;
     public static Item glowshroom_cap;
     public static Item speleothem;
+    public static Item rope;
     //items
     public static Item elytrine_crystal;
 

@@ -40,4 +40,5 @@ public class BlockInit {
     public static Block glowshroom;
     public static Block glowshroom_cap;
     public static Block speleothem;
+    public static Block rope;
 }
