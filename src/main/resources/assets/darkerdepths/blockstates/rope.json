@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "knot=false": {
+      "model": "darkerdepths:block/rope"
+    },
+    "knot=true": {
+      "model": "darkerdepths:block/rope_knot"
+    }
+  }
+}
