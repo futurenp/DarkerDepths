@@ -12,6 +12,7 @@ public class BlockRenderHandler {
     public static void blockRenders() {
         RenderTypeLookup.setRenderLayer(BlockInit.petrified_door, RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(BlockInit.petrified_trapdoor, RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(BlockInit.rope, RenderType.getCutout());
     }
 
 }

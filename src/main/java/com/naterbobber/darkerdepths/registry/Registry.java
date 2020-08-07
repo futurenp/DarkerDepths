@@ -5,6 +5,7 @@ import com.naterbobber.darkerdepths.DarkerDepthsItemGroup;
 import com.naterbobber.darkerdepths.blocks.*;
 import com.naterbobber.darkerdepths.init.BlockInit;
 import com.naterbobber.darkerdepths.init.ItemInit;
+import com.naterbobber.darkerdepths.items.RopeItem;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.*;
@@ -62,7 +63,7 @@ public class Registry {
                         ItemInit.glowshroom = new BlockItem(BlockInit.glowshroom, new Item.Properties().group(DARKER_DEPTHS)).setRegistryName(BlockInit.glowshroom.getRegistryName()),
                         ItemInit.glowshroom_cap = new com.naterbobber.darkerdepths.items.GlowshroomCap(BlockInit.glowshroom_cap, new Item.Properties().group(DARKER_DEPTHS)).setRegistryName(BlockInit.glowshroom_cap.getRegistryName()),
                         ItemInit.speleothem = new BlockItem(BlockInit.speleothem, new Item.Properties().group(DARKER_DEPTHS)).setRegistryName(BlockInit.speleothem.getRegistryName()),
-                        ItemInit.rope = new BlockItem(BlockInit.rope, new Item.Properties().group(DARKER_DEPTHS)).setRegistryName(BlockInit.rope.getRegistryName()),
+                        ItemInit.rope = new RopeItem(BlockInit.rope, new Item.Properties().group(DARKER_DEPTHS)).setRegistryName(BlockInit.rope.getRegistryName()),
 
                         //items
                         ItemInit.elytrine_crystal = new Item(new Item.Properties().group(DARKER_DEPTHS)).setRegistryName(location("elytrine_crystal"))
