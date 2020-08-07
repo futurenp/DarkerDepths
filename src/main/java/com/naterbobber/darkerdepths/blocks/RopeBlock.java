@@ -20,6 +20,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
@@ -37,7 +38,11 @@ public class RopeBlock extends Block implements IBucketPickupHandler, ILiquidCon
 
     @Override
     public VoxelShape getShape(BlockState state, IBlockReader reader, BlockPos pos, ISelectionContext context) {
-        return state.get(PART) == RopePart.BOTTOM ? Block.makeCuboidShape(6.0F, 6.0F, 6.0F, 10.0F, 16.0F, 10.0F) : Block.makeCuboidShape(6.0F, 0.0F, 6.0F, 10.0F, 16.0F, 10.0F);
+        if (state.get(PART) == RopePart.BOTTOM) {
+            return Block.makeCuboidShape(6.0F, 8.0F, 6.0F, 10.0F, 16.0F, 10.0F);
+        } else if (state.get(PART) == RopePart.MIDDLE) {
+            return Block.makeCuboidShape(6.0F, 0.0F, 6.0F, 10.0F, 16.0F, 10.0F);
+        } else return VoxelShapes.or(Block.makeCuboidShape(6.0F, 0.0F, 6.0F, 10.0F, 15.0F, 10.0F), Block.makeCuboidShape(7.0F, 12.0F, 11.0F, 9.0F, 16.0F, 13.0F), Block.makeCuboidShape(7.0F, 12.0F, 3.0F, 9.0F, 16.0F, 5.0F), Block.makeCuboidShape(7.0F, 12.0F, 5.0F, 9.0F, 14.0F, 11.0F));
     }
 
     @Override
