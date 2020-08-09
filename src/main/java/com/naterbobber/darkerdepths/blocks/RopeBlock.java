@@ -51,6 +51,11 @@ public class RopeBlock extends Block implements IBucketPickupHandler, ILiquidCon
     }
 
     @Override
+    public boolean isFlammable(BlockState state, IBlockReader world, BlockPos pos, Direction face) {
+        return true;
+    }
+
+    @Override
     public BlockState getStateForPlacement(BlockItemUseContext context) {
         boolean water = context.getWorld().getBlockState(context.getPos()).getBlock() == Blocks.WATER;
         BlockState state = super.getStateForPlacement(context);

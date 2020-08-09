@@ -8,6 +8,7 @@ import com.naterbobber.darkerdepths.init.ItemInit;
 import com.naterbobber.darkerdepths.items.RopeItem;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.material.MaterialColor;
 import net.minecraft.item.*;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.ToolType;
@@ -113,7 +114,7 @@ public class Registry {
                         BlockInit.glowshroom = new Glowshroom().setRegistryName(location("glowshroom")),
                         BlockInit.glowshroom_cap = new GlowshroomCap().setRegistryName(location("glowshroom_cap")),
                         BlockInit.speleothem = new Speleothem().setRegistryName(location("speleothem")),
-                        BlockInit.rope = new RopeBlock(RopeBlock.Properties.create(Material.WOOL).hardnessAndResistance(0.0F, 1.0F).sound(SoundType.CLOTH)).setRegistryName(location("rope"))
+                        BlockInit.rope = new RopeBlock(RopeBlock.Properties.create(Material.MISCELLANEOUS).zeroHardnessAndResistance().sound(SoundType.CLOTH)).setRegistryName(location("rope"))
                 );
         DarkerDepths.LOGGER.info("Blocks registered.");
     }
