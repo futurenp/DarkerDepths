@@ -1,6 +1,5 @@
 package com.naterbobber.darkerdepths.blocks;
 
-import com.naterbobber.darkerdepths.init.ItemInit;
 import com.naterbobber.darkerdepths.util.RopePart;
 import net.minecraft.block.*;
 import net.minecraft.entity.LivingEntity;

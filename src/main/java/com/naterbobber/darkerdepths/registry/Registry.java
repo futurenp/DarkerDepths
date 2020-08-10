@@ -58,6 +58,9 @@ public class Registry {
                         ItemInit.shale_stairs = new BlockItem(BlockInit.shale_stairs, new Item.Properties().group(DARKER_DEPTHS)).setRegistryName(BlockInit.shale_stairs.getRegistryName()),
                         ItemInit.polished_shale_slab = new BlockItem(BlockInit.polished_shale_slab, new Item.Properties().group(DARKER_DEPTHS)).setRegistryName(BlockInit.polished_shale_slab.getRegistryName()),
                         ItemInit.shale_slab = new BlockItem(BlockInit.shale_slab, new Item.Properties().group(DARKER_DEPTHS)).setRegistryName(BlockInit.shale_slab.getRegistryName()),
+                        //Crystals
+                        ItemInit.amethyst_crystal = new BlockItem(BlockInit.amethyst_crystal, new Item.Properties().group(DARKER_DEPTHS)).setRegistryName(BlockInit.amethyst_crystal.getRegistryName()),
+                        ItemInit.amethyst_crystal_block = new BlockItem(BlockInit.amethyst_crystal_block, new Item.Properties().group(DARKER_DEPTHS)).setRegistryName(BlockInit.amethyst_crystal_block.getRegistryName()),
                         //misc blocks
                         ItemInit.stone_brick_pillar = new BlockItem(BlockInit.stone_brick_pillar, new Item.Properties().group(DARKER_DEPTHS)).setRegistryName(BlockInit.stone_brick_pillar.getRegistryName()),
                         ItemInit.elytrine_ore = new BlockItem(BlockInit.elytrine_ore, new Item.Properties().group(DARKER_DEPTHS)).setRegistryName(BlockInit.elytrine_ore.getRegistryName()),
@@ -65,7 +68,6 @@ public class Registry {
                         ItemInit.glowshroom_cap = new com.naterbobber.darkerdepths.items.GlowshroomCap(BlockInit.glowshroom_cap, new Item.Properties().group(DARKER_DEPTHS)).setRegistryName(BlockInit.glowshroom_cap.getRegistryName()),
                         ItemInit.speleothem = new BlockItem(BlockInit.speleothem, new Item.Properties().group(DARKER_DEPTHS)).setRegistryName(BlockInit.speleothem.getRegistryName()),
                         ItemInit.rope = new RopeItem(BlockInit.rope, new Item.Properties().group(DARKER_DEPTHS)).setRegistryName(BlockInit.rope.getRegistryName()),
-
                         //items
                         ItemInit.elytrine_crystal = new Item(new Item.Properties().group(DARKER_DEPTHS)).setRegistryName(location("elytrine_crystal"))
                         );
@@ -108,6 +110,9 @@ public class Registry {
                         BlockInit.shale_stairs = new StairsBlock(() -> BlockInit.shale.getDefaultState(), StairsBlock.Properties.from(BlockInit.shale)).setRegistryName(location("shale_stairs")),
                         BlockInit.polished_shale_slab = new SlabBlock(SlabBlock.Properties.from(BlockInit.polished_shale)).setRegistryName(location("polished_shale_slab")),
                         BlockInit.shale_slab = new SlabBlock(SlabBlock.Properties.from(BlockInit.shale)).setRegistryName(location("shale_slab")),
+                        //Crystals
+                        BlockInit.amethyst_crystal = new AmethystCrystal().setRegistryName(location("amethyst_crystal")),
+                        BlockInit.amethyst_crystal_block = new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.0f, 1.0f).harvestTool(ToolType.PICKAXE).harvestLevel(2).sound(SoundType.GLASS).setLightLevel(value -> 10)).setRegistryName(location("amethyst_crystal_block")),
                         //misc blocks
                         BlockInit.stone_brick_pillar = new RotatedPillarBlock(RotatedPillarBlock.Properties.create(Material.ROCK).hardnessAndResistance(1.5f, 6.0f).harvestTool(ToolType.PICKAXE).harvestLevel(0).sound(SoundType.STONE)).setRegistryName(location("stone_brick_pillar")),
                         BlockInit.elytrine_ore = new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(2.5f, 6.0f).harvestTool(ToolType.PICKAXE).harvestLevel(3).sound(SoundType.STONE)).setRegistryName(location("elytrine_ore")),

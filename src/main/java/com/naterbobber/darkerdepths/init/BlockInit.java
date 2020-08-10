@@ -41,4 +41,6 @@ public class BlockInit {
     public static Block glowshroom_cap;
     public static Block speleothem;
     public static Block rope;
+    public static Block amethyst_crystal;
+    public static Block amethyst_crystal_block;
 }

@@ -33,7 +33,10 @@
   "block.darkerdepths.speleothem": "Speleothem",
   "block.darkerdepths.stone_brick_pillar": "Stone Brick Pillar",
   "block.darkerdepths.elytrine_ore": "Elytrine Ore",
+  "item.darkerdepths.elytrine_crystal": "Elytrine Crystal",
   "block.darkerdepths.rope": "Rope",
+  "block.darkerdepths.amethyst_crystal": "Amethyst Crystal",
+  "block.darkerdepths.amethyst_crystal_block": "Amethyst Crystal Block",
   "entity.darkerdepths.glowshroom_monster": "Glowshroom Monster",
   "entity.darkerdepths.magma_minion": "Magma Minion",
   "itemGroup.DarkerDepths": "Darker Depths"

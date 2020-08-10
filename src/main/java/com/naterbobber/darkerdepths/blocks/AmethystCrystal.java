@@ -13,19 +13,18 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 
-public class Glowshroom extends Block {
-    protected static final VoxelShape SHAPE = Block.makeCuboidShape(5.0D, 0.0D, 5.0D, 11.0D, 9.0D, 11.0D);
+public class AmethystCrystal extends Block {
+    protected static final VoxelShape SHAPE = Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 10.0D, 14.0D);
 
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
         return SHAPE;
     }
-    public Glowshroom() {
-        super(Block.Properties.create(Material.PLANTS)
-                .hardnessAndResistance(0.0f, 1.0f)
-                .sound(SoundType.SLIME)
-                .harvestLevel(0)
-                .setLightLevel(value -> 10)
-                .doesNotBlockMovement());
+    public AmethystCrystal() {
+        super(Block.Properties.create(Material.ROCK)
+                .hardnessAndResistance(0.3f, 0.6f)
+                .sound(SoundType.GLASS)
+                .harvestLevel(2)
+                .setLightLevel(value -> 10));
     }
 
     public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
