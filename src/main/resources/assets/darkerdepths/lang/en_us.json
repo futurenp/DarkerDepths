@@ -37,6 +37,10 @@
   "block.darkerdepths.rope": "Rope",
   "block.darkerdepths.amethyst_crystal": "Amethyst Crystal",
   "block.darkerdepths.amethyst_crystal_block": "Amethyst Crystal Block",
+  "block.darkerdepths.celestine_crystal": "Celestine Crystal",
+  "block.darkerdepths.celestine_crystal_block": "Celestine Crystal Block",
+  "block.darkerdepths.redstone_crystal": "Redstone Crystal",
+  "block.darkerdepths.redstone_crystal_block": "Redstone Crystal Block",
   "entity.darkerdepths.glowshroom_monster": "Glowshroom Monster",
   "entity.darkerdepths.magma_minion": "Magma Minion",
   "itemGroup.DarkerDepths": "Darker Depths"

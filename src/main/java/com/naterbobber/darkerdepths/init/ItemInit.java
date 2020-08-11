@@ -43,6 +43,10 @@ public class ItemInit {
     public static Item rope;
     public static Item amethyst_crystal;
     public static Item amethyst_crystal_block;
+    public static Item celestine_crystal;
+    public static Item celestine_crystal_block;
+    public static Item redstone_crystal;
+    public static Item redstone_crystal_block;
     //items
     public static Item elytrine_crystal;
 

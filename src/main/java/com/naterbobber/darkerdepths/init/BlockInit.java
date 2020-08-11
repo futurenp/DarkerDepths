@@ -34,6 +34,13 @@ public class BlockInit {
     public static Block polished_shale_stairs;
     public static Block shale_slab;
     public static Block shale_stairs;
+    //Crystals
+    public static Block amethyst_crystal;
+    public static Block amethyst_crystal_block;
+    public static Block celestine_crystal;
+    public static Block celestine_crystal_block;
+    public static Block redstone_crystal;
+    public static Block redstone_crystal_block;
     //misc blocks
     public static Block stone_brick_pillar;
     public static Block elytrine_ore;
@@ -41,6 +48,4 @@ public class BlockInit {
     public static Block glowshroom_cap;
     public static Block speleothem;
     public static Block rope;
-    public static Block amethyst_crystal;
-    public static Block amethyst_crystal_block;
 }

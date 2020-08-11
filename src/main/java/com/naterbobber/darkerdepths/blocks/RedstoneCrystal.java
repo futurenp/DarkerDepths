@@ -1,6 +1,5 @@
 package com.naterbobber.darkerdepths.blocks;
 
-import com.naterbobber.darkerdepths.util.RopePart;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.fluid.Fluid;
@@ -18,7 +17,7 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 
-public class AmethystCrystal extends Block implements IBucketPickupHandler, ILiquidContainer {
+public class RedstoneCrystal extends Block implements IBucketPickupHandler, ILiquidContainer {
 
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
@@ -28,8 +27,8 @@ public class AmethystCrystal extends Block implements IBucketPickupHandler, ILiq
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
         return SHAPE;
     }
-    public AmethystCrystal() {
-        super(Block.Properties.create(Material.ROCK)
+    public RedstoneCrystal() {
+        super(Properties.create(Material.ROCK)
                 .hardnessAndResistance(0.3f, 0.6f)
                 .sound(SoundType.GLASS)
                 .harvestLevel(2)
