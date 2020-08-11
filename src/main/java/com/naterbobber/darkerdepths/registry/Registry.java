@@ -66,6 +66,7 @@ public class Registry {
                         ItemInit.amethyst_crystal = new BlockItem(BlockInit.amethyst_crystal, new Item.Properties().group(DARKER_DEPTHS)).setRegistryName(BlockInit.amethyst_crystal.getRegistryName()),
                         ItemInit.celestine_crystal = new BlockItem(BlockInit.celestine_crystal, new Item.Properties().group(DARKER_DEPTHS)).setRegistryName(BlockInit.celestine_crystal.getRegistryName()),
                         ItemInit.redstone_crystal = new BlockItem(BlockInit.redstone_crystal, new Item.Properties().group(DARKER_DEPTHS)).setRegistryName(BlockInit.redstone_crystal.getRegistryName()),
+                        ItemInit.crystal_melon = new BlockItem(BlockInit.crystal_melon, new Item.Properties().group(DARKER_DEPTHS)).setRegistryName(BlockInit.crystal_melon.getRegistryName()),
                         //misc blocks
                         ItemInit.stone_brick_pillar = new BlockItem(BlockInit.stone_brick_pillar, new Item.Properties().group(DARKER_DEPTHS)).setRegistryName(BlockInit.stone_brick_pillar.getRegistryName()),
                         ItemInit.elytrine_ore = new BlockItem(BlockInit.elytrine_ore, new Item.Properties().group(DARKER_DEPTHS)).setRegistryName(BlockInit.elytrine_ore.getRegistryName()),
@@ -116,6 +117,7 @@ public class Registry {
                         BlockInit.polished_shale_slab = new SlabBlock(SlabBlock.Properties.from(BlockInit.polished_shale)).setRegistryName(location("polished_shale_slab")),
                         BlockInit.shale_slab = new SlabBlock(SlabBlock.Properties.from(BlockInit.shale)).setRegistryName(location("shale_slab")),
                         //Crystals
+                        BlockInit.crystal_melon = new CrystalMelon().setRegistryName(location("crystal_melon")),
                         BlockInit.amethyst_crystal = new AmethystCrystal().setRegistryName(location("amethyst_crystal")),
                         BlockInit.amethyst_crystal_block = new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.0f, 1.0f).harvestTool(ToolType.PICKAXE).harvestLevel(2).sound(SoundType.GLASS).setLightLevel(value -> 10)).setRegistryName(location("amethyst_crystal_block")),
                         BlockInit.celestine_crystal = new CelestineCrystal().setRegistryName(location("celestine_crystal")),

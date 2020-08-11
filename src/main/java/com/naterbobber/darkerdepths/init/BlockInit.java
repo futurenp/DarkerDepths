@@ -35,6 +35,7 @@ public class BlockInit {
     public static Block shale_slab;
     public static Block shale_stairs;
     //Crystals
+    public static Block crystal_melon;
     public static Block amethyst_crystal;
     public static Block amethyst_crystal_block;
     public static Block celestine_crystal;

@@ -41,6 +41,7 @@ public class ItemInit {
     public static Item glowshroom_cap;
     public static Item speleothem;
     public static Item rope;
+    public static Item crystal_melon;
     public static Item amethyst_crystal;
     public static Item amethyst_crystal_block;
     public static Item celestine_crystal;
