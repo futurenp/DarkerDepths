@@ -1,4 +1,4 @@
-package com.naterbobber.formidableforests.init;
+package com.naterbobber.darkerdepths.init;
 
 import net.minecraft.block.trees.OakTree;
 import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;

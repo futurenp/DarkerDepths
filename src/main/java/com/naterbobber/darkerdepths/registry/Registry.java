@@ -3,12 +3,13 @@ package com.naterbobber.darkerdepths.registry;
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.DarkerDepthsItemGroup;
 import com.naterbobber.darkerdepths.blocks.*;
+import com.naterbobber.darkerdepths.entities.PetrifiedBoatEntity;
 import com.naterbobber.darkerdepths.init.BlockInit;
 import com.naterbobber.darkerdepths.init.ItemInit;
+import com.naterbobber.darkerdepths.items.DDBoatItem;
 import com.naterbobber.darkerdepths.items.RopeItem;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.material.MaterialColor;
 import net.minecraft.item.*;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.ToolType;
@@ -41,7 +42,8 @@ public class Registry {
                         ItemInit.petrified_button = new BlockItem(BlockInit.petrified_button, new Item.Properties().group(DARKER_DEPTHS)).setRegistryName(BlockInit.petrified_button.getRegistryName()),
                         ItemInit.petrified_stairs = new BlockItem(BlockInit.petrified_stairs, new Item.Properties().group(DARKER_DEPTHS)).setRegistryName(BlockInit.petrified_stairs.getRegistryName()),
                         ItemInit.petrified_door = new BlockItem(BlockInit.petrified_door, new Item.Properties().group(DARKER_DEPTHS)).setRegistryName(BlockInit.petrified_door.getRegistryName()),
-                        ItemInit.petrified_boat = new Item(new Item.Properties().group(DARKER_DEPTHS)).setRegistryName(location("petrified_boat")),
+                        //ItemInit.petrified_boat = new Item(new Item.Properties().group(DARKER_DEPTHS)).setRegistryName(location("petrified_boat")),
+                        ItemInit.petrified_boat = new DDBoatItem(PetrifiedBoatEntity.Type.Petrified, (new Item.Properties().maxStackSize(1).group(DARKER_DEPTHS))).setRegistryName(location("petrified_boat")),
                         //limestone
                         ItemInit.limestone = new BlockItem(BlockInit.limestone, new Item.Properties().group(DARKER_DEPTHS)).setRegistryName(BlockInit.limestone.getRegistryName()),
                         ItemInit.polished_limestone = new BlockItem(BlockInit.polished_limestone, new Item.Properties().group(DARKER_DEPTHS)).setRegistryName(BlockInit.polished_limestone.getRegistryName()),

@@ -1,11 +1,13 @@
 package com.naterbobber.darkerdepths.util;
 
-
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.client.entity.render.GlowshroomMonsterRenderer;
 import com.naterbobber.darkerdepths.client.entity.render.MagmaMinionRenderer;
+import com.naterbobber.darkerdepths.client.entity.render.PetrifiedBoatRenderer;
+import com.naterbobber.darkerdepths.entities.PetrifiedBoatEntity;
 import com.naterbobber.darkerdepths.init.EntityTypesInit;
 import net.minecraft.client.tutorial.Tutorial;
+import net.minecraft.entity.EntityType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
@@ -19,5 +21,6 @@ public class ClientEventBusSubscriber {
     public static void onClientSetup(FMLClientSetupEvent event) {
         RenderingRegistry.registerEntityRenderingHandler(EntityTypesInit.GLOWSHROOM_MONSTER.get(), GlowshroomMonsterRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityTypesInit.MAGMA_MINION.get(), MagmaMinionRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler((EntityType<? extends PetrifiedBoatEntity>)EntityTypesInit.BOAT.get(), PetrifiedBoatRenderer::new);
     }
 }
