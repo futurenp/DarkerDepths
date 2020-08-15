@@ -1,5 +1,6 @@
 package com.naterbobber.darkerdepths.init;
 
+import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 
 public class ItemInit {
@@ -34,13 +35,7 @@ public class ItemInit {
     public static Item polished_shale_stairs;
     public static Item shale_slab;
     public static Item shale_stairs;
-    //misc blocks
-    public static Item stone_brick_pillar;
-    public static Item elytrine_ore;
-    public static Item glowshroom;
-    public static Item glowshroom_cap;
-    public static Item speleothem;
-    public static Item rope;
+    //Crystals
     public static Item crystal_melon;
     public static Item amethyst_crystal;
     public static Item amethyst_crystal_block;
@@ -48,6 +43,17 @@ public class ItemInit {
     public static Item celestine_crystal_block;
     public static Item redstone_crystal;
     public static Item redstone_crystal_block;
+    //Silver
+    public static Item silver_ore;
+    public static Item silver_ingot;
+    //misc blocks
+    public static Item stone_brick_pillar;
+    public static Item elytrine_ore;
+    public static Item glowshroom;
+    public static Item glowshroom_cap;
+    public static Item speleothem;
+    public static Item rope;
+    public static Item spawner_fragment;
     //items
     public static Item elytrine_crystal;
 

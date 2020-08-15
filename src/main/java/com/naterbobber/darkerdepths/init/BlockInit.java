@@ -42,6 +42,8 @@ public class BlockInit {
     public static Block celestine_crystal_block;
     public static Block redstone_crystal;
     public static Block redstone_crystal_block;
+    //Silver
+    public static Block silver_ore;
     //misc blocks
     public static Block stone_brick_pillar;
     public static Block elytrine_ore;
