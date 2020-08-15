@@ -2,11 +2,9 @@ package com.naterbobber.darkerdepths.client.entity.model;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
-import com.naterbobber.darkerdepths.entities.GlowshroomMonsterEntity;
 import com.naterbobber.darkerdepths.entities.MagmaMinionEntity;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
-import net.minecraft.entity.Entity;
 import net.minecraft.util.math.MathHelper;
 
 public class MagmaMinionModel <T extends MagmaMinionEntity> extends EntityModel<T> {
@@ -29,8 +27,8 @@ public class MagmaMinionModel <T extends MagmaMinionEntity> extends EntityModel<
         head.setTextureOffset(3, 27).addBox(-4.0F, 0.0F, -8.0F, 8.0F, 2.0F, 5.0F, 0.0F, false);
 
         body = new ModelRenderer(this);
-        body.setRotationPoint(0.0F, 24.0F, 0.0F);
-        body.setTextureOffset(0, 47).addBox(-4.0F, -12.0F, -4.0F, 8.0F, 9.0F, 8.0F, 0.0F, false);
+        body.setRotationPoint(0.0F, 15.0F, 0.0F);
+        body.setTextureOffset(0, 47).addBox(-4.0F, -3.0F, -4.0F, 8.0F, 9.0F, 8.0F, 0.0F, false);
 
         right_leg = new ModelRenderer(this);
         right_leg.setRotationPoint(2.5F, 21.0F, 0.0F);
@@ -65,8 +63,8 @@ public class MagmaMinionModel <T extends MagmaMinionEntity> extends EntityModel<
 
     @Override
     public void setRotationAngles(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        this.head.rotateAngleY = netHeadYaw * ((float)Math.PI / 180F);
-        this.body.rotateAngleX = ((float)180);
+        this.head.rotateAngleX = netHeadYaw * ((float)Math.PI / 180F);
+        this.body.rotateAngleY = netHeadYaw * ((float)Math.PI / 180F);
         this.right_leg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
         this.left_leg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
         this.right_arm.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
