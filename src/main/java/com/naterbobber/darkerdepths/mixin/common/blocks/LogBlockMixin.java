@@ -8,6 +8,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.RotatedPillarBlock;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -38,10 +39,10 @@ public class LogBlockMixin extends Block {
 	private boolean reactWithNeighbors(World worldIn, BlockPos pos, BlockState state) {
 		Block block = BlockInit.petrified_log;
 		BlockState blockstate = worldIn.getBlockState(pos);
-		//boolean isAboveSoulfire = worldIn.getBlockState(pos.down()) == Blocks.SOUL_FIRE.getDefaultState();
 		boolean isAboveSoulfire = worldIn.getBlockState(pos.down()) == Blocks.SOUL_FIRE.getDefaultState() && worldIn.getBlockState(pos.down(2)) == Blocks.SOUL_SOIL.getDefaultState();
 		if (isAboveSoulfire && worldIn.getBlockState(pos).isIn(BlockTags.LOGS)) {
 			worldIn.setBlockState(pos, block.getDefaultState().with(RotatedPillarBlock.AXIS, blockstate.get(RotatedPillarBlock.AXIS)), 11);
+			worldIn.addParticle(ParticleTypes.SOUL, pos.getX(), pos.getY(), pos.getZ(), 1.0f, 1.0f, 1.0f);
 			worldIn.playEvent(1501, pos, 0);
 		}
 		return false;

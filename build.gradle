@@ -20,7 +20,7 @@ apply plugin: 'maven-publish'
 apply plugin: 'org.spongepowered.mixin'
 
 mixin {
-    add sourceSets.main, "endergetic.refmap.json"
+    add sourceSets.main, "darkerdepths.refmap.json"
 }
 
 version = '1.0'

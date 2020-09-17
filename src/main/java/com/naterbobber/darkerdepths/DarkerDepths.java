@@ -4,9 +4,11 @@ import com.naterbobber.darkerdepths.client.render.BlockRenderHandler;
 import com.naterbobber.darkerdepths.entities.GlowshroomMonsterEntity;
 import com.naterbobber.darkerdepths.entities.MagmaMinionEntity;
 import com.naterbobber.darkerdepths.init.EntityTypesInit;
+import com.naterbobber.darkerdepths.registry.RegistryHelper;
 import com.naterbobber.darkerdepths.registry.VanillaIntegrationRegistry;
 import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DeferredWorkQueue;
 import net.minecraftforge.fml.common.Mod;
@@ -23,10 +25,15 @@ public class DarkerDepths
     public static DarkerDepths INSTANCE;
     public static final String MODID = "darkerdepths";
     public static final Logger LOGGER = LogManager.getLogger(MODID);
-
+    public static final RegistryHelper HELPER = new RegistryHelper(MODID);
+    
     public DarkerDepths() {
         INSTANCE = this;
 
+        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        HELPER.getBlockRegister().register(modEventBus);
+        HELPER.getItemRegister().register(modEventBus);
+        
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
 

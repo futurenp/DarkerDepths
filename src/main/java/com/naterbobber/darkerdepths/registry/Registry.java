@@ -19,8 +19,9 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(bus=Mod.EventBusSubscriber.Bus.MOD)
 public class Registry {
-
     public static final ItemGroup DARKER_DEPTHS = new DarkerDepthsItemGroup("DarkerDepths");
+    
+    public static final RegistryHelper HELPER = DarkerDepths.HELPER;
 
     // ITEM REGISTRATION
     @SubscribeEvent
@@ -92,19 +93,19 @@ public class Registry {
         BlockRegistryEvent.getRegistry().registerAll
                 (
                         //petrified wood
-                        BlockInit.petrified_planks = new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(2.5f, 3.0f).harvestTool(ToolType.AXE).harvestLevel(0).sound(SoundType.WOOD)).setRegistryName(location("petrified_planks")),
-                        BlockInit.petrified_log = new RotatedPillarBlock(RotatedPillarBlock.Properties.create(Material.ROCK).hardnessAndResistance(2.5f, 3.0f).harvestTool(ToolType.AXE).harvestLevel(0).sound(SoundType.WOOD)).setRegistryName(location("petrified_log")),
-                        BlockInit.stripped_petrified_log = new RotatedPillarBlock(RotatedPillarBlock.Properties.create(Material.ROCK).hardnessAndResistance(2.5f, 3.0f).harvestTool(ToolType.AXE).harvestLevel(0).sound(SoundType.WOOD)).setRegistryName(location("stripped_petrified_log")),
-                        BlockInit.stripped_petrified_wood = new RotatedPillarBlock(RotatedPillarBlock.Properties.create(Material.ROCK).hardnessAndResistance(2.5f, 3.0f).harvestTool(ToolType.AXE).harvestLevel(0).sound(SoundType.WOOD)).setRegistryName(location("stripped_petrified_wood")),
-                        BlockInit.petrified_wood = new RotatedPillarBlock(RotatedPillarBlock.Properties.create(Material.ROCK).hardnessAndResistance(2.5f, 3.0f).harvestTool(ToolType.AXE).harvestLevel(0).sound(SoundType.WOOD)).setRegistryName(location("petrified_wood")),
+                        BlockInit.petrified_planks = new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(2.5f, 3.0f).harvestTool(ToolType.PICKAXE).harvestLevel(0).sound(SoundType.WOOD)).setRegistryName(location("petrified_planks")),
+                        BlockInit.petrified_log = new RotatedPillarBlock(RotatedPillarBlock.Properties.create(Material.ROCK).hardnessAndResistance(2.5f, 3.0f).harvestTool(ToolType.PICKAXE).harvestLevel(0).sound(SoundType.WOOD)).setRegistryName(location("petrified_log")),
+                        BlockInit.stripped_petrified_log = new RotatedPillarBlock(RotatedPillarBlock.Properties.create(Material.ROCK).hardnessAndResistance(2.5f, 3.0f).harvestTool(ToolType.PICKAXE).harvestLevel(0).sound(SoundType.WOOD)).setRegistryName(location("stripped_petrified_log")),
+                        BlockInit.stripped_petrified_wood = new RotatedPillarBlock(RotatedPillarBlock.Properties.create(Material.ROCK).hardnessAndResistance(2.5f, 3.0f).harvestTool(ToolType.PICKAXE).harvestLevel(0).sound(SoundType.WOOD)).setRegistryName(location("stripped_petrified_wood")),
+                        BlockInit.petrified_wood = new RotatedPillarBlock(RotatedPillarBlock.Properties.create(Material.ROCK).hardnessAndResistance(2.5f, 3.0f).harvestTool(ToolType.PICKAXE).harvestLevel(0).sound(SoundType.WOOD)).setRegistryName(location("petrified_wood")),
                         BlockInit.petrified_slab = new SlabBlock(SlabBlock.Properties.from(BlockInit.petrified_planks)).setRegistryName(location("petrified_slab")),
-                        BlockInit.petrified_pressure_plate = new CustomPressurePlateBlock(CustomPressurePlateBlock.Sensitivity.EVERYTHING, CustomPressurePlateBlock.Properties.create(Material.ROCK).hardnessAndResistance(0.5f).harvestTool(ToolType.AXE).sound(SoundType.WOOD)).setRegistryName(location("petrified_pressure_plate")),
-                        BlockInit.petrified_fence = new FenceBlock(FenceBlock.Properties.create(Material.ROCK).hardnessAndResistance(2.5f, 3.0f).harvestTool(ToolType.AXE).sound(SoundType.WOOD)).setRegistryName(location("petrified_fence")),
-                        BlockInit.petrified_trapdoor = new CustomTrapDoorBlock(CustomTrapDoorBlock.Properties.create(Material.ROCK).hardnessAndResistance(2.5f, 3.0f).harvestTool(ToolType.AXE).notSolid().sound(SoundType.WOOD)).setRegistryName(location("petrified_trapdoor")),
+                        BlockInit.petrified_pressure_plate = new CustomPressurePlateBlock(CustomPressurePlateBlock.Sensitivity.EVERYTHING, CustomPressurePlateBlock.Properties.create(Material.ROCK).hardnessAndResistance(0.5f).harvestTool(ToolType.PICKAXE).sound(SoundType.WOOD)).setRegistryName(location("petrified_pressure_plate")),
+                        BlockInit.petrified_fence = new FenceBlock(FenceBlock.Properties.create(Material.ROCK).hardnessAndResistance(2.5f, 3.0f).harvestTool(ToolType.PICKAXE).sound(SoundType.WOOD)).setRegistryName(location("petrified_fence")),
+                        BlockInit.petrified_trapdoor = new CustomTrapDoorBlock(CustomTrapDoorBlock.Properties.create(Material.ROCK).hardnessAndResistance(2.5f, 3.0f).harvestTool(ToolType.PICKAXE).notSolid().sound(SoundType.WOOD)).setRegistryName(location("petrified_trapdoor")),
                         BlockInit.petrified_fence_gate = new FenceGateBlock(FenceGateBlock.Properties.from(BlockInit.petrified_fence)).setRegistryName(location("petrified_fence_gate")),
-                        BlockInit.petrified_button = new CustomWoodButtonBlock(CustomWoodButtonBlock.Properties.create(Material.ROCK).hardnessAndResistance(0.5f).harvestTool(ToolType.AXE).sound(SoundType.WOOD)).setRegistryName(location("petrified_button")),
+                        BlockInit.petrified_button = new CustomWoodButtonBlock(CustomWoodButtonBlock.Properties.create(Material.ROCK).hardnessAndResistance(0.5f).harvestTool(ToolType.PICKAXE).sound(SoundType.WOOD)).setRegistryName(location("petrified_button")),
                         BlockInit.petrified_stairs = new StairsBlock(() -> BlockInit.petrified_planks.getDefaultState(), StairsBlock.Properties.from(BlockInit.petrified_planks)).setRegistryName(location("petrified_stairs")),
-                        BlockInit.petrified_door = new CustomDoorBlock(CustomDoorBlock.Properties.create(Material.ROCK).hardnessAndResistance(2.5f, 3.0f).harvestTool(ToolType.AXE).notSolid().sound(SoundType.WOOD)).setRegistryName(location("petrified_door")),
+                        BlockInit.petrified_door = new CustomDoorBlock(CustomDoorBlock.Properties.create(Material.ROCK).hardnessAndResistance(2.5f, 3.0f).harvestTool(ToolType.PICKAXE).notSolid().sound(SoundType.WOOD)).setRegistryName(location("petrified_door")),
                         //limestone
                         BlockInit.limestone = new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5f, 6.0f).harvestTool(ToolType.PICKAXE).harvestLevel(0).sound(SoundType.STONE)).setRegistryName(location("limestone")),
                         BlockInit.polished_limestone = new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5f, 6.0f).harvestTool(ToolType.PICKAXE).harvestLevel(0).sound(SoundType.STONE)).setRegistryName(location("polished_limestone")),
@@ -141,6 +142,8 @@ public class Registry {
                 );
         DarkerDepths.LOGGER.info("Blocks registered.");
     }
+    
+    //public static final Pair<RegistryObject<DDStandingSignBlock>, RegistryObject<DDWallSignBlock>> petrified_sign = HELPER.createSignBlock("petrified", MaterialColor.WOOD);
 
     public static ResourceLocation location(String name)
     {
