@@ -1,15 +1,15 @@
 {
-  "required": true,
-  "package": "com.naterbobber.darkerdepths.mixin",
-  "compatibilityLevel": "JAVA_8",
-  "refmap": "darkerdepths.refmap.json",
-  "mixins": [
-  	"common.blocks.LogBlockMixin"
-  ],
-  "client":[
-  ],
-  "injectors": {
-    "defaultRequire": 1
-  },
-  "minVersion": "0.8"
+	"required": true,
+	"package": "com.naterbobber.darkerdepths.mixin",
+	"compatibilityLevel": "JAVA_8",
+	"refmap": "darkerdepths.refmap.json",
+	"mixins": [
+  		"common.blocks.LogBlockMixin"
+	],
+  	"client":[
+  	],
+  	"injectors": {
+    	"defaultRequire": 1
+  	},
+  	"minVersion": "0.8"
 }

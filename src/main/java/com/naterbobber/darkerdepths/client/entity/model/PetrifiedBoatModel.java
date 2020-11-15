@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableList.Builder;
-import com.naterbobber.darkerdepths.entities.PetrifiedBoatEntity;
+import com.naterbobber.darkerdepths.common.entities.PetrifiedBoatEntity;
 
 import net.minecraft.client.renderer.entity.model.SegmentedModel;
 import net.minecraft.client.renderer.model.ModelRenderer;

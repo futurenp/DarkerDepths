@@ -2,7 +2,8 @@ package com.naterbobber.darkerdepths.client.entity.model;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
-import com.naterbobber.darkerdepths.entities.GlowshroomMonsterEntity;
+import com.naterbobber.darkerdepths.common.entities.GlowshroomMonsterEntity;
+
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.entity.model.QuadrupedModel;
 import net.minecraft.client.renderer.model.ModelRenderer;

@@ -2,9 +2,9 @@ package com.naterbobber.darkerdepths.client.entity.render;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
-import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.client.entity.model.PetrifiedBoatModel;
-import com.naterbobber.darkerdepths.entities.PetrifiedBoatEntity;
+import com.naterbobber.darkerdepths.common.entities.PetrifiedBoatEntity;
+import com.naterbobber.darkerdepths.core.DarkerDepths;
 
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.RenderType;

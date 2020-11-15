@@ -2,7 +2,8 @@ package com.naterbobber.darkerdepths.client.entity.model;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
-import com.naterbobber.darkerdepths.entities.MagmaMinionEntity;
+import com.naterbobber.darkerdepths.common.entities.MagmaMinionEntity;
+
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.util.math.MathHelper;

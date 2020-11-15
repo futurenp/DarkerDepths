@@ -1,8 +1,9 @@
 package com.naterbobber.darkerdepths.client.entity.render.layers;
 
-import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.client.entity.model.GlowshroomMonsterModel;
-import com.naterbobber.darkerdepths.entities.GlowshroomMonsterEntity;
+import com.naterbobber.darkerdepths.common.entities.GlowshroomMonsterEntity;
+import com.naterbobber.darkerdepths.core.DarkerDepths;
+
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.IEntityRenderer;
 import net.minecraft.client.renderer.entity.layers.AbstractEyesLayer;

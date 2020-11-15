@@ -1,6 +1,7 @@
 package com.naterbobber.darkerdepths.client.render;
 
-import com.naterbobber.darkerdepths.init.BlockInit;
+import com.naterbobber.darkerdepths.core.registries.DDBlocks;
+
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraftforge.api.distmarker.Dist;
@@ -8,11 +9,9 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class BlockRenderHandler {
-
     public static void blockRenders() {
-        RenderTypeLookup.setRenderLayer(BlockInit.petrified_door, RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(BlockInit.petrified_trapdoor, RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(BlockInit.rope, RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(DDBlocks.PETRIFIED_DOOR.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(DDBlocks.PETRIFIED_TRAPDOOR.get(), RenderType.getTranslucent());
+        RenderTypeLookup.setRenderLayer(DDBlocks.ROPE.get(), RenderType.getCutout());
     }
-
 }

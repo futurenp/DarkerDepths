@@ -2,7 +2,7 @@ package com.naterbobber.darkerdepths.mixin.common.blocks;
 
 import org.spongepowered.asm.mixin.Mixin;
 
-import com.naterbobber.darkerdepths.init.BlockInit;
+import com.naterbobber.darkerdepths.core.registries.DDBlocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -37,10 +37,10 @@ public class LogBlockMixin extends Block {
 	}
 	
 	private boolean reactWithNeighbors(World worldIn, BlockPos pos, BlockState state) {
-		Block block = BlockInit.petrified_log;
+		Block block = DDBlocks.PETRIFIED_LOG.get();
 		BlockState blockstate = worldIn.getBlockState(pos);
 		boolean isAboveSoulfire = worldIn.getBlockState(pos.down()) == Blocks.SOUL_FIRE.getDefaultState() && worldIn.getBlockState(pos.down(2)) == Blocks.SOUL_SOIL.getDefaultState();
-		if (isAboveSoulfire && worldIn.getBlockState(pos).isIn(BlockTags.LOGS)) {
+		if (isAboveSoulfire && worldIn.getBlockState(pos).isIn(BlockTags.LOGS_THAT_BURN)) {
 			worldIn.setBlockState(pos, block.getDefaultState().with(RotatedPillarBlock.AXIS, blockstate.get(RotatedPillarBlock.AXIS)), 11);
 			worldIn.addParticle(ParticleTypes.SOUL, pos.getX(), pos.getY(), pos.getZ(), 1.0f, 1.0f, 1.0f);
 			worldIn.playEvent(1501, pos, 0);
