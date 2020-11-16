@@ -4,12 +4,14 @@ import com.naterbobber.darkerdepths.client.render.BlockRenderHandler;
 import com.naterbobber.darkerdepths.common.entities.GlowshroomMonsterEntity;
 import com.naterbobber.darkerdepths.common.entities.MagmaMinionEntity;
 import com.naterbobber.darkerdepths.common.world.gen.VanillaBiomeFeatures;
+import com.naterbobber.darkerdepths.common.world.gen.biome.provider.DDBiomeProvider;
 import com.naterbobber.darkerdepths.core.init.EntityTypesInit;
 import com.naterbobber.darkerdepths.core.registries.VanillaIntegrationRegistry;
 import com.naterbobber.darkerdepths.core.util.DarkerDepthsItemGroup;
 
 import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
 import net.minecraft.item.ItemGroup;
+import net.minecraft.util.registry.Registry;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -59,6 +61,8 @@ public class DarkerDepths {
         });
 
         VanillaIntegrationRegistry.setup();
+        
+        Registry.register(Registry.BIOME_PROVIDER_CODEC, "darkerdepths_overworld", DDBiomeProvider.CODEC);
 
         LOGGER.info("Pre-initializing.");
     }
