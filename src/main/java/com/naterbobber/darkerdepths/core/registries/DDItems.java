@@ -23,7 +23,7 @@ public class DDItems {
 	public static final RegistryObject<Item> SILVER_INGOT 		= HELPER.createItem("silver_ingot", () -> new Item(new Item.Properties().group(DarkerDepths.DARKER_DEPTHS)));
 	public static final RegistryObject<Item> SPAWNER_FRAGMENT 	= HELPER.createItem("spawner_fragment", () -> new Item(new Item.Properties().group(DarkerDepths.DARKER_DEPTHS)));
 	public static final RegistryObject<Item> ELYTRINE_CRYSTAL 	= HELPER.createItem("elytrine_crystal", () -> new Item(new Item.Properties().group(DarkerDepths.DARKER_DEPTHS)));
-	
+
 	//transport
 	public static final RegistryObject<Item> PETRIFIED_BOAT 	= HELPER.createItem("petrified_boat", () -> new DDBoatItem(PetrifiedBoatEntity.Type.Petrified, new Item.Properties().maxStackSize(1).group(DarkerDepths.DARKER_DEPTHS)));
 }

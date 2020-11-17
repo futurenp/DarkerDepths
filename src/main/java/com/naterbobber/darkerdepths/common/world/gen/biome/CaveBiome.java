@@ -1,10 +1,10 @@
 package com.naterbobber.darkerdepths.common.world.gen.biome;
 
-//
-
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeAmbience;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
+
+//<>
 
 public class CaveBiome extends AbstractCaveBiome {
     public CaveBiome() {
