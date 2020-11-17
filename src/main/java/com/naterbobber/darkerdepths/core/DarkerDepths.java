@@ -6,6 +6,7 @@ import com.naterbobber.darkerdepths.common.entities.MagmaMinionEntity;
 import com.naterbobber.darkerdepths.common.world.gen.VanillaBiomeFeatures;
 import com.naterbobber.darkerdepths.common.world.gen.biome.provider.DDBiomeProvider;
 import com.naterbobber.darkerdepths.core.init.EntityTypesInit;
+import com.naterbobber.darkerdepths.core.registries.DDBiomes;
 import com.naterbobber.darkerdepths.core.registries.VanillaIntegrationRegistry;
 import com.naterbobber.darkerdepths.core.util.DarkerDepthsItemGroup;
 
@@ -49,12 +50,14 @@ public class DarkerDepths {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
 
         EntityTypesInit.ENTITY_TYPES.register(FMLJavaModLoadingContext.get().getModEventBus());
+        DDBiomes.BIOMES.register(modEventBus);
 
         MinecraftForge.EVENT_BUS.register(this);
     }
 
     private void setup(final FMLCommonSetupEvent event) {
     	VanillaBiomeFeatures.addBiomeFeatures();
+        DDBiomes.applyBiomeFeatures();
     	DeferredWorkQueue.runLater(() -> {
             GlobalEntityTypeAttributes.put(EntityTypesInit.GLOWSHROOM_MONSTER.get(), GlowshroomMonsterEntity.setCustomAttributes().create());
             GlobalEntityTypeAttributes.put(EntityTypesInit.MAGMA_MINION.get(), MagmaMinionEntity.setCustomAttributes().create());
