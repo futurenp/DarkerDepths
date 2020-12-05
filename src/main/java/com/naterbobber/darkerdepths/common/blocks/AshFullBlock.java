@@ -6,6 +6,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.particles.BlockParticleData;
 import net.minecraft.particles.ParticleTypes;
+import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.IBlockReader;
@@ -31,6 +32,16 @@ public class AshFullBlock extends FallingBlock {
 
 	@Override
     public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
+        BlockPos.Mutable mutable = pos.toMutable();
+
+        for (int i = 0; i < 10; i++) {
+            mutable.move(Direction.DOWN);
+            BlockState blockState = worldIn.getBlockState(mutable);
+            if (!blockState.isAir()) {
+                worldIn.setBlockState(mutable, DDBlocks.ASH.get().getDefaultState());
+            }
+        }
+        /*
     	BlockPos fillerpos = pos.down();
     	BlockPos basepos = pos.down(2);
     	BlockState fillerstate = worldIn.getBlockState(fillerpos);
@@ -45,12 +56,12 @@ public class AshFullBlock extends FallingBlock {
     				worldIn.setBlockState(pos.down(), DDBlocks.ASH.get().getDefaultState());
     			}
     		}
-    	}
+    	}*/
     }
 
     @Override
     public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
-        if (!(entityIn instanceof LivingEntity) || ((LivingEntity)entityIn).world.getBlockState(entityIn.getOnPosition()).getBlock().equals(DDBlocks.ASH_BLOCK.get())) {
+        if (!(entityIn instanceof LivingEntity) || entityIn.world.getBlockState(entityIn.getOnPosition()).getBlock().equals(DDBlocks.ASH_BLOCK.get())) {
             if (!entityIn.isSpectator() && (entityIn.prevPosX != entityIn.getPosX() || entityIn.prevPosZ != entityIn.getPosZ()) && worldIn.rand.nextBoolean()) {
                 spawnAshParticles(worldIn, new Vector3d(entityIn.getPosX(), (double)pos.getY(), entityIn.getPosZ()));
             }

@@ -1,0 +1,30 @@
+{
+	"variants": {
+		"facing=down": {
+			"model": "darkerdepths:block/amber",
+			"x": 180
+		},
+		"facing=east": {
+			"model": "darkerdepths:block/amber",
+			"x": 90,
+			"y": 90
+		},
+		"facing=north": {
+			"model": "darkerdepths:block/amber",
+			"x": 90
+		},
+		"facing=south": {
+			"model": "darkerdepths:block/amber",
+			"x": 90,
+			"y": 180
+		},
+		"facing=up": {
+			"model": "darkerdepths:block/amber"
+		},
+		"facing=west": {
+			"model": "darkerdepths:block/amber",
+			"x": 90,
+			"y": 270
+		}
+	}
+}

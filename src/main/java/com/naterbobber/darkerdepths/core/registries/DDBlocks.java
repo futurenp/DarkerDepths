@@ -1,6 +1,7 @@
 package com.naterbobber.darkerdepths.core.registries;
 
 import com.naterbobber.darkerdepths.common.blocks.*;
+import com.naterbobber.darkerdepths.common.blocks.material.DDMaterial;
 import com.naterbobber.darkerdepths.core.DarkerDepths;
 
 import com.naterbobber.darkerdepths.core.RegistryHelper;
@@ -55,8 +56,9 @@ public class DDBlocks {
 	public static final RegistryObject<Block> CELESTINE_CRYSTAL_BLOCK	= HELPER.createBlock("celestine_crystal_block", () -> new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.0f, 1.0f).harvestTool(ToolType.PICKAXE).harvestLevel(2).sound(SoundType.GLASS).setLightLevel(value -> 10)), DarkerDepths.DARKER_DEPTHS);
 	public static final RegistryObject<Block> REDSTONE_CRYSTAL 			= HELPER.createBlock("redstone_crystal", () -> new RedstoneCrystal(), DarkerDepths.DARKER_DEPTHS);
 	public static final RegistryObject<Block> REDSTONE_CRYSTAL_BLOCK	= HELPER.createBlock("redstone_crystal_block", () -> new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.0f, 1.0f).harvestTool(ToolType.PICKAXE).harvestLevel(2).sound(SoundType.GLASS).setLightLevel(value -> 10)), DarkerDepths.DARKER_DEPTHS);
+	public static final RegistryObject<Block> AMBER 					= HELPER.createBlock("amber", () -> new AmberGemBlock(AbstractBlock.Properties.create(DDMaterial.AMBER).hardnessAndResistance(1.0f).harvestTool(ToolType.PICKAXE).harvestLevel(2).sound(SoundType.GLASS).setLightLevel(value -> 7)), DarkerDepths.DARKER_DEPTHS);
 	public static final RegistryObject<Block> GLOWSHROOM				= HELPER.createBlock("glowshroom", () -> new Glowshroom(), DarkerDepths.DARKER_DEPTHS);
-	public static final RegistryObject<Block> GLOWSHROOM_CAP			= HELPER.createBlock("glowshroom_cap", () -> new GlowshroomCap(), DarkerDepths.DARKER_DEPTHS);
+	public static final RegistryObject<Block> GLOWSHROOM_CAP			= HELPER.createBlockNoItem("glowshroom_cap", () -> new GlowshroomCap());
 	public static final RegistryObject<Block> SPELEOTHEM				= HELPER.createBlock("speleothem", () -> new Speleothem(), DarkerDepths.DARKER_DEPTHS);
 	public static final RegistryObject<Block> ROPE						= HELPER.createBlockNoItem("rope", () -> new RopeBlock(RopeBlock.Properties.create(Material.MISCELLANEOUS).zeroHardnessAndResistance().sound(SoundType.CLOTH)));
 	

@@ -7,7 +7,8 @@
   		"common.blocks.LogBlockMixin",
 		"common.world.biome.ColumnFuzzedBiomeMagnifierMixin",
 		"common.world.biome.provider.OverworldBiomeProviderMixin",
-		"common.world.chunk.ChunkGeneratorMixin"
+		"common.world.chunk.ChunkGeneratorMixin",
+		"common.server.MinecraftServerMixin"
 	],
   	"client":[
   	],
