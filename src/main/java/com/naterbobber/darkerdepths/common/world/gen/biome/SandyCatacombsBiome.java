@@ -20,5 +20,4 @@ public class SandyCatacombsBiome extends AbstractCaveBiome {
 	public void addFeatures() {
 		this.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.field_236287_R_.withConfiguration(VanillaBiomeFeatures.SANDSTONE_BLOB_CONFIG).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(100, 0, 0, 55))));
 	}
-
 }

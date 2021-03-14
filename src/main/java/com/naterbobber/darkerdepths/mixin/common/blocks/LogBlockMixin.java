@@ -1,5 +1,6 @@
 package com.naterbobber.darkerdepths.mixin.common.blocks;
 
+import net.minecraft.world.server.ServerWorld;
 import org.spongepowered.asm.mixin.Mixin;
 
 import com.naterbobber.darkerdepths.core.registries.DDBlocks;
@@ -13,38 +14,30 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import java.util.Random;
+
 //<>
 
 @Mixin(RotatedPillarBlock.class)
 public class LogBlockMixin extends Block {
-
 	public LogBlockMixin(Properties properties) {
 		super(properties);
+		properties.tickRandomly();
 	}
-	
+
 	@Override
 	public void onBlockAdded(BlockState state, World worldIn, BlockPos pos, BlockState oldState, boolean isMoving) {
-		if (this.reactWithNeighbors(worldIn, pos, state)) {
-			worldIn.getPendingBlockTicks().scheduleTick(pos, state.getBlockState().getBlock(), 10);
-		}
+		super.onBlockAdded(state, worldIn, pos, oldState, isMoving);
+		worldIn.getPendingBlockTicks().scheduleTick(pos, this, 40);
 	}
-	
+
 	@Override
-	public void neighborChanged(BlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos, boolean isMoving) {
-		if (this.reactWithNeighbors(worldIn, pos, state)) {
-			worldIn.getPendingBlockTicks().scheduleTick(pos, state.getBlockState().getBlock(), 10);
-		}
-	}
-	
-	private boolean reactWithNeighbors(World worldIn, BlockPos pos, BlockState state) {
+	public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
+		super.tick(state, worldIn, pos, rand);
 		Block block = DDBlocks.PETRIFIED_LOG.get();
-		BlockState blockstate = worldIn.getBlockState(pos);
-		boolean isAboveSoulfire = worldIn.getBlockState(pos.down()) == Blocks.SOUL_FIRE.getDefaultState() && worldIn.getBlockState(pos.down(2)) == Blocks.SOUL_SOIL.getDefaultState();
-		if (isAboveSoulfire && worldIn.getBlockState(pos).isIn(BlockTags.LOGS_THAT_BURN)) {
-			worldIn.setBlockState(pos, block.getDefaultState().with(RotatedPillarBlock.AXIS, blockstate.get(RotatedPillarBlock.AXIS)), 11);
-			worldIn.addParticle(ParticleTypes.SOUL, pos.getX(), pos.getY(), pos.getZ(), 1.0f, 1.0f, 1.0f);
+		if (worldIn.getBlockState(pos.down()).isIn(Blocks.SOUL_FIRE) && worldIn.getBlockState(pos.down(2)).isIn(Blocks.SOUL_SOIL) && worldIn.getBlockState(pos).isIn(BlockTags.LOGS_THAT_BURN)) {
+			worldIn.setBlockState(pos, block.getDefaultState().with(RotatedPillarBlock.AXIS, state.get(RotatedPillarBlock.AXIS)), 2);
 			worldIn.playEvent(1501, pos, 0);
 		}
-		return false;
 	}
 }

@@ -44,10 +44,6 @@ public class AshBlock extends Block {
         switch (type) {
             case LAND:
                 return state.get(LAYERS) < 5;
-            case WATER:
-                return false;
-            case AIR:
-                return false;
             default:
                 return false;
         }
@@ -99,9 +95,9 @@ public class AshBlock extends Block {
 
     @Override
     public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
-        if (!(entityIn instanceof LivingEntity) || ((LivingEntity)entityIn).world.getBlockState(entityIn.getOnPosition()).getBlock().equals(DDBlocks.ASH.get())) {
+        if (!(entityIn instanceof LivingEntity) || entityIn.world.getBlockState(entityIn.getOnPosition()).getBlock().equals(DDBlocks.ASH.get())) {
             if (!entityIn.isSpectator() && (entityIn.prevPosX != entityIn.getPosX() || entityIn.prevPosZ != entityIn.getPosZ()) && worldIn.rand.nextBoolean()) {
-                spawnAshParticles(worldIn, new Vector3d(entityIn.getPosX(), (double)pos.getY(), entityIn.getPosZ()));
+                spawnAshParticles(worldIn, new Vector3d(entityIn.getPosX(), pos.getY(), entityIn.getPosZ()));
             }
         }
     }
@@ -112,7 +108,7 @@ public class AshBlock extends Block {
             double getY = vector3d.y + 1.0d;
 
             for (int i = 0; i < rand.nextInt(3); ++i) {
-                worldIn.addParticle(ParticleTypes.CLOUD, vector3d.x, getY, vector3d.z, (double)((-1.0f + rand.nextFloat() * 2.0f) / 12.0f), 0.05000000074505806d, (double)((-1.0f + rand.nextFloat() * 2.0f) / 12.0f));
+                worldIn.addParticle(ParticleTypes.CLOUD, vector3d.x, getY, vector3d.z, ((-1.0f + rand.nextFloat() * 2.0f) / 12.0f), 0.05000000074505806d, ((-1.0f + rand.nextFloat() * 2.0f) / 12.0f));
             }
         }
     }

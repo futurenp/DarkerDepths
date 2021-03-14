@@ -34,12 +34,10 @@ public class ChunkGeneratorMixin {
         int x = chunkX * 16;
         int z = chunkZ * 16;
         BlockPos blockpos = new BlockPos(x, 0, z);
+        Biome surfaceBiome = this.biomeProvider.getNoiseBiome((chunkX << 2) + 2, 16, (chunkZ << 2) + 2);
+        Biome caveBiome = this.biomeProvider.getNoiseBiome((chunkX << 2) + 2, 2, (chunkZ << 2) + 2);
         SharedSeedRandom sharedseedrandom = new SharedSeedRandom();
         long seed = sharedseedrandom.setDecorationSeed(region.getSeed(), x, z);
-
-        Biome caveBiome = this.biomeProvider.getNoiseBiome((chunkX << 2) + 2, 2, (chunkZ << 2) + 2);
-
-        Biome surfaceBiome = this.biomeProvider.getNoiseBiome((chunkX << 2) + 2, 16, (chunkZ << 2) + 2);
 
         if (caveBiome == surfaceBiome) {
             return;
@@ -56,7 +54,7 @@ public class ChunkGeneratorMixin {
         }
     }
 
-    @Redirect(at = @At(value = "INVOKE", target = "Lnet/minecraft/world/biome/provider/BiomeProvider;getNoiseBiome(III)Lnet/minecraft/world/biome/Biome;"), method = "func_230350_a_")
+    @Redirect(method = "func_230350_a_", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/biome/provider/BiomeProvider;getNoiseBiome(III)Lnet/minecraft/world/biome/Biome;"))
     private Biome generationSettings(BiomeProvider biomeProvider, int x, int y, int z) {
         return this.biomeProvider.getNoiseBiome(x, 16, z);
     }

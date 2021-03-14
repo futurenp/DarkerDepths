@@ -22,7 +22,7 @@ public class OverworldBiomeProviderMixin {
     private Layer caveLayer;
 
     @Inject(at = @At("RETURN"), method = "<init>(JZZ)V")
-    private void biomeprovider(long seed, boolean legacyBiomes, boolean largeBiomes, CallbackInfo info) {
+    private void biomeProvider(long seed, boolean legacyBiomes, boolean largeBiomes, CallbackInfo info) {
         this.caveLayer = CaveLayerUtil.createLayers(seed);
     }
 
