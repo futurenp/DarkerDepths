@@ -1,6 +1,6 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "darkerdepths:block/weathered_sandstone"
+    "all": "darkerdepths:block/polished_aridrock"
   }
 }

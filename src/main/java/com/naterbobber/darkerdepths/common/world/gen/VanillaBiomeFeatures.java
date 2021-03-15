@@ -1,6 +1,5 @@
 package com.naterbobber.darkerdepths.common.world.gen;
 
-import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import com.naterbobber.darkerdepths.common.blocks.Speleothem;
 import com.naterbobber.darkerdepths.common.world.gen.feature.BlobReplacementConfig;
@@ -33,7 +32,7 @@ public class VanillaBiomeFeatures {
 	public static final BlockState SANDSTONE			= Blocks.SANDSTONE.getDefaultState();
 	public static final BlockState GRAVEL				= Blocks.GRAVEL.getDefaultState();
 	public static final BlockState DIRT					= Blocks.DIRT.getDefaultState();
-	public static final BlockState WEATHERED_SANDSTONE	= DDBlocks.WEATHERED_SANDSTONE.get().getDefaultState();
+	public static final BlockState ARIDROCK 			= DDBlocks.ARIDROCK.get().getDefaultState();
 	public static final BlockState ASH 					= DDBlocks.ASH.get().getDefaultState();
 	public static final BlockState ASH_BLOCK 			= DDBlocks.ASH_BLOCK.get().getDefaultState();
 	public static final BlockState STONE 				= Blocks.STONE.getDefaultState();
@@ -53,10 +52,10 @@ public class VanillaBiomeFeatures {
 	public static final BlockClusterFeatureConfig ASH_CONFIG 					= (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(ASH), new SimpleBlockPlacer())).tries(100).func_227317_b_().build();
 	public static final BlockClusterFeatureConfig GLOWSHROOM_CONFIG 			= (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(GLOWSHROOM), new SimpleBlockPlacer())).tries(64).func_227317_b_().build();
 	public static final BlockClusterFeatureConfig GLOWSHROOM_CAP_CONFIG 		= (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(GLOWSHROOM_CAP), new SimpleBlockPlacer())).tries(3).whitelist(ImmutableSet.of(DDBlocks.SHALE.get().getBlock())).func_227317_b_().build();
-	public static final BlockClusterFeatureConfig DEAD_BUSH_CONFIG 				= new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(Blocks.DEAD_BUSH.getDefaultState()), new SimpleBlockPlacer()).tries(32).whitelist(ImmutableSet.of(WEATHERED_SANDSTONE.getBlock(), SAND.getBlock(), LIMESTONE.getBlock())).func_227317_b_().build();
+	public static final BlockClusterFeatureConfig DEAD_BUSH_CONFIG 				= new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(Blocks.DEAD_BUSH.getDefaultState()), new SimpleBlockPlacer()).tries(32).whitelist(ImmutableSet.of(ARIDROCK.getBlock(), SAND.getBlock(), LIMESTONE.getBlock())).func_227317_b_().build();
 	public static final BlobReplacementConfig SHALE_CONFIG 						= new BlobReplacementConfig.Builder().setMinReach(new Vector3i(3, 3, 3)).setMaxReach(new Vector3i(7, 7, 7)).setTarget(ImmutableSet.of(STONE, DIORITE, GRANITE, GRAVEL, DIRT)).setBlockState(SHALE).build();
-	public static final BlobReplacementConfig WEATHERED_SANDSTONE_CONFIG 		= new BlobReplacementConfig.Builder().setMinReach(new Vector3i(3, 3, 3)).setMaxReach(new Vector3i(7, 7, 7)).setTarget(ImmutableSet.of(STONE, DIORITE, ANDESITE, GRANITE, GRAVEL, DIRT)).setBlockState(WEATHERED_SANDSTONE).build();
-	public static final BlobReplacementConfig LIMESTONE_CONFIG 					= new BlobReplacementConfig.Builder().setMinReach(new Vector3i(3, 3, 3)).setMaxReach(new Vector3i(7, 7, 7)).setTarget(ImmutableSet.of(STONE, DIORITE, ANDESITE, GRANITE, GRAVEL, DIRT, WEATHERED_SANDSTONE)).setBlockState(LIMESTONE).build();
+	public static final BlobReplacementConfig ARIDROCK_CONFIG 					= new BlobReplacementConfig.Builder().setMinReach(new Vector3i(3, 3, 3)).setMaxReach(new Vector3i(7, 7, 7)).setTarget(ImmutableSet.of(STONE, DIORITE, ANDESITE, GRANITE, GRAVEL, DIRT)).setBlockState(ARIDROCK).build();
+	public static final BlobReplacementConfig LIMESTONE_CONFIG 					= new BlobReplacementConfig.Builder().setMinReach(new Vector3i(3, 3, 3)).setMaxReach(new Vector3i(7, 7, 7)).setTarget(ImmutableSet.of(STONE, DIORITE, ANDESITE, GRANITE, GRAVEL, DIRT, ARIDROCK)).setBlockState(LIMESTONE).build();
 
 	public static void addGlowshrooms(Biome biomeIn) {
 		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.RANDOM_PATCH.withConfiguration(GLOWSHROOM_CONFIG).withPlacement(Placement.CHANCE_RANGE.configure(new ChanceRangeConfig(4, 0, 0, 64))));
