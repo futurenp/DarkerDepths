@@ -2,12 +2,28 @@ package com.naterbobber.darkerdepths.common.world.gen.biome;
 
 import com.naterbobber.darkerdepths.common.world.gen.VanillaBiomeFeatures;
 
+import com.naterbobber.darkerdepths.common.world.gen.feature.SimpleBlockConfig;
+import com.naterbobber.darkerdepths.common.world.gen.placement.CaveDecoratorConfig;
+import com.naterbobber.darkerdepths.core.registries.DDBlocks;
+import com.naterbobber.darkerdepths.core.registries.DDFeatures;
+import com.naterbobber.darkerdepths.core.registries.DDPlacements;
+import com.naterbobber.darkerdepths.core.util.CaveSurface;
+import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
+import net.minecraft.entity.EntityClassification;
+import net.minecraft.entity.EntityType;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeAmbience;
+import net.minecraft.world.biome.DefaultBiomeFeatures;
 import net.minecraft.world.gen.GenerationStage;
+import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
 import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.gen.feature.OreFeatureConfig;
+import net.minecraft.world.gen.placement.ChanceRangeConfig;
 import net.minecraft.world.gen.placement.CountRangeConfig;
 import net.minecraft.world.gen.placement.Placement;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
+import net.minecraftforge.common.Tags;
 
 //<>
 
@@ -18,6 +34,16 @@ public class SandyCatacombsBiome extends AbstractCaveBiome {
 	
 	@Override
 	public void addFeatures() {
-		this.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.field_236287_R_.withConfiguration(VanillaBiomeFeatures.SANDSTONE_BLOB_CONFIG).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(100, 0, 0, 55))));
+		DefaultBiomeFeatures.func_235196_b_(this);
+		this.func_235063_a_(DefaultBiomeFeatures.RUINED_PORTAL_DESERT);
+		DefaultBiomeFeatures.addCarvers(this);
+		DefaultBiomeFeatures.addOres(this);
+		DefaultBiomeFeatures.addMushrooms(this);
+		this.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, DDFeatures.BLOB_REPLACEMENT_FEATURE.get().withConfiguration(VanillaBiomeFeatures.LIMESTONE_CONFIG).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(100, 0, 0, 15))));
+		this.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, DDFeatures.BLOB_REPLACEMENT_FEATURE.get().withConfiguration(VanillaBiomeFeatures.WEATHERED_SANDSTONE_CONFIG).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(100, 0, 0, 60))));
+		this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, VanillaBiomeFeatures.LIMESTONE, 33)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(20, 0, 0, 60))));
+		this.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, Blocks.SAND.getDefaultState(), 33)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(15, 15, 0, 60))));
+		this.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.RANDOM_PATCH.withConfiguration(VanillaBiomeFeatures.DEAD_BUSH_CONFIG).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(8, 0, 0, 60))));
+		this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, DDFeatures.SIMPLE_BLOCK_FEATURE.get().withConfiguration(new SimpleBlockConfig(new SimpleBlockStateProvider(DDBlocks.ROOTS.get().getDefaultState()))).withPlacement(DDPlacements.CAVE_SURFACE.get().configure(new CaveDecoratorConfig(CaveSurface.CEILING, 12))).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(80, 0, 0, 70))));
 	}
 }

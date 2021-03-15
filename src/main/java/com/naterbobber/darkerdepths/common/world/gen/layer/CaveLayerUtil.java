@@ -15,7 +15,7 @@ public class CaveLayerUtil {
 	public static <T extends IArea, C extends IExtendedNoiseRandom<T>> IAreaFactory<T> areaFactories(LongFunction<C> context) {
 		IAreaFactory<T> biomeFactory = CaveBiomeLayer.INSTANCE.apply(context.apply(1000l));
 		
-		for (int caveBiomeSize = 0; caveBiomeSize <= 2; caveBiomeSize++) {
+		for (int caveBiomeSize = 0; caveBiomeSize <= 4; caveBiomeSize++) {
 			biomeFactory = ZoomLayer.NORMAL.apply(context.apply(1000l + caveBiomeSize), biomeFactory);
 		}
 		biomeFactory = ZoomLayer.FUZZY.apply(context.apply(1000l), biomeFactory);

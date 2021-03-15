@@ -1,19 +1,20 @@
 {
-	"required": true,
-	"package": "com.naterbobber.darkerdepths.mixin",
-	"compatibilityLevel": "JAVA_8",
-	"refmap": "darkerdepths.refmap.json",
-	"mixins": [
-  		"common.blocks.LogBlockMixin",
-		"common.world.biome.ColumnFuzzedBiomeMagnifierMixin",
-		"common.world.biome.provider.OverworldBiomeProviderMixin",
-		"common.world.chunk.ChunkGeneratorMixin",
-		"common.server.MinecraftServerMixin"
-	],
-  	"client":[
-  	],
-  	"injectors": {
-    	"defaultRequire": 1
-  	},
-  	"minVersion": "0.8"
+  "required": true,
+  "package": "com.naterbobber.darkerdepths.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "darkerdepths.refmap.json",
+  "mixins": [
+    "common.blocks.DeadBushBlockMixin",
+    "common.blocks.LogBlockMixin",
+    "common.server.MinecraftServerMixin",
+    "common.world.biome.ColumnFuzzedBiomeMagnifierMixin",
+    "common.world.biome.provider.OverworldBiomeProviderMixin",
+    "common.world.chunk.ChunkGeneratorMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "minVersion": "0.8"
 }

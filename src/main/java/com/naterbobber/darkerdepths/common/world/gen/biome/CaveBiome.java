@@ -1,5 +1,6 @@
 package com.naterbobber.darkerdepths.common.world.gen.biome;
 
+import com.naterbobber.darkerdepths.common.world.gen.VanillaBiomeFeatures;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeAmbience;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
@@ -14,5 +15,6 @@ public class CaveBiome extends AbstractCaveBiome {
     @Override
     public void addFeatures() {
         super.addFeatures();
+        VanillaBiomeFeatures.addSpeleothems(this);
     }
 }

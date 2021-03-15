@@ -9,6 +9,8 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.gen.placement.IPlacementConfig;
+import net.minecraft.world.gen.placement.Placement;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -20,12 +22,14 @@ public class RegistryHelper {
 	private final DeferredRegister<Block> blockRegister;
 	private final DeferredRegister<Item> itemRegister;
 	private final DeferredRegister<Feature<?>> featureRegister;
+	private final DeferredRegister<Placement<?>> placementDeferredRegister;
 
 	public RegistryHelper(String modId) {
 		this.modId = modId;
 		this.itemRegister = DeferredRegister.create(ForgeRegistries.ITEMS, modId);
 		this.blockRegister = DeferredRegister.create(ForgeRegistries.BLOCKS, modId);
 		this.featureRegister = DeferredRegister.create(ForgeRegistries.FEATURES, modId);
+		this.placementDeferredRegister = DeferredRegister.create(ForgeRegistries.DECORATORS, modId);
 	}
 	
 	public DeferredRegister<Item> getItemRegister() {
@@ -39,7 +43,11 @@ public class RegistryHelper {
 	public DeferredRegister<Feature<?>> getFeatureRegister() {
 		return this.featureRegister;
 	}
-	
+
+	public DeferredRegister<Placement<?>> getPlacementDeferredRegister() {
+		return this.placementDeferredRegister;
+	}
+
 	public String getModId() {
 		return this.modId;
 	}
@@ -88,5 +96,10 @@ public class RegistryHelper {
 	public <F extends Feature<?>> RegistryObject<F> createFeature(String name, Supplier<? extends F> supplier) {
 		RegistryObject<F> feature = this.featureRegister.register(name, supplier);
 		return feature;
+	}
+
+
+	public <T extends IPlacementConfig, G extends Placement<T>> RegistryObject<G> registerPlacement(String key, Supplier<G> supplier) {
+		return this.getPlacementDeferredRegister().register(key, supplier);
 	}
 }

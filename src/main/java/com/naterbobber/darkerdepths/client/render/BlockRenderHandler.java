@@ -11,7 +11,8 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public class BlockRenderHandler {
     public static void blockRenders() {
         RenderTypeLookup.setRenderLayer(DDBlocks.PETRIFIED_DOOR.get(), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(DDBlocks.PETRIFIED_TRAPDOOR.get(), RenderType.getTranslucent());
+        RenderTypeLookup.setRenderLayer(DDBlocks.PETRIFIED_TRAPDOOR.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(DDBlocks.ROPE.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(DDBlocks.ROOTS.get(), RenderType.getCutout());
     }
 }

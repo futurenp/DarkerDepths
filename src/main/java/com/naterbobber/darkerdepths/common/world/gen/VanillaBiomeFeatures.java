@@ -2,17 +2,19 @@ package com.naterbobber.darkerdepths.common.world.gen;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
-import com.naterbobber.darkerdepths.common.blocks.AbstractGemStoneBlock;
 import com.naterbobber.darkerdepths.common.blocks.Speleothem;
-import com.naterbobber.darkerdepths.common.world.gen.feature.AmberConfig;
+import com.naterbobber.darkerdepths.common.world.gen.feature.BlobReplacementConfig;
+import com.naterbobber.darkerdepths.common.world.gen.feature.SimpleBlockConfig;
+import com.naterbobber.darkerdepths.common.world.gen.placement.CaveDecoratorConfig;
 import com.naterbobber.darkerdepths.core.registries.DDBlocks;
 import com.naterbobber.darkerdepths.core.registries.DDFeatures;
 
+import com.naterbobber.darkerdepths.core.registries.DDPlacements;
+import com.naterbobber.darkerdepths.core.util.CaveSurface;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
-import net.minecraft.util.Direction;
 import net.minecraft.util.math.vector.Vector3i;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage;
@@ -29,10 +31,15 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class VanillaBiomeFeatures {
 	public static final BlockState SAND 				= Blocks.SAND.getDefaultState();
 	public static final BlockState SANDSTONE			= Blocks.SANDSTONE.getDefaultState();
+	public static final BlockState GRAVEL				= Blocks.GRAVEL.getDefaultState();
+	public static final BlockState DIRT					= Blocks.DIRT.getDefaultState();
+	public static final BlockState WEATHERED_SANDSTONE	= DDBlocks.WEATHERED_SANDSTONE.get().getDefaultState();
 	public static final BlockState ASH 					= DDBlocks.ASH.get().getDefaultState();
 	public static final BlockState ASH_BLOCK 			= DDBlocks.ASH_BLOCK.get().getDefaultState();
 	public static final BlockState STONE 				= Blocks.STONE.getDefaultState();
 	public static final BlockState DIORITE 				= Blocks.DIORITE.getDefaultState();
+	public static final BlockState ANDESITE				= Blocks.ANDESITE.getDefaultState();
+	public static final BlockState GRANITE 				= Blocks.GRANITE.getDefaultState();
 	public static final BlockState SILVER_ORE			= DDBlocks.SILVER_ORE.get().getDefaultState();
 	public static final BlockState ELYTRINE_ORE 		= DDBlocks.ELYTRINE_ORE.get().getDefaultState();
 	public static final BlockState LIMESTONE 			= DDBlocks.LIMESTONE.get().getDefaultState();
@@ -46,12 +53,10 @@ public class VanillaBiomeFeatures {
 	public static final BlockClusterFeatureConfig ASH_CONFIG 					= (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(ASH), new SimpleBlockPlacer())).tries(100).func_227317_b_().build();
 	public static final BlockClusterFeatureConfig GLOWSHROOM_CONFIG 			= (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(GLOWSHROOM), new SimpleBlockPlacer())).tries(64).func_227317_b_().build();
 	public static final BlockClusterFeatureConfig GLOWSHROOM_CAP_CONFIG 		= (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(GLOWSHROOM_CAP), new SimpleBlockPlacer())).tries(3).whitelist(ImmutableSet.of(DDBlocks.SHALE.get().getBlock())).func_227317_b_().build();
-	public static final BlockClusterFeatureConfig SPELEOTHEM_FLOOR_CONFIG 		= (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(SPELEOTHEM_FLOOR), SimpleBlockPlacer.field_236447_c_)).tries(64).xSpread(8).ySpread(8).zSpread(8).func_227317_b_().whitelist(ImmutableSet.of(Blocks.STONE, Blocks.ANDESITE, Blocks.DIORITE, Blocks.GRANITE, DDBlocks.SHALE.get(), DDBlocks.LIMESTONE.get())).build();
-	public static final BlockClusterFeatureConfig SPELEOTHEM_CEILING_CONFIG 	= (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(SPELEOTHEM_CEILING), SimpleBlockPlacer.field_236447_c_)).tries(64).xSpread(8).ySpread(8).zSpread(8).func_227317_b_().whitelist(ImmutableSet.of(Blocks.STONE, Blocks.ANDESITE, Blocks.DIORITE, Blocks.GRANITE, DDBlocks.SHALE.get(), DDBlocks.LIMESTONE.get())).build();
-	public static final NetherackBlobReplacementFeature SHALE_BLOB_CONFIG 		= (new NetherackBlobReplacementFeature.Builder()).func_236624_a_(new Vector3i(3, 3, 3)).func_236626_b_(new Vector3i(7, 7, 7)).func_236623_a_(STONE).func_236625_b_(SHALE).func_236622_a_();
-	public static final NetherackBlobReplacementFeature ASH_BLOB_CONFIG 		= (new NetherackBlobReplacementFeature.Builder()).func_236624_a_(new Vector3i(3, 3, 3)).func_236626_b_(new Vector3i(7, 7, 7)).func_236623_a_(DIORITE).func_236625_b_(SHALE).func_236622_a_();
-	public static final NetherackBlobReplacementFeature SAND_BLOB_CONFIG 		= (new NetherackBlobReplacementFeature.Builder()).func_236624_a_(new Vector3i(3, 3, 3)).func_236626_b_(new Vector3i(7, 7, 7)).func_236623_a_(STONE).func_236625_b_(SAND).func_236622_a_();
-	public static final NetherackBlobReplacementFeature SANDSTONE_BLOB_CONFIG 	= (new NetherackBlobReplacementFeature.Builder()).func_236624_a_(new Vector3i(3, 3, 3)).func_236626_b_(new Vector3i(7, 7, 7)).func_236623_a_(STONE).func_236625_b_(SANDSTONE).func_236622_a_();
+	public static final BlockClusterFeatureConfig DEAD_BUSH_CONFIG 				= new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(Blocks.DEAD_BUSH.getDefaultState()), new SimpleBlockPlacer()).tries(32).whitelist(ImmutableSet.of(WEATHERED_SANDSTONE.getBlock(), SAND.getBlock(), LIMESTONE.getBlock())).func_227317_b_().build();
+	public static final BlobReplacementConfig SHALE_CONFIG 						= new BlobReplacementConfig.Builder().setMinReach(new Vector3i(3, 3, 3)).setMaxReach(new Vector3i(7, 7, 7)).setTarget(ImmutableSet.of(STONE, DIORITE, GRANITE, GRAVEL, DIRT)).setBlockState(SHALE).build();
+	public static final BlobReplacementConfig WEATHERED_SANDSTONE_CONFIG 		= new BlobReplacementConfig.Builder().setMinReach(new Vector3i(3, 3, 3)).setMaxReach(new Vector3i(7, 7, 7)).setTarget(ImmutableSet.of(STONE, DIORITE, ANDESITE, GRANITE, GRAVEL, DIRT)).setBlockState(WEATHERED_SANDSTONE).build();
+	public static final BlobReplacementConfig LIMESTONE_CONFIG 					= new BlobReplacementConfig.Builder().setMinReach(new Vector3i(3, 3, 3)).setMaxReach(new Vector3i(7, 7, 7)).setTarget(ImmutableSet.of(STONE, DIORITE, ANDESITE, GRANITE, GRAVEL, DIRT, WEATHERED_SANDSTONE)).setBlockState(LIMESTONE).build();
 
 	public static void addGlowshrooms(Biome biomeIn) {
 		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.RANDOM_PATCH.withConfiguration(GLOWSHROOM_CONFIG).withPlacement(Placement.CHANCE_RANGE.configure(new ChanceRangeConfig(4, 0, 0, 64))));
@@ -59,7 +64,7 @@ public class VanillaBiomeFeatures {
 	}
 	
 	public static void addAmber(Biome biomeIn) {
-		biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, DDFeatures.AMBER_FEATURE.get().withConfiguration(new AmberConfig(10, true, true, true, 0.5f, ImmutableList.of(Blocks.STONE.getDefaultState(), Blocks.ANDESITE.getDefaultState(), Blocks.DIORITE.getDefaultState(), Blocks.GRANITE.getDefaultState(), Blocks.MAGMA_BLOCK.getDefaultState(), DDBlocks.SHALE.get().getDefaultState()))).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(40, 0, 0,55))));
+		biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, DDFeatures.GEMSTONE_PLACEMENT_FEATURE.get().withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(40, 0, 0, 25))));
 	}
 	
 	public static void addAsh(Biome biomeIn) {
@@ -68,8 +73,10 @@ public class VanillaBiomeFeatures {
 	}
 
 	public static void addSpeleothems(Biome biomeIn) {
-		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, DDFeatures.SPELEOTHEM_FLOOR_FEATURE.get().withConfiguration(SPELEOTHEM_FLOOR_CONFIG).withPlacement(Placement.CHANCE_RANGE.configure(new ChanceRangeConfig(50, 16, 16, 54))));
-		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, DDFeatures.SPELEOTHEM_CEILING_FEATURE.get().withConfiguration(SPELEOTHEM_CEILING_CONFIG).withPlacement(Placement.CHANCE_RANGE.configure(new ChanceRangeConfig(50, 16, 16, 54))));
+		biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, DDFeatures.SIMPLE_BLOCK_FEATURE.get().withConfiguration(new SimpleBlockConfig(new SimpleBlockStateProvider(SPELEOTHEM_CEILING))).withPlacement(DDPlacements.CAVE_SURFACE.get().configure(new CaveDecoratorConfig(CaveSurface.CEILING, 12))).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(40, 0, 0, 60))));
+		biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, DDFeatures.SIMPLE_BLOCK_FEATURE.get().withConfiguration(new SimpleBlockConfig(new SimpleBlockStateProvider(SPELEOTHEM_FLOOR))).withPlacement(DDPlacements.CAVE_SURFACE.get().configure(new CaveDecoratorConfig(CaveSurface.FLOOR, 12))).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(40, 0, 0, 60))));
+//		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, DDFeatures.SPELEOTHEM_FLOOR_FEATURE.get().withConfiguration(SPELEOTHEM_FLOOR_CONFIG).withPlacement(Placement.CHANCE_RANGE.configure(new ChanceRangeConfig(50, 16, 16, 54))));
+//		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, DDFeatures.SPELEOTHEM_CEILING_FEATURE.get().withConfiguration(SPELEOTHEM_CEILING_CONFIG).withPlacement(Placement.CHANCE_RANGE.configure(new ChanceRangeConfig(50, 16, 16, 54))));
 	}
 
 	public static void addStoneVariants(Biome biomeIn) {
@@ -96,7 +103,7 @@ public class VanillaBiomeFeatures {
 	public static void addVanillaBiomeFeatures() {
 		for (Biome biome : ForgeRegistries.BIOMES) {
 			if (!biome.getCategory().equals(Biome.Category.NETHER) && !biome.getCategory().equals(Biome.Category.THEEND)) {
-				addSpeleothems(biome);
+				//addSpeleothems(biome);
 			}
 		}
 	}

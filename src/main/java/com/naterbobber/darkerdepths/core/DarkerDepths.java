@@ -44,6 +44,7 @@ public class DarkerDepths {
         REGISTRY_HELPER.getBlockRegister().register(modEventBus);
         REGISTRY_HELPER.getItemRegister().register(modEventBus);
         REGISTRY_HELPER.getFeatureRegister().register(modEventBus);
+        REGISTRY_HELPER.getPlacementDeferredRegister().register(modEventBus);
         
         DDCarvers.CARVER.register(modEventBus);
         

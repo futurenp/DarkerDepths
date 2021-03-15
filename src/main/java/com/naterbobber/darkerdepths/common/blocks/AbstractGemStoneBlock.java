@@ -44,6 +44,11 @@ public class AbstractGemStoneBlock extends Block implements IWaterLoggable {
 		this.WEST_SHAPE = Block.makeCuboidShape(16 - x, z, z, 16.0D, 16 - z, 16 - z);
 	}
 
+	public static boolean canAttachTo(IBlockReader worldIn, BlockPos pos, Direction direction) {
+		BlockState state = worldIn.getBlockState(pos);
+		return Block.doesSideFillSquare(state.getCollisionShape(worldIn, pos), direction.getOpposite());
+	}
+
 	@Override
 	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
 		Direction direction = state.get(FACING);

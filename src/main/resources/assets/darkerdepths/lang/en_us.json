@@ -48,6 +48,8 @@
   "block.darkerdepths.redstone_crystal": "Redstone Crystal",
   "block.darkerdepths.redstone_crystal_block": "Redstone Crystal Block",
   "block.darkerdepths.amber": "Amber",
+  "block.darkerdepths.weathered_sandstone": "Weathered Sandstone",
+  "block.darkerdepths.roots": "Roots",
   "entity.darkerdepths.glowshroom_monster": "Glowshroom Monster",
   "entity.darkerdepths.magma_minion": "Magma Minion",
   "itemGroup.DarkerDepths": "Darker Depths"

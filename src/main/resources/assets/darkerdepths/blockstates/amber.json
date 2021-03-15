@@ -1,59 +1,29 @@
 {
-	"multipart": [
-		{
-			"when": {
-				"up": "true"
-			},
-			"apply": {
-				"model": "darkerdepths:block/amber",
-				"x": 180
-			}
+	"variants": {
+		"facing=down": {
+			"model": "darkerdepths:block/amber",
+			"x": 180
 		},
-		{
-			"when": {
-				"west": "true"
-			},
-			"apply": {
-				"model": "darkerdepths:block/amber",
-				"x": 90,
-				"y": 90
-			}
+		"facing=up": {
+			"model": "darkerdepths:block/amber"
 		},
-		{
-			"when": {
-				"down": "true"
-			},
-			"apply": {
-				"model": "darkerdepths:block/amber"
-			}
+		"facing=west": {
+			"model": "darkerdepths:block/amber",
+			"x": 90,
+			"y": 270
 		},
-		{
-			"when": {
-				"east": "true"
-			},
-			"apply": {
-				"model": "darkerdepths:block/amber",
-				"x": 90,
-				"y": 270
-			}
+		"facing=east": {
+			"model": "darkerdepths:block/amber",
+			"x": 90,
+			"y": 90
 		},
-		{
-			"when": {
-				"south": "true"
-			},
-			"apply": {
-				"model": "darkerdepths:block/amber",
-				"x": 90
-			}
+		"facing=south": {
+			"model": "darkerdepths:block/amber",
+			"x": 270
 		},
-		{
-			"when": {
-				"north": "true"
-			},
-			"apply": {
-				"model": "darkerdepths:block/amber",
-				"x": 270
-			}
+		"facing=north": {
+			"model": "darkerdepths:block/amber",
+			"x": 90
 		}
-	]
+	}
 }
