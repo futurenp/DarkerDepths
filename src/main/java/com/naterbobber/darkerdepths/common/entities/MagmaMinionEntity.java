@@ -56,6 +56,11 @@ public class MagmaMinionEntity extends MonsterEntity {
     }
 
     @Override
+    public boolean isBurning() {
+        return false;
+    }
+
+    @Override
     protected net.minecraft.util.SoundEvent getAmbientSound() { return SoundEvents.ENTITY_RAVAGER_AMBIENT; }
 
     @Override

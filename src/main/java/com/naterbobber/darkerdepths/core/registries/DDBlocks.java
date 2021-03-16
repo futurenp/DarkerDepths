@@ -46,6 +46,13 @@ public class DDBlocks {
 	public static final RegistryObject<Block> ASH						= HELPER.createBlock("ash", () -> new AshBlock(AbstractBlock.Properties.create(Material.SAND, MaterialColor.BLACK).hardnessAndResistance(0.1f).sound(SoundType.SNOW)), DarkerDepths.DARKER_DEPTHS);
 	public static final RegistryObject<Block> ARIDROCK 					= HELPER.createBlock("aridrock", () -> new Block(Block.Properties.create(Material.ROCK, MaterialColor.SAND).hardnessAndResistance(1.5f, 6.0f).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE)), DarkerDepths.DARKER_DEPTHS);
 	public static final RegistryObject<Block> POLISHED_ARIDROCK 		= HELPER.createBlock("polished_aridrock", () -> new Block(Block.Properties.create(Material.ROCK, MaterialColor.SAND).hardnessAndResistance(1.5f, 6.0f).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE)), DarkerDepths.DARKER_DEPTHS);
+	public static final RegistryObject<Block> ARIDROCK_STAIRS 			= HELPER.createBlock("aridrock_stairs", () -> new StairsBlock(ARIDROCK.get().getDefaultState(), Block.Properties.from(DDBlocks.ARIDROCK.get())), DarkerDepths.DARKER_DEPTHS);
+	public static final RegistryObject<Block> ARIDROCK_SLAB				= HELPER.createBlock("aridrock_slab", () -> new SlabBlock(AbstractBlock.Properties.from(ARIDROCK.get())), DarkerDepths.DARKER_DEPTHS);
+	public static final RegistryObject<Block> ARIDROCK_WALL				= HELPER.createBlock("aridrock_wall", () -> new WallBlock(AbstractBlock.Properties.from(ARIDROCK.get())), DarkerDepths.DARKER_DEPTHS);
+	public static final RegistryObject<Block> POLISHED_ARIDROCK_STAIRS  = HELPER.createBlock("polished_aridrock_stairs", () -> new StairsBlock(POLISHED_ARIDROCK.get().getDefaultState(), AbstractBlock.Properties.from(POLISHED_ARIDROCK.get())), DarkerDepths.DARKER_DEPTHS);
+	public static final RegistryObject<Block> POLISHED_ARIDROCK_SLAB	= HELPER.createBlock("polished_aridrock_slab", () -> new SlabBlock(AbstractBlock.Properties.from(POLISHED_ARIDROCK.get())), DarkerDepths.DARKER_DEPTHS);
+	public static final RegistryObject<Block> POLISHED_ARIDROCK_WALL	= HELPER.createBlock("polished_aridrock_wall", () -> new WallBlock(AbstractBlock.Properties.from(POLISHED_ARIDROCK.get())), DarkerDepths.DARKER_DEPTHS);
+
 
 	//DECORATION
 	public static final RegistryObject<Block> PETRIFIED_FENCE 			= HELPER.createBlock("petrified_fence", () -> new FenceBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(2.5f, 3.0f).harvestTool(ToolType.PICKAXE).harvestLevel(0).sound(SoundType.WOOD)), DarkerDepths.DARKER_DEPTHS);
