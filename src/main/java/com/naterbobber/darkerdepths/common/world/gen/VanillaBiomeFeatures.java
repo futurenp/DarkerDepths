@@ -6,6 +6,7 @@ import com.naterbobber.darkerdepths.common.world.gen.feature.BlobReplacementConf
 import com.naterbobber.darkerdepths.common.world.gen.feature.SimpleBlockConfig;
 import com.naterbobber.darkerdepths.common.world.gen.placement.CaveDecoratorConfig;
 import com.naterbobber.darkerdepths.core.registries.DDBlocks;
+import com.naterbobber.darkerdepths.core.registries.DDCarvers;
 import com.naterbobber.darkerdepths.core.registries.DDFeatures;
 
 import com.naterbobber.darkerdepths.core.registries.DDPlacements;
@@ -71,11 +72,13 @@ public class VanillaBiomeFeatures {
 		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, ASH_BLOCK, 33)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(10, 0, 0, 55))));
 	}
 
+	public static void addLargeCaves(Biome biomeIn) {
+		biomeIn.addCarver(GenerationStage.Carving.AIR, Biome.createCarver(DDCarvers.LARGE_CAVE.get(), new ProbabilityConfig(0.2F)));
+	}
+
 	public static void addSpeleothems(Biome biomeIn) {
 		biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, DDFeatures.SIMPLE_BLOCK_FEATURE.get().withConfiguration(new SimpleBlockConfig(new SimpleBlockStateProvider(SPELEOTHEM_CEILING))).withPlacement(DDPlacements.CAVE_SURFACE.get().configure(new CaveDecoratorConfig(CaveSurface.CEILING, 12))).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(40, 0, 0, 60))));
 		biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, DDFeatures.SIMPLE_BLOCK_FEATURE.get().withConfiguration(new SimpleBlockConfig(new SimpleBlockStateProvider(SPELEOTHEM_FLOOR))).withPlacement(DDPlacements.CAVE_SURFACE.get().configure(new CaveDecoratorConfig(CaveSurface.FLOOR, 12))).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(40, 0, 0, 60))));
-//		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, DDFeatures.SPELEOTHEM_FLOOR_FEATURE.get().withConfiguration(SPELEOTHEM_FLOOR_CONFIG).withPlacement(Placement.CHANCE_RANGE.configure(new ChanceRangeConfig(50, 16, 16, 54))));
-//		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, DDFeatures.SPELEOTHEM_CEILING_FEATURE.get().withConfiguration(SPELEOTHEM_CEILING_CONFIG).withPlacement(Placement.CHANCE_RANGE.configure(new ChanceRangeConfig(50, 16, 16, 54))));
 	}
 
 	public static void addStoneVariants(Biome biomeIn) {
@@ -102,7 +105,7 @@ public class VanillaBiomeFeatures {
 	public static void addVanillaBiomeFeatures() {
 		for (Biome biome : ForgeRegistries.BIOMES) {
 			if (!biome.getCategory().equals(Biome.Category.NETHER) && !biome.getCategory().equals(Biome.Category.THEEND)) {
-				//addSpeleothems(biome);
+				addLargeCaves(biome);
 			}
 		}
 	}

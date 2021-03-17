@@ -68,4 +68,6 @@
   "entity.darkerdepths.glowshroom_monster": "Glowshroom Monster",
   "entity.darkerdepths.magma_minion": "Magma Minion",
   "itemGroup.DarkerDepths": "Darker Depths"
+  "item.darkerdepths.glowshroom_monster_spawn_egg": "Glowshroom Monster Spawn Egg",
+  "item.darkerdepths.magma_minion_spawn_egg": "Magma Minion Spawn Egg"
 }

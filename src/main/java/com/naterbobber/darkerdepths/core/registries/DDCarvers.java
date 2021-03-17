@@ -15,4 +15,5 @@ public class DDCarvers {
 	public static final DeferredRegister<WorldCarver<?>> CARVER = DeferredRegister.create(ForgeRegistries.WORLD_CARVERS, DarkerDepths.MODID);
 
 	public static final RegistryObject<WorldCarver<ProbabilityConfig>> LARGE_CAVE = CARVER.register("large_cave", () -> new LargeCaveCarver(ProbabilityConfig.field_236576_b_, 256));
+
 }
