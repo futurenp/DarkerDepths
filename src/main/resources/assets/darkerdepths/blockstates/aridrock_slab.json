@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "darkerdepths:block/aridrock_slab"
+    },
+    "type=double": {
+      "model": "darkerdepths:block/aridrock"
+    },
+    "type=top": {
+      "model": "darkerdepths:block/aridrock_slab_top"
+    }
+  }
+}

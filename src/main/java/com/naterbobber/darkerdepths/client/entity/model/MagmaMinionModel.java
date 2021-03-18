@@ -64,7 +64,7 @@ public class MagmaMinionModel <T extends MagmaMinionEntity> extends EntityModel<
 
     @Override
     public void setRotationAngles(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        this.head.rotateAngleX = netHeadYaw * ((float)Math.PI / 180F);
+        this.head.rotateAngleX = MathHelper.cos(limbSwing * 0.4F) * 0.6662F * limbSwingAmount;
         this.body.rotateAngleY = netHeadYaw * ((float)Math.PI / 180F);
         this.right_leg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
         this.left_leg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;

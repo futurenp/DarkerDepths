@@ -49,10 +49,16 @@
   "block.darkerdepths.redstone_cluster_block": "Redstone Cluster Block",
   "block.darkerdepths.amber": "Amber",
   "block.darkerdepths.aridrock": "Aridrock",
+  "block.darkerdepths.aridrock_stairs": "Aridrock Stairs",
+  "block.darkerdepths.aridrock_slab": "Aridrock Slab",
+  "block.darkerdepths.aridrock_wall": "Aridrock Wall",
   "block.darkerdepths.polished_aridrock": "Polished Aridrock",
-  "block.darkerdepths.aridrock_gold_ore": "Aridrock Gold Ore",
-  "block.darkerdepths.aridrock_iron_ore": "Aridrock Iron Ore",
+  "block.darkerdepths.polished_aridrock_stairs": "Polished Aridrock Stairs",
+  "block.darkerdepths.polished_aridrock_slab": "Polished Aridrock Slab",
+  "block.darkerdepths.polished_aridrock_wall": "Polished Aridrock Wall",
   "block.darkerdepths.aridrock_coal_ore": "Aridrock Coal Ore",
+  "block.darkerdepths.aridrock_iron_ore": "Aridrock Iron Ore",
+  "block.darkerdepths.aridrock_gold_ore": "Aridrock Gold Ore",
   "block.darkerdepths.aridrock_lapis_ore": "Aridrock Lapis Lazuli Ore",
   "block.darkerdepths.aridrock_diamond_ore": "Aridrock Diamond Ore",
   "block.darkerdepths.aridrock_redstone_ore": "Aridrock Redstone Ore",
@@ -68,5 +74,7 @@
   "block.darkerdepths.heart_chamber": "Heart Chamber",
   "entity.darkerdepths.glowshroom_monster": "Glowshroom Monster",
   "entity.darkerdepths.magma_minion": "Magma Minion",
-  "itemGroup.DarkerDepths": "Darker Depths"
+  "itemGroup.DarkerDepths": "Darker Depths",
+  "item.darkerdepths.glowshroom_monster_spawn_egg": "Glowshroom Monster Spawn Egg",
+  "item.darkerdepths.magma_minion_spawn_egg": "Magma Minion Spawn Egg"
 }

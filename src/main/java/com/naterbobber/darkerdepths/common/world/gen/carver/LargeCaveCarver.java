@@ -1,10 +1,20 @@
 package com.naterbobber.darkerdepths.common.world.gen.carver;
 
 import com.mojang.serialization.Codec;
+import com.naterbobber.darkerdepths.core.registries.DDBlocks;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.util.Direction;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.chunk.IChunk;
 import net.minecraft.world.gen.carver.CaveWorldCarver;
 import net.minecraft.world.gen.feature.ProbabilityConfig;
+import org.apache.commons.lang3.mutable.MutableBoolean;
 
+import java.util.BitSet;
 import java.util.Random;
+import java.util.function.Function;
 
 //<>
 
@@ -13,18 +23,57 @@ public class LargeCaveCarver extends CaveWorldCarver {
         super(codec, maxHeight);
     }
 
+    //Cave Shape
+    protected boolean func_230358_a_(IChunk chunk, Function<BlockPos, Biome> posToBiome, BitSet carvingMask, Random rand, BlockPos.Mutable mutable, BlockPos.Mutable mutable2, BlockPos.Mutable mutable3, int seaLevel, int mainChunkX, int mainChunkZ, int x, int z, int relativeX, int y, int relativeZ, MutableBoolean mutableBoolean) {
+        int i = relativeX | relativeZ << 4 | y << 8;
+        if (carvingMask.get(i)) {
+            return false;
+        } else {
+            carvingMask.set(i);
+            mutable.setPos(x, y, z);
+            BlockState blockstate = chunk.getBlockState(mutable);
+            BlockState blockstate1 = chunk.getBlockState(mutable2.func_239622_a_(mutable, Direction.UP));
+            if (blockstate.isIn(Blocks.GRASS_BLOCK) || blockstate.isIn(Blocks.MYCELIUM)) {
+                mutableBoolean.setTrue();
+            }
+
+            if (!this.canCarveBlock(blockstate, blockstate1)) {
+                return false;
+            }
+                else {
+                    chunk.setBlockState(mutable, CAVE_AIR, false);
+                    if (mutableBoolean.isTrue()) {
+                        mutable3.func_239622_a_(mutable, Direction.DOWN);
+                        if (chunk.getBlockState(mutable3).isIn(Blocks.DIRT)) {
+                            chunk.setBlockState(mutable3, posToBiome.apply(mutable).getSurfaceBuilderConfig().getTop(), false);
+                        }
+                    }
+                }
+                return true;
+            }
+        }
+
+
+    //Tunnel Width
     @Override
     protected float func_230359_a_(Random random) {
-        return super.func_230359_a_(random) * 2.0f;
+        float f = random.nextFloat() * 5.0F + random.nextFloat();
+        if (random.nextInt(5) == 0) {
+            f *= random.nextFloat() * random.nextFloat() * 4.0F + 1.0F;
+        }
+
+        return f;
     }
 
+    //MaxCave
+    protected int func_230357_a_() {
+        return 15;
+    }
+
+    //Tunnel Ratio
     @Override
     protected double func_230360_b_() {
-        return super.func_230360_b_() * 2.0d;
+        return 1.0D;
     }
 
-    @Override
-    protected int func_230361_b_(Random random) {
-        return  random.nextInt(random.nextInt(80) + 8);
-    }
 }
