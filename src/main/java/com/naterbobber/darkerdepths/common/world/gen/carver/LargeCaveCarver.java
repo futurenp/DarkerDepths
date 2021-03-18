@@ -9,8 +9,8 @@ import java.util.Random;
 //<>
 
 public class LargeCaveCarver extends CaveWorldCarver {
-    public LargeCaveCarver(Codec<ProbabilityConfig> codec, int i) {
-        super(codec, i);
+    public LargeCaveCarver(Codec<ProbabilityConfig> codec, int maxHeight) {
+        super(codec, maxHeight);
     }
 
     @Override

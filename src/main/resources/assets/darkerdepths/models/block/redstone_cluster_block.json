@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "darkerdepths:block/redstone_cluster_block_top",
+    "side": "darkerdepths:block/redstone_cluster_block"
+  }
+}

@@ -14,7 +14,6 @@ public class CaveBiome extends AbstractCaveBiome {
 
     @Override
     public void addFeatures() {
-        super.addFeatures();
         VanillaBiomeFeatures.addSpeleothems(this);
     }
 }

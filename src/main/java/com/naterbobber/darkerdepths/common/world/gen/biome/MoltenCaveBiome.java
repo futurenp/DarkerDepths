@@ -24,7 +24,6 @@ public class MoltenCaveBiome extends AbstractCaveBiome {
 
     @Override
     public void addFeatures() {
-    	this.addCarver(GenerationStage.Carving.AIR, createCarver(DDCarvers.LARGE_CAVE.get(), new ProbabilityConfig(0.2f)));
     	VanillaBiomeFeatures.addAsh(this);
     	VanillaBiomeFeatures.addOres(this);
     	VanillaBiomeFeatures.addAmber(this);
@@ -35,8 +34,6 @@ public class MoltenCaveBiome extends AbstractCaveBiome {
         this.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, VanillaBiomeFeatures.SHALE, 60)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(7, 5, 5, 55))));
         this.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, Blocks.COAL_ORE.getDefaultState(), 17)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(20, 0, 0, 55))));
         this.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, Blocks.DIAMOND_ORE.getDefaultState(), 1)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(1, 0, 0, 16))));
-//        this.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.field_236287_R_.withConfiguration(VanillaBiomeFeatures.SHALE_BLOB_CONFIG).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(75, 0, 0, 55))));
-//        this.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.field_236287_R_.withConfiguration(VanillaBiomeFeatures.ASH_BLOB_CONFIG).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(100, 0, 0, 55))));
         this.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, DDFeatures.BLOB_REPLACEMENT_FEATURE.get().withConfiguration(VanillaBiomeFeatures.SHALE_CONFIG).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(100, 0, 0, 55))));
     }
 }

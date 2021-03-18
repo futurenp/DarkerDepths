@@ -33,15 +33,15 @@ public class AbstractGemStoneBlock extends Block implements IWaterLoggable {
 	protected final VoxelShape UP_SHAPE;
 	protected final VoxelShape DOWN_SHAPE;
 
-	public AbstractGemStoneBlock(int x, int z, Properties properties) {
+	public AbstractGemStoneBlock(int height, int width, Properties properties) {
 		super(properties);
 		this.setDefaultState(this.stateContainer.getBaseState().with(LIT, true).with(WATERLOGGED, false).with(FACING, Direction.UP));
-		this.UP_SHAPE = Block.makeCuboidShape(z, 0.0d, z, 16 - z, x, 16 - z);
-		this.DOWN_SHAPE = Block.makeCuboidShape(z, 16 - x, z, 16 - z, 16.0D, 16 - z);
-		this.NORTH_SHAPE = Block.makeCuboidShape(z, z, 16 - x, 16 - z, 16 - z, 16.0D);
-		this.SOUTH_SHAPE = Block.makeCuboidShape(z, z, 0.0D, 16 - z, 16 - z, x);
-		this.EAST_SHAPE = Block.makeCuboidShape(0.0D, z, z, x, 16 - z, 16 - z);
-		this.WEST_SHAPE = Block.makeCuboidShape(16 - x, z, z, 16.0D, 16 - z, 16 - z);
+		this.UP_SHAPE = Block.makeCuboidShape(width, 0.0d, width, 16 - width, height, 16 - width);
+		this.DOWN_SHAPE = Block.makeCuboidShape(width, 16 - height, width, 16 - width, 16.0D, 16 - width);
+		this.NORTH_SHAPE = Block.makeCuboidShape(width, width, 16 - height, 16 - width, 16 - width, 16.0D);
+		this.SOUTH_SHAPE = Block.makeCuboidShape(width, width, 0.0D, 16 - width, 16 - width, height);
+		this.EAST_SHAPE = Block.makeCuboidShape(0.0D, width, width, height, 16 - width, 16 - width);
+		this.WEST_SHAPE = Block.makeCuboidShape(16 - height, width, width, 16.0D, 16 - width, 16 - width);
 	}
 
 	public static boolean canAttachTo(IBlockReader worldIn, BlockPos pos, Direction direction) {
