@@ -11,6 +11,7 @@ import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.monster.AbstractRaiderEntity;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.passive.IronGolemEntity;
+import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.pathfinding.*;
 import net.minecraft.util.DamageSource;
@@ -33,10 +34,10 @@ public class MagmaMinionEntity extends MonsterEntity {
     //func_233666_p_ ---> registerAttributes()
     public static AttributeModifierMap.MutableAttribute setCustomAttributes() {
         return MobEntity.func_233666_p_()
-                .createMutableAttribute(Attributes.MAX_HEALTH, 25.0D)
+                .createMutableAttribute(Attributes.MAX_HEALTH, 15.0D)
                 .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.50D)
                 .createMutableAttribute(Attributes.ATTACK_KNOCKBACK, 1.3D)
-                .createMutableAttribute(Attributes.ATTACK_DAMAGE, 14.0D)
+                .createMutableAttribute(Attributes.ATTACK_DAMAGE, 2.0D)
                 .createMutableAttribute(Attributes.FOLLOW_RANGE, 32.0D)
                 .createMutableAttribute(Attributes.KNOCKBACK_RESISTANCE, 0.75D);
     }
@@ -52,7 +53,6 @@ public class MagmaMinionEntity extends MonsterEntity {
         this.targetSelector.addGoal(2, (new HurtByTargetGoal(this, AbstractRaiderEntity.class)).setCallsForHelp());
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
         this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, IronGolemEntity.class, true));
-
     }
 
     @Override

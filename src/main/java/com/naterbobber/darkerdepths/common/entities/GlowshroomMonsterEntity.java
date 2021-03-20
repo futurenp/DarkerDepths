@@ -2,6 +2,7 @@ package com.naterbobber.darkerdepths.common.entities;
 
 
 import net.minecraft.block.BlockState;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
@@ -23,6 +24,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class GlowshroomMonsterEntity extends MonsterEntity {
+    private int attackTick;
 
     public GlowshroomMonsterEntity(EntityType<? extends MonsterEntity> type, World worldIn) {
         super(type, worldIn);
@@ -52,11 +54,15 @@ public class GlowshroomMonsterEntity extends MonsterEntity {
         this.targetSelector.addGoal(2, (new HurtByTargetGoal(this, AbstractRaiderEntity.class)).setCallsForHelp());
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
         this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, IronGolemEntity.class, true));
-
     }
 
     @Override
     protected net.minecraft.util.SoundEvent getAmbientSound() { return SoundEvents.ENTITY_RAVAGER_AMBIENT; }
+
+    @Override
+    public boolean canBeLeashedTo(PlayerEntity player) {
+        return !this.getLeashed();
+    }
 
     @Override
     protected net.minecraft.util.SoundEvent getDeathSound() { return SoundEvents.ENTITY_RAVAGER_DEATH; }
@@ -69,6 +75,38 @@ public class GlowshroomMonsterEntity extends MonsterEntity {
     @Override
     protected void playStepSound(BlockPos pos, BlockState blockIn) {
         this.playSound(SoundEvents.ENTITY_RAVAGER_STEP, 0.15F, 0.8F);
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public int getAttackTimer() {
+        return this.attackTick;
+    }
+
+    @Override
+    public boolean attackEntityAsMob(Entity entityIn) {
+        this.attackTick = 15;
+        this.world.setEntityState(this, (byte)4);
+        this.playSound(SoundEvents.ENTITY_RAVAGER_ATTACK, 1.0F, 1.0F);
+        return super.attackEntityAsMob(entityIn);
+    }
+
+    @Override
+    public void livingTick() {
+        super.livingTick();
+        if(this.attackTick > 0) {
+            --this.attackTick;
+        }
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    @Override
+    public void handleStatusUpdate(byte id) {
+        if(id == 4){
+            this.attackTick = 15;
+            this.playSound(SoundEvents.ENTITY_RAVAGER_ATTACK, 1.0F, 1.0F);
+        } else{
+            super.handleStatusUpdate(id);
+        }
     }
 
     static class TargetGoal<T extends LivingEntity> extends NearestAttackableTargetGoal<T> {
@@ -109,4 +147,5 @@ public class GlowshroomMonsterEntity extends MonsterEntity {
             return p_215744_5_ == PathNodeType.LEAVES ? PathNodeType.OPEN : super.func_215744_a(p_215744_1_, p_215744_2_, p_215744_3_, p_215744_4_, p_215744_5_);
         }
     }
+
 }

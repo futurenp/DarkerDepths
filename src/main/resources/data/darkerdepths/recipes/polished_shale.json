@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "darkerdepths:shale"
+    }
+  },
+  "result": {
+    "item": "darkerdepths:polished_shale",
+    "count": 4
+  }
+}

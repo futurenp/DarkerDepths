@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "darkerdepths:aridrock"
+  },
+  "result": "darkerdepths:polished_aridrock",
+  "count": 1
+}

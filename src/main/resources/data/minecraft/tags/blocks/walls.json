@@ -3,7 +3,6 @@
   "values": [
     "darkerdepths:limestone_wall",
     "darkerdepths:shale_wall",
-    "darkerdepths:aridrock_wall",
-    "darkerdepths:polished_aridrock_wall"
+    "darkerdepths:aridrock_wall"
   ]
 }

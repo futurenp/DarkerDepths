@@ -2,13 +2,16 @@ package com.naterbobber.darkerdepths.client.entity.model;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
-import com.naterbobber.darkerdepths.common.entities.GlowshroomMonsterEntity;
 
+import com.naterbobber.darkerdepths.common.entities.GlowshroomMonsterEntity;
 import net.minecraft.client.renderer.entity.model.EntityModel;
-import net.minecraft.client.renderer.entity.model.QuadrupedModel;
+import net.minecraft.client.renderer.model.ModelHelper;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.util.math.MathHelper;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class GlowshroomMonsterModel <T extends GlowshroomMonsterEntity> extends EntityModel<T> {
     private final ModelRenderer head;
@@ -26,6 +29,7 @@ public class GlowshroomMonsterModel <T extends GlowshroomMonsterEntity> extends 
     private final ModelRenderer left_leg;
     private final ModelRenderer right_leg;
 
+    @OnlyIn(Dist.CLIENT)
     public GlowshroomMonsterModel() {
         textureWidth = 128;
         textureHeight = 128;
@@ -113,6 +117,7 @@ public class GlowshroomMonsterModel <T extends GlowshroomMonsterEntity> extends 
 
     @Override
     public void setRotationAngles(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+        int i = entityIn.getAttackTimer();
         this.head.rotateAngleX = headPitch * ((float)Math.PI / 180F);
         this.head.rotateAngleY = netHeadYaw * ((float)Math.PI / 180F);
         this.body.rotateAngleX = ((float)100);
@@ -120,6 +125,10 @@ public class GlowshroomMonsterModel <T extends GlowshroomMonsterEntity> extends 
         this.left_leg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
         this.right_arm.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
         this.left_arm.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
+        if(i > 0) {
+            this.right_arm.rotateAngleX = MathHelper.cos(limbSwing * 0.5F) * 3F * limbSwingAmount;
+            this.left_arm.rotateAngleX = MathHelper.cos(limbSwing * 0.5F) * 3F * limbSwingAmount;
+        }
     }
 
     @Override

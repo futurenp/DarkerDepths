@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "GGG",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "darkerdepths:petrified_planks"
+    },
+    "G": {
+      "item": "minecraft:honeycomb"
+    }
+  },
+  "result": {
+    "item": "minecraft:beehive",
+    "count": 1
+  }
+}
