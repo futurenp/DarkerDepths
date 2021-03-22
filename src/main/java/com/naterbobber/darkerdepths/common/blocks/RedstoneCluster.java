@@ -17,7 +17,7 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 
-public class RedstoneCrystal extends Block implements IBucketPickupHandler, ILiquidContainer {
+public class RedstoneCluster extends Block implements IBucketPickupHandler, ILiquidContainer {
 
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
@@ -27,7 +27,7 @@ public class RedstoneCrystal extends Block implements IBucketPickupHandler, ILiq
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
         return SHAPE;
     }
-    public RedstoneCrystal() {
+    public RedstoneCluster() {
         super(Properties.create(Material.ROCK)
                 .hardnessAndResistance(0.3f, 0.6f)
                 .sound(SoundType.GLASS)

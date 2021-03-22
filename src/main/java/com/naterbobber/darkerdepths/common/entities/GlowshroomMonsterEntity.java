@@ -54,15 +54,11 @@ public class GlowshroomMonsterEntity extends MonsterEntity {
         this.targetSelector.addGoal(2, (new HurtByTargetGoal(this, AbstractRaiderEntity.class)).setCallsForHelp());
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
         this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, IronGolemEntity.class, true));
+
     }
 
     @Override
     protected net.minecraft.util.SoundEvent getAmbientSound() { return SoundEvents.ENTITY_RAVAGER_AMBIENT; }
-
-    @Override
-    public boolean canBeLeashedTo(PlayerEntity player) {
-        return !this.getLeashed();
-    }
 
     @Override
     protected net.minecraft.util.SoundEvent getDeathSound() { return SoundEvents.ENTITY_RAVAGER_DEATH; }

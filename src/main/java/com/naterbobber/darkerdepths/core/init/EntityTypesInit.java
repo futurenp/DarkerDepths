@@ -33,4 +33,5 @@ public class EntityTypesInit {
     		() -> EntityType.Builder.<PetrifiedBoatEntity>create(PetrifiedBoatEntity::new, EntityClassification.MISC)
     				.size(1.375f, 0.5625f) // Hitbox Size
     				.build(new ResourceLocation(DarkerDepths.MODID, "boat").toString()));
+
 }

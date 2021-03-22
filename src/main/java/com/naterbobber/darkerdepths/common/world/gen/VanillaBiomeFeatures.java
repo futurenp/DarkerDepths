@@ -94,7 +94,9 @@ public class VanillaBiomeFeatures {
 	}
 
 	public static void addLargeCaves(Biome biomeIn) {
+		biomeIn.addCarver(GenerationStage.Carving.AIR, Biome.createCarver(DDCarvers.FLAT_CAVE.get(), new ProbabilityConfig(0.2F)));
 		biomeIn.addCarver(GenerationStage.Carving.AIR, Biome.createCarver(DDCarvers.LARGE_CAVE.get(), new ProbabilityConfig(0.2F)));
+		biomeIn.addCarver(GenerationStage.Carving.AIR, Biome.createCarver(DDCarvers.HORIZONTAL_CAVE.get(), new ProbabilityConfig(0.2F)));
 	}
 
 	public static void addSpeleothems(Biome biomeIn) {

@@ -1,12 +1,9 @@
 package com.naterbobber.darkerdepths.common.world.gen.carver;
 
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableSet;
 import com.mojang.serialization.Codec;
 import com.naterbobber.darkerdepths.core.registries.DDBlocks;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.fluid.Fluids;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.biome.Biome;
@@ -21,10 +18,10 @@ import java.util.function.Function;
 
 //<>
 
-public class LargeCaveCarver extends CaveWorldCarver {
-    public LargeCaveCarver(Codec<ProbabilityConfig> codec, int maxHeight) {
+public class FlatCarver extends CaveWorldCarver {
+
+    public FlatCarver(Codec<ProbabilityConfig> codec, int maxHeight) {
         super(codec, maxHeight);
-        this.carvableFluids = ImmutableSet.of(Fluids.LAVA, Fluids.WATER);
     }
 
     //Cave Shape
@@ -43,23 +40,19 @@ public class LargeCaveCarver extends CaveWorldCarver {
 
             if (!this.canCarveBlock(blockstate, blockstate1)) {
                 return false;
-            } else if(y == 10) {
-                chunk.setBlockState(mutable, Blocks.WATER.getDefaultState(), false);
-            } else if(y <= 10) {
-                chunk.setBlockState(mutable, Blocks.STONE.getDefaultState(), false);
             }
-                else {
-                    chunk.setBlockState(mutable, CAVE_AIR, false);
-                    if (mutableBoolean.isTrue()) {
-                        mutable3.func_239622_a_(mutable, Direction.DOWN);
-                        if (chunk.getBlockState(mutable3).isIn(Blocks.DIRT)) {
-                            chunk.setBlockState(mutable3, posToBiome.apply(mutable).getSurfaceBuilderConfig().getTop(), false);
-                        }
+            else {
+                chunk.setBlockState(mutable, CAVE_AIR, false);
+                if (mutableBoolean.isTrue()) {
+                    mutable3.func_239622_a_(mutable, Direction.DOWN);
+                    if (chunk.getBlockState(mutable3).isIn(Blocks.DIRT)) {
+                        chunk.setBlockState(mutable3, posToBiome.apply(mutable).getSurfaceBuilderConfig().getTop(), false);
                     }
                 }
-                return true;
             }
+            return true;
         }
+    }
 
 
     //Tunnel Width
@@ -69,19 +62,23 @@ public class LargeCaveCarver extends CaveWorldCarver {
         if (random.nextInt(5) == 0) {
             f *= random.nextFloat() * random.nextFloat() * 4.0F + 1.0F;
         }
-
         return f;
     }
 
     //MaxCave
     protected int func_230357_a_() {
-        return 15;
+        return 5;
     }
 
-    //Tunnel Ratio
+    //Tunnel Height
     @Override
     protected double func_230360_b_() {
-        return 1.0D;
+        Random rand = new Random();
+        float f = rand.nextInt(2) / 6.0F;
+        if(rand.nextInt(5) == 0) {
+            f *= 2;
+        }
+        return f;
     }
 
 }

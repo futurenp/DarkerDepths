@@ -47,7 +47,6 @@ public class DarkerDepths {
         REGISTRY_HELPER.getPlacementDeferredRegister().register(modEventBus);
         
         DDCarvers.CARVER.register(modEventBus);
-        
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
 
