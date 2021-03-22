@@ -3,13 +3,11 @@ package com.naterbobber.darkerdepths.common.world.gen;
 import com.google.common.collect.ImmutableSet;
 import com.naterbobber.darkerdepths.common.blocks.Speleothem;
 import com.naterbobber.darkerdepths.common.world.gen.feature.BlobReplacementConfig;
+import com.naterbobber.darkerdepths.common.world.gen.feature.GemstonePlacementConfig;
 import com.naterbobber.darkerdepths.common.world.gen.feature.SimpleBlockConfig;
 import com.naterbobber.darkerdepths.common.world.gen.placement.CaveDecoratorConfig;
-import com.naterbobber.darkerdepths.core.registries.DDBlocks;
-import com.naterbobber.darkerdepths.core.registries.DDCarvers;
-import com.naterbobber.darkerdepths.core.registries.DDFeatures;
+import com.naterbobber.darkerdepths.core.registries.*;
 
-import com.naterbobber.darkerdepths.core.registries.DDPlacements;
 import com.naterbobber.darkerdepths.core.util.CaveSurface;
 import com.naterbobber.darkerdepths.core.util.DDFillerBlockTypes;
 import net.minecraft.block.BlockState;
@@ -69,6 +67,7 @@ public class VanillaBiomeFeatures {
 	public static final BlockState GLOWSHROOM_CAP 			= DDBlocks.GLOWSHROOM_CAP.get().getDefaultState();
 	public static final BlockState SPELEOTHEM_FLOOR			= DDBlocks.SPELEOTHEM.get().getDefaultState();
 	public static final BlockState SPELEOTHEM_CEILING		= DDBlocks.SPELEOTHEM.get().getDefaultState().with(Speleothem.HANGING, true);
+	public static final BlockState AMBER					= DDBlocks.AMBER.get().getDefaultState();
 	public static final FluidState FLUID_LAVA 				= Fluids.LAVA.getDefaultState();
 	public static final LiquidsConfig MOLTEN_CAVERN_LAVA_SPRING_CONFIG 			= new LiquidsConfig(FLUID_LAVA, false, 4, 1, ImmutableSet.of(Blocks.STONE, Blocks.GRANITE, Blocks.DIORITE, Blocks.ANDESITE, Blocks.MAGMA_BLOCK, DDBlocks.SHALE.get()));
 	public static final BlockClusterFeatureConfig ASH_CONFIG 					= new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(ASH), new SimpleBlockPlacer()).tries(100).func_227317_b_().build();
@@ -84,8 +83,16 @@ public class VanillaBiomeFeatures {
 		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.RANDOM_PATCH.withConfiguration(GLOWSHROOM_CAP_CONFIG).withPlacement(Placement.CHANCE_RANGE.configure(new ChanceRangeConfig(4, 0, 0, 64))));
 	}
 
+	public static void addStonePillars(Biome biomeIn) {
+		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, DDFeatures.STONE_PILLAR_FEATURE.get().withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(40, 0, 0, 60))));
+	}
+
+	public static void addCaveFossils(Biome biomeIn) {
+		biomeIn.func_235063_a_(DDStructures.CAVE_FOSSILS.func_236391_a_(IFeatureConfig.NO_FEATURE_CONFIG));
+	}
+
 	public static void addAmber(Biome biomeIn) {
-		biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, DDFeatures.GEMSTONE_PLACEMENT_FEATURE.get().withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(40, 0, 0, 25))));
+		biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, DDFeatures.GEMSTONE_PLACEMENT_FEATURE.get().withConfiguration(new GemstonePlacementConfig(AMBER)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(40, 0, 0, 25))));
 	}
 	
 	public static void addAsh(Biome biomeIn) {
@@ -93,10 +100,11 @@ public class VanillaBiomeFeatures {
 		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, ASH_BLOCK, 33)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(10, 0, 0, 55))));
 	}
 
-	public static void addLargeCaves(Biome biomeIn) {
+	public static void addCarvers(Biome biomeIn) {
 		biomeIn.addCarver(GenerationStage.Carving.AIR, Biome.createCarver(DDCarvers.FLAT_CAVE.get(), new ProbabilityConfig(0.2F)));
 		biomeIn.addCarver(GenerationStage.Carving.AIR, Biome.createCarver(DDCarvers.LARGE_CAVE.get(), new ProbabilityConfig(0.2F)));
 		biomeIn.addCarver(GenerationStage.Carving.AIR, Biome.createCarver(DDCarvers.HORIZONTAL_CAVE.get(), new ProbabilityConfig(0.2F)));
+		biomeIn.addCarver(GenerationStage.Carving.AIR, Biome.createCarver(DDCarvers.BIG_CAVE.get(), new ProbabilityConfig(0.2F)));
 	}
 
 	public static void addSpeleothems(Biome biomeIn) {
@@ -148,7 +156,8 @@ public class VanillaBiomeFeatures {
 	public static void addVanillaBiomeFeatures() {
 		for (Biome biome : ForgeRegistries.BIOMES) {
 			if (!biome.getCategory().equals(Biome.Category.NETHER) && !biome.getCategory().equals(Biome.Category.THEEND)) {
-				addLargeCaves(biome);
+				addCarvers(biome);
+				addStonePillars(biome);
 			}
 		}
 	}

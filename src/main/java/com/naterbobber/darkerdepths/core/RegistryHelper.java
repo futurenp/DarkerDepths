@@ -4,11 +4,14 @@ import java.util.function.Supplier;
 
 import javax.annotation.Nullable;
 
+import com.google.common.collect.ImmutableList;
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
+import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.placement.IPlacementConfig;
 import net.minecraft.world.gen.placement.Placement;
 import net.minecraftforge.fml.RegistryObject;
@@ -22,6 +25,7 @@ public class RegistryHelper {
 	private final DeferredRegister<Block> blockRegister;
 	private final DeferredRegister<Item> itemRegister;
 	private final DeferredRegister<Feature<?>> featureRegister;
+	private final DeferredRegister<Structure<?>> structureRegister;
 	private final DeferredRegister<Placement<?>> placementDeferredRegister;
 
 	public RegistryHelper(String modId) {
@@ -29,6 +33,7 @@ public class RegistryHelper {
 		this.itemRegister = DeferredRegister.create(ForgeRegistries.ITEMS, modId);
 		this.blockRegister = DeferredRegister.create(ForgeRegistries.BLOCKS, modId);
 		this.featureRegister = DeferredRegister.create(ForgeRegistries.FEATURES, modId);
+		this.structureRegister = DeferredRegister.create(ForgeRegistries.STRUCTURE_FEATURES, modId);
 		this.placementDeferredRegister = DeferredRegister.create(ForgeRegistries.DECORATORS, modId);
 	}
 	
@@ -42,6 +47,10 @@ public class RegistryHelper {
 	
 	public DeferredRegister<Feature<?>> getFeatureRegister() {
 		return this.featureRegister;
+	}
+
+	public DeferredRegister<Structure<?>> getStructureRegister() {
+		return this.structureRegister;
 	}
 
 	public DeferredRegister<Placement<?>> getPlacementDeferredRegister() {
@@ -96,6 +105,17 @@ public class RegistryHelper {
 	public <F extends Feature<?>> RegistryObject<F> createFeature(String name, Supplier<? extends F> supplier) {
 		RegistryObject<F> feature = this.featureRegister.register(name, supplier);
 		return feature;
+	}
+
+	public <S extends Structure<?>> RegistryObject<S> createStructure(String name, S structure, GenerationStage.Decoration decoration) {
+		Structure.field_236365_a_.put(DarkerDepths.MODID + ":" + name, structure);
+		Structure.field_236385_u_.put(structure, decoration);
+
+		if (decoration != GenerationStage.Decoration.UNDERGROUND_STRUCTURES) {
+			Structure.field_236384_t_ = ImmutableList.<Structure<?>>builder().addAll(Structure.field_236384_t_).add(structure).build();
+		}
+
+		return this.structureRegister.register(name, () -> structure);
 	}
 
 
