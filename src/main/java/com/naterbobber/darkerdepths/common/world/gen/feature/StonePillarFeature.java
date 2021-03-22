@@ -1,6 +1,7 @@
 package com.naterbobber.darkerdepths.common.world.gen.feature;
 
 import com.mojang.serialization.Codec;
+import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
@@ -51,7 +52,7 @@ public class StonePillarFeature extends Feature<NoFeatureConfig> {
             this.tryPlacingStone(worldIn, rand, newPos.func_239622_a_(oldPos, Direction.SOUTH));
             this.tryPlacingStone(worldIn, rand, newPos.func_239622_a_(oldPos, Direction.WEST));
             this.tryPlacingStone(worldIn, rand, newPos.func_239622_a_(oldPos, Direction.EAST));
-            oldPos.move(Direction.DOWN);
+            oldPos.move(Direction.UP);
             BlockPos.Mutable mutable = new BlockPos.Mutable();
 
             for (int x = -3; x < 4; x++) {
@@ -78,15 +79,31 @@ public class StonePillarFeature extends Feature<NoFeatureConfig> {
         }
     }
 
+    //base
     private void tryPlacingStone(IWorld worldIn, Random rand, BlockPos pos) {
         if (rand.nextInt(10) != 0) {
-            worldIn.setBlockState(pos, Blocks.DIAMOND_BLOCK.getDefaultState(), 2);
+            BlockPos.Mutable pos1 = pos.toMutable();
+            worldIn.setBlockState(pos1, Blocks.DIAMOND_BLOCK.getDefaultState(), 2);
+            worldIn.setBlockState(pos1.west(), Blocks.EMERALD_BLOCK.getDefaultState(), 2);
+            worldIn.setBlockState(pos1.east(), Blocks.EMERALD_BLOCK.getDefaultState(), 2);
+            worldIn.setBlockState(pos1.north(), Blocks.EMERALD_BLOCK.getDefaultState(), 2);
+            worldIn.setBlockState(pos1.south(), Blocks.EMERALD_BLOCK.getDefaultState(), 2);
+            worldIn.setBlockState(pos1.up(), Blocks.EMERALD_BLOCK.getDefaultState(), 2);
+            worldIn.setBlockState(pos1.up(2), Blocks.EMERALD_BLOCK.getDefaultState(), 2);
+            worldIn.setBlockState(pos1.up(3), Blocks.EMERALD_BLOCK.getDefaultState(), 2);
+            worldIn.setBlockState(pos1.up(4), Blocks.EMERALD_BLOCK.getDefaultState(), 2);
         }
     }
 
+    //top
     private boolean stopOrPlaceStone(IWorld worldIn, Random rand, BlockPos pos) {
         if (rand.nextInt(5) != 0) {
-            worldIn.setBlockState(pos, Blocks.DIAMOND_BLOCK.getDefaultState(), 2);
+            BlockPos.Mutable pos1 = pos.toMutable();
+            worldIn.setBlockState(pos1, Blocks.DIAMOND_BLOCK.getDefaultState(), 2);
+            worldIn.setBlockState(pos1.west(), Blocks.IRON_BLOCK.getDefaultState(), 2);
+            worldIn.setBlockState(pos1.east(), Blocks.IRON_BLOCK.getDefaultState(), 2);
+            worldIn.setBlockState(pos1.north(), Blocks.IRON_BLOCK.getDefaultState(), 2);
+            worldIn.setBlockState(pos1.south(), Blocks.IRON_BLOCK.getDefaultState(), 2);
             return true;
         } else {
             return false;
