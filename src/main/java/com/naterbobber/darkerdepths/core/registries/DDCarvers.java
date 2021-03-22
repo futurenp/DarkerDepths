@@ -22,5 +22,5 @@ public class DDCarvers {
 	public static final RegistryObject<WorldCarver<ProbabilityConfig>> HORIZONTAL_CAVE  = CARVER.register("horizontal_cave", () -> new HorizontalCarver(ProbabilityConfig.field_236576_b_));
 	public static final RegistryObject<WorldCarver<ProbabilityConfig>> PERLERP_CAVE 	= CARVER.register("perlerp_cave", () -> new PerlerpCarver(ProbabilityConfig.field_236576_b_));
 	public static final RegistryObject<WorldCarver<ProbabilityConfig>> FLAT_CAVE		= CARVER.register("flat_cave", () -> new FlatCarver(ProbabilityConfig.field_236576_b_, 256));
-	public static final RegistryObject<WorldCarver<ProbabilityConfig>> BIG_CAVE 	= CARVER.register("big_cave", () -> new BigCaveCarver(ProbabilityConfig.field_236576_b_));
+	public static final RegistryObject<WorldCarver<ProbabilityConfig>> BIG_CAVE 		= CARVER.register("big_cave", () -> new BigCaveCarver(ProbabilityConfig.field_236576_b_));
 }

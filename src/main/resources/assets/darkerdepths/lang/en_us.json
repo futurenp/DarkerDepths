@@ -70,10 +70,14 @@
   "block.darkerdepths.limestone_redstone_ore": "Limestone Redstone Ore",
   "block.darkerdepths.limestone_silver_ore": "Limestone Silver Ore",
   "block.darkerdepths.roots": "Roots",
+  "block.darkerdepths.long_roots": "Long Roots",
   "block.darkerdepths.heart_chamber": "Heart Chamber",
   "entity.darkerdepths.glowshroom_monster": "Glowshroom Monster",
   "entity.darkerdepths.magma_minion": "Magma Minion",
   "itemGroup.DarkerDepths": "Darker Depths",
   "item.darkerdepths.glowshroom_monster_spawn_egg": "Glowshroom Monster Spawn Egg",
-  "item.darkerdepths.magma_minion_spawn_egg": "Magma Minion Spawn Egg"
+  "item.darkerdepths.magma_minion_spawn_egg": "Magma Minion Spawn Egg",
+  "biome.darkerdepths.cave": "Default Cave Biome",
+  "biome.darkerdepths.moltern_cavern": "Moltern Cavern Biome",
+  "biome.darkerdepths.sandy_catacombs": "Sandy Catacombs Biome"
 }

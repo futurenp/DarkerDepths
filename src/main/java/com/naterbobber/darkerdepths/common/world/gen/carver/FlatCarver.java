@@ -19,7 +19,6 @@ import java.util.function.Function;
 //<>
 
 public class FlatCarver extends CaveWorldCarver {
-
     public FlatCarver(Codec<ProbabilityConfig> codec, int maxHeight) {
         super(codec, maxHeight);
     }

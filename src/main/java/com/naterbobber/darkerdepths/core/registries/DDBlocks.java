@@ -83,6 +83,7 @@ public class DDBlocks {
 	public static final RegistryObject<Block> SPELEOTHEM				= HELPER.createBlock("speleothem", () -> new Speleothem(), DarkerDepths.DARKER_DEPTHS);
 	public static final RegistryObject<Block> ROPE						= HELPER.createBlockNoItem("rope", () -> new RopeBlock(RopeBlock.Properties.create(Material.MISCELLANEOUS).zeroHardnessAndResistance().sound(SoundType.CLOTH)));
 	public static final RegistryObject<Block> ROOTS 					= HELPER.createBlock("roots", () -> new RootsBlock(AbstractBlock.Properties.create(Material.TALL_PLANTS, MaterialColor.WOOD).doesNotBlockMovement().zeroHardnessAndResistance().sound(SoundType.PLANT)), DarkerDepths.DARKER_DEPTHS);
+	public static final RegistryObject<Block> LONG_ROOTS 				= HELPER.createBlock("long_roots", () -> new HangingDoublePlantBlock(AbstractBlock.Properties.create(Material.TALL_PLANTS, MaterialColor.WOOD).doesNotBlockMovement().zeroHardnessAndResistance().sound(SoundType.PLANT)), DarkerDepths.DARKER_DEPTHS);
 
 	//REDSTONE
 	public static final RegistryObject<Block> PETRIFIED_PRESSURE_PLATE 	= HELPER.createBlock("petrified_pressure_plate", () -> new CustomPressurePlateBlock(CustomPressurePlateBlock.Sensitivity.EVERYTHING ,Block.Properties.create(Material.ROCK).hardnessAndResistance(0.5f).harvestTool(ToolType.PICKAXE).harvestLevel(0).sound(SoundType.WOOD)), DarkerDepths.DARKER_DEPTHS);

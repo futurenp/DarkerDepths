@@ -3,6 +3,7 @@ package com.naterbobber.darkerdepths.common.world.gen;
 import com.google.common.collect.ImmutableSet;
 import com.naterbobber.darkerdepths.common.blocks.Speleothem;
 import com.naterbobber.darkerdepths.common.world.gen.feature.BlobReplacementConfig;
+import com.naterbobber.darkerdepths.common.world.gen.feature.CavePillarConfig;
 import com.naterbobber.darkerdepths.common.world.gen.feature.GemstonePlacementConfig;
 import com.naterbobber.darkerdepths.common.world.gen.feature.SimpleBlockConfig;
 import com.naterbobber.darkerdepths.common.world.gen.placement.CaveDecoratorConfig;
@@ -12,8 +13,11 @@ import com.naterbobber.darkerdepths.core.util.CaveSurface;
 import com.naterbobber.darkerdepths.core.util.DDFillerBlockTypes;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.entity.EntityClassification;
+import net.minecraft.entity.EntityType;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
+import net.minecraft.util.Direction;
 import net.minecraft.util.math.vector.Vector3i;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage;
@@ -84,7 +88,8 @@ public class VanillaBiomeFeatures {
 	}
 
 	public static void addStonePillars(Biome biomeIn) {
-		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, DDFeatures.STONE_PILLAR_FEATURE.get().withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(40, 0, 0, 60))));
+		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, DDFeatures.CAVE_PILLAR_FEATURE.get().withConfiguration(new CavePillarConfig(STONE, Direction.DOWN)).withPlacement(DDPlacements.CAVE_SURFACE.get().configure(new CaveDecoratorConfig(CaveSurface.CEILING, 12))).withPlacement(Placement.CHANCE_RANGE.configure(new ChanceRangeConfig(10, 0, 0, 50))));
+		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, DDFeatures.CAVE_PILLAR_FEATURE.get().withConfiguration(new CavePillarConfig(STONE, Direction.UP)).withPlacement(DDPlacements.CAVE_SURFACE.get().configure(new CaveDecoratorConfig(CaveSurface.FLOOR, 12))).withPlacement(Placement.CHANCE_RANGE.configure(new ChanceRangeConfig(10, 0, 0, 25))));
 	}
 
 	public static void addCaveFossils(Biome biomeIn) {
@@ -102,8 +107,8 @@ public class VanillaBiomeFeatures {
 
 	public static void addCarvers(Biome biomeIn) {
 		biomeIn.addCarver(GenerationStage.Carving.AIR, Biome.createCarver(DDCarvers.FLAT_CAVE.get(), new ProbabilityConfig(0.2F)));
-		biomeIn.addCarver(GenerationStage.Carving.AIR, Biome.createCarver(DDCarvers.LARGE_CAVE.get(), new ProbabilityConfig(0.2F)));
-		biomeIn.addCarver(GenerationStage.Carving.AIR, Biome.createCarver(DDCarvers.HORIZONTAL_CAVE.get(), new ProbabilityConfig(0.2F)));
+//		biomeIn.addCarver(GenerationStage.Carving.AIR, Biome.createCarver(DDCarvers.LARGE_CAVE.get(), new ProbabilityConfig(0.2F)));
+//		biomeIn.addCarver(GenerationStage.Carving.AIR, Biome.createCarver(DDCarvers.HORIZONTAL_CAVE.get(), new ProbabilityConfig(0.2F)));
 		biomeIn.addCarver(GenerationStage.Carving.AIR, Biome.createCarver(DDCarvers.BIG_CAVE.get(), new ProbabilityConfig(0.2F)));
 	}
 
@@ -150,6 +155,34 @@ public class VanillaBiomeFeatures {
 		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, ELYTRINE_ORE, 4)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(2, 5, 5, 16))));
 	}
 
+	public static void addFarmAnimals(Biome biomeIn) {
+		biomeIn.addSpawn(EntityClassification.CREATURE, new Biome.SpawnListEntry(EntityType.SHEEP, 12, 4, 4));
+		biomeIn.addSpawn(EntityClassification.CREATURE, new Biome.SpawnListEntry(EntityType.PIG, 10, 4, 4));
+		biomeIn.addSpawn(EntityClassification.CREATURE, new Biome.SpawnListEntry(EntityType.CHICKEN, 10, 4, 4));
+		biomeIn.addSpawn(EntityClassification.CREATURE, new Biome.SpawnListEntry(EntityType.COW, 8, 4, 4));
+	}
+
+	public static void addAmbientEntities(Biome biomeIn) {
+		biomeIn.addSpawn(EntityClassification.AMBIENT, new Biome.SpawnListEntry(EntityType.BAT, 10, 8, 8));
+	}
+
+	public static void addCommonEntities(Biome biomeIn) {
+		addAmbientEntities(biomeIn);
+		addMonsters(biomeIn);
+		addFarmAnimals(biomeIn);
+	}
+
+	public static void addMonsters(Biome biomeIn) {
+		biomeIn.addSpawn(EntityClassification.MONSTER, new Biome.SpawnListEntry(EntityType.SPIDER, 100, 4, 4));
+		biomeIn.addSpawn(EntityClassification.MONSTER, new Biome.SpawnListEntry(EntityType.ZOMBIE, 95, 4, 4));
+		biomeIn.addSpawn(EntityClassification.MONSTER, new Biome.SpawnListEntry(EntityType.ZOMBIE_VILLAGER, 5, 1, 1));
+		biomeIn.addSpawn(EntityClassification.MONSTER, new Biome.SpawnListEntry(EntityType.SKELETON, 100, 4, 4));
+		biomeIn.addSpawn(EntityClassification.MONSTER, new Biome.SpawnListEntry(EntityType.CREEPER, 100, 4, 4));
+		biomeIn.addSpawn(EntityClassification.MONSTER, new Biome.SpawnListEntry(EntityType.SLIME, 100, 4, 4));
+		biomeIn.addSpawn(EntityClassification.MONSTER, new Biome.SpawnListEntry(EntityType.ENDERMAN, 10, 1, 4));
+		biomeIn.addSpawn(EntityClassification.MONSTER, new Biome.SpawnListEntry(EntityType.WITCH, 5, 1, 1));
+	}
+
 	/**
 	 * @note this method add features to ALL the biomes, or to specific vanilla biomes
 	 */
@@ -158,6 +191,7 @@ public class VanillaBiomeFeatures {
 			if (!biome.getCategory().equals(Biome.Category.NETHER) && !biome.getCategory().equals(Biome.Category.THEEND)) {
 				addCarvers(biome);
 				addStonePillars(biome);
+				addCommonEntities(biome);
 			}
 		}
 	}

@@ -11,12 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DDSpawnEggItem extends SpawnEggItem {
-
-    protected static final List<DDSpawnEggItem> UNADDED_EGGS = new ArrayList<DDSpawnEggItem>();
+    protected static final List<DDSpawnEggItem> UNADDED_EGGS = new ArrayList<>();
     private final Lazy<? extends EntityType<?>> entityTypeSupplier;
 
-    public DDSpawnEggItem(RegistryObject<? extends EntityType<?>> entityTypeSupplier, int primaryColour,
-                           int secondaryColour, Item.Properties properties) {
+    public DDSpawnEggItem(RegistryObject<? extends EntityType<?>> entityTypeSupplier, int primaryColour, int secondaryColour, Item.Properties properties) {
         super(null, primaryColour, secondaryColour, properties);
         this.entityTypeSupplier = Lazy.of(entityTypeSupplier::get);
         UNADDED_EGGS.add(this);

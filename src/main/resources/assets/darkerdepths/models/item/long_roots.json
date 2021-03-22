@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
     "textures": {
-    "layer0": "darkerdepths:block/roots"
+    "layer0": "darkerdepths:block/long_roots_bottom"
   }
 }

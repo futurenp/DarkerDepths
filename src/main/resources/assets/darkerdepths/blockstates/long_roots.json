@@ -1,0 +1,10 @@
+{
+	"variants": {
+		"half=lower": {
+			"model": "darkerdepths:block/long_roots_bottom"
+		},
+		"half=upper": {
+			"model": "darkerdepths:block/long_roots_top"
+		}
+	}
+}

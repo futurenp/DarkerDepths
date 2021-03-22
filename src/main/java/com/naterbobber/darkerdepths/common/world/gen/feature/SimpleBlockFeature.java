@@ -1,6 +1,7 @@
 package com.naterbobber.darkerdepths.common.world.gen.feature;
 
 import com.mojang.serialization.Codec;
+import com.naterbobber.darkerdepths.common.blocks.HangingDoublePlantBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.DoublePlantBlock;
 import net.minecraft.util.math.BlockPos;
@@ -30,6 +31,13 @@ public class SimpleBlockFeature extends Feature<SimpleBlockConfig> {
 
                     DoublePlantBlock doublePlantBlock = (DoublePlantBlock)state.getBlock();
                     doublePlantBlock.placeAt(worldIn, pos, 2);
+                } else if (state.getBlock() instanceof HangingDoublePlantBlock) {
+                    if (!worldIn.isAirBlock(pos.down())) {
+                        return false;
+                    }
+
+                    HangingDoublePlantBlock hangingDoublePlantBlock = (HangingDoublePlantBlock)state.getBlock();
+                    hangingDoublePlantBlock.placeAt(worldIn, pos, 2);
                 } else {
                     worldIn.setBlockState(pos, state, 2);
                 }

@@ -14,5 +14,6 @@ public class BlockRenderHandler {
         RenderTypeLookup.setRenderLayer(DDBlocks.PETRIFIED_TRAPDOOR.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(DDBlocks.ROPE.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(DDBlocks.ROOTS.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(DDBlocks.LONG_ROOTS.get(), RenderType.getCutout());
     }
 }
