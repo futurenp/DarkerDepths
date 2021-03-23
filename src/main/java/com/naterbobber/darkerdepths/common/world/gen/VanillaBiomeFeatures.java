@@ -7,6 +7,7 @@ import com.naterbobber.darkerdepths.common.world.gen.feature.CavePillarConfig;
 import com.naterbobber.darkerdepths.common.world.gen.feature.GemstonePlacementConfig;
 import com.naterbobber.darkerdepths.common.world.gen.feature.SimpleBlockConfig;
 import com.naterbobber.darkerdepths.common.world.gen.placement.CaveDecoratorConfig;
+import com.naterbobber.darkerdepths.core.init.EntityTypesInit;
 import com.naterbobber.darkerdepths.core.registries.*;
 
 import com.naterbobber.darkerdepths.core.util.CaveSurface;
@@ -99,7 +100,7 @@ public class VanillaBiomeFeatures {
 	public static void addAmber(Biome biomeIn) {
 		biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, DDFeatures.GEMSTONE_PLACEMENT_FEATURE.get().withConfiguration(new GemstonePlacementConfig(AMBER)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(40, 0, 0, 25))));
 	}
-	
+
 	public static void addAsh(Biome biomeIn) {
 		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.RANDOM_PATCH.withConfiguration(ASH_CONFIG).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(45, 0, 0, 55))));
 		biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, ASH_BLOCK, 33)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(10, 0, 0, 55))));
@@ -107,7 +108,7 @@ public class VanillaBiomeFeatures {
 
 	public static void addCarvers(Biome biomeIn) {
 		biomeIn.addCarver(GenerationStage.Carving.AIR, Biome.createCarver(DDCarvers.FLAT_CAVE.get(), new ProbabilityConfig(0.2F)));
-//		biomeIn.addCarver(GenerationStage.Carving.AIR, Biome.createCarver(DDCarvers.LARGE_CAVE.get(), new ProbabilityConfig(0.2F)));
+		biomeIn.addCarver(GenerationStage.Carving.AIR, Biome.createCarver(DDCarvers.LARGE_CAVE.get(), new ProbabilityConfig(0.2F)));
 //		biomeIn.addCarver(GenerationStage.Carving.AIR, Biome.createCarver(DDCarvers.HORIZONTAL_CAVE.get(), new ProbabilityConfig(0.2F)));
 		biomeIn.addCarver(GenerationStage.Carving.AIR, Biome.createCarver(DDCarvers.BIG_CAVE.get(), new ProbabilityConfig(0.2F)));
 	}

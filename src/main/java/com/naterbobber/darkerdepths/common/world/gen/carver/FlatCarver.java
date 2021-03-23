@@ -39,6 +39,10 @@ public class FlatCarver extends CaveWorldCarver {
 
             if (!this.canCarveBlock(blockstate, blockstate1)) {
                 return false;
+            } else if(y == 12) {
+                chunk.setBlockState(mutable, Blocks.STONE.getDefaultState(), false);
+            } else if(y <= 12) {
+                chunk.setBlockState(mutable, Blocks.STONE.getDefaultState(), false);
             }
             else {
                 chunk.setBlockState(mutable, CAVE_AIR, false);

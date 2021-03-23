@@ -35,11 +35,10 @@ public class GlowshroomMonsterEntity extends MonsterEntity {
     //func_233666_p_ ---> registerAttributes()
     public static AttributeModifierMap.MutableAttribute setCustomAttributes() {
         return MobEntity.func_233666_p_()
-                .createMutableAttribute(Attributes.MAX_HEALTH, 30.0D)
+                .createMutableAttribute(Attributes.MAX_HEALTH, 60.0D)
                 .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.50D)
                 .createMutableAttribute(Attributes.ATTACK_KNOCKBACK, 1.3D)
-                .createMutableAttribute(Attributes.ATTACK_DAMAGE, 14.0D)
-                .createMutableAttribute(Attributes.FOLLOW_RANGE, 32.0D)
+                .createMutableAttribute(Attributes.ATTACK_DAMAGE, 8.0D)
                 .createMutableAttribute(Attributes.KNOCKBACK_RESISTANCE, 0.75D);
     }
 
@@ -80,7 +79,7 @@ public class GlowshroomMonsterEntity extends MonsterEntity {
 
     @Override
     public boolean attackEntityAsMob(Entity entityIn) {
-        this.attackTick = 15;
+        this.attackTick = 40;
         this.world.setEntityState(this, (byte)4);
         this.playSound(SoundEvents.ENTITY_RAVAGER_ATTACK, 1.0F, 1.0F);
         return super.attackEntityAsMob(entityIn);
@@ -98,16 +97,10 @@ public class GlowshroomMonsterEntity extends MonsterEntity {
     @Override
     public void handleStatusUpdate(byte id) {
         if(id == 4){
-            this.attackTick = 15;
+            this.attackTick = 40;
             this.playSound(SoundEvents.ENTITY_RAVAGER_ATTACK, 1.0F, 1.0F);
         } else{
             super.handleStatusUpdate(id);
-        }
-    }
-
-    static class TargetGoal<T extends LivingEntity> extends NearestAttackableTargetGoal<T> {
-        public TargetGoal(GlowshroomMonsterEntity glowshroom_monster, Class<T> classTarget) {
-            super(glowshroom_monster, classTarget, true);
         }
     }
 
