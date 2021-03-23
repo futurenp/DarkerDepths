@@ -62,7 +62,7 @@ public class LargeCaveCarver extends CaveWorldCarver {
         }
 
 
-    //Tunnel Width
+    //Tunnel Height
     @Override
     protected float func_230359_a_(Random random) {
         float f = random.nextFloat() * 5.0F + random.nextFloat();
