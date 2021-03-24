@@ -2,12 +2,12 @@ package com.naterbobber.darkerdepths.common.world.gen;
 
 import com.google.common.collect.ImmutableSet;
 import com.naterbobber.darkerdepths.common.blocks.Speleothem;
+import com.naterbobber.darkerdepths.common.world.gen.biome.AbstractCaveBiome;
 import com.naterbobber.darkerdepths.common.world.gen.feature.BlobReplacementConfig;
 import com.naterbobber.darkerdepths.common.world.gen.feature.CavePillarConfig;
 import com.naterbobber.darkerdepths.common.world.gen.feature.GemstonePlacementConfig;
 import com.naterbobber.darkerdepths.common.world.gen.feature.SimpleBlockConfig;
 import com.naterbobber.darkerdepths.common.world.gen.placement.CaveDecoratorConfig;
-import com.naterbobber.darkerdepths.core.init.EntityTypesInit;
 import com.naterbobber.darkerdepths.core.registries.*;
 
 import com.naterbobber.darkerdepths.core.util.CaveSurface;
@@ -107,10 +107,11 @@ public class VanillaBiomeFeatures {
 	}
 
 	public static void addCarvers(Biome biomeIn) {
-		biomeIn.addCarver(GenerationStage.Carving.AIR, Biome.createCarver(DDCarvers.FLAT_CAVE.get(), new ProbabilityConfig(0.2F)));
-		biomeIn.addCarver(GenerationStage.Carving.AIR, Biome.createCarver(DDCarvers.LARGE_CAVE.get(), new ProbabilityConfig(0.2F)));
+		biomeIn.addCarver(GenerationStage.Carving.AIR, Biome.createCarver(DDCarvers.FLAT_CAVE.get(), new ProbabilityConfig(1 / 6.0F)));
+		biomeIn.addCarver(GenerationStage.Carving.AIR, Biome.createCarver(DDCarvers.LARGE_CAVE.get(), new ProbabilityConfig(1 / 6.0F)));
 //		biomeIn.addCarver(GenerationStage.Carving.AIR, Biome.createCarver(DDCarvers.HORIZONTAL_CAVE.get(), new ProbabilityConfig(0.2F)));
-		biomeIn.addCarver(GenerationStage.Carving.AIR, Biome.createCarver(DDCarvers.BIG_CAVE.get(), new ProbabilityConfig(0.2F)));
+		biomeIn.addCarver(GenerationStage.Carving.AIR, Biome.createCarver(DDCarvers.BIG_CAVE.get(), new ProbabilityConfig(1 / 32.0F)));
+		biomeIn.addCarver(GenerationStage.Carving.AIR, Biome.createCarver(DDCarvers.NOISE_CAVE.get(), new ProbabilityConfig(1F)));
 	}
 
 	public static void addSpeleothems(Biome biomeIn) {
@@ -189,7 +190,7 @@ public class VanillaBiomeFeatures {
 	 */
 	public static void addVanillaBiomeFeatures() {
 		for (Biome biome : ForgeRegistries.BIOMES) {
-			if (!biome.getCategory().equals(Biome.Category.NETHER) && !biome.getCategory().equals(Biome.Category.THEEND)) {
+			if (!biome.getCategory().equals(Biome.Category.NETHER) && !biome.getCategory().equals(Biome.Category.THEEND) && !(biome instanceof AbstractCaveBiome)) {
 				addCarvers(biome);
 				addStonePillars(biome);
 				addCommonEntities(biome);

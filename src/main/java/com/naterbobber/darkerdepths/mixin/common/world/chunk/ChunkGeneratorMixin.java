@@ -33,6 +33,8 @@ public abstract class ChunkGeneratorMixin {
     @Shadow @Final protected BiomeProvider biomeProvider;
     @Shadow protected abstract void func_235955_a_(StructureFeature<?, ?> p_235955_1_, StructureManager p_235955_2_, IChunk p_235955_3_, TemplateManager p_235955_4_, long p_235955_5_, ChunkPos p_235955_7_, Biome p_235955_8_);
 
+    @Shadow public abstract int func_230356_f_();
+
     @Inject(at = @At("HEAD"), method = "func_235954_a_")
     private void applyBiomeStructures(StructureManager structureManager, IChunk chunk, TemplateManager templateManager, long seed, CallbackInfo info) {
         ChunkPos chunkPos = chunk.getPos();
@@ -78,6 +80,6 @@ public abstract class ChunkGeneratorMixin {
 
     @Redirect(method = "func_230350_a_", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/biome/provider/BiomeProvider;getNoiseBiome(III)Lnet/minecraft/world/biome/Biome;"))
     private Biome applyBiomeCarvers(BiomeProvider biomeProvider, int x, int y, int z) {
-        return this.biomeProvider.getNoiseBiome(x, 16, z);
+        return this.biomeProvider.getNoiseBiome(x, this.func_230356_f_(), z);
     }
 }
