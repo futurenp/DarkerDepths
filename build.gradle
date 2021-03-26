@@ -1,7 +1,7 @@
 buildscript {
     repositories {
         maven { url = 'https://files.minecraftforge.net/maven' }
-        maven { url = 'https://repo.spongepowered.org/maven' }
+        maven { url = "https://repo.spongepowered.org/repository/maven-public/" }
         jcenter()
         mavenCentral()
     }
@@ -16,13 +16,13 @@ apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 apply plugin: 'org.spongepowered.mixin'
 
-mixin {
-    add sourceSets.main, "darkerdepths.refmap.json"
-}
-
 version = '21w12d'
 group = 'com.naterbobber.darkerdepths'
 archivesBaseName = 'darkerdepths'
+
+mixin {
+    add sourceSets.main, "darkerdepths.refmap.json"
+}
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
 
@@ -72,14 +72,16 @@ minecraft {
     }
 }
 
-repositories {
-	maven {
-		url = "https://www.cursemaven.com"
-	}
-}
-
 dependencies {
     minecraft 'net.minecraftforge:forge:1.16.1-32.0.72'
+    implementation fg.deobf('curse.maven:bgcore-441706:3251435')
+}
+
+repositories {
+    maven {
+        name = "Curse Maven"
+        url = "https://www.cursemaven.com"
+    }
 }
 
 jar {

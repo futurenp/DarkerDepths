@@ -43,7 +43,7 @@ public class AshFullBlock extends FallingBlock {
                 worldIn.setBlockState(mutable, DDBlocks.ASH.get().getDefaultState());
             }
         }*/
-
+    /*
     	BlockPos fillerpos = pos.down();
     	BlockPos basepos = pos.down(2);
     	BlockState fillerstate = worldIn.getBlockState(fillerpos);
@@ -58,7 +58,7 @@ public class AshFullBlock extends FallingBlock {
     				worldIn.setBlockState(pos.down(), DDBlocks.ASH.get().getDefaultState());
     			}
     		}
-    	}
+    	}*/
     }
 
     @Nullable

@@ -66,6 +66,7 @@ public class DarkerDepths {
             GlobalEntityTypeAttributes.put(EntityTypesInit.MAGMA_MINION.get(), MagmaMinionEntity.setCustomAttributes().create());
         });
         VanillaIntegrationRegistry.setup();
+        CaveBiomeImplementation.addCaveBiomes();
 
         LOGGER.info("Pre-initializing.");
     }
