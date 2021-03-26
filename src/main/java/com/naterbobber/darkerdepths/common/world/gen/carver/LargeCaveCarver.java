@@ -24,7 +24,7 @@ import java.util.function.Function;
 public class LargeCaveCarver extends CaveWorldCarver {
     public LargeCaveCarver(Codec<ProbabilityConfig> codec, int maxHeight) {
         super(codec, maxHeight);
-        this.carvableFluids = ImmutableSet.of(Fluids.LAVA);
+        this.carvableFluids = ImmutableSet.of(Fluids.WATER, Fluids.LAVA, Fluids.FLOWING_LAVA, Fluids.FLOWING_LAVA);
     }
 
     //Cave Shape
@@ -32,7 +32,8 @@ public class LargeCaveCarver extends CaveWorldCarver {
         int i = relativeX | relativeZ << 4 | y << 8;
         if (carvingMask.get(i)) {
             return false;
-        } else {
+        }
+        else {
             carvingMask.set(i);
             mutable.setPos(x, y, z);
             BlockState blockstate = chunk.getBlockState(mutable);
@@ -60,26 +61,25 @@ public class LargeCaveCarver extends CaveWorldCarver {
         }
 
 
-    //Tunnel Height
+    //Tunnel Width
     @Override
     protected float func_230359_a_(Random random) {
-        float f = random.nextFloat() * 5.0F + random.nextFloat();
+        float f = random.nextFloat() * 4.0F + random.nextFloat();
         if (random.nextInt(5) == 0) {
             f *= random.nextFloat() * random.nextFloat() * 2.5F + 1.0F;
         }
-
         return f;
     }
 
     //MaxCave
     protected int func_230357_a_() {
-        return 30;
+        return 20;
     }
 
-    //Tunnel Ratio
+    //Tunnel Height
     @Override
     protected double func_230360_b_() {
-        return 1.0D;
+        return 0.7D;
     }
 
 }

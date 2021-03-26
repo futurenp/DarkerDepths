@@ -99,7 +99,7 @@ public class VanillaBiomeFeatures {
 	public static void addCarvers(Biome biomeIn) {
 		biomeIn.addCarver(GenerationStage.Carving.AIR, Biome.createCarver(DDCarvers.FLAT_CAVE.get(), new ProbabilityConfig(0.2F)));
 		biomeIn.addCarver(GenerationStage.Carving.AIR, Biome.createCarver(DDCarvers.LARGE_CAVE.get(), new ProbabilityConfig(0.2F)));
-		//biomeIn.addCarver(GenerationStage.Carving.AIR, Biome.createCarver(DDCarvers.BIG_CAVE.get(), new ProbabilityConfig(0.2F)));
+		biomeIn.addCarver(GenerationStage.Carving.AIR, Biome.createCarver(DDCarvers.BIG_CAVE.get(), new ProbabilityConfig(0.2F)));
 		biomeIn.addCarver(GenerationStage.Carving.AIR, Biome.createCarver(DDCarvers.NOISE_CAVE.get(), new ProbabilityConfig(1F)));
 	}
 
