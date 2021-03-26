@@ -16,7 +16,8 @@ public class CaveBiomeReceiver {
 	public static final int DEFAULT_CAVE 	= BIOME.getID(DDBiomes.DEFAULT_CAVE.get());
 	public static final int MOLTEN_CAVERN 	= BIOME.getID(DDBiomes.MOLTEN_CAVERN.get());
 	public static final int SANDY_CATACOMBS	= BIOME.getID(DDBiomes.SANDY_CATACOMBS.get());
-	
+	public static final int CRYSTAL_CAVE	= BIOME.getID(DDBiomes.CRYSTAL_CAVE.get());
+
 	public static ArrayList<Integer> BIOME_ID = new ArrayList<>();
 	
 	static {
@@ -25,6 +26,7 @@ public class CaveBiomeReceiver {
 		BIOME_ID.add(DEFAULT_CAVE);
 		BIOME_ID.add(SANDY_CATACOMBS);
 		BIOME_ID.add(DEFAULT_CAVE);
+//		BIOME_ID.add(CRYSTAL_CAVE);
 	}
 	
 	public static int getRandomBiomes(INoiseRandom context) {

@@ -65,7 +65,6 @@ public class DarkerDepths {
             GlobalEntityTypeAttributes.put(EntityTypesInit.GLOWSHROOM_MONSTER.get(), GlowshroomMonsterEntity.setCustomAttributes().create());
             GlobalEntityTypeAttributes.put(EntityTypesInit.MAGMA_MINION.get(), MagmaMinionEntity.setCustomAttributes().create());
         });
-
         VanillaIntegrationRegistry.setup();
 
         LOGGER.info("Pre-initializing.");
