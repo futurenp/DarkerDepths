@@ -46,11 +46,6 @@ public class LargeCaveCarver extends CaveWorldCarver {
             } else if (y < 11) {
                 chunk.setBlockState(mutable, LAVA.getBlockState(), false);
             }
-//            } else if(y == 12) {
-//                chunk.setBlockState(mutable, Blocks.STONE.getDefaultState(), false);
-//            } else if(y <= 12) {
-//                chunk.setBlockState(mutable, Blocks.STONE.getDefaultState(), false);
-//            }
                 else {
                     chunk.setBlockState(mutable, CAVE_AIR, false);
                     if (mutableBoolean.isTrue()) {
@@ -70,7 +65,7 @@ public class LargeCaveCarver extends CaveWorldCarver {
     protected float func_230359_a_(Random random) {
         float f = random.nextFloat() * 5.0F + random.nextFloat();
         if (random.nextInt(5) == 0) {
-            f *= random.nextFloat() * random.nextFloat() * 4.0F + 1.0F;
+            f *= random.nextFloat() * random.nextFloat() * 2.5F + 1.0F;
         }
 
         return f;
@@ -78,7 +73,7 @@ public class LargeCaveCarver extends CaveWorldCarver {
 
     //MaxCave
     protected int func_230357_a_() {
-        return 15;
+        return 30;
     }
 
     //Tunnel Ratio
