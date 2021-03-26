@@ -27,8 +27,8 @@ import javax.annotation.Nullable;
 public class Speleothem extends Block implements IWaterLoggable {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public static final BooleanProperty HANGING = BlockStateProperties.HANGING;
-    protected static final VoxelShape bottom  = VoxelShapes.or(Block.makeCuboidShape(6.5D, 0.0D, 6.5D, 9.5D, 5.0D, 9.5D), Block.makeCuboidShape(5.5D, 5.0D, 5.5D, 10.5D, 11.0D, 10.5D), Block.makeCuboidShape(4.0D, 11.0D, 4.0D, 12.0D, 16.0D, 12.0D));
-    protected static final VoxelShape top = VoxelShapes.or(Block.makeCuboidShape(6.5D, 11.0D, 6.5D, 9.5D, 16.0D, 9.5D), Block.makeCuboidShape(5.5D, 5.0D, 5.5D, 10.5D, 11.0D, 10.5D), Block.makeCuboidShape(4.0D, 0.0D, 4.0D, 12.0D, 5.0D, 12.0D));
+    protected static final VoxelShape BOTTOM  = VoxelShapes.or(Block.makeCuboidShape(6.5D, 0.0D, 6.5D, 9.5D, 5.0D, 9.5D), Block.makeCuboidShape(5.5D, 5.0D, 5.5D, 10.5D, 11.0D, 10.5D), Block.makeCuboidShape(4.0D, 11.0D, 4.0D, 12.0D, 16.0D, 12.0D));
+    protected static final VoxelShape TOP = VoxelShapes.or(Block.makeCuboidShape(6.5D, 11.0D, 6.5D, 9.5D, 16.0D, 9.5D), Block.makeCuboidShape(5.5D, 5.0D, 5.5D, 10.5D, 11.0D, 10.5D), Block.makeCuboidShape(4.0D, 0.0D, 4.0D, 12.0D, 5.0D, 12.0D));
 
     public Speleothem() {
         super(Block.Properties.create(Material.ROCK)
@@ -59,7 +59,7 @@ public class Speleothem extends Block implements IWaterLoggable {
     }
 
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        return state.get(HANGING) ? bottom : top;
+        return state.get(HANGING) ? BOTTOM : TOP;
     }
 
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {

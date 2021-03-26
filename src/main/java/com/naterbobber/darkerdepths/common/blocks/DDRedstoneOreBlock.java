@@ -47,7 +47,6 @@ public class DDRedstoneOreBlock extends Block {
         } else {
             activate(state, worldIn, pos);
         }
-
         ItemStack itemstack = player.getHeldItem(handIn);
         return itemstack.getItem() instanceof BlockItem && (new BlockItemUseContext(player, handIn, itemstack, hit)).canPlace() ? ActionResultType.PASS : ActionResultType.SUCCESS;
     }
@@ -57,7 +56,6 @@ public class DDRedstoneOreBlock extends Block {
         if (!state.get(LIT)) {
             world.setBlockState(pos, state.with(LIT, Boolean.valueOf(true)), 3);
         }
-
     }
 
     public boolean ticksRandomly(BlockState state) {
@@ -85,7 +83,6 @@ public class DDRedstoneOreBlock extends Block {
         if (stateIn.get(LIT)) {
             spawnParticles(worldIn, pos);
         }
-
     }
 
     private static void spawnParticles(World world, BlockPos worldIn) {
@@ -102,7 +99,6 @@ public class DDRedstoneOreBlock extends Block {
                 world.addParticle(RedstoneParticleData.REDSTONE_DUST, (double)worldIn.getX() + d1, (double)worldIn.getY() + d2, (double)worldIn.getZ() + d3, 0.0D, 0.0D, 0.0D);
             }
         }
-
     }
 
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
