@@ -1,5 +1,6 @@
 package com.naterbobber.darkerdepths.common.world.gen;
 
+import com.blackgear.bgcore.core.registries.BGBiomes;
 import com.google.common.collect.ImmutableSet;
 import com.naterbobber.darkerdepths.common.blocks.Speleothem;
 import com.naterbobber.darkerdepths.common.world.gen.biome.AbstractCaveBiome;
@@ -78,6 +79,7 @@ public class VanillaBiomeFeatures {
 
 	public static void addGlowshrooms(Biome biomeIn) {
 		biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, DDFeatures.SIMPLE_BLOCK_FEATURE.get().withConfiguration(new SimpleBlockConfig(new SimpleBlockStateProvider(GLOWSHROOM))).withPlacement(DDPlacements.CAVE_SURFACE.get().configure(new CaveDecoratorConfig(CaveSurface.FLOOR, 12))).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(7, 0, 0, 60))));
+//		biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, DDFeatures.SIMPLE_BLOCK_FEATURE.get().withConfiguration(new SimpleBlockConfig(new SimpleBlockStateProvider(DDBlocks.GLOWSHROOM_CAP.get().getDefaultState()))).withPlacement(DDPlacements.CAVE_SURFACE.get().configure(new CaveDecoratorConfig(CaveSurface.FLOOR, 12))).withPlacement(Placement.CHANCE_RANGE.configure(new ChanceRangeConfig(5, 0, 0, 60))));
 	}
 
 	public static void addCrystalPeaks(Biome biomeIn) {
@@ -88,7 +90,7 @@ public class VanillaBiomeFeatures {
 	}
 
 	public static void addAmber(Biome biomeIn) {
-		biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, DDFeatures.GEMSTONE_PLACEMENT_FEATURE.get().withConfiguration(new GemstonePlacementConfig(AMBER)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(40, 0, 0, 25))));
+		biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, DDFeatures.GEMSTONE_PLACEMENT_FEATURE.get().withConfiguration(new GemstonePlacementConfig(AMBER)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(64, 0, 0, 25))));
 	}
 
 	public static void addAsh(Biome biomeIn) {
@@ -159,6 +161,9 @@ public class VanillaBiomeFeatures {
 			if (!biome.getCategory().equals(Biome.Category.NETHER) && !biome.getCategory().equals(Biome.Category.THEEND) && !(biome instanceof AbstractCaveBiome)) {
 				addCarvers(biome);
 				addCommonEntities(biome);
+				if (biome == BGBiomes.DEFAULT_CAVE.get()) {
+					addGlowshrooms(biome);
+				}
 			}
 		}
 	}

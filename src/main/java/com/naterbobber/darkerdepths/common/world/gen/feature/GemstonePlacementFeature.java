@@ -2,8 +2,6 @@ package com.naterbobber.darkerdepths.common.world.gen.feature;
 
 import com.mojang.serialization.Codec;
 import com.naterbobber.darkerdepths.common.blocks.AbstractGemStoneBlock;
-import com.naterbobber.darkerdepths.core.registries.DDBlocks;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.state.properties.BlockStateProperties;
@@ -12,8 +10,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ISeedReader;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.IFeatureConfig;
-import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.feature.structure.StructureManager;
 
 import java.util.Random;
@@ -34,9 +30,7 @@ public class GemstonePlacementFeature extends Feature<GemstonePlacementConfig> {
             return false;
         } else {
             for (Direction direction : DIRECTIONS) {
-                if (!(state.getBlock() instanceof AbstractGemStoneBlock)) {
-                    return false;
-                } else if (AbstractGemStoneBlock.canAttachTo(worldIn, pos.offset(direction), direction)) {
+                if (AbstractGemStoneBlock.canAttachTo(worldIn, pos.offset(direction), direction)) {
                     if (state.isIn(Blocks.WATER)) {
                         worldIn.setBlockState(pos, configIn.state.with(AbstractGemStoneBlock.FACING, direction.getOpposite()).with(BlockStateProperties.WATERLOGGED, true), 2);
                     } else {

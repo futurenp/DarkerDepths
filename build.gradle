@@ -16,9 +16,9 @@ apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 apply plugin: 'org.spongepowered.mixin'
 
-version = '21w12d'
+version = '1.0'
 group = 'com.naterbobber.darkerdepths'
-archivesBaseName = 'darkerdepths'
+archivesBaseName = 'DarkerDepths'
 
 mixin {
     add sourceSets.main, "darkerdepths.refmap.json"
