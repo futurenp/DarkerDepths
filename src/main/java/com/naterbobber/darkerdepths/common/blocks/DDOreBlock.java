@@ -12,7 +12,6 @@ import net.minecraft.world.World;
 import java.util.Random;
 
 public class DDOreBlock extends Block {
-
     public DDOreBlock(Properties properties) {
         super(properties);
     }
@@ -27,6 +26,7 @@ public class DDOreBlock extends Block {
         }
     }
 
+    @Override
     public void spawnAdditionalDrops(BlockState state, World worldIn, BlockPos pos, ItemStack stack) {
         super.spawnAdditionalDrops(state, worldIn, pos, stack);
     }

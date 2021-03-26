@@ -18,7 +18,6 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 
 public class CrystalMelon extends Block implements IBucketPickupHandler, ILiquidContainer {
-
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
     protected static final VoxelShape SHAPE = Block.makeCuboidShape(1.0D, 0.0D, 1.0D, 15.0D, 14.0D, 15.0D);
@@ -32,7 +31,8 @@ public class CrystalMelon extends Block implements IBucketPickupHandler, ILiquid
                 .hardnessAndResistance(0.3f, 0.6f)
                 .sound(SoundType.GLASS)
                 .harvestLevel(2)
-                .setLightLevel(value -> 10));
+                .setLightLevel(value -> 10)
+                .setRequiresTool());
         this.setDefaultState(this.stateContainer.getBaseState().with(WATERLOGGED, false));
     }
 
