@@ -17,6 +17,7 @@ public class CaveBiome extends AbstractCaveBiome {
 
     @Override
     public void addFeatures() {
-        VanillaBiomeFeatures.addSpeleothems(this);
+        VanillaBiomeFeatures.addGlowshrooms(this);
+        VanillaBiomeFeatures.addCarvers(this);
     }
 }

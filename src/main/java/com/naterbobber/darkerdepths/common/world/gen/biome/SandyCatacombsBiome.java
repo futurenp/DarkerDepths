@@ -47,6 +47,5 @@ public class SandyCatacombsBiome extends AbstractCaveBiome {
 		this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, DDFeatures.SIMPLE_BLOCK_FEATURE.get().withConfiguration(new SimpleBlockConfig(new SimpleBlockStateProvider(DDBlocks.LONG_ROOTS.get().getDefaultState()))).withPlacement(DDPlacements.CAVE_SURFACE.get().configure(new CaveDecoratorConfig(CaveSurface.CEILING, 12))).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(80, 0, 0, 70))));
 		VanillaBiomeFeatures.addAridrockOres(this);
 		VanillaBiomeFeatures.addLimestoneOres(this);
-		VanillaBiomeFeatures.addCaveFossils(this);
 	}
 }

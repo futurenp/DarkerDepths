@@ -1,12 +1,13 @@
 package com.naterbobber.darkerdepths.common.world.gen.feature;
 
 import com.mojang.serialization.Codec;
+import com.naterbobber.darkerdepths.core.registries.DDBlocks;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.ISeedReader;
 import net.minecraft.world.IWorld;
-import net.minecraft.world.World;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.structure.StructureManager;
@@ -22,63 +23,92 @@ public class CavePillarFeature extends Feature<CavePillarConfig> {
 
     @Override
     public boolean func_230362_a_(ISeedReader worldIn, StructureManager manager, ChunkGenerator generator, Random rand, BlockPos pos, CavePillarConfig configIn) {
-        if (configIn.pointingDirection == Direction.UP && isEmptyOrWaterOrLava(worldIn, pos) && !isEmptyOrWaterOrLava(worldIn, pos.down())) {
-            generatePillar(worldIn, rand, pos, configIn);
-            return true;
-        } else if (configIn.pointingDirection == Direction.DOWN && isEmptyOrWaterOrLava(worldIn, pos) && !isEmptyOrWaterOrLava(worldIn, pos.up())) {
-            generatePillar(worldIn, rand, pos, configIn);
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    private void generatePillar(IWorld worldIn, Random rand, BlockPos pos, CavePillarConfig configIn) {
-        BlockPos.Mutable newPos = pos.toMutable();
-        BlockPos.Mutable oldPos = pos.toMutable();
-        boolean north = true;
-        boolean south = true;
-        boolean west = true;
-        boolean east = true;
-        boolean northeast = true;
-        boolean northwest = true;
-        boolean southeast = true;
-        boolean southwest = true;
-
-        while (isEmptyOrWaterOrLava(worldIn, newPos)) {
-            if (World.isOutsideBuildHeight(newPos)) {
-                return;
+        boolean isValidDirection = configIn.pointingDirection == Direction.UP || configIn.pointingDirection == Direction.DOWN;
+        if (isValidDirection) {
+            if (isEmptyOrWaterOrLava(worldIn, pos)) {
+                this.generateCrystalPillar(worldIn, rand, pos, configIn);
+                return true;
+            } else {
+                return false;
             }
-
-            worldIn.setBlockState(newPos, configIn.pillarState, 2);
-            north = north && this.placeDirectionalPillarBase(worldIn, rand, (oldPos.func_239622_a_(newPos, Direction.NORTH)), configIn);
-            south = south && this.placeDirectionalPillarBase(worldIn, rand, (oldPos.func_239622_a_(newPos, Direction.SOUTH)), configIn);
-            west = west && this.placeDirectionalPillarBase(worldIn, rand, (oldPos.func_239622_a_(newPos, Direction.WEST)), configIn);
-            east = east && this.placeDirectionalPillarBase(worldIn, rand, (oldPos.func_239622_a_(newPos, Direction.EAST)), configIn);
-            northeast = northeast && this.placeDiagonalPillarBase(worldIn, rand, (oldPos.setPos(newPos).move(Direction.NORTH).move(Direction.EAST)), configIn);
-            northwest = northwest && this.placeDiagonalPillarBase(worldIn, rand, (oldPos.setPos(newPos).move(Direction.NORTH).move(Direction.WEST)), configIn);
-            southeast = southeast && this.placeDiagonalPillarBase(worldIn, rand, (oldPos.setPos(newPos).move(Direction.SOUTH).move(Direction.EAST)), configIn);
-            southwest = southwest && this.placeDiagonalPillarBase(worldIn, rand, (oldPos.setPos(newPos).move(Direction.SOUTH).move(Direction.WEST)), configIn);
-            newPos.move(configIn.pointingDirection);
-        }
-
-    }
-
-    private boolean placeDirectionalPillarBase(IWorld worldIn, Random rand, BlockPos pos, CavePillarConfig configIn) {
-        if (rand.nextInt(10) != 0) {
-            worldIn.setBlockState(pos, configIn.pillarState, 2);
-            return true;
         } else {
             return false;
         }
     }
 
-    private boolean placeDiagonalPillarBase(IWorld worldIn, Random rand, BlockPos pos, CavePillarConfig configIn) {
-        if (rand.nextInt(5) != 0) {
-            worldIn.setBlockState(pos, configIn.pillarState, 2);
-            return true;
-        } else {
-            return false;
+    private void generateCrystalPillar(IWorld worldIn, Random rand, BlockPos pos, CavePillarConfig configIn) {
+        this.generateMainCrystalPillar(worldIn, rand, pos, configIn);
+        this.generateSideCrystalPillar(worldIn, rand, pos, Direction.NORTH, configIn);
+        this.generateSideCrystalPillar(worldIn, rand, pos, Direction.SOUTH, configIn);
+        this.generateSideCrystalPillar(worldIn, rand, pos, Direction.WEST, configIn);
+        this.generateSideCrystalPillar(worldIn, rand, pos, Direction.EAST, configIn);
+        this.generateCornerCrystalPillar(worldIn, rand, pos, Direction.NORTH, Direction.EAST, configIn);
+        this.generateCornerCrystalPillar(worldIn, rand, pos, Direction.NORTH, Direction.WEST, configIn);
+        this.generateCornerCrystalPillar(worldIn, rand, pos, Direction.SOUTH, Direction.EAST, configIn);
+        this.generateCornerCrystalPillar(worldIn, rand, pos, Direction.SOUTH, Direction.WEST, configIn);
+        this.generateCasing(worldIn, rand, pos, configIn);
+    }
+
+    private void generateCasing(IWorld worldIn, Random rand, BlockPos pos, CavePillarConfig configIn) {
+        this.generateCrystalPillarCasing(worldIn, rand, pos, Direction.NORTH, Direction.EAST, 1, configIn);
+        this.generateCrystalPillarCasing(worldIn, rand, pos, Direction.NORTH, Direction.EAST, 0, configIn);
+        this.generateCrystalPillarCasing(worldIn, rand, pos, Direction.NORTH, Direction.EAST, -1, configIn);
+        this.generateCrystalPillarCasing(worldIn, rand, pos, Direction.SOUTH, Direction.WEST, 1, configIn);
+        this.generateCrystalPillarCasing(worldIn, rand, pos, Direction.SOUTH, Direction.WEST, 0, configIn);
+        this.generateCrystalPillarCasing(worldIn, rand, pos, Direction.SOUTH, Direction.WEST, -1, configIn);
+        this.generateCrystalPillarCasing(worldIn, rand, pos, Direction.EAST, Direction.SOUTH, 1, configIn);
+        this.generateCrystalPillarCasing(worldIn, rand, pos, Direction.EAST, Direction.SOUTH, 0, configIn);
+        this.generateCrystalPillarCasing(worldIn, rand, pos, Direction.EAST, Direction.SOUTH, -1, configIn);
+        this.generateCrystalPillarCasing(worldIn, rand, pos, Direction.WEST, Direction.NORTH, 1, configIn);
+        this.generateCrystalPillarCasing(worldIn, rand, pos, Direction.WEST, Direction.NORTH, 0, configIn);
+        this.generateCrystalPillarCasing(worldIn, rand, pos, Direction.WEST, Direction.NORTH, -1, configIn);
+    }
+
+    private void generateMainCrystalPillar(IWorld worldIn, Random rand, BlockPos pos, CavePillarConfig configIn) {
+        boolean isPointingUp = configIn.pointingDirection == Direction.UP;
+        BlockPos.Mutable blockPos = new BlockPos.Mutable();
+
+        for (int height = 0; height < MathHelper.nextInt(rand, 8, 13); height++) {
+            blockPos.setPos(pos).move(configIn.pointingDirection, height);
+            if ((isPointingUp && !isEmptyOrWaterOrLava(worldIn, blockPos.down())) || (!isPointingUp && !isEmptyOrWaterOrLava(worldIn, blockPos.up()))) {
+                this.func_230367_a_(worldIn, blockPos, configIn.pillarState);
+            }
+        }
+    }
+
+    private void generateSideCrystalPillar(IWorld worldIn, Random rand, BlockPos pos, Direction side, CavePillarConfig configIn) {
+        boolean isPointingUp = configIn.pointingDirection == Direction.UP;
+        BlockPos.Mutable blockPos = new BlockPos.Mutable();
+
+        for (int height = 0; height < MathHelper.nextInt(rand, 5, 10); height++) {
+            blockPos.setPos(pos).move(configIn.pointingDirection, height).move(side);
+            if ((isPointingUp && !isEmptyOrWaterOrLava(worldIn, blockPos.down())) || (!isPointingUp && !isEmptyOrWaterOrLava(worldIn, blockPos.up()))) {
+                this.func_230367_a_(worldIn, blockPos, configIn.pillarState);
+            }
+        }
+    }
+
+    private void generateCornerCrystalPillar(IWorld worldIn, Random rand, BlockPos pos, Direction xSide, Direction zSide, CavePillarConfig configIn) {
+        boolean isPointingUp = configIn.pointingDirection == Direction.UP;
+        BlockPos.Mutable blockPos = new BlockPos.Mutable();
+
+        for (int height = 0; height < MathHelper.nextInt(rand, 2, 4); height++) {
+            blockPos.setPos(pos).move(configIn.pointingDirection, height).move(xSide).move(zSide);
+            if ((isPointingUp && !isEmptyOrWaterOrLava(worldIn, blockPos.down())) || (!isPointingUp && !isEmptyOrWaterOrLava(worldIn, blockPos.up()))) {
+                this.func_230367_a_(worldIn, blockPos, configIn.pillarState);
+            }
+        }
+    }
+
+    private void generateCrystalPillarCasing(IWorld worldIn, Random rand, BlockPos pos, Direction xSide, Direction zSide, int zOffset, CavePillarConfig configIn) {
+        boolean isPointingUp = configIn.pointingDirection == Direction.UP;
+        BlockPos.Mutable blockPos = new BlockPos.Mutable();
+
+        for (int height = 0; height < MathHelper.nextInt(rand, 1, 3); height++) {
+            blockPos.setPos(pos).move(configIn.pointingDirection, height).move(xSide, 2).move(zSide, zOffset);
+            if ((isPointingUp && !isEmptyOrWaterOrLava(worldIn, blockPos.down())) || (!isPointingUp && !isEmptyOrWaterOrLava(worldIn, blockPos.up()))) {
+                this.func_230367_a_(worldIn, blockPos, DDBlocks.SHALE.get().getDefaultState());
+            }
         }
     }
 

@@ -20,7 +20,7 @@ mixin {
     add sourceSets.main, "darkerdepths.refmap.json"
 }
 
-version = '21w11b'
+version = '21w12d'
 group = 'com.naterbobber.darkerdepths'
 archivesBaseName = 'darkerdepths'
 

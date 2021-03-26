@@ -43,11 +43,14 @@ public class LargeCaveCarver extends CaveWorldCarver {
 
             if (!this.canCarveBlock(blockstate, blockstate1)) {
                 return false;
-            } else if(y == 12) {
-                chunk.setBlockState(mutable, Blocks.STONE.getDefaultState(), false);
-            } else if(y <= 12) {
-                chunk.setBlockState(mutable, Blocks.STONE.getDefaultState(), false);
+            } else if (y < 11) {
+                chunk.setBlockState(mutable, LAVA.getBlockState(), false);
             }
+//            } else if(y == 12) {
+//                chunk.setBlockState(mutable, Blocks.STONE.getDefaultState(), false);
+//            } else if(y <= 12) {
+//                chunk.setBlockState(mutable, Blocks.STONE.getDefaultState(), false);
+//            }
                 else {
                     chunk.setBlockState(mutable, CAVE_AIR, false);
                     if (mutableBoolean.isTrue()) {

@@ -5,6 +5,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.SharedSeedRandom;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.ISeedReader;
 import net.minecraft.world.IWorld;
@@ -26,26 +27,30 @@ import java.util.stream.IntStream;
 
 //<>
 
-public class PerlerpCarver extends BasicCarver {
+public class NoiseCarver extends BasicCarver {
     private long seed;
+    private long worldSeed;
     private OctavesNoiseGenerator caveNoise;
     private OctavesNoiseGenerator offsetNoise;
     private OctavesNoiseGenerator scaleNoise;
 
-    public PerlerpCarver(Codec<ProbabilityConfig> codec) {
+    public NoiseCarver(Codec<ProbabilityConfig> codec) {
         super(codec);
     }
 
     @Override
-    public boolean carveRegion(IChunk chunk, Function<BlockPos, Biome> biomePos, Random rand, int seaLevel, int chunkXOffset, int chunkZOffset, int chunkX, int chunkZ, BitSet carvingMask, ProbabilityConfig config) {
-        /*if (this.seed != chunkXOffset && chunkZ != chunkZOffset) {
-            return false;
-        }*/
-        if (!(this.seed == chunkXOffset && chunkZ == chunkZOffset)) {
+    protected boolean func_227208_a_(IChunk chunk, Function<BlockPos, Biome> biomePos, long seed, int seaLevel, int chunkX, int chunkZ, double randOffsetXCoord, double startY, double randOffsetZCoord, double p_227208_14_, double p_227208_16_, BitSet carvingMask) {
+        this.worldSeed = seed;
+        return super.func_227208_a_(chunk, biomePos, this.worldSeed, seaLevel, chunkX, chunkZ, randOffsetXCoord, startY, randOffsetZCoord, p_227208_14_, p_227208_16_, carvingMask);
+    }
+
+    @Override
+    public boolean carveRegion(IChunk chunkIn, Function<BlockPos, Biome> biomePos, Random rand, int seaLevel, int chunkX, int chunkZ, int mainChunkX, int mainChunkZ, BitSet carvingMask, ProbabilityConfig config) {
+        if (!(mainChunkX == chunkX && mainChunkZ == chunkZ)) {
             return false;
         }
 
-        Heightmap floor = chunk.getHeightmap(Heightmap.Type.OCEAN_FLOOR_WG);
+        Heightmap floor = chunkIn.getHeightmap(Heightmap.Type.OCEAN_FLOOR_WG);
 
         // Get all heights in this chunk for thresholding
         int[] heights = new int[256];
@@ -55,8 +60,7 @@ public class PerlerpCarver extends BasicCarver {
             }
         }
 
-        SharedSeedRandom sharedSeedRandom = new SharedSeedRandom();
-        long seed = sharedSeedRandom.nextLong();
+        long seed = this.worldSeed;
 
         if (this.caveNoise == null || this.seed == seed) {
             SharedSeedRandom chunkRandom = new SharedSeedRandom(seed);
@@ -66,14 +70,14 @@ public class PerlerpCarver extends BasicCarver {
             this.seed = seed;
         }
 
-        int chunkStartX = chunkXOffset << 4;
-        int chunkStartZ = chunkZOffset << 4;
+        int chunkStartX = chunkX << 4;
+        int chunkStartZ = chunkZ << 4;
 
         double[][][] noiseData = new double[2][5][9];
 
         for(int noiseZ = 0; noiseZ < 5; ++noiseZ) {
             noiseData[0][noiseZ] = new double[9];
-            sampleNoiseColumn(noiseData[0][noiseZ], chunkXOffset * 4, chunkZOffset * 4 + noiseZ, this.caveNoise, this.offsetNoise, this.scaleNoise);
+            sampleNoiseColumn(noiseData[0][noiseZ], chunkX * 4, chunkZ * 4 + noiseZ, this.caveNoise, this.offsetNoise, this.scaleNoise);
             noiseData[1][noiseZ] = new double[9];
         }
 
@@ -82,12 +86,12 @@ public class PerlerpCarver extends BasicCarver {
             // Initialize noise data on the x1 column
             int noiseZ;
             for (noiseZ = 0; noiseZ < 5; ++noiseZ) {
-                sampleNoiseColumn(noiseData[1][noiseZ], chunkXOffset * 4 + noiseX + 1, chunkZOffset * 4 + noiseZ, this.caveNoise, this.offsetNoise, this.scaleNoise);
+                sampleNoiseColumn(noiseData[1][noiseZ], chunkX * 4 + noiseX + 1, chunkZ * 4 + noiseZ, this.caveNoise, this.offsetNoise, this.scaleNoise);
             }
 
             // [0, 4] -> z noise chunks
             for (noiseZ = 0; noiseZ < 4; ++noiseZ) {
-                ChunkSection section = ((ChunkPrimer)chunk).getSection(15);
+                ChunkSection section = ((ChunkPrimer)chunkIn).getSection(15);
 //                section.lock();
 
                 // [0, 32] -> y noise chunks
@@ -110,7 +114,7 @@ public class PerlerpCarver extends BasicCarver {
                         int sectionY = realY >> 4;
                         if (section.getYLocation() >> 4 != sectionY) {
 //                            section.unlock();
-                            section = ((ChunkPrimer)chunk).getSection(sectionY);
+                            section = ((ChunkPrimer)chunkIn).getSection(sectionY);
 //                            section.lock();
                         }
 
@@ -161,7 +165,7 @@ public class PerlerpCarver extends BasicCarver {
                                         state = Blocks.LAVA.getDefaultState();
                                     }
 
-                                    chunk.setBlockState(new BlockPos(localX, realY, localZ), state, false);
+                                    chunkIn.setBlockState(new BlockPos(localX, realY, localZ), state, false);
 
                                     int i = localX | localZ << 4 | realY << 8;
                                     carvingMask.set(i);
