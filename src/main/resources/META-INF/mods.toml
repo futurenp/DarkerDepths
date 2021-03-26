@@ -1,14 +1,16 @@
 modLoader="javafml" #mandatory
 loaderVersion="[31,)" #mandatory This is typically bumped every Minecraft version by Forge. See our download page for lists of versions.
 issueTrackerURL="http://my.issue.tracker/" #optional
+
 [[mods]] #mandatory
-modId="darkerdepths" #mandatory
-version="1.16.1-1.0.0" #mandatory
-displayName="Darker Depths" #mandatory
-logoFile="ddicon.png" #optional
-authors="Naterbobber" #optional
-description='''A mod all about expanding vanilla caves'''
-[[dependencies.examplemod]] #optional
+    modId="darkerdepths" #mandatory
+    version="1.16.1-1.0.0" #mandatory
+    displayName="Darker Depths" #mandatory
+    logoFile="ddicon.png" #optional
+    authors="Naterbobber" #optional
+    description='''A mod all about expanding vanilla caves'''
+
+[[dependencies.darkerdepths]] #optional
     # the modid of the dependency
     modId="forge" #mandatory
     # Does this dependency have to exist - if not, ordering below must be specified
@@ -19,9 +21,17 @@ description='''A mod all about expanding vanilla caves'''
     ordering="NONE"
     # Side this dependency is applied on - BOTH, CLIENT or SERVER
     side="BOTH"
-[[dependencies.examplemod]]
+
+[[dependencies.darkerdepths]]
     modId="minecraft"
     mandatory=true
     versionRange="[1.16.1]"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.darkerdepths]]
+    modId="bgcore"
+    mandatory=true
+    versionRange="[2,)"
     ordering="NONE"
     side="BOTH"

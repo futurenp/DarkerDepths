@@ -5,11 +5,7 @@
   "refmap": "darkerdepths.refmap.json",
   "mixins": [
     "common.blocks.DeadBushBlockMixin",
-    "common.blocks.LogBlockMixin",
-    "common.server.MinecraftServerMixin",
-    "common.world.biome.ColumnFuzzedBiomeMagnifierMixin",
-    "common.world.biome.provider.OverworldBiomeProviderMixin",
-    "common.world.chunk.ChunkGeneratorMixin"
+    "common.blocks.LogBlockMixin"
   ],
   "client": [
   ],
