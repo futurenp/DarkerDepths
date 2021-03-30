@@ -26,7 +26,8 @@ public class CaveBiomeReceiver {
 		BIOME_ID.add(DEFAULT_CAVE);
 		BIOME_ID.add(SANDY_CATACOMBS);
 		BIOME_ID.add(DEFAULT_CAVE);
-//		BIOME_ID.add(CRYSTAL_CAVE);
+		BIOME_ID.add(CRYSTAL_CAVE);
+		BIOME_ID.add(DEFAULT_CAVE);
 	}
 	
 	public static int getRandomBiomes(INoiseRandom context) {

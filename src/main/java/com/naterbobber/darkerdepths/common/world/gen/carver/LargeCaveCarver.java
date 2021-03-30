@@ -24,7 +24,6 @@ import java.util.function.Function;
 public class LargeCaveCarver extends CaveWorldCarver {
     public LargeCaveCarver(Codec<ProbabilityConfig> codec, int maxHeight) {
         super(codec, maxHeight);
-        this.carvableFluids = ImmutableSet.of(Fluids.WATER, Fluids.LAVA, Fluids.FLOWING_LAVA, Fluids.FLOWING_LAVA);
     }
 
     //Cave Shape

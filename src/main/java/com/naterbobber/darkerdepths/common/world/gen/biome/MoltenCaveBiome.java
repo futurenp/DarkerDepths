@@ -28,6 +28,7 @@ public class MoltenCaveBiome extends AbstractCaveBiome {
     public void addFeatures() {
         VanillaBiomeFeatures.addCarvers(this);
     	VanillaBiomeFeatures.addAsh(this);
+    	VanillaBiomeFeatures.addAmber(this);
         this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.SPRING_FEATURE.withConfiguration(VanillaBiomeFeatures.MOLTEN_CAVERN_LAVA_SPRING_CONFIG).withPlacement(Placement.COUNT_VERY_BIASED_RANGE.configure(new CountRangeConfig(20, 8, 16, 55))));
         this.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, Blocks.MAGMA_BLOCK.getDefaultState(), 15)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(25, 10, 7, 13))));
         this.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, Blocks.MAGMA_BLOCK.getDefaultState(), 15)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(12, 5, 5, 55))));

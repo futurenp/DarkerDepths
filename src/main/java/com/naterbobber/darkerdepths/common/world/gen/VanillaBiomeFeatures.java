@@ -4,10 +4,7 @@ import com.blackgear.bgcore.core.registries.BGBiomes;
 import com.google.common.collect.ImmutableSet;
 import com.naterbobber.darkerdepths.common.blocks.Speleothem;
 import com.naterbobber.darkerdepths.common.world.gen.biome.AbstractCaveBiome;
-import com.naterbobber.darkerdepths.common.world.gen.feature.BlobReplacementConfig;
-import com.naterbobber.darkerdepths.common.world.gen.feature.CavePillarConfig;
-import com.naterbobber.darkerdepths.common.world.gen.feature.GemstonePlacementConfig;
-import com.naterbobber.darkerdepths.common.world.gen.feature.SimpleBlockConfig;
+import com.naterbobber.darkerdepths.common.world.gen.feature.*;
 import com.naterbobber.darkerdepths.common.world.gen.placement.CaveDecoratorConfig;
 import com.naterbobber.darkerdepths.core.registries.*;
 
@@ -22,14 +19,12 @@ import net.minecraft.fluid.Fluids;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.vector.Vector3i;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.DefaultBiomeFeatures;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.blockplacer.SimpleBlockPlacer;
 import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
 import net.minecraft.world.gen.feature.*;
-import net.minecraft.world.gen.placement.ChanceRangeConfig;
-import net.minecraft.world.gen.placement.CountRangeConfig;
-import net.minecraft.world.gen.placement.DepthAverageConfig;
-import net.minecraft.world.gen.placement.Placement;
+import net.minecraft.world.gen.placement.*;
 import net.minecraftforge.registries.ForgeRegistries;
 
 //<>
@@ -69,8 +64,12 @@ public class VanillaBiomeFeatures {
 	public static final BlockState SHALE	 				= DDBlocks.SHALE.get().getDefaultState();
 	public static final BlockState GLOWSHROOM 				= DDBlocks.GLOWSHROOM.get().getDefaultState();
 	public static final BlockState AMBER					= DDBlocks.AMBER.get().getDefaultState();
+	public static final BlockState AMETHYST					= DDBlocks.AMETHYST_CRYSTAL.get().getDefaultState();
+	public static final BlockState CELESTINE				= DDBlocks.CELESTINE_CRYSTAL.get().getDefaultState();
 	public static final FluidState FLUID_LAVA 				= Fluids.LAVA.getDefaultState();
+	public static final FluidState FLUID_WATER				= Fluids.WATER.getDefaultState();
 	public static final LiquidsConfig MOLTEN_CAVERN_LAVA_SPRING_CONFIG 			= new LiquidsConfig(FLUID_LAVA, false, 4, 1, ImmutableSet.of(Blocks.STONE, Blocks.GRANITE, Blocks.DIORITE, Blocks.ANDESITE, Blocks.MAGMA_BLOCK, DDBlocks.SHALE.get()));
+	public static final LiquidsConfig CRYSTAL_CAVERN_WATER_SPRING_CONFIG		= new LiquidsConfig(FLUID_WATER, false, 4, 1, ImmutableSet.of(Blocks.STONE, Blocks.GRANITE, Blocks.DIORITE, Blocks.ANDESITE, Blocks.MAGMA_BLOCK, DDBlocks.AMETHYST_CRYSTAL_BLOCK.get()));
 	public static final BlockClusterFeatureConfig ASH_CONFIG 					= new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(ASH), new SimpleBlockPlacer()).tries(100).func_227317_b_().build();
 	public static final BlockClusterFeatureConfig DEAD_BUSH_CONFIG 				= new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(Blocks.DEAD_BUSH.getDefaultState()), new SimpleBlockPlacer()).tries(32).whitelist(ImmutableSet.of(ARIDROCK.getBlock(), SAND.getBlock(), LIMESTONE.getBlock())).func_227317_b_().build();
 	public static final BlobReplacementConfig SHALE_CONFIG 						= new BlobReplacementConfig.Builder().setMinReach(new Vector3i(3, 3, 3)).setMaxReach(new Vector3i(7, 7, 7)).setTarget(ImmutableSet.of(STONE, DIORITE, GRANITE, GRAVEL, DIRT)).setBlockState(SHALE).build();
@@ -103,6 +102,7 @@ public class VanillaBiomeFeatures {
 		biomeIn.addCarver(GenerationStage.Carving.AIR, Biome.createCarver(DDCarvers.LARGE_CAVE.get(), new ProbabilityConfig(0.1F)));
 		biomeIn.addCarver(GenerationStage.Carving.AIR, Biome.createCarver(DDCarvers.BIG_CAVE.get(), new ProbabilityConfig(0.2F)));
 		biomeIn.addCarver(GenerationStage.Carving.AIR, Biome.createCarver(DDCarvers.NOISE_CAVE.get(), new ProbabilityConfig(1F)));
+		biomeIn.addCarver(GenerationStage.Carving.AIR, Biome.createCarver(DDCarvers.WATER_CAVE.get(), new ProbabilityConfig(1F)));
 	}
 
 	public static void addAridrockOres(Biome biomeIn) {

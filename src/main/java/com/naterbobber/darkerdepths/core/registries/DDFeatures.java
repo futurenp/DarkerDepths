@@ -4,9 +4,7 @@ import com.naterbobber.darkerdepths.common.world.gen.feature.*;
 import com.naterbobber.darkerdepths.core.DarkerDepths;
 import com.naterbobber.darkerdepths.core.RegistryHelper;
 
-import net.minecraft.world.gen.feature.BlockClusterFeatureConfig;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.NoFeatureConfig;
+import net.minecraft.world.gen.feature.*;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;

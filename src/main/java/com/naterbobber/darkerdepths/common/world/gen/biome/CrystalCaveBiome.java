@@ -10,6 +10,7 @@ import net.minecraft.world.biome.BiomeAmbience;
 import net.minecraft.world.biome.ParticleEffectAmbience;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.feature.OreFeatureConfig;
 import net.minecraft.world.gen.feature.ProbabilityConfig;
 import net.minecraft.world.gen.placement.CountRangeConfig;
@@ -20,11 +21,13 @@ import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
 
 public class CrystalCaveBiome extends AbstractCaveBiome {
     public CrystalCaveBiome() {
-        super((new Builder()).surfaceBuilder(SurfaceBuilder.DEFAULT, SurfaceBuilder.STONE_STONE_GRAVEL_CONFIG).precipitation(RainType.NONE).category(Category.NONE).depth(0.125f).scale(0.05f).temperature(0.8f).downfall(0.4f).func_235097_a_((new BiomeAmbience.Builder()).setWaterColor(4159204).setWaterFogColor(329011).setFogColor(12638463).setParticle(new ParticleEffectAmbience(ParticleTypes.WHITE_ASH, 0.118093334f)).build()).parent(null));
+        super((new Builder()).surfaceBuilder(SurfaceBuilder.DEFAULT, SurfaceBuilder.STONE_STONE_GRAVEL_CONFIG).precipitation(RainType.NONE).category(Category.NONE).depth(0.125f).scale(0.05f).temperature(0.8f).downfall(0.4f).func_235097_a_((new BiomeAmbience.Builder()).setWaterColor(10001097).setWaterFogColor(329011).setFogColor(12638463).build()).parent(null));
     }
 
     @Override
     public void addFeatures() {
+        VanillaBiomeFeatures.addCrystalPeaks(this);
         VanillaBiomeFeatures.addCarvers(this);
     }
+
 }

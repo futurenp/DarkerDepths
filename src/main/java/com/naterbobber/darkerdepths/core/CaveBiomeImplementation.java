@@ -11,5 +11,6 @@ public class CaveBiomeImplementation {
         CaveBiomeManager.addCaveBiome(DDBiomes.SANDY_CATACOMBS.get());
         CaveBiomeManager.addCaveBiome(DDBiomes.MOLTEN_CAVERN.get());
         CaveBiomeManager.addCaveBiome(Biome.Category.DESERT, DDBiomes.SANDY_CATACOMBS.get());
+        CaveBiomeManager.addCaveBiome(DDBiomes.CRYSTAL_CAVE.get());
     }
 }
