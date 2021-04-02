@@ -1,9 +1,9 @@
 package com.naterbobber.darkerdepths.core.registries;
 
+import com.blackgear.bgcore.core.RegistryHelper;
 import com.naterbobber.darkerdepths.common.world.gen.placement.CaveDecoratorConfig;
 import com.naterbobber.darkerdepths.common.world.gen.placement.CaveSurfacePlacement;
 import com.naterbobber.darkerdepths.core.DarkerDepths;
-import com.naterbobber.darkerdepths.core.RegistryHelper;
 import net.minecraft.world.gen.placement.Placement;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.common.Mod;

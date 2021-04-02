@@ -1,5 +1,6 @@
 package com.naterbobber.darkerdepths.core;
 
+import com.blackgear.bgcore.core.RegistryHelper;
 import com.naterbobber.darkerdepths.client.render.BlockRenderHandler;
 import com.naterbobber.darkerdepths.common.entities.GlowshroomMonsterEntity;
 import com.naterbobber.darkerdepths.common.entities.MagmaMinionEntity;
@@ -7,7 +8,6 @@ import com.naterbobber.darkerdepths.common.world.gen.VanillaBiomeFeatures;
 import com.naterbobber.darkerdepths.core.init.EntityTypesInit;
 import com.naterbobber.darkerdepths.core.registries.DDBiomes;
 import com.naterbobber.darkerdepths.core.registries.DDCarvers;
-import com.naterbobber.darkerdepths.core.registries.DDStructures;
 import com.naterbobber.darkerdepths.core.registries.VanillaIntegrationRegistry;
 import com.naterbobber.darkerdepths.core.util.DarkerDepthsItemGroup;
 
@@ -42,11 +42,10 @@ public class DarkerDepths {
 
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         
-        REGISTRY_HELPER.getBlockRegister().register(modEventBus);
-        REGISTRY_HELPER.getItemRegister().register(modEventBus);
-        REGISTRY_HELPER.getFeatureRegister().register(modEventBus);
-        REGISTRY_HELPER.getStructureRegister().register(modEventBus);
-        REGISTRY_HELPER.getPlacementDeferredRegister().register(modEventBus);
+        REGISTRY_HELPER.getBlocks().register(modEventBus);
+        REGISTRY_HELPER.getItems().register(modEventBus);
+        REGISTRY_HELPER.getFeatures().register(modEventBus);
+        REGISTRY_HELPER.getPlacements().register(modEventBus);
         
         DDCarvers.CARVER.register(modEventBus);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);

@@ -78,7 +78,6 @@ public class VanillaBiomeFeatures {
 
 	public static void addGlowshrooms(Biome biomeIn) {
 		biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, DDFeatures.SIMPLE_BLOCK_FEATURE.get().withConfiguration(new SimpleBlockConfig(new SimpleBlockStateProvider(GLOWSHROOM))).withPlacement(DDPlacements.CAVE_SURFACE.get().configure(new CaveDecoratorConfig(CaveSurface.FLOOR, 12))).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(7, 0, 0, 60))));
-//		biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, DDFeatures.SIMPLE_BLOCK_FEATURE.get().withConfiguration(new SimpleBlockConfig(new SimpleBlockStateProvider(DDBlocks.GLOWSHROOM_CAP.get().getDefaultState()))).withPlacement(DDPlacements.CAVE_SURFACE.get().configure(new CaveDecoratorConfig(CaveSurface.FLOOR, 12))).withPlacement(Placement.CHANCE_RANGE.configure(new ChanceRangeConfig(5, 0, 0, 60))));
 	}
 
 	public static void addCrystalPeaks(Biome biomeIn) {
@@ -101,8 +100,6 @@ public class VanillaBiomeFeatures {
 		biomeIn.addCarver(GenerationStage.Carving.AIR, Biome.createCarver(DDCarvers.FLAT_CAVE.get(), new ProbabilityConfig(0.2F)));
 		biomeIn.addCarver(GenerationStage.Carving.AIR, Biome.createCarver(DDCarvers.LARGE_CAVE.get(), new ProbabilityConfig(0.1F)));
 		biomeIn.addCarver(GenerationStage.Carving.AIR, Biome.createCarver(DDCarvers.BIG_CAVE.get(), new ProbabilityConfig(0.2F)));
-		biomeIn.addCarver(GenerationStage.Carving.AIR, Biome.createCarver(DDCarvers.NOISE_CAVE.get(), new ProbabilityConfig(1F)));
-		biomeIn.addCarver(GenerationStage.Carving.AIR, Biome.createCarver(DDCarvers.WATER_CAVE.get(), new ProbabilityConfig(1F)));
 	}
 
 	public static void addAridrockOres(Biome biomeIn) {
