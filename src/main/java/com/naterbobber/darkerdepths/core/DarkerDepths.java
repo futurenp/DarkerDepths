@@ -1,6 +1,6 @@
 package com.naterbobber.darkerdepths.core;
 
-import com.blackgear.bgcore.core.RegistryHelper;
+import com.blackgear.bgcore.core.CoreRegistries;
 import com.naterbobber.darkerdepths.client.render.BlockRenderHandler;
 import com.naterbobber.darkerdepths.common.entities.GlowshroomMonsterEntity;
 import com.naterbobber.darkerdepths.common.entities.MagmaMinionEntity;
@@ -35,7 +35,7 @@ public class DarkerDepths {
     public static final String MODID = "darkerdepths";
     public static final Logger LOGGER = LogManager.getLogger(MODID);
     public static final ItemGroup DARKER_DEPTHS = new DarkerDepthsItemGroup("DarkerDepths");
-    public static final RegistryHelper REGISTRY_HELPER = new RegistryHelper(MODID);
+    public static final CoreRegistries REGISTRY_HELPER = new CoreRegistries(MODID);
     
     public DarkerDepths() {
         INSTANCE = this;

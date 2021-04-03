@@ -1,6 +1,6 @@
 package com.naterbobber.darkerdepths.core.registries;
 
-import com.blackgear.bgcore.core.RegistryHelper;
+import com.blackgear.bgcore.core.CoreRegistries;
 import com.naterbobber.darkerdepths.common.world.gen.feature.*;
 import com.naterbobber.darkerdepths.core.DarkerDepths;
 
@@ -13,7 +13,7 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 
 @Mod.EventBusSubscriber(bus = Bus.MOD)
 public class DDFeatures {
-	public static final RegistryHelper HELPER = DarkerDepths.REGISTRY_HELPER;
+	public static final CoreRegistries HELPER = DarkerDepths.REGISTRY_HELPER;
 
 	public static final RegistryObject<Feature<BlockClusterFeatureConfig>> SPELEOTHEM_FLOOR_FEATURE 	= HELPER.registerFeature("speleothem_floor_feature", () -> new SpeleothemFeature(false ,BlockClusterFeatureConfig.field_236587_a_));
 	public static final RegistryObject<Feature<BlockClusterFeatureConfig>> SPELEOTHEM_CEILING_FEATURE 	= HELPER.registerFeature("speleothem_ceiling_feature", () -> new SpeleothemFeature(true ,BlockClusterFeatureConfig.field_236587_a_));

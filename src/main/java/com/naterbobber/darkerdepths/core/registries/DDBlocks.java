@@ -1,6 +1,6 @@
 package com.naterbobber.darkerdepths.core.registries;
 
-import com.blackgear.bgcore.core.RegistryHelper;
+import com.blackgear.bgcore.core.CoreRegistries;
 import com.naterbobber.darkerdepths.common.blocks.*;
 import com.naterbobber.darkerdepths.common.blocks.material.DDMaterial;
 import com.naterbobber.darkerdepths.core.DarkerDepths;
@@ -19,7 +19,7 @@ import java.util.function.ToIntFunction;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class DDBlocks {
-	public static final RegistryHelper HELPER = DarkerDepths.REGISTRY_HELPER;
+	public static final CoreRegistries HELPER = DarkerDepths.REGISTRY_HELPER;
 
 	//BUILDING BLOCKS
 	public static final RegistryObject<Block> PETRIFIED_PLANKS 			= HELPER.registerBlock("petrified_planks", () -> new Block(Block.Properties.create(Material.ROCK).setRequiresTool().hardnessAndResistance(2.5f, 3.0f).harvestTool(ToolType.PICKAXE).harvestLevel(0).sound(SoundType.WOOD)), DarkerDepths.DARKER_DEPTHS);
@@ -80,7 +80,7 @@ public class DDBlocks {
 	public static final RegistryObject<Block> AMBER 					= HELPER.registerBlock("amber", () -> new AbstractGemStoneBlock(4, 2, AbstractBlock.Properties.create(DDMaterial.AMBER).setRequiresTool().hardnessAndResistance(1.0f).harvestTool(ToolType.PICKAXE).harvestLevel(2).sound(SoundType.GLASS).setLightLevel(value -> 7)), DarkerDepths.DARKER_DEPTHS);
 	public static final RegistryObject<Block> GLOWSHROOM				= HELPER.registerBlock("glowshroom", () -> new Glowshroom(), DarkerDepths.DARKER_DEPTHS);
 	public static final RegistryObject<Block> GLOWSHROOM_CAP			= HELPER.registerBlock("glowshroom_cap", () -> new GlowshroomCap());
-	public static final RegistryObject<Block> GLOWSHROOM_WALL			= HELPER.registerBlock("glowshroom_wall", () -> new Block(AbstractBlock.Properties.create(Material.PLANTS, MaterialColor.LIME)), DarkerDepths.DARKER_DEPTHS);
+	public static final RegistryObject<Block> GLOWSHROOM_WALL			= HELPER.registerBlock("glowshroom_wall", () -> new Block(AbstractBlock.Properties.create(Material.PLANTS, MaterialColor.LIME)));
 	public static final RegistryObject<Block> ROPE						= HELPER.registerBlock("rope", () -> new RopeBlock(RopeBlock.Properties.create(Material.MISCELLANEOUS).zeroHardnessAndResistance().sound(SoundType.CLOTH)));
 	public static final RegistryObject<Block> ROOTS 					= HELPER.registerBlock("roots", () -> new RootsBlock(AbstractBlock.Properties.create(Material.TALL_PLANTS, MaterialColor.WOOD).doesNotBlockMovement().zeroHardnessAndResistance().sound(SoundType.PLANT)), DarkerDepths.DARKER_DEPTHS);
 	public static final RegistryObject<Block> LONG_ROOTS 				= HELPER.registerBlock("long_roots", () -> new HangingDoublePlantBlock(AbstractBlock.Properties.create(Material.TALL_PLANTS, MaterialColor.WOOD).doesNotBlockMovement().zeroHardnessAndResistance().sound(SoundType.PLANT)), DarkerDepths.DARKER_DEPTHS);

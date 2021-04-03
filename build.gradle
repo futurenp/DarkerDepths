@@ -16,9 +16,9 @@ apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 apply plugin: 'org.spongepowered.mixin'
 
-version = '1.0'
+version = '1.0.1'
 group = 'com.naterbobber.darkerdepths'
-archivesBaseName = 'DarkerDepths'
+archivesBaseName = 'DarkerDepths-1.16.1'
 
 mixin {
     add sourceSets.main, "darkerdepths.refmap.json"
@@ -74,7 +74,7 @@ minecraft {
 
 dependencies {
     minecraft 'net.minecraftforge:forge:1.16.1-32.0.72'
-    implementation fg.deobf('curse.maven:bgcore-441706:3258431')
+    implementation fg.deobf('curse.maven:bgcore-441706:3260480')
 }
 
 repositories {

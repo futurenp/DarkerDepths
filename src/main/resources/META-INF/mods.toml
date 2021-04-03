@@ -4,7 +4,7 @@ issueTrackerURL="http://my.issue.tracker/" #optional
 
 [[mods]] #mandatory
     modId="darkerdepths" #mandatory
-    version="1.16.1-1.0.0" #mandatory
+    version="${file.jarVersion}}" #mandatory
     displayName="Darker Depths" #mandatory
     logoFile="ddicon.png" #optional
     authors="Naterbobber" #optional
@@ -32,6 +32,6 @@ issueTrackerURL="http://my.issue.tracker/" #optional
 [[dependencies.darkerdepths]]
     modId="bgcore"
     mandatory=true
-    versionRange="[2,)"
+    versionRange="[3,)"
     ordering="NONE"
     side="BOTH"

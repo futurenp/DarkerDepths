@@ -1,6 +1,6 @@
 package com.naterbobber.darkerdepths.core.registries;
 
-import com.blackgear.bgcore.core.RegistryHelper;
+import com.blackgear.bgcore.core.CoreRegistries;
 import com.naterbobber.darkerdepths.common.entities.PetrifiedBoatEntity;
 import com.naterbobber.darkerdepths.common.items.*;
 import com.naterbobber.darkerdepths.core.DarkerDepths;
@@ -16,7 +16,7 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = DarkerDepths.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class DDItems {
-	public static final RegistryHelper HELPER = DarkerDepths.REGISTRY_HELPER;
+	public static final CoreRegistries HELPER = DarkerDepths.REGISTRY_HELPER;
 	
 	//decoration
 	public static final RegistryObject<Item> GLOWSHROOM_CAP 	= HELPER.registerItem("glowshroom_cap", () -> new GlowshroomCap(DDBlocks.GLOWSHROOM_CAP.get(), new Item.Properties().group(DarkerDepths.DARKER_DEPTHS)));
