@@ -78,7 +78,6 @@ public class VanillaBiomeFeatures {
 
 	public static void addGlowshrooms(Biome biomeIn) {
 		biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, DDFeatures.SIMPLE_BLOCK_FEATURE.get().withConfiguration(new SimpleBlockConfig(new SimpleBlockStateProvider(GLOWSHROOM))).withPlacement(DDPlacements.CAVE_SURFACE.get().configure(new CaveDecoratorConfig(CaveSurface.FLOOR, 12))).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(7, 0, 0, 60))));
-//		biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, DDFeatures.SIMPLE_BLOCK_FEATURE.get().withConfiguration(new SimpleBlockConfig(new SimpleBlockStateProvider(DDBlocks.GLOWSHROOM_CAP.get().getDefaultState()))).withPlacement(DDPlacements.CAVE_SURFACE.get().configure(new CaveDecoratorConfig(CaveSurface.FLOOR, 12))).withPlacement(Placement.CHANCE_RANGE.configure(new ChanceRangeConfig(5, 0, 0, 60))));
 	}
 
 	public static void addCrystalPeaks(Biome biomeIn) {
