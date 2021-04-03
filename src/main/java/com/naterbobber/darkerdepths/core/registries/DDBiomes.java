@@ -17,7 +17,8 @@ public class DDBiomes {
     public static final RegistryObject<AbstractCaveBiome> DEFAULT_CAVE  	= createBiome("cave", CaveBiome::new);
     public static final RegistryObject<AbstractCaveBiome> MOLTEN_CAVERN 	= createBiome("molten_cavern", MoltenCaveBiome::new);
     public static final RegistryObject<AbstractCaveBiome> SANDY_CATACOMBS 	= createBiome("sandy_catacombs", SandyCatacombsBiome::new);
-    public static final RegistryObject<AbstractCaveBiome> CRYSTAL_CAVE 	    = createBiome("crystal_cave", CrystalCaveBiome::new);
+    public static final RegistryObject<AbstractCaveBiome> CRYSTAL_CAVE 	    = createBiome("crystal_peaks", CrystalPeakBiome::new);
+    public static final RegistryObject<AbstractCaveBiome> GLOWSHROOM_CAVE   = createBiome("glowshroom_cave", GlowshroomCaveBiome::new);
 
     private static <B extends Biome> RegistryObject<B> createBiome(String name, Supplier<B> supplier) {
         return BIOMES.register(name, supplier);

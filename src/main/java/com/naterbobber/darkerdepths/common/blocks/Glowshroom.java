@@ -24,7 +24,7 @@ public class Glowshroom extends Block {
                 .hardnessAndResistance(0.0f, 1.0f)
                 .sound(SoundType.SLIME)
                 .harvestLevel(0)
-                .setLightLevel(value -> 10)
+                .setLightLevel(value -> 8)
                 .doesNotBlockMovement());
     }
 

@@ -158,7 +158,7 @@ public class WaterCarver extends NoiseCarver {
                                 if (density < 0.0) {
                                     // TODO no new
                                     BlockState state = Blocks.CAVE_AIR.getDefaultState();
-                                    if (realY < MathHelper.nextInt(rand, 12, 60)) {
+                                    if (realY < 20) {
                                         state = Blocks.WATER.getDefaultState();
                                     }
 

@@ -19,9 +19,9 @@ import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
 
 //<>
 
-public class CrystalCaveBiome extends AbstractCaveBiome {
-    public CrystalCaveBiome() {
-        super((new Builder()).surfaceBuilder(SurfaceBuilder.DEFAULT, SurfaceBuilder.STONE_STONE_GRAVEL_CONFIG).precipitation(RainType.NONE).category(Category.NONE).depth(0.125f).scale(0.05f).temperature(0.8f).downfall(0.4f).func_235097_a_((new BiomeAmbience.Builder()).setWaterColor(10001097).setWaterFogColor(329011).setFogColor(12638463).build()).parent(null));
+public class CrystalPeakBiome extends AbstractCaveBiome {
+    public CrystalPeakBiome() {
+        super((new Builder()).surfaceBuilder(SurfaceBuilder.DEFAULT, SurfaceBuilder.STONE_STONE_GRAVEL_CONFIG).precipitation(RainType.NONE).category(Category.NONE).depth(0.125f).scale(0.05f).temperature(0.8f).downfall(0.4f).func_235097_a_((new BiomeAmbience.Builder()).setWaterColor(10004182).setWaterFogColor(329011).setFogColor(12638463).build()).parent(null));
     }
 
     @Override

@@ -15,5 +15,8 @@ public class BlockRenderHandler {
         RenderTypeLookup.setRenderLayer(DDBlocks.ROPE.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(DDBlocks.ROOTS.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(DDBlocks.LONG_ROOTS.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(DDBlocks.GLOWSHROOM_SHELF.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(DDBlocks.CELESTINE_CLUSTER.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(DDBlocks.GLOWSHROOM_SPORES.get(), RenderType.getCutout());
     }
 }

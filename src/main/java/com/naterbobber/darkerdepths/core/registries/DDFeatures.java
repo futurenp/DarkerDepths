@@ -22,4 +22,6 @@ public class DDFeatures {
 	public static final RegistryObject<Feature<SimpleBlockConfig>> SIMPLE_BLOCK_FEATURE 				= HELPER.createFeature("simple_block", () -> new SimpleBlockFeature(SimpleBlockConfig.CODEC));
 	public static final RegistryObject<Feature<NoFeatureConfig>> CAVE_FOSSILS 							= HELPER.createFeature("cave_fossils", () -> new CaveFossilFeature(NoFeatureConfig.field_236558_a_));
 	public static final RegistryObject<Feature<CavePillarConfig>> CAVE_PILLAR_FEATURE 					= HELPER.createFeature("cave_pillar", () -> new CavePillarFeature(CavePillarConfig.CODEC));
+	public static final RegistryObject<Feature<NoFeatureConfig>> SHELF_FEATURE							= HELPER.createFeature("shelf_feature", () -> new ShelfFeature(NoFeatureConfig.field_236558_a_));
+
 }

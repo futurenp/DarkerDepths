@@ -32,7 +32,6 @@ public class GlowshroomMonsterEntity extends MonsterEntity {
         this.experienceValue = 20;
     }
 
-    //func_233666_p_ ---> registerAttributes()
     public static AttributeModifierMap.MutableAttribute setCustomAttributes() {
         return MobEntity.func_233666_p_()
                 .createMutableAttribute(Attributes.MAX_HEALTH, 60.0D)
@@ -45,15 +44,13 @@ public class GlowshroomMonsterEntity extends MonsterEntity {
     @Override
     protected void registerGoals() {
         super.registerGoals();
-        this.goalSelector.addGoal(0, new SwimGoal(this));
-        this.goalSelector.addGoal(4, new GlowshroomMonsterEntity.AttackGoal());
-        this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 0.4D));
-        this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 6.0F));
-        this.goalSelector.addGoal(10, new LookAtGoal(this, MobEntity.class, 8.0F));
-        this.targetSelector.addGoal(2, (new HurtByTargetGoal(this, AbstractRaiderEntity.class)).setCallsForHelp());
-        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
-        this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, IronGolemEntity.class, true));
-
+        this.goalSelector.addGoal(8, new LookAtGoal(this, PlayerEntity.class, 6.0F));
+        this.goalSelector.addGoal(8, new LookRandomlyGoal(this));
+        this.goalSelector.addGoal(2, new GlowshroomMonsterEntity.AttackGoal());
+        this.goalSelector.addGoal(7, new WaterAvoidingRandomWalkingGoal(this, 0.4D));
+        this.targetSelector.addGoal(1, (new HurtByTargetGoal(this, AbstractRaiderEntity.class)).setCallsForHelp());
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
+        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, IronGolemEntity.class, true));
     }
 
     @Override
@@ -109,31 +106,21 @@ public class GlowshroomMonsterEntity extends MonsterEntity {
             super(GlowshroomMonsterEntity.this, 0.60D, true);
         }
 
-        protected double getAttackReachSqr(LivingEntity attackTarget) {
-            float f = GlowshroomMonsterEntity.this.getWidth() - 0.5F;
-            return (double)(f * 2.0F * f * 2.0F + attackTarget.getWidth());
-        }
-    }
-    static class Navigator extends GroundPathNavigator {
-        public Navigator(MobEntity p_i50754_1_, World p_i50754_2_) {
-            super(p_i50754_1_, p_i50754_2_);
+        @Override
+        public void resetTask() {
+            super.resetTask();
+            GlowshroomMonsterEntity.this.setAggroed(false);
         }
 
-        protected PathFinder getPathFinder(int p_179679_1_) {
-            this.nodeProcessor = new GlowshroomMonsterEntity.Processor();
-            return new PathFinder(this.nodeProcessor, p_179679_1_);
-        }
-    }
-    protected PathNavigator createNavigator(World worldIn) {
-        return new GlowshroomMonsterEntity.Navigator(this, worldIn);
-    }
+        public void tick() {
+            super.tick();
+            ++GlowshroomMonsterEntity.this.attackTick;
+            if (GlowshroomMonsterEntity.this.attackTick >= 5 && this.func_234041_j_() < this.func_234042_k_() / 2) {
+                GlowshroomMonsterEntity.this.setAggroed(true);
+            } else {
+                GlowshroomMonsterEntity.this.setAggroed(false);
+            }
 
-    static class Processor extends WalkNodeProcessor {
-        private Processor() {
-        }
-
-        protected PathNodeType func_215744_a(IBlockReader p_215744_1_, boolean p_215744_2_, boolean p_215744_3_, BlockPos p_215744_4_, PathNodeType p_215744_5_) {
-            return p_215744_5_ == PathNodeType.LEAVES ? PathNodeType.OPEN : super.func_215744_a(p_215744_1_, p_215744_2_, p_215744_3_, p_215744_4_, p_215744_5_);
         }
     }
 

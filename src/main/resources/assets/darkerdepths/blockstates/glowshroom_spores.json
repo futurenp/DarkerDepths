@@ -1,0 +1,29 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "darkerdepths:block/glowshroom_spores",
+      "x": 180
+    },
+    "facing=up": {
+      "model": "darkerdepths:block/glowshroom_spores"
+    },
+    "facing=west": {
+      "model": "darkerdepths:block/glowshroom_spores",
+      "x": 90,
+      "y": 270
+    },
+    "facing=east": {
+      "model": "darkerdepths:block/glowshroom_spores",
+      "x": 90,
+      "y": 90
+    },
+    "facing=south": {
+      "model": "darkerdepths:block/glowshroom_spores",
+      "x": 270
+    },
+    "facing=north": {
+      "model": "darkerdepths:block/glowshroom_spores",
+      "x": 90
+    }
+  }
+}

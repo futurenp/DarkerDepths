@@ -72,13 +72,18 @@
   "block.darkerdepths.roots": "Roots",
   "block.darkerdepths.long_roots": "Long Roots",
   "block.darkerdepths.heart_chamber": "Heart Chamber",
+  "block.darkerdepths.glowshroom_shelf": "Glowshroom Shelf",
+  "block.darkerdepths.glowshroom_spores": "Glowshroom Spores",
   "entity.darkerdepths.glowshroom_monster": "Glowshroom Monster",
   "entity.darkerdepths.magma_minion": "Magma Minion",
   "itemGroup.DarkerDepths": "Darker Depths",
   "item.darkerdepths.glowshroom_monster_spawn_egg": "Glowshroom Monster Spawn Egg",
   "item.darkerdepths.magma_minion_spawn_egg": "Magma Minion Spawn Egg",
-  "biome.darkerdepths.cave": "Default Cave Biome",
+  "item.darkerdepths.glowshroom_stew": "Glowshroom Stew",
+  "biome.minecraft.caves": "Default Cave Biome",
+  "biome.darkerdepths.cave": "Cave Biome",
   "biome.darkerdepths.molten_cavern": "Molten Cavern Biome",
   "biome.darkerdepths.sandy_catacombs": "Sandy Catacombs Biome",
-  "biome.darkerdepths.crystal_cave": "Crystal Cave Biome"
+  "biome.darkerdepths.crystal_peaks": "Crystal Peaks Biome",
+  "biome.darkerdepths.glowshroom_cave": "Glowshroom Cavern Biome"
 }

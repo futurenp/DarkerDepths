@@ -28,7 +28,7 @@ public class GlowshroomCap extends Block {
                 .hardnessAndResistance(0.0f, 1.0f)
                 .sound(SoundType.SLIME)
                 .harvestLevel(0)
-                .setLightLevel(value -> 15)
+                .setLightLevel(value -> 9)
                 .jumpFactor(2));
     }
 
