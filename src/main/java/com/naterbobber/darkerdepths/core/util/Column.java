@@ -12,16 +12,16 @@ import java.util.function.Predicate;
 //<>
 
 public abstract class Column {
-    public static Column.Range inside(int floor, int ceiling) {
-        return new Column.Range(floor, ceiling);
+    public static Range inside(int floor, int ceiling) {
+        return new Range(floor, ceiling);
     }
 
     public static Column below(int ceiling) {
-        return new Column.Ray(ceiling, false);
+        return new Ray(ceiling, false);
     }
 
     public static Column above(int floor) {
-        return new Column.Ray(floor, true);
+        return new Ray(floor, true);
     }
 
     public static Column line() {
@@ -103,7 +103,7 @@ public abstract class Column {
     }
 
     public static final class Line extends Column {
-        private static final Column.Line INSTANCE = new Column.Line();
+        private static final Line INSTANCE = new Line();
 
         private Line() {}
 

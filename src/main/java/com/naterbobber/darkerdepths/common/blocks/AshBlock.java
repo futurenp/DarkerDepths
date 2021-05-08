@@ -77,8 +77,8 @@ public class AshBlock extends Block {
     @Override
     public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
         BlockState blockState = worldIn.getBlockState(pos.down());
-        if (!blockState.isIn(Blocks.ICE) && !blockState.isIn(Blocks.PACKED_ICE) && !blockState.isIn(Blocks.BARRIER)) {
-            if (!blockState.isIn(Blocks.HONEY_BLOCK) && !blockState.isIn(Blocks.SOUL_SAND)) {
+        if (!blockState.matchesBlock(Blocks.ICE) && !blockState.matchesBlock(Blocks.PACKED_ICE) && !blockState.matchesBlock(Blocks.BARRIER)) {
+            if (!blockState.matchesBlock(Blocks.HONEY_BLOCK) && !blockState.matchesBlock(Blocks.SOUL_SAND)) {
                 return Block.doesSideFillSquare(blockState.getCollisionShape(worldIn, pos.down()), Direction.UP) || blockState.getBlock() == this && blockState.get(LAYERS) == 8;
             } else {
                 return true;
@@ -131,7 +131,7 @@ public class AshBlock extends Block {
     @Override
     public BlockState getStateForPlacement(BlockItemUseContext context) {
         BlockState blockState = context.getWorld().getBlockState(context.getPos());
-        if (blockState.isIn(this)) {
+        if (blockState.matchesBlock(this)) {
             int i = blockState.get(LAYERS);
             return blockState.with(LAYERS, Integer.valueOf(Math.min(8, i + 1)));
         } else {

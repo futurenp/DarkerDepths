@@ -20,7 +20,7 @@ public class Glowshroom extends Block {
         return SHAPE;
     }
     public Glowshroom() {
-        super(Block.Properties.create(Material.PLANTS)
+        super(Properties.create(Material.PLANTS)
                 .hardnessAndResistance(0.0f, 1.0f)
                 .sound(SoundType.SLIME)
                 .harvestLevel(0)

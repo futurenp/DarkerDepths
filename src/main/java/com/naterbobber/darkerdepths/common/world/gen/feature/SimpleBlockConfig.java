@@ -13,13 +13,13 @@ import java.util.List;
 
 public class SimpleBlockConfig implements IFeatureConfig {
     public static final Codec<SimpleBlockConfig> CODEC = RecordCodecBuilder.create((instance) -> {
-       return instance.group(BlockStateProvider.field_236796_a_.fieldOf("to_place").forGetter((config) -> {
+       return instance.group(BlockStateProvider.CODEC.fieldOf("to_place").forGetter((config) -> {
            return config.toPlace;
-       }), BlockState.BLOCKSTATE_CODEC.listOf().fieldOf("place_on").withDefault(ImmutableList.of()).forGetter((config) -> {
+       }), BlockState.CODEC.listOf().fieldOf("place_on").orElse(ImmutableList.of()).forGetter((config) -> {
            return config.placeOn;
-       }), BlockState.BLOCKSTATE_CODEC.listOf().fieldOf("place_in").withDefault(ImmutableList.of()).forGetter((config) -> {
+       }), BlockState.CODEC.listOf().fieldOf("place_in").orElse(ImmutableList.of()).forGetter((config) -> {
            return config.placeIn;
-       }), BlockState.BLOCKSTATE_CODEC.listOf().fieldOf("place_under").withDefault(ImmutableList.of()).forGetter((config) -> {
+       }), BlockState.CODEC.listOf().fieldOf("place_under").orElse(ImmutableList.of()).forGetter((config) -> {
            return config.placeUnder;
        })).apply(instance, SimpleBlockConfig::new);
     });

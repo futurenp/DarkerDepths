@@ -24,7 +24,7 @@ public class GlowshroomCap extends Block {
         return SHAPE;
     }
     public GlowshroomCap() {
-        super(Block.Properties.create(Material.ROCK)
+        super(Properties.create(Material.ROCK)
                 .hardnessAndResistance(0.0f, 1.0f)
                 .sound(SoundType.SLIME)
                 .harvestLevel(0)

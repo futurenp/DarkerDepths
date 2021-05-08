@@ -8,6 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 
 import java.util.Random;
 
@@ -24,11 +25,6 @@ public class DDOreBlock extends Block {
         } else {
             return this == DDBlocks.ARIDROCK_DIAMOND_ORE.get() || this == DDBlocks.LIMESTONE_DIAMOND_ORE.get() ? MathHelper.nextInt(rand, 3, 7) : 0;
         }
-    }
-
-    @Override
-    public void spawnAdditionalDrops(BlockState state, World worldIn, BlockPos pos, ItemStack stack) {
-        super.spawnAdditionalDrops(state, worldIn, pos, stack);
     }
 
     @Override

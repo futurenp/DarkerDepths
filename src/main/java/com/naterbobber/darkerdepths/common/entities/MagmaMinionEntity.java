@@ -11,7 +11,6 @@ import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.monster.AbstractRaiderEntity;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.passive.IronGolemEntity;
-import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.pathfinding.*;
 import net.minecraft.util.DamageSource;
@@ -20,8 +19,6 @@ import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class MagmaMinionEntity extends MonsterEntity {
 
@@ -46,7 +43,7 @@ public class MagmaMinionEntity extends MonsterEntity {
     protected void registerGoals() {
         super.registerGoals();
         this.goalSelector.addGoal(0, new SwimGoal(this));
-        this.goalSelector.addGoal(4, new MagmaMinionEntity.AttackGoal());
+        this.goalSelector.addGoal(4, new AttackGoal());
         this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 0.4D));
         this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 6.0F));
         this.goalSelector.addGoal(10, new LookAtGoal(this, MobEntity.class, 8.0F));
@@ -61,10 +58,10 @@ public class MagmaMinionEntity extends MonsterEntity {
     }
 
     @Override
-    protected net.minecraft.util.SoundEvent getAmbientSound() { return SoundEvents.ENTITY_RAVAGER_AMBIENT; }
+    protected SoundEvent getAmbientSound() { return SoundEvents.ENTITY_RAVAGER_AMBIENT; }
 
     @Override
-    protected net.minecraft.util.SoundEvent getDeathSound() { return SoundEvents.ENTITY_RAVAGER_DEATH; }
+    protected SoundEvent getDeathSound() { return SoundEvents.ENTITY_RAVAGER_DEATH; }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource damageSourceIn) { return SoundEvents.ENTITY_RAVAGER_HURT; }
@@ -96,20 +93,21 @@ public class MagmaMinionEntity extends MonsterEntity {
         }
 
         protected PathFinder getPathFinder(int p_179679_1_) {
-            this.nodeProcessor = new MagmaMinionEntity.Processor();
+            this.nodeProcessor = new Processor();
             return new PathFinder(this.nodeProcessor, p_179679_1_);
         }
     }
     protected PathNavigator createNavigator(World worldIn) {
-        return new MagmaMinionEntity.Navigator(this, worldIn);
+        return new Navigator(this, worldIn);
     }
 
     static class Processor extends WalkNodeProcessor {
         private Processor() {
         }
 
-        protected PathNodeType func_215744_a(IBlockReader p_215744_1_, boolean p_215744_2_, boolean p_215744_3_, BlockPos p_215744_4_, PathNodeType p_215744_5_) {
-            return p_215744_5_ == PathNodeType.LEAVES ? PathNodeType.OPEN : super.func_215744_a(p_215744_1_, p_215744_2_, p_215744_3_, p_215744_4_, p_215744_5_);
+        @Override
+        protected PathNodeType refineNodeType(IBlockReader worldIn, boolean canOpenDoors, boolean canEnterDoors, BlockPos pos, PathNodeType nodeType) {
+            return nodeType == PathNodeType.LEAVES ? PathNodeType.OPEN : super.refineNodeType(worldIn, canOpenDoors, canEnterDoors, pos, nodeType);
         }
     }
 }

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/inner_stairs",
+  "textures": {
+    "bottom": "darkerdepths:block/limestone",
+    "top": "darkerdepths:block/limestone",
+    "side": "darkerdepths:block/limestone"
+  }
+}

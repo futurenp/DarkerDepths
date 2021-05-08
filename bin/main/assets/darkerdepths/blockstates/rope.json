@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "part=top": {
+      "model": "darkerdepths:block/rope_hook"
+    },
+    "part=middle": {
+      "model": "darkerdepths:block/rope"
+    },
+    "part=bottom": {
+      "model": "darkerdepths:block/rope_knot"
+    }
+  }
+}

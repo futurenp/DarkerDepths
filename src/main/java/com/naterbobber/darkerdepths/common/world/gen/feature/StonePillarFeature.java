@@ -24,7 +24,7 @@ public class StonePillarFeature extends Feature<NoFeatureConfig> {
     }
 
     @Override
-    public boolean func_230362_a_(ISeedReader worldIn, StructureManager manager, ChunkGenerator generator, Random rand, BlockPos pos, NoFeatureConfig configIn) {
+    public boolean generate(ISeedReader worldIn, ChunkGenerator generator, Random rand, BlockPos pos, NoFeatureConfig configIn) {
         if (worldIn.isAirBlock(pos) && !worldIn.isAirBlock(pos.up())) {
             BlockPos.Mutable oldPos = pos.toMutable();
             BlockPos.Mutable newPos = pos.toMutable();
@@ -39,19 +39,19 @@ public class StonePillarFeature extends Feature<NoFeatureConfig> {
                 }
 
                 worldIn.setBlockState(oldPos, Blocks.DIAMOND_BLOCK.getDefaultState(), 2);
-                north = north && this.stopOrPlaceStone(worldIn, rand, (newPos.func_239622_a_(oldPos, Direction.NORTH)));
-                south = south && this.stopOrPlaceStone(worldIn, rand, (newPos.func_239622_a_(oldPos, Direction.SOUTH)));
-                west = west && this.stopOrPlaceStone(worldIn, rand, (newPos.func_239622_a_(oldPos, Direction.WEST)));
-                east = east && this.stopOrPlaceStone(worldIn, rand, (newPos.func_239622_a_(oldPos, Direction.EAST)));
+                north = north && this.stopOrPlaceStone(worldIn, rand, (newPos.setAndMove(oldPos, Direction.NORTH)));
+                south = south && this.stopOrPlaceStone(worldIn, rand, (newPos.setAndMove(oldPos, Direction.SOUTH)));
+                west = west && this.stopOrPlaceStone(worldIn, rand, (newPos.setAndMove(oldPos, Direction.WEST)));
+                east = east && this.stopOrPlaceStone(worldIn, rand, (newPos.setAndMove(oldPos, Direction.EAST)));
                 oldPos.move(Direction.DOWN);
 
             }
 
             oldPos.move(Direction.UP);
-            this.tryPlacingStone(worldIn, rand, newPos.func_239622_a_(oldPos, Direction.NORTH));
-            this.tryPlacingStone(worldIn, rand, newPos.func_239622_a_(oldPos, Direction.SOUTH));
-            this.tryPlacingStone(worldIn, rand, newPos.func_239622_a_(oldPos, Direction.WEST));
-            this.tryPlacingStone(worldIn, rand, newPos.func_239622_a_(oldPos, Direction.EAST));
+            this.tryPlacingStone(worldIn, rand, newPos.setAndMove(oldPos, Direction.NORTH));
+            this.tryPlacingStone(worldIn, rand, newPos.setAndMove(oldPos, Direction.SOUTH));
+            this.tryPlacingStone(worldIn, rand, newPos.setAndMove(oldPos, Direction.WEST));
+            this.tryPlacingStone(worldIn, rand, newPos.setAndMove(oldPos, Direction.EAST));
             oldPos.move(Direction.UP);
             BlockPos.Mutable mutable = new BlockPos.Mutable();
 
@@ -62,7 +62,7 @@ public class StonePillarFeature extends Feature<NoFeatureConfig> {
                         mutable.setPos(oldPos.add(x, 0, z));
                         int index = 3;
 
-                        while (isEmptyOrWaterOrLava(worldIn, newPos.func_239622_a_(mutable, Direction.DOWN))) {
+                        while (isEmptyOrWaterOrLava(worldIn, newPos.setAndMove(mutable, Direction.DOWN))) {
                             mutable.move(Direction.DOWN);
                             --index;
                             if (index <= 0) {
@@ -111,6 +111,6 @@ public class StonePillarFeature extends Feature<NoFeatureConfig> {
     }
 
     public static boolean isEmptyOrWaterOrLava(IWorld worldIn, BlockPos pos) {
-        return worldIn.isAirBlock(pos) || worldIn.getBlockState(pos).isIn(Blocks.WATER) || worldIn.getBlockState(pos).isIn(Blocks.LAVA);
+        return worldIn.isAirBlock(pos) || worldIn.getBlockState(pos).matchesBlock(Blocks.WATER) || worldIn.getBlockState(pos).matchesBlock(Blocks.LAVA);
     }
 }

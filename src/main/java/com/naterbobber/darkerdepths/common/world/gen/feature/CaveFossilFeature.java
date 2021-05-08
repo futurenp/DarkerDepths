@@ -46,13 +46,13 @@ public class CaveFossilFeature extends Feature<NoFeatureConfig> {
     }
 
     @Override
-    public boolean func_230362_a_(ISeedReader worldIn, StructureManager structureManager, ChunkGenerator generator, Random rand, BlockPos pos, NoFeatureConfig configIn) {
-        if (worldIn.isAirBlock(pos.down()) || worldIn.getBlockState(pos.down()).isIn(Blocks.WATER) || worldIn.getBlockState(pos.down()).isIn(Blocks.LAVA)) {
+    public boolean generate(ISeedReader worldIn, ChunkGenerator generator, Random rand, BlockPos pos, NoFeatureConfig config) {
+        if (worldIn.isAirBlock(pos.down()) || worldIn.getBlockState(pos.down()).matchesBlock(Blocks.WATER) || worldIn.getBlockState(pos.down()).matchesBlock(Blocks.LAVA)) {
             return false;
         } else {
             Rotation rotation = Rotation.randomRotation(rand);
             int index = rand.nextInt(FOSSILS.length);
-            TemplateManager templateManager = ((ServerWorld)worldIn.getWorld()).getServer().func_240792_aT_();
+            TemplateManager templateManager = ((ServerWorld)worldIn.getWorld()).getServer().getTemplateManager();
             Template fossilsTemplate = templateManager.getTemplateDefaulted(FOSSILS[index]);
             Template coalFossilsTemplate = templateManager.getTemplateDefaulted(FOSSILS_COAL[index]);
             ChunkPos chunkPos = new ChunkPos(pos);

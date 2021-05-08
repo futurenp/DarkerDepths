@@ -25,7 +25,7 @@ public class DDBoatItem extends Item {
 	private static final Predicate<Entity> field_219989_a = EntityPredicates.NOT_SPECTATING.and(Entity::canBeCollidedWith);
 	private final PetrifiedBoatEntity.Type type;
 
-	public DDBoatItem(PetrifiedBoatEntity.Type typeIn, Item.Properties properties) {
+	public DDBoatItem(PetrifiedBoatEntity.Type typeIn, Properties properties) {
 	      super(properties);
 	      this.type = typeIn;   
 	}

@@ -30,7 +30,7 @@ public class AmethystCrystal extends Block implements IBucketPickupHandler, ILiq
         return SHAPE;
     }
     public AmethystCrystal() {
-        super(Block.Properties.create(Material.ROCK)
+        super(Properties.create(Material.ROCK)
                 .hardnessAndResistance(0.3f, 0.6f)
                 .sound(SoundType.GLASS)
                 .harvestLevel(2)

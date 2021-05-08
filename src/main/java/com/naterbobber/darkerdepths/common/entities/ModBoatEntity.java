@@ -29,7 +29,7 @@ import net.minecraftforge.fml.network.NetworkHooks;
 //<>
 
 public class ModBoatEntity extends BoatEntity {
-	private BoatEntity.Status status;
+	private Status status;
 	private double lastYd;
 	
 	private static final DataParameter<Integer> BOAT_TYPE = EntityDataManager.createKey(ModBoatEntity.class, DataSerializers.VARINT);
@@ -40,15 +40,15 @@ public class ModBoatEntity extends BoatEntity {
 	
 	protected void registerData() {
 		super.registerData();
-		this.dataManager.register(BOAT_TYPE, ModBoatEntity.BoatType.OAK.ordinal());
+		this.dataManager.register(BOAT_TYPE, BoatType.OAK.ordinal());
 	}
 	
-	public void setModBoatType(ModBoatEntity.BoatType boatType) {
+	public void setModBoatType(BoatType boatType) {
 		this.dataManager.set(BOAT_TYPE, boatType.ordinal());
 	}
 	
-	public ModBoatEntity.BoatType getModBoatType() {
-		return ModBoatEntity.BoatType.byId(this.dataManager.get(BOAT_TYPE));
+	public BoatType getModBoatType() {
+		return BoatType.byId(this.dataManager.get(BOAT_TYPE));
 	}
 	
 	protected void writeAdditional(CompoundNBT compound) {
@@ -57,7 +57,7 @@ public class ModBoatEntity extends BoatEntity {
 	
 	protected void readAdditional(CompoundNBT compound) {
 		if (compound.contains("Type", 8)) {
-			this.setModBoatType(ModBoatEntity.BoatType.getTypeFromString(compound.getString("Type")));
+			this.setModBoatType(BoatType.getTypeFromString(compound.getString("Type")));
 		}	
 	}
 	
@@ -66,7 +66,7 @@ public class ModBoatEntity extends BoatEntity {
 		if (!this.isPassenger()) {
 			if (onGroundIn) {
 				if (this.fallDistance > 3.0f) {
-					if (this.status != BoatEntity.Status.ON_LAND) {
+					if (this.status != Status.ON_LAND) {
 						this.fallDistance = 0.0f;
 						return;
 					}
@@ -203,16 +203,16 @@ public class ModBoatEntity extends BoatEntity {
 			return this.name;
 		}
 		
-		public static ModBoatEntity.BoatType byId(int id){
-			ModBoatEntity.BoatType[] type = values();
+		public static BoatType byId(int id){
+			BoatType[] type = values();
 			if (id < 0 || id >= type.length) {
 				id = 0;
 			}
 			return type[id];
 		}
 		
-		public static ModBoatEntity.BoatType getTypeFromString(String nameIn) {
-			ModBoatEntity.BoatType[] type = values();
+		public static BoatType getTypeFromString(String nameIn) {
+			BoatType[] type = values();
 			
 			for (int i = 0; i < type.length; ++i) {
 				if (type[i].getName().equals(nameIn)) {

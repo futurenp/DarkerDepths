@@ -1,34 +1,21 @@
 package com.naterbobber.darkerdepths.core.registries;
 
-import com.naterbobber.darkerdepths.common.world.gen.biome.*;
+import com.naterbobber.darkerdepths.common.world.gen.biome.CrystalCaveBiome;
+import com.naterbobber.darkerdepths.common.world.gen.biome.MoltenCaveBiome;
+import com.naterbobber.darkerdepths.common.world.gen.biome.SandyCatacombsBiome;
+import com.naterbobber.darkerdepths.core.DDRegistryHelper;
 import com.naterbobber.darkerdepths.core.DarkerDepths;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.fml.RegistryObject;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-
-import java.util.function.Supplier;
+import net.minecraftforge.fml.common.Mod;
 
 //<>
 
+@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class DDBiomes {
-    public static final DeferredRegister<Biome> BIOMES = DeferredRegister.create(ForgeRegistries.BIOMES, DarkerDepths.MODID);
+    public static final DDRegistryHelper HELPER = DarkerDepths.REGISTRY_HELPER;
 
-    public static final RegistryObject<AbstractCaveBiome> DEFAULT_CAVE  	= createBiome("cave", CaveBiome::new);
-    public static final RegistryObject<AbstractCaveBiome> MOLTEN_CAVERN 	= createBiome("molten_cavern", MoltenCaveBiome::new);
-    public static final RegistryObject<AbstractCaveBiome> SANDY_CATACOMBS 	= createBiome("sandy_catacombs", SandyCatacombsBiome::new);
-    public static final RegistryObject<AbstractCaveBiome> CRYSTAL_CAVE 	    = createBiome("crystal_cave", CrystalCaveBiome::new);
-
-    private static <B extends Biome> RegistryObject<B> createBiome(String name, Supplier<B> supplier) {
-        return BIOMES.register(name, supplier);
-    }
-
-    public static void applyBiomeFeatures() {
-        BIOMES.getEntries().forEach((builder) -> {
-            Biome biome = builder.get();
-            if (biome instanceof AbstractCaveBiome){
-                ((AbstractCaveBiome)biome).addFeatures();
-            }
-        });
-    }
+    public static final RegistryObject<Biome> MOLTEN_CAVERN 	= HELPER.registerBiome("molten_cavern", () -> new MoltenCaveBiome().build());
+    public static final RegistryObject<Biome> SANDY_CATACOMBS 	= HELPER.registerBiome("sandy_catacombs", () -> new SandyCatacombsBiome().build());
+    public static final RegistryObject<Biome> CRYSTAL_CAVE 	    = HELPER.registerBiome("crystal_cave", () -> new CrystalCaveBiome().build());
 }

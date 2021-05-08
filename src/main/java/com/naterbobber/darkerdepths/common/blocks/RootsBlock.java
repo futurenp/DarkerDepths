@@ -1,10 +1,7 @@
 package com.naterbobber.darkerdepths.common.blocks;
 
 import com.naterbobber.darkerdepths.core.registries.DDBlocks;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.IGrowable;
+import net.minecraft.block.*;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
@@ -19,7 +16,7 @@ import java.util.Random;
 
 //<>
 
-public class RootsBlock extends Block implements IGrowable {
+public class RootsBlock extends BushBlock implements IGrowable {
     private static final VoxelShape SHAPE = Block.makeCuboidShape(2.0d, 3.0d, 2.0d, 14.0d, 16.0d, 14.0d);
 
     public RootsBlock(Properties properties) {
@@ -38,7 +35,7 @@ public class RootsBlock extends Block implements IGrowable {
 
     @Override
     public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-        return worldIn.getBlockState(currentPos.up()).isIn(Blocks.AIR) ? Blocks.AIR.getDefaultState() : super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+        return worldIn.getBlockState(currentPos.up()).matchesBlock(Blocks.AIR) ? Blocks.AIR.getDefaultState() : super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
     }
 
     @Override

@@ -22,7 +22,7 @@ public class CavePillarFeature extends Feature<CavePillarConfig> {
     }
 
     @Override
-    public boolean func_230362_a_(ISeedReader worldIn, StructureManager manager, ChunkGenerator generator, Random rand, BlockPos pos, CavePillarConfig configIn) {
+    public boolean generate(ISeedReader worldIn, ChunkGenerator generator, Random rand, BlockPos pos, CavePillarConfig configIn) {
         boolean isValidDirection = configIn.pointingDirection == Direction.UP || configIn.pointingDirection == Direction.DOWN;
         if (isValidDirection) {
             if (isEmptyOrWaterOrLava(worldIn, pos)) {
@@ -71,7 +71,7 @@ public class CavePillarFeature extends Feature<CavePillarConfig> {
         for (int height = 0; height < MathHelper.nextInt(rand, 8, 13); height++) {
             blockPos.setPos(pos).move(configIn.pointingDirection, height);
             if ((isPointingUp && !isEmptyOrWaterOrLava(worldIn, blockPos.down())) || (!isPointingUp && !isEmptyOrWaterOrLava(worldIn, blockPos.up()))) {
-                this.func_230367_a_(worldIn, blockPos, configIn.pillarState);
+                this.setBlockState(worldIn, blockPos, configIn.pillarState);
             }
         }
     }
@@ -83,7 +83,7 @@ public class CavePillarFeature extends Feature<CavePillarConfig> {
         for (int height = 0; height < MathHelper.nextInt(rand, 5, 10); height++) {
             blockPos.setPos(pos).move(configIn.pointingDirection, height).move(side);
             if ((isPointingUp && !isEmptyOrWaterOrLava(worldIn, blockPos.down())) || (!isPointingUp && !isEmptyOrWaterOrLava(worldIn, blockPos.up()))) {
-                this.func_230367_a_(worldIn, blockPos, configIn.pillarState);
+                this.setBlockState(worldIn, blockPos, configIn.pillarState);
             }
         }
     }
@@ -95,7 +95,7 @@ public class CavePillarFeature extends Feature<CavePillarConfig> {
         for (int height = 0; height < MathHelper.nextInt(rand, 2, 4); height++) {
             blockPos.setPos(pos).move(configIn.pointingDirection, height).move(xSide).move(zSide);
             if ((isPointingUp && !isEmptyOrWaterOrLava(worldIn, blockPos.down())) || (!isPointingUp && !isEmptyOrWaterOrLava(worldIn, blockPos.up()))) {
-                this.func_230367_a_(worldIn, blockPos, configIn.pillarState);
+                this.setBlockState(worldIn, blockPos, configIn.pillarState);
             }
         }
     }
@@ -107,12 +107,12 @@ public class CavePillarFeature extends Feature<CavePillarConfig> {
         for (int height = 0; height < MathHelper.nextInt(rand, 1, 3); height++) {
             blockPos.setPos(pos).move(configIn.pointingDirection, height).move(xSide, 2).move(zSide, zOffset);
             if ((isPointingUp && !isEmptyOrWaterOrLava(worldIn, blockPos.down())) || (!isPointingUp && !isEmptyOrWaterOrLava(worldIn, blockPos.up()))) {
-                this.func_230367_a_(worldIn, blockPos, DDBlocks.SHALE.get().getDefaultState());
+                this.setBlockState(worldIn, blockPos, DDBlocks.SHALE.get().getDefaultState());
             }
         }
     }
 
     public static boolean isEmptyOrWaterOrLava(IWorld worldIn, BlockPos pos) {
-        return worldIn.isAirBlock(pos) || worldIn.getBlockState(pos).isIn(Blocks.WATER) || worldIn.getBlockState(pos).isIn(Blocks.LAVA);
+        return worldIn.isAirBlock(pos) || worldIn.getBlockState(pos).matchesBlock(Blocks.WATER) || worldIn.getBlockState(pos).matchesBlock(Blocks.LAVA);
     }
 }

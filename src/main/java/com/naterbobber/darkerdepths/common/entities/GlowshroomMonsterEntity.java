@@ -46,7 +46,7 @@ public class GlowshroomMonsterEntity extends MonsterEntity {
     protected void registerGoals() {
         super.registerGoals();
         this.goalSelector.addGoal(0, new SwimGoal(this));
-        this.goalSelector.addGoal(4, new GlowshroomMonsterEntity.AttackGoal());
+        this.goalSelector.addGoal(4, new AttackGoal());
         this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 0.4D));
         this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 6.0F));
         this.goalSelector.addGoal(10, new LookAtGoal(this, MobEntity.class, 8.0F));
@@ -57,10 +57,10 @@ public class GlowshroomMonsterEntity extends MonsterEntity {
     }
 
     @Override
-    protected net.minecraft.util.SoundEvent getAmbientSound() { return SoundEvents.ENTITY_RAVAGER_AMBIENT; }
+    protected SoundEvent getAmbientSound() { return SoundEvents.ENTITY_RAVAGER_AMBIENT; }
 
     @Override
-    protected net.minecraft.util.SoundEvent getDeathSound() { return SoundEvents.ENTITY_RAVAGER_DEATH; }
+    protected SoundEvent getDeathSound() { return SoundEvents.ENTITY_RAVAGER_DEATH; }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
@@ -120,21 +120,21 @@ public class GlowshroomMonsterEntity extends MonsterEntity {
         }
 
         protected PathFinder getPathFinder(int p_179679_1_) {
-            this.nodeProcessor = new GlowshroomMonsterEntity.Processor();
+            this.nodeProcessor = new Processor();
             return new PathFinder(this.nodeProcessor, p_179679_1_);
         }
     }
     protected PathNavigator createNavigator(World worldIn) {
-        return new GlowshroomMonsterEntity.Navigator(this, worldIn);
+        return new Navigator(this, worldIn);
     }
 
     static class Processor extends WalkNodeProcessor {
         private Processor() {
         }
 
-        protected PathNodeType func_215744_a(IBlockReader p_215744_1_, boolean p_215744_2_, boolean p_215744_3_, BlockPos p_215744_4_, PathNodeType p_215744_5_) {
-            return p_215744_5_ == PathNodeType.LEAVES ? PathNodeType.OPEN : super.func_215744_a(p_215744_1_, p_215744_2_, p_215744_3_, p_215744_4_, p_215744_5_);
+        @Override
+        protected PathNodeType refineNodeType(IBlockReader worldIn, boolean canOpenDoors, boolean canEnterDoors, BlockPos pos, PathNodeType nodeType) {
+            return nodeType == PathNodeType.LEAVES ? PathNodeType.OPEN : super.refineNodeType(worldIn, canOpenDoors, canEnterDoors, pos, nodeType);
         }
     }
-
 }

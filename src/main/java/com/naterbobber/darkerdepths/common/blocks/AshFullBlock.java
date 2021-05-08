@@ -4,7 +4,6 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.FallingBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.fluid.Fluid;
 import net.minecraft.particles.BlockParticleData;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.Direction;
@@ -70,7 +69,7 @@ public class AshFullBlock extends FallingBlock {
             BlockState validState = worldIn.getBlockState(mutable.up());
             BlockState baseState = worldIn.getBlockState(mutable);
             if (validState.isAir() && baseState.getMaterial().isSolid()) {
-                if (baseState.isIn(DDBlocks.ASH.get())) {
+                if (baseState.matchesBlock(DDBlocks.ASH.get())) {
                     int layer = baseState.get(AshBlock.LAYERS);
                     worldIn.setBlockState(pos, DDBlocks.ASH.get().getDefaultState().getBlockState());
                 }
@@ -105,7 +104,7 @@ public class AshFullBlock extends FallingBlock {
         if (rand.nextInt(16) == 0) {
             BlockPos blockPos = pos.down();
             boolean isSolidAsh = DDBlocks.ASH.get().getDefaultState().get(AshBlock.LAYERS) == 8;
-            if (worldIn.isAirBlock(blockPos) || (worldIn.getBlockState(blockPos).isIn(DDBlocks.ASH.get()) && !isSolidAsh)) {
+            if (worldIn.isAirBlock(blockPos) || (worldIn.getBlockState(blockPos).matchesBlock(DDBlocks.ASH.get()) && !isSolidAsh)) {
                 double x = (double)pos.getX() + rand.nextDouble();
                 double y = (double)pos.getY() - 0.05d;
                 double z = (double)pos.getZ() + rand.nextDouble();

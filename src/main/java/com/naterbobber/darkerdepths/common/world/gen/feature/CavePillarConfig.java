@@ -11,7 +11,7 @@ import net.minecraft.world.gen.feature.IFeatureConfig;
 
 public class CavePillarConfig implements IFeatureConfig {
     public static final Codec<CavePillarConfig> CODEC = RecordCodecBuilder.create((instance) -> {
-        return instance.group(BlockState.BLOCKSTATE_CODEC.fieldOf("pillar_state").forGetter((config) -> {
+        return instance.group(BlockState.CODEC.fieldOf("pillar_state").forGetter((config) -> {
             return config.pillarState;
         }), DirectionHelper.CODEC.fieldOf("pointing_direction").forGetter((config) -> {
             return config.pointingDirection;

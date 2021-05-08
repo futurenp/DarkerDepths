@@ -8,6 +8,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.gen.ChunkGenerator;
+import net.minecraft.world.gen.feature.WorldDecoratingHelper;
 import net.minecraft.world.gen.placement.Placement;
 
 import java.util.Optional;
@@ -23,8 +24,8 @@ public class CaveSurfacePlacement extends Placement<CaveDecoratorConfig> {
     }
 
     @Override
-    public Stream<BlockPos> getPositions(IWorld worldIn, ChunkGenerator generatorIn, Random random, CaveDecoratorConfig configIn, BlockPos pos) {
-        Optional<Column> column = Column.scan(worldIn, pos, configIn.floorToCeilingSearchRange, BlockState::isAir, (state) -> state.getMaterial().isSolid());
+    public Stream<BlockPos> getPositions(WorldDecoratingHelper worldIn, Random rand, CaveDecoratorConfig configIn, BlockPos pos) {
+        Optional<Column> column = Column.scan(worldIn.field_242889_a, pos, configIn.floorToCeilingSearchRange, BlockState::isAir, (state) -> state.getMaterial().isSolid());
         if (!column.isPresent()) {
             return Stream.of();
         } else {

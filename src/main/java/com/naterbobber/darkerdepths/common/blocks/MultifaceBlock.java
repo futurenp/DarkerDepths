@@ -58,9 +58,9 @@ public class MultifaceBlock extends Block {
         super(properties);
         this.setDefaultState(getDefaultMultifaceState(this.stateContainer));
         this.shapesCache = getShapes(this.stateContainer);
-        this.canRotate = Direction.Plane.HORIZONTAL.func_239636_a_().allMatch(this::isFaceSupported);
-        this.canMirrorX = Direction.Plane.HORIZONTAL.func_239636_a_().filter(Direction.Axis.X).filter(this::isFaceSupported).count() % 2L == 0L;
-        this.canMirrorZ = Direction.Plane.HORIZONTAL.func_239636_a_().filter(Direction.Axis.Z).filter(this::isFaceSupported).count() % 2L == 0L;
+        this.canRotate = Direction.Plane.HORIZONTAL.getDirectionValues().allMatch(this::isFaceSupported);
+        this.canMirrorX = Direction.Plane.HORIZONTAL.getDirectionValues().filter(Direction.Axis.X).filter(this::isFaceSupported).count() % 2L == 0L;
+        this.canMirrorZ = Direction.Plane.HORIZONTAL.getDirectionValues().filter(Direction.Axis.Z).filter(this::isFaceSupported).count() % 2L == 0L;
     }
 
     protected boolean isFaceSupported(Direction direction) {

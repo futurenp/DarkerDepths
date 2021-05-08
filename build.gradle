@@ -1,13 +1,13 @@
 buildscript {
     repositories {
-        maven { url = 'https://files.minecraftforge.net/maven' }
+        maven { url = "https://files.minecraftforge.net/maven" }
         maven { url = "https://repo.spongepowered.org/repository/maven-public/" }
         jcenter()
         mavenCentral()
     }
     dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
-    	classpath group: 'org.spongepowered', name: 'mixingradle', version: '0.7-SNAPSHOT'
+        classpath group: "net.minecraftforge.gradle", name: "ForgeGradle", version: "3.+", changing: true
+        classpath group: "org.spongepowered", name: "mixingradle", version: "0.7-SNAPSHOT"
     }
 }
 
@@ -16,19 +16,18 @@ apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 apply plugin: 'org.spongepowered.mixin'
 
-version = '1.0'
-group = 'com.naterbobber.darkerdepths'
-archivesBaseName = 'DarkerDepths'
-
 mixin {
     add sourceSets.main, "darkerdepths.refmap.json"
 }
 
+version = '1.0.1'
+group = 'com.natebobber.darkerdepths'
+archivesBaseName = 'DarkerDepths-1.16.5'
+
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
 
 minecraft {
-    mappings channel: 'snapshot', version: '20200723-1.16.1'
-    
+    mappings channel: 'snapshot', version: '20210309-1.16.5'
     accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
 
     runs {
@@ -36,7 +35,6 @@ minecraft {
             workingDirectory project.file('run')
             property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
             property 'forge.logging.console.level', 'debug'
-            property 'mixin.env.disableRefMap', 'true'
             arg "-mixin.config=darkerdepths.mixins.json"
             mods {
                 darkerdepths {
@@ -49,7 +47,6 @@ minecraft {
             workingDirectory project.file('run')
             property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
             property 'forge.logging.console.level', 'debug'
-            property 'mixin.env.disableRefMap', 'true'
             arg "-mixin.config=darkerdepths.mixins.json"
             mods {
                 darkerdepths {
@@ -73,13 +70,12 @@ minecraft {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.16.1-32.0.72'
-    implementation fg.deobf('curse.maven:bgcore-441706:3251435')
+    minecraft 'net.minecraftforge:forge:1.16.5-36.1.3'
+    implementation fg.deobf('curse.maven:bgcore-441706:3261473')
 }
 
 repositories {
     maven {
-        name = "Curse Maven"
         url = "https://www.cursemaven.com"
     }
 }
@@ -87,14 +83,14 @@ repositories {
 jar {
     manifest {
         attributes([
-            "Specification-Title"		: "Darker Depths",
-            "Specification-Vendor"		: "natebobber",
-            "Specification-Version"		: "1",
-            "Implementation-Title"		: project.name,
-            "Implementation-Version"	: "${version}",
-            "Implementation-Vendor" 	: "natebobber",
-            "Implementation-Timestamp"	: new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
-            "MixinConfigs"				: "darkerdepths.mixins.json"
+                "Specification-Title"		: "Darker Depths",
+                "Specification-Vendor"		: "natebobber",
+                "Specification-Version"		: "1",
+                "Implementation-Title"		: project.name,
+                "Implementation-Version"	: "${version}",
+                "Implementation-Vendor" 	: "natebobber",
+                "Implementation-Timestamp"	: new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
+                "MixinConfigs"				: "darkerdepths.mixins.json"
         ])
     }
 }

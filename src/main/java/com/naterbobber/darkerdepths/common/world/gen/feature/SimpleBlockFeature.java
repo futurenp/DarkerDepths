@@ -20,7 +20,7 @@ public class SimpleBlockFeature extends Feature<SimpleBlockConfig> {
     }
 
     @Override
-    public boolean func_230362_a_(ISeedReader worldIn, StructureManager structureManager, ChunkGenerator generator, Random rand, BlockPos pos, SimpleBlockConfig configIn) {
+    public boolean generate(ISeedReader worldIn, ChunkGenerator generator, Random rand, BlockPos pos, SimpleBlockConfig configIn) {
         if ((configIn.placeOn.isEmpty() || configIn.placeOn.contains(worldIn.getBlockState(pos.down()))) && (configIn.placeIn.isEmpty() || configIn.placeIn.contains(worldIn.getBlockState(pos))) && (configIn.placeUnder.isEmpty() || configIn.placeUnder.contains(worldIn.getBlockState(pos.up())))) {
             BlockState state = configIn.toPlace.getBlockState(rand, pos);
             if (state.isValidPosition(worldIn, pos)) {

@@ -24,7 +24,6 @@ import java.util.function.Function;
 public class LargeCaveCarver extends CaveWorldCarver {
     public LargeCaveCarver(Codec<ProbabilityConfig> codec, int maxHeight) {
         super(codec, maxHeight);
-        this.carvableFluids = ImmutableSet.of(Fluids.WATER, Fluids.LAVA, Fluids.FLOWING_LAVA, Fluids.FLOWING_LAVA);
     }
 
     //Cave Shape
@@ -37,8 +36,8 @@ public class LargeCaveCarver extends CaveWorldCarver {
             carvingMask.set(i);
             mutable.setPos(x, y, z);
             BlockState blockstate = chunk.getBlockState(mutable);
-            BlockState blockstate1 = chunk.getBlockState(mutable2.func_239622_a_(mutable, Direction.UP));
-            if (blockstate.isIn(Blocks.GRASS_BLOCK) || blockstate.isIn(Blocks.MYCELIUM)) {
+            BlockState blockstate1 = chunk.getBlockState(mutable2.setAndMove(mutable, Direction.UP));
+            if (blockstate.matchesBlock(Blocks.GRASS_BLOCK) || blockstate.matchesBlock(Blocks.MYCELIUM)) {
                 mutableBoolean.setTrue();
             }
 
@@ -50,10 +49,10 @@ public class LargeCaveCarver extends CaveWorldCarver {
                 else {
                     chunk.setBlockState(mutable, CAVE_AIR, false);
                     if (mutableBoolean.isTrue()) {
-                        mutable3.func_239622_a_(mutable, Direction.DOWN);
-                        if (chunk.getBlockState(mutable3).isIn(Blocks.DIRT)) {
-                            chunk.setBlockState(mutable3, posToBiome.apply(mutable).getSurfaceBuilderConfig().getTop(), false);
-                        }
+                        mutable3.setAndMove(mutable, Direction.DOWN);
+//                        if (chunk.getBlockState(mutable3).isIn(Blocks.DIRT)) {
+//                            chunk.setBlockState(mutable3, posToBiome.apply(mutable).getSurfaceBuilderConfig().getTop(), false);
+//                        }
                     }
                 }
                 return true;

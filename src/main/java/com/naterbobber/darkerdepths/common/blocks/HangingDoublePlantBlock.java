@@ -1,6 +1,5 @@
 package com.naterbobber.darkerdepths.common.blocks;
 
-import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -37,7 +36,7 @@ public class HangingDoublePlantBlock extends RootsBlock {
     @Override
     public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
         DoubleBlockHalf doubleblockhalf = stateIn.get(HALF);
-        if (facing.getAxis() != Direction.Axis.Y || doubleblockhalf == DoubleBlockHalf.UPPER != (facing == Direction.UP) || facingState.isIn(this) && facingState.get(HALF) != doubleblockhalf) {
+        if (facing.getAxis() != Direction.Axis.Y || doubleblockhalf == DoubleBlockHalf.UPPER != (facing == Direction.UP) || facingState.matchesBlock(this) && facingState.get(HALF) != doubleblockhalf) {
             return doubleblockhalf == DoubleBlockHalf.UPPER && facing == Direction.DOWN && !stateIn.isValidPosition(worldIn, currentPos) ? Blocks.AIR.getDefaultState() : super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
         } else {
             return Blocks.AIR.getDefaultState();
@@ -63,7 +62,7 @@ public class HangingDoublePlantBlock extends RootsBlock {
         } else {
             BlockState blockstate = worldIn.getBlockState(pos.up());
             if (state.getBlock() != this) return super.isValidPosition(state, worldIn, pos);
-            return blockstate.isIn(this) && blockstate.get(HALF) == DoubleBlockHalf.UPPER;
+            return blockstate.matchesBlock(this) && blockstate.get(HALF) == DoubleBlockHalf.UPPER;
         }
     }
 
@@ -108,8 +107,8 @@ public class HangingDoublePlantBlock extends RootsBlock {
     }
 
     @Override
-    public AbstractBlock.OffsetType getOffsetType() {
-        return AbstractBlock.OffsetType.XZ;
+    public OffsetType getOffsetType() {
+        return OffsetType.XZ;
     }
 
     @Override

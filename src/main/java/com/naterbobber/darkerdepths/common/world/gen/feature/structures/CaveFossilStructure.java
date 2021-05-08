@@ -8,12 +8,12 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MutableBoundingBox;
+import net.minecraft.util.registry.DynamicRegistries;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.feature.structure.MarginedStructureStart;
-import net.minecraft.world.gen.feature.structure.NetherFossilStructures;
 import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.feature.template.TemplateManager;
 
@@ -35,19 +35,19 @@ public class CaveFossilStructure extends Structure<NoFeatureConfig> {
         }
 
         @Override
-        public void func_230364_a_(ChunkGenerator generator, TemplateManager manager, int chunkX, int chunkZ, Biome biomeIn, NoFeatureConfig configIn) {
+        public void func_230364_a_(DynamicRegistries registries, ChunkGenerator generator, TemplateManager manager, int chunkX, int chunkZ, Biome biomeIn, NoFeatureConfig configIn) {
             ChunkPos chunkPos = new ChunkPos(chunkX, chunkZ);
             int x = chunkPos.getXStart() + this.rand.nextInt(16);
             int z = chunkPos.getZStart() + this.rand.nextInt(16);
-            int seaLevel = generator.func_230356_f_();
-            int y = seaLevel + this.rand.nextInt(generator.func_230355_e_() - 2 - seaLevel);
+            int seaLevel = generator.getSeaLevel();
+            int y = seaLevel + this.rand.nextInt(generator.getGroundHeight() - 2 - seaLevel);
             IBlockReader sample = generator.func_230348_a_(x, z);
 
             for(BlockPos.Mutable pos = new BlockPos.Mutable(x, y, z); y < seaLevel; ++y) {
                 BlockState airState = sample.getBlockState(pos);
                 pos.move(Direction.DOWN);
                 BlockState baseState = sample.getBlockState(pos);
-                if (/*airState.isAir() &&*/ (baseState.isIn(Blocks.STONE) || baseState.isIn(DDBlocks.ARIDROCK.get()) || baseState.isIn(DDBlocks.LIMESTONE.get())/* || baseState.isSolidSide(sample, pos, Direction.UP)*/)) {
+                if (/*airState.isAir() &&*/ (baseState.matchesBlock(Blocks.STONE) || baseState.matchesBlock(DDBlocks.ARIDROCK.get()) || baseState.matchesBlock(DDBlocks.LIMESTONE.get())/* || baseState.isSolidSide(sample, pos, Direction.UP)*/)) {
                     break;
                 }
             }

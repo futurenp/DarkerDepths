@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "hanging=false": {
+      "model": "darkerdepths:block/speleothem"
+    },
+    "hanging=true": {
+      "model": "darkerdepths:block/speleothem_hanging"
+    }
+  }
+}

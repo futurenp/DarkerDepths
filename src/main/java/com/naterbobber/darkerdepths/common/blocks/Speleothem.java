@@ -31,7 +31,7 @@ public class Speleothem extends Block implements IWaterLoggable {
     protected static final VoxelShape TOP = VoxelShapes.or(Block.makeCuboidShape(6.5D, 11.0D, 6.5D, 9.5D, 16.0D, 9.5D), Block.makeCuboidShape(5.5D, 5.0D, 5.5D, 10.5D, 11.0D, 10.5D), Block.makeCuboidShape(4.0D, 0.0D, 4.0D, 12.0D, 5.0D, 12.0D));
 
     public Speleothem() {
-        super(Block.Properties.create(Material.ROCK)
+        super(Properties.create(Material.ROCK)
                 .hardnessAndResistance(1.5f,6.0f)
                 .sound(SoundType.STONE)
                 .harvestLevel(0)

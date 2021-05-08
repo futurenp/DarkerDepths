@@ -24,14 +24,14 @@ public class GemstonePlacementFeature extends Feature<GemstonePlacementConfig> {
     }
 
     @Override
-    public boolean func_230362_a_(ISeedReader worldIn, StructureManager structure, ChunkGenerator generator, Random rand, BlockPos pos, GemstonePlacementConfig configIn) {
+    public boolean generate(ISeedReader worldIn, ChunkGenerator generator, Random rand, BlockPos pos, GemstonePlacementConfig configIn) {
         BlockState state = worldIn.getBlockState(pos);
         if (!isEmptyOrWater(worldIn, pos)) {
             return false;
         } else {
             for (Direction direction : DIRECTIONS) {
                 if (AbstractGemStoneBlock.canAttachTo(worldIn, pos.offset(direction), direction)) {
-                    if (state.isIn(Blocks.WATER)) {
+                    if (state.matchesBlock(Blocks.WATER)) {
                         worldIn.setBlockState(pos, configIn.state.with(AbstractGemStoneBlock.FACING, direction.getOpposite()).with(BlockStateProperties.WATERLOGGED, true), 2);
                     } else {
                         worldIn.setBlockState(pos, configIn.state.with(AbstractGemStoneBlock.FACING, direction.getOpposite()), 2);
@@ -49,6 +49,6 @@ public class GemstonePlacementFeature extends Feature<GemstonePlacementConfig> {
     }
 
     private boolean isEmptyOrWater(BlockState state) {
-        return state.isAir() || state.isIn(Blocks.WATER);
+        return state.isAir() || state.matchesBlock(Blocks.WATER);
     }
 }

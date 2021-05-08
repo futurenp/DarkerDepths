@@ -25,10 +25,10 @@ public class SpeleothemFeature extends Feature<BlockClusterFeatureConfig> {
 	}
 
 	@Override
-	public boolean func_230362_a_(ISeedReader seedReader, StructureManager structureManager, ChunkGenerator chunkGenerator, Random rand, BlockPos pos, BlockClusterFeatureConfig config) {
+	public boolean generate(ISeedReader seedReader, ChunkGenerator chunkGenerator, Random rand, BlockPos pos, BlockClusterFeatureConfig config) {
 		BlockState state = config.stateProvider.getBlockState(rand, pos);
 		BlockPos blockpos;
-		if (config.field_227298_k_) {
+		if (config.project) {
 			blockpos = seedReader.getHeight(Type.WORLD_SURFACE_WG, pos);
 		} else {
 			blockpos = pos;
@@ -38,7 +38,7 @@ public class SpeleothemFeature extends Feature<BlockClusterFeatureConfig> {
 		BlockPos.Mutable mutablepos = new BlockPos.Mutable();
 		
 		for (int j = 0; j < config.tryCount; j++) {
-			mutablepos.func_239621_a_(blockpos, rand.nextInt(config.xSpread + 1) - rand.nextInt(config.xSpread + 1), rand.nextInt(config.ySpread + 1) - rand.nextInt(config.ySpread + 1), rand.nextInt(config.zSpread + 1) - rand.nextInt(config.zSpread + 1));
+			mutablepos.setAndOffset(blockpos, rand.nextInt(config.xSpread + 1) - rand.nextInt(config.xSpread + 1), rand.nextInt(config.ySpread + 1) - rand.nextInt(config.ySpread + 1), rand.nextInt(config.zSpread + 1) - rand.nextInt(config.zSpread + 1));
 			BlockPos heightpos;
 			if (this.isHanging) {
 				heightpos = mutablepos.up();
@@ -48,7 +48,7 @@ public class SpeleothemFeature extends Feature<BlockClusterFeatureConfig> {
 			
 			BlockState heightstate = seedReader.getBlockState(heightpos);
 			if ((seedReader.isAirBlock(mutablepos) || config.isReplaceable && seedReader.getBlockState(mutablepos).getMaterial().isReplaceable()) && state.isValidPosition(seedReader, mutablepos) && (config.whitelist.isEmpty() || config.whitelist.contains(heightstate.getBlock())) && !config.blacklist.contains(heightstate) && (!config.requiresWater || seedReader.getFluidState(heightpos.west()).isTagged(FluidTags.WATER) || seedReader.getFluidState(heightpos.east()).isTagged(FluidTags.WATER) || seedReader.getFluidState(heightpos.north()).isTagged(FluidTags.WATER) || seedReader.getFluidState(heightpos.south()).isTagged(FluidTags.WATER))) {
-				config.blockPlacer.func_225567_a_(seedReader, mutablepos, state, rand);
+				config.blockPlacer.place(seedReader, mutablepos, state, rand);
 				++i;
 			}
 		}

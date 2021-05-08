@@ -1,13 +1,8 @@
 package com.naterbobber.darkerdepths.common.entities;
 
-import java.util.List;
-
-import javax.annotation.Nullable;
-
+import com.naterbobber.darkerdepths.core.init.EntityTypesInit;
 import com.naterbobber.darkerdepths.core.registries.DDBlocks;
 import com.naterbobber.darkerdepths.core.registries.DDItems;
-import com.naterbobber.darkerdepths.core.init.EntityTypesInit;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.LilyPadBlock;
@@ -30,14 +25,7 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.network.play.client.CSteerBoatPacket;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.tags.FluidTags;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.Direction;
-import net.minecraft.util.EntityPredicates;
-import net.minecraft.util.Hand;
-import net.minecraft.util.IndirectEntityDamageSource;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundEvents;
+import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -49,7 +37,11 @@ import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.network.NetworkHooks;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 @SuppressWarnings("deprecation")
 
@@ -112,24 +104,12 @@ public class PetrifiedBoatEntity extends BoatEntity {
 		this.dataManager.register(TIME_SINCE_HIT, 0);
 		this.dataManager.register(FORWARD_DIRECTION, 1);
 		this.dataManager.register(DAMAGE_TAKEN, 0.0F);
-		this.dataManager.register(BOAT_TYPE, PetrifiedBoatEntity.Type.Petrified.ordinal());
+		this.dataManager.register(BOAT_TYPE, Type.Petrified.ordinal());
 		this.dataManager.register(field_199704_e, false);
 		this.dataManager.register(field_199705_f, false);
 		this.dataManager.register(ROCKING_TICKS, 0);
 	}
-	
-	@Override
-	@Nullable
-	public AxisAlignedBB getCollisionBox(Entity entityIn) {
-		return entityIn.canBePushed() ? entityIn.getBoundingBox() : null;
-	}
-	
-	@Override
-	@Nullable
-	public AxisAlignedBB getCollisionBoundingBox() {
-		return this.getBoundingBox();
-	}
-	
+
 	@Override
 	public boolean canBePushed() {
 		return true;
@@ -689,7 +669,7 @@ public class PetrifiedBoatEntity extends BoatEntity {
 	@Override 
 	protected void readAdditional(CompoundNBT compound) {
 		if (compound.contains("Type", 8)) {
-			this.setBoatType(PetrifiedBoatEntity.Type.getTypeFromString(compound.getString("Type")));
+			this.setBoatType(Type.getTypeFromString(compound.getString("Type")));
 		}
 		
 	}
@@ -792,12 +772,12 @@ public class PetrifiedBoatEntity extends BoatEntity {
 		return this.dataManager.get(FORWARD_DIRECTION);
 	}
 	
-	public void setBoatType(PetrifiedBoatEntity.Type boatType) {
+	public void setBoatType(Type boatType) {
 		this.dataManager.set(BOAT_TYPE, boatType.ordinal());
 	}
 	
-	public PetrifiedBoatEntity.Type getBoatModel(){
-		return PetrifiedBoatEntity.Type.byId(this.dataManager.get(BOAT_TYPE));
+	public Type getBoatModel(){
+		return Type.byId(this.dataManager.get(BOAT_TYPE));
 	}
 	
 	@Override
@@ -839,12 +819,12 @@ public class PetrifiedBoatEntity extends BoatEntity {
 	}
 		
 	public static enum Type {
-		Petrified(DDBlocks.PETRIFIED_PLANKS.get(), "petrified");
+		Petrified(DDBlocks.PETRIFIED_PLANKS, "petrified");
 		
 		private final String name;
-		private final Block block;
+		private final RegistryObject<Block> block;
 		
-		private Type(Block p_i48146_3_, String p_i48146_4_) {
+		private Type(RegistryObject<Block> p_i48146_3_, String p_i48146_4_) {
 			this.name = p_i48146_4_;
 			this.block = p_i48146_3_;
 		}
@@ -853,24 +833,24 @@ public class PetrifiedBoatEntity extends BoatEntity {
 			return this.name;
 		}
 		
-		public Block asPlank() {
-			return this.block;
+		public Item asPlank() {
+			return this.block.get().asItem();
 		}
 		
 		public String toString() {
 			return this.name;
 		}
 		
-		public static PetrifiedBoatEntity.Type byId(int id) {
-			PetrifiedBoatEntity.Type[] type = values();
+		public static Type byId(int id) {
+			Type[] type = values();
 			if (id < 0 || id >= type.length) {
 				id = 0;
 			}
 			return type[id];
 		}
 		
-		public static PetrifiedBoatEntity.Type getTypeFromString(String nameIn) {
-			PetrifiedBoatEntity.Type[] type = values();
+		public static Type getTypeFromString(String nameIn) {
+			Type[] type = values();
 			
 			for(int i = 0; i < type.length; ++i) {
 				if (type[i].getName().equals(nameIn)) {
