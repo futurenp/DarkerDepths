@@ -1,6 +1,6 @@
 package com.naterbobber.darkerdepths.common.entities;
 
-import com.naterbobber.darkerdepths.core.init.EntityTypesInit;
+import com.naterbobber.darkerdepths.core.registries.DDEntityTypes;
 import com.naterbobber.darkerdepths.core.registries.DDBlocks;
 import com.naterbobber.darkerdepths.core.registries.DDItems;
 import net.minecraft.block.Block;
@@ -86,7 +86,7 @@ public class PetrifiedBoatEntity extends BoatEntity {
 	}
 	
 	public PetrifiedBoatEntity(World worldIn, double x, double y, double z) {
-		this(EntityTypesInit.BOAT.get(), worldIn);
+		this(DDEntityTypes.BOAT.get(), worldIn);
 		this.setPosition(x, y, z);
 		this.setMotion(Vector3d.ZERO);
 		this.prevPosX = x;

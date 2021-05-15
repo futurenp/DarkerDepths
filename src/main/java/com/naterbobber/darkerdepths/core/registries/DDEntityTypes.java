@@ -1,4 +1,4 @@
-package com.naterbobber.darkerdepths.core.init;
+package com.naterbobber.darkerdepths.core.registries;
 
 import com.naterbobber.darkerdepths.common.entities.GlowshroomMonsterEntity;
 import com.naterbobber.darkerdepths.common.entities.MagmaMinionEntity;
@@ -16,7 +16,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 //<>
 
 @Mod.EventBusSubscriber(modid = DarkerDepths.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
-public class EntityTypesInit {
+public class DDEntityTypes {
     public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.ENTITIES, DarkerDepths.MODID);
 
     // Entity Types

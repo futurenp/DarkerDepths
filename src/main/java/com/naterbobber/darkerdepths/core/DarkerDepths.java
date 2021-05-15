@@ -4,8 +4,7 @@ import com.naterbobber.darkerdepths.client.render.BlockRenderHandler;
 import com.naterbobber.darkerdepths.common.entities.GlowshroomMonsterEntity;
 import com.naterbobber.darkerdepths.common.entities.MagmaMinionEntity;
 import com.naterbobber.darkerdepths.common.world.gen.GlobalBiomeFeatures;
-import com.naterbobber.darkerdepths.core.init.EntityTypesInit;
-import com.naterbobber.darkerdepths.core.registries.DDBlocks;
+import com.naterbobber.darkerdepths.core.registries.DDEntityTypes;
 import com.naterbobber.darkerdepths.core.registries.VanillaIntegrationRegistry;
 import com.naterbobber.darkerdepths.core.util.DarkerDepthsItemGroup;
 import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
@@ -41,7 +40,7 @@ public class DarkerDepths {
         REGISTRY_HELPER.getFeatures().register(modEventBus);
         REGISTRY_HELPER.getBiomes().register(modEventBus);
         REGISTRY_HELPER.getPlacements().register(modEventBus);
-        EntityTypesInit.ENTITY_TYPES.register(modEventBus);
+        DDEntityTypes.ENTITY_TYPES.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::clientSetup);
@@ -49,8 +48,8 @@ public class DarkerDepths {
 
     private void commonSetup(final FMLCommonSetupEvent event) {
         DeferredWorkQueue.runLater(() -> {
-            GlobalEntityTypeAttributes.put(EntityTypesInit.GLOWSHROOM_MONSTER.get(), GlowshroomMonsterEntity.setCustomAttributes().create());
-            GlobalEntityTypeAttributes.put(EntityTypesInit.MAGMA_MINION.get(), MagmaMinionEntity.setCustomAttributes().create());
+            GlobalEntityTypeAttributes.put(DDEntityTypes.GLOWSHROOM_MONSTER.get(), GlowshroomMonsterEntity.setCustomAttributes().create());
+            GlobalEntityTypeAttributes.put(DDEntityTypes.MAGMA_MINION.get(), MagmaMinionEntity.setCustomAttributes().create());
         });
         VanillaIntegrationRegistry.setup();
         CaveBiomeImplementation.addCaveBiomes();
