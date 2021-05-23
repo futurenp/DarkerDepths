@@ -50,9 +50,6 @@ public class LargeCaveCarver extends CaveWorldCarver {
                     chunk.setBlockState(mutable, CAVE_AIR, false);
                     if (mutableBoolean.isTrue()) {
                         mutable3.setAndMove(mutable, Direction.DOWN);
-//                        if (chunk.getBlockState(mutable3).isIn(Blocks.DIRT)) {
-//                            chunk.setBlockState(mutable3, posToBiome.apply(mutable).getSurfaceBuilderConfig().getTop(), false);
-//                        }
                     }
                 }
                 return true;

@@ -1,29 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
-    <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
-        <listEntry value="/DarkerDepths"/>
-    </listAttribute>
-    <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
-        <listEntry value="4"/>
-    </listAttribute>
-    <mapAttribute key="org.eclipse.debug.core.environmentVariables">
-        <mapEntry key="FORGE_GROUP" value="net.minecraftforge"/>
-        <mapEntry key="FORGE_VERSION" value="32.0.72"/>
-        <mapEntry key="MCP_MAPPINGS" value="snapshot_20200723-1.16.1"/>
-        <mapEntry key="MCP_VERSION" value="20200625.160719"/>
-        <mapEntry key="MC_VERSION" value="1.16.1"/>
-        <mapEntry key="MOD_CLASSES" value="darkerdepths%%C:\Users\Alecan\Documents\GitHub\DarkerDepths\bin\main;darkerdepths%%C:\Users\Alecan\Documents\GitHub\DarkerDepths\bin\main"/>
-        <mapEntry key="assetDirectory" value="C:\Users\Alecan\.gradle\caches\forge_gradle\assets"/>
-        <mapEntry key="assetIndex" value="1.16"/>
-        <mapEntry key="nativesDirectory" value="C:\Users\Alecan\Documents\GitHub\DarkerDepths\build\natives"/>
-        <mapEntry key="target" value="fmluserdevclient"/>
-    </mapAttribute>
-    <booleanAttribute key="org.eclipse.jdt.launching.ATTR_USE_CLASSPATH_ONLY_JAR" value="false"/>
-    <stringAttribute key="org.eclipse.jdt.launching.CLASSPATH_PROVIDER" value="org.eclipse.buildship.core.classpathprovider"/>
-    <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="net.minecraftforge.userdev.LaunchTesting"/>
-    <stringAttribute key="org.eclipse.jdt.launching.MODULE_NAME" value="DarkerDepths"/>
-    <stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="-mixin.config=darkerdepths.mixins.json"/>
-    <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="DarkerDepths"/>
-    <stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Dforge.logging.console.level=debug -Dforge.logging.markers=SCAN,REGISTRIES,REGISTRYDUMP -Dmixin.env.disableRefMap=true -XX:HeapDumpPath=MojangTricksIntelDriversForPerformance_javaw.exe_minecraft.exe.heapdump &quot;-Dos.name=Windows 10&quot; -Dos.version=10.0"/>
-    <stringAttribute key="org.eclipse.jdt.launching.WORKING_DIRECTORY" value="C:\Users\Alecan\Documents\GitHub\DarkerDepths\run"/>
+  <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="DarkerDepths"/>
+  <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="net.minecraftforge.userdev.LaunchTesting"/>
+  <stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Dforge.logging.console.level=debug -Dforge.logging.markers=SCAN,REGISTRIES,REGISTRYDUMP -XX:HeapDumpPath=MojangTricksIntelDriversForPerformance_javaw.exe_minecraft.exe.heapdump &quot;-Dos.name=Windows 10&quot; -Dos.version=10.0"/>
+  <stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="-mixin.config=darkerdepths.mixins.json"/>
+  <stringAttribute key="org.eclipse.jdt.launching.WORKING_DIRECTORY" value="C:\Users\Mitch\Documents\GitHub\DarkerDepths\run"/>
+  <mapAttribute key="org.eclipse.debug.core.environmentVariables">
+    <mapEntry key="MOD_CLASSES" value="darkerdepths%%C:\Users\Mitch\Documents\GitHub\DarkerDepths\bin\main;darkerdepths%%C:\Users\Mitch\Documents\GitHub\DarkerDepths\bin\main"/>
+    <mapEntry key="MCP_MAPPINGS" value="snapshot_20210309-1.16.5"/>
+    <mapEntry key="MCP_VERSION" value="20210115.111550"/>
+    <mapEntry key="FORGE_VERSION" value="36.1.3"/>
+    <mapEntry key="assetIndex" value="1.16"/>
+    <mapEntry key="assetDirectory" value="C:\Users\Mitch\.gradle\caches\forge_gradle\assets"/>
+    <mapEntry key="nativesDirectory" value="C:\Users\Mitch\Documents\GitHub\DarkerDepths\build\natives"/>
+    <mapEntry key="FORGE_GROUP" value="net.minecraftforge"/>
+    <mapEntry key="target" value="fmluserdevclient"/>
+    <mapEntry key="MC_VERSION" value="1.16.5"/>
+  </mapAttribute>
 </launchConfiguration>

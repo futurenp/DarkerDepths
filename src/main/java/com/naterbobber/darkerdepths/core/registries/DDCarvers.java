@@ -19,6 +19,5 @@ public class DDCarvers {
 	public static final RegistryObject<WorldCarver<ProbabilityConfig>> FLAT_CAVE		= HELPER.registerCarver("flat_cave", () -> new FlatCarver(ProbabilityConfig.CODEC, 256));
 	public static final RegistryObject<WorldCarver<ProbabilityConfig>> BIG_CAVE 		= HELPER.registerCarver("big_cave", () -> new BigCaveCarver(ProbabilityConfig.CODEC));
 	public static final RegistryObject<WorldCarver<ProbabilityConfig>> NOISE_CAVE 		= HELPER.registerCarver("noise_cave", () -> new NoiseCarver(ProbabilityConfig.CODEC));
-	public static final RegistryObject<WorldCarver<ProbabilityConfig>> WATER_CAVE 		= HELPER.registerCarver("water_cave", () -> new WaterCarver(ProbabilityConfig.CODEC));
 
 }
