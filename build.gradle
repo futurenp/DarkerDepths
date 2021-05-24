@@ -35,6 +35,7 @@ minecraft {
             workingDirectory project.file('run')
             property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
             property 'forge.logging.console.level', 'debug'
+//            property "mixin.env.disableRefMap", "true"
             arg "-mixin.config=darkerdepths.mixins.json"
             mods {
                 darkerdepths {
@@ -47,6 +48,7 @@ minecraft {
             workingDirectory project.file('run')
             property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
             property 'forge.logging.console.level', 'debug'
+//            property "mixin.env.disableRefMap", "true"
             arg "-mixin.config=darkerdepths.mixins.json"
             mods {
                 darkerdepths {
@@ -70,8 +72,8 @@ minecraft {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.16.5-36.1.3'
-    implementation fg.deobf('curse.maven:bgcore-441706:3261473')
+    minecraft 'net.minecraftforge:forge:1.16.5-36.1.4'
+    implementation fg.deobf('curse.maven:bgcore-441706:3309021')
 }
 
 repositories {

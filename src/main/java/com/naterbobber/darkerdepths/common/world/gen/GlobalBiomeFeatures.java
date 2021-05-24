@@ -1,11 +1,9 @@
 package com.naterbobber.darkerdepths.common.world.gen;
 
-import com.blackgear.bgcore.core.api.FeaturePlacement;
-import com.blackgear.bgcore.core.registries.BGBiomes;
+import com.blackgear.cavebiomes.core.registries.CaveBiomes;
 import com.naterbobber.darkerdepths.core.registries.DDBiomes;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeGenerationSettings;
-import net.minecraft.world.gen.GenerationStage;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -24,7 +22,7 @@ public class GlobalBiomeFeatures {
 		if (event.getName() != null) {
 			Biome biome = ForgeRegistries.BIOMES.getValue(event.getName());
 			BiomeGenerationSettings.Builder builder = event.getGeneration();
-			if (biome == BGBiomes.DEFAULT_CAVE.get()) {
+			if (biome == CaveBiomes.CAVE.get()) {
 				VanillaBiomeFeatures.addCarvers(builder);
 				VanillaBiomeFeatures.addGlowshrooms(builder);
 			}

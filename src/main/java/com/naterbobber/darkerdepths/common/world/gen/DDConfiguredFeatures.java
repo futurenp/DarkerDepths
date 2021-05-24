@@ -6,7 +6,7 @@ import com.naterbobber.darkerdepths.common.world.gen.feature.CavePillarConfig;
 import com.naterbobber.darkerdepths.common.world.gen.feature.GemstonePlacementConfig;
 import com.naterbobber.darkerdepths.common.world.gen.feature.SimpleBlockConfig;
 import com.naterbobber.darkerdepths.common.world.gen.placement.CaveDecoratorConfig;
-import com.naterbobber.darkerdepths.core.DDRegistryHelper;
+import com.naterbobber.darkerdepths.core.DDRegistries;
 import com.naterbobber.darkerdepths.core.DarkerDepths;
 import com.naterbobber.darkerdepths.core.registries.DDBlocks;
 import com.naterbobber.darkerdepths.core.registries.DDFeatures;
@@ -26,7 +26,7 @@ import net.minecraft.world.gen.placement.TopSolidRangeConfig;
 //<>
 
 public class DDConfiguredFeatures {
-    public static final DDRegistryHelper HELPER = DarkerDepths.REGISTRY_HELPER;
+    public static final DDRegistries HELPER = DarkerDepths.REGISTRY_HELPER;
 
     public static final ConfiguredFeature<?, ?> GLOWSHROOM = HELPER.registerConfiguredFeature("glowshroom", DDFeatures.SIMPLE_BLOCK_FEATURE.get().withConfiguration(new SimpleBlockConfig(new SimpleBlockStateProvider(DDBlocks.GLOWSHROOM.get().getDefaultState()))).withPlacement(DDPlacements.CAVE_SURFACE.get().configure(new CaveDecoratorConfig(CaveSurface.FLOOR, 12))).count(7).range(60));
 

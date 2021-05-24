@@ -2,7 +2,7 @@ package com.naterbobber.darkerdepths.core.registries;
 
 import com.naterbobber.darkerdepths.common.blocks.*;
 import com.naterbobber.darkerdepths.common.blocks.material.DDMaterial;
-import com.naterbobber.darkerdepths.core.DDRegistryHelper;
+import com.naterbobber.darkerdepths.core.DDRegistries;
 import com.naterbobber.darkerdepths.core.DarkerDepths;
 
 import net.minecraft.block.*;
@@ -19,7 +19,7 @@ import java.util.function.ToIntFunction;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class DDBlocks {
-	public static final DDRegistryHelper HELPER = DarkerDepths.REGISTRY_HELPER;
+	public static final DDRegistries HELPER = DarkerDepths.REGISTRY_HELPER;
 
 	//BUILDING BLOCKS
 	public static final RegistryObject<Block> PETRIFIED_PLANKS 			= HELPER.registerBlock("petrified_planks", () -> new Block(Block.Properties.create(Material.ROCK).setRequiresTool().hardnessAndResistance(2.5f, 3.0f).harvestTool(ToolType.PICKAXE).harvestLevel(0).sound(SoundType.WOOD)), DarkerDepths.DARKER_DEPTHS);

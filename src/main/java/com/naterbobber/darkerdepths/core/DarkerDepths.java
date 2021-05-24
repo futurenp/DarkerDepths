@@ -25,7 +25,7 @@ public class DarkerDepths {
     public static DarkerDepths instance;
     public static final String MODID = "darkerdepths";
     public static final ItemGroup DARKER_DEPTHS = new DarkerDepthsItemGroup("DarkerDepths");
-    public static final DDRegistryHelper REGISTRY_HELPER = new DDRegistryHelper(MODID);
+    public static final DDRegistries REGISTRY_HELPER = new DDRegistries(MODID);
 
     public DarkerDepths() {
         instance = this;

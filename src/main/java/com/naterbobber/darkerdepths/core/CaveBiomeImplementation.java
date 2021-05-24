@@ -1,6 +1,6 @@
 package com.naterbobber.darkerdepths.core;
 
-import com.blackgear.bgcore.core.api.CaveBiomeManager;
+import com.blackgear.cavebiomes.core.api.CaveBiomeAPI;
 import com.naterbobber.darkerdepths.core.registries.DDBiomes;
 import net.minecraft.world.biome.Biome;
 
@@ -8,8 +8,8 @@ import net.minecraft.world.biome.Biome;
 
 public class CaveBiomeImplementation {
     public static void addCaveBiomes() {
-        CaveBiomeManager.addCaveBiome(DDBiomes.SANDY_CATACOMBS.get());
-        CaveBiomeManager.addCaveBiome(DDBiomes.MOLTEN_CAVERN.get());
-        CaveBiomeManager.addCaveBiome(Biome.Category.DESERT, DDBiomes.SANDY_CATACOMBS.get());
+        CaveBiomeAPI.addCaveBiome(DDBiomes.SANDY_CATACOMBS.get());
+        CaveBiomeAPI.addCaveBiome(DDBiomes.MOLTEN_CAVERN.get());
+//        CaveBiomeManager.addCaveBiome(Biome.Category.DESERT, DDBiomes.SANDY_CATACOMBS.get());
     }
 }

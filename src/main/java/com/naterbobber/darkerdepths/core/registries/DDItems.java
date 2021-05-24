@@ -2,7 +2,7 @@ package com.naterbobber.darkerdepths.core.registries;
 
 import com.naterbobber.darkerdepths.common.entities.PetrifiedBoatEntity;
 import com.naterbobber.darkerdepths.common.items.*;
-import com.naterbobber.darkerdepths.core.DDRegistryHelper;
+import com.naterbobber.darkerdepths.core.DDRegistries;
 import com.naterbobber.darkerdepths.core.DarkerDepths;
 
 import net.minecraft.item.Food;
@@ -15,7 +15,7 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class DDItems {
-	public static final DDRegistryHelper HELPER = DarkerDepths.REGISTRY_HELPER;
+	public static final DDRegistries HELPER = DarkerDepths.REGISTRY_HELPER;
 
 	public static final RegistryObject<Item> ROPE 				= HELPER.registerItem("rope", () -> new RopeItem(DDBlocks.ROPE.get(), new Item.Properties().group(DarkerDepths.DARKER_DEPTHS)));
 	public static final RegistryObject<Item> GLOWSHROOM_CAP		= HELPER.registerItem("glowshroom_cap", () -> new GlowshroomCap(DDBlocks.GLOWSHROOM_CAP.get(), new Item.Properties().group(DarkerDepths.DARKER_DEPTHS)));
