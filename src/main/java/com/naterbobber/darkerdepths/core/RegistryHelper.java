@@ -107,17 +107,6 @@ public class RegistryHelper {
 		return feature;
 	}
 
-	public <S extends Structure<?>> RegistryObject<S> createStructure(String name, S structure, GenerationStage.Decoration decoration) {
-		Structure.field_236365_a_.put(DarkerDepths.MODID + ":" + name, structure);
-		Structure.field_236385_u_.put(structure, decoration);
-
-		if (decoration != GenerationStage.Decoration.UNDERGROUND_STRUCTURES) {
-			Structure.field_236384_t_ = ImmutableList.<Structure<?>>builder().addAll(Structure.field_236384_t_).add(structure).build();
-		}
-
-		return this.structureRegister.register(name, () -> structure);
-	}
-
 
 	public <T extends IPlacementConfig, G extends Placement<T>> RegistryObject<G> registerPlacement(String key, Supplier<G> supplier) {
 		return this.getPlacementDeferredRegister().register(key, supplier);
