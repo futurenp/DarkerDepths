@@ -10,6 +10,6 @@ public class CaveBiomeImplementation {
     public static void addCaveBiomes() {
         CaveBiomeAPI.addCaveBiome(DDBiomes.SANDY_CATACOMBS.get());
         CaveBiomeAPI.addCaveBiome(DDBiomes.MOLTEN_CAVERN.get());
-//        CaveBiomeManager.addCaveBiome(Biome.Category.DESERT, DDBiomes.SANDY_CATACOMBS.get());
+//        CaveBiomeAPI.addCaveBiome(DDBiomes.CRYSTAL_CAVE.get());
     }
 }

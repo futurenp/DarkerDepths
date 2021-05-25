@@ -1,13 +1,9 @@
 package com.naterbobber.darkerdepths.common.blocks;
 
-import com.naterbobber.darkerdepths.core.registries.DDBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.particles.ParticleTypes;
 import net.minecraft.pathfinding.PathType;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
@@ -17,16 +13,14 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
-import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
-import net.minecraft.world.World;
+import net.minecraft.world.LightType;
+import net.minecraft.world.server.ServerWorld;
 
 import javax.annotation.Nullable;
 import java.util.Random;
-
-@SuppressWarnings("deprecation")
 
 //<>
 
@@ -36,17 +30,15 @@ public class AshBlock extends Block {
 
     public AshBlock(Properties properties) {
         super(properties);
-        this.setDefaultState(this.stateContainer.getBaseState().with(LAYERS, Integer.valueOf(1)));
+        this.setDefaultState(this.stateContainer.getBaseState().with(LAYERS, 1));
     }
 
     @Override
     public boolean allowsMovement(BlockState state, IBlockReader worldIn, BlockPos pos, PathType type) {
-        switch (type) {
-            case LAND:
-                return state.get(LAYERS) < 5;
-            default:
-                return false;
+        if (type == PathType.LAND) {
+            return state.get(LAYERS) < 5;
         }
+        return false;
     }
 
     @Override
@@ -76,10 +68,10 @@ public class AshBlock extends Block {
 
     @Override
     public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
-        BlockState blockState = worldIn.getBlockState(pos.down());
-        if (!blockState.matchesBlock(Blocks.ICE) && !blockState.matchesBlock(Blocks.PACKED_ICE) && !blockState.matchesBlock(Blocks.BARRIER)) {
-            if (!blockState.matchesBlock(Blocks.HONEY_BLOCK) && !blockState.matchesBlock(Blocks.SOUL_SAND)) {
-                return Block.doesSideFillSquare(blockState.getCollisionShape(worldIn, pos.down()), Direction.UP) || blockState.getBlock() == this && blockState.get(LAYERS) == 8;
+        BlockState blockstate = worldIn.getBlockState(pos.down());
+        if (!blockstate.matchesBlock(Blocks.ICE) && !blockstate.matchesBlock(Blocks.PACKED_ICE) && !blockstate.matchesBlock(Blocks.BARRIER)) {
+            if (!blockstate.matchesBlock(Blocks.HONEY_BLOCK) && !blockstate.matchesBlock(Blocks.SOUL_SAND)) {
+                return Block.doesSideFillSquare(blockstate.getCollisionShapeUncached(worldIn, pos.down()), Direction.UP) || blockstate.getBlock() == this && blockstate.get(LAYERS) == 8;
             } else {
                 return true;
             }
@@ -88,28 +80,16 @@ public class AshBlock extends Block {
         }
     }
 
-	@Override
+    @Override
     public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
         return !stateIn.isValidPosition(worldIn, currentPos) ? Blocks.AIR.getDefaultState() : super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
     }
 
     @Override
-    public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
-        if (!(entityIn instanceof LivingEntity) || entityIn.world.getBlockState(entityIn.getOnPosition()).getBlock().equals(DDBlocks.ASH.get())) {
-            if (!entityIn.isSpectator() && (entityIn.prevPosX != entityIn.getPosX() || entityIn.prevPosZ != entityIn.getPosZ()) && worldIn.rand.nextBoolean()) {
-                spawnAshParticles(worldIn, new Vector3d(entityIn.getPosX(), pos.getY(), entityIn.getPosZ()));
-            }
-        }
-    }
-
-    private void spawnAshParticles(World worldIn, Vector3d vector3d) {
-        if (worldIn.isRemote) {
-            Random rand = worldIn.getRandom();
-            double getY = vector3d.y + 1.0d;
-
-            for (int i = 0; i < rand.nextInt(3); ++i) {
-                worldIn.addParticle(ParticleTypes.CLOUD, vector3d.x, getY, vector3d.z, ((-1.0f + rand.nextFloat() * 2.0f) / 12.0f), 0.05000000074505806d, ((-1.0f + rand.nextFloat() * 2.0f) / 12.0f));
-            }
+    public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
+        if (worldIn.getLightFor(LightType.BLOCK, pos) > 11) {
+            spawnDrops(state, worldIn, pos);
+            worldIn.removeBlock(pos, false);
         }
     }
 
@@ -130,10 +110,10 @@ public class AshBlock extends Block {
     @Nullable
     @Override
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        BlockState blockState = context.getWorld().getBlockState(context.getPos());
-        if (blockState.matchesBlock(this)) {
-            int i = blockState.get(LAYERS);
-            return blockState.with(LAYERS, Integer.valueOf(Math.min(8, i + 1)));
+        BlockState blockstate = context.getWorld().getBlockState(context.getPos());
+        if (blockstate.matchesBlock(this)) {
+            int i = blockstate.get(LAYERS);
+            return blockstate.with(LAYERS, Math.min(8, i + 1));
         } else {
             return super.getStateForPlacement(context);
         }

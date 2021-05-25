@@ -19,7 +19,10 @@ public class DDFeatures {
 	public static final RegistryObject<Feature<BlockClusterFeatureConfig>> SPELEOTHEM_CEILING_FEATURE 	= HELPER.registerFeature("speleothem_ceiling_feature", () -> new SpeleothemFeature(true ,BlockClusterFeatureConfig.CODEC));
 	public static final RegistryObject<Feature<GemstonePlacementConfig>> GEMSTONE_PLACEMENT_FEATURE 	= HELPER.registerFeature("gemstone_placement", () -> new GemstonePlacementFeature(GemstonePlacementConfig.CODEC));
 	public static final RegistryObject<Feature<BlobReplacementConfig>> BLOB_REPLACEMENT_FEATURE 		= HELPER.registerFeature("blob_replacement", () -> new BlobReplacementFeature(BlobReplacementConfig.CODEC));
-	public static final RegistryObject<Feature<SimpleBlockConfig>> SIMPLE_BLOCK_FEATURE 				= HELPER.registerFeature("simple_block", () -> new SimpleBlockFeature(SimpleBlockConfig.CODEC));
+	public static final RegistryObject<Feature<SimpleBlockConfig>> SIMPLE_BLOCK 						= HELPER.registerFeature("simple_block", () -> new SimpleBlockFeature(SimpleBlockConfig.CODEC));
 	public static final RegistryObject<Feature<NoFeatureConfig>> CAVE_FOSSILS 							= HELPER.registerFeature("cave_fossils", () -> new CaveFossilFeature(NoFeatureConfig.CODEC));
 	public static final RegistryObject<Feature<CavePillarConfig>> CAVE_PILLAR_FEATURE 					= HELPER.registerFeature("cave_pillar", () -> new CavePillarFeature(CavePillarConfig.CODEC));
+	public static final RegistryObject<Feature<VegetationPatchConfig>> VEGETATION_PATCH 				= HELPER.registerFeature("vegetation_patch", () -> new VegetationPatchFeature(VegetationPatchConfig.CODEC));
+	public static final RegistryObject<Feature<VegetationPatchConfig>> WATERLOGGED_VEGETATION_PATCH 	= HELPER.registerFeature("waterlogged_vegetation_patch", () -> new WaterloggedVegetationPatchFeature(VegetationPatchConfig.CODEC));
+	public static final RegistryObject<Feature<VegetationPatchConfig>> LAVA_VEGETATION_PATCH 			= HELPER.registerFeature("lava_vegetation_patch", () -> new LavaVegetationPatchFeature(VegetationPatchConfig.CODEC));
 }

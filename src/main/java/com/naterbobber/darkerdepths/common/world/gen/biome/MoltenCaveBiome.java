@@ -4,6 +4,7 @@ import com.naterbobber.darkerdepths.common.world.gen.VanillaBiomeFeatures;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.world.biome.*;
 import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilder;
+import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilders;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
 
 //<>
@@ -51,11 +52,12 @@ public class MoltenCaveBiome extends AbstractBiome {
 
     @Override
     protected ConfiguredSurfaceBuilder<?> surfaceBuilder() {
-        return new ConfiguredSurfaceBuilder<>(SurfaceBuilder.DEFAULT, SurfaceBuilder.STONE_STONE_GRAVEL_CONFIG);
+        return ConfiguredSurfaceBuilders.GRASS;
     }
 
     @Override
     protected void generation(BiomeGenerationSettings.Builder builder) {
+        DefaultBiomeFeatures.withCavesAndCanyons(builder);
     }
 
     @Override
