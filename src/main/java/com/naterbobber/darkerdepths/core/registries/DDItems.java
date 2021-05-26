@@ -19,6 +19,7 @@ public class DDItems {
 
 	public static final RegistryObject<Item> ROPE 				= HELPER.registerItem("rope", () -> new RopeItem(DDBlocks.ROPE.get(), new Item.Properties().group(DarkerDepths.DARKER_DEPTHS)));
 	public static final RegistryObject<Item> GLOWSHROOM_CAP		= HELPER.registerItem("glowshroom_cap", () -> new GlowshroomCap(DDBlocks.GLOWSHROOM_CAP.get(), new Item.Properties().group(DarkerDepths.DARKER_DEPTHS)));
+
 	//miscellaneous
 	public static final RegistryObject<Item> SILVER_INGOT 		= HELPER.registerItem("silver_ingot", () -> new Item(new Item.Properties().group(DarkerDepths.DARKER_DEPTHS)));
 	public static final RegistryObject<Item> SPAWNER_FRAGMENT 	= HELPER.registerItem("spawner_fragment", () -> new Item(new Item.Properties()));

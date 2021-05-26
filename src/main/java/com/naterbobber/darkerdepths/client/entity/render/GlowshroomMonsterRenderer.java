@@ -17,7 +17,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class GlowshroomMonsterRenderer extends MobRenderer<GlowshroomMonsterEntity, EntityModel<GlowshroomMonsterEntity>> {
+public class GlowshroomMonsterRenderer<T extends GlowshroomMonsterEntity> extends MobRenderer<T, GlowshroomMonsterModel<T>> {
     private static final ResourceLocation GLOWSHROOM_MONSTER_TEXTURES = new ResourceLocation(DarkerDepths.MODID,"textures/entity/glowshroom_monster.png");
 
     public GlowshroomMonsterRenderer(EntityRendererManager renderManagerIn) {

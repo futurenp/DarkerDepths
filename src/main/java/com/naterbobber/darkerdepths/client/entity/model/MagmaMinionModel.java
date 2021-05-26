@@ -13,53 +13,55 @@ public class MagmaMinionModel <T extends MagmaMinionEntity> extends EntityModel<
     private final ModelRenderer body;
     private final ModelRenderer right_leg;
     private final ModelRenderer left_leg;
-    private final ModelRenderer right_arm;
-    private final ModelRenderer bone6;
     private final ModelRenderer left_arm;
-    private final ModelRenderer bone2;
+    private final ModelRenderer left_arm2;
+    private final ModelRenderer right_arm;
+    private final ModelRenderer right_arm2;
 
     public MagmaMinionModel() {
         textureWidth = 64;
-        textureHeight = 64;
+        textureHeight = 32;
 
         head = new ModelRenderer(this);
-        head.setRotationPoint(0.0F, 12.0F, 4.0F);
-        head.setTextureOffset(0, 34).addBox(-4.0F, -5.0F, -8.0F, 8.0F, 5.0F, 8.0F, 0.0F, false);
-        head.setTextureOffset(3, 27).addBox(-4.0F, 0.0F, -8.0F, 8.0F, 2.0F, 5.0F, 0.0F, false);
+        head.setRotationPoint(0.0F, 13.0F, 1.0F);
+        setRotationAngle(head, -0.2182F, 0.0F, 0.0F);
+        head.setTextureOffset(28, 23).addBox(4.0F, -5.0F, -4.0F, 1.0F, 3.0F, 3.0F, 0.0F, false);
+        head.setTextureOffset(0, 16).addBox(-4.0F, -5.0F, -4.0F, 8.0F, 5.0F, 6.0F, 0.0F, false);
 
         body = new ModelRenderer(this);
-        body.setRotationPoint(0.0F, 15.0F, 0.0F);
-        body.setTextureOffset(0, 47).addBox(-4.0F, -3.0F, -4.0F, 8.0F, 9.0F, 8.0F, 0.0F, false);
+        body.setRotationPoint(0.0F, 24.0F, 0.0F);
+        body.setTextureOffset(0, 0).addBox(-4.0F, -11.0F, -4.0F, 8.0F, 9.0F, 7.0F, 0.01F, false);
+        body.setTextureOffset(32, 1).addBox(-4.0F, -12.0F, -4.0F, 8.0F, 1.0F, 0.0F, 0.0F, false);
 
         right_leg = new ModelRenderer(this);
-        right_leg.setRotationPoint(2.5F, 21.0F, 0.0F);
-        right_leg.setTextureOffset(35, 36).addBox(-1.5F, 0.0F, -1.5F, 3.0F, 3.0F, 3.0F, 0.0F, false);
+        right_leg.setRotationPoint(-2.5F, 22.0F, -0.5F);
+        right_leg.setTextureOffset(23, 0).addBox(-1.5F, 0.0F, -1.5F, 3.0F, 2.0F, 3.0F, 0.0F, false);
 
         left_leg = new ModelRenderer(this);
-        left_leg.setRotationPoint(-2.5F, 21.0F, 0.0F);
-        left_leg.setTextureOffset(35, 30).addBox(-1.5F, 0.0F, -1.5F, 3.0F, 3.0F, 3.0F, 0.0F, false);
-
-        right_arm = new ModelRenderer(this);
-        right_arm.setRotationPoint(-5.5F, 14.5F, 0.0F);
-        setRotationAngle(right_arm, 0.0F, 0.0F, 0.3491F);
-        right_arm.setTextureOffset(51, 48).addBox(-1.5F, -1.5F, -1.5F, 3.0F, 5.0F, 3.0F, 0.0F, false);
-
-        bone6 = new ModelRenderer(this);
-        bone6.setRotationPoint(-0.5F, 4.5F, 0.0F);
-        right_arm.addChild(bone6);
-        setRotationAngle(bone6, 0.0F, 0.0F, -0.3491F);
-        bone6.setTextureOffset(32, 53).addBox(-2.0F, -2.0F, -2.5F, 4.0F, 6.0F, 5.0F, 0.0F, false);
+        left_leg.setRotationPoint(2.5F, 22.0F, -0.5F);
+        left_leg.setTextureOffset(23, 0).addBox(-1.5F, 0.0F, -1.5F, 3.0F, 2.0F, 3.0F, 0.0F, true);
 
         left_arm = new ModelRenderer(this);
-        left_arm.setRotationPoint(5.5F, 14.5F, 0.0F);
-        setRotationAngle(left_arm, 0.0F, 0.0F, -0.3491F);
-        left_arm.setTextureOffset(51, 56).addBox(-1.5F, -1.5F, -1.5F, 3.0F, 5.0F, 3.0F, 0.0F, false);
+        left_arm.setRotationPoint(4.0F, 15.0F, -0.5F);
+        setRotationAngle(left_arm, 0.0F, 0.0F, -0.4363F);
+        left_arm.setTextureOffset(42, 5).addBox(0.0F, -1.0F, -1.5F, 3.0F, 5.0F, 3.0F, 0.0F, false);
 
-        bone2 = new ModelRenderer(this);
-        bone2.setRotationPoint(0.5F, 4.5F, 0.0F);
-        left_arm.addChild(bone2);
-        setRotationAngle(bone2, 0.0F, 0.0F, 0.3491F);
-        bone2.setTextureOffset(32, 42).addBox(-2.0F, -2.0F, -2.5F, 4.0F, 6.0F, 5.0F, 0.0F, false);
+        left_arm2 = new ModelRenderer(this);
+        left_arm2.setRotationPoint(1.0F, 3.0F, 0.0F);
+        left_arm.addChild(left_arm2);
+        setRotationAngle(left_arm2, 0.0F, 0.0F, 0.3927F);
+        left_arm2.setTextureOffset(46, 13).addBox(-1.0F, 0.0F, -2.5F, 4.0F, 5.0F, 5.0F, 0.0F, false);
+
+        right_arm = new ModelRenderer(this);
+        right_arm.setRotationPoint(-4.0F, 15.0F, -0.5F);
+        setRotationAngle(right_arm, 0.0F, 0.0F, 0.4363F);
+        right_arm.setTextureOffset(30, 5).addBox(-3.0F, -1.0F, -1.5F, 3.0F, 5.0F, 3.0F, 0.0F, true);
+
+        right_arm2 = new ModelRenderer(this);
+        right_arm2.setRotationPoint(-1.0F, 3.0F, 0.0F);
+        right_arm.addChild(right_arm2);
+        setRotationAngle(right_arm2, 0.0F, 0.0F, -0.3927F);
+        right_arm2.setTextureOffset(28, 13).addBox(-3.0F, 0.0F, -2.5F, 4.0F, 5.0F, 5.0F, 0.0F, true);
     }
 
     @Override
@@ -77,8 +79,8 @@ public class MagmaMinionModel <T extends MagmaMinionEntity> extends EntityModel<
         body.render(matrixStack, buffer, packedLight, packedOverlay);
         right_leg.render(matrixStack, buffer, packedLight, packedOverlay);
         left_leg.render(matrixStack, buffer, packedLight, packedOverlay);
-        right_arm.render(matrixStack, buffer, packedLight, packedOverlay);
         left_arm.render(matrixStack, buffer, packedLight, packedOverlay);
+        right_arm.render(matrixStack, buffer, packedLight, packedOverlay);
     }
 
     public void setRotationAngle(ModelRenderer modelRenderer, float x, float y, float z) {

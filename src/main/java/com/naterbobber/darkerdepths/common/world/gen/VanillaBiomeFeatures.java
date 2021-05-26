@@ -64,6 +64,7 @@ public class VanillaBiomeFeatures {
         FeaturePlacement.addFeature(builder, GenerationStage.Decoration.UNDERGROUND_DECORATION, DDConfiguredFeatures.LIMESTONE_STONE_REPLACEMENT);
         FeaturePlacement.addFeature(builder, GenerationStage.Decoration.VEGETAL_DECORATION, DDConfiguredFeatures.LIMESTONE_ORE);
         FeaturePlacement.addFeature(builder, GenerationStage.Decoration.UNDERGROUND_ORES, DDConfiguredFeatures.SAND_ORE);
+        FeaturePlacement.addFeature(builder, GenerationStage.Decoration.VEGETAL_DECORATION, DDConfiguredFeatures.PETRIFIED_LOG_BRANCH);
     }
 
     public static void addSandyCatacombsVegetation(BiomeGenerationSettings.Builder builder) {
@@ -73,5 +74,8 @@ public class VanillaBiomeFeatures {
 //        FeaturePlacement.addFeature(builder, GenerationStage.Decoration.VEGETAL_DECORATION, DDConfiguredFeatures.SANDY_CAVE_CEILING_VEGETATION);
         FeaturePlacement.addFeature(builder, GenerationStage.Decoration.VEGETAL_DECORATION, DDConfiguredFeatures.ROOTS_FEATURE);
         FeaturePlacement.addFeature(builder, GenerationStage.Decoration.VEGETAL_DECORATION, DDConfiguredFeatures.LONG_ROOTS_FEATURE);
+    }
+
+    public static void addCarvers(BiomeGenerationSettings.Builder builder) {
     }
 }

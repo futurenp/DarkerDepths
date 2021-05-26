@@ -1,3 +1,7 @@
 {
-  "parent": "darkerdepths:block/celestine_crystal"
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "darkerdepths:block/celestine_cluster"
+  }
 }
+

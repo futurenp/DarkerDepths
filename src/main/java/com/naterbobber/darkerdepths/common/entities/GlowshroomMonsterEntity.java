@@ -1,24 +1,26 @@
 package com.naterbobber.darkerdepths.common.entities;
 
 
+import com.naterbobber.darkerdepths.core.registries.DDItems;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.monster.AbstractRaiderEntity;
+import net.minecraft.entity.ai.goal.LookAtGoal;
+import net.minecraft.entity.ai.goal.LookRandomlyGoal;
+import net.minecraft.entity.ai.goal.MeleeAttackGoal;
+import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
+import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
 import net.minecraft.entity.monster.MonsterEntity;
-import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.pathfinding.*;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockReader;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -32,11 +34,10 @@ public class GlowshroomMonsterEntity extends MonsterEntity {
         this.experienceValue = 20;
     }
 
-    //func_233666_p_ ---> registerAttributes()
     public static AttributeModifierMap.MutableAttribute setCustomAttributes() {
         return MobEntity.func_233666_p_()
                 .createMutableAttribute(Attributes.MAX_HEALTH, 60.0D)
-                .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.50D)
+                .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.5D)
                 .createMutableAttribute(Attributes.ATTACK_KNOCKBACK, 1.3D)
                 .createMutableAttribute(Attributes.ATTACK_DAMAGE, 8.0D)
                 .createMutableAttribute(Attributes.KNOCKBACK_RESISTANCE, 0.75D);
@@ -45,15 +46,11 @@ public class GlowshroomMonsterEntity extends MonsterEntity {
     @Override
     protected void registerGoals() {
         super.registerGoals();
-        this.goalSelector.addGoal(0, new SwimGoal(this));
-        this.goalSelector.addGoal(4, new AttackGoal());
-        this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 0.4D));
-        this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 6.0F));
-        this.goalSelector.addGoal(10, new LookAtGoal(this, MobEntity.class, 8.0F));
-        this.targetSelector.addGoal(2, (new HurtByTargetGoal(this, AbstractRaiderEntity.class)).setCallsForHelp());
-        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
-        this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, IronGolemEntity.class, true));
-
+        this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 0.6D, true));
+        this.goalSelector.addGoal(2, new WaterAvoidingRandomWalkingGoal(this, getAttributeValue(Attributes.MOVEMENT_SPEED)));
+        this.goalSelector.addGoal(2, new LookAtGoal(this, PlayerEntity.class, 8.0F));
+        this.goalSelector.addGoal(3, new LookRandomlyGoal(this));
+        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
     }
 
     @Override
@@ -77,64 +74,33 @@ public class GlowshroomMonsterEntity extends MonsterEntity {
         return this.attackTick;
     }
 
-    @Override
-    public boolean attackEntityAsMob(Entity entityIn) {
-        this.attackTick = 40;
-        this.world.setEntityState(this, (byte)4);
-        this.playSound(SoundEvents.ENTITY_RAVAGER_ATTACK, 1.0F, 1.0F);
-        return super.attackEntityAsMob(entityIn);
-    }
-
-    @Override
     public void livingTick() {
         super.livingTick();
-        if(this.attackTick > 0) {
-            --this.attackTick;
+        if (this.attackTick > 0) {
+            this.attackTick--;
         }
     }
 
     @OnlyIn(Dist.CLIENT)
-    @Override
     public void handleStatusUpdate(byte id) {
-        if(id == 4){
-            this.attackTick = 40;
+        if (id == 4) {
+            this.attackTick = 10;
             this.playSound(SoundEvents.ENTITY_RAVAGER_ATTACK, 1.0F, 1.0F);
-        } else{
+        } else {
             super.handleStatusUpdate(id);
         }
     }
 
-    class AttackGoal extends MeleeAttackGoal {
-        public AttackGoal() {
-            super(GlowshroomMonsterEntity.this, 0.60D, true);
-        }
-
-        protected double getAttackReachSqr(LivingEntity attackTarget) {
-            float f = GlowshroomMonsterEntity.this.getWidth() - 0.5F;
-            return (double)(f * 2.0F * f * 2.0F + attackTarget.getWidth());
-        }
-    }
-    static class Navigator extends GroundPathNavigator {
-        public Navigator(MobEntity p_i50754_1_, World p_i50754_2_) {
-            super(p_i50754_1_, p_i50754_2_);
-        }
-
-        protected PathFinder getPathFinder(int p_179679_1_) {
-            this.nodeProcessor = new Processor();
-            return new PathFinder(this.nodeProcessor, p_179679_1_);
-        }
-    }
-    protected PathNavigator createNavigator(World worldIn) {
-        return new Navigator(this, worldIn);
+    @Override
+    public boolean attackEntityAsMob(Entity entityIn) {
+        this.attackTick = 10;
+        this.world.setEntityState(this, (byte) 4);
+        this.playSound(SoundEvents.ENTITY_RAVAGER_ATTACK, 1.0F, 1.0F);
+        return super.attackEntityAsMob(entityIn);
     }
 
-    static class Processor extends WalkNodeProcessor {
-        private Processor() {
-        }
-
-        @Override
-        protected PathNodeType refineNodeType(IBlockReader worldIn, boolean canOpenDoors, boolean canEnterDoors, BlockPos pos, PathNodeType nodeType) {
-            return nodeType == PathNodeType.LEAVES ? PathNodeType.OPEN : super.refineNodeType(worldIn, canOpenDoors, canEnterDoors, pos, nodeType);
-        }
+    public ItemStack getPickedResult(RayTraceResult target) {
+        return new ItemStack(DDItems.GLOWSHROOM_MONSTER_SPAWN_EGG.get());
     }
+
 }

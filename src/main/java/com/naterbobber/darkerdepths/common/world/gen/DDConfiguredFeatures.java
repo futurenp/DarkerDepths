@@ -93,6 +93,8 @@ public class DDConfiguredFeatures {
         return Feature.NO_OP.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG);
     }, CaveSurface.FLOOR, ConstantIntProvider.create(3), 0.8f, 5, 0.01f, UniformIntProvider.create(4, 7), 0.7f))).withPlacement(DDPlacements.CAVE_SURFACE.get().configure(new CaveDecoratorConfig(CaveSurface.FLOOR, 12))).range(32).square().count(10);
 
+    public static final ConfiguredFeature<?, ?> PETRIFIED_LOG_BRANCH = HELPER.registerConfiguredFeature("petrified_log_branch", DDFeatures.PETRIFIED_LOG_BRANCH.get().withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).withPlacement(DDPlacements.CAVE_SURFACE.get().configure(new CaveDecoratorConfig(CaveSurface.CEILING, 12))).range(32).square().count(8));
+
     static class States {
         public static final BlockState ASH_LAYER = DDBlocks.ASH.get().getDefaultState().with(BlockStateProperties.LAYERS_1_8, 1);
         public static final BlockState ASH_LAYER_DOUBLE = DDBlocks.ASH.get().getDefaultState().with(BlockStateProperties.LAYERS_1_8, 2);

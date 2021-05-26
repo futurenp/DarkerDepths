@@ -3,6 +3,7 @@ package com.naterbobber.darkerdepths.client.entity.render;
 import com.naterbobber.darkerdepths.client.entity.model.GlowshroomMonsterModel;
 import com.naterbobber.darkerdepths.client.entity.model.MagmaMinionModel;
 import com.naterbobber.darkerdepths.client.entity.render.layers.GlowshroomMonsterGlowLayer;
+import com.naterbobber.darkerdepths.client.entity.render.layers.MagmaMinionGlowLayer;
 import com.naterbobber.darkerdepths.common.entities.GlowshroomMonsterEntity;
 import com.naterbobber.darkerdepths.common.entities.MagmaMinionEntity;
 import com.naterbobber.darkerdepths.core.DarkerDepths;
@@ -21,7 +22,8 @@ public class MagmaMinionRenderer<T extends MagmaMinionEntity> extends MobRendere
     private static final ResourceLocation MAGMA_MINION_TEXTURES = new ResourceLocation(DarkerDepths.MODID,"textures/entity/magma_minion.png");
 
     public MagmaMinionRenderer(EntityRendererManager renderManagerIn) {
-        super(renderManagerIn, new MagmaMinionModel<>(), 0.8F);
+        super(renderManagerIn, new MagmaMinionModel<>(), 0.5F);
+        addLayer(new MagmaMinionGlowLayer<>(this));
     }
 
     protected float getDeathMaxRotation(T entityLivingBaseIn) {
