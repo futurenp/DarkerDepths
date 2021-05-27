@@ -45,7 +45,7 @@ public class PetrifiedLogBranchFeature extends Feature<NoFeatureConfig> {
         if (rand.nextInt(20) == 0) {
             this.setBlockState(world, pos, DDBlocks.POURUS_PETRIFIED_LOG.get().getDefaultState());
         }
-        if (world.isAirBlock(pos.down(2))) {
+        if (world.isAirBlock(pos.down())) {
             this.setBlockState(world, pos.down(), DDBlocks.LONG_ROOTS.get().getDefaultState());
             this.setBlockState(world, pos.down(2), DDBlocks.LONG_ROOTS.get().getDefaultState().with(HangingDoublePlantBlock.HALF, DoubleBlockHalf.LOWER));
         }

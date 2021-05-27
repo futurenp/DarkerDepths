@@ -61,6 +61,7 @@ public class SpurBlock extends Block {
 
     private void deactivate(BlockPos pos, BlockState state, World world) {
         world.setBlockState(pos, state.with(POWERED, false), 2);
+        world.playSound(null, pos, SoundEvents.BLOCK_SLIME_BLOCK_BREAK, SoundCategory.BLOCKS, 1.0F, 1.0F);
         world.getPendingBlockTicks().scheduleTick(pos, this, 20);
     }
 

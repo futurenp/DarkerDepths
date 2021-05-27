@@ -1,6 +1,7 @@
 package com.naterbobber.darkerdepths.common.items;
 
 import net.minecraft.block.Block;
+import net.minecraft.entity.ICrossbowUser;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.BlockItem;
@@ -28,4 +29,5 @@ public class GlowshroomCap extends BlockItem {
     public void onArmorTick(ItemStack stack, World world, PlayerEntity player) {
         player.addPotionEffect(new EffectInstance(Effect.get(3), 40, 0));
     }
+
 }

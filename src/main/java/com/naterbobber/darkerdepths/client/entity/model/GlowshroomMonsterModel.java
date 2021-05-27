@@ -132,6 +132,14 @@ public class GlowshroomMonsterModel <T extends GlowshroomMonsterEntity> extends 
     }
 
     @Override
+    public void setLivingAnimations(T entityIn, float limbSwing, float limbSwingAmount, float partialTick) {
+        int i = entityIn.getAttackTimer();
+        if (i > 0) {
+            this.right_arm.rotateAngleX = -1.1F + 1.1F * MathHelper.func_233021_e_((float)i - partialTick, 10.0F);
+        }
+    }
+
+    @Override
     public void render(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha){
         head.render(matrixStack, buffer, packedLight, packedOverlay);
         body.render(matrixStack, buffer, packedLight, packedOverlay);

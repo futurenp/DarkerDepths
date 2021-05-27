@@ -10,4 +10,5 @@ public class DDConfiguredCarvers {
     public static final DDRegistries HELPER = DarkerDepths.REGISTRIES;
 
     public static final ConfiguredCarver<ProbabilityConfig> NOISE_CAVE  = HELPER.registerConfiguredCarver("noise_cave", DDCarvers.NOISE_CAVE.get().func_242761_a(new ProbabilityConfig(1f)));
+
 }

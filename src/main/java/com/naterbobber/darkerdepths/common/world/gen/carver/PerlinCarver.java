@@ -166,7 +166,8 @@ public class PerlinCarver extends WorldCarver<ProbabilityConfig> {
     }
 
     private double makeColumns(float offset, int x, int y, int z) {
-        offset *= MathHelper.floor(2F) + MathHelper.perlinFade(1) * Math.PI / 2 ;
+        offset *= MathHelper.floor(2F) + MathHelper.perlinFade(1) * Math.PI / 2;
+        offset *= 1.35F;
         y *= MathHelper.sin((float) (Math.PI / 0.25));
         offset += y;
         return offset;

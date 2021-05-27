@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "darkerdepths:block/dry_sprouts"
+    "layer0": "darkerdepths:item/dry_sprouts"
   }
 }
