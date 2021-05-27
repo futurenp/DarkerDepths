@@ -1,3 +1,6 @@
 {
-  "parent": "darkerdepths:block/aloe"
+  "parent": "item/generated",
+    "textures": {
+    "layer0": "darkerdepths:item/aloe"
+  }
 }
