@@ -1,0 +1,6 @@
+{
+  "parent": "block/cross",
+  "textures": {
+    "cross": "darkerdepths:block/dry_sprouts"
+  }
+}

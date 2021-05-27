@@ -5,6 +5,7 @@ import com.naterbobber.darkerdepths.common.world.gen.feature.BlobReplacementConf
 import com.naterbobber.darkerdepths.core.DDRegistries;
 import com.naterbobber.darkerdepths.core.DarkerDepths;
 
+import net.minecraft.block.BlockState;
 import net.minecraft.world.gen.feature.*;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.common.Mod;
@@ -13,7 +14,7 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = DarkerDepths.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class DDFeatures {
-	public static final DDRegistries HELPER = DarkerDepths.REGISTRY_HELPER;
+	public static final DDRegistries HELPER = DarkerDepths.REGISTRIES;
 
 	public static final RegistryObject<Feature<BlockClusterFeatureConfig>> SPELEOTHEM_FLOOR_FEATURE 	= HELPER.registerFeature("speleothem_floor_feature", () -> new SpeleothemFeature(false ,BlockClusterFeatureConfig.CODEC));
 	public static final RegistryObject<Feature<BlockClusterFeatureConfig>> SPELEOTHEM_CEILING_FEATURE 	= HELPER.registerFeature("speleothem_ceiling_feature", () -> new SpeleothemFeature(true ,BlockClusterFeatureConfig.CODEC));
@@ -26,5 +27,5 @@ public class DDFeatures {
 	public static final RegistryObject<Feature<VegetationPatchConfig>> WATERLOGGED_VEGETATION_PATCH 	= HELPER.registerFeature("waterlogged_vegetation_patch", () -> new WaterloggedVegetationPatchFeature(VegetationPatchConfig.CODEC));
 	public static final RegistryObject<Feature<VegetationPatchConfig>> LAVA_VEGETATION_PATCH 			= HELPER.registerFeature("lava_vegetation_patch", () -> new LavaVegetationPatchFeature(VegetationPatchConfig.CODEC));
 	public static final RegistryObject<Feature<NoFeatureConfig>> PETRIFIED_LOG_BRANCH					= HELPER.registerFeature("petrified_log_branch", () -> new PetrifiedLogBranchFeature(NoFeatureConfig.CODEC));
-
+	public static final RegistryObject<Feature<BlockStateProvidingFeatureConfig>> VEGETATION_FEATURE	= HELPER.registerFeature("vegetation_feature", () -> new VegetationFeature(BlockStateProvidingFeatureConfig.CODEC));
 }

@@ -16,5 +16,9 @@ public class BlockRenderHandler {
         RenderTypeLookup.setRenderLayer(DDBlocks.ROOTS.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(DDBlocks.LONG_ROOTS.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(DDBlocks.CELESTINE_CRYSTAL.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(DDBlocks.DRY_SPROUTS.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(DDBlocks.DETRITUS.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(DDBlocks.LUSH_SPROUTS.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(DDBlocks.ALOE.get(), RenderType.getCutout());
     }
 }

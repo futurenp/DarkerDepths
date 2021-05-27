@@ -13,8 +13,7 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class DDCarvers {
-	public static final DDRegistries HELPER = DarkerDepths.REGISTRY_HELPER;
+	public static final DDRegistries HELPER = DarkerDepths.REGISTRIES;
 
-	public static final RegistryObject<WorldCarver<ProbabilityConfig>> NOISE_CAVE 		= HELPER.registerCarver("noise_cave", () -> new NoiseCarver(ProbabilityConfig.CODEC));
-
+	public static final RegistryObject<WorldCarver<ProbabilityConfig>> NOISE_CAVE 		= HELPER.registerCarver("noise_cave", () -> new PerlinCarver(ProbabilityConfig.CODEC, 256));
 }

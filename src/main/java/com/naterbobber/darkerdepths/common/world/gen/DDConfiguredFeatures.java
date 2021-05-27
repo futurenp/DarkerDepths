@@ -33,7 +33,7 @@ import net.minecraft.world.gen.placement.TopSolidRangeConfig;
 //<>
 
 public class DDConfiguredFeatures {
-    public static final DDRegistries HELPER = DarkerDepths.REGISTRY_HELPER;
+    public static final DDRegistries HELPER = DarkerDepths.REGISTRIES;
 
     public static final ConfiguredFeature<?, ?> GLOWSHROOM_PATCH = HELPER.registerConfiguredFeature("glowshroom_patch", DDFeatures.SIMPLE_BLOCK.get().withConfiguration(new SimpleBlockConfig(new SimpleBlockStateProvider(DDBlocks.GLOWSHROOM.get().getDefaultState()))).withPlacement(DDPlacements.CAVE_SURFACE.get().configure(new CaveDecoratorConfig(CaveSurface.FLOOR, 12))).range(50).square().countSpread(FeatureSpread.create(20, 60)).chance(20));
 //    public static final ConfiguredFeature<?, ?> GLOWSHROOM_PATCH = HELPER.registerConfiguredFeature("glowshroom_patch", DDFeatures.SIMPLE_BLOCK_FEATURE.get().withConfiguration(new SimpleBlockConfig(new SimpleBlockStateProvider(DDBlocks.GLOWSHROOM.get().getDefaultState()))).withPlacement(DDPlacements.CAVE_SURFACE.get().configure(new CaveDecoratorConfig(CaveSurface.FLOOR, 12))).range(59).square().countSpread(FeatureSpread.create(10, 10)).chance(25));
@@ -75,13 +75,8 @@ public class DDConfiguredFeatures {
     public static final ConfiguredFeature<?, ?> LIMESTONE_STONE_REPLACEMENT     = HELPER.registerConfiguredFeature("limestone_stone_replacement", DDFeatures.BLOB_REPLACEMENT_FEATURE.get().withConfiguration(new BlobReplacementConfig(ImmutableSet.of(Blocks.STONE.getDefaultState(), Blocks.DIORITE.getDefaultState(), Blocks.ANDESITE.getDefaultState(), Blocks.GRANITE.getDefaultState(), Blocks.GRAVEL.getDefaultState(), Blocks.DIRT.getDefaultState(), Blocks.COAL_ORE.getDefaultState(), Blocks.IRON_ORE.getDefaultState(), Blocks.GOLD_ORE.getDefaultState(), Blocks.REDSTONE_ORE.getDefaultState(), Blocks.DIAMOND_ORE.getDefaultState(), Blocks.LAPIS_ORE.getDefaultState(), DDBlocks.ARIDROCK_COAL_ORE.get().getDefaultState(), DDBlocks.ARIDROCK_IRON_ORE.get().getDefaultState(), DDBlocks.ARIDROCK_GOLD_ORE.get().getDefaultState(), DDBlocks.ARIDROCK_REDSTONE_ORE.get().getDefaultState(), DDBlocks.ARIDROCK_DIAMOND_ORE.get().getDefaultState(), DDBlocks.ARIDROCK_LAPIS_ORE.get().getDefaultState(), DDBlocks.ARIDROCK.get().getDefaultState()), DDBlocks.LIMESTONE.get().getDefaultState(), FeatureSpread.create(3, 4))).range(16).square().count(250));
 
     public static final ConfiguredFeature<?, ?> LIMESTONE_ORE = HELPER.registerConfiguredFeature("limestone_ore", Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, DDBlocks.LIMESTONE.get().getDefaultState(), 33)).range(60).count(20).square());
-    public static final ConfiguredFeature<?, ?> SAND_ORE = HELPER.registerConfiguredFeature("sand_ore", Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, Blocks.SAND.getDefaultState(), 33)).withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(15, 0, 60))).count(20).square());
+    public static final ConfiguredFeature<?, ?> COBBLED_SANDSTONE_ORE = HELPER.registerConfiguredFeature("cobbled_sandstone_ore", Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, DDBlocks.COBBLED_SANDSTONE.get().getDefaultState(), 33)).withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(15, 0, 60))).count(20).square());
 
-    public static final ConfiguredFeature<?, ?> CAVE_FOSSILS_FEATURE = HELPER.registerConfiguredFeature("cave_fossils_feature", DDFeatures.CAVE_FOSSILS.get().withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).chance(5).range(40).square());
-    public static final ConfiguredFeature<?, ?> DEAD_BUSH_FEATURE = HELPER.registerConfiguredFeature("dead_bush_feature", Feature.RANDOM_PATCH.withConfiguration(new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(Blocks.DEAD_BUSH.getDefaultState()), new SimpleBlockPlacer()).tries(32).whitelist(ImmutableSet.of(DDBlocks.ARIDROCK.get(), Blocks.SAND, DDBlocks.LIMESTONE.get())).preventProjection().build()).count(8).range(60).square());
-//    public static final ConfiguredFeature<?, ?> ROOTS_FEATURE = HELPER.registerConfiguredFeature("roots_feature", DDFeatures.SIMPLE_BLOCK.get().withConfiguration(new SimpleBlockConfig(new WeightedBlockStateProvider().addWeightedBlockstate(DDBlocks.ROOTS.get().getDefaultState(), 10).addWeightedBlockstate(DDBlocks.LONG_ROOTS.get().getDefaultState(), 7))).withPlacement(DDPlacements.CAVE_SURFACE.get().configure(new CaveDecoratorConfig(CaveSurface.CEILING, 12))).range(70).square().count(40));
-    public static final ConfiguredFeature<?, ?> ROOTS_FEATURE = HELPER.registerConfiguredFeature("roots_feature", DDFeatures.SIMPLE_BLOCK.get().withConfiguration(new SimpleBlockConfig(new SimpleBlockStateProvider(DDBlocks.ROOTS.get().getDefaultState()))).withPlacement(DDPlacements.CAVE_SURFACE.get().configure(new CaveDecoratorConfig(CaveSurface.CEILING, 12))).range(70).square().count(20));
-    public static final ConfiguredFeature<?, ?> LONG_ROOTS_FEATURE = HELPER.registerConfiguredFeature("long_roots_feature", DDFeatures.SIMPLE_BLOCK.get().withConfiguration(new SimpleBlockConfig(new SimpleBlockStateProvider(DDBlocks.LONG_ROOTS.get().getDefaultState()))).withPlacement(DDPlacements.CAVE_SURFACE.get().configure(new CaveDecoratorConfig(CaveSurface.CEILING, 12))).range(70).square().count(20));
 
     public static final ConfiguredFeature<?, ?> ASH_VEGETATION = HELPER.registerConfiguredFeature("ash_vegetation", DDFeatures.SIMPLE_BLOCK.get().withConfiguration(new SimpleBlockConfig(new WeightedBlockStateProvider().addWeightedBlockstate(States.ASH_LAYER, 25).addWeightedBlockstate(States.ASH_LAYER_DOUBLE, 15).addWeightedBlockstate(States.ASH_LAYER_TRIPLE, 10).addWeightedBlockstate(States.ASH_LAYER_QUADRUPLE, 5))));
     public static final ConfiguredFeature<?, ?> ASH_PATCH = DDFeatures.VEGETATION_PATCH.get().withConfiguration(new VegetationPatchConfig(BlockTags.BASE_STONE_OVERWORLD.getName(), new SimpleBlockStateProvider(DDBlocks.ASH_BLOCK.get().getDefaultState()), () -> {
@@ -95,10 +90,51 @@ public class DDConfiguredFeatures {
 
     public static final ConfiguredFeature<?, ?> PETRIFIED_LOG_BRANCH = HELPER.registerConfiguredFeature("petrified_log_branch", DDFeatures.PETRIFIED_LOG_BRANCH.get().withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).withPlacement(DDPlacements.CAVE_SURFACE.get().configure(new CaveDecoratorConfig(CaveSurface.CEILING, 12))).range(32).square().count(8));
 
+    public static final ConfiguredFeature<?, ?> OASIS_POOL = HELPER.registerConfiguredFeature("oasis_pool", DDFeatures.WATERLOGGED_VEGETATION_PATCH.get().withConfiguration(new VegetationPatchConfig(BlockTags.BASE_STONE_OVERWORLD.getName(), new SimpleBlockStateProvider(DDBlocks.LUSH_ARIDROCK.get().getDefaultState()), () -> {
+        return Feature.NO_OP.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG);
+    }, CaveSurface.FLOOR, ConstantIntProvider.create(1), 0.0f, 5, 0.01f, UniformIntProvider.create(8, 14), 1.0f))).withPlacement(DDPlacements.CAVE_SURFACE.get().configure(new CaveDecoratorConfig(CaveSurface.FLOOR, 12))).withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(15, 0, 50))).square().count(10).chance(64);
+//    }, CaveSurface.FLOOR, ConstantIntProvider.create(1), 0.0f, 5, 0.01f, UniformIntProvider.create(4, 7), 1.0f))).withPlacement(DDPlacements.CAVE_SURFACE.get().configure(new CaveDecoratorConfig(CaveSurface.FLOOR, 12))).range(50).square().count(5).chance(45);
+
+    public static final ConfiguredFeature<?, ?> OASIS_VEGETATION = HELPER.registerConfiguredFeature("oasis_vegetation", DDFeatures.VEGETATION_FEATURE.get().withConfiguration(Configs.OASIS_VEGETATION_CONFIG).range(50).square().count(60));
+
+    public static final ConfiguredFeature<?, ?> CAVE_FOSSILS_FEATURE = HELPER.registerConfiguredFeature("cave_fossils_feature", DDFeatures.CAVE_FOSSILS.get().withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).chance(5).range(40).square());
+
+    public static final ConfiguredFeature<?, ?> SANDY_CATACOMBS_VEGETATION = HELPER.registerConfiguredFeature("sandy_catacombs_vegetation", DDFeatures.VEGETATION_FEATURE.get().withConfiguration(Configs.SANDY_CATACOMBS_VEGETATION_CONFIG).range(50).square().count(40));
+
+    public static final ConfiguredFeature<?, ?> ROOTS_FEATURE = HELPER.registerConfiguredFeature("roots_feature", DDFeatures.SIMPLE_BLOCK.get().withConfiguration(new SimpleBlockConfig(new SimpleBlockStateProvider(DDBlocks.ROOTS.get().getDefaultState()))).withPlacement(DDPlacements.CAVE_SURFACE.get().configure(new CaveDecoratorConfig(CaveSurface.CEILING, 12))).range(50).square().count(20));
+
+    public static final ConfiguredFeature<?, ?> LONG_ROOTS_FEATURE = HELPER.registerConfiguredFeature("long_roots_feature", DDFeatures.SIMPLE_BLOCK.get().withConfiguration(new SimpleBlockConfig(new SimpleBlockStateProvider(DDBlocks.LONG_ROOTS.get().getDefaultState()))).withPlacement(DDPlacements.CAVE_SURFACE.get().configure(new CaveDecoratorConfig(CaveSurface.CEILING, 12))).range(70).square().count(10).chance(25));
+
     static class States {
         public static final BlockState ASH_LAYER = DDBlocks.ASH.get().getDefaultState().with(BlockStateProperties.LAYERS_1_8, 1);
         public static final BlockState ASH_LAYER_DOUBLE = DDBlocks.ASH.get().getDefaultState().with(BlockStateProperties.LAYERS_1_8, 2);
         public static final BlockState ASH_LAYER_TRIPLE = DDBlocks.ASH.get().getDefaultState().with(BlockStateProperties.LAYERS_1_8, 3);
         public static final BlockState ASH_LAYER_QUADRUPLE = DDBlocks.ASH.get().getDefaultState().with(BlockStateProperties.LAYERS_1_8, 4);
+    }
+
+    static class Configs {
+        //DEAD_BUSH, 25
+        //DRY_SPROUTS, 33
+        //DETRITUS, 17
+        //ROOTS, 15
+        //LONG_ROOTS, 10
+        public static final BlockStateProvidingFeatureConfig SANDY_CATACOMBS_VEGETATION_CONFIG = new BlockStateProvidingFeatureConfig(new WeightedBlockStateProvider()
+                .addWeightedBlockstate(Blocks.DEAD_BUSH.getDefaultState(), 11)
+                .addWeightedBlockstate(DDBlocks.DRY_SPROUTS.get().getDefaultState(), 50)
+                .addWeightedBlockstate(DDBlocks.DETRITUS.get().getDefaultState(), 10)
+                .addWeightedBlockstate(DDBlocks.ROOTS.get().getDefaultState(), 25));
+
+        public static final BlockStateProvidingFeatureConfig OASIS_VEGETATION_CONFIG = new BlockStateProvidingFeatureConfig(new WeightedBlockStateProvider()
+                .addWeightedBlockstate(Blocks.GRASS.getDefaultState(), 50)
+                .addWeightedBlockstate(DDBlocks.ALOE.get().getDefaultState(), 10)
+                .addWeightedBlockstate(DDBlocks.LUSH_SPROUTS.get().getDefaultState(), 25)
+                .addWeightedBlockstate(Blocks.LILY_PAD.getDefaultState(), 11));
+
+//        public static final BlockStateProvidingFeatureConfig SANDY_CATACOMBS_VEGETATION_CONFIG = new BlockStateProvidingFeatureConfig(new WeightedBlockStateProvider()
+//                .addWeightedBlockstate(Blocks.DEAD_BUSH.getDefaultState(), 25)
+//                .addWeightedBlockstate(DDBlocks.DRY_SPROUTS.get().getDefaultState(), 33)
+//                .addWeightedBlockstate(DDBlocks.DETRITUS.get().getDefaultState(), 17)
+//                .addWeightedBlockstate(DDBlocks.ROOTS.get().getDefaultState(), 15)
+//                .addWeightedBlockstate(DDBlocks.LONG_ROOTS.get().getDefaultState(), 10));
     }
 }

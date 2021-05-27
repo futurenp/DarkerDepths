@@ -12,7 +12,7 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = DarkerDepths.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class DDPlacements {
-    public static final DDRegistries HELPER = DarkerDepths.REGISTRY_HELPER;
+    public static final DDRegistries HELPER = DarkerDepths.REGISTRIES;
 
     public static final RegistryObject<Placement<CaveDecoratorConfig>> CAVE_SURFACE = HELPER.registerPlacement("cave_surface", () -> new CaveSurfacePlacement(CaveDecoratorConfig.CODEC));
 }

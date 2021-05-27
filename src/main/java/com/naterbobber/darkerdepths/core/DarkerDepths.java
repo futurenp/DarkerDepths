@@ -25,7 +25,7 @@ public class DarkerDepths {
     public static DarkerDepths instance;
     public static final String MODID = "darkerdepths";
     public static final ItemGroup DARKER_DEPTHS = new DarkerDepthsItemGroup("DarkerDepths");
-    public static final DDRegistries REGISTRY_HELPER = new DDRegistries(MODID);
+    public static final DDRegistries REGISTRIES = new DDRegistries(MODID);
 
     public DarkerDepths() {
         instance = this;
@@ -34,12 +34,13 @@ public class DarkerDepths {
 
         MinecraftForge.EVENT_BUS.register(new GlobalBiomeFeatures());
 
-        REGISTRY_HELPER.getItems().register(modEventBus);
-        REGISTRY_HELPER.getBlocks().register(modEventBus);
-        REGISTRY_HELPER.getCarvers().register(modEventBus);
-        REGISTRY_HELPER.getFeatures().register(modEventBus);
-        REGISTRY_HELPER.getBiomes().register(modEventBus);
-        REGISTRY_HELPER.getPlacements().register(modEventBus);
+        REGISTRIES.getItems().register(modEventBus);
+        REGISTRIES.getBlocks().register(modEventBus);
+        REGISTRIES.getCarvers().register(modEventBus);
+        REGISTRIES.getFeatures().register(modEventBus);
+        REGISTRIES.getBiomes().register(modEventBus);
+        REGISTRIES.getParticleTypes().register(modEventBus);
+        REGISTRIES.getPlacements().register(modEventBus);
         DDEntityTypes.ENTITY_TYPES.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);

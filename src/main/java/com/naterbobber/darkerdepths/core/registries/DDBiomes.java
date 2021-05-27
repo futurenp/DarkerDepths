@@ -20,7 +20,7 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class DDBiomes {
-    public static final DDRegistries HELPER = DarkerDepths.REGISTRY_HELPER;
+    public static final DDRegistries HELPER = DarkerDepths.REGISTRIES;
 
     public static final RegistryObject<Biome> MOLTEN_CAVERN 	= HELPER.registerBiome("molten_cavern", DDBiomes::makeMoltenCaverns);
     public static final RegistryObject<Biome> SANDY_CATACOMBS 	= HELPER.registerBiome("sandy_catacombs", DDBiomes::makeSandyCatacombs);
@@ -41,7 +41,7 @@ public class DDBiomes {
         DefaultBiomeFeatures.withSugarCaneAndPumpkins(generationSettings);
         DefaultBiomeFeatures.withLavaAndWaterSprings(generationSettings);
         DefaultBiomeFeatures.withFrozenTopLayer(generationSettings);
-        return new Biome.Builder().precipitation(Biome.RainType.RAIN).category(Biome.Category.NONE).depth(0.1F).scale(0.2F).temperature(2.0F).downfall(0.0F).setEffects(new BiomeAmbience.Builder().setWaterColor(4159204).setWaterFogColor(329011).setFogColor(12638463).withSkyColor(getSkyColorWithTemperatureModifier(2.0F)).setMoodSound(MoodSoundAmbience.DEFAULT_CAVE).setParticle(new ParticleEffectAmbience(ParticleTypes.WHITE_ASH, 0.118093334f)).build()).withMobSpawnSettings(spawnSettings.build()).withGenerationSettings(generationSettings.build()).build();
+        return new Biome.Builder().precipitation(Biome.RainType.RAIN).category(Biome.Category.NONE).depth(0.1F).scale(0.2F).temperature(2.0F).downfall(0.0F).setEffects(new BiomeAmbience.Builder().setWaterColor(4159204).setWaterFogColor(329011).setFogColor(12638463).withSkyColor(getSkyColorWithTemperatureModifier(2.0F)).setMoodSound(MoodSoundAmbience.DEFAULT_CAVE).setParticle(new ParticleEffectAmbience(ParticleTypes.WHITE_ASH, 0.118093334F)).build()).withMobSpawnSettings(spawnSettings.build()).withGenerationSettings(generationSettings.build()).build();
     }
 
     public static Biome makeSandyCatacombs() {
@@ -59,7 +59,10 @@ public class DDBiomes {
         DefaultBiomeFeatures.withSugarCaneAndPumpkins(generationSettings);
         DefaultBiomeFeatures.withLavaAndWaterSprings(generationSettings);
         DefaultBiomeFeatures.withFrozenTopLayer(generationSettings);
-        return new Biome.Builder().precipitation(Biome.RainType.RAIN).category(Biome.Category.NONE).depth(0.125F).scale(0.05F).temperature(2.0F).downfall(0.0F).setEffects(new BiomeAmbience.Builder().setWaterColor(4159204).setWaterFogColor(329011).setFogColor(12638463).withSkyColor(getSkyColorWithTemperatureModifier(2.0F)).setMoodSound(MoodSoundAmbience.DEFAULT_CAVE).build()).withMobSpawnSettings(spawnSettings.build()).withGenerationSettings(generationSettings.build()).build();
+//        return new Biome.Builder().precipitation(Biome.RainType.RAIN).category(Biome.Category.NONE).depth(0.125F).scale(0.05F).temperature(2.0F).downfall(0.0F).setEffects(new BiomeAmbience.Builder().setWaterColor(4159204).setWaterFogColor(329011).setFogColor(12638463).withSkyColor(getSkyColorWithTemperatureModifier(2.0F)).setMoodSound(MoodSoundAmbience.DEFAULT_CAVE).build()).withMobSpawnSettings(spawnSettings.build()).withGenerationSettings(generationSettings.build()).build();
+        return new Biome.Builder().precipitation(Biome.RainType.RAIN).category(Biome.Category.NONE).depth(0.125F).scale(0.05F).temperature(2.0F).downfall(0.0F).setEffects(new BiomeAmbience.Builder().setWaterColor(4159204).setWaterFogColor(329011).setFogColor(12638463).withSkyColor(getSkyColorWithTemperatureModifier(2.0F)).setMoodSound(MoodSoundAmbience.DEFAULT_CAVE).setParticle(new ParticleEffectAmbience(DDParticleTypes.CAVE_FALLING_DUST.get(), 0.0025F)).build()).withMobSpawnSettings(spawnSettings.build()).withGenerationSettings(generationSettings.build()).build();
+//        return new Biome.Builder().precipitation(Biome.RainType.RAIN).category(Biome.Category.NONE).depth(0.125F).scale(0.05F).temperature(2.0F).downfall(0.0F).setEffects(new BiomeAmbience.Builder().setWaterColor(2602894).setWaterFogColor(329011).setFogColor(12638463).withSkyColor(getSkyColorWithTemperatureModifier(2.0F)).setMoodSound(MoodSoundAmbience.DEFAULT_CAVE).setParticle(new ParticleEffectAmbience(DDParticleTypes.CAVE_FALLING_DUST.get(), 0.0025F)).build()).withMobSpawnSettings(spawnSettings.build()).withGenerationSettings(generationSettings.build()).build();
+//        return new Biome.Builder().precipitation(Biome.RainType.RAIN).category(Biome.Category.NONE).depth(0.125F).scale(0.05F).temperature(2.0F).downfall(0.0F).setEffects(new BiomeAmbience.Builder().setWaterColor(4159204).setWaterFogColor(329011).setFogColor(12638463).withSkyColor(getSkyColorWithTemperatureModifier(2.0F)).setMoodSound(MoodSoundAmbience.DEFAULT_CAVE).setParticle(new ParticleEffectAmbience(DDParticleTypes.CAVE_FALLING_DUST.get(), 0.013F)).build()).withMobSpawnSettings(spawnSettings.build()).withGenerationSettings(generationSettings.build()).build();
     }
 
     public static Biome makeCrystalCaves() {

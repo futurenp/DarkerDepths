@@ -7,6 +7,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeGenerationSettings;
+import net.minecraft.world.gen.GenerationStage;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -39,6 +40,8 @@ public class GlobalBiomeFeatures {
 		if (biome == DDBiomes.CRYSTAL_CAVE.get()) {
 			this.generateCrystalCavesFeatures(generation);
 		}
+
+//		FeaturePlacement.addCarver(generation, GenerationStage.Carving.AIR, DDConfiguredCarvers.NOISE_CAVE);
 	}
 
 	private void generateDefaultCavesFeatures(BiomeGenerationSettings.Builder builder) {
@@ -56,11 +59,12 @@ public class GlobalBiomeFeatures {
 		VanillaBiomeFeatures.addAridrockOres(builder);
 		VanillaBiomeFeatures.addLimestoneOres(builder);
 		VanillaBiomeFeatures.addSandyCatacombsVegetation(builder);
+		VanillaBiomeFeatures.addGlowshrooms(builder);
+		VanillaBiomeFeatures.addOasis(builder);
 	}
 
 	private void generateCrystalCavesFeatures(BiomeGenerationSettings.Builder builder) {
 		VanillaBiomeFeatures.addGlowshrooms(builder);
 		VanillaBiomeFeatures.addCrystalPeaks(builder);
 	}
-
 }

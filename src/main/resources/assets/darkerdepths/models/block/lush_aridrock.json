@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "top": "darkerdepths:block/lush_aridrock",
+    "bottom": "darkerdepths:block/aridrock",
+    "side": "darkerdepths:block/lush_aridrock_side"
+  }
+}
