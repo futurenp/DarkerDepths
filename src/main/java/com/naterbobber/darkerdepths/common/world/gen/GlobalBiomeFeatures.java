@@ -40,7 +40,9 @@ public class GlobalBiomeFeatures {
 		if (biome == DDBiomes.CRYSTAL_CAVE.get()) {
 			this.generateCrystalCavesFeatures(generation);
 		}
-
+		if (biome == DDBiomes.GLOWSHROOM_CAVERN.get()) {
+			this.generateGlowshroomCavernFeature(generation);
+		}
 //		FeaturePlacement.addCarver(generation, GenerationStage.Carving.AIR, DDConfiguredCarvers.NOISE_CAVE);
 	}
 
@@ -66,5 +68,10 @@ public class GlobalBiomeFeatures {
 	private void generateCrystalCavesFeatures(BiomeGenerationSettings.Builder builder) {
 		VanillaBiomeFeatures.addGlowshrooms(builder);
 		VanillaBiomeFeatures.addCrystalPeaks(builder);
+	}
+
+	private void generateGlowshroomCavernFeature(BiomeGenerationSettings.Builder builder) {
+		VanillaBiomeFeatures.addGlowshrooms(builder);
+		VanillaBiomeFeatures.addGlowshroomVegetation(builder);
 	}
 }

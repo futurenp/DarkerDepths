@@ -1,0 +1,11 @@
+{
+  "variants": {
+    "powered=false": {
+      "model": "darkerdepths:block/glowspurs"
+    },
+    "powered=true": {
+      "model": "darkerdepths:block/glowspurs_powered",
+      "x": 270
+    }
+  }
+}

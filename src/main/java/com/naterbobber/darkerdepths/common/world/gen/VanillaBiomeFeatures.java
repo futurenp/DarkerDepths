@@ -9,7 +9,13 @@ public class VanillaBiomeFeatures {
     public static void addGlowshrooms(BiomeGenerationSettings.Builder builder) {
         FeaturePlacement.addFeature(builder, GenerationStage.Decoration.UNDERGROUND_DECORATION, DDConfiguredFeatures.GLOWSHROOM_PATCH);
     }
-    
+
+    public static void addGlowshroomVegetation(BiomeGenerationSettings.Builder builder) {
+        FeaturePlacement.addFeature(builder, GenerationStage.Decoration.UNDERGROUND_ORES, DDConfiguredFeatures.GRIMESTONE_ORE);
+        FeaturePlacement.addFeature(builder, GenerationStage.Decoration.VEGETAL_DECORATION, DDConfiguredFeatures.HUGE_GLOWSHROOM);
+        FeaturePlacement.addFeature(builder, GenerationStage.Decoration.UNDERGROUND_DECORATION, DDConfiguredFeatures.GRIMESTONE_STONE_REPLACEMENT);
+    }
+
     public static void addCrystalPeaks(BiomeGenerationSettings.Builder builder) {
         FeaturePlacement.addFeature(builder, GenerationStage.Decoration.UNDERGROUND_DECORATION, DDConfiguredFeatures.CEILING_CELESTINE_PEAK);
         FeaturePlacement.addFeature(builder, GenerationStage.Decoration.UNDERGROUND_DECORATION, DDConfiguredFeatures.FLOOR_CELESTINE_PEAK);

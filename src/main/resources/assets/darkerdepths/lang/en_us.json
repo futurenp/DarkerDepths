@@ -79,6 +79,9 @@
   "block.darkerdepths.pourus_petrified_log": "Pourus Petrified Log",
   "block.darkerdepths.cobbled_sandstone": "Cobbled Sandstone",
   "block.darkerdepths.lush_aridrock": "Lush Aridrock",
+  "block.darkerdepths.glowshroom_stem": "Glowshroom Stem",
+  "block.darkerdepths.glowshroom_block": "Glowshroom Block",
+  "block.darkerdepths.grimestone": "Grimestone",
   "entity.darkerdepths.glowshroom_monster": "Glowshroom Monster",
   "entity.darkerdepths.magma_minion": "Magma Minion",
   "itemGroup.DarkerDepths": "Darker Depths",
@@ -87,5 +90,6 @@
   "biome.darkerdepths.cave": "Default Cave Biome",
   "biome.darkerdepths.molten_cavern": "Molten Cavern Biome",
   "biome.darkerdepths.sandy_catacombs": "Sandy Catacombs Biome",
-  "biome.darkerdepths.crystal_cave": "Crystal Cave Biome"
+  "biome.darkerdepths.crystal_cave": "Crystal Cave Biome",
+  "biome.darkerdepths.glowshroom_cavern": "Glowshroom Cavern Biome"
 }
