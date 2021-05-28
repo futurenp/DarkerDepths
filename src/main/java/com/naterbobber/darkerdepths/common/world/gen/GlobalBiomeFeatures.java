@@ -43,7 +43,7 @@ public class GlobalBiomeFeatures {
 		if (biome == DDBiomes.GLOWSHROOM_CAVERN.get()) {
 			this.generateGlowshroomCavernFeature(generation);
 		}
-		//FeaturePlacement.addCarver(generation, GenerationStage.Carving.AIR, DDConfiguredCarvers.NOISE_CAVE);
+		FeaturePlacement.addCarver(generation, GenerationStage.Carving.AIR, DDConfiguredCarvers.NOISE_CAVE);
 	}
 
 	private void generateDefaultCavesFeatures(BiomeGenerationSettings.Builder builder) {

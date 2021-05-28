@@ -117,7 +117,6 @@ public class GlowshroomMonsterModel <T extends GlowshroomMonsterEntity> extends 
 
     @Override
     public void setRotationAngles(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        int i = entityIn.getAttackTimer();
         this.head.rotateAngleX = headPitch * ((float)Math.PI / 180F);
         this.head.rotateAngleY = netHeadYaw * ((float)Math.PI / 180F);
         this.body.rotateAngleX = ((float)100);
@@ -125,18 +124,11 @@ public class GlowshroomMonsterModel <T extends GlowshroomMonsterEntity> extends 
         this.left_leg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
         this.right_arm.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
         this.left_arm.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
-        if(i > 0) {
-            this.right_arm.rotateAngleX = MathHelper.cos(limbSwing * 0.5F) * 3F * limbSwingAmount;
-            this.left_arm.rotateAngleX = MathHelper.cos(limbSwing * 0.5F) * 3F * limbSwingAmount;
-        }
-    }
-
-    @Override
-    public void setLivingAnimations(T entityIn, float limbSwing, float limbSwingAmount, float partialTick) {
         int i = entityIn.getAttackTimer();
         if (i > 0) {
-            this.right_arm.rotateAngleX = -1.1F + 1.1F * MathHelper.func_233021_e_((float)i - partialTick, 10.0F);
-        }
+            this.left_arm.rotateAngleX = MathHelper.sin((float) (limbSwing * 0.6662F + Math.PI * 3)) * 1.4F * limbSwingAmount;
+            this.right_arm.rotateAngleX = MathHelper.sin((float) (limbSwing * 0.6662F + Math.PI * 3)) * 1.4F * limbSwingAmount;
+       }
     }
 
     @Override
