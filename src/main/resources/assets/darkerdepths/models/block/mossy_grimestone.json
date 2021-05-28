@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "top": "darkerdepths:block/mossy_grimestone_top",
+    "bottom": "darkerdepths:block/grimestone_top",
+    "side": "darkerdepths:block/mossy_grimestone"
+  }
+}
