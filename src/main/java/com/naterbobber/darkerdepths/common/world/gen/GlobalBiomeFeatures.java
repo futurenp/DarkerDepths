@@ -51,7 +51,6 @@ public class GlobalBiomeFeatures {
 	}
 
 	private void generateMoltenCavesFeatures(BiomeGenerationSettings.Builder builder) {
-		VanillaBiomeFeatures.addAsh(builder);
 		VanillaBiomeFeatures.addAmber(builder);
 		VanillaBiomeFeatures.addMoltenCavernDecorations(builder);
 	}

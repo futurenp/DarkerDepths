@@ -27,13 +27,7 @@ public class VanillaBiomeFeatures {
         FeaturePlacement.addFeature(builder, GenerationStage.Decoration.VEGETAL_DECORATION, DDConfiguredFeatures.AMBER_GEMSTONE);
     }
 
-    public static void addAsh(BiomeGenerationSettings.Builder builder) {
-        FeaturePlacement.addFeature(builder, GenerationStage.Decoration.UNDERGROUND_DECORATION, DDConfiguredFeatures.ASH_BLANKET);
-        FeaturePlacement.addFeature(builder, GenerationStage.Decoration.UNDERGROUND_ORES, DDConfiguredFeatures.ASH_ORE);
-    }
-
     public static void addMoltenCavernDecorations(BiomeGenerationSettings.Builder builder) {
-//        addAsh(builder);
         FeaturePlacement.addFeature(builder, GenerationStage.Decoration.VEGETAL_DECORATION, DDConfiguredFeatures.MOLTEN_CAVE_VEGETATION);
         FeaturePlacement.addFeature(builder, GenerationStage.Decoration.VEGETAL_DECORATION, DDConfiguredFeatures.LAVA_POOL_PATCH);
         FeaturePlacement.addFeature(builder, GenerationStage.Decoration.VEGETAL_DECORATION, DDConfiguredFeatures.MOLTEN_CAVERN_LAVA_SPRING);

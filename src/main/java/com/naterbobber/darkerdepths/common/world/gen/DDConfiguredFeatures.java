@@ -22,10 +22,15 @@ import net.minecraft.fluid.Fluids;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Direction;
-import net.minecraft.world.gen.blockplacer.SimpleBlockPlacer;
 import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
 import net.minecraft.world.gen.blockstateprovider.WeightedBlockStateProvider;
-import net.minecraft.world.gen.feature.*;
+import net.minecraft.world.gen.feature.BlockStateProvidingFeatureConfig;
+import net.minecraft.world.gen.feature.ConfiguredFeature;
+import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.gen.feature.FeatureSpread;
+import net.minecraft.world.gen.feature.IFeatureConfig;
+import net.minecraft.world.gen.feature.LiquidsConfig;
+import net.minecraft.world.gen.feature.OreFeatureConfig;
 import net.minecraft.world.gen.placement.DepthAverageConfig;
 import net.minecraft.world.gen.placement.Placement;
 import net.minecraft.world.gen.placement.TopSolidRangeConfig;
@@ -44,8 +49,6 @@ public class DDConfiguredFeatures {
     public static final ConfiguredFeature<?, ?> FLOOR_AMETHYST_PEAK = HELPER.registerConfiguredFeature("floor_amethyst_peak", DDFeatures.CAVE_PILLAR_FEATURE.get().withConfiguration(new CavePillarConfig(DDBlocks.AMETHYST_CRYSTAL_BLOCK.get().getDefaultState(), Direction.UP))).withPlacement(DDPlacements.CAVE_SURFACE.get().configure(new CaveDecoratorConfig(CaveSurface.FLOOR, 12))).chance(10).square().range(50);
 
     public static final ConfiguredFeature<?, ?> AMBER_GEMSTONE = HELPER.registerConfiguredFeature("amber_gemstone", DDFeatures.GEMSTONE_PLACEMENT_FEATURE.get().withConfiguration(new GemstonePlacementConfig(DDBlocks.AMBER.get().getDefaultState())).range(25).square().count(60));
-    public static final ConfiguredFeature<?, ?> ASH_BLANKET = HELPER.registerConfiguredFeature("ash_blanket", Feature.RANDOM_PATCH.withConfiguration(new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(DDBlocks.ASH.get().getDefaultState()), new SimpleBlockPlacer()).tries(100).preventProjection().build()).count(45).range(55)).square();
-    public static final ConfiguredFeature<?, ?> ASH_ORE = HELPER.registerConfiguredFeature("ash_ore", Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, DDBlocks.ASH_BLOCK.get().getDefaultState(), 33)).count(10).square().range(55));
 
     public static final ConfiguredFeature<?, ?> MOLTEN_CAVERN_LAVA_SPRING = HELPER.registerConfiguredFeature("molten_cavern_lava_spring", Feature.SPRING_FEATURE.withConfiguration(new LiquidsConfig(Fluids.LAVA.getDefaultState(), false, 4, 1, ImmutableSet.of(Blocks.STONE, Blocks.GRANITE, Blocks.DIORITE, Blocks.ANDESITE, Blocks.MAGMA_BLOCK, DDBlocks.SHALE.get()))).withPlacement(Placement.RANGE_VERY_BIASED.configure(new TopSolidRangeConfig(8, 16, 55)).square().count(40)));
     public static final ConfiguredFeature<?, ?> MAGMA_FLOOR = HELPER.registerConfiguredFeature("magma_floor", Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, Blocks.MAGMA_BLOCK.getDefaultState(), 15)).count(25).withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(10, 7, 13))).square());
