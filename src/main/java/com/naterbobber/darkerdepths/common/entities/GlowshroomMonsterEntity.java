@@ -12,6 +12,7 @@ import net.minecraft.entity.ai.goal.LookAtGoal;
 import net.minecraft.entity.ai.goal.LookRandomlyGoal;
 import net.minecraft.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
+import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -30,7 +31,6 @@ public class GlowshroomMonsterEntity extends MonsterEntity {
 
     public GlowshroomMonsterEntity(EntityType<? extends MonsterEntity> type, World worldIn) {
         super(type, worldIn);
-        this.stepHeight = 1.0F;
         this.experienceValue = 20;
     }
 
@@ -46,11 +46,11 @@ public class GlowshroomMonsterEntity extends MonsterEntity {
     @Override
     protected void registerGoals() {
         super.registerGoals();
-        this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 0.6D, true));
-        this.goalSelector.addGoal(2, new WaterAvoidingRandomWalkingGoal(this, getAttributeValue(Attributes.MOVEMENT_SPEED)));
+        this.goalSelector.addGoal(0, new MeleeAttackGoal(this, 0.6D, true));
+        this.goalSelector.addGoal(1, new SwimGoal(this));
         this.goalSelector.addGoal(2, new LookAtGoal(this, PlayerEntity.class, 8.0F));
         this.goalSelector.addGoal(3, new LookRandomlyGoal(this));
-        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
+        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true, false));
     }
 
     @Override
@@ -69,11 +69,7 @@ public class GlowshroomMonsterEntity extends MonsterEntity {
         this.playSound(SoundEvents.ENTITY_RAVAGER_STEP, 0.15F, 0.8F);
     }
 
-    @OnlyIn(Dist.CLIENT)
-    public int getAttackTimer() {
-        return this.attackTick;
-    }
-
+    @Override
     public void livingTick() {
         super.livingTick();
         if (this.attackTick > 0) {
@@ -89,6 +85,11 @@ public class GlowshroomMonsterEntity extends MonsterEntity {
         } else {
             super.handleStatusUpdate(id);
         }
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public int getAttackTimer() {
+        return this.attackTick;
     }
 
     @Override
