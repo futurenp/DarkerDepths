@@ -101,10 +101,10 @@ public class DDBlocks {
 	public static final RegistryObject<Block> DRY_SPROUTS 				= HELPER.registerBlock("dry_sprouts", () -> new DrySproutsBlock(AbstractBlock.Properties.from(Blocks.DEAD_BUSH)), DarkerDepths.DARKER_DEPTHS);
 	public static final RegistryObject<Block> DETRITUS	 				= HELPER.registerBlock("detritus", () -> new DetritusBlock(AbstractBlock.Properties.from(Blocks.DEAD_BUSH)), DarkerDepths.DARKER_DEPTHS);
 	public static final RegistryObject<Block> LUSH_SPROUTS 				= HELPER.registerBlock("lush_sprouts", () -> new SproutsBlock(AbstractBlock.Properties.from(Blocks.GRASS)), DarkerDepths.DARKER_DEPTHS);
+	public static final RegistryObject<Block> MOSSY_SPROUTS 			= HELPER.registerBlock("mossy_sprouts", () -> new SproutsBlock(AbstractBlock.Properties.from(Blocks.GRASS)), DarkerDepths.DARKER_DEPTHS);
 	public static final RegistryObject<Block> ALOE 						= HELPER.registerBlock("aloe", () -> new BushBlock(AbstractBlock.Properties.from(Blocks.GRASS)), DarkerDepths.DARKER_DEPTHS);
 	public static final RegistryObject<Block> POTTED_GLOWSHROOM			= HELPER.registerBlock("potted_glowshroom", () -> new FlowerPotBlock(GLOWSHROOM.get(), AbstractBlock.Properties.create(Material.MISCELLANEOUS).zeroHardnessAndResistance().notSolid()));
 	public static final RegistryObject<Block> POTTED_DETRITUS			= HELPER.registerBlock("potted_detritus", () -> new FlowerPotBlock(DETRITUS.get(), AbstractBlock.Properties.create(Material.MISCELLANEOUS).zeroHardnessAndResistance().notSolid()));
-
 
 	//REDSTONE
 	public static final RegistryObject<Block> HEART_CHAMBER				= HELPER.registerBlock("heart_chamber", () -> new HeartChamberBlock(Block.Properties.create(Material.ROCK, MaterialColor.SAND).setRequiresTool().hardnessAndResistance(1.5f, 6.0f).harvestTool(ToolType.PICKAXE).harvestLevel(1).sound(SoundType.STONE)));

@@ -10,10 +10,20 @@ public class VanillaBiomeFeatures {
         FeaturePlacement.addFeature(builder, GenerationStage.Decoration.UNDERGROUND_DECORATION, DDConfiguredFeatures.GLOWSHROOM_PATCH);
     }
 
+    public static void generateGrimestone(BiomeGenerationSettings.Builder builder) {
+        FeaturePlacement.addFeature(builder, GenerationStage.Decoration.UNDERGROUND_DECORATION, DDConfiguredFeatures.GRIMESTONE_STONE_REPLACEMENT);
+    }
+
     public static void addGlowshroomVegetation(BiomeGenerationSettings.Builder builder) {
         FeaturePlacement.addFeature(builder, GenerationStage.Decoration.UNDERGROUND_ORES, DDConfiguredFeatures.GRIMESTONE_ORE);
         FeaturePlacement.addFeature(builder, GenerationStage.Decoration.VEGETAL_DECORATION, DDConfiguredFeatures.HUGE_GLOWSHROOM);
-        FeaturePlacement.addFeature(builder, GenerationStage.Decoration.UNDERGROUND_DECORATION, DDConfiguredFeatures.GRIMESTONE_STONE_REPLACEMENT);
+        generateGrimestone(builder);
+    }
+
+    public static void addBGGlowshroomVegetation(BiomeGenerationSettings.Builder builder) {
+        generateGrimestone(builder);
+        FeaturePlacement.addFeature(builder, GenerationStage.Decoration.VEGETAL_DECORATION, DDConfiguredFeatures.BG_HUGE_GLOWSHROOM);
+        FeaturePlacement.addFeature(builder, GenerationStage.Decoration.VEGETAL_DECORATION, DDConfiguredFeatures.GLOWSHROOM_CAVE_VEGETATION);
     }
 
     public static void addCrystalPeaks(BiomeGenerationSettings.Builder builder) {
