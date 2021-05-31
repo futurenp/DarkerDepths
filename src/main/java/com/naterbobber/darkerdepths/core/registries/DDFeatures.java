@@ -29,5 +29,6 @@ public class DDFeatures {
 	public static final RegistryObject<Feature<NoFeatureConfig>> PETRIFIED_LOG_BRANCH					= HELPER.registerFeature("petrified_log_branch", () -> new PetrifiedLogBranchFeature(NoFeatureConfig.CODEC));
 	public static final RegistryObject<Feature<BlockStateProvidingFeatureConfig>> VEGETATION_FEATURE	= HELPER.registerFeature("vegetation_feature", () -> new VegetationFeature(BlockStateProvidingFeatureConfig.CODEC));
 	public static final RegistryObject<Feature<NoFeatureConfig>> HUGE_GLOWSHROOM_FEATURE 				= HELPER.registerFeature("huge_glowshroom", () -> new HugeGlowshroomFeature(NoFeatureConfig.CODEC));
+	public static final RegistryObject<Feature<NoFeatureConfig>> GLOWSHROOM_FEATURE 					= HELPER.registerFeature("glowshroom", () -> new BGHugeGlowshroomFeature(NoFeatureConfig.CODEC));
 
 }

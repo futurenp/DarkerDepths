@@ -77,12 +77,15 @@ public class DDBlocks {
 	public static final RegistryObject<Block> COBBLED_SANDSTONE 		= HELPER.registerBlock("cobbled_sandstone", () -> new Block(AbstractBlock.Properties.create(Material.ROCK, MaterialColor.SAND).setRequiresTool().hardnessAndResistance(1.0F)), DarkerDepths.DARKER_DEPTHS);
 	public static final RegistryObject<Block> LUSH_ARIDROCK 			= HELPER.registerBlock("lush_aridrock", () -> new LushAridrockBlock(Block.Properties.create(Material.ROCK, MaterialColor.LIME).setRequiresTool().hardnessAndResistance(1.5f, 6.0f).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE).tickRandomly()), DarkerDepths.DARKER_DEPTHS);
 	public static final RegistryObject<Block> GRIMESTONE				= HELPER.registerBlock("grimestone", () -> new RotatedPillarBlock(AbstractBlock.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F)), DarkerDepths.DARKER_DEPTHS);
+	public static final RegistryObject<Block> POLISHED_GRIMESTONE		= HELPER.registerBlock("polished_grimestone", () -> new Block(AbstractBlock.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F)), DarkerDepths.DARKER_DEPTHS);
+	public static final RegistryObject<Block> MOSSY_GRIMESTONE			= HELPER.registerBlock("mossy_grimestone", () -> new MossyGrimestoneBlock(AbstractBlock.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F)), DarkerDepths.DARKER_DEPTHS);
 	public static final RegistryObject<Block> GLOWSHROOM				= HELPER.registerBlock("glowshroom", () -> new Glowshroom(AbstractBlock.Properties.create(Material.PLANTS).hardnessAndResistance(0.0F, 1.0F).sound(SoundType.SLIME).setLightLevel(value -> 7).doesNotBlockMovement()), DarkerDepths.DARKER_DEPTHS);
 	public static final RegistryObject<Block> GLOWSHROOM_CAP			= HELPER.registerBlock("glowshroom_cap", GlowshroomCap::new);
-	public static final RegistryObject<Block> GLOWSHROOM_STEM			= HELPER.registerBlock("glowshroom_stem", () -> new Block(AbstractBlock.Properties.create(Material.ORGANIC).hardnessAndResistance(0.2F).sound(SoundType.WOOD)), DarkerDepths.DARKER_DEPTHS);
-	public static final RegistryObject<Block> GLOWSHROOM_BLOCK			= HELPER.registerBlock("glowshroom_block", () -> new Block(AbstractBlock.Properties.create(Material.ORGANIC).setLightLevel(value -> 8).hardnessAndResistance(0.2F).sound(SoundType.WOOD)), DarkerDepths.DARKER_DEPTHS);
+	public static final RegistryObject<Block> GLOWSHROOM_STEM			= HELPER.registerBlock("glowshroom_stem", () -> new Block(AbstractBlock.Properties.create(Material.ORGANIC).hardnessAndResistance(0.2F).sound(SoundType.WOOD).sound(SoundType.HYPHAE)), DarkerDepths.DARKER_DEPTHS);
+	public static final RegistryObject<Block> GLOWSHROOM_BLOCK			= HELPER.registerBlock("glowshroom_block", () -> new Block(AbstractBlock.Properties.create(Material.ORGANIC).setLightLevel(value -> 8).hardnessAndResistance(0.2F).sound(SoundType.SLIME)), DarkerDepths.DARKER_DEPTHS);
 	public static final RegistryObject<Block> GLOWSPURS					= HELPER.registerBlock("glowspurs", () -> new SpurBlock(AbstractBlock.Properties.create(Material.ORGANIC).hardnessAndResistance(0.2F).sound(SoundType.SLIME).doesNotBlockMovement()), DarkerDepths.DARKER_DEPTHS);
 	//public static final RegistryObject<Block> GLOWSHROOM_WALL			= HELPER.registerBlock("glowshroom_wall", () -> new WallFungusBlock(AbstractBlock.Properties.create(Material.ORGANIC).hardnessAndResistance(0.0f, 1.0f).sound(SoundType.SLIME).doesNotBlockMovement().setLightLevel(value -> 10)), DarkerDepths.DARKER_DEPTHS);
+	public static final RegistryObject<Block> GEYSER					= HELPER.registerBlock("geyser", () -> new GeyserBlock(AbstractBlock.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F).tickRandomly()), DarkerDepths.DARKER_DEPTHS);
 
 	//DECORATION
 	public static final RegistryObject<Block> CRYSTAL_MELON 			= HELPER.registerBlock("crystal_melon", CrystalMelon::new, DarkerDepths.DARKER_DEPTHS);
@@ -99,10 +102,10 @@ public class DDBlocks {
 	public static final RegistryObject<Block> DRY_SPROUTS 				= HELPER.registerBlock("dry_sprouts", () -> new DrySproutsBlock(AbstractBlock.Properties.from(Blocks.DEAD_BUSH)), DarkerDepths.DARKER_DEPTHS);
 	public static final RegistryObject<Block> DETRITUS	 				= HELPER.registerBlock("detritus", () -> new DetritusBlock(AbstractBlock.Properties.from(Blocks.DEAD_BUSH)), DarkerDepths.DARKER_DEPTHS);
 	public static final RegistryObject<Block> LUSH_SPROUTS 				= HELPER.registerBlock("lush_sprouts", () -> new SproutsBlock(AbstractBlock.Properties.from(Blocks.GRASS)), DarkerDepths.DARKER_DEPTHS);
+	public static final RegistryObject<Block> MOSSY_SPROUTS 			= HELPER.registerBlock("mossy_sprouts", () -> new SproutsBlock(AbstractBlock.Properties.from(Blocks.GRASS)), DarkerDepths.DARKER_DEPTHS);
 	public static final RegistryObject<Block> ALOE 						= HELPER.registerBlock("aloe", () -> new BushBlock(AbstractBlock.Properties.from(Blocks.GRASS)), DarkerDepths.DARKER_DEPTHS);
 	public static final RegistryObject<Block> POTTED_GLOWSHROOM			= HELPER.registerBlock("potted_glowshroom", () -> new FlowerPotBlock(GLOWSHROOM.get(), AbstractBlock.Properties.create(Material.MISCELLANEOUS).zeroHardnessAndResistance().notSolid()));
 	public static final RegistryObject<Block> POTTED_DETRITUS			= HELPER.registerBlock("potted_detritus", () -> new FlowerPotBlock(DETRITUS.get(), AbstractBlock.Properties.create(Material.MISCELLANEOUS).zeroHardnessAndResistance().notSolid()));
-
 
 	//REDSTONE
 	public static final RegistryObject<Block> HEART_CHAMBER				= HELPER.registerBlock("heart_chamber", () -> new HeartChamberBlock(Block.Properties.create(Material.ROCK, MaterialColor.SAND).setRequiresTool().hardnessAndResistance(1.5f, 6.0f).harvestTool(ToolType.PICKAXE).harvestLevel(1).sound(SoundType.STONE)));

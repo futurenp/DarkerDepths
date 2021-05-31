@@ -43,7 +43,11 @@ public class GlobalBiomeFeatures {
 		if (biome == DDBiomes.GLOWSHROOM_CAVERN.get()) {
 			this.generateGlowshroomCavernFeature(generation);
 		}
-		//FeaturePlacement.addCarver(generation, GenerationStage.Carving.AIR, DDConfiguredCarvers.NOISE_CAVE);
+		if (biome == DDBiomes.GLOWSHROOM_CAVES.get()) {
+			this.generateGlowshroomCavesFeatures(generation);
+		}
+
+		FeaturePlacement.addCarver(generation, GenerationStage.Carving.AIR, DDConfiguredCarvers.NOISE_CAVE);
 	}
 
 	private void generateDefaultCavesFeatures(BiomeGenerationSettings.Builder builder) {
@@ -51,7 +55,6 @@ public class GlobalBiomeFeatures {
 	}
 
 	private void generateMoltenCavesFeatures(BiomeGenerationSettings.Builder builder) {
-		VanillaBiomeFeatures.addAsh(builder);
 		VanillaBiomeFeatures.addAmber(builder);
 		VanillaBiomeFeatures.addMoltenCavernDecorations(builder);
 	}
@@ -73,5 +76,9 @@ public class GlobalBiomeFeatures {
 	private void generateGlowshroomCavernFeature(BiomeGenerationSettings.Builder builder) {
 		VanillaBiomeFeatures.addGlowshrooms(builder);
 		VanillaBiomeFeatures.addGlowshroomVegetation(builder);
+	}
+
+	private void generateGlowshroomCavesFeatures(BiomeGenerationSettings.Builder builder) {
+		VanillaBiomeFeatures.addBGGlowshroomVegetation(builder);
 	}
 }

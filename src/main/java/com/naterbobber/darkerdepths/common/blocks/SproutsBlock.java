@@ -1,5 +1,6 @@
 package com.naterbobber.darkerdepths.common.blocks;
 
+import com.naterbobber.darkerdepths.core.registries.DDBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.BushBlock;
@@ -20,6 +21,11 @@ public class SproutsBlock extends BushBlock {
 
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
         return SHAPE;
+    }
+
+    @Override
+    protected boolean isValidGround(BlockState state, IBlockReader worldIn, BlockPos pos) {
+        return state.matchesBlock(DDBlocks.LUSH_ARIDROCK.get()) || state.matchesBlock(DDBlocks.MOSSY_GRIMESTONE.get()) || super.isValidGround(state, worldIn, pos);
     }
 
     @Override

@@ -19,6 +19,7 @@ public class BlockRenderHandler {
         RenderTypeLookup.setRenderLayer(DDBlocks.DRY_SPROUTS.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(DDBlocks.DETRITUS.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(DDBlocks.LUSH_SPROUTS.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(DDBlocks.MOSSY_SPROUTS.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(DDBlocks.ALOE.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(DDBlocks.GLOWSPURS.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(DDBlocks.POTTED_DETRITUS.get(), RenderType.getCutout());
