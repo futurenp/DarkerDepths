@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "darkerdepths:block/grimestone_slab"
+    },
+    "type=double": {
+      "model": "darkerdepths:block/grimestone"
+    },
+    "type=top": {
+      "model": "darkerdepths:block/grimestone_slab_top"
+    }
+  }
+}

@@ -16,5 +16,6 @@ public class DDCarvers {
 	public static final DDRegistries HELPER = DarkerDepths.REGISTRIES;
 
 	public static final RegistryObject<WorldCarver<ProbabilityConfig>> NOISE_CAVE 		= HELPER.registerCarver("noise_cave", () -> new PerlinCarver(ProbabilityConfig.CODEC, 256));
+	public static final RegistryObject<WorldCarver<ProbabilityConfig>> CAVERN			= HELPER.registerCarver("cavern", () -> new CavernCarver(ProbabilityConfig.CODEC));
 
 }

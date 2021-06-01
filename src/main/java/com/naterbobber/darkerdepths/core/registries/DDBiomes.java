@@ -25,7 +25,6 @@ public class DDBiomes {
     public static final RegistryObject<Biome> MOLTEN_CAVERN 	= HELPER.registerBiome("molten_cavern", DDBiomes::makeMoltenCaverns);
     public static final RegistryObject<Biome> SANDY_CATACOMBS 	= HELPER.registerBiome("sandy_catacombs", DDBiomes::makeSandyCatacombs);
     public static final RegistryObject<Biome> CRYSTAL_CAVE 	    = HELPER.registerBiome("crystal_cave", DDBiomes::makeCrystalCaves);
-    public static final RegistryObject<Biome> GLOWSHROOM_CAVERN = HELPER.registerBiome("glowshroom_cavern", DDBiomes::makeGlowshroomCavern);
     public static final RegistryObject<Biome> GLOWSHROOM_CAVES  = HELPER.registerBiome("glowshroom_caves", DDBiomes::makeGlowshroomCavern);
 
     public static Biome makeMoltenCaverns() {
