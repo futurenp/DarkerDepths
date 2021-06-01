@@ -1,6 +1,7 @@
 package com.naterbobber.darkerdepths.common.world.gen;
 
 import com.blackgear.cavebiomes.core.registries.CaveBiomes;
+import com.blackgear.cavebiomes.core.registries.CaveConfiguredCarvers;
 import com.naterbobber.darkerdepths.core.registries.DDBiomes;
 import com.naterbobber.darkerdepths.core.registries.DDBlocks;
 import net.minecraft.entity.player.PlayerEntity;
@@ -65,7 +66,9 @@ public class GlobalBiomeFeatures {
 			this.generateGlowshroomCavesFeatures(generation);
 		}
 
-		FeaturePlacement.addCarver(generation, GenerationStage.Carving.AIR, DDConfiguredCarvers.NOISE_CAVE);
+//		FeaturePlacement.addCarver(generation, GenerationStage.Carving.AIR, DDConfiguredCarvers.NOISE_CAVE);
+		FeaturePlacement.addCarver(generation, GenerationStage.Carving.AIR, CaveConfiguredCarvers.NOISE_CARVER);
+//		FeaturePlacement.addCarver(generation, GenerationStage.Carving.AIR, DDConfiguredCarvers.CAVERN);
 	}
 
 	private void generateDefaultCavesFeatures(BiomeGenerationSettings.Builder builder) {
@@ -91,6 +94,7 @@ public class GlobalBiomeFeatures {
 	}
 
 	private void generateGlowshroomCavesFeatures(BiomeGenerationSettings.Builder builder) {
-		VanillaBiomeFeatures.addGlowshroomFeatures(builder);
+//		VanillaBiomeFeatures.addGlowshroomFeatures(builder);
+		VanillaBiomeFeatures.addGlowshroomVegetation(builder);
 	}
 }

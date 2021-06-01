@@ -5,7 +5,6 @@ import com.naterbobber.darkerdepths.common.world.gen.feature.BlobReplacementConf
 import com.naterbobber.darkerdepths.core.DDRegistries;
 import com.naterbobber.darkerdepths.core.DarkerDepths;
 
-import net.minecraft.block.BlockState;
 import net.minecraft.world.gen.feature.*;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.common.Mod;
@@ -33,7 +32,7 @@ public class DDFeatures {
 	public static final RegistryObject<Feature<HugeGlowshroomConfig>> HUGE_GLOWSHROOM_FEATURE 			= HELPER.registerFeature("huge_glowshroom", () -> new HugeGlowshroomFeature(HugeGlowshroomConfig.CODEC));
 	public static final RegistryObject<Feature<NoFeatureConfig>> GLOWSHROOM_FEATURE 					= HELPER.registerFeature("glowshroom", () -> new BGHugeGlowshroomFeature(NoFeatureConfig.CODEC));
 	public static final RegistryObject<Feature<HugeGlowshroomConfig>> HUGE_TWISTED_GLOWSHROOM_FEATURE 	= HELPER.registerFeature("huge_twisted_glowshroom", () -> new HugeTwistedGlowshroomFeature(HugeGlowshroomConfig.CODEC));
-	public static final RegistryObject<Feature<NoFeatureConfig>> GLOWVINE_FEATURE						= HELPER.registerFeature("glowvine", () -> new GlowVineFeature(NoFeatureConfig.CODEC));
+	public static final RegistryObject<Feature<GrowingPlantConfig>> GROWING_PLANT 						= HELPER.registerFeature("glowvine", () -> new GrowingPlantFeature(GrowingPlantConfig.CODEC));
 	public static final RegistryObject<Feature<HugeGlowshroomConfig>> GLOWSHROOM_WATERFALL_FEATURE		= HELPER.registerFeature("glowshroom_waterfall", () -> new GlowshroomWaterFallFeature(HugeGlowshroomConfig.CODEC));
 
 
