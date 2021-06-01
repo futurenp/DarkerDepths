@@ -2,6 +2,7 @@ package com.naterbobber.darkerdepths.common.world.gen;
 
 import com.blackgear.cavebiomes.core.registries.CaveBiomes;
 import com.blackgear.cavebiomes.core.registries.CaveConfiguredCarvers;
+import com.naterbobber.darkerdepths.common.blocks.GeyserBlock;
 import com.naterbobber.darkerdepths.core.registries.DDBiomes;
 import com.naterbobber.darkerdepths.core.registries.DDBlocks;
 import net.minecraft.entity.player.PlayerEntity;
@@ -32,7 +33,7 @@ public class GlobalBiomeFeatures {
 		PlayerEntity player = event.player;
 		BlockPos pos = player.getPosition();
 		for (int i = 5; i >= 0; i--) {
-			if (world.getBlockState(pos.down(i)) == DDBlocks.GEYSER.get().getDefaultState()) {
+			if (world.getBlockState(pos.down(i)) == DDBlocks.GEYSER.get().getDefaultState().with(GeyserBlock.POWERED, false)) {
 				Vector3d vector = player.getMotion();
 				player.setMotion(vector.x, vector.y + ((Math.abs(-i - 5.5) / 10)), vector.z);
 			}
