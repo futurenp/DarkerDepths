@@ -140,7 +140,7 @@ public class PerlinCarver extends WorldCarver<ProbabilityConfig> {
             offset += 4 + rand.nextFloat() * 2;
         }
         for (int y = 0; y < buffer.length; y++) {
-            buffer[y] = (float) ((float) sampleNoise(caveNoise, scaleNoise, x, y, z) + makeColumns((float) offset, x, y * 2, z) + ((offset + makeWalls((float) offset, y))));// + cutNoise(scaleNoise, (float) offset, x, y, z)
+            buffer[y] = (float) ((float) sampleNoise(caveNoise, scaleNoise, x, y, z) + makeColumns((float) offset, x, y, z) + ((offset + makeWalls((float) offset, y))));// + cutNoise(scaleNoise, (float) offset, x, y, z)
         }
     }
 
@@ -166,9 +166,14 @@ public class PerlinCarver extends WorldCarver<ProbabilityConfig> {
     }
 
     private double makeColumns(float offset, int x, int y, int z) {
-        offset *= MathHelper.floor(2F) + MathHelper.perlinFade(1) * Math.PI / 2;
-        offset *= 1.35F;
-        y *= MathHelper.sin((float) (Math.PI / 0.25));
+//        offset *= MathHelper.floor(2F) + MathHelper.perlinFade(1) * Math.PI / 2;
+//        offset *= 1.35F;
+//        y *= MathHelper.sin((float) (Math.PI / 0.25));
+//        offset += y;
+//        return offset;
+
+        offset *= MathHelper.floor(2F) + MathHelper.perlinFade(1) * Math.PI / 2 ;
+        y *= MathHelper.sin((float) (Math.PI));
         offset += y;
         return offset;
     }

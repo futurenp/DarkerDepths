@@ -1,6 +1,7 @@
 package com.naterbobber.darkerdepths.common.blocks;
 
 import com.naterbobber.darkerdepths.common.world.gen.DDConfiguredFeatures;
+import com.naterbobber.darkerdepths.core.registries.DDBlocks;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -41,7 +42,7 @@ public class Glowshroom extends Block implements IGrowable {
 
     @Override
     public boolean canGrow(IBlockReader worldIn, BlockPos pos, BlockState state, boolean isClient) {
-        return true;
+        return worldIn.getBlockState(pos.down()) == DDBlocks.MOSSY_GRIMESTONE.get().getDefaultState();
     }
 
     @Override
@@ -50,8 +51,13 @@ public class Glowshroom extends Block implements IGrowable {
     }
 
     @Override
-    public void grow(ServerWorld worldIn, Random rand, BlockPos pos, BlockState state) {
-        DDConfiguredFeatures.HUGE_GLOWSHROOM_PLANTED.generate(worldIn, worldIn.getChunkProvider().getChunkGenerator(), rand, pos);
-        System.out.println("Working Huge Glowshroom?");
+    public void grow(ServerWorld worldIn, Random rand, BlockPos pos, BlockState stateIn) {
+        BlockState state = worldIn.getBlockState(pos);
+        if (state == DDBlocks.TWISTED_GLOWSHROOM.get().getDefaultState()) {
+            System.out.println("Huge Twisted Glowshroom");
+            DDConfiguredFeatures.HUGE_TWISTED_GLOWSHROOM_PLANTED.generate(worldIn, worldIn.getChunkProvider().getChunkGenerator(), rand, pos);
+        } else {
+            DDConfiguredFeatures.HUGE_GLOWSHROOM_PLANTED.generate(worldIn, worldIn.getChunkProvider().getChunkGenerator(), rand, pos);
+        }
     }
 }

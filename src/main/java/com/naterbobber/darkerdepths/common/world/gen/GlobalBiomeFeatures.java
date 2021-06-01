@@ -2,13 +2,20 @@ package com.naterbobber.darkerdepths.common.world.gen;
 
 import com.blackgear.cavebiomes.core.registries.CaveBiomes;
 import com.naterbobber.darkerdepths.core.registries.DDBiomes;
+import com.naterbobber.darkerdepths.core.registries.DDBlocks;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeGenerationSettings;
 import net.minecraft.world.gen.GenerationStage;
+import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
+import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -17,6 +24,20 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 @Mod.EventBusSubscriber
 public class GlobalBiomeFeatures {
+
+	@SubscribeEvent
+	public void onPlayerTick(TickEvent.PlayerTickEvent event) {
+		World world = event.player.getEntityWorld();
+		PlayerEntity player = event.player;
+		BlockPos pos = player.getPosition();
+		for (int i = 5; i >= 0; i--) {
+			if (world.getBlockState(pos.down(i)) == DDBlocks.GEYSER.get().getDefaultState()) {
+				Vector3d vector = player.getMotion();
+				player.setMotion(vector.x, vector.y + ((Math.abs(-i - 5.5) / 10)), vector.z);
+			}
+		}
+	}
+
 	@SubscribeEvent
 	public void onBiomeLoad(BiomeLoadingEvent event) {
 		if (event.getCategory() == Biome.Category.NETHER || event.getCategory() == Biome.Category.THEEND) return;
@@ -40,9 +61,6 @@ public class GlobalBiomeFeatures {
 		if (biome == DDBiomes.CRYSTAL_CAVE.get()) {
 			this.generateCrystalCavesFeatures(generation);
 		}
-		if (biome == DDBiomes.GLOWSHROOM_CAVERN.get()) {
-			this.generateGlowshroomCavernFeature(generation);
-		}
 		if (biome == DDBiomes.GLOWSHROOM_CAVES.get()) {
 			this.generateGlowshroomCavesFeatures(generation);
 		}
@@ -64,7 +82,6 @@ public class GlobalBiomeFeatures {
 		VanillaBiomeFeatures.addAridrockOres(builder);
 		VanillaBiomeFeatures.addLimestoneOres(builder);
 		VanillaBiomeFeatures.addSandyCatacombsVegetation(builder);
-		VanillaBiomeFeatures.addGlowshrooms(builder);
 		VanillaBiomeFeatures.addOasis(builder);
 	}
 
@@ -73,12 +90,7 @@ public class GlobalBiomeFeatures {
 		VanillaBiomeFeatures.addCrystalPeaks(builder);
 	}
 
-	private void generateGlowshroomCavernFeature(BiomeGenerationSettings.Builder builder) {
-		VanillaBiomeFeatures.addGlowshrooms(builder);
-		VanillaBiomeFeatures.addGlowshroomVegetation(builder);
-	}
-
 	private void generateGlowshroomCavesFeatures(BiomeGenerationSettings.Builder builder) {
-		VanillaBiomeFeatures.addBGGlowshroomVegetation(builder);
+		VanillaBiomeFeatures.addGlowshroomFeatures(builder);
 	}
 }

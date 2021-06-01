@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:cobblestone",
+    "minecraft:blackstone",
+    "darkerdepths:shale",
+    "darkerdepths:aridrock",
+    "darkerdepths:limestone",
+    "darkerdepths:grimestone"
+  ]
+}

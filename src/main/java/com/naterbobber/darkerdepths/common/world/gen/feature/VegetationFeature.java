@@ -37,7 +37,7 @@ public class VegetationFeature extends Feature<BlockStateProvidingFeatureConfig>
                 for(int index = 0; index < width * width; ++index) {
                     BlockPos blockpos = pos.add(rand.nextInt(width) - rand.nextInt(width), rand.nextInt(height) - rand.nextInt(height), rand.nextInt(width) - rand.nextInt(width));
                     BlockState blockstate = config.stateProvider.getBlockState(rand, blockpos);
-                    if (worldIn.isAirBlock(blockpos) && blockpos.getY() > 0 && blockstate.isValidPosition(worldIn, blockpos)) {
+                    if (!worldIn.isAirBlock(pos.down()) && worldIn.isAirBlock(blockpos) && blockpos.getY() > 0 && blockstate.isValidPosition(worldIn, blockpos)) {
                         worldIn.setBlockState(blockpos, blockstate, 2);
                         ++featureCount;
                     }

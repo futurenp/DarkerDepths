@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "": [
+      {  "model": "darkerdepths:block/glowshroom_cluster1", "weight": 2 },
+      {  "model": "darkerdepths:block/glowshroom_cluster2", "weight": 2 },
+      {  "model": "darkerdepths:block/glowshroom_cluster3", "weight": 2 },
+      {  "model": "darkerdepths:block/glowshroom_cluster4", "weight": 2 }
+    ]
+  }
+}

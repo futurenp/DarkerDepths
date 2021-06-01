@@ -23,5 +23,9 @@ public class BlockRenderHandler {
         RenderTypeLookup.setRenderLayer(DDBlocks.ALOE.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(DDBlocks.GLOWSPURS.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(DDBlocks.POTTED_DETRITUS.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(DDBlocks.GLOWSPIRE.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(DDBlocks.GLOWSPIRE_PLANT.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(DDBlocks.TWISTED_GLOWSHROOM_ROOT.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(DDBlocks.GLOWSHROOM_CLUSTER.get(), RenderType.getCutout());
     }
 }
