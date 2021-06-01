@@ -1,6 +1,5 @@
 package com.naterbobber.darkerdepths.common.entities;
 
-
 import com.naterbobber.darkerdepths.core.registries.DDItems;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
@@ -11,7 +10,9 @@ import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.LookAtGoal;
 import net.minecraft.entity.ai.goal.LookRandomlyGoal;
 import net.minecraft.entity.ai.goal.MeleeAttackGoal;
+import net.minecraft.entity.ai.goal.MoveTowardsTargetGoal;
 import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
+import net.minecraft.entity.ai.goal.RandomWalkingGoal;
 import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
 import net.minecraft.entity.monster.MonsterEntity;
@@ -46,9 +47,10 @@ public class GlowshroomMonsterEntity extends MonsterEntity {
     @Override
     protected void registerGoals() {
         super.registerGoals();
-        this.goalSelector.addGoal(0, new MeleeAttackGoal(this, 0.6D, true));
-        this.goalSelector.addGoal(1, new SwimGoal(this));
-        this.goalSelector.addGoal(2, new LookAtGoal(this, PlayerEntity.class, 8.0F));
+        this.goalSelector.addGoal(0, new SwimGoal(this));
+        this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 0.6D, true));
+        this.goalSelector.addGoal(2, new RandomWalkingGoal(this, 0.4D));
+        this.goalSelector.addGoal(3, new LookAtGoal(this, PlayerEntity.class, 8.0F));
         this.goalSelector.addGoal(3, new LookRandomlyGoal(this));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true, false));
     }
