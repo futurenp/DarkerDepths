@@ -19,7 +19,7 @@ public class TickEvents {
         for (int i = 5; i >= 0; i--) {
             if (world.getBlockState(pos.down(i)) == DDBlocks.GEISER.get().getDefaultState()) {
                 Vector3d vector = player.getMotion();
-                player.setMotion(vector.x, vector.y + ((Math.abs(-i - 5.5) / 10)), vector.z);
+                player.setMotion(vector.x, vector.y + ((Math.abs(-i - 5.5) / 10) / 4), vector.z);
             }
         }
     }

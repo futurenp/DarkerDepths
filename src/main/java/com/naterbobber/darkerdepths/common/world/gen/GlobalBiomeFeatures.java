@@ -28,19 +28,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class GlobalBiomeFeatures {
 
 	@SubscribeEvent
-	public void onPlayerTick(TickEvent.PlayerTickEvent event) {
-		World world = event.player.getEntityWorld();
-		PlayerEntity player = event.player;
-		BlockPos pos = player.getPosition();
-		for (int i = 5; i >= 0; i--) {
-			if (world.getBlockState(pos.down(i)) == DDBlocks.GEISER.get().getDefaultState().with(GeiserBlock.POWERED, false)) {
-				Vector3d vector = player.getMotion();
-				player.setMotion(vector.x, vector.y / 2, vector.z);
-			}
-		}
-	}
-
-	@SubscribeEvent
 
 	public void onBiomeLoad(BiomeLoadingEvent event) {
 		if (event.getCategory() == Biome.Category.NETHER || event.getCategory() == Biome.Category.THEEND) return;
