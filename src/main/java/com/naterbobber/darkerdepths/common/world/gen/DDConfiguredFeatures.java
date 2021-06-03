@@ -1,6 +1,7 @@
 package com.naterbobber.darkerdepths.common.world.gen;
 
 import com.google.common.collect.ImmutableSet;
+import com.naterbobber.darkerdepths.common.blocks.Glowshroom;
 import com.naterbobber.darkerdepths.common.math.ConstantIntProvider;
 import com.naterbobber.darkerdepths.common.math.IntProvider;
 import com.naterbobber.darkerdepths.common.math.UniformIntProvider;
@@ -26,6 +27,7 @@ import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Direction;
 import net.minecraft.util.WeightedList;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
 import net.minecraft.world.gen.blockstateprovider.WeightedBlockStateProvider;
 import net.minecraft.world.gen.feature.BlockStateProvidingFeatureConfig;
@@ -38,6 +40,8 @@ import net.minecraft.world.gen.feature.OreFeatureConfig;
 import net.minecraft.world.gen.placement.DepthAverageConfig;
 import net.minecraft.world.gen.placement.Placement;
 import net.minecraft.world.gen.placement.TopSolidRangeConfig;
+
+import java.util.Random;
 
 //<>
 
@@ -113,23 +117,16 @@ public class DDConfiguredFeatures {
     public static final ConfiguredFeature<?, ?> LONG_ROOTS_FEATURE = HELPER.registerConfiguredFeature("long_roots_feature", DDFeatures.SIMPLE_BLOCK.get().withConfiguration(new SimpleBlockConfig(new SimpleBlockStateProvider(DDBlocks.LONG_ROOTS.get().getDefaultState()))).withPlacement(DDPlacements.CAVE_SURFACE.get().configure(new CaveDecoratorConfig(CaveSurface.CEILING, 12))).range(70).square().count(10).chance(25));
 
     public static final ConfiguredFeature<?, ?> GRIMESTONE_ORE = HELPER.registerConfiguredFeature("grimestone_ore", Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, DDBlocks.GRIMESTONE.get().getDefaultState(), 64)).count(7).withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(5, 5, 55))).square());
-    public static final ConfiguredFeature<?, ?> HUGE_GLOWSHROOM = HELPER.registerConfiguredFeature("huge_glowshroom", DDFeatures.HUGE_GLOWSHROOM_FEATURE.get().withConfiguration(new HugeGlowshroomConfig(DDBlocks.GLOWSHROOM_STEM.get().getDefaultState(), DDBlocks.GLOWSHROOM_BLOCK.get().getDefaultState())).withPlacement(DDPlacements.CAVE_SURFACE.get().configure(new CaveDecoratorConfig(CaveSurface.FLOOR, 12))).range(32).square().count(8));
-    public static final ConfiguredFeature<?, ?> HUGE_TWISTED_GLOWSHROOM = HELPER.registerConfiguredFeature("huge_twisted_glowshroom", DDFeatures.HUGE_TWISTED_GLOWSHROOM_FEATURE.get().withConfiguration(new HugeGlowshroomConfig(DDBlocks.GLOWSHROOM_STEM.get().getDefaultState(), DDBlocks.TWISTED_GLOWSHROOM_BLOCK.get().getDefaultState())).withPlacement(DDPlacements.CAVE_SURFACE.get().configure(new CaveDecoratorConfig(CaveSurface.FLOOR, 12))).range(32).square().count(8));
+    public static final ConfiguredFeature<?, ?> HUGE_GLOWSHROOM = HELPER.registerConfiguredFeature("huge_glowshroom", DDFeatures.HUGE_GLOWSHROOM_FEATURE.get().withConfiguration(new HugeGlowshroomConfig(DDBlocks.GLOWSHROOM_STEM.get().getDefaultState(), DDBlocks.GLOWSHROOM_BLOCK.get().getDefaultState())).withPlacement(DDPlacements.CAVE_SURFACE.get().configure(new CaveDecoratorConfig(CaveSurface.FLOOR, 12))).range(50).square().count(7));
     public static final ConfiguredFeature<?, ?> HUGE_GLOWSHROOM_PLANTED = HELPER.registerConfiguredFeature("huge_glowshroom_planted", DDFeatures.HUGE_GLOWSHROOM_FEATURE.get().withConfiguration(new HugeGlowshroomConfig(DDBlocks.GLOWSHROOM_STEM.get().getDefaultState(), DDBlocks.GLOWSHROOM_BLOCK.get().getDefaultState())));
-    public static final ConfiguredFeature<?, ?> HUGE_TWISTED_GLOWSHROOM_PLANTED = HELPER.registerConfiguredFeature("huge_twisted_glowshroom_planted", DDFeatures.HUGE_TWISTED_GLOWSHROOM_FEATURE.get().withConfiguration(new HugeGlowshroomConfig(DDBlocks.GLOWSHROOM_STEM.get().getDefaultState(), DDBlocks.TWISTED_GLOWSHROOM_BLOCK.get().getDefaultState())));
     public static final ConfiguredFeature<?, ?> GRIMESTONE_STONE_REPLACEMENT = HELPER.registerConfiguredFeature("grimestone_stone_replacement", DDFeatures.BLOB_REPLACEMENT_FEATURE.get().withConfiguration(new BlobReplacementConfig(ImmutableSet.of(Blocks.STONE.getDefaultState(), Blocks.DIORITE.getDefaultState(), Blocks.GRANITE.getDefaultState(), Blocks.GRAVEL.getDefaultState(), Blocks.DIRT.getDefaultState(), DDBlocks.ARIDROCK.get().getDefaultState()), DDBlocks.GRIMESTONE.get().getDefaultState(), FeatureSpread.create(3, 4))).range(55).square().count(100));
 
     public static final ConfiguredFeature<?, ?> GLOWVINE_FEATURE = HELPER.registerConfiguredFeature("glowvine", DDFeatures.GROWING_PLANT.get().withConfiguration(new GrowingPlantConfig(new WeightedList<IntProvider>().addWeighted(UniformIntProvider.create(1, 20), 2).addWeighted(UniformIntProvider.create(1, 3), 3).addWeighted(UniformIntProvider.create(1, 7), 10), Direction.DOWN, new SimpleBlockStateProvider(DDBlocks.GLOWSPIRE_PLANT.get().getDefaultState()), new SimpleBlockStateProvider(DDBlocks.GLOWSPIRE.get().getDefaultState()), false)).withPlacement(DDPlacements.CAVE_SURFACE.get().configure(new CaveDecoratorConfig(CaveSurface.CEILING, 12)).range(50).square().count(12)));
 
-    public static final ConfiguredFeature<?, ?> a_GLOWSHROOM_VEGETATION = HELPER.registerConfiguredFeature("a_glowshroom_vegetation", DDFeatures.VEGETATION_FEATURE.get().withConfiguration(Configs.GLOWSHROOM_VEGETATION_CONFIG).range(50).square().count(40));
-    public static final ConfiguredFeature<?, ?> TWISTED_GLOWSHROOM_VEGETATION = HELPER.registerConfiguredFeature("twisted_glowshroom_vegetation", DDFeatures.VEGETATION_FEATURE.get().withConfiguration(Configs.TWISTED_GLOWSHROOM_VEGETATION_CONFIG).range(50).square().count(40));
-    public static final ConfiguredFeature<?, ?> GLOWSHROOM_WATERFALL = HELPER.registerConfiguredFeature("glowshroom_waterfall", DDFeatures.GLOWSHROOM_WATERFALL_FEATURE.get().withConfiguration(new HugeGlowshroomConfig(DDBlocks.GLOWSHROOM_STEM.get().getDefaultState(), DDBlocks.GLOWSHROOM_BLOCK.get().getDefaultState())).range(50).square().count(12));
-    public static final ConfiguredFeature<?, ?> TWISTED_GLOWSHROOM_WATERFALL = HELPER.registerConfiguredFeature("twisted_glowshroom_waterfall", DDFeatures.GLOWSHROOM_WATERFALL_FEATURE.get().withConfiguration(new HugeGlowshroomConfig(DDBlocks.GLOWSHROOM_STEM.get().getDefaultState(), DDBlocks.TWISTED_GLOWSHROOM_BLOCK.get().getDefaultState())).range(50).square().count(8));
-
-    //BG_GLOWSHROOM_CAVES
-
     public static final ConfiguredFeature<?, ?> GLOWSHROOM_VEGETATION = HELPER.registerConfiguredFeature("glowshroom_vegetation", DDFeatures.SIMPLE_BLOCK.get().withConfiguration(new SimpleBlockConfig(new WeightedBlockStateProvider()
-            .addWeightedBlockstate(DDBlocks.GLOWSHROOM.get().getDefaultState(), 6)
+            .addWeightedBlockstate(States.GLOWSHROOM_SINGLE, 6)
+            .addWeightedBlockstate(States.GLOWSHROOM_DOUBLE, 6)
+            .addWeightedBlockstate(States.GLOWSHROOM_TRIPLE, 6)
             .addWeightedBlockstate(DDBlocks.GLOWSPURS.get().getDefaultState(), 1)
             .addWeightedBlockstate(DDBlocks.MOSSY_SPROUTS.get().getDefaultState(), 50)
             .addWeightedBlockstate(Blocks.CAVE_AIR.getDefaultState(), 43))));
@@ -140,9 +137,10 @@ public class DDConfiguredFeatures {
 
     public static final ConfiguredFeature<?, ?> GLOWSHROOM_CAVE_VEGETATION = HELPER.registerConfiguredFeature("glowshroom_cave_vegetation", MOSSY_GRIMESTONE_PATCH.withPlacement(DDPlacements.CAVE_SURFACE.get().configure(new CaveDecoratorConfig(CaveSurface.FLOOR, 12))).range(50).square().count(13));
 
-    public static final ConfiguredFeature<?, ?> BG_HUGE_GLOWSHROOM = HELPER.registerConfiguredFeature("bg_huge_glowshroom", DDFeatures.GLOWSHROOM_FEATURE.get().withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).withPlacement(DDPlacements.CAVE_SURFACE.get().configure(new CaveDecoratorConfig(CaveSurface.FLOOR, 12))).range(50).square().count(7));
-
     static class States {
+        public static final BlockState GLOWSHROOM_SINGLE = DDBlocks.GLOWSHROOM.get().getDefaultState().with(Glowshroom.CLUSTERS_1_3, 1);
+        public static final BlockState GLOWSHROOM_DOUBLE = DDBlocks.GLOWSHROOM.get().getDefaultState().with(Glowshroom.CLUSTERS_1_3, 2);
+        public static final BlockState GLOWSHROOM_TRIPLE = DDBlocks.GLOWSHROOM.get().getDefaultState().with(Glowshroom.CLUSTERS_1_3, 3);
         public static final BlockState ASH_LAYER = DDBlocks.ASH.get().getDefaultState().with(BlockStateProperties.LAYERS_1_8, 1);
         public static final BlockState ASH_LAYER_DOUBLE = DDBlocks.ASH.get().getDefaultState().with(BlockStateProperties.LAYERS_1_8, 2);
         public static final BlockState ASH_LAYER_TRIPLE = DDBlocks.ASH.get().getDefaultState().with(BlockStateProperties.LAYERS_1_8, 3);
@@ -170,10 +168,6 @@ public class DDConfiguredFeatures {
         public static final BlockStateProvidingFeatureConfig GLOWSHROOM_VEGETATION_CONFIG = new BlockStateProvidingFeatureConfig(new WeightedBlockStateProvider()
         .addWeightedBlockstate(DDBlocks.GLOWSPURS.get().getDefaultState(), 35)
         .addWeightedBlockstate(DDBlocks.GLOWSHROOM.get().getDefaultState(), 20));
-
-        public static final BlockStateProvidingFeatureConfig TWISTED_GLOWSHROOM_VEGETATION_CONFIG = new BlockStateProvidingFeatureConfig(new WeightedBlockStateProvider()
-        .addWeightedBlockstate(DDBlocks.TWISTED_GLOWSHROOM.get().getDefaultState(), 15)
-        .addWeightedBlockstate(DDBlocks.TWISTED_GLOWSHROOM_ROOT.get().getDefaultState(), 25));
 
 //        public static final BlockStateProvidingFeatureConfig SANDY_CATACOMBS_VEGETATION_CONFIG = new BlockStateProvidingFeatureConfig(new WeightedBlockStateProvider()
 //                .addWeightedBlockstate(Blocks.DEAD_BUSH.getDefaultState(), 25)

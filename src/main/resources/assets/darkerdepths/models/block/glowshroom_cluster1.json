@@ -1,6 +1,0 @@
-{
-  "parent": "block/cross",
-  "textures": {
-    "cross": "darkerdepths:block/glowshroom_cluster1"
-  }
-}

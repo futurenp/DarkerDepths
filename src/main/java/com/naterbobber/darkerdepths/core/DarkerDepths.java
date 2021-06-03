@@ -3,6 +3,7 @@ package com.naterbobber.darkerdepths.core;
 import com.naterbobber.darkerdepths.client.render.BlockRenderHandler;
 import com.naterbobber.darkerdepths.common.entities.GlowshroomMonsterEntity;
 import com.naterbobber.darkerdepths.common.entities.MagmaMinionEntity;
+import com.naterbobber.darkerdepths.common.events.TickEvents;
 import com.naterbobber.darkerdepths.common.world.gen.GlobalBiomeFeatures;
 import com.naterbobber.darkerdepths.core.registries.DDEntityTypes;
 import com.naterbobber.darkerdepths.core.registries.VanillaIntegrationRegistry;
@@ -33,6 +34,7 @@ public class DarkerDepths {
         MinecraftForge.EVENT_BUS.register(this);
 
         MinecraftForge.EVENT_BUS.register(new GlobalBiomeFeatures());
+        MinecraftForge.EVENT_BUS.register(new TickEvents());
 
         REGISTRIES.getItems().register(modEventBus);
         REGISTRIES.getBlocks().register(modEventBus);

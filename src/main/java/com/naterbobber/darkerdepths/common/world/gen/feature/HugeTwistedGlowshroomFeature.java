@@ -22,7 +22,7 @@ public class HugeTwistedGlowshroomFeature extends Feature<HugeGlowshroomConfig> 
     @Override
     public boolean generate(ISeedReader world, ChunkGenerator generator, Random rand, BlockPos pos, HugeGlowshroomConfig config) {
         BlockState checkState = world.getBlockState(pos.down());
-        if (world.isAirBlock(pos.down()) || checkState == DDBlocks.GLOWSPURS.get().getDefaultState() || checkState == DDBlocks.GLOWSHROOM.get().getDefaultState() || checkState == DDBlocks.TWISTED_GLOWSHROOM_BLOCK.get().getDefaultState() || checkState == DDBlocks.GLOWSHROOM_BLOCK.get().getDefaultState()) {
+        if (world.isAirBlock(pos.down()) || checkState == DDBlocks.GLOWSPURS.get().getDefaultState() || checkState == DDBlocks.GLOWSHROOM.get().getDefaultState()) {
             return false;
         } else {
             Direction[] randDir = {Direction.SOUTH, Direction.WEST, Direction.NORTH, Direction.WEST};

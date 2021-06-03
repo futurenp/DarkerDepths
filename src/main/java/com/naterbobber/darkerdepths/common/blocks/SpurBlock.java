@@ -55,27 +55,26 @@ public class SpurBlock extends Block {
         if (entityIn instanceof LivingEntity && entityIn.getType() != DDEntityTypes.GLOWSHROOM_MONSTER.get()) {
             entityIn.setMotionMultiplier(state, new Vector3d(0.8F, 0.75D, 0.8F));
             if (!worldIn.isRemote && !state.get(POWERED)) {
-                setPowered(pos, state, worldIn);
+                updateState(pos, state, worldIn);
             }
         }
     }
 
-    private void setPowered(BlockPos pos, BlockState state, World world) {
-        world.setBlockState(pos, state.with(POWERED, true), 2);
-        world.playSound(null, pos, SoundEvents.BLOCK_SLIME_BLOCK_PLACE, SoundCategory.BLOCKS, 1.0F, 1.0F);
-        world.getPendingBlockTicks().scheduleTick(pos, this, 20);
-    }
-
-    private void deactivate(BlockPos pos, BlockState state, World world) {
-        world.setBlockState(pos, state.with(POWERED, false), 2);
-        world.playSound(null, pos, SoundEvents.BLOCK_SLIME_BLOCK_BREAK, SoundCategory.BLOCKS, 1.0F, 1.0F);
-        world.getPendingBlockTicks().scheduleTick(pos, this, 20);
+    private void updateState(BlockPos pos, BlockState state, World worldIn) {
+        boolean bl = state.get(POWERED);
+        if (bl) {
+            worldIn.setBlockState(pos, state.with(POWERED, false), 2);
+        }
+        if (!bl) {
+            worldIn.setBlockState(pos, state.with(POWERED, true), 2);
+        }
+        worldIn.getPendingBlockTicks().scheduleTick(new BlockPos(pos), this, 20);
     }
 
     @Override
     public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
         if (state.get(POWERED)) {
-            deactivate(pos, state, worldIn);
+            updateState(pos, state, worldIn);
         }
     }
 

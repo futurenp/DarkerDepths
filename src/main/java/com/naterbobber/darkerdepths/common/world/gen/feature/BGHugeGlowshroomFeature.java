@@ -21,20 +21,20 @@ public class BGHugeGlowshroomFeature extends Feature<NoFeatureConfig> {
     }
 
     @Override
-    public boolean generate(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, NoFeatureConfig config) {
+    public boolean generate(ISeedReader world, ChunkGenerator generator, Random rand, BlockPos pos, NoFeatureConfig config) {
         BlockPos.Mutable blockPos = new BlockPos.Mutable();
-        if (!reader.getBlockState(pos).isAir() && !reader.getBlockState(pos.down()).matchesBlock(DDBlocks.MOSSY_GRIMESTONE.get()) || reader.getBlockState(pos.down()).matchesBlock(DDBlocks.GLOWSHROOM_BLOCK.get())) {
+        if (!world.getBlockState(pos).isAir() && !world.getBlockState(pos.down()).matchesBlock(DDBlocks.MOSSY_GRIMESTONE.get()) || world.getBlockState(pos.down()).matchesBlock(DDBlocks.GLOWSHROOM_BLOCK.get())) {
             return false;
         } else {
             int maxHeight = MathHelper.nextInt(rand, 2, 5);
             for (int height = 0; height < maxHeight; height++) {
                 blockPos.setPos(pos).move(Direction.UP, height);
-                this.setBlockState(reader, blockPos, DDBlocks.GLOWSHROOM_STEM.get().getDefaultState());
+                this.setBlockState(world, blockPos, DDBlocks.GLOWSHROOM_STEM.get().getDefaultState());
             }
             if (maxHeight > 3) {
-                this.generateLargeCap(reader, blockPos);
+                this.generateLargeCap(world, blockPos);
             } else {
-                this.generateSmallCap(reader, blockPos);
+                this.generateSmallCap(world, blockPos);
             }
         }
 
@@ -100,6 +100,15 @@ public class BGHugeGlowshroomFeature extends Feature<NoFeatureConfig> {
     }
 
     private void generateSmallCap(IWorld world, BlockPos.Mutable mutable) {
+//        for (int x = -1; x <= 1; x++) {
+//            for (int z = -1; z <= 1; z++) {
+//                for (int y = 0; y < 2; y++) {
+//                    BlockPos.Mutable mutable1 = new BlockPos.Mutable();
+//                    mutable1.setAndOffset(mutable, x, y, z);
+//                    this.setBlockState(world, mutable1, DDBlocks.GLOWSHROOM_BLOCK.get().getDefaultState());
+//                }
+//            }
+//        }
         this.generate2DCap(world, mutable, Direction.UP, 1, false);
         this.generate2DCap(world, mutable, Direction.NORTH, 1, true);
         this.generate2DCap(world, mutable, Direction.SOUTH, 1, true);

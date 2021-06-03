@@ -6,6 +6,37 @@
       "entries": [
         {
           "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "conditions": [
+                {
+                  "condition": "minecraft:block_state_property",
+                  "block": "darkerdepths:glowshroom",
+                  "properties": {
+                    "clusters": "2"
+                  }
+                }
+              ],
+              "count": 2
+            },
+            {
+              "function": "minecraft:set_count",
+              "conditions": [
+                {
+                  "condition": "minecraft:block_state_property",
+                  "block": "darkerdepths:glowshroom",
+                  "properties": {
+                    "clusters": "3"
+                  }
+                }
+              ],
+              "count": 3
+            },
+            {
+              "function": "minecraft:explosion_decay"
+            }
+          ],
           "name": "darkerdepths:glowshroom"
         }
       ]

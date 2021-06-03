@@ -26,14 +26,10 @@ public class DDFeatures {
 	public static final RegistryObject<Feature<VegetationPatchConfig>> WATERLOGGED_VEGETATION_PATCH 	= HELPER.registerFeature("waterlogged_vegetation_patch", () -> new WaterloggedVegetationPatchFeature(VegetationPatchConfig.CODEC));
 	public static final RegistryObject<Feature<VegetationPatchConfig>> LAVA_VEGETATION_PATCH 			= HELPER.registerFeature("lava_vegetation_patch", () -> new LavaVegetationPatchFeature(VegetationPatchConfig.CODEC));
 	public static final RegistryObject<Feature<NoFeatureConfig>> PETRIFIED_LOG_BRANCH					= HELPER.registerFeature("petrified_log_branch", () -> new PetrifiedLogBranchFeature(NoFeatureConfig.CODEC));
-
 	public static final RegistryObject<Feature<BlockStateProvidingFeatureConfig>> VEGETATION_FEATURE	= HELPER.registerFeature("vegetation_feature", () -> new VegetationFeature(BlockStateProvidingFeatureConfig.CODEC));
-
 	public static final RegistryObject<Feature<HugeGlowshroomConfig>> HUGE_GLOWSHROOM_FEATURE 			= HELPER.registerFeature("huge_glowshroom", () -> new HugeGlowshroomFeature(HugeGlowshroomConfig.CODEC));
-	public static final RegistryObject<Feature<NoFeatureConfig>> GLOWSHROOM_FEATURE 					= HELPER.registerFeature("glowshroom", () -> new BGHugeGlowshroomFeature(NoFeatureConfig.CODEC));
+	//public static final RegistryObject<Feature<NoFeatureConfig>> GLOWSHROOM_FEATURE 					= HELPER.registerFeature("glowshroom", () -> new BGHugeGlowshroomFeature(NoFeatureConfig.CODEC));
 	public static final RegistryObject<Feature<HugeGlowshroomConfig>> HUGE_TWISTED_GLOWSHROOM_FEATURE 	= HELPER.registerFeature("huge_twisted_glowshroom", () -> new HugeTwistedGlowshroomFeature(HugeGlowshroomConfig.CODEC));
 	public static final RegistryObject<Feature<GrowingPlantConfig>> GROWING_PLANT 						= HELPER.registerFeature("glowvine", () -> new GrowingPlantFeature(GrowingPlantConfig.CODEC));
-	public static final RegistryObject<Feature<HugeGlowshroomConfig>> GLOWSHROOM_WATERFALL_FEATURE		= HELPER.registerFeature("glowshroom_waterfall", () -> new GlowshroomWaterFallFeature(HugeGlowshroomConfig.CODEC));
-
 
 }

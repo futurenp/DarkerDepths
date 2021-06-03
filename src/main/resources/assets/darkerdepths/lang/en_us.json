@@ -83,8 +83,16 @@
   "block.darkerdepths.glowshroom_stem": "Glowshroom Stem",
   "block.darkerdepths.glowshroom_block": "Glowshroom Block",
   "block.darkerdepths.grimestone": "Grimestone",
+  "block.darkerdepths.grimestone_slab": "Grimestone Slab",
+  "block.darkerdepths.grimestone_stairs": "Grimestone Stairs",
+  "block.darkerdepths.grimestone_wall": "Grimestone Wall",
   "block.darkerdepths.polished_grimestone": "Polished Grimestone",
+  "block.darkerdepths.polished_grimestone_stairs": "Polished Grimestone Stairs",
+  "block.darkerdepths.polished_grimestone_slab": "Polished Grimestone Slab",
   "block.darkerdepths.mossy_grimestone": "Mossy Grimestone",
+  "block.darkerdepths.glowspurs": "Glowspurs",
+  "block.darkerdepths.glowspire": "Glimmering Vines",
+  "block.darkerdepths.geiser": "Geiser",
   "entity.darkerdepths.glowshroom_monster": "Glowshroom Monster",
   "entity.darkerdepths.magma_minion": "Magma Minion",
   "itemGroup.DarkerDepths": "Darker Depths",
@@ -94,5 +102,5 @@
   "biome.darkerdepths.molten_cavern": "Molten Cavern Biome",
   "biome.darkerdepths.sandy_catacombs": "Sandy Catacombs Biome",
   "biome.darkerdepths.crystal_cave": "Crystal Cave Biome",
-  "biome.darkerdepths.glowshroom_cave": "Glowshroom Cavern Biome"
+  "biome.darkerdepths.glowshroom_caves": "Glowshroom Cavern Biome"
 }
