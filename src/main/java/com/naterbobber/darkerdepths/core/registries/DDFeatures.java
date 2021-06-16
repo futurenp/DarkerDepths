@@ -28,8 +28,7 @@ public class DDFeatures {
 	public static final RegistryObject<Feature<NoFeatureConfig>> PETRIFIED_LOG_BRANCH					= HELPER.registerFeature("petrified_log_branch", () -> new PetrifiedLogBranchFeature(NoFeatureConfig.CODEC));
 	public static final RegistryObject<Feature<BlockStateProvidingFeatureConfig>> VEGETATION_FEATURE	= HELPER.registerFeature("vegetation_feature", () -> new VegetationFeature(BlockStateProvidingFeatureConfig.CODEC));
 	public static final RegistryObject<Feature<HugeGlowshroomConfig>> HUGE_GLOWSHROOM_FEATURE 			= HELPER.registerFeature("huge_glowshroom", () -> new HugeGlowshroomFeature(HugeGlowshroomConfig.CODEC));
-	//public static final RegistryObject<Feature<NoFeatureConfig>> GLOWSHROOM_FEATURE 					= HELPER.registerFeature("glowshroom", () -> new BGHugeGlowshroomFeature(NoFeatureConfig.CODEC));
-	public static final RegistryObject<Feature<HugeGlowshroomConfig>> HUGE_TWISTED_GLOWSHROOM_FEATURE 	= HELPER.registerFeature("huge_twisted_glowshroom", () -> new HugeTwistedGlowshroomFeature(HugeGlowshroomConfig.CODEC));
 	public static final RegistryObject<Feature<GrowingPlantConfig>> GROWING_PLANT 						= HELPER.registerFeature("glowvine", () -> new GrowingPlantFeature(GrowingPlantConfig.CODEC));
+	public static final RegistryObject<Feature<NoFeatureConfig>> GEISER_FEATURE							= HELPER.registerFeature("geiser_feature", () -> new GeiserFeature(NoFeatureConfig.CODEC));
 
 }

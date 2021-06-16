@@ -72,6 +72,10 @@ public class MagmaMinionModel <T extends MagmaMinionEntity> extends EntityModel<
         this.left_leg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
         this.right_arm.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
         this.left_arm.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
+        int i = entityIn.getAttackTick();
+        if (i > 0) {
+            this.head.rotateAngleX = (float) (MathHelper.cos(limbSwing * 0.4F) * Math.PI * 0.6662F * limbSwingAmount);
+        }
     }
     @Override
     public void render(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha){

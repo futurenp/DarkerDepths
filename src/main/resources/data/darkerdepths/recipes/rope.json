@@ -10,11 +10,11 @@
       "item": "minecraft:string"
     },
     "G": {
-      "item": "minecraft:leather"
+      "item": "darkerdepths:resin"
     }
   },
   "result": {
     "item": "darkerdepths:rope",
-    "count": 3
+    "count": 2
   }
 }

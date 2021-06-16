@@ -1,10 +1,8 @@
 package com.naterbobber.darkerdepths.common.items;
 
-import net.minecraft.block.Block;
-import net.minecraft.entity.ICrossbowUser;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.BlockItem;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
@@ -13,10 +11,10 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 
 
-public class GlowshroomCap extends BlockItem {
+public class GlowshroomCap extends Item {
 
-    public GlowshroomCap(Block blockIn, Properties builder) {
-        super(blockIn, builder);
+    public GlowshroomCap(Properties builder) {
+        super(builder);
     }
 
     @Nullable

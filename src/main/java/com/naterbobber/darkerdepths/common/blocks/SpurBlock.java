@@ -12,6 +12,7 @@ import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.Direction;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
@@ -55,26 +56,23 @@ public class SpurBlock extends Block {
         if (entityIn instanceof LivingEntity && entityIn.getType() != DDEntityTypes.GLOWSHROOM_MONSTER.get()) {
             entityIn.setMotionMultiplier(state, new Vector3d(0.8F, 0.75D, 0.8F));
             if (!worldIn.isRemote && !state.get(POWERED)) {
-                updateState(pos, state, worldIn);
+                this.updateState(pos, state, worldIn);
             }
         }
     }
 
     private void updateState(BlockPos pos, BlockState state, World worldIn) {
-        boolean bl = state.get(POWERED);
-        if (bl) {
-            worldIn.setBlockState(pos, state.with(POWERED, false), 2);
-        }
-        if (!bl) {
-            worldIn.setBlockState(pos, state.with(POWERED, true), 2);
-        }
-        worldIn.getPendingBlockTicks().scheduleTick(new BlockPos(pos), this, 20);
+        worldIn.setBlockState(pos, state.with(POWERED, true), 2);
     }
 
     @Override
     public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
-        if (state.get(POWERED)) {
-            updateState(pos, state, worldIn);
+        boolean bl = state.get(POWERED);
+        if (bl) {
+            worldIn.setBlockState(new BlockPos(pos), state.with(POWERED, false), 2);
+            worldIn.playSound(null, pos, SoundEvents.BLOCK_SLIME_BLOCK_PLACE, SoundCategory.BLOCKS, 1.0F, 0.1F);
+        } else {
+            worldIn.playSound(null, pos, SoundEvents.BLOCK_SLIME_BLOCK_BREAK, SoundCategory.BLOCKS, 1.0F, 0.1F);
         }
     }
 

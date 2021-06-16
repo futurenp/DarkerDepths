@@ -1,6 +1,9 @@
 {
   "variants": {
-    "": {
+    "stage=0": {
+      "model": "darkerdepths:block/tiny_aloe"
+    },
+    "stage=1": {
       "model": "darkerdepths:block/aloe"
     }
   }

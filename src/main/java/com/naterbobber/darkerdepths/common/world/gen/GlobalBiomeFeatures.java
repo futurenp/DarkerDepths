@@ -14,6 +14,7 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeGenerationSettings;
+import net.minecraft.world.biome.MobSpawnInfo;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
@@ -38,12 +39,14 @@ public class GlobalBiomeFeatures {
 		RegistryKey<Biome> vanillaBiome = RegistryKey.getOrCreateKey(Registry.BIOME_KEY, biomeID);
 
 		BiomeGenerationSettings.Builder generation = event.getGeneration();
+		MobSpawnInfo.Builder spawning = event.getSpawns();
 
 		if (biome == CaveBiomes.CAVE.get()) {
 			this.generateDefaultCavesFeatures(generation);
 		}
 		if (biome == DDBiomes.MOLTEN_CAVERN.get()) {
 			this.generateMoltenCavesFeatures(generation);
+			VanillaBiomeFeatures.addEntities(spawning);
 		}
 		if (biome == DDBiomes.SANDY_CATACOMBS.get()) {
 			this.generateSandyCavesFeatures(generation);

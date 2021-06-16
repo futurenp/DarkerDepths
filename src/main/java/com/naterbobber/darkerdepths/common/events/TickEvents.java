@@ -1,5 +1,6 @@
 package com.naterbobber.darkerdepths.common.events;
 
+import com.naterbobber.darkerdepths.common.blocks.GeiserBlock;
 import com.naterbobber.darkerdepths.core.registries.DDBlocks;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -20,11 +21,10 @@ public class TickEvents {
         LivingEntity entity = event.getEntityLiving();
         BlockPos pos = entity.getPosition();
         for (int i = 5; i >= 0; i--) {
-            if (world.getBlockState(pos.down(i)) == DDBlocks.GEISER.get().getDefaultState()) {
+            if (world.getBlockState(pos.down(i)) == DDBlocks.GEISER.get().getDefaultState().with(GeiserBlock.POWERED, false)) {
                 Vector3d motion = entity.getMotion();
                 entity.setMotion(motion.x, motion.y + ((Math.abs(-i - 5.5) / 10) / 4), motion.z);
             }
         }
     }
-
 }

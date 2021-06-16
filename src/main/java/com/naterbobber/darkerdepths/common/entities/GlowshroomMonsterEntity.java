@@ -7,6 +7,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.ai.goal.HurtByTargetGoal;
 import net.minecraft.entity.ai.goal.LookAtGoal;
 import net.minecraft.entity.ai.goal.LookRandomlyGoal;
 import net.minecraft.entity.ai.goal.MeleeAttackGoal;
@@ -15,7 +16,11 @@ import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
 import net.minecraft.entity.ai.goal.RandomWalkingGoal;
 import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
+import net.minecraft.entity.merchant.villager.AbstractVillagerEntity;
+import net.minecraft.entity.monster.AbstractRaiderEntity;
 import net.minecraft.entity.monster.MonsterEntity;
+import net.minecraft.entity.monster.RavagerEntity;
+import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
@@ -49,10 +54,11 @@ public class GlowshroomMonsterEntity extends MonsterEntity {
         super.registerGoals();
         this.goalSelector.addGoal(0, new SwimGoal(this));
         this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 0.6D, true));
-        this.goalSelector.addGoal(2, new RandomWalkingGoal(this, 0.4D));
         this.goalSelector.addGoal(3, new LookAtGoal(this, PlayerEntity.class, 8.0F));
-        this.goalSelector.addGoal(3, new LookRandomlyGoal(this));
-        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true, false));
+        this.goalSelector.addGoal(4, new LookRandomlyGoal(this));
+        this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, this.getAttributeValue(Attributes.MOVEMENT_SPEED)));
+        this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true, false));
     }
 
     @Override
@@ -98,8 +104,10 @@ public class GlowshroomMonsterEntity extends MonsterEntity {
     public boolean attackEntityAsMob(Entity entityIn) {
         this.attackTick = 10;
         this.world.setEntityState(this, (byte) 4);
+        float f = (float) this.getAttributeValue(Attributes.ATTACK_DAMAGE);
+        boolean flag = entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), f);
         this.playSound(SoundEvents.ENTITY_RAVAGER_ATTACK, 1.0F, 1.0F);
-        return super.attackEntityAsMob(entityIn);
+        return flag;
     }
 
     public ItemStack getPickedResult(RayTraceResult target) {

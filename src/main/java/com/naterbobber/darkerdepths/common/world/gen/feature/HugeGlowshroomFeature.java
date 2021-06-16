@@ -40,7 +40,7 @@ public class HugeGlowshroomFeature extends Feature<HugeGlowshroomConfig> {
                             boolean bl1 = z == -2 || z == 2;
                             boolean bl2 = x == -1 || x == 0 || x == 1;
                             boolean bl3 = z == -1 || z == 0 || z == 1;
-                            if (!bl2 || ! bl3) {
+                            if (!bl2 || !bl3) {
                                 mutable.setAndOffset(pos, x, i, z);
                                 this.setBlockState(world, mutable, config.cap);
                             }

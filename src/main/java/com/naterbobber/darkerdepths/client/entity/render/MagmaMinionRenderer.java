@@ -8,22 +8,25 @@ import com.naterbobber.darkerdepths.common.entities.GlowshroomMonsterEntity;
 import com.naterbobber.darkerdepths.common.entities.MagmaMinionEntity;
 import com.naterbobber.darkerdepths.core.DarkerDepths;
 
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
+import net.minecraft.client.renderer.entity.IEntityRenderer;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.layers.SpiderEyesLayer;
 import net.minecraft.client.renderer.entity.model.SpiderModel;
 import net.minecraft.entity.monster.SpiderEntity;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class MagmaMinionRenderer<T extends MagmaMinionEntity> extends MobRenderer<T, MagmaMinionModel<T>> {
-    private static final ResourceLocation MAGMA_MINION_TEXTURES = new ResourceLocation(DarkerDepths.MODID,"textures/entity/magma_minion.png");
+    public static final ResourceLocation MAGMA_MINION_TEXTURES = new ResourceLocation(DarkerDepths.MODID,"textures/entity/magma_minion.png");
 
     public MagmaMinionRenderer(EntityRendererManager renderManagerIn) {
         super(renderManagerIn, new MagmaMinionModel<>(), 0.5F);
-        addLayer(new MagmaMinionGlowLayer<>(this));
+        this.addLayer(new MagmaMinionGlowLayer<>(this));
     }
 
     protected float getDeathMaxRotation(T entityLivingBaseIn) {
@@ -33,4 +36,7 @@ public class MagmaMinionRenderer<T extends MagmaMinionEntity> extends MobRendere
     public ResourceLocation getEntityTexture(T entity) {
         return MAGMA_MINION_TEXTURES;
     }
+
+    //boolean bl = entityIn.isEntitySleeping();
+    // return bl ? -15 : 0;
 }

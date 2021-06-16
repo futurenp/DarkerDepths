@@ -56,14 +56,6 @@ public class GeiserBlock extends Block {
     }
 
     @Override
-    public void onEntityWalk(World worldIn, BlockPos pos, Entity entityIn) {
-        if (!this.getDefaultState().get(POWERED) && entityIn instanceof LivingEntity && !(entityIn instanceof PlayerEntity)) {
-            Vector3d vector3d = entityIn.getMotion();
-            entityIn.setMotion(vector3d.x, vector3d.y + 1.2D, vector3d.z);
-        }
-    }
-
-    @Override
     public void animateTick(BlockState stateIn, World worldIn, BlockPos pos, Random rand) {
         int xPos = pos.getX();
         int yPos = pos.getY();
