@@ -42,7 +42,7 @@ public class PetrifiedLogBranchFeature extends Feature<NoFeatureConfig> {
     private void spawnLogs(IWorld world, BlockPos pos) {
         Random rand = new Random();
         this.setBlockState(world, pos, DDBlocks.PETRIFIED_LOG.get().getDefaultState());
-        if (rand.nextInt(20) == 0) {
+        if (rand.nextInt(80) == 0) {
             this.setBlockState(world, pos, DDBlocks.POURUS_PETRIFIED_LOG.get().getDefaultState());
         }
         if (world.isAirBlock(pos.down())) {

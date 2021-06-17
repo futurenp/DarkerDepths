@@ -63,6 +63,7 @@ public class SpurBlock extends Block {
 
     private void updateState(BlockPos pos, BlockState state, World worldIn) {
         worldIn.setBlockState(pos, state.with(POWERED, true), 2);
+        worldIn.getPendingBlockTicks().scheduleTick(pos, this, 40);
     }
 
     @Override
@@ -70,9 +71,7 @@ public class SpurBlock extends Block {
         boolean bl = state.get(POWERED);
         if (bl) {
             worldIn.setBlockState(new BlockPos(pos), state.with(POWERED, false), 2);
-            worldIn.playSound(null, pos, SoundEvents.BLOCK_SLIME_BLOCK_PLACE, SoundCategory.BLOCKS, 1.0F, 0.1F);
-        } else {
-            worldIn.playSound(null, pos, SoundEvents.BLOCK_SLIME_BLOCK_BREAK, SoundCategory.BLOCKS, 1.0F, 0.1F);
+            worldIn.playSound(null, pos, SoundEvents.BLOCK_SLIME_BLOCK_PLACE, SoundCategory.BLOCKS, 0.3F, 1.2F);
         }
     }
 
