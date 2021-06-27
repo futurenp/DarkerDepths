@@ -6,13 +6,16 @@ import com.naterbobber.darkerdepths.common.entities.MagmaMinionEntity;
 import com.naterbobber.darkerdepths.common.events.TickEvents;
 import com.naterbobber.darkerdepths.common.world.gen.GlobalBiomeFeatures;
 import com.naterbobber.darkerdepths.core.registries.DDEntityTypes;
+import com.naterbobber.darkerdepths.core.registries.DDTileEntities;
 import com.naterbobber.darkerdepths.core.registries.VanillaIntegrationRegistry;
 import com.naterbobber.darkerdepths.core.util.DarkerDepthsItemGroup;
+import net.minecraft.client.renderer.tileentity.SignTileEntityRenderer;
 import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
 import net.minecraft.item.ItemGroup;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DeferredWorkQueue;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -44,6 +47,7 @@ public class DarkerDepths {
         REGISTRIES.getParticleTypes().register(modEventBus);
         REGISTRIES.getPlacements().register(modEventBus);
         DDEntityTypes.ENTITY_TYPES.register(modEventBus);
+        DDTileEntities.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::clientSetup);

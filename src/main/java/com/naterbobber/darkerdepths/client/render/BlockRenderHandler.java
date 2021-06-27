@@ -2,10 +2,13 @@ package com.naterbobber.darkerdepths.client.render;
 
 import com.naterbobber.darkerdepths.core.registries.DDBlocks;
 
+import com.naterbobber.darkerdepths.core.registries.DDTileEntities;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
+import net.minecraft.client.renderer.tileentity.SignTileEntityRenderer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 
 @OnlyIn(Dist.CLIENT)
 public class BlockRenderHandler {
@@ -26,5 +29,7 @@ public class BlockRenderHandler {
         RenderTypeLookup.setRenderLayer(DDBlocks.GLOWSPIRE.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(DDBlocks.GLOWSPIRE_PLANT.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(DDBlocks.POTTED_ALOE.get(), RenderType.getCutout());
+
+        ClientRegistry.bindTileEntityRenderer(DDTileEntities.DD_SIGN.get(), SignTileEntityRenderer::new);
     }
 }
