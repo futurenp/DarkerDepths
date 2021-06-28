@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "darkerdepths:grimestone"
+  },
+  "result": "darkerdepths:grimestone_vertical_slab",
+  "count": 1
+}

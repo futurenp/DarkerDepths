@@ -88,6 +88,11 @@ public class MagmaMinionEntity extends TameableEntity {
     }
 
     @Override
+    public ItemStack getPickedResult(RayTraceResult target) {
+        return new ItemStack(DDItems.MAGMA_MINION_SPAWN_EGG.get());
+    }
+
+    @Override
     public ActionResultType getEntityInteractionResult(PlayerEntity playerIn, Hand hand) {
         ItemStack itemstack = playerIn.getHeldItem(hand);
             if (this.isTamed()) {

@@ -29,6 +29,8 @@ public class BlockRenderHandler {
         RenderTypeLookup.setRenderLayer(DDBlocks.GLOWSPIRE.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(DDBlocks.GLOWSPIRE_PLANT.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(DDBlocks.POTTED_ALOE.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(DDBlocks.PETRIFIED_POST.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(DDBlocks.STRIPPED_PETRIFIED_POST.get(), RenderType.getCutout());
 
         ClientRegistry.bindTileEntityRenderer(DDTileEntities.DD_SIGN.get(), SignTileEntityRenderer::new);
     }

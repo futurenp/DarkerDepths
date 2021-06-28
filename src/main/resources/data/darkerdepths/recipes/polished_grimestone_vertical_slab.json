@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#",
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "darkerdepths:polished_grimestone_slab"
+    }
+  },
+  "result": {
+    "item": "darkerdepths:polished_grimestone_vertical_slab",
+    "count": 3
+  }
+}

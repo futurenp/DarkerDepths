@@ -86,7 +86,6 @@ public class GlobalBiomeFeatures {
 	}
 
 	private void generateGlowshroomCavesFeatures(BiomeGenerationSettings.Builder builder) {
-//		VanillaBiomeFeatures.addGlowshroomFeatures(builder);
 		VanillaBiomeFeatures.addGlowshroomVegetation(builder);
 	}
 }

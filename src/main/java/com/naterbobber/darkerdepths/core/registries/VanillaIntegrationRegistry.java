@@ -12,8 +12,12 @@ public class VanillaIntegrationRegistry {
         // STRIPPED LOGS
         addStrippable(DDBlocks.PETRIFIED_LOG.get(), DDBlocks.STRIPPED_PETRIFIED_LOG.get());
         addStrippable(DDBlocks.PETRIFIED_WOOD.get(), DDBlocks.STRIPPED_PETRIFIED_WOOD.get());
+        addStrippable(DDBlocks.PETRIFIED_POST.get(), DDBlocks.STRIPPED_PETRIFIED_POST.get());
 
         addFlammables(DDBlocks.ROPE.get(), 60, 100);
+        addFlammables(DDBlocks.ROOTS.get(), 60, 100);
+        addFlammables(DDBlocks.LONG_ROOTS.get(), 60, 100);
+        addFlammables(DDBlocks.DETRITUS.get(), 60, 100);
     }
 
     private static void addStrippable(Block unstrippedBlock, Block strippedBlock) {

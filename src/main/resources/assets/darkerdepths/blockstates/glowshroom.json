@@ -1,13 +1,55 @@
 {
   "variants": {
-    "clusters=1": {
+    "clusters=1": [
+      {
       "model": "darkerdepths:block/glowshroom"
-    },
-    "clusters=2": {
+      },
+      {
+        "model": "darkerdepths:block/glowshroom",
+        "y": 90
+      },
+      {
+        "model": "darkerdepths:block/glowshroom",
+        "y": 180
+      },
+      {
+        "model": "darkerdepths:block/glowshroom",
+        "y": 270
+      }
+    ],
+    "clusters=2": [
+      {
       "model": "darkerdepths:block/glowshroom_stage_2"
-    },
-    "clusters=3": {
+      },
+      {
+        "model": "darkerdepths:block/glowshroom_stage_2",
+        "y": 90
+      },
+      {
+        "model": "darkerdepths:block/glowshroom_stage_2",
+        "y": 180
+      },
+      {
+        "model": "darkerdepths:block/glowshroom_stage_2",
+        "y": 270
+      }
+    ],
+    "clusters=3": [
+      {
       "model": "darkerdepths:block/glowshroom_stage_3"
-    }
+      },
+      {
+        "model": "darkerdepths:block/glowshroom_stage_3",
+        "y": 90
+      },
+      {
+        "model": "darkerdepths:block/glowshroom_stage_3",
+        "y": 180
+      },
+      {
+        "model": "darkerdepths:block/glowshroom_stage_3",
+        "y": 270
+      }
+    ]
   }
 }

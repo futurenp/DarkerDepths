@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "darkerdepths:polished_limestone"
+  },
+  "result": "darkerdepths:polished_limestone_vertical_slab",
+  "count": 1
+}

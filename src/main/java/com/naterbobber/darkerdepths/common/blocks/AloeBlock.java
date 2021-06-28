@@ -50,7 +50,8 @@ public class AloeBlock extends BushBlock implements IGrowable {
 
     @Override
     public boolean canUseBonemeal(World worldIn, Random rand, BlockPos pos, BlockState state) {
-        return true;
+        int i = state.get(STAGE);
+        return i == 0;
     }
 
     @Override

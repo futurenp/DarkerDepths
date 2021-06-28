@@ -127,7 +127,7 @@ public class DDConfiguredFeatures {
             .addWeightedBlockstate(States.GLOWSHROOM_SINGLE, 6)
             .addWeightedBlockstate(States.GLOWSHROOM_DOUBLE, 6)
             .addWeightedBlockstate(States.GLOWSHROOM_TRIPLE, 6)
-            .addWeightedBlockstate(DDBlocks.GLOWSPURS.get().getDefaultState(), 1)
+            .addWeightedBlockstate(DDBlocks.GLOWSPURS.get().getDefaultState(), 5)
             .addWeightedBlockstate(DDBlocks.MOSSY_SPROUTS.get().getDefaultState(), 50)
             .addWeightedBlockstate(Blocks.CAVE_AIR.getDefaultState(), 43))));
 

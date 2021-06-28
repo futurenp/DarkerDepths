@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#",
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "darkerdepths:stripped_petrified_wood"
+    }
+  },
+  "result": {
+    "item": "darkerdepths:stripped_petrified_post",
+    "count": 8
+  }
+}
