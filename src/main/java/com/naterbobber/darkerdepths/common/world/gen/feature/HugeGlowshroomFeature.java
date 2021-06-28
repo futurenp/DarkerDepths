@@ -54,7 +54,7 @@ public class HugeGlowshroomFeature extends Feature<HugeGlowshroomConfig> {
                 }
             }
              else {
-                 for (int i = 0; i <= height - 1; i++) {
+                 for (int i = 0; i <= height; i++) {
                      for (int x = -1; x <= 1; x++) {
                          for (int z = -1; z <= 1; z++) {
                              BlockPos.Mutable mutable = new BlockPos.Mutable();
