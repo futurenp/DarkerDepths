@@ -117,7 +117,7 @@ public class DDConfiguredFeatures {
 
     public static final ConfiguredFeature<?, ?> GLOWVINE_FEATURE = HELPER.registerConfiguredFeature("glowvine", DDFeatures.GROWING_PLANT.get().withConfiguration(new GrowingPlantConfig(new WeightedList<IntProvider>().addWeighted(UniformIntProvider.create(1, 20), 2).addWeighted(UniformIntProvider.create(1, 3), 3).addWeighted(UniformIntProvider.create(1, 7), 10), Direction.DOWN, new SimpleBlockStateProvider(DDBlocks.GLOWSPIRE_PLANT.get().getDefaultState()), new SimpleBlockStateProvider(DDBlocks.GLOWSPIRE.get().getDefaultState()), false)).withPlacement(DDPlacements.CAVE_SURFACE.get().configure(new CaveDecoratorConfig(CaveSurface.CEILING, 12)).range(50).square().count(12)));
 
-    public static final ConfiguredFeature<?, ?> GEISER_FEATURE = HELPER.registerConfiguredFeature("geiser", DDFeatures.GEISER_FEATURE.get().withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG)).withPlacement(DDPlacements.CAVE_SURFACE.get().configure(new CaveDecoratorConfig(CaveSurface.FLOOR, 12))).range(50).square().count(7);
+    public static final ConfiguredFeature<?, ?> GEISER_FEATURE = HELPER.registerConfiguredFeature("geiser", DDFeatures.GEYSER_FEATURE.get().withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG)).withPlacement(DDPlacements.CAVE_SURFACE.get().configure(new CaveDecoratorConfig(CaveSurface.FLOOR, 12))).range(50).square().count(7);
 
     public static final ConfiguredFeature<?, ?> GLOWSHROOM_VEGETATION = HELPER.registerConfiguredFeature("glowshroom_vegetation", DDFeatures.SIMPLE_BLOCK.get().withConfiguration(new SimpleBlockConfig(new WeightedBlockStateProvider()
             .addWeightedBlockstate(States.GLOWSHROOM_SINGLE, 6)

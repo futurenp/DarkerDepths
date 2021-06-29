@@ -190,7 +190,7 @@ public class DDBlocks {
 	public static final RegistryObject<Block> PETRIFIED_WALL_SIGN					= HELPER.registerBlock("petrified_wall_sign", () -> new DDWallSignBlock(AbstractBlock.Properties.create(Material.ROCK).doesNotBlockMovement().hardnessAndResistance(1.0F).sound(SoundType.WOOD), DDWoodTypes.PETRIFIED));
 
 	//cool_stuff
-	public static final RegistryObject<Block> GEISER								= HELPER.registerBlock("geiser", () -> new GeiserBlock(AbstractBlock.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F).harvestTool(ToolType.PICKAXE).setRequiresTool().tickRandomly()), DarkerDepths.DARKER_DEPTHS);
+	public static final RegistryObject<Block> GEYSER								= HELPER.registerBlock("geyser", () -> new GeyserBlock(AbstractBlock.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F).harvestTool(ToolType.PICKAXE).setRequiresTool().tickRandomly()), DarkerDepths.DARKER_DEPTHS);
 	public static final RegistryObject<Block> HEART_CHAMBER							= HELPER.registerBlock("heart_chamber", () -> new HeartChamberBlock(Block.Properties.create(Material.ROCK, MaterialColor.SAND).setRequiresTool().hardnessAndResistance(1.5f, 6.0f).harvestTool(ToolType.PICKAXE).harvestLevel(1).sound(SoundType.STONE)));
 
 	//REDSTONE

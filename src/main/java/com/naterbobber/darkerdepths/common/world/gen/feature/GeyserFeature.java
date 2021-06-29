@@ -2,6 +2,7 @@ package com.naterbobber.darkerdepths.common.world.gen.feature;
 
 import com.mojang.serialization.Codec;
 import com.naterbobber.darkerdepths.core.registries.DDBlocks;
+import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ISeedReader;
 import net.minecraft.world.gen.ChunkGenerator;
@@ -10,9 +11,11 @@ import net.minecraft.world.gen.feature.NoFeatureConfig;
 
 import java.util.Random;
 
-public class GeiserFeature extends Feature<NoFeatureConfig> {
+//<>
 
-    public GeiserFeature(Codec<NoFeatureConfig> codec) {
+public class GeyserFeature extends Feature<NoFeatureConfig> {
+
+    public GeyserFeature(Codec<NoFeatureConfig> codec) {
         super(codec);
     }
 
@@ -20,9 +23,11 @@ public class GeiserFeature extends Feature<NoFeatureConfig> {
     public boolean generate(ISeedReader world, ChunkGenerator generator, Random rand, BlockPos pos, NoFeatureConfig config) {
         if (world.isAirBlock(pos.down())) {
             return false;
-        } else {
-            this.setBlockState(world, pos.down(), DDBlocks.GEISER.get().getDefaultState());
+        } else if (world.getBlockState(pos.up()).matchesBlock(Blocks.LAVA)) {
+            this.setBlockState(world, pos.down(), DDBlocks.GEYSER.get().getDefaultState());
             return true;
+        } else {
+            return false;
         }
     }
 }

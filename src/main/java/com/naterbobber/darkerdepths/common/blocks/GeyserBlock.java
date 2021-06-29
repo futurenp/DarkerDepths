@@ -25,12 +25,13 @@ import net.minecraft.world.server.ServerWorld;
 
 import javax.annotation.Nullable;
 import java.util.Random;
+
 //<>
 
-public class GeiserBlock extends Block {
+public class GeyserBlock extends Block {
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
 
-    public GeiserBlock(AbstractBlock.Properties properties) {
+    public GeyserBlock(AbstractBlock.Properties properties) {
         super(properties);
         this.setDefaultState(this.getDefaultState().with(POWERED, false));
     }
