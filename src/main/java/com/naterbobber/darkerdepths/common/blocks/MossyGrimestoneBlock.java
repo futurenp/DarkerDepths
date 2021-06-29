@@ -1,13 +1,12 @@
 package com.naterbobber.darkerdepths.common.blocks;
 
-import com.naterbobber.darkerdepths.core.registries.DDBlocks;
+ import com.naterbobber.darkerdepths.core.registries.DDBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.block.IGrowable;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
@@ -19,14 +18,15 @@ import java.util.Random;
 //<>
 
 public class MossyGrimestoneBlock extends Block implements IGrowable {
-
     public MossyGrimestoneBlock(Properties properties) {
         super(properties);
     }
 
     private static boolean isDarkEnough(BlockState state, IWorldReader world, BlockPos pos) {
-        int i = LightEngine.func_215613_a(world, state, pos, world.getBlockState(pos.up()), pos.up(), Direction.UP, world.getBlockState(pos.up()).getOpacity(world, pos.up()));
-        return i < world.getMaxLightLevel();
+        BlockPos above = pos.up();
+        BlockState aboveState = world.getBlockState(above);
+        int lightLevel = LightEngine.func_215613_a(world, state, pos, aboveState, above, Direction.UP, aboveState.getOpacity(world, above));
+        return lightLevel < world.getMaxLightLevel();
     }
 
     @Override

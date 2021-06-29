@@ -30,7 +30,7 @@ public class DDBiomes {
     public static Biome makeMoltenCaverns() {
         MobSpawnInfo.Builder spawnSettings = new MobSpawnInfo.Builder();
         DefaultBiomeFeatures.withBatsAndHostiles(spawnSettings);
-        BiomeGenerationSettings.Builder generationSettings = new BiomeGenerationSettings.Builder().withSurfaceBuilder(ConfiguredSurfaceBuilders.GRASS);
+        BiomeGenerationSettings.Builder generationSettings = new BiomeGenerationSettings.Builder().withSurfaceBuilder(ConfiguredSurfaceBuilders.NOPE);
         DefaultBiomeFeatures.withStrongholdAndMineshaft(generationSettings);
         generationSettings.withStructure(StructureFeatures.RUINED_PORTAL);
         DefaultBiomeFeatures.withCavesAndCanyons(generationSettings);
@@ -48,7 +48,7 @@ public class DDBiomes {
     public static Biome makeSandyCatacombs() {
         MobSpawnInfo.Builder spawnSettings = new MobSpawnInfo.Builder();
         DefaultBiomeFeatures.withBatsAndHostiles(spawnSettings);
-        BiomeGenerationSettings.Builder generationSettings = new BiomeGenerationSettings.Builder().withSurfaceBuilder(ConfiguredSurfaceBuilders.GRASS);
+        BiomeGenerationSettings.Builder generationSettings = new BiomeGenerationSettings.Builder().withSurfaceBuilder(ConfiguredSurfaceBuilders.NOPE);
         DefaultBiomeFeatures.withStrongholdAndMineshaft(generationSettings);
         generationSettings.withStructure(StructureFeatures.RUINED_PORTAL_DESERT);
         DefaultBiomeFeatures.withCavesAndCanyons(generationSettings);
@@ -60,16 +60,13 @@ public class DDBiomes {
         DefaultBiomeFeatures.withSugarCaneAndPumpkins(generationSettings);
         DefaultBiomeFeatures.withLavaAndWaterSprings(generationSettings);
         DefaultBiomeFeatures.withFrozenTopLayer(generationSettings);
-//        return new Biome.Builder().precipitation(Biome.RainType.RAIN).category(Biome.Category.NONE).depth(0.125F).scale(0.05F).temperature(2.0F).downfall(0.0F).setEffects(new BiomeAmbience.Builder().setWaterColor(4159204).setWaterFogColor(329011).setFogColor(12638463).withSkyColor(getSkyColorWithTemperatureModifier(2.0F)).setMoodSound(MoodSoundAmbience.DEFAULT_CAVE).build()).withMobSpawnSettings(spawnSettings.build()).withGenerationSettings(generationSettings.build()).build();
         return new Biome.Builder().precipitation(Biome.RainType.RAIN).category(Biome.Category.NONE).depth(0.125F).scale(0.05F).temperature(2.0F).downfall(0.0F).setEffects(new BiomeAmbience.Builder().setWaterColor(4159204).setWaterFogColor(329011).setFogColor(12638463).withSkyColor(getSkyColorWithTemperatureModifier(2.0F)).setMoodSound(MoodSoundAmbience.DEFAULT_CAVE).setParticle(new ParticleEffectAmbience(DDParticleTypes.CAVE_FALLING_DUST.get(), 0.0025F)).build()).withMobSpawnSettings(spawnSettings.build()).withGenerationSettings(generationSettings.build()).build();
-//        return new Biome.Builder().precipitation(Biome.RainType.RAIN).category(Biome.Category.NONE).depth(0.125F).scale(0.05F).temperature(2.0F).downfall(0.0F).setEffects(new BiomeAmbience.Builder().setWaterColor(2602894).setWaterFogColor(329011).setFogColor(12638463).withSkyColor(getSkyColorWithTemperatureModifier(2.0F)).setMoodSound(MoodSoundAmbience.DEFAULT_CAVE).setParticle(new ParticleEffectAmbience(DDParticleTypes.CAVE_FALLING_DUST.get(), 0.0025F)).build()).withMobSpawnSettings(spawnSettings.build()).withGenerationSettings(generationSettings.build()).build();
-//        return new Biome.Builder().precipitation(Biome.RainType.RAIN).category(Biome.Category.NONE).depth(0.125F).scale(0.05F).temperature(2.0F).downfall(0.0F).setEffects(new BiomeAmbience.Builder().setWaterColor(4159204).setWaterFogColor(329011).setFogColor(12638463).withSkyColor(getSkyColorWithTemperatureModifier(2.0F)).setMoodSound(MoodSoundAmbience.DEFAULT_CAVE).setParticle(new ParticleEffectAmbience(DDParticleTypes.CAVE_FALLING_DUST.get(), 0.013F)).build()).withMobSpawnSettings(spawnSettings.build()).withGenerationSettings(generationSettings.build()).build();
     }
 
     public static Biome makeCrystalCaves() {
         MobSpawnInfo.Builder spawnSettings = new MobSpawnInfo.Builder();
         DefaultBiomeFeatures.withBatsAndHostiles(spawnSettings);
-        BiomeGenerationSettings.Builder generationSettings = new BiomeGenerationSettings.Builder().withSurfaceBuilder(ConfiguredSurfaceBuilders.GRASS);
+        BiomeGenerationSettings.Builder generationSettings = new BiomeGenerationSettings.Builder().withSurfaceBuilder(ConfiguredSurfaceBuilders.NOPE);
         DefaultBiomeFeatures.withStrongholdAndMineshaft(generationSettings);
         generationSettings.withStructure(StructureFeatures.RUINED_PORTAL);
         DefaultBiomeFeatures.withCavesAndCanyons(generationSettings);
@@ -87,17 +84,14 @@ public class DDBiomes {
     public static Biome makeGlowshroomCavern() {
         MobSpawnInfo.Builder spawnSettings = new MobSpawnInfo.Builder();
         DefaultBiomeFeatures.withBatsAndHostiles(spawnSettings);
-        BiomeGenerationSettings.Builder generationSettings = new BiomeGenerationSettings.Builder().withSurfaceBuilder(ConfiguredSurfaceBuilders.GRASS);
+        BiomeGenerationSettings.Builder generationSettings = new BiomeGenerationSettings.Builder().withSurfaceBuilder(ConfiguredSurfaceBuilders.NOPE);
         DefaultBiomeFeatures.withStrongholdAndMineshaft(generationSettings);
         generationSettings.withStructure(StructureFeatures.RUINED_PORTAL);
         DefaultBiomeFeatures.withCavesAndCanyons(generationSettings);
-        DefaultBiomeFeatures.withLavaAndWaterLakes(generationSettings);
         DefaultBiomeFeatures.withMonsterRoom(generationSettings);
-        DefaultBiomeFeatures.withCommonOverworldBlocks(generationSettings);
         DefaultBiomeFeatures.withOverworldOres(generationSettings);
         DefaultBiomeFeatures.withNormalMushroomGeneration(generationSettings);
         DefaultBiomeFeatures.withSugarCaneAndPumpkins(generationSettings);
-        DefaultBiomeFeatures.withLavaAndWaterSprings(generationSettings);
         DefaultBiomeFeatures.withFrozenTopLayer(generationSettings);
         return new Biome.Builder().precipitation(Biome.RainType.RAIN).category(Biome.Category.NONE).depth(0.125F).scale(0.05F).temperature(0.8F).downfall(0.4F).setEffects(new BiomeAmbience.Builder().setWaterColor(4159204).setWaterFogColor(329011).setFogColor(12638463).withSkyColor(getSkyColorWithTemperatureModifier(0.8F)).setMoodSound(MoodSoundAmbience.DEFAULT_CAVE).build()).withMobSpawnSettings(spawnSettings.build()).withGenerationSettings(generationSettings.build()).build();
     }

@@ -24,8 +24,6 @@ public class VanillaBiomeFeatures {
     public static void addCrystalPeaks(BiomeGenerationSettings.Builder builder) {
         FeaturePlacement.addFeature(builder, GenerationStage.Decoration.UNDERGROUND_DECORATION, DDConfiguredFeatures.CEILING_CELESTINE_PEAK);
         FeaturePlacement.addFeature(builder, GenerationStage.Decoration.UNDERGROUND_DECORATION, DDConfiguredFeatures.FLOOR_CELESTINE_PEAK);
-        FeaturePlacement.addFeature(builder, GenerationStage.Decoration.UNDERGROUND_DECORATION, DDConfiguredFeatures.CEILING_AMETHYST_PEAK);
-        FeaturePlacement.addFeature(builder, GenerationStage.Decoration.UNDERGROUND_DECORATION, DDConfiguredFeatures.FLOOR_AMETHYST_PEAK);
     }
 
     public static void addAmber(BiomeGenerationSettings.Builder builder) {

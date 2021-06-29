@@ -1,6 +1,6 @@
 package com.naterbobber.darkerdepths.common.blocks;
 
-import com.naterbobber.darkerdepths.common.tileentities.DDSignTileEntity;
+import com.naterbobber.darkerdepths.core.registries.DDTileEntities;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.WallSignBlock;
 import net.minecraft.block.WoodType;
@@ -20,6 +20,6 @@ public class DDWallSignBlock extends WallSignBlock {
 
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-        return new DDSignTileEntity();
+        return DDTileEntities.PETRIFIED_SIGN.get().create();
     }
 }

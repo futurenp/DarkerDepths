@@ -17,6 +17,7 @@ import net.minecraft.tags.ITag;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.WorldGenRegistries;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.carver.ConfiguredCarver;
@@ -27,6 +28,7 @@ import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraft.world.gen.placement.IPlacementConfig;
 import net.minecraft.world.gen.placement.Placement;
+import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilders.ISurfaceBuilderConfig;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
 import net.minecraftforge.fml.RegistryObject;
@@ -146,7 +148,7 @@ public class CoreRegistries extends Registries {
         if (WorldGenRegistries.CONFIGURED_CARVER.keySet().contains(ID)) {
             throw new IllegalStateException("The Configured Carver " + key + "already exists in the registry");
         }
-        net.minecraft.util.registry.Registry.register(WorldGenRegistries.CONFIGURED_CARVER, ID, configuredFeature);
+        Registry.register(WorldGenRegistries.CONFIGURED_CARVER, ID, configuredFeature);
         return configuredFeature;
     }
 
@@ -159,6 +161,16 @@ public class CoreRegistries extends Registries {
      */
     public <C extends ISurfaceBuilderConfig, S extends SurfaceBuilder<C>> RegistryObject<S> registerSurfaceBuilder(String key, Supplier<? extends S> surfaceBuilder) {
         return this.getSurfaceBuilders().register(key, surfaceBuilder);
+    }
+
+
+    public <C extends ISurfaceBuilderConfig, CC extends ConfiguredSurfaceBuilder<C>> CC registerConfiguredSurfaceBuilder(String key, CC configuredFeature) {
+        ResourceLocation ID = new ResourceLocation(this.id, key);
+        if (WorldGenRegistries.CONFIGURED_SURFACE_BUILDER.keySet().contains(ID)) {
+            throw new IllegalStateException("The Configured Surface Builder " + key + "already exists in the registry");
+        }
+        Registry.register(WorldGenRegistries.CONFIGURED_SURFACE_BUILDER, ID, configuredFeature);
+        return configuredFeature;
     }
 
     /**
@@ -184,7 +196,7 @@ public class CoreRegistries extends Registries {
         if (WorldGenRegistries.CONFIGURED_FEATURE.keySet().contains(ID)) {
             throw new IllegalStateException("The Configured Feature " + key + "already exists in the registry");
         }
-        net.minecraft.util.registry.Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, ID, configuredFeature);
+        Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, ID, configuredFeature);
         return configuredFeature;
     }
 

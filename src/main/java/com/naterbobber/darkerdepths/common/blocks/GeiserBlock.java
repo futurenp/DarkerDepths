@@ -95,6 +95,7 @@ public class GeiserBlock extends Block {
     public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
         if (state.get(POWERED) && !worldIn.isBlockPowered(pos)) {
             worldIn.setBlockState(pos, state.cycleValue(POWERED), 2);
+        } else {
             BubbleColumnBlock.placeBubbleColumn(worldIn, pos.up(), false);
         }
     }

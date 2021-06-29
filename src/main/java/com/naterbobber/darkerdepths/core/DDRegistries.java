@@ -1,8 +1,13 @@
 package com.naterbobber.darkerdepths.core;
 
-//<>
-
+import com.naterbobber.darkerdepths.common.blocks.DDStandingSignBlock;
+import com.naterbobber.darkerdepths.common.blocks.DDWallSignBlock;
+import com.naterbobber.darkerdepths.core.registries.DDWoodTypes;
+import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
+import net.minecraft.block.WoodType;
+import net.minecraft.block.material.Material;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
@@ -11,18 +16,20 @@ import net.minecraftforge.fml.RegistryObject;
 
 import java.util.function.Supplier;
 
-public class DDRegistries extends CoreRegistries {
+//<>
 
+public class DDRegistries extends CoreRegistries {
     public DDRegistries(String modId) {
         super(modId);
     }
 
-    public <B extends Block> RegistryObject<B> registerCompatBlock(String modid, String key, Supplier<? extends B> block, ItemGroup group) {
+    public <B extends Block> RegistryObject<B> registerCompatBlock(String modId, String key, Supplier<? extends B> block, ItemGroup group) {
         RegistryObject<B> blocks = this.blocks.register(key, block);
-        if (ModList.get().isLoaded(modid)) {
-            this.items.register(key, () -> new BlockItem(blocks.get(), new Item.Properties().group(group)));
-        }
+        this.items.register(key, () -> new BlockItem(blocks.get(), new Item.Properties().group(getGroup(modId, group))));
         return blocks;
     }
 
+    public ItemGroup getGroup(String modId, ItemGroup group) {
+        return ModList.get().isLoaded(modId) ? group : null;
+    }
 }

@@ -26,8 +26,8 @@ import net.minecraft.fluid.Fluids;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Direction;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.WeightedList;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
 import net.minecraft.world.gen.blockstateprovider.WeightedBlockStateProvider;
 import net.minecraft.world.gen.feature.BlockStateProvidingFeatureConfig;
@@ -41,8 +41,6 @@ import net.minecraft.world.gen.placement.DepthAverageConfig;
 import net.minecraft.world.gen.placement.Placement;
 import net.minecraft.world.gen.placement.TopSolidRangeConfig;
 
-import java.util.Random;
-
 //<>
 
 public class DDConfiguredFeatures {
@@ -52,8 +50,6 @@ public class DDConfiguredFeatures {
 
     public static final ConfiguredFeature<?, ?> CEILING_CELESTINE_PEAK = HELPER.registerConfiguredFeature("ceiling_celestine_peak", DDFeatures.CAVE_PILLAR_FEATURE.get().withConfiguration(new CavePillarConfig(DDBlocks.CELESTINE_CRYSTAL_BLOCK.get().getDefaultState(), Direction.DOWN))).withPlacement(DDPlacements.CAVE_SURFACE.get().configure(new CaveDecoratorConfig(CaveSurface.CEILING, 12))).chance(10).square().range(50);
     public static final ConfiguredFeature<?, ?> FLOOR_CELESTINE_PEAK = HELPER.registerConfiguredFeature("floor_celestine_peak", DDFeatures.CAVE_PILLAR_FEATURE.get().withConfiguration(new CavePillarConfig(DDBlocks.CELESTINE_CRYSTAL_BLOCK.get().getDefaultState(), Direction.UP))).withPlacement(DDPlacements.CAVE_SURFACE.get().configure(new CaveDecoratorConfig(CaveSurface.FLOOR, 12))).chance(10).square().range(50);
-    public static final ConfiguredFeature<?, ?> CEILING_AMETHYST_PEAK = HELPER.registerConfiguredFeature("ceiling_amethyst_peak", DDFeatures.CAVE_PILLAR_FEATURE.get().withConfiguration(new CavePillarConfig(DDBlocks.AMETHYST_CRYSTAL_BLOCK.get().getDefaultState(), Direction.DOWN))).withPlacement(DDPlacements.CAVE_SURFACE.get().configure(new CaveDecoratorConfig(CaveSurface.CEILING, 12))).chance(10).square().range(50);
-    public static final ConfiguredFeature<?, ?> FLOOR_AMETHYST_PEAK = HELPER.registerConfiguredFeature("floor_amethyst_peak", DDFeatures.CAVE_PILLAR_FEATURE.get().withConfiguration(new CavePillarConfig(DDBlocks.AMETHYST_CRYSTAL_BLOCK.get().getDefaultState(), Direction.UP))).withPlacement(DDPlacements.CAVE_SURFACE.get().configure(new CaveDecoratorConfig(CaveSurface.FLOOR, 12))).chance(10).square().range(50);
 
     public static final ConfiguredFeature<?, ?> AMBER_GEMSTONE = HELPER.registerConfiguredFeature("amber_gemstone", DDFeatures.GEMSTONE_PLACEMENT_FEATURE.get().withConfiguration(new GemstonePlacementConfig(DDBlocks.AMBER.get().getDefaultState())).range(25).square().count(60));
 
@@ -131,9 +127,13 @@ public class DDConfiguredFeatures {
             .addWeightedBlockstate(DDBlocks.MOSSY_SPROUTS.get().getDefaultState(), 50)
             .addWeightedBlockstate(Blocks.CAVE_AIR.getDefaultState(), 43))));
 
-    public static final ConfiguredFeature<?, ?> MOSSY_GRIMESTONE_PATCH = DDFeatures.VEGETATION_PATCH.get().withConfiguration(new VegetationPatchConfig(BlockTags.BASE_STONE_OVERWORLD.getName(), new WeightedBlockStateProvider().addWeightedBlockstate(DDBlocks.MOSSY_GRIMESTONE.get().getDefaultState(), 53).addWeightedBlockstate(DDBlocks.GRIMESTONE.get().getDefaultState(), 37), () -> {
+    public static final ConfiguredFeature<VegetationPatchConfig, ?> MOSSY_GRIMESTONE_PATCH = DDFeatures.VEGETATION_PATCH.get().withConfiguration(new VegetationPatchConfig(BlockTags.BASE_STONE_OVERWORLD.getName(), new WeightedBlockStateProvider().addWeightedBlockstate(DDBlocks.MOSSY_GRIMESTONE.get().getDefaultState(), 53).addWeightedBlockstate(DDBlocks.GRIMESTONE.get().getDefaultState(), 37), () -> {
         return GLOWSHROOM_VEGETATION;
     }, CaveSurface.FLOOR, ConstantIntProvider.create(1), 0.0f, 5, 0.8f, UniformIntProvider.create(4, 7), 0.3f));
+
+    public static final ConfiguredFeature<VegetationPatchConfig, ?> MOSSY_GRIMESTONE_BONEMEAL = DDFeatures.VEGETATION_PATCH.get().withConfiguration(new VegetationPatchConfig(new ResourceLocation(DarkerDepths.MODID, "grimestone"), new SimpleBlockStateProvider(DDBlocks.MOSSY_GRIMESTONE.get().getDefaultState()), () -> {
+        return GLOWSHROOM_VEGETATION;
+    }, CaveSurface.FLOOR, ConstantIntProvider.create(1), 0.0f, 5, 0.5f, UniformIntProvider.create(3, 3), 0.3f));
 
     public static final ConfiguredFeature<?, ?> GLOWSHROOM_CAVE_VEGETATION = HELPER.registerConfiguredFeature("glowshroom_cave_vegetation", MOSSY_GRIMESTONE_PATCH.withPlacement(DDPlacements.CAVE_SURFACE.get().configure(new CaveDecoratorConfig(CaveSurface.FLOOR, 12))).range(50).square().count(13));
 

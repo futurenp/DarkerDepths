@@ -11,7 +11,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class DDTileEntities {
     public static final DeferredRegister<TileEntityType<?>> HELPER = DeferredRegister.create(ForgeRegistries.TILE_ENTITIES, DarkerDepths.MODID);
 
-    public static final RegistryObject<TileEntityType<DDSignTileEntity>> DD_SIGN = HELPER.register("dd_sign", () -> TileEntityType.Builder.create(DDSignTileEntity::new, DDBlocks.PETRIFIED_SIGN.get(), DDBlocks.PETRIFIED_WALL_SIGN.get()).build(null));
+    public static final RegistryObject<TileEntityType<DDSignTileEntity>> PETRIFIED_SIGN = HELPER.register("petrified_sign", () -> TileEntityType.Builder.create(DDSignTileEntity::new, DDBlocks.PETRIFIED_SIGN.get(), DDBlocks.PETRIFIED_WALL_SIGN.get()).build(null));
 
     public static void register(IEventBus eventBus) {
         HELPER.register(eventBus);

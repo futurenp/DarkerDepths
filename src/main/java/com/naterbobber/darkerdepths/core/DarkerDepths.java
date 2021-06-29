@@ -7,17 +7,17 @@ import com.naterbobber.darkerdepths.common.entities.MagmaMinionEntity;
 import com.naterbobber.darkerdepths.common.events.TickEvents;
 import com.naterbobber.darkerdepths.common.world.gen.GlobalBiomeFeatures;
 import com.naterbobber.darkerdepths.core.registries.DDEntityTypes;
+import com.naterbobber.darkerdepths.core.registries.DDSurfaceBuilders;
 import com.naterbobber.darkerdepths.core.registries.DDTileEntities;
+import com.naterbobber.darkerdepths.core.registries.DDWoodTypes;
 import com.naterbobber.darkerdepths.core.registries.VanillaIntegrationRegistry;
 import com.naterbobber.darkerdepths.core.util.DarkerDepthsItemGroup;
-import net.minecraft.client.renderer.tileentity.SignTileEntityRenderer;
 import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
 import net.minecraft.item.ItemGroup;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DeferredWorkQueue;
-import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -49,13 +49,14 @@ public class DarkerDepths {
         REGISTRIES.getParticleTypes().register(modEventBus);
         REGISTRIES.getPlacements().register(modEventBus);
         DDEntityTypes.ENTITY_TYPES.register(modEventBus);
+        DDSurfaceBuilders.SURFACE_BUILDER.register(modEventBus);
         DDTileEntities.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::clientSetup);
     }
 
-    private void commonSetup(final FMLCommonSetupEvent event) {
+    private void commonSetup(FMLCommonSetupEvent event) {
         DeferredWorkQueue.runLater(() -> {
             GlobalEntityTypeAttributes.put(DDEntityTypes.GLOWSHROOM_MONSTER.get(), GlowshroomMonsterEntity.setCustomAttributes().create());
             GlobalEntityTypeAttributes.put(DDEntityTypes.MAGMA_MINION.get(), MagmaMinionEntity.setCustomAttributes().create());
@@ -67,7 +68,9 @@ public class DarkerDepths {
         CaveBiomeImplementation.addCaveBiomes();
     }
 
-    private void clientSetup(final FMLClientSetupEvent event) {
+    private void clientSetup(FMLClientSetupEvent event) {
         BlockRenderHandler.blockRenders();
+
+        event.enqueueWork(DDWoodTypes::initializeAtlas);
     }
 }

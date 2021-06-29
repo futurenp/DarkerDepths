@@ -32,6 +32,6 @@ public class BlockRenderHandler {
         RenderTypeLookup.setRenderLayer(DDBlocks.PETRIFIED_POST.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(DDBlocks.STRIPPED_PETRIFIED_POST.get(), RenderType.getCutout());
 
-        ClientRegistry.bindTileEntityRenderer(DDTileEntities.DD_SIGN.get(), SignTileEntityRenderer::new);
+        ClientRegistry.bindTileEntityRenderer(DDTileEntities.PETRIFIED_SIGN.get(), SignTileEntityRenderer::new);
     }
 }
