@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "type=north": {
+      "model": "darkerdepths:block/aridrock_bricks_vertical_slab", "y": 0, "uvlock": true
+    },
+    "type=south": {
+      "model": "darkerdepths:block/aridrock_bricks_vertical_slab", "y": 180, "uvlock": true
+    },
+    "type=east": {
+      "model": "darkerdepths:block/aridrock_bricks_vertical_slab", "y": 90, "uvlock": true
+    },
+    "type=west": {
+      "model": "darkerdepths:block/aridrock_bricks_vertical_slab", "y": 270, "uvlock": true
+    },
+    "type=double": {
+      "model": "darkerdepths:block/aridrock_bricks"
+    }
+  }
+}

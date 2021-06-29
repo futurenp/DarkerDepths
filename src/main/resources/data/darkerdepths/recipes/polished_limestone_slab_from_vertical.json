@@ -11,5 +11,11 @@
   "result": {
     "item": "darkerdepths:polished_limestone_slab",
     "count": 1
-  }
+  },
+  "conditions": [
+    {
+      "type": "darkerdepths:quark_flag",
+      "flag": "vertical_slabs"
+    }
+  ]
 }

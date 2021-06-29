@@ -1,5 +1,6 @@
 package com.naterbobber.darkerdepths.common.items;
 
+import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
@@ -9,6 +10,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
@@ -30,6 +33,19 @@ public class GlowshroomCap extends Item {
     @Override
     public void onArmorTick(ItemStack stack, World world, PlayerEntity player) {
         player.addPotionEffect(new EffectInstance(Effect.get(3), 40, 0));
+    }
+
+    public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
+        ItemStack stack = playerIn.getHeldItem(handIn);
+        EquipmentSlotType equipmentslottype = EquipmentSlotType.HEAD;
+        ItemStack stack1 = playerIn.getItemStackFromSlot(equipmentslottype);
+        if (stack1.isEmpty()) {
+            playerIn.setItemStackToSlot(equipmentslottype, stack.copy());
+            stack.setCount(0);
+            return ActionResult.func_233538_a_(stack, worldIn.isRemote());
+        } else {
+            return ActionResult.resultFail(stack);
+        }
     }
 
 }

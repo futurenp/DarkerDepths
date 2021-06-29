@@ -12,6 +12,12 @@
   },
   "result": {
     "item": "darkerdepths:polished_limestone_vertical_slab",
-    "count": 3
+    "count": 3,
+    "conditions": [
+      {
+        "type": "darkerdepths:quark_flag",
+        "flag": "vertical_slabs"
+      }
+    ]
   }
 }

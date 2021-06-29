@@ -12,6 +12,12 @@
   },
   "result": {
     "item": "darkerdepths:vertical_petrified_planks",
-    "count": 3
+    "count": 3,
+    "conditions": [
+      {
+        "type": "darkerdepths:quark_flag",
+        "flag": "vertical_slabs"
+      }
+    ]
   }
 }

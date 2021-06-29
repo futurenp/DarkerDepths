@@ -13,5 +13,11 @@
   "result": {
     "item": "darkerdepths:grimestone_vertical_slab",
     "count": 3
-  }
+  },
+  "conditions": [
+    {
+      "type": "darkerdepths:quark_flag",
+      "flag": "vertical_slabs"
+    }
+  ]
 }

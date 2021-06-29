@@ -4,5 +4,11 @@
     "item": "darkerdepths:shale"
   },
   "result": "darkerdepths:polished_shale_vertical_slab",
-  "count": 1
+  "count": 2,
+  "conditions": [
+    {
+      "type": "darkerdepths:quark_flag",
+      "flag": "vertical_slabs"
+    }
+  ]
 }

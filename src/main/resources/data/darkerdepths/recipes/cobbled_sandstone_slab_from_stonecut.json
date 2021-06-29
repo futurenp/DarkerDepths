@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "darkerdepths:cobbled_sandstone"
+  },
+  "result": "darkerdepths:cobbled_sandstone_slab",
+  "count": 2
+}

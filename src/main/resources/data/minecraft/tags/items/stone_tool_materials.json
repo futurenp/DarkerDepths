@@ -6,6 +6,8 @@
     "darkerdepths:shale",
     "darkerdepths:aridrock",
     "darkerdepths:limestone",
-    "darkerdepths:grimestone"
+    "darkerdepths:grimestone",
+    "darkerdepths:cobbled_sandstone",
+    "darkerdepths:cobbled_red_sandstone"
   ]
 }
