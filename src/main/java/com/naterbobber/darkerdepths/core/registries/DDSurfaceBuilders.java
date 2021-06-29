@@ -16,5 +16,4 @@ public class DDSurfaceBuilders {
     public static final RegistryObject<SurfaceBuilder<SurfaceBuilderConfig>> MOLTEN_CAVERN_SURFACE      = SURFACE_BUILDER.register("molten_cavern_surface", () -> new CaveSurfaceBuilder(DDBlocks.SHALE.get().getDefaultState(), SurfaceBuilderConfig.CODEC));
     public static final RegistryObject<SurfaceBuilder<SurfaceBuilderConfig>> SANDY_CATACOMBS_SURFACE    = SURFACE_BUILDER.register("sandy_catacombs_surface", () -> new CaveSurfaceBuilder(DDBlocks.ARIDROCK.get().getDefaultState(), DDBlocks.LIMESTONE.get().getDefaultState(), SurfaceBuilderConfig.CODEC));
     public static final RegistryObject<SurfaceBuilder<SurfaceBuilderConfig>> GLOWSHROOM_CAVE_SURFACE    = SURFACE_BUILDER.register("glowshroom_cave_surface", () -> new CaveSurfaceBuilder(DDBlocks.GRIMESTONE.get().getDefaultState(), SurfaceBuilderConfig.CODEC));
-
 }
