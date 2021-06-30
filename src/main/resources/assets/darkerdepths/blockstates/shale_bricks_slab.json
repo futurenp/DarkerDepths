@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "darkerdepths:block/shale_bricks_slab"
+    },
+    "type=double": {
+      "model": "darkerdepths:block/shale_bricks"
+    },
+    "type=top": {
+      "model": "darkerdepths:block/shale_bricks_slab_top"
+    }
+  }
+}

@@ -6,11 +6,11 @@
   ],
   "key": {
     "#": {
-      "item": "darkerdepths:polished_grimestone"
+      "item": "darkerdepths:polished_shale"
     }
   },
   "result": {
-    "item": "darkerdepths:grimestone_bricks",
+    "item": "darkerdepths:shale_bricks",
     "count": 4
   }
 }

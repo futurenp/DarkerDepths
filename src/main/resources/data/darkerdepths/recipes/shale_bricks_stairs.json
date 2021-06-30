@@ -1,16 +1,17 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "##",
-    "##"
+    "#  ",
+    "## ",
+    "###"
   ],
   "key": {
     "#": {
-      "item": "darkerdepths:polished_grimestone"
+      "item": "darkerdepths:shale_bricks"
     }
   },
   "result": {
-    "item": "darkerdepths:grimestone_bricks",
+    "item": "darkerdepths:shale_bricks_stairs",
     "count": 4
   }
 }
