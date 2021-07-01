@@ -7,6 +7,7 @@ import com.naterbobber.darkerdepths.common.entities.MagmaMinionEntity;
 import com.naterbobber.darkerdepths.common.events.TickEvents;
 import com.naterbobber.darkerdepths.common.world.gen.GlobalBiomeFeatures;
 import com.naterbobber.darkerdepths.core.registries.DDEntityTypes;
+import com.naterbobber.darkerdepths.core.registries.DDSoundEvents;
 import com.naterbobber.darkerdepths.core.registries.DDSurfaceBuilders;
 import com.naterbobber.darkerdepths.core.registries.DDTileEntities;
 import com.naterbobber.darkerdepths.core.registries.DDWoodTypes;
@@ -48,6 +49,7 @@ public class DarkerDepths {
         REGISTRIES.getBiomes().register(modEventBus);
         REGISTRIES.getParticleTypes().register(modEventBus);
         REGISTRIES.getPlacements().register(modEventBus);
+        DDSoundEvents.register(modEventBus);
         DDEntityTypes.ENTITY_TYPES.register(modEventBus);
         DDSurfaceBuilders.SURFACE_BUILDER.register(modEventBus);
         DDTileEntities.register(modEventBus);

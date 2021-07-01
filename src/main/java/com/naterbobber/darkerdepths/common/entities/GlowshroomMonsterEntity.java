@@ -1,6 +1,7 @@
 package com.naterbobber.darkerdepths.common.entities;
 
 import com.naterbobber.darkerdepths.core.registries.DDItems;
+import com.naterbobber.darkerdepths.core.registries.DDSoundEvents;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
@@ -10,6 +11,7 @@ import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.HurtByTargetGoal;
+import net.minecraft.entity.ai.goal.LookAtGoal;
 import net.minecraft.entity.ai.goal.LookRandomlyGoal;
 import net.minecraft.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.entity.ai.goal.MoveTowardsTargetGoal;
@@ -60,11 +62,16 @@ public class GlowshroomMonsterEntity extends MonsterEntity {
 
     @Override
     protected void registerGoals() {
-        this.goalSelector.addGoal(1, new GlowshroomMonsterEntity.AttackGoal());
+        super.registerGoals();
+//        this.goalSelector.addGoal(1, new MeleeAttackGoal(this, this.getAttributeValue(Attributes.MOVEMENT_SPEED) + 0.2D, true));
 //        this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.0D, true));
-        this.goalSelector.addGoal(2, new MoveTowardsTargetGoal(this, 0.9D, 32.0F));
-        this.goalSelector.addGoal(3, new WaterAvoidingRandomWalkingGoal(this, 0.4D));
-        this.goalSelector.addGoal(4, new LookRandomlyGoal(this));
+//        this.goalSelector.addGoal(2, new MoveTowardsTargetGoal(this, 0.9D, 32.0F));
+//        this.goalSelector.addGoal(3, new WaterAvoidingRandomWalkingGoal(this, this.getAttributeValue(Attributes.MOVEMENT_SPEED)));
+//        this.goalSelector.addGoal(4, new LookAtGoal(this, PlayerEntity.class, 6.0F));
+//        this.goalSelector.addGoal(5, new LookRandomlyGoal(this));
+        this.goalSelector.addGoal(1, new MeleeAttackGoal(this, this.getAttributeValue(Attributes.MOVEMENT_SPEED) + 0.2D, true));
+        this.goalSelector.addGoal(2, new WaterAvoidingRandomWalkingGoal(this, this.getAttributeValue(Attributes.MOVEMENT_SPEED)));
+        this.goalSelector.addGoal(2, new LookAtGoal(this, PlayerEntity.class, 6.0F));
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, MobEntity.class, 0, false, false, (entityPredicate) -> {
@@ -73,14 +80,14 @@ public class GlowshroomMonsterEntity extends MonsterEntity {
     }
 
     @Override
-    protected SoundEvent getAmbientSound() { return SoundEvents.ENTITY_RAVAGER_AMBIENT; }
+    protected SoundEvent getAmbientSound() { return DDSoundEvents.ENTITY_GLOWSHROOM_MONSTER_AMBIENT.get(); }
 
     @Override
-    protected SoundEvent getDeathSound() { return SoundEvents.ENTITY_RAVAGER_DEATH; }
+    protected SoundEvent getDeathSound() { return DDSoundEvents.ENTITY_GLOWSHROOM_MONSTER_DEATH.get(); }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-        return SoundEvents.ENTITY_RAVAGER_HURT;
+        return DDSoundEvents.ENTITY_GLOWSHROOM_MONSTER_HURT.get();
     }
 
     @Override
@@ -91,32 +98,32 @@ public class GlowshroomMonsterEntity extends MonsterEntity {
     @Override
     public void livingTick() {
         super.livingTick();
-        if (this.isAlive()) {
-            if (this.isMovementBlocked()) {
-                this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.0D);
-            } else {
-                double endSpeed = this.getAttackTarget() != null ? 0.35D : 0.3D;
-                double startSpeed = this.getAttribute(Attributes.MOVEMENT_SPEED).getBaseValue();
-                this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(MathHelper.lerp(0.1D, startSpeed, endSpeed));
-            }
-
-            if (this.collidedHorizontally && ForgeEventFactory.getMobGriefingEvent(this.world, this)) {
-                boolean shouldDestroy = false;
-                AxisAlignedBB boundingBox = this.getBoundingBox().grow(0.2D);
-
-                for(BlockPos blockpos : BlockPos.getAllInBoxMutable(MathHelper.floor(boundingBox.minX), MathHelper.floor(boundingBox.minY), MathHelper.floor(boundingBox.minZ), MathHelper.floor(boundingBox.maxX), MathHelper.floor(boundingBox.maxY), MathHelper.floor(boundingBox.maxZ))) {
-                    BlockState blockstate = this.world.getBlockState(blockpos);
-                    Block block = blockstate.getBlock();
-                    if (block.isIn(BlockTags.BASE_STONE_OVERWORLD)) {
-                        shouldDestroy = this.world.destroyBlock(blockpos, true, this) || shouldDestroy;
-                    }
-                }
-
-                if (!shouldDestroy && this.onGround) {
-                    this.jump();
-                }
-            }
-        }
+//        if (this.isAlive()) {
+//            if (this.isMovementBlocked()) {
+//                this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.0D);
+//            } else {
+//                double endSpeed = this.getAttackTarget() != null ? 0.35D : 0.3D;
+//                double startSpeed = this.getAttribute(Attributes.MOVEMENT_SPEED).getBaseValue();
+//                this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(MathHelper.lerp(0.1D, startSpeed, endSpeed));
+//            }
+//
+//            if (this.collidedHorizontally && ForgeEventFactory.getMobGriefingEvent(this.world, this)) {
+//                boolean shouldDestroy = false;
+//                AxisAlignedBB boundingBox = this.getBoundingBox().grow(0.2D);
+//
+//                for(BlockPos blockpos : BlockPos.getAllInBoxMutable(MathHelper.floor(boundingBox.minX), MathHelper.floor(boundingBox.minY), MathHelper.floor(boundingBox.minZ), MathHelper.floor(boundingBox.maxX), MathHelper.floor(boundingBox.maxY), MathHelper.floor(boundingBox.maxZ))) {
+//                    BlockState blockstate = this.world.getBlockState(blockpos);
+//                    Block block = blockstate.getBlock();
+//                    if (block.isIn(BlockTags.BASE_STONE_OVERWORLD)) {
+//                        shouldDestroy = this.world.destroyBlock(blockpos, true, this) || shouldDestroy;
+//                    }
+//                }
+//
+//                if (!shouldDestroy && this.onGround) {
+//                    this.jump();
+//                }
+//            }
+//        }
 
         if (this.attackTick > 0) {
             this.attackTick--;
@@ -153,41 +160,41 @@ public class GlowshroomMonsterEntity extends MonsterEntity {
         return new ItemStack(DDItems.GLOWSHROOM_MONSTER_SPAWN_EGG.get());
     }
 
-    @Override
-    protected PathNavigator createNavigator(World worldIn) {
-        return new GlowshroomMonsterEntity.Navigator(this, worldIn);
-    }
-
-    class AttackGoal extends MeleeAttackGoal {
-        public AttackGoal() {
-            super(GlowshroomMonsterEntity.this, 1.0D, true);
-        }
-
-        @Override
-        protected double getAttackReachSqr(LivingEntity attackTarget) {
-            float width = GlowshroomMonsterEntity.this.getWidth() - 0.1F;
-            return width * 2.0F * width * 2.0F + attackTarget.getWidth();
-        }
-    }
-
-    static class Navigator extends GroundPathNavigator {
-        public Navigator(MobEntity entitylivingIn, World worldIn) {
-            super(entitylivingIn, worldIn);
-        }
-
-        @Override
-        protected PathFinder getPathFinder(int p_179679_1_) {
-            this.nodeProcessor = new GlowshroomMonsterEntity.Processor();
-            return new PathFinder(this.nodeProcessor, p_179679_1_);
-        }
-    }
-
-    static class Processor extends WalkNodeProcessor {
-        private Processor() {}
-
-        @Override
-        protected PathNodeType refineNodeType(IBlockReader worldIn, boolean canOpenDoors, boolean canEnterDoors, BlockPos pos, PathNodeType nodeType) {
-            return nodeType == PathNodeType.BLOCKED ? PathNodeType.OPEN : super.refineNodeType(worldIn, canOpenDoors, canEnterDoors, pos, nodeType);
-        }
-    }
+//    @Override
+//    protected PathNavigator createNavigator(World worldIn) {
+//        return new GlowshroomMonsterEntity.Navigator(this, worldIn);
+//    }
+//
+//    class AttackGoal extends MeleeAttackGoal {
+//        public AttackGoal() {
+//            super(GlowshroomMonsterEntity.this, 1.0D, true);
+//        }
+//
+//        @Override
+//        protected double getAttackReachSqr(LivingEntity attackTarget) {
+//            float width = GlowshroomMonsterEntity.this.getWidth() - 0.1F;
+//            return width * 2.0F * width * 2.0F + attackTarget.getWidth();
+//        }
+//    }
+//
+//    static class Navigator extends GroundPathNavigator {
+//        public Navigator(MobEntity entitylivingIn, World worldIn) {
+//            super(entitylivingIn, worldIn);
+//        }
+//
+//        @Override
+//        protected PathFinder getPathFinder(int range) {
+//            this.nodeProcessor = new GlowshroomMonsterEntity.Processor();
+//            return new PathFinder(this.nodeProcessor, range);
+//        }
+//    }
+//
+//    static class Processor extends WalkNodeProcessor {
+//        private Processor() {}
+//
+//        @Override
+//        protected PathNodeType refineNodeType(IBlockReader worldIn, boolean canOpenDoors, boolean canEnterDoors, BlockPos pos, PathNodeType nodeType) {
+//            return nodeType == PathNodeType.BLOCKED ? PathNodeType.OPEN : super.refineNodeType(worldIn, canOpenDoors, canEnterDoors, pos, nodeType);
+//        }
+//    }
 }

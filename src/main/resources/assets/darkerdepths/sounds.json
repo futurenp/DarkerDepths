@@ -1,0 +1,23 @@
+{
+  "entity.glowshroom_monster.ambient": {
+    "category": "block",
+    "subtitle": "Glowshroom Monster Growls",
+    "sounds": [
+      "darkerdepths:entity/glowshroom_monster/ambient"
+    ]
+  },
+  "entity.glowshroom_monster.death": {
+    "category": "block",
+    "subtitle": "Glowshroom Monster Dies",
+    "sounds": [
+      "darkerdepths:entity/glowshroom_monster/death"
+    ]
+  },
+  "entity.glowshroom_monster.hurt": {
+    "category": "block",
+    "subtitle": "Glowshroom Monster Hurts",
+    "sounds": [
+      "darkerdepths:entity/glowshroom_monster/hurt"
+    ]
+  }
+}

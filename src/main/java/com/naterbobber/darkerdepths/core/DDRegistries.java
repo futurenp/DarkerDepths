@@ -19,6 +19,7 @@ import java.util.function.Supplier;
 //<>
 
 public class DDRegistries extends CoreRegistries {
+
     public DDRegistries(String modId) {
         super(modId);
     }

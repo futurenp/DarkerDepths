@@ -126,9 +126,9 @@ public class GlowshroomMonsterModel <T extends GlowshroomMonsterEntity> extends 
         this.left_arm.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
         int i = entityIn.getAttackTimer();
         if (i > 0) {
-            this.left_arm.rotateAngleX = MathHelper.sin((float) (limbSwing * 0.6662F + Math.PI * 3)) * 1.4F * limbSwingAmount;
-            this.right_arm.rotateAngleX = MathHelper.sin((float) (limbSwing * 0.6662F + Math.PI * 3)) * 1.4F * limbSwingAmount;
-       }
+            this.left_arm.rotateAngleX = MathHelper.lerp(i, -0.2F, -0.5F);
+            this.right_arm.rotateAngleX = MathHelper.lerp(i, -0.2F, -0.5F);
+        }
     }
 
     @Override
