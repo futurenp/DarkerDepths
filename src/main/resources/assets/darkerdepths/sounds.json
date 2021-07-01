@@ -1,4 +1,39 @@
 {
+  "block.grimestone.break": {
+    "sounds":[
+      "darkerdepths:block/grimestone/break1",
+      "darkerdepths:block/grimestone/break2",
+      "darkerdepths:block/grimestone/break3"
+    ]
+  },
+  "block.grimestone.place": {
+    "sounds":[
+      "darkerdepths:block/grimestone/place1",
+      "darkerdepths:block/grimestone/place2",
+      "darkerdepths:block/grimestone/place3"
+    ]
+  },
+  "block.grimestone.step": {
+    "sounds": [
+      "darkerdepths:block/grimestone/place1",
+      "darkerdepths:block/grimestone/place2",
+      "darkerdepths:block/grimestone/place3"
+    ]
+  },
+  "block.grimestone.hit": {
+    "sounds": [
+      "darkerdepths:block/grimestone/place1",
+      "darkerdepths:block/grimestone/place2",
+      "darkerdepths:block/grimestone/place3"
+    ]
+  },
+  "block.grimestone.fall": {
+    "sounds":[
+      "darkerdepths:block/grimestone/break1",
+      "darkerdepths:block/grimestone/break2",
+      "darkerdepths:block/grimestone/break3"
+    ]
+  },
   "entity.glowshroom_monster.ambient": {
     "category": "block",
     "subtitle": "Glowshroom Monster Growls",
