@@ -35,7 +35,7 @@ public class DDBlocks {
 	public static final RegistryObject<Block> PETRIFIED_STAIRS 						= HELPER.registerBlock("petrified_stairs", () -> new StairsBlock(() -> PETRIFIED_PLANKS.get().getDefaultState(), Block.Properties.create(Material.ROCK).setRequiresTool().hardnessAndResistance(2.5f, 3.0f).harvestTool(ToolType.PICKAXE).harvestLevel(0).sound(SoundType.WOOD)), DarkerDepths.DARKER_DEPTHS);
 
 	//pourus
-	public static final RegistryObject<Block> POURUS_PETRIFIED_LOG					= HELPER.registerBlock("pourus_petrified_log", () -> new PourusBlock(AbstractBlock.Properties.from(PETRIFIED_LOG.get()).tickRandomly().setLightLevel(value -> 6)), DarkerDepths.DARKER_DEPTHS);
+	public static final RegistryObject<Block> POROUS_PETRIFIED_LOG					= HELPER.registerBlock("porous_petrified_log", () -> new PorousBlock(AbstractBlock.Properties.from(PETRIFIED_LOG.get()).tickRandomly().setLightLevel(value -> 6)), DarkerDepths.DARKER_DEPTHS);
 
 	//moss/lush
 	public static final RegistryObject<Block> LUSH_ARIDROCK 						= HELPER.registerBlock("lush_aridrock", () -> new LushAridrockBlock(Block.Properties.create(Material.ROCK, MaterialColor.LIME).setRequiresTool().hardnessAndResistance(1.5f, 6.0f).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE).tickRandomly()), DarkerDepths.DARKER_DEPTHS);

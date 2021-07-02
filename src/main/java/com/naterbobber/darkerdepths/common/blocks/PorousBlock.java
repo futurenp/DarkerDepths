@@ -9,9 +9,9 @@ import net.minecraft.world.server.ServerWorld;
 
 import java.util.Random;
 
-public class PourusBlock extends RotatedPillarBlock {
+public class PorousBlock extends RotatedPillarBlock {
 
-    public PourusBlock(Properties properties) {
+    public PorousBlock(Properties properties) {
         super(properties);
     }
 
