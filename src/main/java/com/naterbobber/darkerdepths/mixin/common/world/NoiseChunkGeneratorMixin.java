@@ -34,6 +34,7 @@ import java.util.Random;
 @Mixin(NoiseChunkGenerator.class)
 public class NoiseChunkGeneratorMixin {
     @Shadow @Final protected SharedSeedRandom randomSeed;
+    @Shadow @Final private long field_236084_w_;
 
     @Unique
     BlockPos tempPos = BlockPos.ZERO;
@@ -46,6 +47,6 @@ public class NoiseChunkGeneratorMixin {
     @ModifyVariable(method = "func_230352_b_", at = @At("STORE"), ordinal = 0)
     private BlockState IE_modifyNoise(BlockState chosen, IWorld world, StructureManager structureManager, IChunk chunk) {
         Random random = new Random(chunk.getPos().x ^ (long)this.tempPos.getX() * chunk.getPos().z ^ this.tempPos.getZ() * this.tempPos.getY() * this.randomSeed.nextLong());
-        return ((INoiseAccess)world.getBiome(this.tempPos).getGenerationSettings().getSurfaceBuilder().get().builder).modifyNoise(((NoiseChunkGenerator) (Object) this), this.tempPos, random, chosen, world, structureManager, chunk);
+        return ((INoiseAccess)world.getBiome(this.tempPos).getGenerationSettings().getSurfaceBuilder().get().builder).modifyNoise(((NoiseChunkGenerator) (Object) this), this.tempPos, random, chosen, world, structureManager, chunk, this.randomSeed, this.field_236084_w_);
     }
 }

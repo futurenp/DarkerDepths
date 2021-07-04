@@ -14,17 +14,18 @@ import java.util.Random;
 //<>
 
 public class GeyserFeature extends Feature<NoFeatureConfig> {
-
     public GeyserFeature(Codec<NoFeatureConfig> codec) {
         super(codec);
     }
 
     @Override
     public boolean generate(ISeedReader world, ChunkGenerator generator, Random rand, BlockPos pos, NoFeatureConfig config) {
-        if (world.isAirBlock(pos.down())) {
-            return false;
-        } else if (world.getBlockState(pos.up()).matchesBlock(Blocks.LAVA)) {
-            this.setBlockState(world, pos.down(), DDBlocks.GEYSER.get().getDefaultState());
+//        if (world.isAirBlock(pos.down())) {
+//            return false;
+//        } else
+
+        if (world.getBlockState(pos.up()).matchesBlock(Blocks.LAVA) && world.getBlockState(pos).isSolid()) {
+            this.setBlockState(world, pos, DDBlocks.GEYSER.get().getDefaultState());
             return true;
         } else {
             return false;

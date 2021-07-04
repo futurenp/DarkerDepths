@@ -24,7 +24,7 @@ public class TickEvents {
             if (world.getBlockState(pos.down(i)) == DDBlocks.GEYSER.get().getDefaultState().with(GeyserBlock.POWERED, false)) {
                 Vector3d motion = entity.getMotion();
                 entity.setMotion(motion.x, motion.y + ((Math.abs(-i - 5.5) / 10) / 4), motion.z);
-                if (world.getBlockState(pos.down(i + 1)) == Blocks.MAGMA_BLOCK.getDefaultState()) {
+                if (world.getBlockState(pos.down(i + 1)).matchesBlock(Blocks.MAGMA_BLOCK)) {
                     entity.setMotion(motion.x, motion.y + ((Math.abs(-i - 5.5) / 10) / 2), motion.z);
                 }
             }

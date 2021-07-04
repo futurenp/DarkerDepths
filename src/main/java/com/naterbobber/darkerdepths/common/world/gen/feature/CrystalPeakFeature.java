@@ -16,8 +16,8 @@ import java.util.Random;
 
 //<>
 
-public class CavePillarFeature extends Feature<CavePillarConfig> {
-    public CavePillarFeature(Codec<CavePillarConfig> codec) {
+public class CrystalPeakFeature extends Feature<CavePillarConfig> {
+    public CrystalPeakFeature(Codec<CavePillarConfig> codec) {
         super(codec);
     }
 
