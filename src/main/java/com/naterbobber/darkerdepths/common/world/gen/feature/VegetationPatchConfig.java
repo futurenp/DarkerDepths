@@ -3,7 +3,7 @@ package com.naterbobber.darkerdepths.common.world.gen.feature;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.naterbobber.darkerdepths.common.math.IntProvider;
-import com.naterbobber.darkerdepths.core.util.CaveSurface;
+import com.naterbobber.darkerdepths.core.util.VerticalSurfaceType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.gen.blockstateprovider.BlockStateProvider;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
@@ -21,7 +21,7 @@ public class VegetationPatchConfig implements IFeatureConfig {
             return config.groundState;
         }), ConfiguredFeature.field_236264_b_.fieldOf("vegetation_feature").forGetter((config) -> {
             return config.vegetationFeature;
-        }), CaveSurface.CODEC.fieldOf("surface").forGetter((config) -> {
+        }), VerticalSurfaceType.CODEC.fieldOf("surface").forGetter((config) -> {
             return config.surface;
         }), IntProvider.createValidatingCodec(1, 128).fieldOf("depth").forGetter((config) -> {
             return config.depth;
@@ -40,7 +40,7 @@ public class VegetationPatchConfig implements IFeatureConfig {
     public final ResourceLocation replaceable;
     public final BlockStateProvider groundState;
     public final Supplier<ConfiguredFeature<?, ?>> vegetationFeature;
-    public final CaveSurface surface;
+    public final VerticalSurfaceType surface;
     public final IntProvider depth;
     public final float extraBottomBlockChance;
     public final int verticalRange;
@@ -48,7 +48,7 @@ public class VegetationPatchConfig implements IFeatureConfig {
     public final IntProvider xzRadius;
     public final float extraEdgeColumnChance;
 
-    public VegetationPatchConfig(ResourceLocation replaceable, BlockStateProvider groundState, Supplier<ConfiguredFeature<?, ?>> vegetationFeature, CaveSurface surface, IntProvider depth, float extraBottomBlockChance, int verticalRange, float vegetationChance, IntProvider xzRadius, float extraEdgeColumnChance) {
+    public VegetationPatchConfig(ResourceLocation replaceable, BlockStateProvider groundState, Supplier<ConfiguredFeature<?, ?>> vegetationFeature, VerticalSurfaceType surface, IntProvider depth, float extraBottomBlockChance, int verticalRange, float vegetationChance, IntProvider xzRadius, float extraEdgeColumnChance) {
         this.replaceable = replaceable;
         this.groundState = groundState;
         this.vegetationFeature = vegetationFeature;

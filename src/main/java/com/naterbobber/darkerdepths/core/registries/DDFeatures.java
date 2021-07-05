@@ -1,7 +1,6 @@
 package com.naterbobber.darkerdepths.core.registries;
 
 import com.naterbobber.darkerdepths.common.world.gen.feature.*;
-import com.naterbobber.darkerdepths.common.world.gen.feature.BlobReplacementConfig;
 import com.naterbobber.darkerdepths.core.DDRegistries;
 import com.naterbobber.darkerdepths.core.DarkerDepths;
 
@@ -16,7 +15,6 @@ public class DDFeatures {
 	public static final DDRegistries HELPER = DarkerDepths.REGISTRIES;
 
 	public static final RegistryObject<Feature<GemstonePlacementConfig>> GEMSTONE_PLACEMENT_FEATURE 	= HELPER.registerFeature("gemstone_placement", () -> new GemstonePlacementFeature(GemstonePlacementConfig.CODEC));
-	public static final RegistryObject<Feature<BlobReplacementConfig>> BLOB_REPLACEMENT_FEATURE 		= HELPER.registerFeature("blob_replacement", () -> new BlobReplacementFeature(BlobReplacementConfig.CODEC));
 	public static final RegistryObject<Feature<SimpleBlockConfig>> SIMPLE_BLOCK 						= HELPER.registerFeature("simple_block", () -> new SimpleBlockFeature(SimpleBlockConfig.CODEC));
 	public static final RegistryObject<Feature<NoFeatureConfig>> CAVE_FOSSILS 							= HELPER.registerFeature("cave_fossils", () -> new CaveFossilFeature(NoFeatureConfig.CODEC));
 	public static final RegistryObject<Feature<CavePillarConfig>> CRYSTAL_PEAK 							= HELPER.registerFeature("crystal_peak", () -> new CrystalPeakFeature(CavePillarConfig.CODEC));

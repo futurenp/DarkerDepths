@@ -24,8 +24,8 @@ public class LavaVegetationPatchFeature extends VegetationPatchFeature {
     }
 
     @Override
-    protected Set<BlockPos> placeGroundPatch(IWorld worldIn, VegetationPatchConfig configIn, Random rand, BlockPos pos, Predicate<BlockState> statePredicate, int xIn, int zIn) {
-        Set<BlockPos> landGroundPatch = super.placeGroundPatch(worldIn, configIn, rand, pos, statePredicate, xIn, zIn);
+    protected Set<BlockPos> placeGroundPatch(IWorld worldIn, VegetationPatchConfig configIn, Random rand, BlockPos pos, Predicate<BlockState> statePredicate, int xRadius, int zRadius) {
+        Set<BlockPos> landGroundPatch = super.placeGroundPatch(worldIn, configIn, rand, pos, statePredicate, xRadius, zRadius);
         Set<BlockPos> waterGroundPatch = new HashSet<>();
         BlockPos.Mutable mutable = new BlockPos.Mutable();
         Iterator<BlockPos> posIterator = landGroundPatch.iterator();

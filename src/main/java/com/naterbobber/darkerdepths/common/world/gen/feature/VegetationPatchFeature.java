@@ -27,26 +27,26 @@ public class VegetationPatchFeature extends Feature<VegetationPatchConfig> {
 
     @Override
     public boolean generate(ISeedReader worldIn, ChunkGenerator generator, Random rand, BlockPos pos, VegetationPatchConfig config) {
-        Predicate<BlockState> replaceableTags = getReplaceableTag(config);
+        Predicate<BlockState> replaceableTags = getReplaceablePredicate(config);
         int xRadius = config.xzRadius.get(rand) + 1;
         int zRadius = config.xzRadius.get(rand) + 1;
         Set<BlockPos> groundPatch = this.placeGroundPatch(worldIn, config, rand, pos, replaceableTags, xRadius, zRadius);
-        this.distributeVegetation(generator, worldIn, config, rand, groundPatch, xRadius, zRadius);
+        this.generateVegetation(generator, worldIn, config, rand, groundPatch, xRadius, zRadius);
         return !groundPatch.isEmpty();
     }
 
-    protected Set<BlockPos> placeGroundPatch(IWorld worldIn, VegetationPatchConfig configIn, Random rand, BlockPos pos, Predicate<BlockState> statePredicate, int xIn, int zIn) {
+    protected Set<BlockPos> placeGroundPatch(IWorld worldIn, VegetationPatchConfig configIn, Random rand, BlockPos pos, Predicate<BlockState> statePredicate, int xRadius, int zRadius) {
         BlockPos.Mutable mutable = pos.toMutable();
         BlockPos.Mutable mutated = mutable.toMutable();
         Direction surfaceDirection = configIn.surface.getDirection();
         Direction oppositeSurface = surfaceDirection.getOpposite();
         Set<BlockPos> positions = new HashSet<>();
 
-        for(int x = -xIn; x <= xIn; ++x) {
-            boolean inXRange = x == -xIn || x == xIn;
+        for(int x = -xRadius; x <= xRadius; ++x) {
+            boolean inXRange = x == -xRadius || x == xRadius;
 
-            for(int z = -zIn; z <= zIn; ++z) {
-                boolean inZRange = z == -zIn || z == zIn;
+            for(int z = -zRadius; z <= zRadius; ++z) {
+                boolean inZRange = z == -zRadius || z == zRadius;
                 boolean inAnyRange = inXRange || inZRange;
                 boolean inTotalRange = inXRange && inZRange;
                 boolean inSingleRange = inAnyRange && !inTotalRange;
@@ -81,7 +81,7 @@ public class VegetationPatchFeature extends Feature<VegetationPatchConfig> {
         return positions;
     }
 
-    protected void distributeVegetation(ChunkGenerator generator, ISeedReader worldIn, VegetationPatchConfig configIn, Random rand, Set<BlockPos> positions, int x, int z) {
+    protected void generateVegetation(ChunkGenerator generator, ISeedReader worldIn, VegetationPatchConfig configIn, Random rand, Set<BlockPos> positions, int x, int z) {
         for (BlockPos pos : positions) {
             if (configIn.vegetationChance > 0.0F && rand.nextFloat() < configIn.vegetationChance) {
                 this.placeVegetation(worldIn, configIn, generator, rand, pos);
@@ -106,7 +106,7 @@ public class VegetationPatchFeature extends Feature<VegetationPatchConfig> {
         return true;
     }
 
-    private static Predicate<BlockState> getReplaceableTag(VegetationPatchConfig configIn) {
+    private static Predicate<BlockState> getReplaceablePredicate(VegetationPatchConfig configIn) {
         ITag<Block> tag = BlockTags.getCollection().get(configIn.replaceable);
         return tag == null ? (block) -> true : (block) -> block.isIn(tag);
     }
