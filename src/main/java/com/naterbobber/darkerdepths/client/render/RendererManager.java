@@ -1,18 +1,30 @@
 package com.naterbobber.darkerdepths.client.render;
 
+import com.naterbobber.darkerdepths.client.entity.render.GlowshroomMonsterRenderer;
+import com.naterbobber.darkerdepths.client.entity.render.MagmaMinionRenderer;
+import com.naterbobber.darkerdepths.client.entity.render.PetrifiedBoatRenderer;
+import com.naterbobber.darkerdepths.common.entities.PetrifiedBoatEntity;
+import com.naterbobber.darkerdepths.core.DarkerDepths;
 import com.naterbobber.darkerdepths.core.registries.DDBlocks;
+import com.naterbobber.darkerdepths.core.registries.DDEntityTypes;
 
 import com.naterbobber.darkerdepths.core.registries.DDTileEntities;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.client.renderer.tileentity.SignTileEntityRenderer;
+import net.minecraft.entity.EntityType;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
-@OnlyIn(Dist.CLIENT)
-public class BlockRenderHandler {
-    public static void blockRenders() {
+@Mod.EventBusSubscriber(modid = DarkerDepths.MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+public class RendererManager {
+
+    @SubscribeEvent
+    public static void onClientSetup(FMLClientSetupEvent event) {
         RenderTypeLookup.setRenderLayer(DDBlocks.PETRIFIED_DOOR.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(DDBlocks.PETRIFIED_TRAPDOOR.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(DDBlocks.ROPE.get(), RenderType.getCutout());
@@ -33,5 +45,10 @@ public class BlockRenderHandler {
         RenderTypeLookup.setRenderLayer(DDBlocks.STRIPPED_PETRIFIED_POST.get(), RenderType.getCutout());
 
         ClientRegistry.bindTileEntityRenderer(DDTileEntities.PETRIFIED_SIGN.get(), SignTileEntityRenderer::new);
+
+        RenderingRegistry.registerEntityRenderingHandler(DDEntityTypes.GLOWSHROOM_MONSTER.get(), GlowshroomMonsterRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(DDEntityTypes.MAGMA_MINION.get(), MagmaMinionRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler((EntityType<? extends PetrifiedBoatEntity>) DDEntityTypes.BOAT.get(), PetrifiedBoatRenderer::new);
+
     }
 }

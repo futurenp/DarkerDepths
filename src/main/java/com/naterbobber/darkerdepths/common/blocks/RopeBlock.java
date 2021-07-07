@@ -1,7 +1,5 @@
 package com.naterbobber.darkerdepths.common.blocks;
 
-import com.naterbobber.darkerdepths.core.util.RopePart;
-
 import net.minecraft.block.*;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.fluid.Fluid;
@@ -13,6 +11,7 @@ import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.Direction;
+import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
@@ -136,5 +135,25 @@ public class RopeBlock extends Block implements IBucketPickupHandler, ILiquidCon
         return BlockRenderType.MODEL;
     }
 
+    public enum RopePart implements IStringSerializable {
+        TOP("top"),
+        MIDDLE("middle"),
+        BOTTOM("bottom");
+
+        private final String name;
+
+        RopePart(String string) {
+            this.name = string;
+        }
+
+        public String toString() {
+            return this.name;
+        }
+
+        @Override
+        public String getString() {
+            return this.name;
+        }
+    }
 
 }

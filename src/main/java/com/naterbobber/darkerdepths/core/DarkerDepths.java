@@ -1,7 +1,7 @@
 package com.naterbobber.darkerdepths.core;
 
 import com.naterbobber.darkerdepths.client.compat.DDCompatibilty;
-import com.naterbobber.darkerdepths.client.render.BlockRenderHandler;
+import com.naterbobber.darkerdepths.client.render.RendererManager;
 import com.naterbobber.darkerdepths.common.entities.GlowshroomMonsterEntity;
 import com.naterbobber.darkerdepths.common.entities.MagmaMinionEntity;
 import com.naterbobber.darkerdepths.common.events.TickEvents;
@@ -71,7 +71,8 @@ public class DarkerDepths {
     }
 
     private void clientSetup(FMLClientSetupEvent event) {
-        BlockRenderHandler.blockRenders();
+
+        RendererManager.onClientSetup(event);
 
         event.enqueueWork(DDWoodTypes::initializeAtlas);
     }

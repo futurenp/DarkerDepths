@@ -2,6 +2,7 @@ package com.naterbobber.darkerdepths.common.items;
 
 import com.naterbobber.darkerdepths.client.entity.model.CapModel;
 import com.naterbobber.darkerdepths.core.DarkerDepths;
+import com.naterbobber.darkerdepths.core.registries.DDItems;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.enchantment.IArmorVanishable;
 import net.minecraft.entity.Entity;
@@ -54,7 +55,7 @@ public class GlowshroomCapItem extends ArmorItem implements IArmorVanishable {
 
         @Override
         public int getDamageReductionAmount(EquipmentSlotType slotIn) {
-            return 0;
+                return 1;
         }
 
         @Override
@@ -69,7 +70,7 @@ public class GlowshroomCapItem extends ArmorItem implements IArmorVanishable {
 
         @Override
         public Ingredient getRepairMaterial() {
-            return null;
+            return Ingredient.fromItems(DDItems.RESINOUS_GRIME.get());
         }
 
         @Override
