@@ -17,7 +17,7 @@ public class PorousBlock extends RotatedPillarBlock {
 
     @Override
     public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
-        if (worldIn.isAirBlock(pos.down()) && random.nextInt(10) == 0) {
+        if (worldIn.isAirBlock(pos.down()) && random.nextInt(25) == 0) {
             net.minecraftforge.common.ForgeHooks.onCropsGrowPost(worldIn, pos, state);
             worldIn.setBlockState(pos.down(), DDBlocks.AMBER.get().getDefaultState().with(AbstractGemStoneBlock.FACING, Direction.DOWN), 2);
         }
