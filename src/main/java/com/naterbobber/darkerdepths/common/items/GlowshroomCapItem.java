@@ -32,13 +32,13 @@ public class GlowshroomCapItem extends ArmorItem implements IArmorVanishable {
 
     @Override
     public void onArmorTick(ItemStack stack, World world, PlayerEntity player) {
-        player.addPotionEffect(new EffectInstance(Effect.get(3), 40, 0, false, false, true));
+        player.addPotionEffect(new EffectInstance(Effect.get(3), 1, 0, false, false, true));
     }
 
     @Nullable
     @Override
     public <A extends BipedModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlotType armorSlot, A _default) {
-        CapModel<?> cap = new CapModel<>();
+        CapModel cap = new CapModel();
         cap.bipedHead.showModel = armorSlot == EquipmentSlotType.HEAD;
         return (A)cap;
     }

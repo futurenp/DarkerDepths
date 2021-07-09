@@ -7,9 +7,10 @@ import net.minecraft.client.renderer.entity.model.IHasHead;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.entity.LivingEntity;
 
-public class CapModel<T extends LivingEntity> extends BipedModel<T> implements IHasHead {
+//<>
+
+public class CapModel extends BipedModel<LivingEntity> implements IHasHead {
 	private final ModelRenderer group;
-	private final ModelRenderer capCube;
 
 	public CapModel() {
 		super(1.0F);
@@ -20,7 +21,7 @@ public class CapModel<T extends LivingEntity> extends BipedModel<T> implements I
 		group.setRotationPoint(0.0F, 20.0F, 0.0F);
 		group.setTextureOffset(0, 48).addBox(-4.0F, -18.0F, -4.0F, 8.0F, 8.0F, 8.0F, 0.0F, true);
 
-		capCube = new ModelRenderer(this);
+		ModelRenderer capCube = new ModelRenderer(this);
 		capCube.setRotationPoint(-15.0F, 7.0F, 19.0F);
 		group.addChild(capCube);
 		setRotationAngle(capCube, -0.3054F, 0.0F, 0.0F);
@@ -38,5 +39,4 @@ public class CapModel<T extends LivingEntity> extends BipedModel<T> implements I
 		modelRenderer.rotateAngleY = y;
 		modelRenderer.rotateAngleZ = z;
 	}
-
 }
