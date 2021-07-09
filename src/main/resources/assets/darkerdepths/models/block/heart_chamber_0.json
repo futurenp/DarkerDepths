@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/cube_bottom_top",
-  "textures": {
-    "top": "darkerdepths:block/heart_chamber_top_0",
-    "bottom": "darkerdepths:block/polished_aridrock",
-    "side": "darkerdepths:block/heart_chamber_0"
-  }
-}

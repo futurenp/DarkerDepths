@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "size=small": { "model": "darkerdepths:block/aridrock_speleothem_small" },
+    "size=medium": { "model": "darkerdepths:block/aridrock_speleothem_medium" },
+    "size=big": { "model": "darkerdepths:block/aridrock_speleothem_big" }
+  }
+}

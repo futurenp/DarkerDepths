@@ -31,9 +31,6 @@ public class DDItems {
 	public static final RegistryObject<Item> GLOWSHROOM_MONSTER_SPAWN_EGG = HELPER.registerItem("glowshroom_monster_spawn_egg", () -> new DDSpawnEggItem(DDEntityTypes.GLOWSHROOM_MONSTER, 8290688, 8513702, new Item.Properties().group(DarkerDepths.DARKER_DEPTHS)));
 	public static final RegistryObject<Item> MAGMA_MINION_SPAWN_EGG		  = HELPER.registerItem("magma_minion_spawn_egg", () -> new DDSpawnEggItem(DDEntityTypes.MAGMA_MINION, 6448235, 16760916, new Item.Properties().group(DarkerDepths.DARKER_DEPTHS)));
 
-	//FOOD
-	public static final RegistryObject<Item> GLOWSHROOM_STEW			  = HELPER.registerItem("glowshroom_stew", () -> new SoupItem(new Item.Properties().maxStackSize(1).food(new Food.Builder().hunger(5).saturation(0.6F).build())));
-
 	//TRANSPORT
 	public static final RegistryObject<Item> PETRIFIED_BOAT 			  = HELPER.registerItem("petrified_boat", () -> new DDBoatItem(PetrifiedBoatEntity.Type.Petrified, new Item.Properties().maxStackSize(1).group(DarkerDepths.DARKER_DEPTHS)));
 }

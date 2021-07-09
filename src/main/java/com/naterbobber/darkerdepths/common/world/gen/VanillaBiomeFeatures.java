@@ -1,7 +1,10 @@
 package com.naterbobber.darkerdepths.common.world.gen;
 
+import com.naterbobber.darkerdepths.client.compat.DDCompatibilty;
 import net.minecraft.world.gen.GenerationStage;
+import net.minecraft.world.gen.feature.Feature;
 import net.minecraftforge.common.world.BiomeGenerationSettingsBuilder;
+import net.minecraftforge.fml.ModList;
 
 //<>
 
@@ -14,6 +17,10 @@ public class VanillaBiomeFeatures {
         builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, DDConfiguredFeatures.GLOWSPIRE_VINES);
         builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, DDConfiguredFeatures.HUGE_GLOWSHROOM);
         builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, DDConfiguredFeatures.GLOWSHROOM_VEGETATION_PATCH);
+        if (ModList.get() != null && ModList.get().getModContainerById("quark").isPresent()) {
+            FeaturePlacement.addFeature(builder, GenerationStage.Decoration.VEGETAL_DECORATION, DDConfiguredFeatures.GRIMESTONE_SPELEOTHEM_BOTTOM);
+            FeaturePlacement.addFeature(builder, GenerationStage.Decoration.VEGETAL_DECORATION, DDConfiguredFeatures.GRIMESTONE_SPELEOTHEM_UP);
+        }
     }
 
     public static void addCrystalPeaks(BiomeGenerationSettingsBuilder builder) {
@@ -30,6 +37,10 @@ public class VanillaBiomeFeatures {
         FeaturePlacement.addFeature(builder, GenerationStage.Decoration.VEGETAL_DECORATION, DDConfiguredFeatures.LAVA_POOL_PATCH);
         FeaturePlacement.addFeature(builder, GenerationStage.Decoration.UNDERGROUND_ORES, DDConfiguredFeatures.MAGMA_ORE);
         FeaturePlacement.addFeature(builder, GenerationStage.Decoration.VEGETAL_DECORATION, DDConfiguredFeatures.GEYSER);
+        if (ModList.get() != null && ModList.get().getModContainerById("quark").isPresent()) {
+            FeaturePlacement.addFeature(builder, GenerationStage.Decoration.VEGETAL_DECORATION, DDConfiguredFeatures.SHALE_SPELEOTHEM_BOTTOM);
+            FeaturePlacement.addFeature(builder, GenerationStage.Decoration.VEGETAL_DECORATION, DDConfiguredFeatures.SHALE_SPELEOTHEM_UP);
+        }
     }
  
     public static void addAridrockOres(BiomeGenerationSettingsBuilder builder) {
@@ -61,6 +72,12 @@ public class VanillaBiomeFeatures {
         FeaturePlacement.addFeature(builder, GenerationStage.Decoration.VEGETAL_DECORATION, DDConfiguredFeatures.SANDY_CATACOMBS_VEGETATION);
         FeaturePlacement.addFeature(builder, GenerationStage.Decoration.VEGETAL_DECORATION, DDConfiguredFeatures.ROOTS);
         FeaturePlacement.addFeature(builder, GenerationStage.Decoration.VEGETAL_DECORATION, DDConfiguredFeatures.LONG_ROOTS);
+        if (ModList.get() != null && ModList.get().getModContainerById("quark").isPresent()) {
+            FeaturePlacement.addFeature(builder, GenerationStage.Decoration.VEGETAL_DECORATION, DDConfiguredFeatures.ARIDROCK_SPELEOTHEM_BOTTOM);
+            FeaturePlacement.addFeature(builder, GenerationStage.Decoration.VEGETAL_DECORATION, DDConfiguredFeatures.ARIDROCK_SPELEOTHEM_UP);
+            FeaturePlacement.addFeature(builder, GenerationStage.Decoration.VEGETAL_DECORATION, DDConfiguredFeatures.LIMESTONE_SPELEOTHEM_BOTTOM);
+            FeaturePlacement.addFeature(builder, GenerationStage.Decoration.VEGETAL_DECORATION, DDConfiguredFeatures.LIMESTONE_SPELEOTHEM_UP);
+        }
     }
 
     public static void addOasis(BiomeGenerationSettingsBuilder builder) {

@@ -9,6 +9,7 @@ import com.naterbobber.darkerdepths.common.world.gen.feature.GemstonePlacementCo
 import com.naterbobber.darkerdepths.common.world.gen.feature.GrowingPlantConfig;
 import com.naterbobber.darkerdepths.common.world.gen.feature.HugeGlowshroomConfig;
 import com.naterbobber.darkerdepths.common.world.gen.feature.SimpleBlockConfig;
+import com.naterbobber.darkerdepths.common.world.gen.feature.SpeleothemConfig;
 import com.naterbobber.darkerdepths.common.world.gen.feature.VegetationPatchConfig;
 import com.naterbobber.darkerdepths.common.world.gen.placement.CaveSurfaceDecoratorConfig;
 import com.naterbobber.darkerdepths.core.DDRegistries;
@@ -24,8 +25,10 @@ import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Direction;
 import net.minecraft.util.WeightedList;
+import net.minecraft.world.gen.blockplacer.SimpleBlockPlacer;
 import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
 import net.minecraft.world.gen.blockstateprovider.WeightedBlockStateProvider;
+import net.minecraft.world.gen.feature.BlockClusterFeatureConfig;
 import net.minecraft.world.gen.feature.BlockStateProvidingFeatureConfig;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.Feature;
@@ -41,35 +44,40 @@ import net.minecraft.world.gen.placement.TopSolidRangeConfig;
 public class DDConfiguredFeatures {
     public static final DDRegistries HELPER = DarkerDepths.REGISTRIES;
 
-    //DEFAULT_CAVES
-    
-    //vegetation
+    /**
+     * DEFAULT CAVES FEATURES
+     */
     public static final ConfiguredFeature<?, ?> GLOWSHROOM_PATCH            = HELPER.registerConfiguredFeature("glowshroom_patch", DDFeatures.SIMPLE_BLOCK.get().withConfiguration(new SimpleBlockConfig(new SimpleBlockStateProvider(States.SINGLE_GLOWSHROOM))).withPlacement(DDPlacements.CAVE_SURFACE.get().configure(new CaveSurfaceDecoratorConfig(VerticalSurfaceType.FLOOR, 12))).range(50).square().countSpread(FeatureSpread.create(20, 60)).chance(20));
-    
-    //ores
-    
-    //MOLTEN_CAVERNS
 
-    //vegetation
+    /**
+     * MOLTEN CAVERN FEATURES
+     */
     public static final ConfiguredFeature<?, ?> AMBER                       = HELPER.registerConfiguredFeature("amber", DDFeatures.GEMSTONE_PLACEMENT_FEATURE.get().withConfiguration(new GemstonePlacementConfig(States.AMBER)).range(25).square().count(60));
     public static final ConfiguredFeature<?, ?> ASH_VEGETATION              = HELPER.registerConfiguredFeature("ash_vegetation", DDFeatures.SIMPLE_BLOCK.get().withConfiguration(new SimpleBlockConfig(new WeightedBlockStateProvider().addWeightedBlockstate(States.SINGLE_ASH_LAYER, 25).addWeightedBlockstate(States.DOUBLE_ASH_LAYER, 15).addWeightedBlockstate(States.TRIPLE_ASH_LAYER, 10))));
     public static final ConfiguredFeature<?, ?> MOLTEN_CAVE_VEGETATION      = HELPER.registerConfiguredFeature("molten_cave_vegetation", DDFeatures.VEGETATION_PATCH.get().withConfiguration(new VegetationPatchConfig(BlockTags.BASE_STONE_OVERWORLD.getName(), new SimpleBlockStateProvider(DDBlocks.ASH_BLOCK.get().getDefaultState()), () -> ASH_VEGETATION, VerticalSurfaceType.FLOOR, ConstantIntProvider.create(1), 0.0f, 5, 0.8f, UniformIntProvider.create(4, 7), 0.3f)).withPlacement(DDPlacements.CAVE_SURFACE.get().configure(new CaveSurfaceDecoratorConfig(VerticalSurfaceType.FLOOR, 12))).range(50).square().count(20));
     public static final ConfiguredFeature<?, ?> LAVA_POOL_PATCH             = HELPER.registerConfiguredFeature("lava_pool_patch", DDFeatures.LAVA_VEGETATION_PATCH.get().withConfiguration(new VegetationPatchConfig(BlockTags.BASE_STONE_OVERWORLD.getName(), new SimpleBlockStateProvider(DDBlocks.SHALE.get().getDefaultState()), () -> Feature.NO_OP.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG), VerticalSurfaceType.FLOOR, ConstantIntProvider.create(3), 0.8f, 5, 0.01f, UniformIntProvider.create(4, 7), 0.7f))).withPlacement(DDPlacements.CAVE_SURFACE.get().configure(new CaveSurfaceDecoratorConfig(VerticalSurfaceType.FLOOR, 12))).range(32).square().count(10);
     public static final ConfiguredFeature<?, ?> GEYSER                      = HELPER.registerConfiguredFeature("geyser", DDFeatures.GEYSER_FEATURE.get().withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG)).withPlacement(DDPlacements.CAVE_SURFACE.get().configure(new CaveSurfaceDecoratorConfig(VerticalSurfaceType.FLOOR, 12))).range(50).square().count(7);
-    
-    //ores
+
+    public static final ConfiguredFeature<?, ?> SHALE_SPELEOTHEM_UP         = HELPER.registerConfiguredFeature("shale_speleothem_up", DDFeatures.SPELEOTHEM_FEATURE.get().withConfiguration(new SpeleothemConfig(DDBlocks.SHALE_SPELEOTHEM.get().getDefaultState(), Direction.UP))).withPlacement(DDPlacements.CAVE_SURFACE.get().configure(new CaveSurfaceDecoratorConfig(VerticalSurfaceType.FLOOR, 12))).range(50).square().count(7);
+    public static final ConfiguredFeature<?, ?> SHALE_SPELEOTHEM_BOTTOM     = HELPER.registerConfiguredFeature("shale_speleothem_bottom", DDFeatures.SPELEOTHEM_FEATURE.get().withConfiguration(new SpeleothemConfig(DDBlocks.SHALE_SPELEOTHEM.get().getDefaultState(), Direction.DOWN))).withPlacement(DDPlacements.CAVE_SURFACE.get().configure(new CaveSurfaceDecoratorConfig(VerticalSurfaceType.FLOOR, 12))).range(50).square().count(7);
+
     public static final ConfiguredFeature<?, ?> MAGMA_ORE                   = HELPER.registerConfiguredFeature("magma_ore", Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, States.MAGMA_BLOCK, 15)).count(12).withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(5, 5, 55))).square());
 
-    //SANDY_CATACOMBS
 
-    //vegetation
+    /**
+     * SANDY CATACOMBS FEATURES
+     */
     public static final ConfiguredFeature<?, ?> SANDY_CATACOMBS_VEGETATION  = HELPER.registerConfiguredFeature("sandy_catacombs_vegetation", DDFeatures.VEGETATION_FEATURE.get().withConfiguration(Configs.SANDY_CATACOMBS_VEGETATION_CONFIG).range(50).square().count(40));
     public static final ConfiguredFeature<?, ?> ROOTS                       = HELPER.registerConfiguredFeature("roots", DDFeatures.SIMPLE_BLOCK.get().withConfiguration(new SimpleBlockConfig(new SimpleBlockStateProvider(States.ROOTS))).withPlacement(DDPlacements.CAVE_SURFACE.get().configure(new CaveSurfaceDecoratorConfig(VerticalSurfaceType.CEILING, 12))).range(50).square().count(20));
     public static final ConfiguredFeature<?, ?> LONG_ROOTS                  = HELPER.registerConfiguredFeature("long_roots", DDFeatures.SIMPLE_BLOCK.get().withConfiguration(new SimpleBlockConfig(new SimpleBlockStateProvider(States.LONG_ROOTS))).withPlacement(DDPlacements.CAVE_SURFACE.get().configure(new CaveSurfaceDecoratorConfig(VerticalSurfaceType.CEILING, 12))).range(70).square().count(10).chance(25));
     public static final ConfiguredFeature<?, ?> PETRIFIED_LOG_BRANCH        = HELPER.registerConfiguredFeature("petrified_log_branch", DDFeatures.PETRIFIED_LOG_BRANCH.get().withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).withPlacement(DDPlacements.CAVE_SURFACE.get().configure(new CaveSurfaceDecoratorConfig(VerticalSurfaceType.CEILING, 12))).range(32).square().count(8));
     public static final ConfiguredFeature<?, ?> CAVE_FOSSILS                = HELPER.registerConfiguredFeature("cave_fossils", DDFeatures.CAVE_FOSSILS.get().withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).chance(5).range(40).square());
 
-    //aridrock_ores
+    public static final ConfiguredFeature<?, ?> ARIDROCK_SPELEOTHEM_UP         = HELPER.registerConfiguredFeature("aridrock_speleothem_up", DDFeatures.SPELEOTHEM_FEATURE.get().withConfiguration(new SpeleothemConfig(DDBlocks.ARIDROCK_SPELEOTHEM.get().getDefaultState(), Direction.UP))).withPlacement(DDPlacements.CAVE_SURFACE.get().configure(new CaveSurfaceDecoratorConfig(VerticalSurfaceType.FLOOR, 12))).range(50).square().count(7);
+    public static final ConfiguredFeature<?, ?> ARIDROCK_SPELEOTHEM_BOTTOM     = HELPER.registerConfiguredFeature("aridrock_speleothem_bottom", DDFeatures.SPELEOTHEM_FEATURE.get().withConfiguration(new SpeleothemConfig(DDBlocks.ARIDROCK_SPELEOTHEM.get().getDefaultState(), Direction.DOWN))).withPlacement(DDPlacements.CAVE_SURFACE.get().configure(new CaveSurfaceDecoratorConfig(VerticalSurfaceType.FLOOR, 12))).range(50).square().count(7);
+    public static final ConfiguredFeature<?, ?> LIMESTONE_SPELEOTHEM_UP        = HELPER.registerConfiguredFeature("limestone_speleothem_up", DDFeatures.SPELEOTHEM_FEATURE.get().withConfiguration(new SpeleothemConfig(DDBlocks.LIMESTONE_SPELEOTHEM.get().getDefaultState(), Direction.UP))).withPlacement(DDPlacements.CAVE_SURFACE.get().configure(new CaveSurfaceDecoratorConfig(VerticalSurfaceType.FLOOR, 12))).range(50).square().count(7);
+    public static final ConfiguredFeature<?, ?> LIMESTONE_SPELEOTHEM_BOTTOM    = HELPER.registerConfiguredFeature("limestone_speleothem_bottom", DDFeatures.SPELEOTHEM_FEATURE.get().withConfiguration(new SpeleothemConfig(DDBlocks.LIMESTONE_SPELEOTHEM.get().getDefaultState(), Direction.DOWN))).withPlacement(DDPlacements.CAVE_SURFACE.get().configure(new CaveSurfaceDecoratorConfig(VerticalSurfaceType.FLOOR, 12))).range(50).square().count(7);
+
     public static final ConfiguredFeature<?, ?> ARIDROCK_ORE_COAL           = HELPER.registerConfiguredFeature("aridrock_coal_ore", Feature.ORE.withConfiguration(new OreFeatureConfig(DDFillerBlockTypes.ARIDROCK, States.ARIDROCK_COAL_ORE, 17)).count(128).square().range(80));
     public static final ConfiguredFeature<?, ?> ARIDROCK_ORE_IRON           = HELPER.registerConfiguredFeature("aridrock_ore_iron", Feature.ORE.withConfiguration(new OreFeatureConfig(DDFillerBlockTypes.ARIDROCK, States.ARIDROCK_IRON_ORE, 9)).range(64).square().count(80));
     public static final ConfiguredFeature<?, ?> ARIDROCK_ORE_GOLD           = HELPER.registerConfiguredFeature("aridrock_ore_gold", Feature.ORE.withConfiguration(new OreFeatureConfig(DDFillerBlockTypes.ARIDROCK, States.ARIDROCK_GOLD_ORE, 9)).range(32).square().count(8));
@@ -78,7 +86,6 @@ public class DDConfiguredFeatures {
     public static final ConfiguredFeature<?, ?> ARIDROCK_ORE_SILVER         = HELPER.registerConfiguredFeature("aridrock_ore_silver", Feature.ORE.withConfiguration(new OreFeatureConfig(DDFillerBlockTypes.ARIDROCK, States.ARIDROCK_SILVER_ORE, 4)).range(16).square());
     public static final ConfiguredFeature<?, ?> ARIDROCK_ORE_LAPIS          = HELPER.registerConfiguredFeature("aridrock_ore_lapis", Feature.ORE.withConfiguration(new OreFeatureConfig(DDFillerBlockTypes.ARIDROCK, States.ARIDROCK_LAPIS_ORE, 7)).withPlacement(Placement.DEPTH_AVERAGE.configure(new DepthAverageConfig(16, 16))).square());
 
-    //limestone_ores
     public static final ConfiguredFeature<?, ?> LIMESTONE_ORE_COAL          = HELPER.registerConfiguredFeature("limestone_coal_ore", Feature.ORE.withConfiguration(new OreFeatureConfig(DDFillerBlockTypes.LIMESTONE, States.LIMESTONE_COAL_ORE, 17)).count(128).square().range(80));
     public static final ConfiguredFeature<?, ?> LIMESTONE_ORE_IRON          = HELPER.registerConfiguredFeature("limestone_ore_iron", Feature.ORE.withConfiguration(new OreFeatureConfig(DDFillerBlockTypes.LIMESTONE, States.LIMESTONE_IRON_ORE, 9)).range(64).square().count(80));
     public static final ConfiguredFeature<?, ?> LIMESTONE_ORE_GOLD          = HELPER.registerConfiguredFeature("limestone_ore_gold", Feature.ORE.withConfiguration(new OreFeatureConfig(DDFillerBlockTypes.LIMESTONE, States.LIMESTONE_GOLD_ORE, 9)).range(32).square().count(8));
@@ -87,13 +94,12 @@ public class DDConfiguredFeatures {
     public static final ConfiguredFeature<?, ?> LIMESTONE_ORE_SILVER        = HELPER.registerConfiguredFeature("limestone_ore_silver", Feature.ORE.withConfiguration(new OreFeatureConfig(DDFillerBlockTypes.LIMESTONE, States.LIMESTONE_SILVER_ORE, 4)).range(16).square());
     public static final ConfiguredFeature<?, ?> LIMESTONE_ORE_LAPIS         = HELPER.registerConfiguredFeature("limestone_ore_lapis", Feature.ORE.withConfiguration(new OreFeatureConfig(DDFillerBlockTypes.LIMESTONE, States.LIMESTONE_LAPIS_ORE, 7)).withPlacement(Placement.DEPTH_AVERAGE.configure(new DepthAverageConfig(16, 16))).square());
 
-    //oasis
     public static final ConfiguredFeature<?, ?> OASIS_POOL                  = HELPER.registerConfiguredFeature("oasis_pool", DDFeatures.WATERLOGGED_VEGETATION_PATCH.get().withConfiguration(new VegetationPatchConfig(BlockTags.BASE_STONE_OVERWORLD.getName(), new SimpleBlockStateProvider(States.LUSH_ARIDROCK), () -> Feature.NO_OP.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG), VerticalSurfaceType.FLOOR, ConstantIntProvider.create(1), 0.0f, 5, 0.01f, UniformIntProvider.create(8, 14), 1.0f))).withPlacement(DDPlacements.CAVE_SURFACE.get().configure(new CaveSurfaceDecoratorConfig(VerticalSurfaceType.FLOOR, 12))).withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(15, 0, 50))).square().count(10).chance(64);
     public static final ConfiguredFeature<?, ?> OASIS_VEGETATION            = HELPER.registerConfiguredFeature("oasis_vegetation", DDFeatures.VEGETATION_FEATURE.get().withConfiguration(Configs.OASIS_VEGETATION_CONFIG).range(50).square().count(60));
 
-    //GLOWSHROOM_CAVES
-
-    //vegetation
+    /**
+     * GLOWSHROOM CAVE FEATURES
+     */
     public static final ConfiguredFeature<?, ?> HUGE_GLOWSHROOM             = HELPER.registerConfiguredFeature("huge_glowshroom", DDFeatures.HUGE_GLOWSHROOM_FEATURE.get().withConfiguration(new HugeGlowshroomConfig(States.GLOWSHROOM_STEM, States.GLOWSHROOM_BLOCK)).withPlacement(DDPlacements.CAVE_SURFACE.get().configure(new CaveSurfaceDecoratorConfig(VerticalSurfaceType.FLOOR, 12))).range(50).square().count(7));
     public static final ConfiguredFeature<?, ?> HUGE_GLOWSHROOM_PLANTED     = HELPER.registerConfiguredFeature("huge_glowshroom_planted", DDFeatures.HUGE_GLOWSHROOM_FEATURE.get().withConfiguration(new HugeGlowshroomConfig(States.GLOWSHROOM_STEM, States.GLOWSHROOM_BLOCK)));
 
@@ -102,6 +108,9 @@ public class DDConfiguredFeatures {
 
     public static final ConfiguredFeature<?, ?> GLOWSHROOM_VEGETATION       = HELPER.registerConfiguredFeature("glowshroom_vegetation", DDFeatures.SIMPLE_BLOCK.get().withConfiguration(new SimpleBlockConfig(new WeightedBlockStateProvider().addWeightedBlockstate(States.SINGLE_GLOWSHROOM, 6).addWeightedBlockstate(States.DOUBLE_GLOWSHROOM, 6).addWeightedBlockstate(States.TRIPLE_GLOWSHROOM, 6).addWeightedBlockstate(States.GLOWSPURS, 5).addWeightedBlockstate(States.MOSSY_SPROUTS, 50).addWeightedBlockstate(Blocks.CAVE_AIR.getDefaultState(), 43))));
     public static final ConfiguredFeature<?, ?> GLOWSHROOM_VEGETATION_PATCH = HELPER.registerConfiguredFeature("glowshroom_vegetation_patch", DDFeatures.VEGETATION_PATCH.get().withConfiguration(Configs.GLOWSHROOM_VEGETATION_PATCH_CONFIG).withPlacement(DDPlacements.CAVE_SURFACE.get().configure(new CaveSurfaceDecoratorConfig(VerticalSurfaceType.FLOOR, 12))).range(50).square().count(13));
+
+    public static final ConfiguredFeature<?, ?> GRIMESTONE_SPELEOTHEM_UP        = HELPER.registerConfiguredFeature("grimestone_speleothem_up", DDFeatures.SPELEOTHEM_FEATURE.get().withConfiguration(new SpeleothemConfig(DDBlocks.GRIMESTONE_SPELEOTHEM.get().getDefaultState(), Direction.UP))).withPlacement(DDPlacements.CAVE_SURFACE.get().configure(new CaveSurfaceDecoratorConfig(VerticalSurfaceType.FLOOR, 12))).range(50).square().count(7);
+    public static final ConfiguredFeature<?, ?> GRIMESTONE_SPELEOTHEM_BOTTOM    = HELPER.registerConfiguredFeature("grimestone_speleothem_bottom", DDFeatures.SPELEOTHEM_FEATURE.get().withConfiguration(new SpeleothemConfig(DDBlocks.GRIMESTONE_SPELEOTHEM.get().getDefaultState(), Direction.DOWN))).withPlacement(DDPlacements.CAVE_SURFACE.get().configure(new CaveSurfaceDecoratorConfig(VerticalSurfaceType.FLOOR, 12))).range(50).square().count(7);
 
     //ores
 

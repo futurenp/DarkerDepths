@@ -57,7 +57,7 @@ public class GlowshroomCapItem extends ArmorItem implements IArmorVanishable {
 
         @Override
         public int getDamageReductionAmount(EquipmentSlotType slotIn) {
-                return 0;
+                return 1;
         }
 
         @Override

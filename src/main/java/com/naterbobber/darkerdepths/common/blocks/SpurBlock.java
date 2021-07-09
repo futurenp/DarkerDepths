@@ -62,7 +62,7 @@ public class SpurBlock extends Block {
     }
 
     private void updateState(BlockPos pos, BlockState state, World worldIn) {
-        worldIn.setBlockState(pos, state.with(POWERED, true), 2);
+        worldIn.setBlockState(new BlockPos(pos), state.with(POWERED, true), 2);
         worldIn.getPendingBlockTicks().scheduleTick(pos, this, 40);
     }
 

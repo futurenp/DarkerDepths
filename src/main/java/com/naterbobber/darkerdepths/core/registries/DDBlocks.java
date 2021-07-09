@@ -38,8 +38,8 @@ public class DDBlocks {
 	public static final RegistryObject<Block> POROUS_PETRIFIED_LOG					= HELPER.registerBlock("porous_petrified_log", () -> new PorousBlock(AbstractBlock.Properties.from(PETRIFIED_LOG.get()).tickRandomly().setLightLevel(value -> 6)), DarkerDepths.DARKER_DEPTHS);
 
 	//moss/lush
-	public static final RegistryObject<Block> LUSH_ARIDROCK 						= HELPER.registerCompatBlock("indev", "lush_aridrock", () -> new LushAridrockBlock(Block.Properties.create(Material.ROCK, MaterialColor.LIME).setRequiresTool().hardnessAndResistance(1.5f, 6.0f).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE).tickRandomly()), DarkerDepths.DARKER_DEPTHS);
-	public static final RegistryObject<Block> MOSSY_GRIMESTONE						= HELPER.registerBlock("mossy_grimestone", () -> new MossyGrimestoneBlock(AbstractBlock.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F).setRequiresTool().harvestTool(ToolType.PICKAXE).tickRandomly()), DarkerDepths.DARKER_DEPTHS);
+	public static final RegistryObject<Block> LUSH_ARIDROCK 						= HELPER.registerBlock("lush_aridrock", () -> new LushAridrockBlock(Block.Properties.create(Material.ROCK, MaterialColor.LIME).setRequiresTool().hardnessAndResistance(1.5f, 6.0f).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE).tickRandomly()), DarkerDepths.DARKER_DEPTHS);
+	public static final RegistryObject<Block> MOSSY_GRIMESTONE						= HELPER.registerBlock("mossy_grimestone", () -> new MossyGrimestoneBlock(AbstractBlock.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F).setRequiresTool().harvestTool(ToolType.PICKAXE).tickRandomly().sound(DDSoundEvents.GRIMESTONE_TYPE)), DarkerDepths.DARKER_DEPTHS);
 
 	//cobbled
 	public static final RegistryObject<Block> COBBLED_SANDSTONE 					= HELPER.registerBlock("cobbled_sandstone", () -> new Block(AbstractBlock.Properties.create(Material.ROCK, MaterialColor.SAND).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.0F)), DarkerDepths.DARKER_DEPTHS);
@@ -66,6 +66,7 @@ public class DDBlocks {
 	public static final RegistryObject<Block> SHALE_BRICKS_STAIRS					= HELPER.registerBlock("shale_bricks_stairs", () -> new StairsBlock(SHALE_BRICKS.get().getDefaultState(), Block.Properties.create(Material.ROCK).setRequiresTool().hardnessAndResistance(1.5f, 6.0f).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE)), DarkerDepths.DARKER_DEPTHS);
 	public static final RegistryObject<Block> CHISELED_SHALE_BRICKS					= HELPER.registerBlock("chiseled_shale_bricks", () -> new Block(Block.Properties.create(Material.ROCK).setRequiresTool().hardnessAndResistance(1.5f, 6.0f).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE)), DarkerDepths.DARKER_DEPTHS);
 	public static final RegistryObject<Block> CRACKED_SHALE_BRICKS					= HELPER.registerBlock("cracked_shale_bricks", () -> new Block(Block.Properties.create(Material.ROCK).setRequiresTool().hardnessAndResistance(1.5f, 6.0f).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE)), DarkerDepths.DARKER_DEPTHS);
+	public static final RegistryObject<Block> SHALE_SPELEOTHEM						= HELPER.registerCompatBlock("quark", "shale_speleothem", () -> new SpeleothemBlock(AbstractBlock.Properties.from(DDBlocks.SHALE.get()).hardnessAndResistance(1.5F).notSolid()), DarkerDepths.DARKER_DEPTHS);
 
 	//aridrock
 	public static final RegistryObject<Block> ARIDROCK 								= HELPER.registerBlock("aridrock", () -> new AridrockBlock(Block.Properties.create(Material.ROCK, MaterialColor.SAND).setRequiresTool().hardnessAndResistance(1.5f, 6.0f).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE)), DarkerDepths.DARKER_DEPTHS);
@@ -81,6 +82,7 @@ public class DDBlocks {
 	public static final RegistryObject<Block> ARIDROCK_BRICKS_VERTICAL_SLAB 		= HELPER.registerCompatBlock("quark", "aridrock_bricks_vertical_slab", () -> new VerticalSlabBlock(AbstractBlock.Properties.from(ARIDROCK_BRICKS_SLAB.get())), DarkerDepths.DARKER_DEPTHS);
 	public static final RegistryObject<Block> ARIDROCK_BRICKS_STAIRS				= HELPER.registerBlock("aridrock_bricks_stairs", () -> new StairsBlock(ARIDROCK_BRICKS.get().getDefaultState(), AbstractBlock.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(1.5F, 6.0F).harvestTool(ToolType.PICKAXE).setRequiresTool()), DarkerDepths.DARKER_DEPTHS);
 	public static final RegistryObject<Block> CRACKED_ARIDROCK_BRICKS				= HELPER.registerBlock("cracked_aridrock_bricks", () -> new Block(AbstractBlock.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(1.5F, 6.0F).harvestTool(ToolType.PICKAXE).setRequiresTool()), DarkerDepths.DARKER_DEPTHS);
+	public static final RegistryObject<Block> ARIDROCK_SPELEOTHEM					= HELPER.registerCompatBlock("quark", "aridrock_speleothem", () -> new SpeleothemBlock(AbstractBlock.Properties.from(DDBlocks.ARIDROCK.get()).hardnessAndResistance(1.5F).notSolid()), DarkerDepths.DARKER_DEPTHS);
 
 	//limestone
 	public static final RegistryObject<Block> LIMESTONE		 						= HELPER.registerBlock("limestone", () -> new Block(Block.Properties.create(Material.ROCK).setRequiresTool().hardnessAndResistance(1.5f, 6.0f).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE)), DarkerDepths.DARKER_DEPTHS);
@@ -91,6 +93,7 @@ public class DDBlocks {
 	public static final RegistryObject<Block> POLISHED_LIMESTONE_SLAB 				= HELPER.registerBlock("polished_limestone_slab", () -> new SlabBlock(Block.Properties.create(Material.ROCK).setRequiresTool().hardnessAndResistance(1.5f, 6.0f).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE)), DarkerDepths.DARKER_DEPTHS);
 	public static final RegistryObject<Block> POLISHED_LIMESTONE_VERTICAL_SLAB		= HELPER.registerCompatBlock("quark", "polished_limestone_vertical_slab", () -> new VerticalSlabBlock(AbstractBlock.Properties.from(POLISHED_LIMESTONE_SLAB.get())), DarkerDepths.DARKER_DEPTHS);
 	public static final RegistryObject<Block> POLISHED_LIMESTONE_STAIRS 			= HELPER.registerBlock("polished_limestone_stairs", () -> new StairsBlock(() -> POLISHED_LIMESTONE.get().getDefaultState(), Block.Properties.create(Material.ROCK).setRequiresTool().hardnessAndResistance(1.5f, 6.0f).harvestTool(ToolType.PICKAXE).sound(SoundType.WOOD)), DarkerDepths.DARKER_DEPTHS);
+	public static final RegistryObject<Block> LIMESTONE_SPELEOTHEM					= HELPER.registerCompatBlock("quark", "limestone_speleothem", () -> new SpeleothemBlock(AbstractBlock.Properties.from(DDBlocks.LIMESTONE.get()).hardnessAndResistance(1.5F).notSolid()), DarkerDepths.DARKER_DEPTHS);
 
 	//aridrock_ores
 	public static final RegistryObject<Block> ARIDROCK_GOLD_ORE 					= HELPER.registerBlock("aridrock_gold_ore", () -> new Block(Block.Properties.create(Material.ROCK, MaterialColor.SAND).setRequiresTool().hardnessAndResistance(3.0F, 3.0F).harvestTool(ToolType.PICKAXE).harvestLevel(2).sound(SoundType.STONE)), DarkerDepths.DARKER_DEPTHS);
@@ -125,6 +128,7 @@ public class DDBlocks {
 	public static final RegistryObject<Block> GRIMESTONE_BRICKS_VERTICAL_SLAB 		= HELPER.registerCompatBlock("quark", "grimestone_bricks_vertical_slab", () -> new VerticalSlabBlock(AbstractBlock.Properties.from(GRIMESTONE_BRICKS_SLAB.get())), DarkerDepths.DARKER_DEPTHS);
 	public static final RegistryObject<Block> GRIMESTONE_BRICKS_STAIRS				= HELPER.registerBlock("grimestone_bricks_stairs", () -> new StairsBlock(GRIMESTONE_BRICKS.get().getDefaultState(), AbstractBlock.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(1.5F, 6.0F).harvestTool(ToolType.PICKAXE).setRequiresTool()), DarkerDepths.DARKER_DEPTHS);
 	public static final RegistryObject<Block> CRACKED_GRIMESTONE_BRICKS				= HELPER.registerBlock("cracked_grimestone_bricks", () -> new Block(AbstractBlock.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(1.5F, 6.0F).harvestTool(ToolType.PICKAXE).setRequiresTool()), DarkerDepths.DARKER_DEPTHS);
+	public static final RegistryObject<Block> GRIMESTONE_SPELEOTHEM					= HELPER.registerCompatBlock("quark", "grimestone_speleothem", () -> new SpeleothemBlock(AbstractBlock.Properties.from(DDBlocks.GRIMESTONE.get()).hardnessAndResistance(1.5F).notSolid()), DarkerDepths.DARKER_DEPTHS);
 
 	public static final RegistryObject<Block> STONE_BRICK_PILLAR					= HELPER.registerBlock("stone_brick_pillar", () -> new RotatedPillarBlock(RotatedPillarBlock.Properties.create(Material.ROCK).setRequiresTool().hardnessAndResistance(1.5f, 6.0f).harvestTool(ToolType.PICKAXE).harvestLevel(0).sound(SoundType.STONE)), DarkerDepths.DARKER_DEPTHS);
 	public static final RegistryObject<Block> ASH_BLOCK 							= HELPER.registerBlock("ash_block", () -> new AshFullBlock(Block.Properties.create(Material.SNOW_BLOCK, MaterialColor.BLACK).harvestTool(ToolType.SHOVEL).setRequiresTool().hardnessAndResistance(0.2f).sound(SoundType.SNOW).tickRandomly()), DarkerDepths.DARKER_DEPTHS);
@@ -197,7 +201,6 @@ public class DDBlocks {
 
 	//cool_stuff
 	public static final RegistryObject<Block> GEYSER								= HELPER.registerBlock("geyser", () -> new GeyserBlock(AbstractBlock.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F).harvestTool(ToolType.PICKAXE).setRequiresTool().tickRandomly()), DarkerDepths.DARKER_DEPTHS);
-	public static final RegistryObject<Block> HEART_CHAMBER							= HELPER.registerCompatBlock("indev", "heart_chamber", () -> new HeartChamberBlock(Block.Properties.create(Material.ROCK, MaterialColor.SAND).setRequiresTool().hardnessAndResistance(1.5f, 6.0f).harvestTool(ToolType.PICKAXE).harvestLevel(1).sound(SoundType.STONE)), DarkerDepths.DARKER_DEPTHS);
 
 	//REDSTONE
 

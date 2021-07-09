@@ -11,10 +11,13 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.state.BooleanProperty;
+import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.Direction;
+import net.minecraft.util.Mirror;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
@@ -30,16 +33,27 @@ import java.util.Random;
 
 public class GeyserBlock extends Block {
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
+    public static final DirectionProperty FACING = BlockStateProperties.FACING;
 
     public GeyserBlock(AbstractBlock.Properties properties) {
         super(properties);
-        this.setDefaultState(this.getDefaultState().with(POWERED, false));
+        this.setDefaultState(this.getDefaultState().with(POWERED, false).with(FACING, Direction.UP));
+    }
+
+    @Override
+    public BlockState rotate(BlockState state, Rotation rot) {
+        return state.with(FACING, rot.rotate(state.get(FACING)));
+    }
+
+    @Override
+    public BlockState mirror(BlockState state, Mirror mirrorIn) {
+        return state.with(FACING, mirrorIn.mirror(state.get(FACING)));
     }
 
     @Nullable
     @Override
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        return this.getDefaultState().with(POWERED, context.getWorld().isBlockPowered(context.getPos()));
+        return this.getDefaultState().with(POWERED, context.getWorld().isBlockPowered(context.getPos())).with(FACING, context.getFace());
     }
 
     @Override
@@ -65,11 +79,21 @@ public class GeyserBlock extends Block {
         double y = yPos + rand.nextDouble() + rand.nextDouble();
         double z = zPos + 0.5D;
         if (!stateIn.get(POWERED) && !worldIn.getBlockState(pos.up()).matchesBlock(Blocks.WATER)) {
-            worldIn.addParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE, x, y, z, 0.0D, 0.07D, 0.0D);
-            if (rand.nextInt(5) == 0) {
-                for (int i = 0; i < rand.nextInt(1) + 1; i++) {
-                    worldIn.addParticle(ParticleTypes.LAVA, (double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D, rand.nextFloat() / 2.0F, 5.0E-5D, rand.nextFloat() / 2.0F);
-                }
+            Direction direction = stateIn.get(FACING);
+            switch (direction) {
+                case UP:
+                    this.addParticle(worldIn, rand, x, y, z, pos);
+                case DOWN:
+                    this.addParticle(worldIn, rand, x, yPos - rand.nextDouble() + rand.nextDouble(), z, pos);
+            }
+        }
+    }
+
+    private void addParticle(World worldIn, Random rand, double x, double y, double z, BlockPos pos) {
+        worldIn.addParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE, x, y, z, 0.0D, 0.07D, 0.0D);
+        if (rand.nextInt(5) == 0) {
+            for (int i = 0; i < rand.nextInt(1) + 1; i++) {
+                worldIn.addParticle(ParticleTypes.LAVA, (double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D, rand.nextFloat() / 2.0F, 5.0E-5D, rand.nextFloat() / 2.0F);
             }
         }
     }
@@ -79,7 +103,6 @@ public class GeyserBlock extends Block {
         if (facing == Direction.UP && facingState.matchesBlock(Blocks.WATER)) {
             worldIn.getPendingBlockTicks().scheduleTick(currentPos, this, 20);
         }
-
         return super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
     }
 
@@ -103,11 +126,11 @@ public class GeyserBlock extends Block {
 
     @Override
     public void onBlockAdded(BlockState state, World worldIn, BlockPos pos, BlockState oldState, boolean isMoving) {
-        worldIn.getPendingBlockTicks().scheduleTick(pos, this, 20);
+        worldIn.getPendingBlockTicks().scheduleTick(pos, this, 1);
     }
 
     @Override
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-        builder.add(POWERED);
+        builder.add(POWERED, FACING);
     }
 }

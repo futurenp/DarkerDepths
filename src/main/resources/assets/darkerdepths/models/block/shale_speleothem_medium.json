@@ -1,0 +1,6 @@
+{
+  "parent": "darkerdepths:block/speleothem_medium",
+  "textures": {
+    "block": "darkerdepths:block/shale"
+  }
+}
