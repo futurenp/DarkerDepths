@@ -21,16 +21,18 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
+//<>
+
 public class GlowshroomCapItem extends ArmorItem implements IArmorVanishable {
-    public static GlowshroomMaterial material = new GlowshroomMaterial();
+    public static final GlowshroomMaterial MATERIAL = new GlowshroomMaterial();
 
     public GlowshroomCapItem(Properties builder) {
-        super(material, EquipmentSlotType.HEAD, builder);
+        super(MATERIAL, EquipmentSlotType.HEAD, builder);
     }
 
     @Override
     public void onArmorTick(ItemStack stack, World world, PlayerEntity player) {
-        player.addPotionEffect(new EffectInstance(Effect.get(3), 40, 0));
+        player.addPotionEffect(new EffectInstance(Effect.get(3), 40, 0, false, false, true));
     }
 
     @Nullable
@@ -38,7 +40,7 @@ public class GlowshroomCapItem extends ArmorItem implements IArmorVanishable {
     public <A extends BipedModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlotType armorSlot, A _default) {
         CapModel<?> cap = new CapModel<>();
         cap.bipedHead.showModel = armorSlot == EquipmentSlotType.HEAD;
-        return (A) cap;
+        return (A)cap;
     }
 
     @Nullable
@@ -50,12 +52,12 @@ public class GlowshroomCapItem extends ArmorItem implements IArmorVanishable {
     private static class GlowshroomMaterial implements IArmorMaterial {
         @Override
         public int getDurability(EquipmentSlotType slotIn) {
-            return 798;
+            return 275;
         }
 
         @Override
         public int getDamageReductionAmount(EquipmentSlotType slotIn) {
-                return 1;
+                return 0;
         }
 
         @Override
