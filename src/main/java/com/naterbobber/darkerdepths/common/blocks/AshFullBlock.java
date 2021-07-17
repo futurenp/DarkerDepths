@@ -1,5 +1,6 @@
 package com.naterbobber.darkerdepths.common.blocks;
 
+import com.naterbobber.darkerdepths.core.registries.DDBlocks;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.FallingBlock;
 import net.minecraft.entity.Entity;
@@ -13,11 +14,8 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
-import java.util.Random;
-
-import com.naterbobber.darkerdepths.core.registries.DDBlocks;
-
 import javax.annotation.Nullable;
+import java.util.Random;
 
 //<>
 

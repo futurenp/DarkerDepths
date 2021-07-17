@@ -52,10 +52,12 @@ public class DarkerDepths {
         REGISTRIES.getBiomes().register(modEventBus);
         REGISTRIES.getParticleTypes().register(modEventBus);
         REGISTRIES.getPlacements().register(modEventBus);
-        DDSoundEvents.register(modEventBus);
+        REGISTRIES.getTileEntities().register(modEventBus);
+        REGISTRIES.getSurfaceBuilders().register(modEventBus);
+        REGISTRIES.getSoundEvents().register(modEventBus);
+
+        //TODO: CONVERT THIS INTO CORE REGISTRIES
         DDEntityTypes.ENTITY_TYPES.register(modEventBus);
-        DDSurfaceBuilders.SURFACE_BUILDER.register(modEventBus);
-        DDTileEntities.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::clientSetup);

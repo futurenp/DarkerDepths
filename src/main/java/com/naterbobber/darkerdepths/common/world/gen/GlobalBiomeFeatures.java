@@ -22,6 +22,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 @Mod.EventBusSubscriber
 public class GlobalBiomeFeatures {
+
 	@SubscribeEvent
 	public void onBiomeLoad(BiomeLoadingEvent event) {
 		GlobalBiomeManager manager = new GlobalBiomeManager(event);

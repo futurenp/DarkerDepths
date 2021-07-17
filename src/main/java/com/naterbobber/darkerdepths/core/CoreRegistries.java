@@ -15,6 +15,7 @@ import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.tags.ITag;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.registry.Registry;
@@ -53,7 +54,7 @@ public class CoreRegistries extends Registries {
      * @return      the customized sound event
      */
     public RegistryObject<SoundEvent> registerSoundEvent(String key) {
-        return this.getSoundEvents().register(key, () -> new SoundEvent(new ResourceLocation(this.id, key)));
+        return this.soundEvents.register(key, () -> new SoundEvent(new ResourceLocation(this.id, key)));
     }
 
     /**
@@ -79,11 +80,22 @@ public class CoreRegistries extends Registries {
     }
 
     /**
+     * register a custom tile entity
+     *
+     * @param key       tile entity ID
+     * @param builder   the customized tile entity class
+     * @return          the customized tile entity
+     */
+    public <T extends TileEntityType<?>> RegistryObject<T> registerTileEntity(String key, Supplier<? extends T>  builder) {
+        return this.getTileEntities().register(key, builder);
+    }
+
+    /**
      * register a customized block with its block item
      *
      * @param key       block ID
      * @param block     the customized block class
-     * @param group the block's group id
+     * @param group     the block's group id
      * @return          the customized block with its block item
      */
     public <B extends Block> RegistryObject<B> registerBlock(String key, Supplier<? extends B> block, ItemGroup group) {
@@ -145,9 +157,8 @@ public class CoreRegistries extends Registries {
      */
     public <C extends ICarverConfig, CC extends ConfiguredCarver<C>> CC registerConfiguredCarver(String key, CC configuredFeature) {
         ResourceLocation ID = new ResourceLocation(this.id, key);
-        if (WorldGenRegistries.CONFIGURED_CARVER.keySet().contains(ID)) {
+        if (WorldGenRegistries.CONFIGURED_CARVER.keySet().contains(ID))
             throw new IllegalStateException("The Configured Carver " + key + "already exists in the registry");
-        }
         Registry.register(WorldGenRegistries.CONFIGURED_CARVER, ID, configuredFeature);
         return configuredFeature;
     }
@@ -164,11 +175,13 @@ public class CoreRegistries extends Registries {
     }
 
 
+
+
     public <C extends ISurfaceBuilderConfig, CC extends ConfiguredSurfaceBuilder<C>> CC registerConfiguredSurfaceBuilder(String key, CC configuredFeature) {
         ResourceLocation ID = new ResourceLocation(this.id, key);
-        if (WorldGenRegistries.CONFIGURED_SURFACE_BUILDER.keySet().contains(ID)) {
+        if (WorldGenRegistries.CONFIGURED_SURFACE_BUILDER.keySet().contains(ID))
             throw new IllegalStateException("The Configured Surface Builder " + key + "already exists in the registry");
-        }
+
         Registry.register(WorldGenRegistries.CONFIGURED_SURFACE_BUILDER, ID, configuredFeature);
         return configuredFeature;
     }
@@ -193,9 +206,9 @@ public class CoreRegistries extends Registries {
      */
     public <C extends IFeatureConfig, F extends Feature<C>, CF extends ConfiguredFeature<C, F>> CF registerConfiguredFeature(String key, CF configuredFeature) {
         ResourceLocation ID = new ResourceLocation(this.id, key);
-        if (WorldGenRegistries.CONFIGURED_FEATURE.keySet().contains(ID)) {
+        if (WorldGenRegistries.CONFIGURED_FEATURE.keySet().contains(ID))
             throw new IllegalStateException("The Configured Feature " + key + "already exists in the registry");
-        }
+
         Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, ID, configuredFeature);
         return configuredFeature;
     }

@@ -1,13 +1,6 @@
 package com.naterbobber.darkerdepths.core;
 
-import com.naterbobber.darkerdepths.common.blocks.DDStandingSignBlock;
-import com.naterbobber.darkerdepths.common.blocks.DDWallSignBlock;
-import com.naterbobber.darkerdepths.core.registries.DDWoodTypes;
-import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.WoodType;
-import net.minecraft.block.material.Material;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;

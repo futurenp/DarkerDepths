@@ -2,7 +2,6 @@ package com.naterbobber.darkerdepths.common.entities;
 
 import com.naterbobber.darkerdepths.core.registries.DDBlocks;
 import com.naterbobber.darkerdepths.core.registries.DDItems;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
