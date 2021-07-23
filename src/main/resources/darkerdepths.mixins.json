@@ -7,10 +7,7 @@
     "common.blocks.BushBlockMixin",
     "common.blocks.DeadBushBlockMixin",
     "common.blocks.LogBlockMixin",
-    "common.world.DefaultBiomeFeaturesMixin",
     "common.world.IBlockReaderMixin",
-    "common.world.NoiseChunkGeneratorMixin",
-    "common.world.SurfaceBuilderMixin",
     "common.world.WorldCarverMixin"
   ],
   "client": [

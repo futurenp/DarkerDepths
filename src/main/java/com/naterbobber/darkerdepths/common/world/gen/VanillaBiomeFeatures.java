@@ -1,8 +1,6 @@
 package com.naterbobber.darkerdepths.common.world.gen;
 
-import com.naterbobber.darkerdepths.client.compat.DDCompatibilty;
 import net.minecraft.world.gen.GenerationStage;
-import net.minecraft.world.gen.feature.Feature;
 import net.minecraftforge.common.world.BiomeGenerationSettingsBuilder;
 import net.minecraftforge.fml.ModList;
 
@@ -64,20 +62,29 @@ public class VanillaBiomeFeatures {
     }
 
     public static void addSandyCatacombsTerrain(BiomeGenerationSettingsBuilder builder) {
-        FeaturePlacement.addFeature(builder, GenerationStage.Decoration.VEGETAL_DECORATION, DDConfiguredFeatures.PETRIFIED_LOG_BRANCH);
+        builder.withFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, DDConfiguredFeatures.ARIDROCK_CAVE_TERRAIN);
+        builder.withFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, DDConfiguredFeatures.LIMESTONE_CAVE_TERRAIN);
+        builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, DDConfiguredFeatures.LIMESTONE_ORE);
     }
 
-    public static void addSandyCatacombsVegetation(BiomeGenerationSettingsBuilder builder) {
-        FeaturePlacement.addFeature(builder, GenerationStage.Decoration.UNDERGROUND_STRUCTURES, DDConfiguredFeatures.CAVE_FOSSILS);
-        FeaturePlacement.addFeature(builder, GenerationStage.Decoration.VEGETAL_DECORATION, DDConfiguredFeatures.SANDY_CATACOMBS_VEGETATION);
-        FeaturePlacement.addFeature(builder, GenerationStage.Decoration.VEGETAL_DECORATION, DDConfiguredFeatures.ROOTS);
-        FeaturePlacement.addFeature(builder, GenerationStage.Decoration.VEGETAL_DECORATION, DDConfiguredFeatures.LONG_ROOTS);
+    public static void addCaveFossils(BiomeGenerationSettingsBuilder builder) {
+        builder.withFeature(GenerationStage.Decoration.UNDERGROUND_STRUCTURES, DDConfiguredFeatures.CAVE_FOSSILS);
+    }
+
+    public static void addSandyCatacombsCompat(BiomeGenerationSettingsBuilder builder) {
         if (ModList.get() != null && ModList.get().getModContainerById("quark").isPresent()) {
             FeaturePlacement.addFeature(builder, GenerationStage.Decoration.VEGETAL_DECORATION, DDConfiguredFeatures.ARIDROCK_SPELEOTHEM_BOTTOM);
             FeaturePlacement.addFeature(builder, GenerationStage.Decoration.VEGETAL_DECORATION, DDConfiguredFeatures.ARIDROCK_SPELEOTHEM_UP);
             FeaturePlacement.addFeature(builder, GenerationStage.Decoration.VEGETAL_DECORATION, DDConfiguredFeatures.LIMESTONE_SPELEOTHEM_BOTTOM);
             FeaturePlacement.addFeature(builder, GenerationStage.Decoration.VEGETAL_DECORATION, DDConfiguredFeatures.LIMESTONE_SPELEOTHEM_UP);
         }
+    }
+
+    public static void addSandyCatacombsVegetation(BiomeGenerationSettingsBuilder builder) {
+        FeaturePlacement.addFeature(builder, GenerationStage.Decoration.VEGETAL_DECORATION, DDConfiguredFeatures.ARIDROCK_VEGETATION);
+        FeaturePlacement.addFeature(builder, GenerationStage.Decoration.VEGETAL_DECORATION, DDConfiguredFeatures.LIMESTONE_VEGETATION);
+        FeaturePlacement.addFeature(builder, GenerationStage.Decoration.VEGETAL_DECORATION, DDConfiguredFeatures.ROOTS);
+        FeaturePlacement.addFeature(builder, GenerationStage.Decoration.VEGETAL_DECORATION, DDConfiguredFeatures.LONG_ROOTS);
     }
 
     public static void addOasis(BiomeGenerationSettingsBuilder builder) {
