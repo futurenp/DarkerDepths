@@ -1,7 +1,5 @@
 package com.naterbobber.darkerdepths.core.util;
 
-import com.naterbobber.darkerdepths.core.registries.DDBlocks;
-
 import com.naterbobber.darkerdepths.core.registries.DDItems;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;

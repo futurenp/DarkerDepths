@@ -1,14 +1,14 @@
 package com.naterbobber.darkerdepths.core.registries;
 
 import com.naterbobber.darkerdepths.common.entities.PetrifiedBoatEntity;
-import com.naterbobber.darkerdepths.common.items.*;
+import com.naterbobber.darkerdepths.common.items.DDBoatItem;
+import com.naterbobber.darkerdepths.common.items.DDSpawnEggItem;
+import com.naterbobber.darkerdepths.common.items.GlowshroomCapItem;
+import com.naterbobber.darkerdepths.common.items.RopeItem;
 import com.naterbobber.darkerdepths.core.DDRegistries;
 import com.naterbobber.darkerdepths.core.DarkerDepths;
-
-import net.minecraft.item.Food;
 import net.minecraft.item.Item;
 import net.minecraft.item.SignItem;
-import net.minecraft.item.SoupItem;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.common.Mod;
 

@@ -1,11 +1,54 @@
 package com.naterbobber.darkerdepths.core.registries;
 
-import com.naterbobber.darkerdepths.common.blocks.*;
+import com.naterbobber.darkerdepths.common.blocks.AbstractGemStoneBlock;
+import com.naterbobber.darkerdepths.common.blocks.AloeBlock;
+import com.naterbobber.darkerdepths.common.blocks.AridrockBlock;
+import com.naterbobber.darkerdepths.common.blocks.AshBlock;
+import com.naterbobber.darkerdepths.common.blocks.AshFullBlock;
+import com.naterbobber.darkerdepths.common.blocks.ClusterBlock;
+import com.naterbobber.darkerdepths.common.blocks.CrystalMelon;
+import com.naterbobber.darkerdepths.common.blocks.CustomDoorBlock;
+import com.naterbobber.darkerdepths.common.blocks.CustomPressurePlateBlock;
+import com.naterbobber.darkerdepths.common.blocks.CustomTrapDoorBlock;
+import com.naterbobber.darkerdepths.common.blocks.CustomWoodButtonBlock;
+import com.naterbobber.darkerdepths.common.blocks.DDOreBlock;
+import com.naterbobber.darkerdepths.common.blocks.DDStandingSignBlock;
+import com.naterbobber.darkerdepths.common.blocks.DDWallSignBlock;
+import com.naterbobber.darkerdepths.common.blocks.DetritusBlock;
+import com.naterbobber.darkerdepths.common.blocks.DrySproutsBlock;
+import com.naterbobber.darkerdepths.common.blocks.GeyserBlock;
+import com.naterbobber.darkerdepths.common.blocks.GlowSpireBlock;
+import com.naterbobber.darkerdepths.common.blocks.GlowSpirePlantBlock;
+import com.naterbobber.darkerdepths.common.blocks.Glowshroom;
+import com.naterbobber.darkerdepths.common.blocks.GrimestoneBlock;
+import com.naterbobber.darkerdepths.common.blocks.HangingDoublePlantBlock;
+import com.naterbobber.darkerdepths.common.blocks.LushAridrockBlock;
+import com.naterbobber.darkerdepths.common.blocks.MossyGrimestoneBlock;
+import com.naterbobber.darkerdepths.common.blocks.PorousBlock;
+import com.naterbobber.darkerdepths.common.blocks.RootsBlock;
+import com.naterbobber.darkerdepths.common.blocks.RopeBlock;
+import com.naterbobber.darkerdepths.common.blocks.SpeleothemBlock;
+import com.naterbobber.darkerdepths.common.blocks.SproutsBlock;
+import com.naterbobber.darkerdepths.common.blocks.SpurBlock;
+import com.naterbobber.darkerdepths.common.blocks.VerticalSlabBlock;
+import com.naterbobber.darkerdepths.common.blocks.WoodPostBlock;
 import com.naterbobber.darkerdepths.common.blocks.material.DDMaterial;
 import com.naterbobber.darkerdepths.core.DDRegistries;
 import com.naterbobber.darkerdepths.core.DarkerDepths;
-
-import net.minecraft.block.*;
+import net.minecraft.block.AbstractBlock;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.FenceBlock;
+import net.minecraft.block.FenceGateBlock;
+import net.minecraft.block.FlowerPotBlock;
+import net.minecraft.block.PressurePlateBlock;
+import net.minecraft.block.RedstoneOreBlock;
+import net.minecraft.block.RotatedPillarBlock;
+import net.minecraft.block.SlabBlock;
+import net.minecraft.block.SoundType;
+import net.minecraft.block.StairsBlock;
+import net.minecraft.block.WallBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.state.properties.BlockStateProperties;
@@ -16,7 +59,6 @@ import net.minecraftforge.fml.common.Mod;
 import java.util.function.ToIntFunction;
 
 //<>
-
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class DDBlocks {
 	public static final DDRegistries HELPER = DarkerDepths.REGISTRIES;

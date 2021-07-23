@@ -3,12 +3,8 @@ package com.naterbobber.darkerdepths.common.blocks;
 import com.naterbobber.darkerdepths.core.registries.DDBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
 
 import java.util.Random;
 

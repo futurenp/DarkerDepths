@@ -1,7 +1,7 @@
 package com.naterbobber.darkerdepths.common.entities;
 
-import com.naterbobber.darkerdepths.core.registries.DDEntityTypes;
 import com.naterbobber.darkerdepths.core.registries.DDBlocks;
+import com.naterbobber.darkerdepths.core.registries.DDEntityTypes;
 import com.naterbobber.darkerdepths.core.registries.DDItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -25,7 +25,14 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.network.play.client.CSteerBoatPacket;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.tags.FluidTags;
-import net.minecraft.util.*;
+import net.minecraft.util.ActionResultType;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.Direction;
+import net.minecraft.util.EntityPredicates;
+import net.minecraft.util.Hand;
+import net.minecraft.util.IndirectEntityDamageSource;
+import net.minecraft.util.SoundEvent;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;

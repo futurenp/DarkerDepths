@@ -6,6 +6,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.particles.ParticleType;
 import net.minecraft.potion.Effect;
+import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.carver.WorldCarver;
@@ -19,6 +20,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class Registries {
     public final String id;
+    public final DeferredRegister<TileEntityType<?>> tileEntities;
     public final DeferredRegister<SoundEvent> soundEvents;
     public final DeferredRegister<Effect> effects;
     public final DeferredRegister<Block> blocks;
@@ -38,65 +40,69 @@ public class Registries {
      */
     public Registries(String modId) {
         this.id = modId;
-        this.soundEvents                = DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, modId);
-        this.effects                    = DeferredRegister.create(ForgeRegistries.POTIONS, modId);
         this.blocks                     = DeferredRegister.create(ForgeRegistries.BLOCKS, modId);
-        this.enchantments               = DeferredRegister.create(ForgeRegistries.ENCHANTMENTS, modId);
-        this.entityTypes                = DeferredRegister.create(ForgeRegistries.ENTITIES, modId);
-        this.items                      = DeferredRegister.create(ForgeRegistries.ITEMS, modId);
-        this.carvers                    = DeferredRegister.create(ForgeRegistries.WORLD_CARVERS, modId);
-        this.surfaceBuilders            = DeferredRegister.create(ForgeRegistries.SURFACE_BUILDERS, modId);
-        this.features                   = DeferredRegister.create(ForgeRegistries.FEATURES, modId);
-        this.placements                 = DeferredRegister.create(ForgeRegistries.DECORATORS, modId);
         this.biomes                     = DeferredRegister.create(ForgeRegistries.BIOMES, modId);
+        this.carvers                    = DeferredRegister.create(ForgeRegistries.WORLD_CARVERS, modId);
+        this.effects                    = DeferredRegister.create(ForgeRegistries.POTIONS, modId);
+        this.entityTypes                = DeferredRegister.create(ForgeRegistries.ENTITIES, modId);
+        this.enchantments               = DeferredRegister.create(ForgeRegistries.ENCHANTMENTS, modId);
+        this.features                   = DeferredRegister.create(ForgeRegistries.FEATURES, modId);
+        this.items                      = DeferredRegister.create(ForgeRegistries.ITEMS, modId);
+        this.placements                 = DeferredRegister.create(ForgeRegistries.DECORATORS, modId);
         this.particleTypes              = DeferredRegister.create(ForgeRegistries.PARTICLE_TYPES, modId);
-    }
-
-    public DeferredRegister<SoundEvent> getSoundEvents() {
-        return this.soundEvents;
-    }
-
-    public DeferredRegister<Effect> getEffects() {
-        return this.effects;
+        this.soundEvents                = DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, modId);
+        this.surfaceBuilders            = DeferredRegister.create(ForgeRegistries.SURFACE_BUILDERS, modId);
+        this.tileEntities               = DeferredRegister.create(ForgeRegistries.TILE_ENTITIES, modId);
     }
 
     public DeferredRegister<Block> getBlocks() {
         return this.blocks;
     }
 
-    public DeferredRegister<Enchantment> getEnchantments() {
-        return this.enchantments;
-    }
-
-    public DeferredRegister<EntityType<?>> getEntityTypes() {
-        return this.entityTypes;
-    }
-
-    public DeferredRegister<Item> getItems() {
-        return this.items;
+    public DeferredRegister<Biome> getBiomes() {
+        return this.biomes;
     }
 
     public DeferredRegister<WorldCarver<?>> getCarvers() {
         return this.carvers;
     }
 
-    public DeferredRegister<SurfaceBuilder<?>> getSurfaceBuilders() {
-        return this.surfaceBuilders;
+    public DeferredRegister<Effect> getEffects() {
+        return this.effects;
+    }
+
+    public DeferredRegister<EntityType<?>> getEntityTypes() {
+        return this.entityTypes;
+    }
+
+    public DeferredRegister<Enchantment> getEnchantments() {
+        return this.enchantments;
     }
 
     public DeferredRegister<Feature<?>> getFeatures() {
         return this.features;
     }
 
-    public DeferredRegister<Placement<?>> getPlacements() {
-        return this.placements;
+    public DeferredRegister<Item> getItems() {
+        return this.items;
     }
 
-    public DeferredRegister<Biome> getBiomes() {
-        return this.biomes;
+    public DeferredRegister<Placement<?>> getPlacements() {
+        return this.placements;
     }
 
     public DeferredRegister<ParticleType<?>> getParticleTypes() {
         return this.particleTypes;
     }
+
+    public DeferredRegister<SoundEvent> getSoundEvents() {
+        return this.soundEvents;
+    }
+
+    public DeferredRegister<SurfaceBuilder<?>> getSurfaceBuilders() {
+        return this.surfaceBuilders;
+    }
+
+    public DeferredRegister<TileEntityType<?>> getTileEntities(){return this.tileEntities;}
+
 }
