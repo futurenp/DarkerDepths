@@ -73,7 +73,7 @@ minecraft {
 
 dependencies {
     minecraft 'net.minecraftforge:forge:1.16.5-36.1.4'
-    implementation fg.deobf('curse.maven:cavebiomeapi-441706:3366847')
+    implementation fg.deobf('curse.maven:cavebiomeapi-441706:3397961')
 }
 
 repositories {

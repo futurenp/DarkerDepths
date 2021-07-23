@@ -2,7 +2,6 @@ package com.naterbobber.darkerdepths.common.world.gen.feature;
 
 import com.mojang.serialization.Codec;
 import com.naterbobber.darkerdepths.common.blocks.SpeleothemBlock;
-import com.naterbobber.darkerdepths.core.registries.DDBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.Direction;

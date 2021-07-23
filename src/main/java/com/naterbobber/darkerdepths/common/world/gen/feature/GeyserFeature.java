@@ -20,10 +20,6 @@ public class GeyserFeature extends Feature<NoFeatureConfig> {
 
     @Override
     public boolean generate(ISeedReader world, ChunkGenerator generator, Random rand, BlockPos pos, NoFeatureConfig config) {
-//        if (world.isAirBlock(pos.down())) {
-//            return false;
-//        } else
-
         if (world.getBlockState(pos.up()).matchesBlock(Blocks.LAVA) && world.getBlockState(pos).isSolid()) {
             this.setBlockState(world, pos, DDBlocks.GEYSER.get().getDefaultState());
             return true;

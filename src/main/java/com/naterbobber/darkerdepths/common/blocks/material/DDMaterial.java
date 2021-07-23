@@ -6,5 +6,5 @@ import net.minecraft.block.material.MaterialColor;
 //<>
 
 public class DDMaterial {
-	public static final Material AMBER = (new Material.Builder(MaterialColor.GOLD)).notSolid().pushDestroys().build();
+	public static final Material AMBER = new Material.Builder(MaterialColor.GOLD).notSolid().pushDestroys().build();
 }

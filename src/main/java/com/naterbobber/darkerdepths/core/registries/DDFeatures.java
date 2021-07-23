@@ -14,6 +14,7 @@ import net.minecraftforge.fml.common.Mod;
 public class DDFeatures {
 	public static final DDRegistries HELPER = DarkerDepths.REGISTRIES;
 
+	public static final RegistryObject<Feature<ReplaceBlobsFeatureConfig>> REPLACE_BLOBS 				= HELPER.registerFeature("replace_blobs", () -> new ReplaceBlobsFeature(ReplaceBlobsFeatureConfig.CODEC));
 	public static final RegistryObject<Feature<GemstonePlacementConfig>> GEMSTONE_PLACEMENT_FEATURE 	= HELPER.registerFeature("gemstone_placement", () -> new GemstonePlacementFeature(GemstonePlacementConfig.CODEC));
 	public static final RegistryObject<Feature<SimpleBlockConfig>> SIMPLE_BLOCK 						= HELPER.registerFeature("simple_block", () -> new SimpleBlockFeature(SimpleBlockConfig.CODEC));
 	public static final RegistryObject<Feature<NoFeatureConfig>> CAVE_FOSSILS 							= HELPER.registerFeature("cave_fossils", () -> new CaveFossilFeature(NoFeatureConfig.CODEC));
@@ -26,6 +27,5 @@ public class DDFeatures {
 	public static final RegistryObject<Feature<HugeGlowshroomConfig>> HUGE_GLOWSHROOM_FEATURE 			= HELPER.registerFeature("huge_glowshroom", () -> new HugeGlowshroomFeature(HugeGlowshroomConfig.CODEC));
 	public static final RegistryObject<Feature<GrowingPlantConfig>> GROWING_PLANT 						= HELPER.registerFeature("growing_plant", () -> new GrowingPlantFeature(GrowingPlantConfig.CODEC));
 	public static final RegistryObject<Feature<NoFeatureConfig>> GEYSER_FEATURE 						= HELPER.registerFeature("geyser_feature", () -> new GeyserFeature(NoFeatureConfig.CODEC));
-	public static final RegistryObject<Feature<SpeleothemConfig>> SPELEOTHEM_FEATURE						= HELPER.registerFeature("speleothem_feature", () -> new SpeleothemFeature(SpeleothemConfig.CODEC));
-
+	public static final RegistryObject<Feature<SpeleothemConfig>> SPELEOTHEM_FEATURE					= HELPER.registerFeature("speleothem_feature", () -> new SpeleothemFeature(SpeleothemConfig.CODEC));
 }

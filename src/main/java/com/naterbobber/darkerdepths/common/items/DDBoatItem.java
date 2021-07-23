@@ -22,7 +22,7 @@ import net.minecraft.world.World;
 //<>
 
 public class DDBoatItem extends Item {
-	private static final Predicate<Entity> field_219989_a = EntityPredicates.NOT_SPECTATING.and(Entity::canBeCollidedWith);
+	private static final Predicate<Entity> NON_COLLIDABLE_ENTITIES = EntityPredicates.NOT_SPECTATING.and(Entity::canBeCollidedWith);
 	private final PetrifiedBoatEntity.Type type;
 
 	public DDBoatItem(PetrifiedBoatEntity.Type typeIn, Properties properties) {
@@ -37,12 +37,12 @@ public class DDBoatItem extends Item {
 			return ActionResult.resultPass(itemstack);
 		} else {
 			Vector3d vector3d = playerIn.getLook(1.0F);
-			List<Entity> list = worldIn.getEntitiesInAABBexcluding(playerIn, playerIn.getBoundingBox().expand(vector3d.scale(5.0D)).grow(1.0D), field_219989_a);
+			List<Entity> list = worldIn.getEntitiesInAABBexcluding(playerIn, playerIn.getBoundingBox().expand(vector3d.scale(5.0D)).grow(1.0D), NON_COLLIDABLE_ENTITIES);
 			if (!list.isEmpty()) {
 				Vector3d vector3d1 = playerIn.getEyePosition(1.0F);
 
 				for (Entity entity : list) {
-					AxisAlignedBB axisalignedbb = entity.getBoundingBox().grow((double) entity.getCollisionBorderSize());
+					AxisAlignedBB axisalignedbb = entity.getBoundingBox().grow(entity.getCollisionBorderSize());
 					if (axisalignedbb.contains(vector3d1)) {
 						return ActionResult.resultPass(itemstack);
 					}

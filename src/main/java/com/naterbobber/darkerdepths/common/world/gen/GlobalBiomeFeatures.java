@@ -53,8 +53,8 @@ public class GlobalBiomeFeatures {
 		private static void generateMoltenCavernFeatures(GlobalBiomeManager manager) {
 			VanillaBiomeFeatures.addAmber(manager.generation());
 			VanillaBiomeFeatures.addMoltenCavernDecorations(manager.generation());
-			FeaturePlacement.addFeature(manager.generation(), GenerationStage.Decoration.VEGETAL_DECORATION, DDConfiguredFeatures.GEYSER);
-			manager.generation().withSurfaceBuilder(new ConfiguredSurfaceBuilder<>(DDSurfaceBuilders.MOLTEN_CAVERN_SURFACE.get(), SurfaceBuilder.GRASS_DIRT_SAND_CONFIG));
+			manager.generation().withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, DDConfiguredFeatures.GEYSER);
+			manager.generation().withFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, DDConfiguredFeatures.MOLTEN_CAVERN_TERRAIN);
 		}
 
 		private static void generateSandyCatacombsFeatures(GlobalBiomeManager manager) {
@@ -67,13 +67,14 @@ public class GlobalBiomeFeatures {
 		}
 
 		private static void generateCrystalCaveFeatures(GlobalBiomeManager manager) {
-			VanillaBiomeFeatures.addGlowshrooms(manager.generation());
-			VanillaBiomeFeatures.addCrystalPeaks(manager.generation());
+//			VanillaBiomeFeatures.addGlowshrooms(manager.generation());
+//			VanillaBiomeFeatures.addCrystalPeaks(manager.generation());
 		}
 
 		private static void generateGlowshroomCaveFeatures(GlobalBiomeManager manager) {
 			VanillaBiomeFeatures.addGlowshroomVegetation(manager.generation());
-			manager.generation().withSurfaceBuilder(new ConfiguredSurfaceBuilder<>(DDSurfaceBuilders.GLOWSHROOM_CAVE_SURFACE.get(), SurfaceBuilder.GRASS_DIRT_SAND_CONFIG));
+			manager.generation().withFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, DDConfiguredFeatures.GLOWSHROOM_CAVE_TERRAIN);
+//			manager.generation().withSurfaceBuilder(new ConfiguredSurfaceBuilder<>(DDSurfaceBuilders.GLOWSHROOM_CAVE_SURFACE.get(), SurfaceBuilder.GRASS_DIRT_SAND_CONFIG));
 		}
 	}
 

@@ -29,8 +29,7 @@ import net.minecraft.world.IWorld;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class VerticalSlabBlock extends Block implements IWaterLoggable{
-
+public class VerticalSlabBlock extends Block implements IWaterLoggable {
     public static final EnumProperty<VerticalSlabType> TYPE = EnumProperty.create("type", VerticalSlabType.class);
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
@@ -184,5 +183,4 @@ public class VerticalSlabBlock extends Block implements IWaterLoggable{
         }
 
     }
-
 }

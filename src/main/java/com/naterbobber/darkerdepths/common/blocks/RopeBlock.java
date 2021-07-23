@@ -41,7 +41,7 @@ public class RopeBlock extends Block implements IBucketPickupHandler, ILiquidCon
 
     @Override
     public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
-        return (worldIn.getBlockState(pos.up()).isSolidSide(worldIn, pos, Direction.DOWN) || worldIn.getBlockState(pos.up()).getBlock() instanceof RopeBlock) && (!(worldIn.getBlockState(pos.up()).getBlock() instanceof AirBlock));
+        return (worldIn.getBlockState(pos.up()).isSolidSide(worldIn, pos, Direction.DOWN) || worldIn.getBlockState(pos.up()).getBlock() instanceof RopeBlock) && !(worldIn.getBlockState(pos.up()).getBlock() instanceof AirBlock);
     }
 
     @Override
@@ -155,5 +155,4 @@ public class RopeBlock extends Block implements IBucketPickupHandler, ILiquidCon
             return this.name;
         }
     }
-
 }
