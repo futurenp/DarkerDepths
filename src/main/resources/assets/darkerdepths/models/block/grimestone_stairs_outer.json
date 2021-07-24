@@ -1,8 +1,8 @@
 {
   "parent": "minecraft:block/outer_stairs",
   "textures": {
-    "bottom": "darkerdepths:block/grimestone",
-    "top": "darkerdepths:block/grimestone",
+    "bottom": "darkerdepths:block/grimestone_top",
+    "top": "darkerdepths:block/grimestone_top",
     "side": "darkerdepths:block/grimestone"
   }
 }

@@ -5,23 +5,16 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.BubbleColumnBlock;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.state.BooleanProperty;
-import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.Direction;
-import net.minecraft.util.Mirror;
-import net.minecraft.util.Rotation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
@@ -33,27 +26,16 @@ import java.util.Random;
 
 public class GeyserBlock extends Block {
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
-    public static final DirectionProperty FACING = BlockStateProperties.FACING;
 
     public GeyserBlock(AbstractBlock.Properties properties) {
         super(properties);
-        this.setDefaultState(this.getDefaultState().with(POWERED, false).with(FACING, Direction.UP));
-    }
-
-    @Override
-    public BlockState rotate(BlockState state, Rotation rot) {
-        return state.with(FACING, rot.rotate(state.get(FACING)));
-    }
-
-    @Override
-    public BlockState mirror(BlockState state, Mirror mirrorIn) {
-        return state.with(FACING, mirrorIn.mirror(state.get(FACING)));
+        this.setDefaultState(this.getDefaultState().with(POWERED, false));
     }
 
     @Nullable
     @Override
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        return this.getDefaultState().with(POWERED, context.getWorld().isBlockPowered(context.getPos())).with(FACING, context.getFace());
+        return this.getDefaultState().with(POWERED, context.getWorld().isBlockPowered(context.getPos()));
     }
 
     @Override
@@ -79,13 +61,7 @@ public class GeyserBlock extends Block {
         double y = yPos + rand.nextDouble() + rand.nextDouble();
         double z = zPos + 0.5D;
         if (!stateIn.get(POWERED) && !worldIn.getBlockState(pos.up()).matchesBlock(Blocks.WATER)) {
-            Direction direction = stateIn.get(FACING);
-            switch (direction) {
-                case UP:
-                    this.addParticle(worldIn, rand, x, y, z, pos);
-                case DOWN:
-                    this.addParticle(worldIn, rand, x, yPos - rand.nextDouble() + rand.nextDouble(), z, pos);
-            }
+            this.addParticle(worldIn, rand, x, y, z, pos);
         }
     }
 
@@ -131,6 +107,6 @@ public class GeyserBlock extends Block {
 
     @Override
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-        builder.add(POWERED, FACING);
+        builder.add(POWERED);
     }
 }

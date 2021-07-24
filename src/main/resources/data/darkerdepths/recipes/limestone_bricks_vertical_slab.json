@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#",
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "darkerdepths:limestone_bricks_slab"
+    }
+  },
+  "result": {
+    "item": "darkerdepths:limestone_bricks_vertical_slab",
+    "count": 3
+  },
+  "conditions": [
+    {
+      "type": "darkerdepths:quark_flag",
+      "flag": "vertical_slabs"
+    }
+  ]
+}
