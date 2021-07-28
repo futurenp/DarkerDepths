@@ -32,6 +32,7 @@ import net.minecraft.world.gen.placement.Placement;
 import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilders.ISurfaceBuilderConfig;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.RegistryObject;
 
 import java.util.function.Supplier;
@@ -40,21 +41,13 @@ import java.util.function.Supplier;
 
 public class CoreRegistries extends Registries {
     /**
-     * creates a new Registry instance
-     * @param modId your mod ID
-     */
-    public CoreRegistries(String modId) {
-        super(modId);
-    }
-
-    /**
      * register a customized sound event
      *
      * @param key   sound ID
      * @return      the customized sound event
      */
     public RegistryObject<SoundEvent> registerSoundEvent(String key) {
-        return this.soundEvents.register(key, () -> new SoundEvent(new ResourceLocation(this.id, key)));
+        return this.soundEvents.register(key, () -> new SoundEvent(new ResourceLocation(DarkerDepths.MODID, key)));
     }
 
     /**
@@ -123,7 +116,7 @@ public class CoreRegistries extends Registries {
      * @return          the customized entity
      */
     public <E extends Entity> RegistryObject<EntityType<E>> registerEntity(String key, EntityType.Builder<E> builder) {
-        return this.getEntityTypes().register(key, () -> builder.build(new ResourceLocation(this.id, key).toString()));
+        return this.getEntityTypes().register(key, () -> builder.build(new ResourceLocation(DarkerDepths.MODID, key).toString()));
     }
 
     /**
@@ -156,7 +149,7 @@ public class CoreRegistries extends Registries {
      * @return                  the configured feature
      */
     public <C extends ICarverConfig, CC extends ConfiguredCarver<C>> CC registerConfiguredCarver(String key, CC configuredFeature) {
-        ResourceLocation ID = new ResourceLocation(this.id, key);
+        ResourceLocation ID = new ResourceLocation(DarkerDepths.MODID, key);
         if (WorldGenRegistries.CONFIGURED_CARVER.keySet().contains(ID))
             throw new IllegalStateException("The Configured Carver " + key + "already exists in the registry");
         Registry.register(WorldGenRegistries.CONFIGURED_CARVER, ID, configuredFeature);
@@ -178,7 +171,7 @@ public class CoreRegistries extends Registries {
 
 
     public <C extends ISurfaceBuilderConfig, CC extends ConfiguredSurfaceBuilder<C>> CC registerConfiguredSurfaceBuilder(String key, CC configuredFeature) {
-        ResourceLocation ID = new ResourceLocation(this.id, key);
+        ResourceLocation ID = new ResourceLocation(DarkerDepths.MODID, key);
         if (WorldGenRegistries.CONFIGURED_SURFACE_BUILDER.keySet().contains(ID))
             throw new IllegalStateException("The Configured Surface Builder " + key + "already exists in the registry");
 
@@ -205,7 +198,7 @@ public class CoreRegistries extends Registries {
      * @return                  the configured feature
      */
     public <C extends IFeatureConfig, F extends Feature<C>, CF extends ConfiguredFeature<C, F>> CF registerConfiguredFeature(String key, CF configuredFeature) {
-        ResourceLocation ID = new ResourceLocation(this.id, key);
+        ResourceLocation ID = new ResourceLocation(DarkerDepths.MODID, key);
         if (WorldGenRegistries.CONFIGURED_FEATURE.keySet().contains(ID))
             throw new IllegalStateException("The Configured Feature " + key + "already exists in the registry");
 
@@ -253,7 +246,7 @@ public class CoreRegistries extends Registries {
      * @return      the customized block tag
      */
     public ITag.INamedTag<Block> registerBlockTag(String key) {
-        return BlockTags.makeWrapperTag(new ResourceLocation(this.id, key).toString());
+        return BlockTags.makeWrapperTag(new ResourceLocation(DarkerDepths.MODID, key).toString());
     }
 
     /**
@@ -263,7 +256,7 @@ public class CoreRegistries extends Registries {
      * @return      the customized item tag
      */
     public ITag.INamedTag<Item> registerItemTag(String key) {
-        return ItemTags.makeWrapperTag(new ResourceLocation(this.id, key).toString());
+        return ItemTags.makeWrapperTag(new ResourceLocation(DarkerDepths.MODID, key).toString());
     }
 
     /**
@@ -273,7 +266,7 @@ public class CoreRegistries extends Registries {
      * @return      the customized block tag
      */
     public ITag.INamedTag<Fluid> registerFluidTag(String key) {
-        return FluidTags.makeWrapperTag(new ResourceLocation(this.id, key).toString());
+        return FluidTags.makeWrapperTag(new ResourceLocation(DarkerDepths.MODID, key).toString());
     }
 
     /**
@@ -283,6 +276,16 @@ public class CoreRegistries extends Registries {
      * @return      the customized entity tag
      */
     public ITag.INamedTag<EntityType<?>> registerEntityTag(String key) {
-        return EntityTypeTags.getTagById(new ResourceLocation(this.id, key).toString());
+        return EntityTypeTags.getTagById(new ResourceLocation(DarkerDepths.MODID, key).toString());
+    }
+
+    public <B extends Block> RegistryObject<B> registerCompatBlock(String modId, String key, Supplier<? extends B> block, ItemGroup group) {
+        RegistryObject<B> blocks = this.blocks.register(key, block);
+        this.items.register(key, () -> new BlockItem(blocks.get(), new Item.Properties().group(getGroup(modId, group))));
+        return blocks;
+    }
+
+    public ItemGroup getGroup(String modId, ItemGroup group) {
+        return ModList.get().isLoaded(modId) ? group : null;
     }
 }

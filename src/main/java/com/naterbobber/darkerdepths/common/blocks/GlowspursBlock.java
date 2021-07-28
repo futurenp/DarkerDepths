@@ -12,7 +12,6 @@ import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.Direction;
 import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
@@ -26,11 +25,13 @@ import net.minecraft.world.server.ServerWorld;
 
 import java.util.Random;
 
-public class SpurBlock extends Block {
+//<>
+
+public class GlowspursBlock extends Block {
     private static final BooleanProperty POWERED = BlockStateProperties.POWERED;
     private static final VoxelShape SHAPE = Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 4.0D, 14.0D);
 
-    public SpurBlock(AbstractBlock.Properties properties) {
+    public GlowspursBlock(AbstractBlock.Properties properties) {
         super(properties);
         this.setDefaultState(this.stateContainer.getBaseState().with(POWERED, false));
     }
@@ -46,12 +47,6 @@ public class SpurBlock extends Block {
     }
 
     @Override
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-        super.fillStateContainer(builder);
-        builder.add(POWERED);
-    }
-
-    @Override
     public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
         if (entityIn instanceof LivingEntity && entityIn.getType() != DDEntityTypes.GLOWSHROOM_MONSTER.get()) {
             entityIn.setMotionMultiplier(state, new Vector3d(0.8F, 0.75D, 0.8F));
@@ -62,7 +57,7 @@ public class SpurBlock extends Block {
     }
 
     private void updateState(BlockPos pos, BlockState state, World worldIn) {
-        worldIn.setBlockState(new BlockPos(pos), state.with(POWERED, true), 2);
+        worldIn.setBlockState(pos, state.with(POWERED, true), 2);
         worldIn.getPendingBlockTicks().scheduleTick(pos, this, 40);
     }
 
@@ -70,7 +65,7 @@ public class SpurBlock extends Block {
     public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
         boolean bl = state.get(POWERED);
         if (bl) {
-            worldIn.setBlockState(new BlockPos(pos), state.with(POWERED, false), 2);
+            worldIn.setBlockState(pos, state.with(POWERED, false), 2);
             worldIn.playSound(null, pos, SoundEvents.BLOCK_SLIME_BLOCK_PLACE, SoundCategory.BLOCKS, 0.3F, 1.2F);
         }
     }
@@ -78,5 +73,10 @@ public class SpurBlock extends Block {
     @Override
     public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
         return hasEnoughSolidSide(worldIn, pos.down(), Direction.UP);
+    }
+
+    @Override
+    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+        builder.add(POWERED);
     }
 }

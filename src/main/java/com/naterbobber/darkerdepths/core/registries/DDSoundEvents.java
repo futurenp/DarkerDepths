@@ -1,20 +1,16 @@
 package com.naterbobber.darkerdepths.core.registries;
 
-import com.naterbobber.darkerdepths.core.DDRegistries;
+import com.naterbobber.darkerdepths.core.CoreRegistries;
 import com.naterbobber.darkerdepths.core.DarkerDepths;
 import net.minecraft.block.SoundType;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.common.util.ForgeSoundType;
-import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class DDSoundEvents {
-    public static final DDRegistries HELPER = DarkerDepths.REGISTRIES;
+    public static final CoreRegistries HELPER = DarkerDepths.REGISTRIES;
 
     public static final RegistryObject<SoundEvent> GRIMESTONE_BREAK = HELPER.registerSoundEvent("block.grimestone.break");
     public static final RegistryObject<SoundEvent> GRIMESTONE_STEP = HELPER.registerSoundEvent("block.grimestone.step");

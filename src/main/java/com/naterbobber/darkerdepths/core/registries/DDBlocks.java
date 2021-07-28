@@ -29,11 +29,11 @@ import com.naterbobber.darkerdepths.common.blocks.RootsBlock;
 import com.naterbobber.darkerdepths.common.blocks.RopeBlock;
 import com.naterbobber.darkerdepths.common.blocks.SpeleothemBlock;
 import com.naterbobber.darkerdepths.common.blocks.SproutsBlock;
-import com.naterbobber.darkerdepths.common.blocks.SpurBlock;
+import com.naterbobber.darkerdepths.common.blocks.GlowspursBlock;
 import com.naterbobber.darkerdepths.common.blocks.VerticalSlabBlock;
 import com.naterbobber.darkerdepths.common.blocks.WoodPostBlock;
 import com.naterbobber.darkerdepths.common.blocks.material.DDMaterial;
-import com.naterbobber.darkerdepths.core.DDRegistries;
+import com.naterbobber.darkerdepths.core.CoreRegistries;
 import com.naterbobber.darkerdepths.core.DarkerDepths;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
@@ -59,9 +59,10 @@ import net.minecraftforge.fml.common.Mod;
 import java.util.function.ToIntFunction;
 
 //<>
+
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class DDBlocks {
-	public static final DDRegistries HELPER = DarkerDepths.REGISTRIES;
+	public static final CoreRegistries HELPER = DarkerDepths.REGISTRIES;
 
 	//BUILDING BLOCKS
 
@@ -188,7 +189,7 @@ public class DDBlocks {
 
 	//shrooms
 	public static final RegistryObject<Block> GLOWSHROOM							= HELPER.registerBlock("glowshroom", () -> new Glowshroom(AbstractBlock.Properties.create(Material.PLANTS).hardnessAndResistance(0.0F, 1.0F).sound(SoundType.SLIME).setLightLevel((state) -> 2 + (3 * state.get(Glowshroom.CLUSTERS_1_3))).doesNotBlockMovement()), DarkerDepths.DARKER_DEPTHS);
-	public static final RegistryObject<Block> GLOWSPURS								= HELPER.registerBlock("glowspurs", () -> new SpurBlock(AbstractBlock.Properties.create(Material.ORGANIC).zeroHardnessAndResistance().sound(SoundType.SLIME).doesNotBlockMovement()), DarkerDepths.DARKER_DEPTHS);
+	public static final RegistryObject<Block> GLOWSPURS								= HELPER.registerBlock("glowspurs", () -> new GlowspursBlock(AbstractBlock.Properties.create(Material.ORGANIC).zeroHardnessAndResistance().sound(SoundType.SLIME).doesNotBlockMovement()), DarkerDepths.DARKER_DEPTHS);
 
 	//sprouts/roots
 	public static final RegistryObject<Block> ROOTS 								= HELPER.registerBlock("roots", () -> new RootsBlock(AbstractBlock.Properties.create(Material.TALL_PLANTS, MaterialColor.WOOD).doesNotBlockMovement().zeroHardnessAndResistance().sound(SoundType.PLANT)), DarkerDepths.DARKER_DEPTHS);

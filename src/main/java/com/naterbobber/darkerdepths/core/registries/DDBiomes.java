@@ -1,6 +1,6 @@
 package com.naterbobber.darkerdepths.core.registries;
 
-import com.naterbobber.darkerdepths.core.DDRegistries;
+import com.naterbobber.darkerdepths.core.CoreRegistries;
 import com.naterbobber.darkerdepths.core.DarkerDepths;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.math.MathHelper;
@@ -19,7 +19,7 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class DDBiomes {
-    public static final DDRegistries HELPER = DarkerDepths.REGISTRIES;
+    public static final CoreRegistries HELPER = DarkerDepths.REGISTRIES;
 
     public static final RegistryObject<Biome> MOLTEN_CAVERN 	= HELPER.registerBiome("molten_cavern", DDBiomes::makeMoltenCaverns);
     public static final RegistryObject<Biome> SANDY_CATACOMBS 	= HELPER.registerBiome("sandy_catacombs", DDBiomes::makeSandyCatacombs);

@@ -3,7 +3,7 @@ package com.naterbobber.darkerdepths.core.registries;
 import com.naterbobber.darkerdepths.common.entities.GlowshroomMonsterEntity;
 import com.naterbobber.darkerdepths.common.entities.MagmaMinionEntity;
 import com.naterbobber.darkerdepths.common.entities.PetrifiedBoatEntity;
-import com.naterbobber.darkerdepths.core.DDRegistries;
+import com.naterbobber.darkerdepths.core.CoreRegistries;
 import com.naterbobber.darkerdepths.core.DarkerDepths;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
@@ -17,7 +17,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 @Mod.EventBusSubscriber(modid = DarkerDepths.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class DDEntityTypes {
-    public static final DDRegistries HELPER = DarkerDepths.REGISTRIES;
+    public static final CoreRegistries HELPER = DarkerDepths.REGISTRIES;
     public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.ENTITIES, DarkerDepths.MODID);
 
     // Entity Types

@@ -14,7 +14,7 @@ import com.naterbobber.darkerdepths.common.world.gen.feature.SimpleBlockConfig;
 import com.naterbobber.darkerdepths.common.world.gen.feature.SpeleothemConfig;
 import com.naterbobber.darkerdepths.common.world.gen.feature.VegetationPatchConfig;
 import com.naterbobber.darkerdepths.common.world.gen.placement.CaveSurfaceDecoratorConfig;
-import com.naterbobber.darkerdepths.core.DDRegistries;
+import com.naterbobber.darkerdepths.core.CoreRegistries;
 import com.naterbobber.darkerdepths.core.DarkerDepths;
 import com.naterbobber.darkerdepths.core.registries.DDBlocks;
 import com.naterbobber.darkerdepths.core.registries.DDFeatures;
@@ -43,7 +43,7 @@ import net.minecraft.world.gen.placement.TopSolidRangeConfig;
 //<>
 
 public class DDConfiguredFeatures {
-    public static final DDRegistries HELPER = DarkerDepths.REGISTRIES;
+    public static final CoreRegistries HELPER = DarkerDepths.REGISTRIES;
 
     /**
      * DEFAULT CAVES FEATURES

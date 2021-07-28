@@ -8,9 +8,6 @@ import com.naterbobber.darkerdepths.common.events.DynamicLightHandler;
 import com.naterbobber.darkerdepths.common.events.TickEvents;
 import com.naterbobber.darkerdepths.common.world.gen.GlobalBiomeFeatures;
 import com.naterbobber.darkerdepths.core.registries.DDEntityTypes;
-import com.naterbobber.darkerdepths.core.registries.DDSoundEvents;
-import com.naterbobber.darkerdepths.core.registries.DDSurfaceBuilders;
-import com.naterbobber.darkerdepths.core.registries.DDTileEntities;
 import com.naterbobber.darkerdepths.core.registries.DDWoodTypes;
 import com.naterbobber.darkerdepths.core.registries.VanillaIntegrationRegistry;
 import com.naterbobber.darkerdepths.core.util.DarkerDepthsItemGroup;
@@ -34,7 +31,7 @@ public class DarkerDepths {
     public static DarkerDepths instance;
     public static final String MODID = "darkerdepths";
     public static final ItemGroup DARKER_DEPTHS = new DarkerDepthsItemGroup("DarkerDepths");
-    public static final DDRegistries REGISTRIES = new DDRegistries(MODID);
+    public static final CoreRegistries REGISTRIES = new CoreRegistries();
 
     public DarkerDepths() {
         instance = this;

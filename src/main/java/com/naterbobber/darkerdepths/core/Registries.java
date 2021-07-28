@@ -19,7 +19,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 //<>
 
 public class Registries {
-    public final String id;
     public final DeferredRegister<TileEntityType<?>> tileEntities;
     public final DeferredRegister<SoundEvent> soundEvents;
     public final DeferredRegister<Effect> effects;
@@ -36,23 +35,21 @@ public class Registries {
 
     /**
      * creates a new Registry instance
-     * @param modId your mod ID
      */
-    public Registries(String modId) {
-        this.id = modId;
-        this.blocks                     = DeferredRegister.create(ForgeRegistries.BLOCKS, modId);
-        this.biomes                     = DeferredRegister.create(ForgeRegistries.BIOMES, modId);
-        this.carvers                    = DeferredRegister.create(ForgeRegistries.WORLD_CARVERS, modId);
-        this.effects                    = DeferredRegister.create(ForgeRegistries.POTIONS, modId);
-        this.entityTypes                = DeferredRegister.create(ForgeRegistries.ENTITIES, modId);
-        this.enchantments               = DeferredRegister.create(ForgeRegistries.ENCHANTMENTS, modId);
-        this.features                   = DeferredRegister.create(ForgeRegistries.FEATURES, modId);
-        this.items                      = DeferredRegister.create(ForgeRegistries.ITEMS, modId);
-        this.placements                 = DeferredRegister.create(ForgeRegistries.DECORATORS, modId);
-        this.particleTypes              = DeferredRegister.create(ForgeRegistries.PARTICLE_TYPES, modId);
-        this.soundEvents                = DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, modId);
-        this.surfaceBuilders            = DeferredRegister.create(ForgeRegistries.SURFACE_BUILDERS, modId);
-        this.tileEntities               = DeferredRegister.create(ForgeRegistries.TILE_ENTITIES, modId);
+    public Registries() {
+        this.blocks                     = DeferredRegister.create(ForgeRegistries.BLOCKS, DarkerDepths.MODID);
+        this.biomes                     = DeferredRegister.create(ForgeRegistries.BIOMES, DarkerDepths.MODID);
+        this.carvers                    = DeferredRegister.create(ForgeRegistries.WORLD_CARVERS, DarkerDepths.MODID);
+        this.effects                    = DeferredRegister.create(ForgeRegistries.POTIONS, DarkerDepths.MODID);
+        this.entityTypes                = DeferredRegister.create(ForgeRegistries.ENTITIES, DarkerDepths.MODID);
+        this.enchantments               = DeferredRegister.create(ForgeRegistries.ENCHANTMENTS, DarkerDepths.MODID);
+        this.features                   = DeferredRegister.create(ForgeRegistries.FEATURES, DarkerDepths.MODID);
+        this.items                      = DeferredRegister.create(ForgeRegistries.ITEMS, DarkerDepths.MODID);
+        this.placements                 = DeferredRegister.create(ForgeRegistries.DECORATORS, DarkerDepths.MODID);
+        this.particleTypes              = DeferredRegister.create(ForgeRegistries.PARTICLE_TYPES, DarkerDepths.MODID);
+        this.soundEvents                = DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, DarkerDepths.MODID);
+        this.surfaceBuilders            = DeferredRegister.create(ForgeRegistries.SURFACE_BUILDERS, DarkerDepths.MODID);
+        this.tileEntities               = DeferredRegister.create(ForgeRegistries.TILE_ENTITIES, DarkerDepths.MODID);
     }
 
     public DeferredRegister<Block> getBlocks() {

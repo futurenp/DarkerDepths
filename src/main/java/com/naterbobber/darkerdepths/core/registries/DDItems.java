@@ -5,7 +5,7 @@ import com.naterbobber.darkerdepths.common.items.DDBoatItem;
 import com.naterbobber.darkerdepths.common.items.DDSpawnEggItem;
 import com.naterbobber.darkerdepths.common.items.GlowshroomCapItem;
 import com.naterbobber.darkerdepths.common.items.RopeItem;
-import com.naterbobber.darkerdepths.core.DDRegistries;
+import com.naterbobber.darkerdepths.core.CoreRegistries;
 import com.naterbobber.darkerdepths.core.DarkerDepths;
 import net.minecraft.item.Item;
 import net.minecraft.item.SignItem;
@@ -16,7 +16,7 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class DDItems {
-	public static final DDRegistries HELPER = DarkerDepths.REGISTRIES;
+	public static final CoreRegistries HELPER = DarkerDepths.REGISTRIES;
 
 	public static final RegistryObject<Item> ROPE 				          = HELPER.registerItem("rope", () -> new RopeItem(DDBlocks.ROPE.get(), new Item.Properties().group(DarkerDepths.DARKER_DEPTHS)));
 	public static final RegistryObject<Item> GLOWSHROOM_CAP		          = HELPER.registerItem("glowshroom_cap", () -> new GlowshroomCapItem(new Item.Properties().maxStackSize(1).group(DarkerDepths.DARKER_DEPTHS)));
