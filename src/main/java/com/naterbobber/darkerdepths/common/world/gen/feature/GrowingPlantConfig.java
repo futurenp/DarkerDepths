@@ -13,7 +13,7 @@ import net.minecraft.world.gen.feature.IFeatureConfig;
 
 public class GrowingPlantConfig implements IFeatureConfig {
     public static final Codec<GrowingPlantConfig> CODEC = RecordCodecBuilder.create((instance) -> {
-        return instance.group(WeightedList.getCodec(IntProvider.CODEC).fieldOf("height_distribution").forGetter((config) -> {
+        return instance.group(WeightedList.func_234002_a_(IntProvider.CODEC).fieldOf("height_distribution").forGetter((config) -> {
             return config.heightDistribution;
         }), DirectionHelper.CODEC.fieldOf("direction").forGetter((config) -> {
             return config.direction;

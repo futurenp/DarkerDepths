@@ -19,7 +19,7 @@ public class GrowingPlantFeature extends Feature<GrowingPlantConfig> {
 
     @Override
     public boolean generate(ISeedReader worldIn, ChunkGenerator generator, Random rand, BlockPos pos, GrowingPlantConfig config) {
-        int height = config.heightDistribution.getRandomValue(rand).get(rand);
+        int height = config.heightDistribution.func_226318_b_(rand).get(rand);
         BlockPos.Mutable mutable = pos.toMutable();
         BlockPos.Mutable offset = mutable.toMutable().move(config.direction);
         BlockState state = worldIn.getBlockState(mutable);

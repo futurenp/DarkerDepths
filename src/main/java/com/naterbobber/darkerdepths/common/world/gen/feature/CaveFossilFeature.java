@@ -13,9 +13,11 @@ import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
-import net.minecraft.world.gen.feature.structure.StructureManager;
-import net.minecraft.world.gen.feature.template.*;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.world.gen.feature.template.BlockIgnoreStructureProcessor;
+import net.minecraft.world.gen.feature.template.IntegrityProcessor;
+import net.minecraft.world.gen.feature.template.PlacementSettings;
+import net.minecraft.world.gen.feature.template.Template;
+import net.minecraft.world.gen.feature.template.TemplateManager;
 
 import java.util.Random;
 
@@ -47,12 +49,12 @@ public class CaveFossilFeature extends Feature<NoFeatureConfig> {
 
     @Override
     public boolean generate(ISeedReader worldIn, ChunkGenerator generator, Random rand, BlockPos pos, NoFeatureConfig config) {
-        if (worldIn.isAirBlock(pos.down()) || worldIn.getBlockState(pos.down()).matchesBlock(Blocks.WATER) || worldIn.getBlockState(pos.down()).matchesBlock(Blocks.LAVA)) {
+        if (worldIn.isAirBlock(pos.down()) || worldIn.getBlockState(pos.down()).isIn(Blocks.WATER) || worldIn.getBlockState(pos.down()).isIn(Blocks.LAVA)) {
             return false;
         } else {
             Rotation rotation = Rotation.randomRotation(rand);
             int index = rand.nextInt(FOSSILS.length);
-            TemplateManager templateManager = ((ServerWorld)worldIn.getWorld()).getServer().getTemplateManager();
+            TemplateManager templateManager = worldIn.getWorld().getServer().getTemplateManager();
             Template fossilsTemplate = templateManager.getTemplateDefaulted(FOSSILS[index]);
             Template coalFossilsTemplate = templateManager.getTemplateDefaulted(FOSSILS_COAL[index]);
             ChunkPos chunkPos = new ChunkPos(pos);

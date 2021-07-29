@@ -10,7 +10,6 @@ import net.minecraft.world.ISeedReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.structure.StructureManager;
 
 import java.util.Random;
 
@@ -113,6 +112,6 @@ public class CrystalPeakFeature extends Feature<CavePillarConfig> {
     }
 
     public static boolean isEmptyOrWaterOrLava(IWorld worldIn, BlockPos pos) {
-        return worldIn.isAirBlock(pos) || worldIn.getBlockState(pos).matchesBlock(Blocks.WATER) || worldIn.getBlockState(pos).matchesBlock(Blocks.LAVA);
+        return worldIn.isAirBlock(pos) || worldIn.getBlockState(pos).isIn(Blocks.WATER) || worldIn.getBlockState(pos).isIn(Blocks.LAVA);
     }
 }

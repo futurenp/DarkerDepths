@@ -38,6 +38,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.event.ForgeEventFactory;
 
 import javax.annotation.Nullable;
 
@@ -81,50 +82,49 @@ public class MagmaMinionEntity extends TameableEntity {
     }
 
     @Override
-    public ActionResultType getEntityInteractionResult(PlayerEntity playerIn, Hand hand) {
-        ItemStack itemstack = playerIn.getHeldItem(hand);
-            if (this.isTamed()) {
-                if (this.isConsumable(itemstack) && this.getHealth() < this.getMaxHealth()) {
-                    if (!world.isRemote()) {
-                        if (!playerIn.abilities.isCreativeMode) {
-                            itemstack.shrink(1);
-                        }
-                        this.heal(5);
+    public ActionResultType func_230254_b_(PlayerEntity player, Hand hand) {
+        ItemStack stack = player.getHeldItem(hand);
+        if (this.isTamed()) {
+            if (this.isConsumable(stack) && this.getHealth() < this.getMaxHealth()) {
+                if (!this.world.isRemote) {
+                    if (!player.abilities.isCreativeMode) {
+                        stack.shrink(1);
                     }
-                    return ActionResultType.SUCCESS;
+                    this.heal(5);
                 }
-
-                ActionResultType actionresulttype = super.getEntityInteractionResult(playerIn, hand);
-                if ((!actionresulttype.isSuccessOrConsume() && this.isOwner(playerIn))) {
-                    if (!world.isRemote()) {
-                        this.setSitting(!this.isQueuedToSit());
-                        this.isJumping = false;
-                        this.navigator.clearPath();
-                        this.setAttackTarget(null);
-                    }
-                    return ActionResultType.SUCCESS;
-                }
-                return actionresulttype;
-
-            } else if (this.isConsumable(itemstack) && this.getAttackTarget() == null) {
-                if (!world.isRemote()) {
-                    if (!playerIn.abilities.isCreativeMode) {
-                        itemstack.shrink(1);
-                    }
-                    if (this.rand.nextInt(3) == 0 && !net.minecraftforge.event.ForgeEventFactory.onAnimalTame(this, playerIn)) {
-                        this.setTamedBy(playerIn);
-                        this.navigator.clearPath();
-                        this.setAttackTarget(null);
-                        this.setSitting(true);
-                        this.world.setEntityState(this, (byte) 7);
-                    } else {
-                        this.world.setEntityState(this, (byte) 6);
-                    }
-                    return ActionResultType.SUCCESS;
-                }
+                return ActionResultType.SUCCESS;
             }
-            return super.getEntityInteractionResult(playerIn, hand);
+
+            ActionResultType resultType = super.func_230254_b_(player, hand);
+            if (!resultType.isSuccessOrConsume() && this.isOwner(player)) {
+                if (!this.world.isRemote) {
+                    this.func_233687_w_(!this.isSitting());
+                    this.isJumping = false;
+                    this.navigator.clearPath();
+                    this.setAttackTarget(null);
+                }
+                return ActionResultType.SUCCESS;
+            }
+            return resultType;
+        } else if (this.isConsumable(stack) && this.getAttackTarget() == null) {
+            if (!this.world.isRemote) {
+                if (!player.abilities.isCreativeMode) {
+                    stack.shrink(1);
+                }
+                if (this.rand.nextInt(3) == 0 && !ForgeEventFactory.onAnimalTame(this, player)) {
+                    this.setTamedBy(player);
+                    this.navigator.clearPath();
+                    this.setAttackTarget(null);
+                    this.func_233687_w_(true);
+                    this.world.setEntityState(this, (byte) 7);
+                } else {
+                    this.world.setEntityState(this, (byte) 6);
+                }
+                return ActionResultType.SUCCESS;
+            }
         }
+        return super.func_230254_b_(player, hand);
+    }
 
     private boolean isConsumable(ItemStack stack) {
         Item item = stack.getItem();
@@ -141,6 +141,12 @@ public class MagmaMinionEntity extends TameableEntity {
             this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(8.0D);
         }
         this.getAttribute(Attributes.ATTACK_DAMAGE).setBaseValue(4.0D);
+    }
+
+    @Nullable
+    @Override
+    public AgeableEntity func_241840_a(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
+        return null;
     }
 
     @Override
@@ -199,10 +205,4 @@ public class MagmaMinionEntity extends TameableEntity {
 //    public ItemStack getPickedResult(RayTraceResult target) {
 //        return new ItemStack(DDItems.MAGMA_MINION_SPAWN_EGG.get());
 //    }
-
-    @Nullable
-    @Override
-    public AgeableEntity createChild(ServerWorld world, AgeableEntity mate) {
-        return null;
-    }
 }

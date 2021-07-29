@@ -20,7 +20,7 @@ public class GeyserFeature extends Feature<NoFeatureConfig> {
 
     @Override
     public boolean generate(ISeedReader world, ChunkGenerator generator, Random rand, BlockPos pos, NoFeatureConfig config) {
-        if (world.getBlockState(pos.up()).matchesBlock(Blocks.LAVA) && world.getBlockState(pos).isSolid()) {
+        if (world.getBlockState(pos.up()).isIn(Blocks.LAVA) && world.getBlockState(pos).isSolid()) {
             this.setBlockState(world, pos, DDBlocks.GEYSER.get().getDefaultState());
             return true;
         } else {

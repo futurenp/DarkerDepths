@@ -111,6 +111,6 @@ public class StonePillarFeature extends Feature<NoFeatureConfig> {
     }
 
     public static boolean isEmptyOrWaterOrLava(IWorld worldIn, BlockPos pos) {
-        return worldIn.isAirBlock(pos) || worldIn.getBlockState(pos).matchesBlock(Blocks.WATER) || worldIn.getBlockState(pos).matchesBlock(Blocks.LAVA);
+        return worldIn.isAirBlock(pos) || worldIn.getBlockState(pos).isIn(Blocks.WATER) || worldIn.getBlockState(pos).isIn(Blocks.LAVA);
     }
 }

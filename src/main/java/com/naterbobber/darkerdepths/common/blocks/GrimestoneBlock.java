@@ -42,7 +42,7 @@ public class GrimestoneBlock extends RotatedPillarBlock implements IGrowable {
         boolean flag = false;
         for(BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-1, -1, -1), pos.add(1, 1, 1))) {
             BlockState blockstate = worldIn.getBlockState(blockpos);
-            if (blockstate.matchesBlock(DDBlocks.MOSSY_GRIMESTONE.get())) {
+            if (blockstate.isIn(DDBlocks.MOSSY_GRIMESTONE.get())) {
                 flag = true;
             }
         }

@@ -30,7 +30,7 @@ public class TickEvents {
                 double pushVal = (Math.abs(-1 - 5.5) / 10);
                 if (world.getBlockState(pos.down(i)) == GEYSER) {
                     entity.setMotion(motion.x, motion.y + pushVal / 4, motion.z);
-                    if (world.getBlockState(pos.down(i + 1)).matchesBlock(Blocks.MAGMA_BLOCK)) {
+                    if (world.getBlockState(pos.down(i + 1)).isIn(Blocks.MAGMA_BLOCK)) {
                         entity.setMotion(motion.x, motion.y + pushVal / 2, motion.z);
                     }
                 }

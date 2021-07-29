@@ -25,7 +25,7 @@ public class SproutsBlock extends BushBlock {
 
     @Override
     protected boolean isValidGround(BlockState state, IBlockReader worldIn, BlockPos pos) {
-        return state.matchesBlock(DDBlocks.LUSH_ARIDROCK.get()) || state.matchesBlock(DDBlocks.MOSSY_GRIMESTONE.get()) || super.isValidGround(state, worldIn, pos);
+        return state.isIn(DDBlocks.LUSH_ARIDROCK.get()) || state.isIn(DDBlocks.MOSSY_GRIMESTONE.get()) || super.isValidGround(state, worldIn, pos);
     }
 
     @Override

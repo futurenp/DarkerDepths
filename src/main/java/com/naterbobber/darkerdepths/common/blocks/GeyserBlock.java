@@ -46,7 +46,7 @@ public class GeyserBlock extends Block {
                 if (isPowered) {
                     worldIn.getPendingBlockTicks().scheduleTick(pos, this, 4);
                 } else {
-                    worldIn.setBlockState(pos, state.cycleValue(POWERED), 2);
+                    worldIn.setBlockState(pos, state.func_235896_a_(POWERED), 2);
                 }
             }
         }
@@ -60,7 +60,7 @@ public class GeyserBlock extends Block {
         double x = xPos + 0.5D;
         double y = yPos + rand.nextDouble() + rand.nextDouble();
         double z = zPos + 0.5D;
-        if (!stateIn.get(POWERED) && !worldIn.getBlockState(pos.up()).matchesBlock(Blocks.WATER)) {
+        if (!stateIn.get(POWERED) && !worldIn.getBlockState(pos.up()).isIn(Blocks.WATER)) {
             this.addParticle(worldIn, rand, x, y, z, pos);
         }
     }
@@ -76,7 +76,7 @@ public class GeyserBlock extends Block {
 
     @Override
     public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-        if (facing == Direction.UP && facingState.matchesBlock(Blocks.WATER)) {
+        if (facing == Direction.UP && facingState.isIn(Blocks.WATER)) {
             worldIn.getPendingBlockTicks().scheduleTick(currentPos, this, 20);
         }
         return super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
@@ -94,7 +94,7 @@ public class GeyserBlock extends Block {
     @Override
     public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
         if (state.get(POWERED) && !worldIn.isBlockPowered(pos)) {
-            worldIn.setBlockState(pos, state.cycleValue(POWERED), 2);
+            worldIn.setBlockState(pos, state.func_235896_a_(POWERED), 2);
         } else {
             BubbleColumnBlock.placeBubbleColumn(worldIn, pos.up(), false);
         }

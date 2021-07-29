@@ -42,7 +42,7 @@ public class AridrockBlock extends Block implements IGrowable {
         boolean flag = false;
         for(BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-1, -1, -1), pos.add(1, 1, 1))) {
             BlockState blockstate = worldIn.getBlockState(blockpos);
-            if (blockstate.matchesBlock(DDBlocks.LUSH_ARIDROCK.get())) {
+            if (blockstate.isIn(DDBlocks.LUSH_ARIDROCK.get())) {
                 flag = true;
             }
         }

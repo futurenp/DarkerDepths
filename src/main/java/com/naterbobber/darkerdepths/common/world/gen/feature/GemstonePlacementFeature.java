@@ -31,7 +31,7 @@ public class GemstonePlacementFeature extends Feature<GemstonePlacementConfig> {
         } else {
             for (Direction direction : DIRECTIONS) {
                 if (AbstractGemStoneBlock.canAttachTo(worldIn, pos.offset(direction), direction)) {
-                    if (state.matchesBlock(Blocks.WATER)) {
+                    if (state.isIn(Blocks.WATER)) {
                         worldIn.setBlockState(pos, configIn.state.with(AbstractGemStoneBlock.FACING, direction.getOpposite()).with(BlockStateProperties.WATERLOGGED, true), 2);
                     } else {
                         worldIn.setBlockState(pos, configIn.state.with(AbstractGemStoneBlock.FACING, direction.getOpposite()), 2);
@@ -49,6 +49,6 @@ public class GemstonePlacementFeature extends Feature<GemstonePlacementConfig> {
     }
 
     private boolean isEmptyOrWater(BlockState state) {
-        return state.isAir() || state.matchesBlock(Blocks.WATER);
+        return state.isAir() || state.isIn(Blocks.WATER);
     }
 }

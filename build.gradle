@@ -2,11 +2,10 @@ buildscript {
     repositories {
         maven { url = "https://files.minecraftforge.net/maven" }
         maven { url = "https://repo.spongepowered.org/repository/maven-public/" }
-        jcenter()
         mavenCentral()
     }
     dependencies {
-        classpath group: "net.minecraftforge.gradle", name: "ForgeGradle", version: "3.+", changing: true
+        classpath group: "net.minecraftforge.gradle", name: "ForgeGradle", version: "4.1.+", changing: true
         classpath group: "org.spongepowered", name: "mixingradle", version: "0.7-SNAPSHOT"
     }
 }
@@ -20,48 +19,45 @@ mixin {
     add sourceSets.main, "darkerdepths.refmap.json"
 }
 
-version = '1.0.1'
-group = 'com.natebobber.darkerdepths'
-archivesBaseName = 'DarkerDepths-1.16.5'
+group = 'com.natebobber'
+version = "${project.minecraft}-${project.modVersion}"
+archivesBaseName = project.modId
 
-sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
+java.toolchain.languageVersion = JavaLanguageVersion.of(8)
 
 minecraft {
-    mappings channel: 'snapshot', version: '20210309-1.16.5'
-    accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
+    mappings channel: project.mappingsChannel, version: project.mappings
+    accessTransformer = file("src/main/resources/META-INF/accesstransformer.cfg")
 
     runs {
         client {
-            workingDirectory project.file('run')
-            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
-            property 'forge.logging.console.level', 'debug'
+            workingDirectory project.file("run")
+            property "forge.logging.markers", "SCAN,REGISTRIES,REGISTRYDUMP"
+            property "forge.logging.console.level", "debug"
             property "mixin.env.disableRefMap", "true"
-            arg "-mixin.config=darkerdepths.mixins.json"
             mods {
                 darkerdepths {
                     source sourceSets.main
                 }
             }
         }
-
         server {
-            workingDirectory project.file('run')
-            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
-            property 'forge.logging.console.level', 'debug'
+            workingDirectory project.file("run")
+            property "forge.logging.markers", "SCAN,REGISTRIES,REGISTRYDUMP"
+            property "forge.logging.console.level", "debug"
             property "mixin.env.disableRefMap", "true"
-            arg "-mixin.config=darkerdepths.mixins.json"
             mods {
                 darkerdepths {
                     source sourceSets.main
                 }
             }
         }
-
         data {
-            workingDirectory project.file('run')
-            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
-            property 'forge.logging.console.level', 'debug'
-            args '--mod', 'darkerdepths', '--all', '--output', file('src/generated/resources/')
+            workingDirectory project.file("run")
+            property "forge.logging.markers", "SCAN,REGISTRIES,REGISTRYDUMP"
+            property "forge.logging.console.level", "debug"
+            property "mixin.env.disableRefMap", "true"
+            args "--mod", project.modId, "--all", "--output", file("src/generated/resources/"), "--existing", file("src/main/resources")
             mods {
                 darkerdepths {
                     source sourceSets.main
@@ -71,16 +67,20 @@ minecraft {
     }
 }
 
+sourceSets.main.resources { srcDir 'src/generated/resources' }
+
+
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.16.5-36.1.4'
-    implementation fg.deobf('curse.maven:cavebiomeapi-441706:3397961')
-    implementation fg.deobf("curse.maven:orcinus-caves-492376:3344841")
+    minecraft "net.minecraftforge:forge:${project.minecraft}-${project.forge}"
+
+    implementation fg.deobf("curse.maven:cavebiome-api-441706:3401461")
+    implementation fg.deobf("curse.maven:orcinus-caves-492376:3401419")
+
+    annotationProcessor 'org.spongepowered:mixin:0.8:processor'
 }
 
 repositories {
-    maven {
-        url = "https://www.cursemaven.com"
-    }
+    maven { url "https://www.cursemaven.com" }
 }
 
 jar {
@@ -90,10 +90,10 @@ jar {
                 "Specification-Vendor"		: "natebobber",
                 "Specification-Version"		: "1",
                 "Implementation-Title"		: project.name,
-                "Implementation-Version"	: "${version}",
+                "Implementation-Version"	: project.version,
                 "Implementation-Vendor" 	: "natebobber",
-                "Implementation-Timestamp"	: new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
-                "MixinConfigs"				: "darkerdepths.mixins.json"
+                "MixinConfigs"				: "darkerdepths.mixins.json",
+                "Implementation-Timestamp"	: new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
         ])
     }
 }
