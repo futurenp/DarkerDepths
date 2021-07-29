@@ -7,10 +7,6 @@ import com.naterbobber.darkerdepths.common.blocks.AshBlock;
 import com.naterbobber.darkerdepths.common.blocks.AshFullBlock;
 import com.naterbobber.darkerdepths.common.blocks.ClusterBlock;
 import com.naterbobber.darkerdepths.common.blocks.CrystalMelon;
-import com.naterbobber.darkerdepths.common.blocks.CustomDoorBlock;
-import com.naterbobber.darkerdepths.common.blocks.CustomPressurePlateBlock;
-import com.naterbobber.darkerdepths.common.blocks.CustomTrapDoorBlock;
-import com.naterbobber.darkerdepths.common.blocks.CustomWoodButtonBlock;
 import com.naterbobber.darkerdepths.common.blocks.DDOreBlock;
 import com.naterbobber.darkerdepths.common.blocks.DDStandingSignBlock;
 import com.naterbobber.darkerdepths.common.blocks.DDWallSignBlock;
@@ -20,6 +16,7 @@ import com.naterbobber.darkerdepths.common.blocks.GeyserBlock;
 import com.naterbobber.darkerdepths.common.blocks.GlowSpireBlock;
 import com.naterbobber.darkerdepths.common.blocks.GlowSpirePlantBlock;
 import com.naterbobber.darkerdepths.common.blocks.Glowshroom;
+import com.naterbobber.darkerdepths.common.blocks.GlowspursBlock;
 import com.naterbobber.darkerdepths.common.blocks.GrimestoneBlock;
 import com.naterbobber.darkerdepths.common.blocks.HangingDoublePlantBlock;
 import com.naterbobber.darkerdepths.common.blocks.LushAridrockBlock;
@@ -29,7 +26,6 @@ import com.naterbobber.darkerdepths.common.blocks.RootsBlock;
 import com.naterbobber.darkerdepths.common.blocks.RopeBlock;
 import com.naterbobber.darkerdepths.common.blocks.SpeleothemBlock;
 import com.naterbobber.darkerdepths.common.blocks.SproutsBlock;
-import com.naterbobber.darkerdepths.common.blocks.GlowspursBlock;
 import com.naterbobber.darkerdepths.common.blocks.VerticalSlabBlock;
 import com.naterbobber.darkerdepths.common.blocks.WoodPostBlock;
 import com.naterbobber.darkerdepths.common.blocks.material.DDMaterial;
@@ -39,6 +35,7 @@ import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.DoorBlock;
 import net.minecraft.block.FenceBlock;
 import net.minecraft.block.FenceGateBlock;
 import net.minecraft.block.FlowerPotBlock;
@@ -48,7 +45,9 @@ import net.minecraft.block.RotatedPillarBlock;
 import net.minecraft.block.SlabBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.StairsBlock;
+import net.minecraft.block.TrapDoorBlock;
 import net.minecraft.block.WallBlock;
+import net.minecraft.block.WoodButtonBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.state.properties.BlockStateProperties;
@@ -254,12 +253,15 @@ public class DDBlocks {
 	//REDSTONE
 
 	//petrified
-	public static final RegistryObject<Block> PETRIFIED_PRESSURE_PLATE 				= HELPER.registerBlock("petrified_pressure_plate", () -> new PressurePlateBlock(CustomPressurePlateBlock.Sensitivity.EVERYTHING ,Block.Properties.create(Material.ROCK).setRequiresTool().hardnessAndResistance(0.5f).harvestTool(ToolType.PICKAXE).harvestLevel(0).sound(SoundType.WOOD)), DarkerDepths.DARKER_DEPTHS);
-	public static final RegistryObject<Block> PETRIFIED_TRAPDOOR 					= HELPER.registerBlock("petrified_trapdoor", () -> new CustomTrapDoorBlock(Block.Properties.create(Material.ROCK).setRequiresTool().notSolid().hardnessAndResistance(2.5f, 3.0f).harvestTool(ToolType.PICKAXE).harvestLevel(0).sound(SoundType.WOOD)), DarkerDepths.DARKER_DEPTHS);
+	public static final RegistryObject<Block> PETRIFIED_PRESSURE_PLATE 				= HELPER.registerBlock("petrified_pressure_plate", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING ,Block.Properties.create(Material.ROCK).setRequiresTool().hardnessAndResistance(0.5f).harvestTool(ToolType.PICKAXE).harvestLevel(0).sound(SoundType.WOOD)), DarkerDepths.DARKER_DEPTHS);
+	public static final RegistryObject<Block> PETRIFIED_TRAPDOOR 					= HELPER.registerBlock("petrified_trapdoor", () -> new TrapDoorBlock(Block.Properties.create(Material.ROCK).setRequiresTool().notSolid().hardnessAndResistance(2.5f, 3.0f).harvestTool(ToolType.PICKAXE).harvestLevel(0).sound(SoundType.WOOD)), DarkerDepths.DARKER_DEPTHS);
 	public static final RegistryObject<Block> PETRIFIED_FENCE_GATE 					= HELPER.registerBlock("petrified_fence_gate", () -> new FenceGateBlock(Block.Properties.create(Material.ROCK).setRequiresTool().hardnessAndResistance(2.5f, 3.0f).harvestTool(ToolType.PICKAXE).harvestLevel(0).sound(SoundType.WOOD)), DarkerDepths.DARKER_DEPTHS);
-	public static final RegistryObject<Block> PETRIFIED_BUTTON 						= HELPER.registerBlock("petrified_button", () -> new CustomWoodButtonBlock(Block.Properties.create(Material.ROCK).setRequiresTool().hardnessAndResistance(0.5f).harvestTool(ToolType.PICKAXE).harvestLevel(0).sound(SoundType.WOOD)), DarkerDepths.DARKER_DEPTHS);
-	public static final RegistryObject<Block> PETRIFIED_DOOR 						= HELPER.registerBlock("petrified_door", () -> new CustomDoorBlock(Block.Properties.create(Material.ROCK).setRequiresTool().notSolid().hardnessAndResistance(2.5f, 3.0f).harvestTool(ToolType.PICKAXE).harvestLevel(0).sound(SoundType.WOOD)), DarkerDepths.DARKER_DEPTHS);
+	public static final RegistryObject<Block> PETRIFIED_BUTTON 						= HELPER.registerBlock("petrified_button", () -> new WoodButtonBlock(Block.Properties.create(Material.ROCK).setRequiresTool().hardnessAndResistance(0.5f).harvestTool(ToolType.PICKAXE).harvestLevel(0).sound(SoundType.WOOD)), DarkerDepths.DARKER_DEPTHS);
+	public static final RegistryObject<Block> PETRIFIED_DOOR 						= HELPER.registerBlock("petrified_door", () -> new DoorBlock(Block.Properties.create(Material.ROCK).setRequiresTool().notSolid().hardnessAndResistance(2.5f, 3.0f).harvestTool(ToolType.PICKAXE).harvestLevel(0).sound(SoundType.WOOD)), DarkerDepths.DARKER_DEPTHS);
 
+	//MISC
+	public static final RegistryObject<Block> RAW_SILVER_BLOCK						= HELPER.registerBlock("raw_silver_block", () -> new Block(AbstractBlock.Properties.create(Material.ORGANIC).harvestTool(ToolType.PICKAXE).setRequiresTool().hardnessAndResistance(5.0F, 6.0F)), DarkerDepths.DARKER_DEPTHS);
+	public static final RegistryObject<Block> SILVER_BLOCK							= HELPER.registerBlock("silver_block", () -> new Block(AbstractBlock.Properties.create(Material.ORGANIC).harvestTool(ToolType.PICKAXE).harvestLevel(2).setRequiresTool().hardnessAndResistance(5.0F, 6.0F).sound(SoundType.METAL)), DarkerDepths.DARKER_DEPTHS);
 
 	private static ToIntFunction<BlockState> getLightValueLit(int lightValue) {
 		return (value) -> {
