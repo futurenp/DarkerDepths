@@ -1,11 +1,38 @@
 {
   "variants": {
-    "powered=false": {
+    "powered=false,facing=north": {
+      "model": "darkerdepths:block/glowspurs",
+      "y": 180
+    },
+    "powered=false,facing=south": {
       "model": "darkerdepths:block/glowspurs"
     },
-    "powered=true": {
+    "powered=false,facing=west": {
+      "model": "darkerdepths:block/glowspurs",
+      "y": 90
+    },
+    "powered=false,facing=east": {
+      "model": "darkerdepths:block/glowspurs",
+      "y": 270
+    },
+    "powered=true,facing=north": {
+      "model": "darkerdepths:block/glowspurs_powered",
+      "x": 270,
+      "y": 180
+    },
+    "powered=true,facing=south": {
       "model": "darkerdepths:block/glowspurs_powered",
       "x": 270
+    },
+    "powered=true,facing=west": {
+      "model": "darkerdepths:block/glowspurs_powered",
+      "x": 270,
+      "y": 90
+    },
+    "powered=true,facing=east": {
+      "model": "darkerdepths:block/glowspurs_powered",
+      "x": 270,
+      "y": 270
     }
   }
 }

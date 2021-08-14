@@ -5,6 +5,8 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.BubbleColumnBlock;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.state.BooleanProperty;
@@ -15,6 +17,7 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
@@ -53,6 +56,22 @@ public class GeyserBlock extends Block {
     }
 
     @Override
+    public void onEntityWalk(World worldIn, BlockPos pos, Entity entityIn) {
+        BlockState state = worldIn.getBlockState(pos);
+        if (state.get(GeyserBlock.POWERED)) {
+            if (entityIn instanceof LivingEntity) {
+                if (!entityIn.isSpectator()) {
+                    for (int i = 1; i < 6; i++) {
+                        Vector3d motion = entityIn.getMotion();
+                        double pushVal = (Math.abs(-i - 5.5) / 10);
+                        entityIn.setMotion(motion.x, motion.y + pushVal / 4, motion.z);
+                    }
+                }
+            }
+        }
+    }
+
+    @Override
     public void animateTick(BlockState stateIn, World worldIn, BlockPos pos, Random rand) {
         int xPos = pos.getX();
         int yPos = pos.getY();
@@ -61,15 +80,25 @@ public class GeyserBlock extends Block {
         double y = yPos + rand.nextDouble() + rand.nextDouble();
         double z = zPos + 0.5D;
         if (!stateIn.get(POWERED) && !worldIn.getBlockState(pos.up()).isIn(Blocks.WATER)) {
-            this.addParticle(worldIn, rand, x, y, z, pos);
+            this.addParticle(worldIn, rand, x, y, z, pos, false);
+        } else {
+            this.addParticle(worldIn, rand, x, y, z, pos, true);
         }
     }
 
-    private void addParticle(World worldIn, Random rand, double x, double y, double z, BlockPos pos) {
-        worldIn.addParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE, x, y, z, 0.0D, 0.07D, 0.0D);
-        if (rand.nextInt(5) == 0) {
-            for (int i = 0; i < rand.nextInt(1) + 1; i++) {
-                worldIn.addParticle(ParticleTypes.LAVA, (double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D, rand.nextFloat() / 2.0F, 5.0E-5D, rand.nextFloat() / 2.0F);
+    private void addParticle(World worldIn, Random rand, double x, double y, double z, BlockPos pos, boolean waterlogged) {
+        if (waterlogged) {
+            worldIn.addOptionalParticle(ParticleTypes.BUBBLE_COLUMN_UP, x, y, z, 0.0D, 0.04D, 0.0D);
+            worldIn.addOptionalParticle(ParticleTypes.BUBBLE_COLUMN_UP, x + (double)rand.nextFloat(), y + (double)rand.nextFloat(), z + (double)rand.nextFloat(), 0.0D, 0.04D, 0.0D);
+            if (rand.nextInt(200) == 0) {
+                worldIn.playSound(x, y, z, SoundEvents.BLOCK_BUBBLE_COLUMN_UPWARDS_AMBIENT, SoundCategory.BLOCKS, 0.2F + rand.nextFloat() * 0.2F, 0.9F + rand.nextFloat() * 0.15F, false);
+            }
+        } else {
+            worldIn.addParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE, x, y, z, 0.0D, 0.07D, 0.0D);
+            if (rand.nextInt(5) == 0) {
+                for (int i = 0; i < rand.nextInt(1) + 1; i++) {
+                    worldIn.addParticle(ParticleTypes.LAVA, (double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D, rand.nextFloat() / 2.0F, 5.0E-5D, rand.nextFloat() / 2.0F);
+                }
             }
         }
     }

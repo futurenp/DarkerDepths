@@ -12,7 +12,8 @@ import org.spongepowered.asm.mixin.Shadow;
 
 @Mixin(value = IBlockReader.class, priority = 124)
 public interface IBlockReaderMixin {
-    @Shadow BlockState getBlockState(BlockPos pos);
+    @Shadow
+    BlockState getBlockState(BlockPos pos);
 
     /**
      * @author

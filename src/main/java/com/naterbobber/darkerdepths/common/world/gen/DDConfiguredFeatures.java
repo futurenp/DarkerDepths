@@ -2,6 +2,7 @@ package com.naterbobber.darkerdepths.common.world.gen;
 
 import com.google.common.collect.ImmutableList;
 import com.naterbobber.darkerdepths.common.blocks.Glowshroom;
+import com.naterbobber.darkerdepths.common.blocks.GlowspursBlock;
 import com.naterbobber.darkerdepths.common.math.ConstantIntProvider;
 import com.naterbobber.darkerdepths.common.math.IntProvider;
 import com.naterbobber.darkerdepths.common.math.UniformIntProvider;
@@ -118,7 +119,7 @@ public class DDConfiguredFeatures {
     public static final ConfiguredFeature<?, ?> GLOWSPIRE_VINE                  = HELPER.registerConfiguredFeature("glowspire_vine", DDFeatures.GROWING_PLANT.get().withConfiguration(new GrowingPlantConfig(new WeightedList<IntProvider>().func_226313_a_(UniformIntProvider.create(1, 20), 2).func_226313_a_(UniformIntProvider.create(1, 3), 3).func_226313_a_(UniformIntProvider.create(1, 7), 10), Direction.DOWN, new SimpleBlockStateProvider(States.GLOWSPIRE_VINE_BODY), new SimpleBlockStateProvider(States.GLOWSPIRE_VINE_HEAD), false)));
     public static final ConfiguredFeature<?, ?> GLOWSPIRE_VINES                 = HELPER.registerConfiguredFeature("glowspire_vines", GLOWSPIRE_VINE.withPlacement(DDPlacements.CAVE_SURFACE.get().configure(new CaveSurfaceDecoratorConfig(VerticalSurfaceType.CEILING, 12))).range(60).square().func_242731_b(60));
 
-    public static final ConfiguredFeature<?, ?> GLOWSHROOM_VEGETATION           = HELPER.registerConfiguredFeature("glowshroom_vegetation", DDFeatures.SIMPLE_BLOCK.get().withConfiguration(new SimpleBlockConfig(new WeightedBlockStateProvider().addWeightedBlockstate(States.SINGLE_GLOWSHROOM, 6).addWeightedBlockstate(States.DOUBLE_GLOWSHROOM, 6).addWeightedBlockstate(States.TRIPLE_GLOWSHROOM, 6).addWeightedBlockstate(States.GLOWSPURS, 5).addWeightedBlockstate(States.MOSSY_SPROUTS, 50).addWeightedBlockstate(Blocks.CAVE_AIR.getDefaultState(), 43))));
+    public static final ConfiguredFeature<?, ?> GLOWSHROOM_VEGETATION           = HELPER.registerConfiguredFeature("glowshroom_vegetation", DDFeatures.SIMPLE_BLOCK.get().withConfiguration(new SimpleBlockConfig(new WeightedBlockStateProvider().addWeightedBlockstate(States.SINGLE_GLOWSHROOM, 6).addWeightedBlockstate(States.DOUBLE_GLOWSHROOM, 6).addWeightedBlockstate(States.TRIPLE_GLOWSHROOM, 6).addWeightedBlockstate(States.GLOWSPURS_NORTH, 1).addWeightedBlockstate(States.GLOWSPURS_EAST, 1).addWeightedBlockstate(States.GLOWSPURS_SOUTH, 1).addWeightedBlockstate(States.GLOWSPURS_WEST, 1).addWeightedBlockstate(States.MOSSY_SPROUTS, 50).addWeightedBlockstate(Blocks.CAVE_AIR.getDefaultState(), 43))));
     public static final ConfiguredFeature<?, ?> GLOWSHROOM_VEGETATION_PATCH     = HELPER.registerConfiguredFeature("glowshroom_vegetation_patch", DDFeatures.VEGETATION_PATCH.get().withConfiguration(Configs.GLOWSHROOM_VEGETATION_PATCH_CONFIG).withPlacement(DDPlacements.CAVE_SURFACE.get().configure(new CaveSurfaceDecoratorConfig(VerticalSurfaceType.FLOOR, 12))).range(50).square().func_242731_b(13));
 
     public static final ConfiguredFeature<?, ?> GRIMESTONE_SPELEOTHEM_UP        = HELPER.registerConfiguredFeature("grimestone_speleothem_up", DDFeatures.SPELEOTHEM_FEATURE.get().withConfiguration(new SpeleothemConfig(DDBlocks.GRIMESTONE_SPELEOTHEM.get().getDefaultState(), Direction.UP))).withPlacement(DDPlacements.CAVE_SURFACE.get().configure(new CaveSurfaceDecoratorConfig(VerticalSurfaceType.FLOOR, 12))).range(50).square().func_242731_b(7);
@@ -194,7 +195,10 @@ public class DDConfiguredFeatures {
         public static final BlockState GLOWSHROOM_BLOCK         = DDBlocks.GLOWSHROOM_BLOCK.get().getDefaultState();
         public static final BlockState GLOWSPIRE_VINE_BODY      = DDBlocks.GLOWSPIRE_PLANT.get().getDefaultState();
         public static final BlockState GLOWSPIRE_VINE_HEAD      = DDBlocks.GLOWSPIRE.get().getDefaultState();
-        public static final BlockState GLOWSPURS                = DDBlocks.GLOWSPURS.get().getDefaultState();
+        public static final BlockState GLOWSPURS_NORTH          = DDBlocks.GLOWSPURS.get().getDefaultState().with(GlowspursBlock.FACING, Direction.NORTH);
+        public static final BlockState GLOWSPURS_SOUTH          = DDBlocks.GLOWSPURS.get().getDefaultState().with(GlowspursBlock.FACING, Direction.SOUTH);
+        public static final BlockState GLOWSPURS_EAST          = DDBlocks.GLOWSPURS.get().getDefaultState().with(GlowspursBlock.FACING, Direction.EAST);
+        public static final BlockState GLOWSPURS_WEST          = DDBlocks.GLOWSPURS.get().getDefaultState().with(GlowspursBlock.FACING, Direction.WEST);
         public static final BlockState MOSSY_SPROUTS            = DDBlocks.MOSSY_SPROUTS.get().getDefaultState();
         public static final BlockState SINGLE_GLOWSHROOM        = DDBlocks.GLOWSHROOM.get().getDefaultState().with(Glowshroom.CLUSTERS_1_3, 1);
         public static final BlockState DOUBLE_GLOWSHROOM        = DDBlocks.GLOWSHROOM.get().getDefaultState().with(Glowshroom.CLUSTERS_1_3, 2);

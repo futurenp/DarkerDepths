@@ -1,6 +1,7 @@
 package com.naterbobber.darkerdepths.common.world.gen.feature;
 
 import com.mojang.serialization.Codec;
+import com.naterbobber.darkerdepths.common.blocks.AbstractGemStoneBlock;
 import com.naterbobber.darkerdepths.common.blocks.HangingDoublePlantBlock;
 import com.naterbobber.darkerdepths.core.registries.DDBlocks;
 import net.minecraft.state.properties.DoubleBlockHalf;
@@ -42,8 +43,16 @@ public class PetrifiedLogBranchFeature extends Feature<NoFeatureConfig> {
     private void spawnLogs(IWorld world, BlockPos pos) {
         Random rand = new Random();
         this.setBlockState(world, pos, DDBlocks.PETRIFIED_LOG.get().getDefaultState());
-        if (rand.nextInt(80) == 0) {
+        if (rand.nextInt(50) == 0) {
             this.setBlockState(world, pos, DDBlocks.POROUS_PETRIFIED_LOG.get().getDefaultState());
+            world.getPendingBlockTicks().scheduleTick(pos, DDBlocks.POROUS_PETRIFIED_LOG.get(), 0);
+            if (rand.nextInt(5) == 0) {
+                for (Direction direction : Direction.values()) {
+                    if (world.isAirBlock(pos.offset(direction)) && rand.nextBoolean()) {
+                        this.setBlockState(world, pos.offset(direction), DDBlocks.AMBER.get().getDefaultState().with(AbstractGemStoneBlock.FACING, direction));
+                    }
+                }
+            }
         }
         if (world.isAirBlock(pos.down())) {
             this.setBlockState(world, pos.down(), DDBlocks.LONG_ROOTS.get().getDefaultState());
