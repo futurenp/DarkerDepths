@@ -5,7 +5,6 @@ import com.naterbobber.darkerdepths.client.render.RendererManager;
 import com.naterbobber.darkerdepths.common.entities.GlowshroomMonsterEntity;
 import com.naterbobber.darkerdepths.common.entities.MagmaMinionEntity;
 import com.naterbobber.darkerdepths.common.events.DynamicLightHandler;
-import com.naterbobber.darkerdepths.common.events.TickEvents;
 import com.naterbobber.darkerdepths.common.world.gen.GlobalBiomeFeatures;
 import com.naterbobber.darkerdepths.core.api.Registries;
 import com.naterbobber.darkerdepths.core.registries.DDEntityTypes;
@@ -41,7 +40,6 @@ public class DarkerDepths {
         MinecraftForge.EVENT_BUS.register(this);
 
         MinecraftForge.EVENT_BUS.register(new GlobalBiomeFeatures());
-        MinecraftForge.EVENT_BUS.register(new TickEvents());
         MinecraftForge.EVENT_BUS.addListener((LivingEvent.LivingUpdateEvent event) -> DynamicLightHandler.tick(event.getEntityLiving()));
 
         REGISTRIES.initializeRegistries(bus);
