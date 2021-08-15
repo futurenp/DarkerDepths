@@ -56,22 +56,6 @@ public class GeyserBlock extends Block {
     }
 
     @Override
-    public void onEntityWalk(World worldIn, BlockPos pos, Entity entityIn) {
-        BlockState state = worldIn.getBlockState(pos);
-        if (state.get(GeyserBlock.POWERED)) {
-            if (entityIn instanceof LivingEntity) {
-                if (!entityIn.isSpectator()) {
-                    for (int i = 1; i < 6; i++) {
-                        Vector3d motion = entityIn.getMotion();
-                        double pushVal = (Math.abs(-i - 5.5) / 10);
-                        entityIn.setMotion(motion.x, motion.y + pushVal / 4, motion.z);
-                    }
-                }
-            }
-        }
-    }
-
-    @Override
     public void animateTick(BlockState stateIn, World worldIn, BlockPos pos, Random rand) {
         int xPos = pos.getX();
         int yPos = pos.getY();
@@ -79,10 +63,12 @@ public class GeyserBlock extends Block {
         double x = xPos + 0.5D;
         double y = yPos + rand.nextDouble() + rand.nextDouble();
         double z = zPos + 0.5D;
-        if (!stateIn.get(POWERED) && !worldIn.getBlockState(pos.up()).isIn(Blocks.WATER)) {
-            this.addParticle(worldIn, rand, x, y, z, pos, false);
-        } else {
-            this.addParticle(worldIn, rand, x, y, z, pos, true);
+        if (!stateIn.get(POWERED)) {
+            if (worldIn.getBlockState(pos.up()).isIn(Blocks.WATER)) {
+                this.addParticle(worldIn, rand, x, y, z, pos, true);
+            }else {
+                this.addParticle(worldIn, rand, x, y, z, pos, false);
+            }
         }
     }
 
