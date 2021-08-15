@@ -7,7 +7,9 @@ import com.naterbobber.darkerdepths.common.entities.MagmaMinionEntity;
 import com.naterbobber.darkerdepths.common.events.DynamicLightHandler;
 import com.naterbobber.darkerdepths.common.events.TickEvents;
 import com.naterbobber.darkerdepths.common.world.gen.GlobalBiomeFeatures;
+import com.naterbobber.darkerdepths.core.api.Registries;
 import com.naterbobber.darkerdepths.core.registries.DDEntityTypes;
+import com.naterbobber.darkerdepths.core.registries.DDLootModifiers;
 import com.naterbobber.darkerdepths.core.registries.DDWoodTypes;
 import com.naterbobber.darkerdepths.core.registries.VanillaIntegrationRegistry;
 import com.naterbobber.darkerdepths.core.util.DarkerDepthsItemGroup;
@@ -18,7 +20,9 @@ import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DeferredWorkQueue;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -28,36 +32,25 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 @Mod(value = DarkerDepths.MODID)
 @Mod.EventBusSubscriber(modid = DarkerDepths.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class DarkerDepths {
-    public static DarkerDepths instance;
     public static final String MODID = "darkerdepths";
     public static final ItemGroup DARKER_DEPTHS = new DarkerDepthsItemGroup("DarkerDepths");
-    public static final CoreRegistries REGISTRIES = new CoreRegistries();
+    public static final Registries REGISTRIES = new Registries();
 
     public DarkerDepths() {
-        instance = this;
-        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         MinecraftForge.EVENT_BUS.register(this);
 
         MinecraftForge.EVENT_BUS.register(new GlobalBiomeFeatures());
         MinecraftForge.EVENT_BUS.register(new TickEvents());
         MinecraftForge.EVENT_BUS.addListener((LivingEvent.LivingUpdateEvent event) -> DynamicLightHandler.tick(event.getEntityLiving()));
 
-        REGISTRIES.getItems().register(modEventBus);
-        REGISTRIES.getBlocks().register(modEventBus);
-        REGISTRIES.getCarvers().register(modEventBus);
-        REGISTRIES.getFeatures().register(modEventBus);
-        REGISTRIES.getBiomes().register(modEventBus);
-        REGISTRIES.getParticleTypes().register(modEventBus);
-        REGISTRIES.getPlacements().register(modEventBus);
-        REGISTRIES.getTileEntities().register(modEventBus);
-        REGISTRIES.getSurfaceBuilders().register(modEventBus);
-        REGISTRIES.getSoundEvents().register(modEventBus);
+        REGISTRIES.initializeRegistries(bus);
+        DDLootModifiers.LOOT_MODIFIERS.register(bus);
 
-        //TODO: CONVERT THIS INTO CORE REGISTRIES
-        DDEntityTypes.ENTITY_TYPES.register(modEventBus);
+        bus.addListener(this::commonSetup);
+        bus.addListener(this::clientSetup);
 
-        modEventBus.addListener(this::commonSetup);
-        modEventBus.addListener(this::clientSetup);
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, DarkerDepthsConfig.common);
     }
 
     private void commonSetup(FMLCommonSetupEvent event) {

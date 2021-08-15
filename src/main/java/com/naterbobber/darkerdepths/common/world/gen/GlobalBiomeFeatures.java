@@ -1,7 +1,7 @@
 package com.naterbobber.darkerdepths.common.world.gen;
 
 import com.blackgear.cavebiomes.core.registries.CaveBiomes;
-import com.naterbobber.darkerdepths.core.registries.DDBiomes;
+import com.naterbobber.darkerdepths.core.registries.worldgen.DDBiomes;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;

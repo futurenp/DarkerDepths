@@ -20,61 +20,8 @@ import java.util.Random;
 //<>
 
 public class AshFullBlock extends FallingBlock {
-
     public AshFullBlock(Properties properties) {
         super(properties);
-    }
-
-    @Override
-    public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {}
-
-	@Override
-    public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
-        /*
-        BlockPos.Mutable mutable = pos.toMutable();
-
-        for (int i = 0; i < 10; i++) {
-            mutable.move(Direction.DOWN);
-            BlockState blockState = worldIn.getBlockState(mutable);
-            if (!blockState.isAir()) {
-                worldIn.setBlockState(mutable, DDBlocks.ASH.get().getDefaultState());
-            }
-        }*/
-    /*
-    	BlockPos fillerpos = pos.down();
-    	BlockPos basepos = pos.down(2);
-    	BlockState fillerstate = worldIn.getBlockState(fillerpos);
-    	BlockState basestate = worldIn.getBlockState(basepos);
-    	boolean isBaseSolid = basestate.getMaterial().isSolid();
-    	if (isBaseSolid) {
-    		for (int i = 0; i < 4; i++) {
-    			if (fillerstate.isIn(DDBlocks.ASH.get()) && DDBlocks.ASH.get().getDefaultState().isValidPosition(worldIn, pos.down())) {
-    				int layer = fillerstate.get(AshBlock.LAYERS);
-    				worldIn.setBlockState(pos.down(), DDBlocks.ASH.get().getDefaultState().with(AshBlock.LAYERS, Integer.valueOf(Math.min(8, layer + 1))));
-    			} else if (fillerstate.isAir()) {
-    				worldIn.setBlockState(pos.down(), DDBlocks.ASH.get().getDefaultState());
-    			}
-    		}
-    	}*/
-    }
-
-    @Nullable
-    private static BlockPos findValidPositionForAshBelowFullBlock(World worldIn, BlockPos pos) {
-        BlockPos.Mutable mutable = pos.toMutable();
-
-        for (int i = 0; i < 5; i++) {
-            mutable.move(Direction.DOWN);
-            BlockState validState = worldIn.getBlockState(mutable.up());
-            BlockState baseState = worldIn.getBlockState(mutable);
-            if (validState.isAir() && baseState.getMaterial().isSolid()) {
-                if (baseState.isIn(DDBlocks.ASH.get())) {
-                    int layer = baseState.get(AshBlock.LAYERS);
-                    worldIn.setBlockState(pos, DDBlocks.ASH.get().getDefaultState().getBlockState());
-                }
-                return mutable;
-            }
-        }
-        return null;
     }
 
     @Override

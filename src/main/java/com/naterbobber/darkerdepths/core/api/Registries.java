@@ -1,5 +1,6 @@
-package com.naterbobber.darkerdepths.core;
+package com.naterbobber.darkerdepths.core.api;
 
+import com.naterbobber.darkerdepths.core.DarkerDepths;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
@@ -23,7 +24,6 @@ import net.minecraft.util.registry.WorldGenRegistries;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.carver.ConfiguredCarver;
 import net.minecraft.world.gen.carver.ICarverConfig;
-import net.minecraft.world.gen.carver.WorldCarver;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.IFeatureConfig;
@@ -39,13 +39,7 @@ import java.util.function.Supplier;
 
 //<>
 
-public class CoreRegistries extends Registries {
-    /**
-     * register a customized sound event
-     *
-     * @param key   sound ID
-     * @return      the customized sound event
-     */
+public class Registries extends CoreRegistries {
     public RegistryObject<SoundEvent> registerSoundEvent(String key) {
         return this.soundEvents.register(key, () -> new SoundEvent(new ResourceLocation(DarkerDepths.MODID, key)));
     }
@@ -58,7 +52,7 @@ public class CoreRegistries extends Registries {
      * @return          the customized effect
      */
     public <E extends Effect> RegistryObject<E> registerEffect(String key, Supplier<? extends E> effect) {
-        return this.getEffects().register(key, effect);
+        return this.effects.register(key, effect);
     }
 
     /**
@@ -69,7 +63,7 @@ public class CoreRegistries extends Registries {
      * @return      the customized block
      */
     public <B extends Block> RegistryObject<B> registerBlock(String key, Supplier<? extends B> block) {
-        return this.getBlocks().register(key, block);
+        return this.blocks.register(key, block);
     }
 
     /**
@@ -80,7 +74,7 @@ public class CoreRegistries extends Registries {
      * @return          the customized tile entity
      */
     public <T extends TileEntityType<?>> RegistryObject<T> registerTileEntity(String key, Supplier<? extends T>  builder) {
-        return this.getTileEntities().register(key, builder);
+        return this.tileEntities.register(key, builder);
     }
 
     /**
@@ -105,7 +99,7 @@ public class CoreRegistries extends Registries {
      * @return              the customized enchantment
      */
     public <E extends Enchantment> RegistryObject<E> registerEnchantment(String key, Supplier<? extends E> enchantment) {
-        return this.getEnchantments().register(key, enchantment);
+        return this.enchantments.register(key, enchantment);
     }
 
     /**
@@ -116,7 +110,7 @@ public class CoreRegistries extends Registries {
      * @return          the customized entity
      */
     public <E extends Entity> RegistryObject<EntityType<E>> registerEntity(String key, EntityType.Builder<E> builder) {
-        return this.getEntityTypes().register(key, () -> builder.build(new ResourceLocation(DarkerDepths.MODID, key).toString()));
+        return this.entityTypes.register(key, () -> builder.build(new ResourceLocation(DarkerDepths.MODID, key).toString()));
     }
 
     /**
@@ -127,18 +121,7 @@ public class CoreRegistries extends Registries {
      * @return      the customized item
      */
     public <I extends Item> RegistryObject<I> registerItem(String key, Supplier<? extends I> item) {
-        return this.getItems().register(key, item);
-    }
-
-    /**
-     * register a customized world carver
-     *
-     * @param key       carver ID
-     * @param carver    the customized carver class
-     * @return          the customized carver
-     */
-    public <C extends ICarverConfig, W extends WorldCarver<C>> RegistryObject<W> registerCarver(String key, Supplier<? extends W> carver) {
-        return this.getCarvers().register(key, carver);
+        return this.items.register(key, item);
     }
 
     /**
@@ -164,7 +147,7 @@ public class CoreRegistries extends Registries {
      * @return                  the customized surface builder
      */
     public <C extends ISurfaceBuilderConfig, S extends SurfaceBuilder<C>> RegistryObject<S> registerSurfaceBuilder(String key, Supplier<? extends S> surfaceBuilder) {
-        return this.getSurfaceBuilders().register(key, surfaceBuilder);
+        return this.surfaceBuilders.register(key, surfaceBuilder);
     }
 
 
@@ -187,7 +170,7 @@ public class CoreRegistries extends Registries {
      * @return          the customized feature
      */
     public <C extends IFeatureConfig, F extends Feature<C>> RegistryObject<F> registerFeature(String key, Supplier<? extends F> feature) {
-        return this.getFeatures().register(key, feature);
+        return this.features.register(key, feature);
     }
 
     /**
@@ -214,7 +197,7 @@ public class CoreRegistries extends Registries {
      * @return          the customized placement
      */
     public <C extends IPlacementConfig, P extends Placement<C>> RegistryObject<P> registerPlacement(String key, Supplier<? extends P> placement) {
-        return this.getPlacements().register(key, placement);
+        return this.placements.register(key, placement);
     }
 
     /**
@@ -225,7 +208,7 @@ public class CoreRegistries extends Registries {
      * @return      the customized biome
      */
     public <B extends Biome> RegistryObject<B> registerBiome(String key, Supplier<? extends B> biome) {
-        return this.getBiomes().register(key, biome);
+        return this.biomes.register(key, biome);
     }
 
     /**
@@ -236,7 +219,7 @@ public class CoreRegistries extends Registries {
      * @return              the customized particle
      */
     public RegistryObject<BasicParticleType> registerParticle(String key, boolean alwaysShow) {
-        return this.getParticleTypes().register(key, () -> new BasicParticleType(alwaysShow));
+        return this.particleTypes.register(key, () -> new BasicParticleType(alwaysShow));
     }
 
     /**

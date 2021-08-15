@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "silver_ingot",
+  "ingredients": [
+    {
+      "item": "darkerdepths:silver_block"
+    }
+  ],
+  "result": {
+    "item": "darkerdepths:silver_ingot",
+    "count": 9
+  }
+}

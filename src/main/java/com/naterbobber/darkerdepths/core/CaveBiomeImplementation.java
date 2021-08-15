@@ -1,7 +1,7 @@
 package com.naterbobber.darkerdepths.core;
 
 import com.blackgear.cavebiomes.core.api.CaveBiomeAPI;
-import com.naterbobber.darkerdepths.core.registries.DDBiomes;
+import com.naterbobber.darkerdepths.core.registries.worldgen.DDBiomes;
 import net.minecraft.world.biome.Biome;
 
 //<>

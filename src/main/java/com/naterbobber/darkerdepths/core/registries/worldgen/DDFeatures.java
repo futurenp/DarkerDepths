@@ -1,7 +1,7 @@
-package com.naterbobber.darkerdepths.core.registries;
+package com.naterbobber.darkerdepths.core.registries.worldgen;
 
 import com.naterbobber.darkerdepths.common.world.gen.feature.*;
-import com.naterbobber.darkerdepths.core.CoreRegistries;
+import com.naterbobber.darkerdepths.core.api.Registries;
 import com.naterbobber.darkerdepths.core.DarkerDepths;
 
 import net.minecraft.world.gen.feature.*;
@@ -12,7 +12,7 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = DarkerDepths.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class DDFeatures {
-	public static final CoreRegistries HELPER = DarkerDepths.REGISTRIES;
+	public static final Registries HELPER = DarkerDepths.REGISTRIES;
 
 	public static final RegistryObject<Feature<ReplaceBlobsFeatureConfig>> REPLACE_BLOBS 				= HELPER.registerFeature("replace_blobs", () -> new ReplaceBlobsFeature(ReplaceBlobsFeatureConfig.CODEC));
 	public static final RegistryObject<Feature<GemstonePlacementConfig>> GEMSTONE_PLACEMENT_FEATURE 	= HELPER.registerFeature("gemstone_placement", () -> new GemstonePlacementFeature(GemstonePlacementConfig.CODEC));
