@@ -47,6 +47,7 @@ public class GlobalBiomeFeatures {
 		private static void generateMoltenCavernFeatures(GlobalBiomeManager manager) {
 			VanillaBiomeFeatures.addAmber(manager.generation());
 			VanillaBiomeFeatures.addMoltenCavernDecorations(manager.generation());
+//			BuiltinBiomeFeatures.addVolcanicDecoration(manager.generation());
 			manager.generation().withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, DDConfiguredFeatures.GEYSER);
 			manager.generation().withFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, DDConfiguredFeatures.MOLTEN_CAVERN_TERRAIN);
 		}

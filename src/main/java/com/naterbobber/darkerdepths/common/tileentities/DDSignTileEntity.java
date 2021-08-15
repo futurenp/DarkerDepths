@@ -5,10 +5,8 @@ import net.minecraft.tileentity.SignTileEntity;
 import net.minecraft.tileentity.TileEntityType;
 
 public class DDSignTileEntity extends SignTileEntity {
-
     @Override
     public TileEntityType<?> getType() {
         return DDTileEntities.PETRIFIED_SIGN.get();
     }
-
 }

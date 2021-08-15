@@ -20,11 +20,15 @@ public class GeyserFeature extends Feature<NoFeatureConfig> {
 
     @Override
     public boolean generate(ISeedReader world, ChunkGenerator generator, Random rand, BlockPos pos, NoFeatureConfig config) {
-        if (world.getBlockState(pos.up()).isIn(Blocks.LAVA) && world.getBlockState(pos).isSolid()) {
+        if (isInWaterOrLava(world, pos) && world.getBlockState(pos).isSolid()) {
             this.setBlockState(world, pos, DDBlocks.GEYSER.get().getDefaultState());
             return true;
         } else {
             return false;
         }
+    }
+
+    private boolean isInWaterOrLava(ISeedReader world, BlockPos pos) {
+        return world.getBlockState(pos.up()).isIn(Blocks.LAVA) || world.getBlockState(pos.up()).isIn(Blocks.WATER);
     }
 }
