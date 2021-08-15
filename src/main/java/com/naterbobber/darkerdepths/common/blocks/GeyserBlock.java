@@ -63,10 +63,12 @@ public class GeyserBlock extends Block {
         double x = xPos + 0.5D;
         double y = yPos + rand.nextDouble() + rand.nextDouble();
         double z = zPos + 0.5D;
-        if (!stateIn.get(POWERED) && !worldIn.getBlockState(pos.up()).isIn(Blocks.WATER)) {
-            this.addParticle(worldIn, rand, x, y, z, pos, false);
-        } else {
-            this.addParticle(worldIn, rand, x, y, z, pos, true);
+        if (!stateIn.get(POWERED)) {
+            if (worldIn.getBlockState(pos.up()).isIn(Blocks.WATER)) {
+                this.addParticle(worldIn, rand, x, y, z, pos, true);
+            }else {
+                this.addParticle(worldIn, rand, x, y, z, pos, false);
+            }
         }
     }
 
