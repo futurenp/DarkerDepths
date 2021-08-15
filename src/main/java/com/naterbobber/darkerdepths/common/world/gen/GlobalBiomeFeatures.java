@@ -58,6 +58,7 @@ public class GlobalBiomeFeatures {
 			VanillaBiomeFeatures.addAridrockOres(manager.generation());
 			VanillaBiomeFeatures.addLimestoneOres(manager.generation());
 			VanillaBiomeFeatures.addSandyCatacombsVegetation(manager.generation());
+			VanillaBiomeFeatures.addSandyCatacombsCompat(manager.generation());
 		}
 
 		private static void generateCrystalCaveFeatures(GlobalBiomeManager manager) {

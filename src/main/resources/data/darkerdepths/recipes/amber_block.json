@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "darkerdepths:amber"
+    }
+  },
+  "result": {
+    "item": "darkerdepths:amber_block",
+    "count": 1
+  }
+}
