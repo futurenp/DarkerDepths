@@ -125,7 +125,9 @@ public class DDConfiguredFeatures {
 
     //ores
 
-    //CRYSTAL_CAVES
+    /**
+     * CRYSTAL CAVES FEATURES
+     */
 
     //vegetation
     public static final ConfiguredFeature<?, ?> CEILING_CRYSTAL_PEAK            = HELPER.registerConfiguredFeature("ceiling_crystal_peak", DDFeatures.CRYSTAL_PEAK.get().withConfiguration(new CavePillarConfig(States.CELESTINE_CRYSTAL_BLOCK, Direction.DOWN))).withPlacement(DDPlacements.CAVE_SURFACE.get().configure(new CaveSurfaceDecoratorConfig(VerticalSurfaceType.CEILING, 12))).chance(10).square().range(50);
