@@ -8,15 +8,12 @@ import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.World;
 
 import java.util.List;
-import java.util.Random;
 
 public class GeyserBlockTileEntity extends TileEntity implements ITickableTileEntity {
+
     public GeyserBlockTileEntity() {
         super(DDTileEntities.GEYSER.get());
     }
