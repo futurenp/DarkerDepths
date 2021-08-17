@@ -2,7 +2,6 @@ package com.naterbobber.darkerdepths.core.registries.worldgen;
 
 import com.naterbobber.darkerdepths.core.api.Registries;
 import com.naterbobber.darkerdepths.core.DarkerDepths;
-import com.naterbobber.darkerdepths.core.registries.DDParticleTypes;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.biome.Biome;
@@ -40,7 +39,7 @@ public class DDBiomes {
         DefaultBiomeFeatures.withBatsAndHostiles(spawnSettings);
         BiomeGenerationSettings.Builder generationSettings = new BiomeGenerationSettings.Builder().withSurfaceBuilder(ConfiguredSurfaceBuilders.field_244178_j);
         DefaultBiomeFeatures.withCavesAndCanyons(generationSettings);
-        return new Biome.Builder().precipitation(Biome.RainType.RAIN).category(Biome.Category.NONE).depth(0.125F).scale(0.05F).temperature(2.0F).downfall(0.0F).setEffects(new BiomeAmbience.Builder().setWaterColor(4159204).setWaterFogColor(329011).setFogColor(12638463).withSkyColor(getSkyColorWithTemperatureModifier(2.0F)).setMoodSound(MoodSoundAmbience.DEFAULT_CAVE).setParticle(new ParticleEffectAmbience(DDParticleTypes.CAVE_FALLING_DUST.get(), 0.0025F)).build()).withMobSpawnSettings(spawnSettings.copy()).withGenerationSettings(generationSettings.build()).build();
+        return new Biome.Builder().precipitation(Biome.RainType.RAIN).category(Biome.Category.NONE).depth(0.125F).scale(0.05F).temperature(2.0F).downfall(0.0F).setEffects(new BiomeAmbience.Builder().setWaterColor(4159204).setWaterFogColor(329011).setFogColor(12638463).withSkyColor(getSkyColorWithTemperatureModifier(2.0F)).setMoodSound(MoodSoundAmbience.DEFAULT_CAVE).build()).withMobSpawnSettings(spawnSettings.copy()).withGenerationSettings(generationSettings.build()).build();
     }
 
     public static Biome makeCrystalCaves() {

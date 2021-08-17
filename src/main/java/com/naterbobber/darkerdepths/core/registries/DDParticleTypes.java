@@ -12,5 +12,7 @@ import net.minecraftforge.fml.common.Mod;
 public class DDParticleTypes {
     public static final Registries HELPER = DarkerDepths.REGISTRIES;
 
-    public static final RegistryObject<BasicParticleType> CAVE_FALLING_DUST = HELPER.registerParticle("cave_falling_dust", false);
+    public static final RegistryObject<BasicParticleType> DRIPPING_RESIN    = HELPER.registerParticle("dripping_resin", false);
+    public static final RegistryObject<BasicParticleType> FALLING_RESIN     = HELPER.registerParticle("falling_resin", false);
+    public static final RegistryObject<BasicParticleType> LANDING_RESIN     = HELPER.registerParticle("landing_resin", false);
 }
