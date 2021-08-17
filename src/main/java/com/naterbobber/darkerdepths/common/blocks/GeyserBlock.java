@@ -89,6 +89,11 @@ public class GeyserBlock extends Block {
 
     private void addParticle(World worldIn, Random rand, double x, double y, double z, BlockPos pos, boolean waterlogged) {
         if (waterlogged) {
+            for (int i = 1; i < 7; i++) {
+                if (worldIn.isAirBlock(pos.up(i))) {
+                    worldIn.addParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE, x, y, z, 0.0D, 0.07D, 0.0D);
+                }
+            }
             worldIn.addOptionalParticle(ParticleTypes.BUBBLE_COLUMN_UP, x, y, z, 0.0D, 0.04D, 0.0D);
             worldIn.addOptionalParticle(ParticleTypes.BUBBLE_COLUMN_UP, x + (double)rand.nextFloat(), y + (double)rand.nextFloat(), z + (double)rand.nextFloat(), 0.0D, 0.04D, 0.0D);
             if (rand.nextInt(200) == 0) {
@@ -118,15 +123,6 @@ public class GeyserBlock extends Block {
         if (worldIn.getFluidState(pos).isTagged(FluidTags.WATER)) {
             worldIn.playSound(null, pos, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS, 0.5F, 2.6F + (worldIn.rand.nextFloat() - worldIn.rand.nextFloat()) * 0.8F);
             worldIn.spawnParticle(ParticleTypes.LARGE_SMOKE, (double)blockpos.getX() + 0.5D, (double)blockpos.getY() + 0.25D, (double)blockpos.getZ() + 0.5D, 8, 0.5D, 0.25D, 0.5D, 0.0D);
-        }
-    }
-
-    @Override
-    public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
-        if (state.get(POWERED) && !worldIn.isBlockPowered(pos)) {
-            worldIn.setBlockState(pos, state.func_235896_a_(POWERED), 2);
-        } else {
-            BubbleColumnBlock.placeBubbleColumn(worldIn, pos.up(), false);
         }
     }
 
