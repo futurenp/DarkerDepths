@@ -8,9 +8,13 @@ import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.world.World;
 
 import java.util.List;
+import java.util.Random;
 
 public class GeyserBlockTileEntity extends TileEntity implements ITickableTileEntity {
 
@@ -20,9 +24,9 @@ public class GeyserBlockTileEntity extends TileEntity implements ITickableTileEn
 
     @Override
     public void tick() {
-        if (world.getBlockState(pos) == DDBlocks.GEYSER.get().getDefaultState().with(GeyserBlock.POWERED, false)) {
+        if (this.world.getBlockState(this.pos) == DDBlocks.GEYSER.get().getDefaultState().with(GeyserBlock.POWERED, false)) {
             for (int i = 1; i < 7; i++) {
-                if (!world.isAirBlock(pos.up(i))) {
+                if (!isValidBlock(i)) {
                     break;
                 }
                 List<Entity> nearbyEntities = this.getWorld().getEntitiesWithinAABB(Entity.class, new AxisAlignedBB(this.getPos().up(i)));
@@ -30,12 +34,16 @@ public class GeyserBlockTileEntity extends TileEntity implements ITickableTileEn
                     Vector3d motion = entity.getMotion();
                     entity.setMotion(motion.x, motion.y + 0.06D, motion.z);
                     entity.fallDistance = 0.0F;
-                    if (world.getBlockState(pos.down()).isIn(Blocks.MAGMA_BLOCK)) {
+                    if (this.world.getBlockState(this.pos.down()).isIn(Blocks.MAGMA_BLOCK)) {
                         entity.setMotion(motion.x, motion.y + 0.12D, motion.z);
                         entity.fallDistance = 0.0F;
                     }
                 }
             }
         }
+    }
+
+    private boolean isValidBlock(int distance) {
+        return this.world.isAirBlock(this.pos.up(distance)) || this.world.getBlockState(this.pos.up(distance)).isIn(Blocks.WATER) || this.world.getBlockState(this.pos.up(distance)).isIn(Blocks.LAVA);
     }
 }

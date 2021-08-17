@@ -57,6 +57,7 @@ public class GlobalBiomeFeatures {
 			VanillaBiomeFeatures.addSandyCatacombsTerrain(manager.generation());
 			VanillaBiomeFeatures.addAridrockOres(manager.generation());
 			VanillaBiomeFeatures.addLimestoneOres(manager.generation());
+			VanillaBiomeFeatures.addCaveFossils(manager.generation());
 			VanillaBiomeFeatures.addSandyCatacombsVegetation(manager.generation());
 			VanillaBiomeFeatures.addSandyCatacombsCompat(manager.generation());
 		}
