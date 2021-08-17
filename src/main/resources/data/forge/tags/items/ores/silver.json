@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "darkerdepths:silver_ore",
     "darkerdepths:aridrock_silver_ore",
     "darkerdepths:limestone_silver_ore"
   ]

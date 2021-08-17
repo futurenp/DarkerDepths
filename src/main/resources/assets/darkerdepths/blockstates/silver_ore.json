@@ -1,5 +1,7 @@
 {
   "variants": {
-    "": { "model": "darkerdepths:block/silver_ore" }
+    "": {
+      "model": "darkerdepths:block/silver_ore"
+    }
   }
 }

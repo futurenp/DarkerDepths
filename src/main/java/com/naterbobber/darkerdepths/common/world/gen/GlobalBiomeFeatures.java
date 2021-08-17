@@ -42,12 +42,13 @@ public class GlobalBiomeFeatures {
 	static class BiomeFeatures {
 		private static void generateCaveFeatures(GlobalBiomeManager manager) {
 			VanillaBiomeFeatures.addGlowshrooms(manager.generation());
+			VanillaBiomeFeatures.addMineables(manager.generation());
 		}
 
 		private static void generateMoltenCavernFeatures(GlobalBiomeManager manager) {
 			VanillaBiomeFeatures.addAmber(manager.generation());
 			VanillaBiomeFeatures.addMoltenCavernDecorations(manager.generation());
-//			BuiltinBiomeFeatures.addVolcanicDecoration(manager.generation());
+			VanillaBiomeFeatures.addMineables(manager.generation());
 			manager.generation().withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, DDConfiguredFeatures.GEYSER);
 			manager.generation().withFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, DDConfiguredFeatures.MOLTEN_CAVERN_TERRAIN);
 		}
@@ -55,20 +56,21 @@ public class GlobalBiomeFeatures {
 		private static void generateSandyCatacombsFeatures(GlobalBiomeManager manager) {
 			manager.generation().withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, DDConfiguredFeatures.PETRIFIED_LOG_BRANCH);
 			VanillaBiomeFeatures.addSandyCatacombsTerrain(manager.generation());
-			VanillaBiomeFeatures.addAridrockOres(manager.generation());
-			VanillaBiomeFeatures.addLimestoneOres(manager.generation());
 			VanillaBiomeFeatures.addCaveFossils(manager.generation());
 			VanillaBiomeFeatures.addSandyCatacombsVegetation(manager.generation());
 			VanillaBiomeFeatures.addSandyCatacombsCompat(manager.generation());
+			VanillaBiomeFeatures.addMineables(manager.generation(), false);
 		}
 
 		private static void generateCrystalCaveFeatures(GlobalBiomeManager manager) {
 			VanillaBiomeFeatures.addGlowshrooms(manager.generation());
+			VanillaBiomeFeatures.addMineables(manager.generation());
 //			VanillaBiomeFeatures.addCrystalPeaks(manager.generation());
 		}
 
 		private static void generateGlowshroomCaveFeatures(GlobalBiomeManager manager) {
 			VanillaBiomeFeatures.addGlowshroomVegetation(manager.generation());
+			VanillaBiomeFeatures.addMineables(manager.generation());
 			manager.generation().withFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, DDConfiguredFeatures.GLOWSHROOM_CAVE_TERRAIN);
 		}
 	}

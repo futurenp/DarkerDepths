@@ -17,7 +17,6 @@ import java.util.List;
 import java.util.Random;
 
 public class GeyserBlockTileEntity extends TileEntity implements ITickableTileEntity {
-
     public GeyserBlockTileEntity() {
         super(DDTileEntities.GEYSER.get());
     }

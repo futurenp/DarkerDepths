@@ -88,7 +88,7 @@ public class DDBlocks {
 	public static final RegistryObject<Block> COBBLED_RED_SANDSTONE_SLAB 			= HELPER.registerBlock("cobbled_red_sandstone_slab", () -> new SlabBlock(AbstractBlock.Properties.create(Material.ROCK, MaterialColor.ADOBE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.0F)), DarkerDepths.DARKER_DEPTHS);
 	public static final RegistryObject<Block> COBBLED_RED_SANDSTONE_VERTICAL_SLAB 	= HELPER.registerCompatBlock("quark", "cobbled_red_sandstone_vertical_slab", () -> new VerticalSlabBlock(AbstractBlock.Properties.create(Material.ROCK, MaterialColor.ADOBE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.0F)), DarkerDepths.DARKER_DEPTHS);
 	public static final RegistryObject<Block> COBBLED_RED_SANDSTONE_STAIRS 			= HELPER.registerBlock("cobbled_red_sandstone_stairs", () -> new StairsBlock(COBBLED_RED_SANDSTONE.get().getDefaultState(), AbstractBlock.Properties.create(Material.ROCK, MaterialColor.ADOBE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.0F)), DarkerDepths.DARKER_DEPTHS);
-	
+
 	//shale
 	public static final RegistryObject<Block> SHALE			 						= HELPER.registerBlock("shale", () -> new Block(Block.Properties.create(Material.ROCK).setRequiresTool().hardnessAndResistance(1.5f, 6.0f).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE)), DarkerDepths.DARKER_DEPTHS);
 	public static final RegistryObject<Block> SHALE_SLAB 							= HELPER.registerBlock("shale_slab", () -> new SlabBlock(Block.Properties.create(Material.ROCK).setRequiresTool().hardnessAndResistance(1.5f, 6.0f).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE)), DarkerDepths.DARKER_DEPTHS);
@@ -175,6 +175,7 @@ public class DDBlocks {
 
 	public static final RegistryObject<Block> STONE_BRICK_PILLAR					= HELPER.registerBlock("stone_brick_pillar", () -> new RotatedPillarBlock(RotatedPillarBlock.Properties.create(Material.ROCK).setRequiresTool().hardnessAndResistance(1.5f, 6.0f).harvestTool(ToolType.PICKAXE).harvestLevel(0).sound(SoundType.STONE)), DarkerDepths.DARKER_DEPTHS);
 	public static final RegistryObject<Block> ASH_BLOCK 							= HELPER.registerBlock("ash_block", () -> new AshFullBlock(Block.Properties.create(Material.SNOW_BLOCK, MaterialColor.BLACK).harvestTool(ToolType.SHOVEL).setRequiresTool().hardnessAndResistance(0.2f).sound(SoundType.SNOW).tickRandomly()), DarkerDepths.DARKER_DEPTHS);
+	public static final RegistryObject<Block> SILVER_ORE 							= HELPER.registerBlock("silver_ore", () -> new Block(Block.Properties.create(Material.ROCK).setRequiresTool().hardnessAndResistance(3.0F, 3.0F).harvestTool(ToolType.PICKAXE).harvestLevel(2).sound(SoundType.STONE)), DarkerDepths.DARKER_DEPTHS);
 
 	//DECORATION
 

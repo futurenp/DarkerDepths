@@ -40,30 +40,32 @@ public class VanillaBiomeFeatures {
             builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, DDConfiguredFeatures.SHALE_SPELEOTHEM_UP);
         }
     }
- 
-    public static void addAridrockOres(BiomeGenerationSettingsBuilder builder) {
-        builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, DDConfiguredFeatures.ARIDROCK_ORE_COAL);
-        builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, DDConfiguredFeatures.ARIDROCK_ORE_IRON);
-        builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, DDConfiguredFeatures.ARIDROCK_ORE_GOLD);
-        builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, DDConfiguredFeatures.ARIDROCK_ORE_REDSTONE);
-        builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, DDConfiguredFeatures.ARIDROCK_ORE_DIAMOND);
-        builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, DDConfiguredFeatures.ARIDROCK_ORE_SILVER);
-        builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, DDConfiguredFeatures.ARIDROCK_ORE_LAPIS);
+
+    public static void addMineables(BiomeGenerationSettingsBuilder builder) {
+        addMineables(builder, true);
     }
-    
-    public static void addLimestoneOres(BiomeGenerationSettingsBuilder builder) {
+
+    public static void addMineables(BiomeGenerationSettingsBuilder builder, boolean spawnDefaultOre) {
+        builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, DDConfiguredFeatures.ARIDROCK_ORE_COAL);
         builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, DDConfiguredFeatures.LIMESTONE_ORE_COAL);
+        builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, DDConfiguredFeatures.ARIDROCK_ORE_IRON);
         builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, DDConfiguredFeatures.LIMESTONE_ORE_IRON);
+        builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, DDConfiguredFeatures.ARIDROCK_ORE_GOLD);
         builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, DDConfiguredFeatures.LIMESTONE_ORE_GOLD);
+        builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, DDConfiguredFeatures.ARIDROCK_ORE_REDSTONE);
         builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, DDConfiguredFeatures.LIMESTONE_ORE_REDSTONE);
+        builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, DDConfiguredFeatures.ARIDROCK_ORE_DIAMOND);
         builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, DDConfiguredFeatures.LIMESTONE_ORE_DIAMOND);
+        if (spawnDefaultOre) builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, DDConfiguredFeatures.SILVER_ORE);
+        builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, DDConfiguredFeatures.ARIDROCK_ORE_SILVER);
         builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, DDConfiguredFeatures.LIMESTONE_ORE_SILVER);
+        builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, DDConfiguredFeatures.ARIDROCK_ORE_LAPIS);
         builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, DDConfiguredFeatures.LIMESTONE_ORE_LAPIS);
     }
 
     public static void addSandyCatacombsTerrain(BiomeGenerationSettingsBuilder builder) {
-        builder.withFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, DDConfiguredFeatures.ARIDROCK_CAVE_TERRAIN);
-        builder.withFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, DDConfiguredFeatures.LIMESTONE_CAVE_TERRAIN);
+        builder.withFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS, DDConfiguredFeatures.ARIDROCK_CAVE_TERRAIN);
+        builder.withFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS, DDConfiguredFeatures.LIMESTONE_CAVE_TERRAIN);
         builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, DDConfiguredFeatures.LIMESTONE_ORE);
     }
 
