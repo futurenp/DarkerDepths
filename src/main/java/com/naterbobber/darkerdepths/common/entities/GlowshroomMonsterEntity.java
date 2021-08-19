@@ -1,5 +1,6 @@
 package com.naterbobber.darkerdepths.common.entities;
 
+import com.naterbobber.darkerdepths.core.registries.DDBlocks;
 import com.naterbobber.darkerdepths.core.registries.DDItems;
 import com.naterbobber.darkerdepths.core.registries.DDSoundEvents;
 import net.minecraft.block.BlockState;
@@ -13,6 +14,7 @@ import net.minecraft.entity.ai.goal.LookAtGoal;
 import net.minecraft.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
 import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
+import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.monster.CreeperEntity;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -113,6 +115,15 @@ public class GlowshroomMonsterEntity extends MonsterEntity {
 
         if (this.attackTick > 0) {
             this.attackTick--;
+        }
+    }
+
+    @Override
+    protected void dropSpecialItems(DamageSource source, int looting, boolean recentlyHitIn) {
+        super.dropSpecialItems(source, looting, recentlyHitIn);
+        ItemEntity itemEntity = this.entityDropItem(DDItems.GLOWSHROOM_CAP.get());
+        if (itemEntity != null) {
+            itemEntity.setNoDespawn();
         }
     }
 

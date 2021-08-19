@@ -25,7 +25,6 @@ public class DDItems {
 
 	//MISCELLANEOUS
 	public static final RegistryObject<Item> RESIN						  = HELPER.registerItem("resin", () -> new Item(new Item.Properties().group(DarkerDepths.DARKER_DEPTHS)));
-	public static final RegistryObject<Item> RESINOUS_GRIME				  = HELPER.registerItem("resinous_grime", () -> new Item(new Item.Properties().group(DarkerDepths.DARKER_DEPTHS)));
 	public static final RegistryObject<Item> RAW_SILVER					  = HELPER.registerItem("raw_silver", () -> new Item(new Item.Properties().group(DarkerDepths.DARKER_DEPTHS)));
 	public static final RegistryObject<Item> SILVER_INGOT 				  = HELPER.registerItem("silver_ingot", () -> new Item(new Item.Properties().group(DarkerDepths.DARKER_DEPTHS)));
 

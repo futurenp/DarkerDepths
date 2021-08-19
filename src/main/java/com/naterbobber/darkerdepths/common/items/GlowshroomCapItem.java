@@ -12,6 +12,7 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
@@ -62,7 +63,7 @@ public class GlowshroomCapItem extends ArmorItem implements IArmorVanishable {
 
         @Override
         public int getEnchantability() {
-            return 0;
+            return 9;
         }
 
         @Override
@@ -72,7 +73,7 @@ public class GlowshroomCapItem extends ArmorItem implements IArmorVanishable {
 
         @Override
         public Ingredient getRepairMaterial() {
-            return Ingredient.fromItems(DDItems.RESINOUS_GRIME.get());
+            return Ingredient.fromItems(DDItems.RESIN.get());
         }
 
         @Override
