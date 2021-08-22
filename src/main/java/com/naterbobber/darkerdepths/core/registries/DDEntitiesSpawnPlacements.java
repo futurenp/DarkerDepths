@@ -7,7 +7,7 @@ import net.minecraft.world.gen.Heightmap;
 public class DDEntitiesSpawnPlacements {
 
     public static void register() {
-        EntitySpawnPlacementRegistry.register(DDEntityTypes.GLOWSHROOM_MONSTER.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, GlowshroomMonsterEntity::canSpawnOn);
+        EntitySpawnPlacementRegistry.register(DDEntityTypes.GLOWSHROOM_MONSTER.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, GlowshroomMonsterEntity::canSpawn);
     }
 
 }

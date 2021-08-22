@@ -73,7 +73,7 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 dependencies {
     minecraft "net.minecraftforge:forge:${project.minecraft}-${project.forge}"
 
-    implementation fg.deobf("curse.maven:cavebiome-api-441706:3401461")
+    implementation fg.deobf("curse.maven:cave-biome-api-441706:3433626")
     implementation fg.deobf("curse.maven:orcinus-caves-492376:3426876")
 
     annotationProcessor 'org.spongepowered:mixin:0.8:processor'

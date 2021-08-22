@@ -24,7 +24,6 @@ public class GlobalBiomeFeatures {
 	@SubscribeEvent
 	public void onBiomeLoad(BiomeLoadingEvent event) {
 		GlobalBiomeManager manager = new GlobalBiomeManager(event);
-		MobSpawnInfoBuilder builder = event.getSpawns();
 
 		if (manager.matches(CaveBiomes.CAVE.get())) {
 			BiomeFeatures.generateCaveFeatures(manager);
@@ -40,7 +39,6 @@ public class GlobalBiomeFeatures {
 		}
 		if (manager.matches(DDBiomes.GLOWSHROOM_CAVES.get())) {
 			BiomeFeatures.generateGlowshroomCaveFeatures(manager);
-			builder.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(DDEntityTypes.GLOWSHROOM_MONSTER.get(), 80, 2, 4));
 		}
 	}
 
@@ -77,6 +75,8 @@ public class GlobalBiomeFeatures {
 			VanillaBiomeFeatures.addGlowshroomVegetation(manager.generation());
 			VanillaBiomeFeatures.addMineables(manager.generation());
 			manager.generation().withFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, DDConfiguredFeatures.GLOWSHROOM_CAVE_TERRAIN);
+			//TODO: kill orcinus in-game
+			manager.spawns().withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(DDEntityTypes.GLOWSHROOM_MONSTER.get(), 10, 1, 2));
 		}
 	}
 
