@@ -1,10 +1,7 @@
 {
   "variants": {
     "": [
-      {  "model": "darkerdepths:block/limestone_diamond_ore_1", "weight": 2 },
-      {  "model": "darkerdepths:block/limestone_diamond_ore_2", "weight": 2 },
-      {  "model": "darkerdepths:block/limestone_diamond_ore_3", "weight": 2 },
-      {  "model": "darkerdepths:block/limestone_diamond_ore_4", "weight": 2 }
+      {  "model": "darkerdepths:block/limestone_diamond_ore" }
     ]
   }
 }
