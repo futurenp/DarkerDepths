@@ -1,11 +1,14 @@
 package com.naterbobber.darkerdepths.common.world.gen;
 
 import com.blackgear.cavebiomes.core.registries.CaveBiomes;
+import com.naterbobber.darkerdepths.core.registries.DDEntityTypes;
 import com.naterbobber.darkerdepths.core.registries.worldgen.DDBiomes;
+import net.minecraft.entity.EntityClassification;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.MobSpawnInfo;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraftforge.common.world.BiomeGenerationSettingsBuilder;
 import net.minecraftforge.common.world.MobSpawnInfoBuilder;
@@ -21,6 +24,7 @@ public class GlobalBiomeFeatures {
 	@SubscribeEvent
 	public void onBiomeLoad(BiomeLoadingEvent event) {
 		GlobalBiomeManager manager = new GlobalBiomeManager(event);
+		MobSpawnInfoBuilder builder = event.getSpawns();
 
 		if (manager.matches(CaveBiomes.CAVE.get())) {
 			BiomeFeatures.generateCaveFeatures(manager);
@@ -36,6 +40,7 @@ public class GlobalBiomeFeatures {
 		}
 		if (manager.matches(DDBiomes.GLOWSHROOM_CAVES.get())) {
 			BiomeFeatures.generateGlowshroomCaveFeatures(manager);
+			builder.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(DDEntityTypes.GLOWSHROOM_MONSTER.get(), 80, 2, 4));
 		}
 	}
 

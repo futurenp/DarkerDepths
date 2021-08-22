@@ -7,6 +7,7 @@ import com.naterbobber.darkerdepths.common.entities.MagmaMinionEntity;
 import com.naterbobber.darkerdepths.common.events.DynamicLightHandler;
 import com.naterbobber.darkerdepths.common.world.gen.GlobalBiomeFeatures;
 import com.naterbobber.darkerdepths.core.api.Registries;
+import com.naterbobber.darkerdepths.core.registries.DDEntitiesSpawnPlacements;
 import com.naterbobber.darkerdepths.core.registries.DDEntityTypes;
 import com.naterbobber.darkerdepths.core.registries.DDLootModifiers;
 import com.naterbobber.darkerdepths.core.registries.DDWoodTypes;
@@ -58,6 +59,8 @@ public class DarkerDepths {
         });
 
         CraftingHelper.register(new DDCompatibilty.Serializer());
+
+        DDEntitiesSpawnPlacements.register();
 
         VanillaIntegrationRegistry.setup();
         CaveBiomeImplementation.addCaveBiomes();
