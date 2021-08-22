@@ -76,7 +76,7 @@ public class GlobalBiomeFeatures {
 			VanillaBiomeFeatures.addMineables(manager.generation());
 			manager.generation().withFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, DDConfiguredFeatures.GLOWSHROOM_CAVE_TERRAIN);
 			//TODO: kill orcinus in-game
-			manager.spawns().withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(DDEntityTypes.GLOWSHROOM_MONSTER.get(), 10, 1, 2));
+			manager.spawns().withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(DDEntityTypes.GLOWSHROOM_MONSTER.get(), 50, 1, 2));
 		}
 	}
 
