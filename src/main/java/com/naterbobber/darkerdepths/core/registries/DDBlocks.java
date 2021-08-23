@@ -134,7 +134,7 @@ public class DDBlocks {
 	public static final RegistryObject<Block> LIMESTONE		 						= HELPER.registerBlock("limestone", () -> new Block(Block.Properties.create(Material.ROCK).setRequiresTool().hardnessAndResistance(1.5f, 6.0f).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE)) {
 		@Override
 		public boolean canSustainPlant(BlockState state, IBlockReader world, BlockPos pos, Direction facing, IPlantable plantable) {
-			return plantable instanceof BushBlock || plantable instanceof DeadBushBlock;
+			return plantable instanceof SproutsBlock || plantable instanceof DeadBushBlock;
 		}
 	}, DarkerDepths.DARKER_DEPTHS);
 	public static final RegistryObject<Block> LIMESTONE_SLAB 						= HELPER.registerBlock("limestone_slab", () -> new SlabBlock(Block.Properties.create(Material.ROCK).setRequiresTool().hardnessAndResistance(1.5f, 6.0f).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE)), DarkerDepths.DARKER_DEPTHS);
@@ -204,7 +204,7 @@ public class DDBlocks {
 	//sprouts/roots
 	public static final RegistryObject<Block> ROOTS 								= HELPER.registerBlock("roots", () -> new RootsBlock(AbstractBlock.Properties.create(Material.TALL_PLANTS, MaterialColor.WOOD).doesNotBlockMovement().zeroHardnessAndResistance().sound(SoundType.PLANT)), DarkerDepths.DARKER_DEPTHS);
 	public static final RegistryObject<Block> LONG_ROOTS 							= HELPER.registerBlock("long_roots", () -> new HangingDoublePlantBlock(AbstractBlock.Properties.create(Material.TALL_PLANTS, MaterialColor.WOOD).doesNotBlockMovement().zeroHardnessAndResistance().sound(SoundType.PLANT)), DarkerDepths.DARKER_DEPTHS);
-	public static final RegistryObject<Block> DRY_SPROUTS 							= HELPER.registerBlock("dry_sprouts", () -> new DrySproutsBlock(AbstractBlock.Properties.from(Blocks.DEAD_BUSH)), DarkerDepths.DARKER_DEPTHS);
+	public static final RegistryObject<Block> DRY_SPROUTS 							= HELPER.registerBlock("dry_sprouts", () -> new SproutsBlock(AbstractBlock.Properties.from(Blocks.DEAD_BUSH)), DarkerDepths.DARKER_DEPTHS);
 	public static final RegistryObject<Block> LUSH_SPROUTS 							= HELPER.registerBlock("lush_sprouts", () -> new SproutsBlock(AbstractBlock.Properties.from(Blocks.GRASS)), DarkerDepths.DARKER_DEPTHS);
 	public static final RegistryObject<Block> MOSSY_SPROUTS 						= HELPER.registerBlock("mossy_sprouts", () -> new SproutsBlock(AbstractBlock.Properties.from(Blocks.GRASS)), DarkerDepths.DARKER_DEPTHS);
 

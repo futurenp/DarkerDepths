@@ -4,7 +4,6 @@ import com.naterbobber.darkerdepths.core.registries.DDBlocks;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.BushBlock;
 import net.minecraft.block.DeadBushBlock;
 import net.minecraft.block.IGrowable;
 import net.minecraft.util.Direction;
@@ -57,6 +56,6 @@ public class AridrockBlock extends Block implements IGrowable {
 
     @Override
     public boolean canSustainPlant(BlockState state, IBlockReader world, BlockPos pos, Direction facing, IPlantable plantable) {
-        return plantable instanceof BushBlock || plantable instanceof DeadBushBlock;
+        return plantable instanceof SproutsBlock || plantable instanceof DeadBushBlock;
     }
 }
