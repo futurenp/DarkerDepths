@@ -1,6 +1,7 @@
 package com.naterbobber.darkerdepths.common.world.gen;
 
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableSet;
 import com.naterbobber.darkerdepths.common.blocks.Glowshroom;
 import com.naterbobber.darkerdepths.common.blocks.GlowspursBlock;
 import com.naterbobber.darkerdepths.common.math.ConstantIntProvider;
@@ -25,6 +26,8 @@ import com.naterbobber.darkerdepths.core.util.VerticalSurfaceType;
 import com.naterbobber.darkerdepths.core.util.DDFillerBlockTypes;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.fluid.FluidState;
+import net.minecraft.fluid.Fluids;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Direction;
@@ -35,7 +38,9 @@ import net.minecraft.world.gen.feature.BlockStateProvidingFeatureConfig;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.FeatureSpread;
+import net.minecraft.world.gen.feature.Features;
 import net.minecraft.world.gen.feature.IFeatureConfig;
+import net.minecraft.world.gen.feature.LiquidsConfig;
 import net.minecraft.world.gen.feature.OreFeatureConfig;
 import net.minecraft.world.gen.placement.DepthAverageConfig;
 import net.minecraft.world.gen.placement.Placement;
@@ -55,6 +60,9 @@ public class DDConfiguredFeatures {
      * MOLTEN CAVERN FEATURES
      */
     public static final ConfiguredFeature<?, ?> MOLTEN_CAVERN_TERRAIN           = HELPER.registerConfiguredFeature("molten_cavern_terrain", DDFeatures.REPLACE_BLOBS.get().withConfiguration(new ReplaceBlobsFeatureConfig(States.OVERWORLD_REPLACEABLES, States.SHALE, UniformIntProvider.create(3, 7))).range(50).square()).func_242731_b(75);
+
+    public static final ConfiguredFeature<?, ?> MOLTEN_CAVERN_SPRING_OPEN       = HELPER.registerConfiguredFeature("molten_cavern_spring_open", Feature.SPRING_FEATURE.withConfiguration(new LiquidsConfig(States.LAVA, false, 4, 1, ImmutableSet.of(Blocks.STONE, Blocks.GRANITE, Blocks.DIORITE, Blocks.ANDESITE, DDBlocks.SHALE.get()))).withPlacement(Features.Placements.SPRING_PLACEMENT).square().func_242731_b(32));
+    public static final ConfiguredFeature<?, ?> MOLTEN_CAVERN_SPRING_CLOSED     = HELPER.registerConfiguredFeature("molten_cavern_spring_closed", Feature.SPRING_FEATURE.withConfiguration(Configs.LAVA_SPRING_CLOSED_CONFIG).withPlacement(Features.Placements.NETHER_SPRING_ORE_PLACEMENT).square().func_242731_b(4).range(16));
 
     public static final ConfiguredFeature<?, ?> AMBER                           = HELPER.registerConfiguredFeature("amber", DDFeatures.GEMSTONE_PLACEMENT_FEATURE.get().withConfiguration(new GemstonePlacementConfig(States.AMBER)).range(25).square().func_242731_b(60));
     public static final ConfiguredFeature<?, ?> ASH_VEGETATION                  = HELPER.registerConfiguredFeature("ash_vegetation", DDFeatures.SIMPLE_BLOCK.get().withConfiguration(new SimpleBlockConfig(new WeightedBlockStateProvider().addWeightedBlockstate(States.SINGLE_ASH_LAYER, 25).addWeightedBlockstate(States.DOUBLE_ASH_LAYER, 15))));
@@ -149,12 +157,12 @@ public class DDConfiguredFeatures {
         public static final BlockState DIAMOND_ORE              = Blocks.DIAMOND_ORE.getDefaultState();
         public static final BlockState LAPIS_ORE                = Blocks.LAPIS_ORE.getDefaultState();
         public static final BlockState SILVER_ORE               = DDBlocks.SILVER_ORE.get().getDefaultState();
+        public static final FluidState LAVA                     = Fluids.LAVA.getDefaultState();
 
         //MOLTEN_CAVERN
         public static final BlockState MAGMA_BLOCK              = Blocks.MAGMA_BLOCK.getDefaultState();
         public static final BlockState SHALE                    = DDBlocks.SHALE.get().getDefaultState();
         public static final BlockState AMBER                    = DDBlocks.AMBER.get().getDefaultState();
-        public static final BlockState GEYSER                   = DDBlocks.GEYSER.get().getDefaultState();
         public static final BlockState SINGLE_ASH_LAYER         = DDBlocks.ASH.get().getDefaultState().with(BlockStateProperties.LAYERS_1_8, 1);
         public static final BlockState DOUBLE_ASH_LAYER         = DDBlocks.ASH.get().getDefaultState().with(BlockStateProperties.LAYERS_1_8, 2);
 
@@ -215,6 +223,8 @@ public class DDConfiguredFeatures {
 
     static class Configs {
         //MOLTEN_CAVERN
+        public static final LiquidsConfig LAVA_SPRING_CLOSED_CONFIG = new LiquidsConfig(States.LAVA, false, 5, 0, ImmutableSet.of(Blocks.STONE, Blocks.GRANITE, Blocks.DIORITE, Blocks.ANDESITE, DDBlocks.SHALE.get()));
+        public static final LiquidsConfig LAVA_SPRING_CONFIG        = new LiquidsConfig(States.LAVA, true, 4, 1, ImmutableSet.of(Blocks.STONE, Blocks.GRANITE, Blocks.DIORITE, Blocks.ANDESITE, DDBlocks.SHALE.get()));
 
         //SANDY_CATACOMBS
         public static final BlockStateProvidingFeatureConfig SANDY_CATACOMBS_CONFIG         = new BlockStateProvidingFeatureConfig(new WeightedBlockStateProvider().addWeightedBlockstate(States.DEAD_BUSH, 10).addWeightedBlockstate(States.DRY_SPROUTS, 50).addWeightedBlockstate(States.DETRITUS, 5).addWeightedBlockstate(States.ROOTS, 15).addWeightedBlockstate(Blocks.AIR.getDefaultState(), 20));

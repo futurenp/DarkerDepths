@@ -10,6 +10,7 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.MobSpawnInfo;
 import net.minecraft.world.gen.GenerationStage;
+import net.minecraft.world.gen.feature.Features;
 import net.minecraftforge.common.world.BiomeGenerationSettingsBuilder;
 import net.minecraftforge.common.world.MobSpawnInfoBuilder;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
@@ -52,6 +53,8 @@ public class GlobalBiomeFeatures {
 			VanillaBiomeFeatures.addAmber(manager.generation());
 			VanillaBiomeFeatures.addMoltenCavernDecorations(manager.generation());
 			VanillaBiomeFeatures.addMineables(manager.generation());
+			manager.generation().withFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, DDConfiguredFeatures.MOLTEN_CAVERN_SPRING_OPEN);
+			manager.generation().withFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, DDConfiguredFeatures.MOLTEN_CAVERN_SPRING_CLOSED);
 			manager.generation().withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, DDConfiguredFeatures.GEYSER);
 			manager.generation().withFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, DDConfiguredFeatures.MOLTEN_CAVERN_TERRAIN);
 		}
