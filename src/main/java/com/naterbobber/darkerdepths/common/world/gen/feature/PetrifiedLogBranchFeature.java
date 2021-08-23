@@ -43,7 +43,7 @@ public class PetrifiedLogBranchFeature extends Feature<NoFeatureConfig> {
     private void spawnLogs(IWorld world, BlockPos pos) {
         Random rand = new Random();
         this.setBlockState(world, pos, DDBlocks.PETRIFIED_LOG.get().getDefaultState());
-        if (rand.nextInt(50) == 0) {
+        if (rand.nextInt(25) == 0) {
             this.setBlockState(world, pos, DDBlocks.POROUS_PETRIFIED_LOG.get().getDefaultState());
             world.getPendingBlockTicks().scheduleTick(pos, DDBlocks.POROUS_PETRIFIED_LOG.get(), 0);
             if (rand.nextInt(5) == 0) {
