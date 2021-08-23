@@ -54,7 +54,6 @@ public class GlobalBiomeFeatures {
 			VanillaBiomeFeatures.addMoltenCavernDecorations(manager.generation());
 			VanillaBiomeFeatures.addMineables(manager.generation());
 			manager.generation().withFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, DDConfiguredFeatures.MOLTEN_CAVERN_SPRING_OPEN);
-			manager.generation().withFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, DDConfiguredFeatures.MOLTEN_CAVERN_SPRING_CLOSED);
 			manager.generation().withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, DDConfiguredFeatures.GEYSER);
 			manager.generation().withFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, DDConfiguredFeatures.MOLTEN_CAVERN_TERRAIN);
 		}
