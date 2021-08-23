@@ -1,6 +1,5 @@
 package com.naterbobber.darkerdepths.common.entities;
 
-import com.naterbobber.darkerdepths.core.registries.DDBlocks;
 import com.naterbobber.darkerdepths.core.registries.DDItems;
 import com.naterbobber.darkerdepths.core.registries.DDSoundEvents;
 import net.minecraft.block.BlockState;
@@ -18,6 +17,7 @@ import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.monster.CreeperEntity;
 import net.minecraft.entity.monster.MonsterEntity;
+import net.minecraft.entity.passive.BatEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
@@ -72,7 +72,7 @@ public class GlowshroomMonsterEntity extends MonsterEntity {
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, MobEntity.class, 0, false, false, (entity) -> {
-            return !(entity instanceof CreeperEntity) && !(entity instanceof GlowshroomMonsterEntity);
+            return !(entity instanceof CreeperEntity) && !(entity instanceof GlowshroomMonsterEntity) && !(entity instanceof BatEntity);
         }));
     }
 
