@@ -5,10 +5,12 @@ import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.IGrowable;
+import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.common.IPlantable;
 
 import java.util.Random;
 
@@ -49,5 +51,10 @@ public class AridrockBlock extends Block implements IGrowable {
         if (flag) {
             worldIn.setBlockState(pos, DDBlocks.LUSH_ARIDROCK.get().getDefaultState(), 3);
         }
+    }
+
+    @Override
+    public boolean canSustainPlant(BlockState state, IBlockReader world, BlockPos pos, Direction facing, IPlantable plantable) {
+        return true;
     }
 }

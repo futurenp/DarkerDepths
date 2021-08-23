@@ -33,6 +33,7 @@ import com.naterbobber.darkerdepths.core.api.Registries;
 import com.naterbobber.darkerdepths.core.DarkerDepths;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.DoorBlock;
 import net.minecraft.block.FenceBlock;
@@ -49,6 +50,10 @@ import net.minecraft.block.WallBlock;
 import net.minecraft.block.WoodButtonBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
+import net.minecraft.util.Direction;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockReader;
+import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.common.Mod;
@@ -124,7 +129,12 @@ public class DDBlocks {
 	public static final RegistryObject<Block> ARIDROCK_SPELEOTHEM					= HELPER.registerCompatBlock("quark", "aridrock_speleothem", () -> new SpeleothemBlock(AbstractBlock.Properties.from(DDBlocks.ARIDROCK.get()).hardnessAndResistance(1.5F).notSolid()), DarkerDepths.DARKER_DEPTHS);
 
 	//limestone
-	public static final RegistryObject<Block> LIMESTONE		 						= HELPER.registerBlock("limestone", () -> new Block(Block.Properties.create(Material.ROCK).setRequiresTool().hardnessAndResistance(1.5f, 6.0f).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE)), DarkerDepths.DARKER_DEPTHS);
+	public static final RegistryObject<Block> LIMESTONE		 						= HELPER.registerBlock("limestone", () -> new Block(Block.Properties.create(Material.ROCK).setRequiresTool().hardnessAndResistance(1.5f, 6.0f).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE)) {
+		@Override
+		public boolean canSustainPlant(BlockState state, IBlockReader world, BlockPos pos, Direction facing, IPlantable plantable) {
+			return true;
+		}
+	}, DarkerDepths.DARKER_DEPTHS);
 	public static final RegistryObject<Block> LIMESTONE_SLAB 						= HELPER.registerBlock("limestone_slab", () -> new SlabBlock(Block.Properties.create(Material.ROCK).setRequiresTool().hardnessAndResistance(1.5f, 6.0f).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE)), DarkerDepths.DARKER_DEPTHS);
 	public static final RegistryObject<Block> LIMESTONE_VERTICAL_SLAB				= HELPER.registerCompatBlock("quark", "limestone_vertical_slab", () -> new VerticalSlabBlock(AbstractBlock.Properties.from(LIMESTONE_SLAB.get())), DarkerDepths.DARKER_DEPTHS);
 	public static final RegistryObject<Block> LIMESTONE_STAIRS 						= HELPER.registerBlock("limestone_stairs", () -> new StairsBlock(() -> LIMESTONE.get().getDefaultState(), Block.Properties.create(Material.ROCK).setRequiresTool().hardnessAndResistance(1.5f, 6.0f).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE)), DarkerDepths.DARKER_DEPTHS);

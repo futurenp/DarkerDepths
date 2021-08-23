@@ -33,7 +33,7 @@ license = "All rights reserved"
 
 [[dependencies.darkerdepths]]
     modId = "cavebiomeapi"
-    mandatory=true
+    mandatory = true
     versionRange="[1,)"
     ordering="NONE"
     side="BOTH"

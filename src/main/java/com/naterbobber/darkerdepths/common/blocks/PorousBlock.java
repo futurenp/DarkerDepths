@@ -5,7 +5,6 @@ import com.naterbobber.darkerdepths.core.registries.DDParticleTypes;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.RotatedPillarBlock;
-import net.minecraft.block.material.PushReaction;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
@@ -19,11 +18,6 @@ import java.util.Random;
 public class PorousBlock extends RotatedPillarBlock {
     public PorousBlock(Properties properties) {
         super(properties);
-    }
-
-    @Override
-    public PushReaction getPushReaction(BlockState state) {
-        return PushReaction.DESTROY;
     }
 
     @Override

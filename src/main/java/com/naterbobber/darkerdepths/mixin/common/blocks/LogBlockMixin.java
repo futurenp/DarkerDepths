@@ -32,7 +32,7 @@ public class LogBlockMixin extends Block {
 	public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
 		super.tick(state, worldIn, pos, rand);
 		Block block = DDBlocks.PETRIFIED_LOG.get();
-		if (worldIn.getBlockState(pos.down()).isIn(Blocks.SOUL_FIRE) && worldIn.getBlockState(pos.down(2)).isIn(Blocks.SOUL_SOIL) && worldIn.getBlockState(pos).isIn(BlockTags.LOGS_THAT_BURN)) {
+		if ((worldIn.getBlockState(pos.down()).isIn(Blocks.SOUL_FIRE) || worldIn.getBlockState(pos.down()).isIn(Blocks.SOUL_CAMPFIRE)) && worldIn.getBlockState(pos).isIn(BlockTags.LOGS_THAT_BURN)) {
 			worldIn.setBlockState(pos, block.getDefaultState().with(RotatedPillarBlock.AXIS, state.get(RotatedPillarBlock.AXIS)), 2);
 			worldIn.playEvent(1501, pos, 0);
 		}

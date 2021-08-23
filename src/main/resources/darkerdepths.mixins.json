@@ -4,8 +4,6 @@
   "compatibilityLevel": "JAVA_8",
   "refmap": "darkerdepths.refmap.json",
   "mixins": [
-    "common.blocks.BushBlockMixin",
-    "common.blocks.DeadBushBlockMixin",
     "common.blocks.LogBlockMixin",
     "common.world.IBlockReaderMixin",
     "common.world.WorldCarverMixin"
