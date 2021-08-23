@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "darkerdepths:aridrock_bricks"
+  },
+  "result": "darkerdepths:chiseled_aridrock_bricks",
+  "count": 1
+}
