@@ -15,12 +15,14 @@ import net.minecraft.entity.ai.goal.HurtByTargetGoal;
 import net.minecraft.entity.ai.goal.LookAtGoal;
 import net.minecraft.entity.ai.goal.LookRandomlyGoal;
 import net.minecraft.entity.ai.goal.MeleeAttackGoal;
+import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
 import net.minecraft.entity.ai.goal.OwnerHurtByTargetGoal;
 import net.minecraft.entity.ai.goal.OwnerHurtTargetGoal;
 import net.minecraft.entity.ai.goal.SitGoal;
 import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.ai.goal.TemptGoal;
 import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
+import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -42,10 +44,10 @@ import net.minecraftforge.event.ForgeEventFactory;
 
 import javax.annotation.Nullable;
 
-public class MagmaMinionEntity extends TameableEntity {
+public class MagmaMinionEntity extends MonsterEntity {
     private int attackTick;
 
-    public MagmaMinionEntity(EntityType<? extends TameableEntity> type, World worldIn) {
+    public MagmaMinionEntity(EntityType<? extends MonsterEntity> type, World worldIn) {
         super(type, worldIn);
         this.experienceValue = 20;
     }
@@ -63,17 +65,11 @@ public class MagmaMinionEntity extends TameableEntity {
     @Override
     protected void registerGoals() {
         super.registerGoals();
-        this.goalSelector.addGoal(0, new SwimGoal(this));
-        this.goalSelector.addGoal(1, new SitGoal(this));
-        this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 0.6D, true));
-        this.goalSelector.addGoal(3, new FollowOwnerGoal(this, this.getAttributeValue(Attributes.MOVEMENT_SPEED), 10.0F, 2.0F, false));
-        this.goalSelector.addGoal(4, new WaterAvoidingRandomWalkingGoal(this, getAttributeValue(Attributes.MOVEMENT_SPEED)));
-        this.goalSelector.addGoal(5, new TemptGoal(this, 0.8D, Ingredient.fromStacks(new ItemStack(DDBlocks.AMBER.get().asItem())), false));
-        this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 8.0F));
-        this.goalSelector.addGoal(7, new LookRandomlyGoal(this));
-        this.targetSelector.addGoal(1, new OwnerHurtByTargetGoal(this));
-        this.targetSelector.addGoal(2, new OwnerHurtTargetGoal(this));
-        this.targetSelector.addGoal(3, new HurtByTargetGoal(this).setCallsForHelp());
+        this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 0.6D, true));
+        this.goalSelector.addGoal(2, new WaterAvoidingRandomWalkingGoal(this, getAttributeValue(Attributes.MOVEMENT_SPEED)));
+        this.goalSelector.addGoal(2, new LookAtGoal(this, PlayerEntity.class, 8.0F));
+        this.goalSelector.addGoal(3, new LookRandomlyGoal(this));
+        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
     }
 
     @Override
@@ -82,81 +78,10 @@ public class MagmaMinionEntity extends TameableEntity {
     }
 
     @Override
-    public ActionResultType func_230254_b_(PlayerEntity player, Hand hand) {
-        ItemStack stack = player.getHeldItem(hand);
-        if (this.isTamed()) {
-            if (this.isConsumable(stack) && this.getHealth() < this.getMaxHealth()) {
-                if (!this.world.isRemote) {
-                    if (!player.abilities.isCreativeMode) {
-                        stack.shrink(1);
-                    }
-                    this.heal(5);
-                }
-                return ActionResultType.SUCCESS;
-            }
-
-            ActionResultType resultType = super.func_230254_b_(player, hand);
-            if (!resultType.isSuccessOrConsume() && this.isOwner(player)) {
-                if (!this.world.isRemote) {
-                    this.func_233687_w_(!this.isSitting());
-                    this.isJumping = false;
-                    this.navigator.clearPath();
-                    this.setAttackTarget(null);
-                }
-                return ActionResultType.SUCCESS;
-            }
-            return resultType;
-        } else if (this.isConsumable(stack) && this.getAttackTarget() == null) {
-            if (!this.world.isRemote) {
-                if (!player.abilities.isCreativeMode) {
-                    stack.shrink(1);
-                }
-                if (this.rand.nextInt(3) == 0 && !ForgeEventFactory.onAnimalTame(this, player)) {
-                    this.setTamedBy(player);
-                    this.navigator.clearPath();
-                    this.setAttackTarget(null);
-                    this.func_233687_w_(true);
-                    this.world.setEntityState(this, (byte) 7);
-                } else {
-                    this.world.setEntityState(this, (byte) 6);
-                }
-                return ActionResultType.SUCCESS;
-            }
-        }
-        return super.func_230254_b_(player, hand);
-    }
-
-    private boolean isConsumable(ItemStack stack) {
-        Item item = stack.getItem();
-        return item == DDBlocks.AMBER.get().asItem();
-    }
-
-    @Override
-    public void setTamed(boolean tamed) {
-        super.setTamed(tamed);
-        if (tamed) {
-            this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(30.0D);
-            this.setHealth(30.0F);
-        } else {
-            this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(8.0D);
-        }
-        this.getAttribute(Attributes.ATTACK_DAMAGE).setBaseValue(4.0D);
-    }
-
-    @Nullable
-    @Override
-    public AgeableEntity func_241840_a(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
-        return null;
-    }
-
-    @Override
     public void livingTick() {
         super.livingTick();
         if (this.attackTick > 0) {
             this.attackTick--;
-        }
-        if (this.isEntitySleeping()) {
-            this.world.addParticle(ParticleTypes.SMOKE, this.getPosX(), this.getPosY() + 1.0D, this.getPosZ(), 0, 0, 0);
         }
     }
 
@@ -185,24 +110,28 @@ public class MagmaMinionEntity extends TameableEntity {
         return this.attackTick;
     }
 
-    public boolean canBeLeashedTo(PlayerEntity player) {return true;}
+    public boolean canBeLeashedTo(PlayerEntity player) {
+        return true;
+    }
 
     @Override
-    protected SoundEvent getAmbientSound() { return SoundEvents.ENTITY_RAVAGER_AMBIENT; }
+    protected SoundEvent getAmbientSound() {
+        return SoundEvents.ENTITY_RAVAGER_AMBIENT;
+    }
 
     @Override
-    protected SoundEvent getDeathSound() { return SoundEvents.ENTITY_RAVAGER_DEATH; }
+    protected SoundEvent getDeathSound() {
+        return SoundEvents.ENTITY_RAVAGER_DEATH;
+    }
 
     @Override
-    protected SoundEvent getHurtSound(DamageSource damageSourceIn) { return SoundEvents.ENTITY_RAVAGER_HURT; }
+    protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
+        return SoundEvents.ENTITY_RAVAGER_HURT;
+    }
 
     @Override
     protected void playStepSound(BlockPos pos, BlockState blockIn) {
         this.playSound(SoundEvents.ENTITY_RAVAGER_STEP, 0.15F, 0.8F);
     }
 
-//    @Override
-//    public ItemStack getPickedResult(RayTraceResult target) {
-//        return new ItemStack(DDItems.MAGMA_MINION_SPAWN_EGG.get());
-//    }
 }
