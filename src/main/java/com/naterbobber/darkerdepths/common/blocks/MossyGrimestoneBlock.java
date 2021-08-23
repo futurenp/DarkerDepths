@@ -12,8 +12,9 @@ import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.lighting.LightEngine;
 import net.minecraft.world.server.ServerWorld;
+ import net.minecraftforge.common.IPlantable;
 
-import java.util.Random;
+ import java.util.Random;
 
 //<>
 
@@ -80,5 +81,10 @@ public class MossyGrimestoneBlock extends Block implements IGrowable {
                 }
             }
         }
+    }
+
+    @Override
+    public boolean canSustainPlant(BlockState state, IBlockReader world, BlockPos pos, Direction facing, IPlantable plantable) {
+        return true;
     }
 }
