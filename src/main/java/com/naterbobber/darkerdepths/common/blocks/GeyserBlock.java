@@ -5,10 +5,6 @@ import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.BubbleColumnBlock;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.state.BooleanProperty;
@@ -20,7 +16,6 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
@@ -71,6 +66,13 @@ public class GeyserBlock extends Block {
     }
 
     @Override
+    public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
+        if (state.get(POWERED) && !worldIn.isBlockPowered(pos)) {
+            worldIn.setBlockState(pos, state.func_235896_a_(POWERED), 2);
+        }
+    }
+
+    @Override
     public void animateTick(BlockState stateIn, World worldIn, BlockPos pos, Random rand) {
         int xPos = pos.getX();
         int yPos = pos.getY();
@@ -79,11 +81,7 @@ public class GeyserBlock extends Block {
         double y = yPos + rand.nextDouble() + rand.nextDouble();
         double z = zPos + 0.5D;
         if (!stateIn.get(POWERED)) {
-            if (worldIn.getBlockState(pos.up()).isIn(Blocks.WATER)) {
-                this.addParticle(worldIn, rand, x, y, z, pos, true);
-            }else {
-                this.addParticle(worldIn, rand, x, y, z, pos, false);
-            }
+            this.addParticle(worldIn, rand, x, y, z, pos, worldIn.getBlockState(pos.up()).isIn(Blocks.WATER));
         }
     }
 
