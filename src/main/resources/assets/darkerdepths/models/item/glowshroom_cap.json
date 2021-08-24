@@ -1,6 +1,12 @@
 {
-  "parent": "item/generated",
-  "textures": {
-    "layer0": "darkerdepths:item/glowshroom_cap"
-  }
+	"parent": "minecraft:item/generated",
+	"loader": "forge:separate-perspective",
+	"base": {
+		"parent": "darkerdepths:item/glowshroom_cap_inventory"
+	},
+	"perspectives": {
+		"head": {
+			"parent": "darkerdepths:item/glowshroom_cap_head"
+		}
+	}
 }

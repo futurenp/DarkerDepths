@@ -5,10 +5,10 @@
   "refmap": "darkerdepths.refmap.json",
   "mixins": [
     "common.blocks.LogBlockMixin",
-    "common.world.IBlockReaderMixin",
     "common.world.WorldCarverMixin"
   ],
   "client": [
+    "common.world.IBlockReaderMixin"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -1,10 +1,8 @@
 package com.naterbobber.darkerdepths.common.world.gen;
 
 import com.blackgear.cavebiomes.core.registries.CaveBiomes;
-import com.naterbobber.darkerdepths.core.DarkerDepths;
 import com.naterbobber.darkerdepths.core.registries.DDEntityTypes;
 import com.naterbobber.darkerdepths.core.registries.worldgen.DDBiomes;
-import org.apache.logging.log4j.Logger;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
@@ -17,10 +15,8 @@ import net.minecraftforge.common.world.MobSpawnInfoBuilder;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import static net.minecraftforge.fml.loading.LogMarkers.FORGEMOD;
 
 //<>
 

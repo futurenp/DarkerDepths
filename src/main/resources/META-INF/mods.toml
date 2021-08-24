@@ -31,9 +31,9 @@ license = "All rights reserved"
     ordering = "NONE"
     side = "BOTH"
 
-[[dependencies.darkerdepths]]
-    modId = "cavebiomeapi"
-    mandatory = true
-    versionRange="[1,)"
-    ordering="NONE"
-    side="BOTH"
+#[[dependencies.darkerdepths]]
+#    modId = "cavebiomeapi"
+#    mandatory = true
+#    versionRange="[1,)"
+#    ordering="NONE"
+#    side="BOTH"

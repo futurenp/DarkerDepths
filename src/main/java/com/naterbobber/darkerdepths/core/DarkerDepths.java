@@ -44,7 +44,6 @@ public class DarkerDepths {
         MinecraftForge.EVENT_BUS.register(this);
 
         MinecraftForge.EVENT_BUS.register(new GlobalBiomeFeatures());
-        MinecraftForge.EVENT_BUS.addListener((LivingEvent.LivingUpdateEvent event) -> DynamicLightHandler.tick(event.getEntityLiving()));
 
         REGISTRIES.initializeRegistries(bus);
         DDLootModifiers.LOOT_MODIFIERS.register(bus);
@@ -74,5 +73,6 @@ public class DarkerDepths {
         RendererManager.onClientSetup(event);
 
         event.enqueueWork(DDWoodTypes::initializeAtlas);
+        MinecraftForge.EVENT_BUS.addListener((LivingEvent.LivingUpdateEvent livingEvent) -> DynamicLightHandler.tick(livingEvent.getEntityLiving()));
     }
 }

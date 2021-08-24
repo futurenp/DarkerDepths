@@ -34,7 +34,8 @@ minecraft {
             workingDirectory project.file("run")
             property "forge.logging.markers", "SCAN,REGISTRIES,REGISTRYDUMP"
             property "forge.logging.console.level", "debug"
-            property "mixin.env.disableRefMap", "true"
+            property "mixin.env.remapRefMap", "true"
+            property "mixin.env.refMapRemappingFile", "${projectDir}/build/createSrgToMcp/output.srg"
             mods {
                 darkerdepths {
                     source sourceSets.main
@@ -45,7 +46,8 @@ minecraft {
             workingDirectory project.file("run")
             property "forge.logging.markers", "SCAN,REGISTRIES,REGISTRYDUMP"
             property "forge.logging.console.level", "debug"
-            property "mixin.env.disableRefMap", "true"
+            property "mixin.env.remapRefMap", "true"
+            property "mixin.env.refMapRemappingFile", "${projectDir}/build/createSrgToMcp/output.srg"
             mods {
                 darkerdepths {
                     source sourceSets.main
@@ -56,7 +58,8 @@ minecraft {
             workingDirectory project.file("run")
             property "forge.logging.markers", "SCAN,REGISTRIES,REGISTRYDUMP"
             property "forge.logging.console.level", "debug"
-            property "mixin.env.disableRefMap", "true"
+            property "mixin.env.remapRefMap", "true"
+            property "mixin.env.refMapRemappingFile", "${projectDir}/build/createSrgToMcp/output.srg"
             args "--mod", project.modId, "--all", "--output", file("src/generated/resources/"), "--existing", file("src/main/resources")
             mods {
                 darkerdepths {
@@ -73,7 +76,7 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 dependencies {
     minecraft "net.minecraftforge:forge:${project.minecraft}-${project.forge}"
 
-    implementation fg.deobf("curse.maven:cave-biome-api-441706:3434775")
+    implementation fg.deobf("curse.maven:cavebiome-api-441706:3434775")
     implementation fg.deobf("curse.maven:orcinus-caves-492376:3426876")
 
     annotationProcessor 'org.spongepowered:mixin:0.8:processor'
