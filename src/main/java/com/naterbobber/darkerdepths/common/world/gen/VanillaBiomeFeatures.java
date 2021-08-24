@@ -1,7 +1,12 @@
 package com.naterbobber.darkerdepths.common.world.gen;
 
+import com.naterbobber.darkerdepths.client.compat.DDCompatibilty;
+import com.naterbobber.darkerdepths.core.DarkerDepthsConfig;
 import com.naterbobber.darkerdepths.core.api.DarkerDepthsCompat;
+import com.orcinus.config.ConfigHolder;
 import net.minecraft.world.gen.GenerationStage;
+import net.minecraftforge.common.ForgeConfig;
+import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.world.BiomeGenerationSettingsBuilder;
 
 //<>
@@ -15,7 +20,7 @@ public class VanillaBiomeFeatures {
         builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, DDConfiguredFeatures.GLOWSPIRE_VINES);
         builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, DDConfiguredFeatures.HUGE_GLOWSHROOM);
         builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, DDConfiguredFeatures.GLOWSHROOM_VEGETATION_PATCH);
-        if (DarkerDepthsCompat.QUARK) {
+        if (DarkerDepthsCompat.QUARK && DarkerDepthsConfig.generateDarkerDepthsSpeleothems.get()) {
             builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, DDConfiguredFeatures.GRIMESTONE_SPELEOTHEM_BOTTOM);
             builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, DDConfiguredFeatures.GRIMESTONE_SPELEOTHEM_UP);
         }
@@ -35,7 +40,7 @@ public class VanillaBiomeFeatures {
         builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, DDConfiguredFeatures.LAVA_POOL_PATCH);
         builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, DDConfiguredFeatures.MAGMA_ORE);
         builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, DDConfiguredFeatures.GEYSER);
-        if (DarkerDepthsCompat.QUARK) {
+        if (DarkerDepthsCompat.QUARK && DarkerDepthsConfig.generateDarkerDepthsSpeleothems.get()) {
             builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, DDConfiguredFeatures.SHALE_SPELEOTHEM_BOTTOM);
             builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, DDConfiguredFeatures.SHALE_SPELEOTHEM_UP);
         }
@@ -74,7 +79,7 @@ public class VanillaBiomeFeatures {
     }
 
     public static void addSandyCatacombsCompat(BiomeGenerationSettingsBuilder builder) {
-        if (DarkerDepthsCompat.QUARK) {
+        if (DarkerDepthsCompat.QUARK && DarkerDepthsConfig.generateDarkerDepthsSpeleothems.get()) {
             builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, DDConfiguredFeatures.ARIDROCK_SPELEOTHEM_BOTTOM);
             builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, DDConfiguredFeatures.ARIDROCK_SPELEOTHEM_UP);
             builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, DDConfiguredFeatures.LIMESTONE_SPELEOTHEM_BOTTOM);

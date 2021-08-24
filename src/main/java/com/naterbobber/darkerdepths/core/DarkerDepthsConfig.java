@@ -12,10 +12,15 @@ public class DarkerDepthsConfig {
     public static final ForgeConfigSpec common;
 
     public static final ForgeConfigSpec.ConfigValue<Boolean> dropSilverRawOre;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> generateDarkerDepthsSpeleothems;
 
     static {
         builder.push("gameplay");
             dropSilverRawOre = builder.define("silver drops raw ore", DarkerDepthsCompat.CAVES_AND_CLIFFS);
+        builder.pop();
+
+        builder.push("worldgen");
+            generateDarkerDepthsSpeleothems = builder.define("generates darker depths's speleothems naturally", DarkerDepthsCompat.QUARK);
         builder.pop();
 
         common = builder.build();
