@@ -1,96 +1,20 @@
 package com.naterbobber.darkerdepths.common.items;
 
-import com.naterbobber.darkerdepths.client.entity.model.CapModel;
-import com.naterbobber.darkerdepths.core.DarkerDepths;
-import com.naterbobber.darkerdepths.core.registries.DDItems;
-import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.enchantment.IArmorVanishable;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ArmorItem;
-import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundEvents;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
 //<>
-
-//public class GlowshroomCapItem extends ArmorItem implements IArmorVanishable {
-//    public static final GlowshroomMaterial MATERIAL = new GlowshroomMaterial();
-//
-//    public GlowshroomCapItem(Properties builder) {
-//        super(MATERIAL, EquipmentSlotType.HEAD, builder);
-//    }
-//
-//    @Override
-//    public void onArmorTick(ItemStack stack, World world, PlayerEntity player) {
-//        player.addPotionEffect(new EffectInstance(Effect.get(3), 1, 0, false, false, true));
-//    }
-//
-//    @Nullable
-//    @Override
-//    public <A extends BipedModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlotType armorSlot, A _default) {
-//        return (A) new CapModel<>();
-//    }
-//
-//    @Nullable
-//    @Override
-//    public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlotType slot, String type) {
-//        return DarkerDepths.MODID + ":textures/block/cap_model.png";
-//    }
-//
-//    private static class GlowshroomMaterial implements IArmorMaterial {
-//        @Override
-//        public int getDurability(EquipmentSlotType slotIn) {
-//            return 275;
-//        }
-//
-//        @Override
-//        public int getDamageReductionAmount(EquipmentSlotType slotIn) {
-//                return 1;
-//        }
-//
-//        @Override
-//        public int getEnchantability() {
-//            return 9;
-//        }
-//
-//        @Override
-//        public SoundEvent getSoundEvent() {
-//            return SoundEvents.ITEM_ARMOR_EQUIP_LEATHER;
-//        }
-//
-//        @Override
-//        public Ingredient getRepairMaterial() {
-//            return Ingredient.fromItems(DDItems.RESIN.get());
-//        }
-//
-//        @Override
-//        public String getName() {
-//            return "glowshroom";
-//        }
-//
-//        @Override
-//        public float getToughness() {
-//            return 0;
-//        }
-//
-//        @Override
-//        public float getKnockbackResistance() {
-//            return 0;
-//        }
-//    }
-//}
 
 public class GlowshroomCapItem extends Item implements IArmorVanishable {
     public GlowshroomCapItem(Properties properties) {
@@ -106,5 +30,19 @@ public class GlowshroomCapItem extends Item implements IArmorVanishable {
     @Override
     public void onArmorTick(ItemStack stack, World world, PlayerEntity player) {
         player.addPotionEffect(new EffectInstance(Effect.get(3), 1, 0, false, false, false));
+    }
+
+    @Override
+    public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
+        ItemStack heldItem = playerIn.getHeldItem(handIn);
+        EquipmentSlotType slot = MobEntity.getSlotForItemStack(heldItem);
+        ItemStack stack = playerIn.getItemStackFromSlot(slot);
+        if (stack.isEmpty()) {
+            playerIn.setItemStackToSlot(slot, heldItem.copy());
+            heldItem.setCount(0);
+            return ActionResult.func_233538_a_(heldItem, worldIn.isRemote());
+        } else {
+            return ActionResult.resultFail(heldItem);
+        }
     }
 }
