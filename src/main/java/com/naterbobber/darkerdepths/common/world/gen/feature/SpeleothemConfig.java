@@ -12,16 +12,20 @@ public class SpeleothemConfig implements IFeatureConfig {
     public static final Codec<SpeleothemConfig> CODEC = RecordCodecBuilder.create((instance) -> {
         return instance.group(BlockState.CODEC.fieldOf("speleothem_type").forGetter((config) -> {
             return config.speleothem_type;
-        }), DirectionHelper.CODEC.fieldOf("direction").forGetter((config) -> {
+        }), BlockState.CODEC.fieldOf("bottomState").forGetter(((config) -> {
+            return config.bottomState;
+        })), DirectionHelper.CODEC.fieldOf("direction").forGetter((config) -> {
             return config.direction;
         })).apply(instance, SpeleothemConfig::new);
     });
 
     public final BlockState speleothem_type;
+    public final BlockState bottomState;
     public final Direction direction;
 
-    public SpeleothemConfig(BlockState speleothem_type, Direction direction) {
+    public SpeleothemConfig(BlockState speleothem_type, BlockState bottomState, Direction direction) {
         this.speleothem_type = speleothem_type;
+        this.bottomState = bottomState;
         this.direction = direction;
     }
 
