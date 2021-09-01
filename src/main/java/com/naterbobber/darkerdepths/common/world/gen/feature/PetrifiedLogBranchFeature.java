@@ -45,7 +45,6 @@ public class PetrifiedLogBranchFeature extends Feature<NoFeatureConfig> {
         this.setBlockState(world, pos, DDBlocks.PETRIFIED_LOG.get().getDefaultState());
         if (rand.nextInt(25) == 0) {
             this.setBlockState(world, pos, DDBlocks.POROUS_PETRIFIED_LOG.get().getDefaultState());
-            world.getPendingBlockTicks().scheduleTick(pos, DDBlocks.POROUS_PETRIFIED_LOG.get(), 0);
             if (rand.nextInt(5) == 0) {
                 for (Direction direction : Direction.values()) {
                     if (world.isAirBlock(pos.offset(direction)) && rand.nextBoolean()) {

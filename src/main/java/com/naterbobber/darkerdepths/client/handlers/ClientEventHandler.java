@@ -13,8 +13,10 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = DarkerDepths.MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ClientEventHandler {
+
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void postRegisterEntities(final RegistryEvent.Register<EntityType<?>> event) {
         DDSpawnEggItem.addSpawnEggs();
     }
+
 }
