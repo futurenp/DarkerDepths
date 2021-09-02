@@ -2,6 +2,7 @@ package com.naterbobber.darkerdepths.common.world.gen.feature;
 
 import com.mojang.serialization.Codec;
 import com.naterbobber.darkerdepths.core.registries.DDBlocks;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
@@ -23,7 +24,7 @@ public class HugeGlowshroomFeature extends Feature<HugeGlowshroomConfig> {
 
     @Override
     public boolean generate(ISeedReader world, ChunkGenerator generator, Random rand, BlockPos pos, HugeGlowshroomConfig config) {
-        if (world.getBlockState(pos.down()) == DDBlocks.GLOWSPURS.get().getDefaultState() || world.getBlockState(pos.down()) == DDBlocks.GLOWSHROOM.get().getDefaultState() || world.isAirBlock(pos.down()) || world.getBlockState(pos.down()) == DDBlocks.GLOWSHROOM_BLOCK.get().getDefaultState() || !world.isAirBlock(pos.up())) {
+        if (!checkBelowState(world, pos)) {
             return false;
         } else {
             int height = MathHelper.nextInt(rand, 2, 5);
@@ -67,5 +68,9 @@ public class HugeGlowshroomFeature extends Feature<HugeGlowshroomConfig> {
                 }
             }
             return true;
+        }
+
+        public boolean checkBelowState(IWorld world, BlockPos pos) {
+            return world.getBlockState(pos.down()).isIn(DDBlocks.GRIMESTONE.get()) || world.getBlockState(pos.down()).isIn(DDBlocks.MOSSY_GRIMESTONE.get());
         }
 }
