@@ -1,23 +1,16 @@
 package com.naterbobber.darkerdepths.common.tileentities;
 
 import com.naterbobber.darkerdepths.core.registries.DDTileEntities;
-import net.minecraft.entity.EntitySpawnPlacementRegistry;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.MobEntity;
-import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.RandomPositionGenerator;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.List;
-import java.util.Optional;
 
 public class RepellentTileEntity extends TileEntity implements ITickableTileEntity {
     private int activeTicks;

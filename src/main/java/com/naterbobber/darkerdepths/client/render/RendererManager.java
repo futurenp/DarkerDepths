@@ -4,11 +4,9 @@ import com.naterbobber.darkerdepths.client.entity.render.GlowshroomMonsterRender
 import com.naterbobber.darkerdepths.client.entity.render.MagmaMinionRenderer;
 import com.naterbobber.darkerdepths.client.entity.render.PetrifiedBoatRenderer;
 import com.naterbobber.darkerdepths.common.entities.PetrifiedBoatEntity;
-import com.naterbobber.darkerdepths.common.tileentities.RepellentTileEntityRenderer;
 import com.naterbobber.darkerdepths.core.DarkerDepths;
 import com.naterbobber.darkerdepths.core.registries.DDBlocks;
 import com.naterbobber.darkerdepths.core.registries.DDEntityTypes;
-
 import com.naterbobber.darkerdepths.core.registries.DDTileEntities;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
@@ -47,7 +45,7 @@ public class RendererManager {
 
         RenderTypeLookup.setRenderLayer(DDBlocks.REPELLENT_BLOCK.get(), RenderType.getCutoutMipped());
 
-        ClientRegistry.bindTileEntityRenderer(DDTileEntities.REPELLENT.get(), RepellentTileEntityRenderer::new);
+//        ClientRegistry.bindTileEntityRenderer(DDTileEntities.REPELLENT.get(), RepellentTileEntityRenderer::new);
 
         ClientRegistry.bindTileEntityRenderer(DDTileEntities.PETRIFIED_SIGN.get(), SignTileEntityRenderer::new);
 

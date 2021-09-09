@@ -18,16 +18,16 @@ public class RepellentBlock extends Block {
         super(properties);
     }
 
-    @Override
-    public boolean hasTileEntity(BlockState state) {
-        return true;
-    }
-
-    @Nullable
-    @Override
-    public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-        return DDTileEntities.REPELLENT.get().create();
-    }
+//    @Override
+//    public boolean hasTileEntity(BlockState state) {
+//        return true;
+//    }
+//
+//    @Nullable
+//    @Override
+//    public TileEntity createTileEntity(BlockState state, IBlockReader world) {
+//        return DDTileEntities.REPELLENT.get().create();
+//    }
 
     @Override
     public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
