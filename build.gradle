@@ -36,7 +36,7 @@ minecraft {
             property "forge.logging.console.level", "debug"
             property "mixin.env.remapRefMap", "true"
             property "mixin.env.refMapRemappingFile", "${projectDir}/build/createSrgToMcp/output.srg"
-            arg "-mixin.config=" + "darkerdepths.mixins.json"
+            arg "-mixin.config=darkerdepths.mixins.json"
             mods {
                 darkerdepths {
                     source sourceSets.main
@@ -49,7 +49,7 @@ minecraft {
             property "forge.logging.console.level", "debug"
             property "mixin.env.remapRefMap", "true"
             property "mixin.env.refMapRemappingFile", "${projectDir}/build/createSrgToMcp/output.srg"
-            arg "-mixin.config=" + "darkerdepths.mixins.json"
+            arg "-mixin.config=darkerdepths.mixins.json"
             mods {
                 darkerdepths {
                     source sourceSets.main
