@@ -6,7 +6,7 @@ import net.minecraft.util.IItemProvider;
 public class DDCompostables {
 
     public static void register() {
-        registerCompostable(0.85F, DDBlocks.ALOE.get().asItem());
+//        registerCompostable(0.85F, DDBlocks.ALOE.get().asItem());
         registerCompostable(0.65F, DDBlocks.GLOWSHROOM.get().asItem());
         registerCompostable(0.85F, DDBlocks.GLOWSPURS.get().asItem());
         registerCompostable(0.5F,  DDBlocks.GLOWSPIRE.get().asItem());

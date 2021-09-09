@@ -194,7 +194,7 @@ public class DDBlocks {
 
 	//plants
 	public static final RegistryObject<Block> DETRITUS	 							= HELPER.registerBlock("detritus", () -> new DetritusBlock(AbstractBlock.Properties.from(Blocks.DEAD_BUSH)), DarkerDepths.DARKER_DEPTHS);
-	public static final RegistryObject<Block> ALOE 									= HELPER.registerBlock("aloe", () -> new AloeBlock(AbstractBlock.Properties.from(Blocks.GRASS).tickRandomly()), DarkerDepths.DARKER_DEPTHS);
+	public static final RegistryObject<Block> ALOE 									= HELPER.registerCompatBlock("indev", "aloe", () -> new AloeBlock(AbstractBlock.Properties.from(Blocks.GRASS).tickRandomly()), DarkerDepths.DARKER_DEPTHS);
 
 	//shrooms
 	public static final RegistryObject<Block> GLOWSHROOM							= HELPER.registerBlock("glowshroom", () -> new Glowshroom(AbstractBlock.Properties.create(Material.PLANTS).hardnessAndResistance(0.0F, 1.0F).sound(SoundType.SLIME).setLightLevel((state) -> 2 + (3 * state.get(Glowshroom.CLUSTERS_1_3))).doesNotBlockMovement()), DarkerDepths.DARKER_DEPTHS);
