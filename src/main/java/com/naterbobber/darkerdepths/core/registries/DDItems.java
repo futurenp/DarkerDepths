@@ -28,7 +28,7 @@ public class DDItems {
 	public static final RegistryObject<Item> RAW_SILVER					  = HELPER.registerItem("raw_silver", () -> new Item(new Item.Properties().group(DarkerDepths.DARKER_DEPTHS)));
 	public static final RegistryObject<Item> SILVER_INGOT 				  = HELPER.registerItem("silver_ingot", () -> new Item(new Item.Properties().group(DarkerDepths.DARKER_DEPTHS)));
 
-	public static final RegistryObject<Item> SPAWNER_FRAGMENT 			  = HELPER.registerItem("spawner_fragment", () -> new Item(new Item.Properties().group(HELPER.getGroup("indev", ItemGroup.MISC))));
+	public static final RegistryObject<Item> SPAWNER_FRAGMENT 			  = HELPER.registerItem("spawner_fragment", () -> new Item(new Item.Properties().group(ItemGroup.MISC)));
 
 	public static final RegistryObject<Item> GLOWSHROOM_MONSTER_SPAWN_EGG = HELPER.registerItem("glowshroom_monster_spawn_egg", () -> new DDSpawnEggItem(DDEntityTypes.GLOWSHROOM_MONSTER, 8290688, 8513702, new Item.Properties().group(DarkerDepths.DARKER_DEPTHS)));
 	public static final RegistryObject<Item> MAGMA_MINION_SPAWN_EGG		  = HELPER.registerItem("magma_minion_spawn_egg", () -> new DDSpawnEggItem(DDEntityTypes.MAGMA_MINION, 6448235, 16760916, new Item.Properties().group(DarkerDepths.DARKER_DEPTHS)));

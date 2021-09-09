@@ -36,6 +36,7 @@ minecraft {
             property "forge.logging.console.level", "debug"
             property "mixin.env.remapRefMap", "true"
             property "mixin.env.refMapRemappingFile", "${projectDir}/build/createSrgToMcp/output.srg"
+            arg "-mixin.config=" + "darkerdepths.mixins.json"
             mods {
                 darkerdepths {
                     source sourceSets.main
@@ -48,6 +49,7 @@ minecraft {
             property "forge.logging.console.level", "debug"
             property "mixin.env.remapRefMap", "true"
             property "mixin.env.refMapRemappingFile", "${projectDir}/build/createSrgToMcp/output.srg"
+            arg "-mixin.config=" + "darkerdepths.mixins.json"
             mods {
                 darkerdepths {
                     source sourceSets.main
@@ -79,7 +81,7 @@ dependencies {
     implementation fg.deobf("curse.maven:cavebiome-api-441706:3434775")
     implementation fg.deobf("curse.maven:orcinus-caves-492376:3426876")
 
-    annotationProcessor 'org.spongepowered:mixin:0.8:processor'
+    annotationProcessor 'org.spongepowered:mixin:0.8.2:processor'
 }
 
 repositories {

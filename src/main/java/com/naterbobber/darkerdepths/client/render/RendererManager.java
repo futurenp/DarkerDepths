@@ -4,6 +4,7 @@ import com.naterbobber.darkerdepths.client.entity.render.GlowshroomMonsterRender
 import com.naterbobber.darkerdepths.client.entity.render.MagmaMinionRenderer;
 import com.naterbobber.darkerdepths.client.entity.render.PetrifiedBoatRenderer;
 import com.naterbobber.darkerdepths.common.entities.PetrifiedBoatEntity;
+import com.naterbobber.darkerdepths.common.tileentities.RepellentTileEntityRenderer;
 import com.naterbobber.darkerdepths.core.DarkerDepths;
 import com.naterbobber.darkerdepths.core.registries.DDBlocks;
 import com.naterbobber.darkerdepths.core.registries.DDEntityTypes;
@@ -25,24 +26,28 @@ public class RendererManager {
 
     @SubscribeEvent
     public static void onClientSetup(FMLClientSetupEvent event) {
-        RenderTypeLookup.setRenderLayer(DDBlocks.PETRIFIED_DOOR.get(), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(DDBlocks.PETRIFIED_TRAPDOOR.get(), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(DDBlocks.ROPE.get(), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(DDBlocks.ROOTS.get(), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(DDBlocks.LONG_ROOTS.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(DDBlocks.ALOE.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(DDBlocks.CELESTINE_CRYSTAL.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(DDBlocks.DRY_SPROUTS.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(DDBlocks.DETRITUS.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(DDBlocks.ROPE.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(DDBlocks.ROOTS.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(DDBlocks.LONG_ROOTS.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(DDBlocks.LUSH_SPROUTS.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(DDBlocks.MOSSY_SPROUTS.get(), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(DDBlocks.ALOE.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(DDBlocks.GLOWSPURS.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(DDBlocks.POTTED_DETRITUS.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(DDBlocks.GLOWSPIRE.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(DDBlocks.GLOWSPIRE_PLANT.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(DDBlocks.POTTED_ALOE.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(DDBlocks.PETRIFIED_DOOR.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(DDBlocks.PETRIFIED_TRAPDOOR.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(DDBlocks.PETRIFIED_POST.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(DDBlocks.STRIPPED_PETRIFIED_POST.get(), RenderType.getCutout());
+
+        RenderTypeLookup.setRenderLayer(DDBlocks.REPELLENT_BLOCK.get(), RenderType.getCutoutMipped());
+
+        ClientRegistry.bindTileEntityRenderer(DDTileEntities.REPELLENT.get(), RepellentTileEntityRenderer::new);
 
         ClientRegistry.bindTileEntityRenderer(DDTileEntities.PETRIFIED_SIGN.get(), SignTileEntityRenderer::new);
 

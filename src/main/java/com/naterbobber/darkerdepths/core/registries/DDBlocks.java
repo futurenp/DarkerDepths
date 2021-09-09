@@ -11,7 +11,6 @@ import com.naterbobber.darkerdepths.common.blocks.DDOreBlock;
 import com.naterbobber.darkerdepths.common.blocks.DDStandingSignBlock;
 import com.naterbobber.darkerdepths.common.blocks.DDWallSignBlock;
 import com.naterbobber.darkerdepths.common.blocks.DetritusBlock;
-import com.naterbobber.darkerdepths.common.blocks.DrySproutsBlock;
 import com.naterbobber.darkerdepths.common.blocks.GeyserBlock;
 import com.naterbobber.darkerdepths.common.blocks.GlowSpireBlock;
 import com.naterbobber.darkerdepths.common.blocks.GlowSpirePlantBlock;
@@ -22,6 +21,7 @@ import com.naterbobber.darkerdepths.common.blocks.HangingDoublePlantBlock;
 import com.naterbobber.darkerdepths.common.blocks.LushAridrockBlock;
 import com.naterbobber.darkerdepths.common.blocks.MossyGrimestoneBlock;
 import com.naterbobber.darkerdepths.common.blocks.PorousBlock;
+import com.naterbobber.darkerdepths.common.blocks.RepellentBlock;
 import com.naterbobber.darkerdepths.common.blocks.RootsBlock;
 import com.naterbobber.darkerdepths.common.blocks.RopeBlock;
 import com.naterbobber.darkerdepths.common.blocks.SpeleothemBlock;
@@ -29,13 +29,12 @@ import com.naterbobber.darkerdepths.common.blocks.SproutsBlock;
 import com.naterbobber.darkerdepths.common.blocks.VerticalSlabBlock;
 import com.naterbobber.darkerdepths.common.blocks.WoodPostBlock;
 import com.naterbobber.darkerdepths.common.blocks.material.DDMaterial;
-import com.naterbobber.darkerdepths.core.api.Registries;
 import com.naterbobber.darkerdepths.core.DarkerDepths;
+import com.naterbobber.darkerdepths.core.api.Registries;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.BushBlock;
 import net.minecraft.block.DeadBushBlock;
 import net.minecraft.block.DoorBlock;
 import net.minecraft.block.FenceBlock;
@@ -195,7 +194,7 @@ public class DDBlocks {
 
 	//plants
 	public static final RegistryObject<Block> DETRITUS	 							= HELPER.registerBlock("detritus", () -> new DetritusBlock(AbstractBlock.Properties.from(Blocks.DEAD_BUSH)), DarkerDepths.DARKER_DEPTHS);
-	public static final RegistryObject<Block> ALOE 									= HELPER.registerCompatBlock("indev", "aloe", () -> new AloeBlock(AbstractBlock.Properties.from(Blocks.GRASS).tickRandomly()), DarkerDepths.DARKER_DEPTHS);
+	public static final RegistryObject<Block> ALOE 									= HELPER.registerBlock("aloe", () -> new AloeBlock(AbstractBlock.Properties.from(Blocks.GRASS).tickRandomly()), DarkerDepths.DARKER_DEPTHS);
 
 	//shrooms
 	public static final RegistryObject<Block> GLOWSHROOM							= HELPER.registerBlock("glowshroom", () -> new Glowshroom(AbstractBlock.Properties.create(Material.PLANTS).hardnessAndResistance(0.0F, 1.0F).sound(SoundType.SLIME).setLightLevel((state) -> 2 + (3 * state.get(Glowshroom.CLUSTERS_1_3))).doesNotBlockMovement()), DarkerDepths.DARKER_DEPTHS);
@@ -204,7 +203,7 @@ public class DDBlocks {
 	//sprouts/roots
 	public static final RegistryObject<Block> ROOTS 								= HELPER.registerBlock("roots", () -> new RootsBlock(AbstractBlock.Properties.create(Material.TALL_PLANTS, MaterialColor.WOOD).doesNotBlockMovement().zeroHardnessAndResistance().sound(SoundType.PLANT)), DarkerDepths.DARKER_DEPTHS);
 	public static final RegistryObject<Block> LONG_ROOTS 							= HELPER.registerBlock("long_roots", () -> new HangingDoublePlantBlock(AbstractBlock.Properties.create(Material.TALL_PLANTS, MaterialColor.WOOD).doesNotBlockMovement().zeroHardnessAndResistance().sound(SoundType.PLANT)), DarkerDepths.DARKER_DEPTHS);
-	public static final RegistryObject<Block> DRY_SPROUTS 							= HELPER.registerBlock("dry_sprouts", () -> new SproutsBlock(AbstractBlock.Properties.from(Blocks.DEAD_BUSH)), DarkerDepths.DARKER_DEPTHS);
+	public static final RegistryObject<Block> DRY_SPROUTS   						= HELPER.registerBlock("dry_sprouts", () -> new SproutsBlock(AbstractBlock.Properties.from(Blocks.DEAD_BUSH)), DarkerDepths.DARKER_DEPTHS);
 	public static final RegistryObject<Block> LUSH_SPROUTS 							= HELPER.registerBlock("lush_sprouts", () -> new SproutsBlock(AbstractBlock.Properties.from(Blocks.GRASS)), DarkerDepths.DARKER_DEPTHS);
 	public static final RegistryObject<Block> MOSSY_SPROUTS 						= HELPER.registerBlock("mossy_sprouts", () -> new SproutsBlock(AbstractBlock.Properties.from(Blocks.GRASS)), DarkerDepths.DARKER_DEPTHS);
 
@@ -274,4 +273,5 @@ public class DDBlocks {
 	//MISC
 	public static final RegistryObject<Block> RAW_SILVER_BLOCK						= HELPER.registerBlock("raw_silver_block", () -> new Block(AbstractBlock.Properties.create(Material.ORGANIC).harvestTool(ToolType.PICKAXE).setRequiresTool().hardnessAndResistance(5.0F, 6.0F)), DarkerDepths.DARKER_DEPTHS);
 	public static final RegistryObject<Block> SILVER_BLOCK							= HELPER.registerBlock("silver_block", () -> new Block(AbstractBlock.Properties.create(Material.ORGANIC).harvestTool(ToolType.PICKAXE).harvestLevel(2).setRequiresTool().hardnessAndResistance(5.0F, 6.0F).sound(SoundType.METAL)), DarkerDepths.DARKER_DEPTHS);
+    public static final RegistryObject<Block> REPELLENT_BLOCK 						= HELPER.registerBlock("repellent_block", () -> new RepellentBlock(AbstractBlock.Properties.create(Material.MISCELLANEOUS).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).setRequiresTool().sound(SoundType.NETHERITE)), DarkerDepths.DARKER_DEPTHS);
 }
