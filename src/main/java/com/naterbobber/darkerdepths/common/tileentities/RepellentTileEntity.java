@@ -5,6 +5,7 @@ import net.minecraft.entity.ai.RandomPositionGenerator;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraftforge.api.distmarker.Dist;
@@ -15,9 +16,13 @@ import java.util.List;
 public class RepellentTileEntity extends TileEntity implements ITickableTileEntity {
     private int activeTicks;
 
-    public RepellentTileEntity() {
-        super(DDTileEntities.REPELLENT.get());
+    public RepellentTileEntity(TileEntityType<?> tileEntityTypeIn) {
+        super(tileEntityTypeIn);
     }
+
+//    public RepellentTileEntity() {
+//        super(DDTileEntities.REPELLENT.get());
+//    }
 
     @Override
     public void tick() {
