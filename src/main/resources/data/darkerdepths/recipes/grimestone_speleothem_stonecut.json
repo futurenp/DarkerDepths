@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "darkerdepths:grimestone"
+  },
+  "count": 2,
+  "result": "darkerdepths:grimestone_speleothem",
+  "conditions": [
+    {
+      "type": "darkerdepths:quark_flag",
+      "flag": "speleothems"
+    }
+  ]
+}

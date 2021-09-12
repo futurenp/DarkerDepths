@@ -7,17 +7,17 @@
   ],
   "key": {
     "#": {
-      "item": "darkerdepths:cobbled_sandstone_slab"
+      "item": "darkerdepths:grimestone"
     }
   },
   "result": {
-    "item": "darkerdepths:cobbled_sandstone_vertical_slab",
-    "count": 3
+    "item": "darkerdepths:grimestone_speleothem",
+    "count": 6
   },
   "conditions": [
     {
       "type": "darkerdepths:quark_flag",
-      "flag": "vertical_slabs"
+      "flag": "speleothems"
     }
   ]
 }

@@ -273,5 +273,5 @@ public class DDBlocks {
 	//MISC
 	public static final RegistryObject<Block> RAW_SILVER_BLOCK						= HELPER.registerBlock("raw_silver_block", () -> new Block(AbstractBlock.Properties.create(Material.ORGANIC).harvestTool(ToolType.PICKAXE).setRequiresTool().hardnessAndResistance(5.0F, 6.0F)), DarkerDepths.DARKER_DEPTHS);
 	public static final RegistryObject<Block> SILVER_BLOCK							= HELPER.registerBlock("silver_block", () -> new Block(AbstractBlock.Properties.create(Material.ORGANIC).harvestTool(ToolType.PICKAXE).harvestLevel(2).setRequiresTool().hardnessAndResistance(5.0F, 6.0F).sound(SoundType.METAL)), DarkerDepths.DARKER_DEPTHS);
-//    public static final RegistryObject<Block> REPELLENT_BLOCK 						= HELPER.registerBlock("repellent_block", () -> new RepellentBlock(AbstractBlock.Properties.create(Material.MISCELLANEOUS).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).setRequiresTool().sound(SoundType.NETHERITE)), DarkerDepths.DARKER_DEPTHS);
+//    public static final RegistryObject<Block> REPELLENT_BLOCK 						= HELPER.registerCompatBlock("indev", "repellent_block", () -> new RepellentBlock(AbstractBlock.Properties.create(Material.MISCELLANEOUS).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).setRequiresTool().sound(SoundType.NETHERITE)), DarkerDepths.DARKER_DEPTHS);
 }

@@ -7,11 +7,11 @@
   ],
   "key": {
     "#": {
-      "item": "darkerdepths:cobbled_red_sandstone_bricks_slab"
+      "item": "darkerdepths:cobbled_red_sandstone_slab"
     }
   },
   "result": {
-    "item": "darkerdepths:cobbled_red_sandstone_bricks_vertical_slab",
+    "item": "darkerdepths:cobbled_red_sandstone_vertical_slab",
     "count": 3
   },
   "conditions": [

@@ -20,17 +20,13 @@ public class RepellentTileEntity extends TileEntity implements ITickableTileEnti
         super(tileEntityTypeIn);
     }
 
-//    public RepellentTileEntity() {
-//        super(DDTileEntities.REPELLENT.get());
-//    }
-
     @Override
     public void tick() {
         if (world != null) {
             if (this.world.isRemote()) {
                 this.activeTicks++;
             }
-            List<MonsterEntity> list = this.getWorld().getEntitiesWithinAABB(MonsterEntity.class, getBoundingBox());
+            List<MonsterEntity> list = this.getWorld().getEntitiesWithinAABB(MonsterEntity.class, new AxisAlignedBB(this.getPos()).grow(6.0D));
             for (MonsterEntity monsters : list) {
                 Vector3d vector3d = Vector3d.copyCenteredHorizontally(this.getPos());
                 Vector3d avoidVec = RandomPositionGenerator.findRandomTargetBlockAwayFrom(monsters, 16, 7, vector3d);
@@ -48,7 +44,4 @@ public class RepellentTileEntity extends TileEntity implements ITickableTileEnti
         return (this.activeTicks + tickDelta) * -0.0375F;
     }
 
-    public AxisAlignedBB getBoundingBox() {
-        return new AxisAlignedBB(getPos()).grow(6.0D);
-    }
 }

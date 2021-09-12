@@ -4,8 +4,10 @@ import com.google.common.collect.Maps;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.ComposterBlock;
 import net.minecraft.block.FireBlock;
 import net.minecraft.item.AxeItem;
+import net.minecraft.util.IItemProvider;
 
 public class VanillaIntegrationRegistry {
     public static void setup() {
@@ -18,6 +20,15 @@ public class VanillaIntegrationRegistry {
         addFlammables(DDBlocks.ROOTS.get(), 60, 100);
         addFlammables(DDBlocks.LONG_ROOTS.get(), 60, 100);
         addFlammables(DDBlocks.DETRITUS.get(), 60, 100);
+
+//        registerCompostable(0.85F, DDBlocks.ALOE.get().asItem());
+        registerCompostable(0.65F, DDBlocks.GLOWSHROOM.get().asItem());
+        registerCompostable(0.85F, DDBlocks.GLOWSPURS.get().asItem());
+        registerCompostable(0.5F,  DDBlocks.GLOWSPIRE.get().asItem());
+        registerCompostable(0.65F, DDBlocks.LUSH_SPROUTS.get().asItem());
+        registerCompostable(0.4F,  DDBlocks.LONG_ROOTS.get().asItem());
+        registerCompostable(0.65F, DDBlocks.MOSSY_SPROUTS.get().asItem());
+        registerCompostable(0.3F,  DDBlocks.ROOTS.get().asItem());
     }
 
     private static void addStrippable(Block unstrippedBlock, Block strippedBlock) {
@@ -29,6 +40,10 @@ public class VanillaIntegrationRegistry {
     {
         FireBlock fireblock = (FireBlock) Blocks.FIRE;
         fireblock.setFireInfo(blockIn, encouragement, flammability);
+    }
+
+    private static void registerCompostable(float chance, IItemProvider item) {
+        ComposterBlock.CHANCES.put(item.asItem(), chance);
     }
 
 }
