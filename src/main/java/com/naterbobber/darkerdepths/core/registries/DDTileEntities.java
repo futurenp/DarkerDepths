@@ -17,5 +17,6 @@ public class DDTileEntities {
 
     public static final RegistryObject<TileEntityType<DDSignTileEntity>> PETRIFIED_SIGN = HELPER.registerTileEntity("petrified_sign", () -> TileEntityType.Builder.create(DDSignTileEntity::new, DDBlocks.PETRIFIED_SIGN.get(), DDBlocks.PETRIFIED_WALL_SIGN.get()).build(null));
     public static final RegistryObject<TileEntityType<GeyserBlockTileEntity>> GEYSER = HELPER.registerTileEntity("geyser", () -> TileEntityType.Builder.create(GeyserBlockTileEntity::new, DDBlocks.GEYSER.get()).build(null));
+    public static final RegistryObject<TileEntityType<RepellentTileEntity>> REPELLENT = HELPER.registerTileEntity("repellent", () -> TileEntityType.Builder.create(RepellentTileEntity::new, DDBlocks.REPELLENT_BLOCK.get()).build(null));
 
 }

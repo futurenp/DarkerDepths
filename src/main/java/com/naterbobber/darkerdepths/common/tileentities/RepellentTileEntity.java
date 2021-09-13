@@ -16,8 +16,8 @@ import java.util.List;
 public class RepellentTileEntity extends TileEntity implements ITickableTileEntity {
     private int activeTicks;
 
-    public RepellentTileEntity(TileEntityType<?> tileEntityTypeIn) {
-        super(tileEntityTypeIn);
+    public RepellentTileEntity() {
+        super(DDTileEntities.REPELLENT.get());
     }
 
     @Override

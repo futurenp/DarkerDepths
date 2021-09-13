@@ -44,9 +44,9 @@ public class RendererManager {
         RenderTypeLookup.setRenderLayer(DDBlocks.PETRIFIED_POST.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(DDBlocks.STRIPPED_PETRIFIED_POST.get(), RenderType.getCutout());
 
-//        RenderTypeLookup.setRenderLayer(DDBlocks.REPELLENT_BLOCK.get(), RenderType.getTranslucent());
+        RenderTypeLookup.setRenderLayer(DDBlocks.REPELLENT_BLOCK.get(), RenderType.getTranslucent());
 
-//        ClientRegistry.bindTileEntityRenderer(DDTileEntities.REPELLENT.get(), RepellentTileEntityRenderer::new);
+        ClientRegistry.bindTileEntityRenderer(DDTileEntities.REPELLENT.get(), RepellentTileEntityRenderer::new);
 
         ClientRegistry.bindTileEntityRenderer(DDTileEntities.PETRIFIED_SIGN.get(), SignTileEntityRenderer::new);
 
