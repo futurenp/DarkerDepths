@@ -5,25 +5,26 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath group: "net.minecraftforge.gradle", name: "ForgeGradle", version: "4.1.+", changing: true
+        classpath group: "net.minecraftforge.gradle", name: "ForgeGradle", version: "5.1.+", changing: true
         classpath group: "org.spongepowered", name: "mixingradle", version: "0.7-SNAPSHOT"
     }
 }
 
 apply plugin: 'net.minecraftforge.gradle'
-apply plugin: 'eclipse'
-apply plugin: 'maven-publish'
 apply plugin: 'org.spongepowered.mixin'
+
+group = 'com.natebobber'
+version = "${project.minecraft}-${project.modVersion}"
 
 mixin {
     add sourceSets.main, "darkerdepths.refmap.json"
 }
 
-group = 'com.natebobber'
-version = "${project.minecraft}-${project.modVersion}"
-archivesBaseName = project.modId
+java {
+    archivesBaseName = project.modId
+    toolchain.languageVersion = JavaLanguageVersion.of(8)
+}
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(8)
 
 minecraft {
     mappings channel: project.mappingsChannel, version: project.mappings
@@ -79,9 +80,11 @@ dependencies {
     minecraft "net.minecraftforge:forge:${project.minecraft}-${project.forge}"
 
     implementation fg.deobf("curse.maven:cavebiome-api-441706:3434775")
-    implementation fg.deobf("curse.maven:orcinus-caves-492376:3426876")
+    implementation fg.deobf("curse.maven:orcinus-caves-492376:3436979")
+    implementation fg.deobf("curse.maven:catalogue-459701:3399554")
+    implementation fg.deobf("curse.maven:configured-457570:3434071")
 
-    annotationProcessor 'org.spongepowered:mixin:0.8.2:processor'
+    annotationProcessor 'org.spongepowered:mixin:0.8.4:processor'
 }
 
 repositories {

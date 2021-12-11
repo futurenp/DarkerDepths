@@ -215,8 +215,8 @@ public class PetrifiedBoatEntity extends BoatEntity {
 		this.lerpX = x;
 		this.lerpY = y;
 		this.lerpZ = z;
-		this.lerpYaw = (double)yaw;
-		this.lerpPitch = (double)pitch;
+		this.lerpYaw = yaw;
+		this.lerpPitch = pitch;
 		this.lerpSteps = 10;
 	}
 	
@@ -280,7 +280,7 @@ public class PetrifiedBoatEntity extends BoatEntity {
 						Vector3d Vector3d = this.getLook(1.0f);
 						double d0 = i == 1 ? -Vector3d.z : Vector3d.z;
 						double d1 = i == 1 ? Vector3d.x : -Vector3d.x;
-						this.world.playSound((PlayerEntity)null, this.getPosX() + d0, this.getPosY(), this.getPosZ() + d1, soundevent, this.getSoundCategory(), 1.0f, 0.8f + 0.4f * this.rand.nextFloat());
+						this.world.playSound(null, this.getPosX() + d0, this.getPosY(), this.getPosZ() + d1, soundevent, this.getSoundCategory(), 1.0f, 0.8f + 0.4f * this.rand.nextFloat());
 					}
 				}
 				
@@ -291,7 +291,7 @@ public class PetrifiedBoatEntity extends BoatEntity {
 		}
 		
 		this.doBlockCollisions();
-		List<Entity> list = this.world.getEntitiesInAABBexcluding(this, this.getBoundingBox().grow((double)0.2f, (double)-0.01f, (double)0.2f), EntityPredicates.pushableBy(this));
+		List<Entity> list = this.world.getEntitiesInAABBexcluding(this, this.getBoundingBox().grow(0.2f, -0.01f, 0.2f), EntityPredicates.pushableBy(this));
 		if (!list.isEmpty()) {
 			boolean flag = !this.world.isRemote && !(this.getControllingPassenger() instanceof PlayerEntity);
 			
@@ -320,7 +320,7 @@ public class PetrifiedBoatEntity extends BoatEntity {
 			
 			this.rockingIntensity = MathHelper.clamp(this.rockingIntensity, 0.0f, 1.0f);
 			this.prevRockingAngle = this.rockingAngle;
-			this.rockingAngle = 10.0f * (float)Math.sin((double)(0.5f * (float)this.world.getGameTime())) * this.rockingIntensity;
+			this.rockingAngle = 10.0f * (float)Math.sin(0.5f * (float)this.world.getGameTime()) * this.rockingIntensity;
 		} else {
 			if (!this.rocking) {
 				this.setRockingTicks(0);
@@ -392,7 +392,7 @@ public class PetrifiedBoatEntity extends BoatEntity {
 	@Override
 	@OnlyIn(Dist.CLIENT)
 	public float getRowingTime(int side, float limbSwing) {
-		return this.getPaddleState(side) ? (float)MathHelper.clampedLerp((double)this.paddlePositions[side] - (double)((float)Math.PI / 8f), (double)this.paddlePositions[side], (double)limbSwing) : 0.0f;
+		return this.getPaddleState(side) ? (float)MathHelper.clampedLerp((double)this.paddlePositions[side] - (double)((float)Math.PI / 8f), this.paddlePositions[side], limbSwing) : 0.0f;
 	}
 	
 	private BoatEntity.Status getBoatStatus(){
@@ -478,7 +478,7 @@ public class PetrifiedBoatEntity extends BoatEntity {
 						if (j2 <= 0 || k2 != k && k2 != l - 1) {
 							blockpos$mutable.setPos(l1, k2, i2);
 							BlockState blockstate = this.world.getBlockState(blockpos$mutable);
-							if (!(blockstate.getBlock() instanceof LilyPadBlock) && VoxelShapes.compare(blockstate.getCollisionShape(this.world, blockpos$mutable).withOffset((double) l1, (double) k2, (double) i2), voxelshape, IBooleanFunction.AND)) {
+							if (!(blockstate.getBlock() instanceof LilyPadBlock) && VoxelShapes.compare(blockstate.getCollisionShape(this.world, blockpos$mutable).withOffset(l1, k2, i2), voxelshape, IBooleanFunction.AND)) {
 								f += blockstate.getSlipperiness(this.world, blockpos$mutable, this);
 								++k1;
 							}
@@ -510,7 +510,7 @@ public class PetrifiedBoatEntity extends BoatEntity {
 					FluidState fluidstate = this.world.getFluidState(blockpos$mutable);
 					if (fluidstate.isTagged(FluidTags.WATER)) {
 						float f = (float) l1 + fluidstate.getActualHeight(this.world, blockpos$mutable);
-						this.waterLevel = Math.max((double) f, this.waterLevel);
+						this.waterLevel = Math.max(f, this.waterLevel);
 						flag |= axisalignedbb.minY < (double) f;
 					}
 				}
@@ -570,7 +570,7 @@ public class PetrifiedBoatEntity extends BoatEntity {
 	            d1 = -7.0E-4D;
 	            this.momentum = 0.9F;
 	        } else if (this.status == BoatEntity.Status.UNDER_WATER) {
-	            d2 = (double)0.01F;
+	            d2 = 0.01F;
 	            this.momentum = 0.45F;
 	        } else if (this.status == BoatEntity.Status.IN_AIR) {
 	            this.momentum = 0.9F;
@@ -615,7 +615,7 @@ public class PetrifiedBoatEntity extends BoatEntity {
 				f -= 0.005F;
 			}
 
-			this.setMotion(this.getMotion().add((double)(MathHelper.sin(-this.rotationYaw * ((float)Math.PI / 180F)) * f), 0.0D, (double)(MathHelper.cos(this.rotationYaw * ((float)Math.PI / 180F)) * f)));
+			this.setMotion(this.getMotion().add(MathHelper.sin(-this.rotationYaw * ((float)Math.PI / 180F)) * f, 0.0D, MathHelper.cos(this.rotationYaw * ((float)Math.PI / 180F)) * f));
 			this.setPaddleState(this.rightInputDown && !this.leftInputDown || this.forwardInputDown, this.leftInputDown && !this.rightInputDown || this.forwardInputDown);
 		}
 	}
@@ -638,7 +638,7 @@ public class PetrifiedBoatEntity extends BoatEntity {
 				}
 			}
 
-			Vector3d Vector3d = (new Vector3d((double)f, 0.0D, 0.0D)).rotateYaw(-this.rotationYaw * ((float)Math.PI / 180F) - ((float)Math.PI / 2F));
+			Vector3d Vector3d = (new Vector3d(f, 0.0D, 0.0D)).rotateYaw(-this.rotationYaw * ((float)Math.PI / 180F) - ((float)Math.PI / 2F));
 			passenger.setPosition(this.getPosX() + Vector3d.x, this.getPosY() + (double)f1, this.getPosZ() + Vector3d.z);
 			passenger.rotationYaw += this.deltaRotation;
 			passenger.setRotationYawHead(passenger.getRotationYawHead() + this.deltaRotation);
@@ -816,22 +816,14 @@ public class PetrifiedBoatEntity extends BoatEntity {
 			this.setPositionAndRotation(this.lerpX, this.lerpY, this.lerpZ, (float)this.lerpYaw, (float)this.lerpPitch);
 		}
 	}
-	
-	public static enum Status {
-		IN_WATER,
-		UNDER_WATER,
-		UNDLER_FLOWING_WATER,
-		ON_LAND,
-		IN_AIR;
-	}
-		
-	public static enum Type {
+
+	public enum Type {
 		Petrified(DDBlocks.PETRIFIED_PLANKS, "petrified");
 		
 		private final String name;
 		private final RegistryObject<Block> block;
 		
-		private Type(RegistryObject<Block> p_i48146_3_, String p_i48146_4_) {
+		Type(RegistryObject<Block> p_i48146_3_, String p_i48146_4_) {
 			this.name = p_i48146_4_;
 			this.block = p_i48146_3_;
 		}
@@ -858,10 +850,10 @@ public class PetrifiedBoatEntity extends BoatEntity {
 		
 		public static Type getTypeFromString(String nameIn) {
 			Type[] type = values();
-			
-			for(int i = 0; i < type.length; ++i) {
-				if (type[i].getName().equals(nameIn)) {
-					return type[i];
+
+			for (Type value : type) {
+				if (value.getName().equals(nameIn)) {
+					return value;
 				}
 			}
 			

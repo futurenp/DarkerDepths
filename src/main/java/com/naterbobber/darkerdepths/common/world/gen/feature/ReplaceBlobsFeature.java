@@ -21,8 +21,8 @@ public class ReplaceBlobsFeature extends Feature<ReplaceBlobsFeatureConfig> {
 
     @Override
     public boolean generate(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, ReplaceBlobsFeatureConfig config) {
-        BlockPos blockPos = moveDownToTarget(reader, pos.toMutable().clampAxisCoordinate(Direction.Axis.Y, 1, reader.getHeight() - 1), config);
-        if (blockPos == null) {
+        BlockPos target = moveDownToTarget(reader, pos.toMutable().clampAxisCoordinate(Direction.Axis.Y, 1, reader.getHeight() - 1), config);
+        if (target == null) {
             return false;
         } else {
             int x = config.getRadius().get(rand);
@@ -31,14 +31,14 @@ public class ReplaceBlobsFeature extends Feature<ReplaceBlobsFeatureConfig> {
             int radius = Math.max(x, Math.max(y, z));
             boolean shouldGenerate = false;
 
-            for (BlockPos distance : BlockPos.getProximitySortedBoxPositionsIterator(blockPos, x, y, z)) {
-                if (distance.manhattanDistance(blockPos) > radius) {
+            for (BlockPos positions : BlockPos.getProximitySortedBoxPositionsIterator(target, x, y, z)) {
+                if (positions.manhattanDistance(target) > radius) {
                     break;
                 }
 
-                BlockState state = reader.getBlockState(distance);
+                BlockState state = reader.getBlockState(positions);
                 if (config.target.contains(state)) {
-                    this.setBlockState(reader, distance, config.state);
+                    this.setBlockState(reader, positions, config.state);
                     shouldGenerate = true;
                 }
             }
