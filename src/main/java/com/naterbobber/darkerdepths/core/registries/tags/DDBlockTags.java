@@ -11,4 +11,5 @@ public class DDBlockTags {
     public static final Registries HELPER = DarkerDepths.REGISTRIES;
 
     public static final ITag.INamedTag<Block> GRIMESTONE_REPLACEMENT = HELPER.registerBlockTag("grimestone_replacement");
+    public static final ITag.INamedTag<Block> SANDY_GROUND_REPLACEABLE = HELPER.registerBlockTag("sandy_ground_replaceable");
 }

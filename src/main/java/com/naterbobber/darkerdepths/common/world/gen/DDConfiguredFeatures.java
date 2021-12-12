@@ -12,6 +12,7 @@ import com.naterbobber.darkerdepths.common.world.gen.feature.GemstonePlacementCo
 import com.naterbobber.darkerdepths.common.world.gen.feature.GrowingPlantConfig;
 import com.naterbobber.darkerdepths.common.world.gen.feature.HugeGlowshroomConfig;
 import com.naterbobber.darkerdepths.common.world.gen.feature.ReplaceBlobsFeatureConfig;
+import com.naterbobber.darkerdepths.common.world.gen.feature.RootSystemFeatureConfig;
 import com.naterbobber.darkerdepths.common.world.gen.feature.SimpleBlockConfig;
 import com.naterbobber.darkerdepths.common.world.gen.feature.SpeleothemConfig;
 import com.naterbobber.darkerdepths.common.world.gen.feature.VegetationPatchConfig;
@@ -24,6 +25,7 @@ import com.naterbobber.darkerdepths.core.registries.worldgen.DDFeatures;
 import com.naterbobber.darkerdepths.core.registries.worldgen.DDPlacements;
 import com.naterbobber.darkerdepths.core.util.VerticalSurfaceType;
 import com.naterbobber.darkerdepths.core.util.DDFillerBlockTypes;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.fluid.FluidState;
@@ -32,8 +34,10 @@ import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Direction;
 import net.minecraft.util.WeightedList;
+import net.minecraft.world.gen.blockstateprovider.BlockStateProvider;
 import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
 import net.minecraft.world.gen.blockstateprovider.WeightedBlockStateProvider;
+import net.minecraft.world.gen.feature.BaseTreeFeatureConfig;
 import net.minecraft.world.gen.feature.BlockStateProvidingFeatureConfig;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.Feature;
@@ -42,9 +46,12 @@ import net.minecraft.world.gen.feature.Features;
 import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraft.world.gen.feature.LiquidsConfig;
 import net.minecraft.world.gen.feature.OreFeatureConfig;
+import net.minecraft.world.gen.feature.TwoLayerFeature;
+import net.minecraft.world.gen.foliageplacer.BlobFoliagePlacer;
 import net.minecraft.world.gen.placement.DepthAverageConfig;
 import net.minecraft.world.gen.placement.Placement;
 import net.minecraft.world.gen.placement.TopSolidRangeConfig;
+import net.minecraft.world.gen.trunkplacer.ForkyTrunkPlacer;
 
 //<>
 
@@ -115,6 +122,14 @@ public class DDConfiguredFeatures {
     public static final ConfiguredFeature<?, ?> OASIS_POOL                      = HELPER.registerConfiguredFeature("oasis_pool", DDFeatures.WATERLOGGED_VEGETATION_PATCH.get().withConfiguration(new VegetationPatchConfig(BlockTags.BASE_STONE_OVERWORLD.getName(), new SimpleBlockStateProvider(States.LUSH_ARIDROCK), () -> Feature.NO_OP.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG), VerticalSurfaceType.FLOOR, ConstantIntProvider.create(1), 0.0f, 5, 0.01f, UniformIntProvider.create(8, 14), 1.0f)).withPlacement(DDPlacements.CAVE_SURFACE.get().configure(new CaveSurfaceDecoratorConfig(VerticalSurfaceType.FLOOR, 12))).range(50).square().func_242731_b(10).chance(64));
     public static final ConfiguredFeature<?, ?> OASIS_VEGETATION                = HELPER.registerConfiguredFeature("oasis_vegetation", DDFeatures.VEGETATION_FEATURE.get().withConfiguration(Configs.OASIS_VEGETATION_CONFIG).range(50).square().func_242731_b(60));
 
+    public static final ConfiguredFeature<?, ?> PETRIFIED_TREE                  = HELPER.registerConfiguredFeature("petrified_tree", DDFeatures.TREE.get().withConfiguration(new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(States.PETRIFIED_LOG), new SimpleBlockStateProvider(States.AIR), new BlobFoliagePlacer(FeatureSpread.func_242252_a(0), FeatureSpread.func_242252_a(0), 0), new ForkyTrunkPlacer(5, 2, 2), new TwoLayerFeature(1, 0, 2)).setIgnoreVines().build()));
+
+    public static final ConfiguredFeature<?, ?> ROOTED_PETRIFIED_TREE           = HELPER.registerConfiguredFeature("rooted_petrified_tree", PETRIFIED_TREE.withPlacement(DDPlacements.CAVE_SURFACE.get().configure(new CaveSurfaceDecoratorConfig(VerticalSurfaceType.FLOOR, 12)).range(60).square().func_242731_b(3)));
+
+//    public static final ConfiguredFeature<?, ?> ROOTED_PETRIFIED_TREE           = HELPER.registerConfiguredFeature("rooted_petrified_tree", DDFeatures.ROOT_SYSTEM.get().withConfiguration(new RootSystemFeatureConfig(() -> {
+//        return PETRIFIED_TREE;
+//    }, 3, 3, DDBlockTags.SANDY_GROUND_REPLACEABLE.getName(), new SimpleBlockStateProvider(DDBlocks.PETRIFIED_LOG.get().getDefaultState()), 20, 100, 3, 2, new SimpleBlockStateProvider(DDBlocks.ROOTS.get().getDefaultState()), 20, 2)).withPlacement(DDPlacements.CAVE_SURFACE.get().configure(new CaveSurfaceDecoratorConfig(VerticalSurfaceType.CEILING, 12))).range(60).square());
+
     /**
      * GLOWSHROOM CAVE FEATURES
      */
@@ -144,6 +159,7 @@ public class DDConfiguredFeatures {
 
     static class States {
         //DEFAULT_CAVES
+        public static final BlockState AIR                      = Blocks.AIR.getDefaultState();
         public static final BlockState STONE                    = Blocks.STONE.getDefaultState();
         public static final BlockState ANDESITE                 = Blocks.ANDESITE.getDefaultState();
         public static final BlockState GRANITE                  = Blocks.GRANITE.getDefaultState();
@@ -167,6 +183,7 @@ public class DDConfiguredFeatures {
         public static final BlockState DOUBLE_ASH_LAYER         = DDBlocks.ASH.get().getDefaultState().with(BlockStateProperties.LAYERS_1_8, 2);
 
         //SANDY_CATACOMBS
+        public static final BlockState PETRIFIED_LOG            = DDBlocks.PETRIFIED_LOG.get().getDefaultState();
         public static final BlockState ARIDROCK                 = DDBlocks.ARIDROCK.get().getDefaultState();
         public static final BlockState LIMESTONE                = DDBlocks.LIMESTONE.get().getDefaultState();
         public static final BlockState DEAD_BUSH                = Blocks.DEAD_BUSH.getDefaultState();

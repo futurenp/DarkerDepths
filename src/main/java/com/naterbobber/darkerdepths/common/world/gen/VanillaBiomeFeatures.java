@@ -1,12 +1,8 @@
 package com.naterbobber.darkerdepths.common.world.gen;
 
-import com.naterbobber.darkerdepths.client.compat.DDCompatibilty;
 import com.naterbobber.darkerdepths.core.DarkerDepthsConfig;
 import com.naterbobber.darkerdepths.core.api.DarkerDepthsCompat;
-import com.orcinus.config.ConfigHolder;
 import net.minecraft.world.gen.GenerationStage;
-import net.minecraftforge.common.ForgeConfig;
-import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.world.BiomeGenerationSettingsBuilder;
 
 //<>
@@ -72,6 +68,7 @@ public class VanillaBiomeFeatures {
         builder.withFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS, DDConfiguredFeatures.ARIDROCK_CAVE_TERRAIN);
         builder.withFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS, DDConfiguredFeatures.LIMESTONE_CAVE_TERRAIN);
         builder.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, DDConfiguredFeatures.LIMESTONE_ORE);
+        builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, DDConfiguredFeatures.ROOTED_PETRIFIED_TREE);
     }
 
     public static void addCaveFossils(BiomeGenerationSettingsBuilder builder) {

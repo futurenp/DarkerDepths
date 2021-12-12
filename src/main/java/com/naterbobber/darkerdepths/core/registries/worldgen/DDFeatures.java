@@ -28,4 +28,6 @@ public class DDFeatures {
 	public static final RegistryObject<Feature<GrowingPlantConfig>> GROWING_PLANT 						= HELPER.registerFeature("growing_plant", () -> new GrowingPlantFeature(GrowingPlantConfig.CODEC));
 	public static final RegistryObject<Feature<NoFeatureConfig>> GEYSER_FEATURE 						= HELPER.registerFeature("geyser_feature", () -> new GeyserFeature(NoFeatureConfig.field_236558_a_));
 	public static final RegistryObject<Feature<SpeleothemConfig>> SPELEOTHEM_FEATURE					= HELPER.registerFeature("speleothem_feature", () -> new SpeleothemFeature(SpeleothemConfig.CODEC));
+	public static final RegistryObject<Feature<BaseTreeFeatureConfig>> TREE								= HELPER.registerFeature("tree", () -> new DDTreeFeature(BaseTreeFeatureConfig.CODEC));
+	public static final RegistryObject<Feature<RootSystemFeatureConfig>> ROOT_SYSTEM					= HELPER.registerFeature("root_system", () -> new RootSystemFeature(RootSystemFeatureConfig.CODEC));
 }
