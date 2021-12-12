@@ -57,7 +57,7 @@ public class PetrifiedLogBranchFeature extends Feature<NoFeatureConfig> {
                 }
             }
         }
-        if (world.isAirBlock(pos.down())) {
+        if (world.isAirBlock(pos.down()) || world.isAirBlock(pos.down(2))) {
             this.setBlockState(world, pos.down(), DDBlocks.LONG_ROOTS.get().getDefaultState());
             this.setBlockState(world, pos.down(2), DDBlocks.LONG_ROOTS.get().getDefaultState().with(HangingDoublePlantBlock.HALF, DoubleBlockHalf.LOWER));
         }
