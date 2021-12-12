@@ -138,8 +138,8 @@ public class DDTreeFeature extends Feature<BaseTreeFeatureConfig> {
                 List<BlockPos> list1 = Lists.newArrayList(foliagePositions);
                 list.sort(Comparator.comparingInt(Vector3i::getY));
                 list1.sort(Comparator.comparingInt(Vector3i::getY));
-                config.decorators.forEach((p_236405_6_) -> {
-                    p_236405_6_.func_225576_a_(reader, rand, list, list1, decorationPositions, box);
+                config.decorators.forEach((decorator) -> {
+                    decorator.func_225576_a_(reader, rand, list, list1, decorationPositions, box);
                 });
             }
 
