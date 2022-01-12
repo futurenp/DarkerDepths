@@ -28,6 +28,23 @@ public class DDBiomes {
 
     public static final RegistryObject<Biome> MOLTEN_CAVERN = BIOMES.register("molten_cavern", DDBiomes::createMoltenCavern);
     public static final RegistryObject<Biome> SANDY_CATACOMBS = BIOMES.register("sandy_catacombs", DDBiomes::createSandyCatacombs);
+    public static final RegistryObject<Biome> GLOWSHROOM_FOREST = BIOMES.register("glowshroom_forest", DDBiomes::createGlowshroomForest);
+
+    public static Biome createGlowshroomForest() {
+        MobSpawnSettings.Builder mobBuilder = new MobSpawnSettings.Builder();
+        BiomeDefaultFeatures.commonSpawns(mobBuilder);
+        BiomeGenerationSettings.Builder biomeBuilder = new BiomeGenerationSettings.Builder();
+        BiomeDefaultFeatures.addDefaultCarversAndLakes(biomeBuilder);
+        BiomeDefaultFeatures.addDefaultCrystalFormations(biomeBuilder);
+        BiomeDefaultFeatures.addDefaultMonsterRoom(biomeBuilder);
+        BiomeDefaultFeatures.addDefaultUndergroundVariety(biomeBuilder);
+        BiomeDefaultFeatures.addDefaultSprings(biomeBuilder);
+        BiomeDefaultFeatures.addSurfaceFreezing(biomeBuilder);
+        BiomeDefaultFeatures.addPlainGrass(biomeBuilder);
+        BiomeDefaultFeatures.addDefaultOres(biomeBuilder);
+        Music music = Musics.createGameMusic(SoundEvents.MUSIC_BIOME_DRIPSTONE_CAVES);
+        return biome(Biome.Precipitation.RAIN, Biome.BiomeCategory.UNDERGROUND, 0.5F, 0.5F, mobBuilder, biomeBuilder, music);
+    }
 
     public static Biome createMoltenCavern() {
         MobSpawnSettings.Builder mobBuilder = new MobSpawnSettings.Builder();

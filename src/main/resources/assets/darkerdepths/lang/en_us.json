@@ -1,6 +1,5 @@
 {
   "item.darkerdepths.petrified_boat": "Petrified Boat",
-  "item.darkerdepths.miners_helmet": "Miner's Helmet",
   "block.darkerdepths.limestone": "Limestone",
   "block.darkerdepths.polished_limestone": "Polished Limestone",
   "block.darkerdepths.limestone_wall": "Limestone Wall",
@@ -156,9 +155,8 @@
   "item.darkerdepths.resin": "Resin",
   "item.darkerdepths.resinous_grime": "Resinous Grime",
   "item.darkerdepths.glowshroom_cap": "Glowshroom Cap",
-  "biome.darkerdepths.cave": "Default Cave Biome",
   "biome.darkerdepths.molten_cavern": "Molten Cavern Biome",
   "biome.darkerdepths.sandy_catacombs": "Sandy Catacombs Biome",
   "biome.darkerdepths.crystal_cave": "Crystal Cave Biome",
-  "biome.darkerdepths.glowshroom_caves": "Glowshroom Cavern Biome"
+  "biome.darkerdepths.glowshroom_forest": "Glowshroom Forest Biome"
 }

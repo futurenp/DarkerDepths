@@ -5,7 +5,6 @@ import com.naterbobber.darkerdepths.client.models.GlowshroomMonsterModel;
 import com.naterbobber.darkerdepths.client.particle.DrippingParticle;
 import com.naterbobber.darkerdepths.client.renderers.GlowshroomMonsterRenderer;
 import com.naterbobber.darkerdepths.client.renderers.PetrifiedBoatRenderer;
-import com.naterbobber.darkerdepths.entities.GlowshroomMonsterEntity;
 import com.naterbobber.darkerdepths.entities.PetrifiedBoatEntity;
 import com.naterbobber.darkerdepths.init.DDBlockEntities;
 import com.naterbobber.darkerdepths.init.DDBlocks;
