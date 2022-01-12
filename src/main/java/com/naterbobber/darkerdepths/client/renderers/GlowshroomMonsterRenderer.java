@@ -1,0 +1,26 @@
+package com.naterbobber.darkerdepths.client.renderers;
+
+import com.naterbobber.darkerdepths.DarkerDepths;
+import com.naterbobber.darkerdepths.client.models.GlowshroomMonsterModel;
+import com.naterbobber.darkerdepths.entities.GlowshroomMonsterEntity;
+import com.naterbobber.darkerdepths.init.DDModelLayers;
+import net.minecraft.client.model.geom.ModelLayerLocation;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.entity.MobRenderer;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+
+@OnlyIn(Dist.CLIENT)
+public class GlowshroomMonsterRenderer extends MobRenderer<GlowshroomMonsterEntity, GlowshroomMonsterModel<GlowshroomMonsterEntity>> {
+    public static final ResourceLocation TEXTURE = new ResourceLocation(DarkerDepths.MODID, "textures/entity/glowshroom_monster.png");
+
+    public GlowshroomMonsterRenderer(EntityRendererProvider.Context context) {
+        super(context, new GlowshroomMonsterModel<>(context.bakeLayer(DDModelLayers.GLOWSHROOM_MONSTER)), 0.8F);
+    }
+
+    @Override
+    public ResourceLocation getTextureLocation(GlowshroomMonsterEntity entity) {
+        return TEXTURE;
+    }
+}

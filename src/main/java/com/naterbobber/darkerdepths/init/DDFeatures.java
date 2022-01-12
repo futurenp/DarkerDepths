@@ -1,0 +1,33 @@
+package com.naterbobber.darkerdepths.init;
+
+import com.naterbobber.darkerdepths.DarkerDepths;
+import com.naterbobber.darkerdepths.world.gen.features.GemstoneFeature;
+import com.naterbobber.darkerdepths.world.gen.features.GeyserFeature;
+import com.naterbobber.darkerdepths.world.gen.features.HugeGlowshroomFeature;
+import com.naterbobber.darkerdepths.world.gen.features.LavaVegetationPatchFeature;
+import com.naterbobber.darkerdepths.world.gen.features.PetrifiedBranchFeature;
+import com.naterbobber.darkerdepths.world.gen.features.ReplaceListFeature;
+import com.naterbobber.darkerdepths.world.gen.features.SoulSoilFeature;
+import com.naterbobber.darkerdepths.world.gen.features.config.ReplaceListConfig;
+import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.VegetationPatchConfiguration;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
+
+@Mod.EventBusSubscriber(modid = DarkerDepths.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+public class DDFeatures {
+
+    public static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(ForgeRegistries.FEATURES, DarkerDepths.MODID);
+
+    public static final RegistryObject<Feature<ReplaceListConfig>> REPLACE_LIST = FEATURES.register("replace_list", () -> new ReplaceListFeature(ReplaceListConfig.CODEC));
+    public static final RegistryObject<Feature<NoneFeatureConfiguration>> GEYSER = FEATURES.register("geyser", () -> new GeyserFeature(NoneFeatureConfiguration.CODEC));
+    public static final RegistryObject<Feature<NoneFeatureConfiguration>> GEMSTONE = FEATURES.register("gemstone", () -> new GemstoneFeature(NoneFeatureConfiguration.CODEC));
+    public static final RegistryObject<Feature<NoneFeatureConfiguration>> HUGE_GLOWSHROOM = FEATURES.register("huge_glowshroom", () -> new HugeGlowshroomFeature(NoneFeatureConfiguration.CODEC));
+    public static final RegistryObject<Feature<NoneFeatureConfiguration>> PETRIFIED_BRANCH = FEATURES.register("petrified_branch", () -> new PetrifiedBranchFeature(NoneFeatureConfiguration.CODEC));
+    public static final RegistryObject<Feature<VegetationPatchConfiguration>> LAVA_VEGETATION_PATCH_FEATURE = FEATURES.register("lava_vegetation_patch", () -> new LavaVegetationPatchFeature(VegetationPatchConfiguration.CODEC));
+    public static final RegistryObject<Feature<NoneFeatureConfiguration>> SOUL_SOIL = FEATURES.register("soul_soil", () -> new SoulSoilFeature(NoneFeatureConfiguration.CODEC));
+
+}

@@ -1,73 +1,71 @@
 package com.naterbobber.darkerdepths.client.particle;
 
-import com.naterbobber.darkerdepths.core.registries.DDParticleTypes;
-import net.minecraft.client.particle.IAnimatedSprite;
-import net.minecraft.client.particle.IParticleFactory;
-import net.minecraft.client.particle.IParticleRenderType;
+import com.naterbobber.darkerdepths.init.DDParticleTypes;
+import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.Particle;
-import net.minecraft.client.particle.SpriteTexturedParticle;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.fluid.Fluid;
-import net.minecraft.fluid.FluidState;
-import net.minecraft.fluid.Fluids;
-import net.minecraft.particles.BasicParticleType;
-import net.minecraft.particles.IParticleData;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.client.particle.ParticleProvider;
+import net.minecraft.client.particle.ParticleRenderType;
+import net.minecraft.client.particle.SpriteSet;
+import net.minecraft.client.particle.TextureSheetParticle;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.core.particles.SimpleParticleType;
+import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
 
-//<>
-
 @OnlyIn(Dist.CLIENT)
-public class DrippingParticle extends SpriteTexturedParticle {
+public class DrippingParticle extends TextureSheetParticle {
     private final Fluid fluid;
     protected boolean fullBright;
 
-    private DrippingParticle(ClientWorld world, double x, double y, double z, Fluid fluid) {
-        super(world, x, y, z);
+    public DrippingParticle(ClientLevel p_108323_, double p_108324_, double p_108325_, double p_108326_, Fluid fluid) {
+        super(p_108323_, p_108324_, p_108325_, p_108326_);
         this.setSize(0.01F, 0.01F);
-        this.particleGravity = 0.06F;
+        this.gravity = 0.06F;
         this.fluid = fluid;
     }
 
     @Override
-    public IParticleRenderType getRenderType() {
-        return IParticleRenderType.PARTICLE_SHEET_OPAQUE;
+    public ParticleRenderType getRenderType() {
+        return ParticleRenderType.PARTICLE_SHEET_OPAQUE;
     }
 
     @Override
-    protected int getBrightnessForRender(float partialTick) {
-        return this.fullBright ? 240 : super.getBrightnessForRender(partialTick);
+    protected int getLightColor(float p_107249_) {
+        return this.fullBright ? 240 : super.getLightColor(p_107249_);
     }
 
     @Override
     public void tick() {
-        this.prevPosX = this.posX;
-        this.prevPosY = this.posY;
-        this.prevPosZ = this.posZ;
+        this.xo = this.x;
+        this.yo = this.y;
+        this.zo = this.z;
         this.ageParticle();
-        if (!this.isExpired) {
-            this.motionY -= this.particleGravity;
-            this.move(this.motionX, this.motionY, this.motionZ);
+        if (!this.removed) {
+            this.yd -= this.gravity;
+            this.move(this.xd, this.yd, this.zd);
             this.updateMotion();
-            if (!this.isExpired) {
-                this.motionX *= 0.98F;
-                this.motionY *= 0.98F;
-                this.motionZ *= 0.98F;
-                BlockPos blockpos = new BlockPos(this.posX, this.posY, this.posZ);
-                FluidState fluidstate = this.world.getFluidState(blockpos);
-                if (fluidstate.getFluid() == this.fluid && this.posY < (double)((float)blockpos.getY() + fluidstate.getActualHeight(this.world, blockpos))) {
-                    this.setExpired();
+            if (!this.removed) {
+                this.xd *= 0.98F;
+                this.yd *= 0.98F;
+                this.zd *= 0.98F;
+                BlockPos blockpos = new BlockPos(this.x, this.y, this.z);
+                FluidState fluidstate = this.level.getFluidState(blockpos);
+                if (fluidstate.getType() == this.fluid && this.y < (double)((float)blockpos.getY() + fluidstate.getHeight(this.level, blockpos))) {
+                    this.remove();
                 }
             }
         }
     }
 
     protected void ageParticle() {
-        if (this.maxAge-- <= 0) {
-            this.setExpired();
+        if (this.lifetime-- <= 0) {
+            this.remove();
         }
     }
 
@@ -76,36 +74,36 @@ public class DrippingParticle extends SpriteTexturedParticle {
 
     @OnlyIn(Dist.CLIENT)
     static class Dripping extends DrippingParticle {
-        protected final IParticleData nextParticle;
+        protected final ParticleOptions nextParticle;
 
-        Dripping(ClientWorld world, double x, double y, double z, Fluid fluid, IParticleData nextParticle) {
+        Dripping(ClientLevel world, double x, double y, double z, Fluid fluid, ParticleOptions nextParticle) {
             super(world, x, y, z, fluid);
             this.nextParticle = nextParticle;
-            this.particleGravity *= 0.02F;
-            this.maxAge = 40;
+            this.gravity *= 0.02F;
+            this.lifetime = 40;
         }
 
         @Override
         protected void ageParticle() {
-            if (this.maxAge-- <= 0) {
-                this.setExpired();
-                this.world.addParticle(this.nextParticle, this.posX, this.posY, this.posZ, this.motionX, this.motionY, this.motionZ);
+            if (this.lifetime-- <= 0) {
+                this.remove();
+                this.level.addParticle(this.nextParticle, this.x, this.y, this.z, this.xd, this.yd, this.zd);
             }
         }
 
         @Override
         protected void updateMotion() {
-            this.motionX *= 0.02D;
-            this.motionY *= 0.02D;
-            this.motionZ *= 0.02D;
+            this.xd *= 0.02D;
+            this.yd *= 0.02D;
+            this.zd *= 0.02D;
         }
     }
 
     @OnlyIn(Dist.CLIENT)
-    static class FallingLiquid extends DrippingParticle.Falling {
-        protected final IParticleData nextParticle;
+    static class FallingLiquid extends Falling {
+        protected final ParticleOptions nextParticle;
 
-        FallingLiquid(ClientWorld world, double x, double y, double z, Fluid fluid, IParticleData nextParticle) {
+        FallingLiquid(ClientLevel world, double x, double y, double z, Fluid fluid, ParticleOptions nextParticle) {
             super(world, x, y, z, fluid);
             this.nextParticle = nextParticle;
         }
@@ -113,8 +111,8 @@ public class DrippingParticle extends SpriteTexturedParticle {
         @Override
         protected void updateMotion() {
             if (this.onGround) {
-                this.setExpired();
-                this.world.addParticle(this.nextParticle, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
+                this.remove();
+                this.level.addParticle(this.nextParticle, this.x, this.y, this.z, 0.0D, 0.0D, 0.0D);
             }
         }
     }
@@ -122,88 +120,88 @@ public class DrippingParticle extends SpriteTexturedParticle {
 
     @OnlyIn(Dist.CLIENT)
     static class Falling extends DrippingParticle {
-        Falling(ClientWorld world, double x, double y, double z, Fluid fluid) {
+        Falling(ClientLevel world, double x, double y, double z, Fluid fluid) {
             this(world, x, y, z, fluid, (int)(64.0D/ (Math.random() * 0.8D + 0.2D)));
         }
 
-        Falling(ClientWorld world, double x, double y, double z, Fluid fluid, int maxAge) {
+        Falling(ClientLevel world, double x, double y, double z, Fluid fluid, int lifetime) {
             super(world, x, y, z, fluid);
-            this.maxAge = maxAge;
+            this.lifetime = lifetime;
         }
 
         @Override
         protected void updateMotion() {
             if (this.onGround) {
-                this.setExpired();
+                this.remove();
             }
         }
     }
 
     @OnlyIn(Dist.CLIENT)
     static class Landing extends DrippingParticle {
-        private Landing(ClientWorld world, double x, double y, double z, Fluid fluid) {
+        private Landing(ClientLevel world, double x, double y, double z, Fluid fluid) {
             super(world, x, y, z, fluid);
-            this.maxAge = (int)(16.0D / (Math.random() * 0.8D + 0.2D));
+            this.lifetime = (int)(16.0D / (Math.random() * 0.8D + 0.2D));
         }
     }
 
     @OnlyIn(Dist.CLIENT)
-    public static class DrippingResinFactory implements IParticleFactory<BasicParticleType> {
-        protected final IAnimatedSprite spriteSet;
+    public static class DrippingResinFactory implements ParticleProvider<SimpleParticleType> {
+        protected final SpriteSet spriteSet;
 
-        public DrippingResinFactory(IAnimatedSprite spriteSet) {
+        public DrippingResinFactory(SpriteSet spriteSet) {
             this.spriteSet = spriteSet;
         }
 
         @Nullable
         @Override
-        public Particle makeParticle(BasicParticleType typeIn, ClientWorld worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
+        public Particle createParticle(SimpleParticleType typeIn, ClientLevel worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
             DrippingParticle dripping = new Dripping(worldIn, x, y, z, Fluids.EMPTY, DDParticleTypes.FALLING_RESIN.get());
             dripping.fullBright = true;
-            dripping.particleGravity *= 0.01F;
-            dripping.maxAge = 100;
+            dripping.gravity *= 0.01F;
+            dripping.lifetime = 100;
             dripping.setColor(0.97F, 0.56F, 0.22F);
-            dripping.selectSpriteRandomly(this.spriteSet);
+            dripping.pickSprite(this.spriteSet);
             return dripping;
         }
     }
 
     @OnlyIn(Dist.CLIENT)
-    public static class FallingResinFactory implements IParticleFactory<BasicParticleType> {
-        protected final IAnimatedSprite spriteSet;
+    public static class FallingResinFactory implements ParticleProvider<SimpleParticleType> {
+        protected final SpriteSet spriteSet;
 
-        public FallingResinFactory(IAnimatedSprite spriteSet) {
+        public FallingResinFactory(SpriteSet spriteSet) {
             this.spriteSet = spriteSet;
         }
 
         @Nullable
         @Override
-        public Particle makeParticle(BasicParticleType typeIn, ClientWorld worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
-            DrippingParticle falling = new DrippingParticle.FallingLiquid(worldIn, x, y, z, Fluids.EMPTY, DDParticleTypes.LANDING_RESIN.get());
+        public Particle createParticle(SimpleParticleType typeIn, ClientLevel worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
+            DrippingParticle falling = new FallingLiquid(worldIn, x, y, z, Fluids.EMPTY, DDParticleTypes.LANDING_RESIN.get());
             falling.fullBright = true;
-            falling.particleGravity = 0.01F;
+            falling.gravity = 0.01F;
             falling.setColor(0.97F, 0.56F, 0.22F);
-            falling.selectSpriteRandomly(this.spriteSet);
+            falling.pickSprite(this.spriteSet);
             return falling;
         }
     }
 
     @OnlyIn(Dist.CLIENT)
-    public static class LandingResinFactory implements IParticleFactory<BasicParticleType> {
-        protected final IAnimatedSprite spriteSet;
+    public static class LandingResinFactory implements ParticleProvider<SimpleParticleType> {
+        protected final SpriteSet spriteSet;
 
-        public LandingResinFactory(IAnimatedSprite spriteSet) {
+        public LandingResinFactory(SpriteSet spriteSet) {
             this.spriteSet = spriteSet;
         }
 
         @Nullable
         @Override
-        public Particle makeParticle(BasicParticleType typeIn, ClientWorld worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
-            DrippingParticle landing = new DrippingParticle.Landing(worldIn, x, y, z, Fluids.EMPTY);
+        public Particle createParticle(SimpleParticleType typeIn, ClientLevel worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
+            DrippingParticle landing = new Landing(worldIn, x, y, z, Fluids.EMPTY);
             landing.fullBright = true;
-            landing.maxAge = (int)(28.0D / (Math.random() * 0.8D + 0.2D));
+            landing.lifetime = (int)(28.0D / (Math.random() * 0.8D + 0.2D));
             landing.setColor(0.97F, 0.56F, 0.22F);
-            landing.selectSpriteRandomly(this.spriteSet);
+            landing.pickSprite(this.spriteSet);
             return landing;
         }
     }

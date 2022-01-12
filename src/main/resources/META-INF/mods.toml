@@ -1,32 +1,24 @@
-modLoader = "javafml"
-loaderVersion = "[32,)"
-license = "All rights reserved"
-
+modLoader="javafml"
+loaderVersion="[39,)"
+license="All Rights Reserved"
 [[mods]]
-    modId="darkerdepths"
-    version="1.1.4"
-    displayName="Darker Depths"
-    logoFile="ddicon.png"
-    authors="Naterbobber"
-    description='''A mod all about expanding vanilla caves'''
+modId="darkerdepths"
+version="${file.jarVersion}"
+displayName="DarkerDepths"
+authors="Nate, Blackgear, Toxteer, Orcinus"
+description='''
+A mod all about expanding vanilla caves
+'''
+[[dependencies.darkerdepths]]
+   modId="forge"
+   mandatory=true
+   versionRange="[39,)"
+   ordering="NONE"
+   side="BOTH"
 
 [[dependencies.darkerdepths]]
-    modId = "forge"
-    mandatory = true
-    versionRange="[34.1.42,)"
-    ordering = "NONE"
-    side = "BOTH"
-
-[[dependencies.darkerdepths]]
-    modId = "minecraft"
-    mandatory = true
-    versionRange = "[1.16.3,1.17)"
-    ordering = "NONE"
-    side = "BOTH"
-
-[[dependencies.darkerdepths]]
-    modId = "cavebiomeapi"
-    mandatory = true
-    versionRange="[1,)"
-    ordering="NONE"
-    side="BOTH"
+   modId="minecraft"
+   mandatory=true
+   versionRange="[1.18.1,1.19)"
+   ordering="NONE"
+   side="BOTH"
