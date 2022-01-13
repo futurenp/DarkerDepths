@@ -12,6 +12,7 @@ import net.minecraft.world.level.levelgen.feature.VegetationPatchFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.VegetationPatchConfiguration;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Random;
 import java.util.Set;
 import java.util.function.Predicate;
@@ -24,39 +25,46 @@ public class LavaVegetationPatchFeature extends VegetationPatchFeature {
 
     @Override
     protected Set<BlockPos> placeGroundPatch(WorldGenLevel world, VegetationPatchConfiguration config, Random random, BlockPos pos, Predicate<BlockState> statePredicate, int xRadius, int zRadius) {
-        Set<BlockPos> set = super.placeGroundPatch(world, config, random, pos, statePredicate, xRadius, zRadius);
-        Set<BlockPos> set1 = new HashSet<>();
-        BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+        Set<BlockPos> landGroundPatch = super.placeGroundPatch(world, config, random, pos, statePredicate, xRadius, zRadius);
+        Set<BlockPos> lavaGroundPatch = new HashSet<>();
+        BlockPos.MutableBlockPos mutable = new BlockPos.MutableBlockPos();
+        Iterator<BlockPos> posIterator = landGroundPatch.iterator();
 
-        for(BlockPos blockpos : set) {
-            if (!isExposed(world, blockpos, blockpos$mutableblockpos)) {
-                set1.add(blockpos);
+        BlockPos positions;
+        while(posIterator.hasNext()) {
+            positions = posIterator.next();
+            if (!isExposed(world, positions, mutable)) {
+                lavaGroundPatch.add(positions);
             }
         }
 
-        for(BlockPos blockpos1 : set1) {
-            world.setBlock(blockpos1, Blocks.LAVA.defaultBlockState(), 2);
+        posIterator = lavaGroundPatch.iterator();
+
+        while(posIterator.hasNext()) {
+            positions = posIterator.next();
+            world.setBlock(positions, Blocks.LAVA.defaultBlockState(), 2);
         }
 
-        return set1;
+        return lavaGroundPatch;
     }
 
-    private static boolean isExposed(WorldGenLevel p_160656_, BlockPos p_160658_, BlockPos.MutableBlockPos p_160659_) {
-        return isExposedDirection(p_160656_, p_160658_, p_160659_, Direction.NORTH) || isExposedDirection(p_160656_, p_160658_, p_160659_, Direction.EAST) || isExposedDirection(p_160656_, p_160658_, p_160659_, Direction.SOUTH) || isExposedDirection(p_160656_, p_160658_, p_160659_, Direction.WEST) || isExposedDirection(p_160656_, p_160658_, p_160659_, Direction.DOWN);
+    private static boolean isExposed(WorldGenLevel world, BlockPos pos, BlockPos.MutableBlockPos mutable) {
+        return isExposedDirection(world, pos, mutable, Direction.NORTH) || isExposedDirection(world, pos, mutable, Direction.EAST) || isExposedDirection(world, pos, mutable, Direction.SOUTH) || isExposedDirection(world, pos, mutable, Direction.WEST) || isExposedDirection(world, pos, mutable, Direction.DOWN);
     }
 
-    private static boolean isExposedDirection(WorldGenLevel p_160651_, BlockPos p_160652_, BlockPos.MutableBlockPos p_160653_, Direction p_160654_) {
-        p_160653_.setWithOffset(p_160652_, p_160654_);
-        return !p_160651_.getBlockState(p_160653_).isFaceSturdy(p_160651_, p_160653_, p_160654_.getOpposite());
+    private static boolean isExposedDirection(WorldGenLevel world, BlockPos pos, BlockPos.MutableBlockPos mutable, Direction direction) {
+        mutable.setWithOffset(pos, direction);
+        return !world.getBlockState(mutable).isFaceSturdy(world, mutable, direction.getOpposite());
     }
 
     @Override
-    protected boolean placeVegetation(WorldGenLevel worldIn, VegetationPatchConfiguration configIn, ChunkGenerator generator, Random random, BlockPos pos) {
-        if (super.placeVegetation(worldIn, configIn, generator, random, pos.below())) {
-            BlockState state = worldIn.getBlockState(pos);
+    protected boolean placeVegetation(WorldGenLevel world, VegetationPatchConfiguration config, ChunkGenerator generator, Random random, BlockPos pos) {
+        if (super.placeVegetation(world, config, generator, random, pos.below())) {
+            BlockState state = world.getBlockState(pos);
             if (state.hasProperty(BlockStateProperties.WATERLOGGED) && !state.getValue(BlockStateProperties.WATERLOGGED)) {
-                worldIn.setBlock(pos, state.setValue(BlockStateProperties.WATERLOGGED, true), 2);
+                world.setBlock(pos, state.setValue(BlockStateProperties.WATERLOGGED, true), 2);
             }
+
             return true;
         } else {
             return false;
