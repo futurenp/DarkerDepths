@@ -7,6 +7,7 @@ import com.naterbobber.darkerdepths.init.DDBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.Mth;
+import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.AmethystClusterBlock;
@@ -33,13 +34,9 @@ public class PetrifiedBranchFeature extends Feature<NoneFeatureConfiguration> {
             return false;
         } else {
             BlockPos.MutableBlockPos mutable = new BlockPos.MutableBlockPos();
-            for (int i = 0; i < Mth.nextInt(random, 6, 8); i++) {
-                for (int x = -1; x < 1; x++) {
-                    for (int z = -1; z < 1; z++) {
-                        mutable.setWithOffset(pos, random.nextInt(2) - random.nextInt(2), 0, random.nextInt(2) - random.nextInt(2)).move(Direction.DOWN, i);
-                        spawnLogs(world, mutable, random);
-                    }
-                }
+            for (int i = 0; i < Mth.nextInt(random, 2, 4); i++) {
+                mutable.setWithOffset(pos, random.nextInt(2) - random.nextInt(2), 0, random.nextInt(2) - random.nextInt(2)).move(Direction.DOWN, i);
+                spawnLogs(world, mutable, random);
             }
             return true;
         }

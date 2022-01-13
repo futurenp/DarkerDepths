@@ -1,11 +1,13 @@
 package com.naterbobber.darkerdepths.blocks;
 
 import com.mojang.math.Vector3d;
+import com.naterbobber.darkerdepths.init.DDEntityTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -45,14 +47,13 @@ public class GlowspursBlock extends Block {
     }
 
     @Override
-    public VoxelShape getShape(BlockState p_60555_, BlockGetter p_60556_, BlockPos p_60557_, CollisionContext p_60558_) {
+    public VoxelShape getShape(BlockState stateIn, BlockGetter worldIn, BlockPos pos, CollisionContext p_60558_) {
         return SHAPE;
     }
 
     @Override
     public void entityInside(BlockState state, Level worldIn, BlockPos pos, Entity entityIn) {
-        //entityIn.getType() != DDEntityTypes.GLOWSHROOM_MONSTER.get()
-        if (entityIn instanceof LivingEntity) {
+        if (entityIn instanceof LivingEntity && entityIn.getType() != DDEntityTypes.GLOWSHROOM_MONSTER.get()) {
             entityIn.makeStuckInBlock(state, new Vec3(0.8F, 0.75D, 0.8F));
             if (!worldIn.isClientSide() && !state.getValue(POWERED)) {
                 this.updateState(pos, state, worldIn);

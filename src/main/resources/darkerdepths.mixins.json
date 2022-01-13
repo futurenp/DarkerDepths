@@ -4,11 +4,9 @@
   "compatibilityLevel": "JAVA_8",
   "refmap": "darkerdepths.refmap.json",
   "mixins": [
-    "common.blocks.LogBlockMixin",
-    "common.world.WorldCarverMixin"
+    "LogBlockMixin"
   ],
   "client": [
-    "common.world.IBlockReaderMixin"
   ],
   "injectors": {
     "defaultRequire": 1

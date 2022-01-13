@@ -22,9 +22,9 @@ import net.minecraft.world.level.levelgen.placement.RandomOffsetPlacement;
 
 public class DDPlacedFeatures {
 
-    public static final PlacedFeature HUGE_GLOWSHROOM = registerPlacedFeature("huge_glowshroom", DDConfiguredFeatures.HUGE_GLOWSHROOM.placed(CountPlacement.of(7), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT));
+    public static final PlacedFeature HUGE_GLOWSHROOM = registerPlacedFeature("huge_glowshroom", DDConfiguredFeatures.HUGE_GLOWSHROOM.placed(CountPlacement.of(120), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT));
     public static final PlacedFeature GLOWSHROOM_PATCH = registerPlacedFeature("glowshroom_patch", DDConfiguredFeatures.GLOWSHROOM_PATCH.placed(CountPlacement.of(UniformInt.of(5, 15)), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT));
-    public static final PlacedFeature AMBER = registerPlacedFeature("amber", DDConfiguredFeatures.AMBERS_PLACEMENT.placed(CountPlacement.of(UniformInt.of(60, 100)), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT));
+    public static final PlacedFeature AMBER = registerPlacedFeature("amber", DDConfiguredFeatures.AMBERS_PLACEMENT.placed(CountPlacement.of(90), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT));
     public static final PlacedFeature MOLTEN_SPRING = registerPlacedFeature("molten_spring", DDConfiguredFeatures.MOLTEN_SPRING.placed(CountPlacement.of(20), InSquarePlacement.spread(), HeightRangePlacement.of(VeryBiasedToBottomHeight.of(VerticalAnchor.bottom(), VerticalAnchor.belowTop(32), 32)), BiomeFilter.biome()));
     public static final PlacedFeature MOLTEN_POOL = registerPlacedFeature("molten_pool", DDConfiguredFeatures.MOLTEN_POOL.placed(CountPlacement.of(60), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT, EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.solid(), BlockPredicate.ONLY_IN_AIR_PREDICATE, 12), RandomOffsetPlacement.vertical(ConstantInt.of(1)), BiomeFilter.biome()));
     public static final PlacedFeature SHALE_PLACEMENT = registerPlacedFeature("shale_placement", DDConfiguredFeatures.SHALE_PLACEMENT.placed(CountPlacement.of(175), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT));
@@ -36,6 +36,8 @@ public class DDPlacedFeatures {
     public static final PlacedFeature MAGMA_ORE = registerPlacedFeature("magma_ore", DDConfiguredFeatures.MAGMA_ORE.placed(CountPlacement.of(50), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT));
     public static final PlacedFeature SILVER_ORE = registerPlacedFeature("silver_ore", DDConfiguredFeatures.SILVER_ORE.placed(CountPlacement.of(50), InSquarePlacement.spread(), HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(16))));
     public static final PlacedFeature GRIME_VEGETATION = registerPlacedFeature("grime_vegetation", DDConfiguredFeatures.GRIME_PATCH.placed(CountPlacement.of(125), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT, EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.solid(), BlockPredicate.ONLY_IN_AIR_PREDICATE, 12), RandomOffsetPlacement.vertical(ConstantInt.of(1)), BiomeFilter.biome()));
+    public static final PlacedFeature ARID_SURFACE = registerPlacedFeature("arid_surface", DDConfiguredFeatures.ARID_SURFACE.placed(CountPlacement.of(180), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT));
+    public static final PlacedFeature ARID_BOULDER = registerPlacedFeature("arid_boulder", DDConfiguredFeatures.ARID_BOULDER.placed(CountPlacement.of(120), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT));
 
     public static PlacedFeature registerPlacedFeature(String key, PlacedFeature configuredFeature) {
         ResourceLocation ID = new ResourceLocation(DarkerDepths.MODID, key);

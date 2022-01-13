@@ -6,6 +6,8 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.feature.VegetationPatchFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.VegetationPatchConfiguration;
 
@@ -48,4 +50,16 @@ public class LavaVegetationPatchFeature extends VegetationPatchFeature {
         return !p_160651_.getBlockState(p_160653_).isFaceSturdy(p_160651_, p_160653_, p_160654_.getOpposite());
     }
 
+    @Override
+    protected boolean placeVegetation(WorldGenLevel worldIn, VegetationPatchConfiguration configIn, ChunkGenerator generator, Random random, BlockPos pos) {
+        if (super.placeVegetation(worldIn, configIn, generator, random, pos.below())) {
+            BlockState state = worldIn.getBlockState(pos);
+            if (state.hasProperty(BlockStateProperties.WATERLOGGED) && !state.getValue(BlockStateProperties.WATERLOGGED)) {
+                worldIn.setBlock(pos, state.setValue(BlockStateProperties.WATERLOGGED, true), 2);
+            }
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

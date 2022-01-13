@@ -1,6 +1,7 @@
 {
-  "parent": "block/cube_all",
+  "parent": "block/cube_column",
   "textures": {
-    "all": "darkerdepths:block/aridrock"
+    "end": "darkerdepths:block/aridrock_top",
+    "side": "darkerdepths:block/aridrock"
   }
 }

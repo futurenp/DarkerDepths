@@ -35,8 +35,9 @@ public class WorldEvents {
         }
 
         if (biome == DDBiomes.SANDY_CATACOMBS.get()) {
-            builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, DDPlacedFeatures.ARIDROCK_PLACEMENT);
-            builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, DDPlacedFeatures.LIMESTONE_PLACEMENT);
+            builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, DDPlacedFeatures.ARID_SURFACE);
+            builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, DDPlacedFeatures.ARID_BOULDER);
+//            builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, DDPlacedFeatures.LIMESTONE_PLACEMENT);
             builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, DDPlacedFeatures.PETRIFIED_BRANCH);
             builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, DDPlacedFeatures.SOUL_SOIL);
         }

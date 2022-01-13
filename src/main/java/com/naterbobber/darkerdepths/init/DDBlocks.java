@@ -1,8 +1,6 @@
 package com.naterbobber.darkerdepths.init;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
-import com.naterbobber.darkerdepths.blocks.AloeBlock;
-import com.naterbobber.darkerdepths.blocks.AridrockBlock;
 import com.naterbobber.darkerdepths.blocks.AshBlock;
 import com.naterbobber.darkerdepths.blocks.AshFullBlock;
 import com.naterbobber.darkerdepths.blocks.CrystalMelon;
@@ -10,6 +8,7 @@ import com.naterbobber.darkerdepths.blocks.DDStandingSignBlock;
 import com.naterbobber.darkerdepths.blocks.DDWallSignBlock;
 import com.naterbobber.darkerdepths.blocks.DecayedRootBlock;
 import com.naterbobber.darkerdepths.blocks.DetritusBlock;
+import com.naterbobber.darkerdepths.blocks.DrySproutsBlock;
 import com.naterbobber.darkerdepths.blocks.GeyserBlock;
 import com.naterbobber.darkerdepths.blocks.GlowSpireBlock;
 import com.naterbobber.darkerdepths.blocks.GlowSpirePlantBlock;
@@ -17,7 +16,6 @@ import com.naterbobber.darkerdepths.blocks.GlowshroomBlock;
 import com.naterbobber.darkerdepths.blocks.GlowspursBlock;
 import com.naterbobber.darkerdepths.blocks.GrimestoneBlock;
 import com.naterbobber.darkerdepths.blocks.HangingDoublePlantBlock;
-import com.naterbobber.darkerdepths.blocks.LushAridrockBlock;
 import com.naterbobber.darkerdepths.blocks.MossyGrimestoneBlock;
 import com.naterbobber.darkerdepths.blocks.PorousBlock;
 import com.naterbobber.darkerdepths.blocks.RopeBlock;
@@ -37,7 +35,6 @@ import net.minecraft.world.level.block.DoorBlock;
 import net.minecraft.world.level.block.FenceBlock;
 import net.minecraft.world.level.block.FenceGateBlock;
 import net.minecraft.world.level.block.FlowerPotBlock;
-import net.minecraft.world.level.block.HangingRootsBlock;
 import net.minecraft.world.level.block.OreBlock;
 import net.minecraft.world.level.block.PressurePlateBlock;
 import net.minecraft.world.level.block.RedStoneOreBlock;
@@ -77,16 +74,7 @@ public class DDBlocks {
     public static final RegistryObject<Block> PETRIFIED_VERTICAL_SLAB				= registerCompatBlock("quark", "petrified_vertical_slab", () -> new VerticalSlabBlock(BlockBehaviour.Properties.copy(PETRIFIED_SLAB.get())));
     public static final RegistryObject<Block> PETRIFIED_STAIRS 						= registerBlock("petrified_stairs", () -> new StairBlock(() -> PETRIFIED_PLANKS.get().defaultBlockState(), Block.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(2.5f, 3.0f).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> POROUS_PETRIFIED_LOG					= registerBlock("porous_petrified_log", () -> new PorousBlock(BlockBehaviour.Properties.copy(PETRIFIED_LOG.get()).randomTicks().lightLevel(value -> 6)));
-    public static final RegistryObject<Block> LUSH_ARIDROCK 						= registerBlock("lush_aridrock", () -> new LushAridrockBlock(Block.Properties.of(Material.STONE, MaterialColor.COLOR_LIGHT_GREEN).requiresCorrectToolForDrops().strength(1.5f, 6.0f).sound(SoundType.STONE).randomTicks()));
     public static final RegistryObject<Block> MOSSY_GRIMESTONE						= registerBlock("mossy_grimestone", () -> new MossyGrimestoneBlock(BlockBehaviour.Properties.of(Material.STONE).strength(1.5F, 6.0F).requiresCorrectToolForDrops().randomTicks().sound(DDSoundEvents.GRIMESTONE)));
-    public static final RegistryObject<Block> COBBLED_SANDSTONE 					= registerBlock("cobbled_sandstone", () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.SAND).requiresCorrectToolForDrops().strength(1.0F)));
-    public static final RegistryObject<Block> COBBLED_SANDSTONE_SLAB				= registerBlock("cobbled_sandstone_slab", () -> new SlabBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.SAND).requiresCorrectToolForDrops().strength(1.0F)));
-    public static final RegistryObject<Block> COBBLED_SANDSTONE_VERTICAL_SLAB		= registerCompatBlock("quark", "cobbled_sandstone_vertical_slab", () -> new VerticalSlabBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.SAND).requiresCorrectToolForDrops().strength(1.0F)));
-    public static final RegistryObject<Block> COBBLED_SANDSTONE_STAIRS				= registerBlock("cobbled_sandstone_stairs", () -> new StairBlock(COBBLED_SANDSTONE.get().defaultBlockState(), BlockBehaviour.Properties.of(Material.STONE, MaterialColor.SAND).requiresCorrectToolForDrops().strength(1.0F)));
-    public static final RegistryObject<Block> COBBLED_RED_SANDSTONE					= registerBlock( "cobbled_red_sandstone", () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.COLOR_ORANGE).requiresCorrectToolForDrops().strength(1.0F)));
-    public static final RegistryObject<Block> COBBLED_RED_SANDSTONE_SLAB 			= registerBlock("cobbled_red_sandstone_slab", () -> new SlabBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.COLOR_ORANGE).requiresCorrectToolForDrops().strength(1.0F)));
-    public static final RegistryObject<Block> COBBLED_RED_SANDSTONE_VERTICAL_SLAB 	= registerCompatBlock("quark", "cobbled_red_sandstone_vertical_slab", () -> new VerticalSlabBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.COLOR_ORANGE).requiresCorrectToolForDrops().strength(1.0F)));
-    public static final RegistryObject<Block> COBBLED_RED_SANDSTONE_STAIRS 			= registerBlock("cobbled_red_sandstone_stairs", () -> new StairBlock(COBBLED_RED_SANDSTONE.get().defaultBlockState(), BlockBehaviour.Properties.of(Material.STONE, MaterialColor.COLOR_ORANGE).requiresCorrectToolForDrops().strength(1.0F)));
     public static final RegistryObject<Block> SHALE			 						= registerBlock("shale", () -> new Block(Block.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(1.5f, 6.0f).sound(SoundType.STONE)));
     public static final RegistryObject<Block> SHALE_SLAB 							= registerBlock("shale_slab", () -> new SlabBlock(Block.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(1.5f, 6.0f).sound(SoundType.STONE)));
     public static final RegistryObject<Block> SHALE_VERTICAL_SLAB					= registerCompatBlock("quark", "shale_vertical_slab", () -> new VerticalSlabBlock(BlockBehaviour.Properties.copy(SHALE_SLAB.get())));
@@ -101,8 +89,7 @@ public class DDBlocks {
     public static final RegistryObject<Block> SHALE_BRICKS_STAIRS					= registerBlock("shale_bricks_stairs", () -> new StairBlock(SHALE_BRICKS.get().defaultBlockState(), Block.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(1.5f, 6.0f).sound(SoundType.STONE)));
     public static final RegistryObject<Block> CHISELED_SHALE_BRICKS					= registerBlock("chiseled_shale_bricks", () -> new Block(Block.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(1.5f, 6.0f).sound(SoundType.STONE)));
     public static final RegistryObject<Block> CRACKED_SHALE_BRICKS					= registerBlock("cracked_shale_bricks", () -> new Block(Block.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(1.5f, 6.0f).sound(SoundType.STONE)));
-//    public static final RegistryObject<Block> SHALE_SPELEOTHEM						= registerCompatBlock("quark", "shale_speleothem", () -> new SpeleothemBlock(BlockBehaviour.Properties.copy(DDBlocks.SHALE.get()).strength(1.5F).noOcclusion()));
-    public static final RegistryObject<Block> ARIDROCK 								= registerBlock("aridrock", () -> new AridrockBlock(Block.Properties.of(Material.STONE, MaterialColor.SAND).requiresCorrectToolForDrops().strength(1.5f, 6.0f).sound(SoundType.STONE)));
+    public static final RegistryObject<Block> ARIDROCK 								= registerBlock("aridrock", () -> new RotatedPillarBlock(Block.Properties.of(Material.STONE, MaterialColor.SAND).requiresCorrectToolForDrops().strength(1.5f, 6.0f).sound(SoundType.STONE)));
     public static final RegistryObject<Block> ARIDROCK_SLAB							= registerBlock("aridrock_slab", () -> new SlabBlock(Block.Properties.of(Material.STONE, MaterialColor.SAND).requiresCorrectToolForDrops().strength(1.5f, 6.0f).sound(SoundType.STONE)));
     public static final RegistryObject<Block> ARIDROCK_VERTICAL_SLAB				= registerCompatBlock("quark", "aridrock_vertical_slab", () -> new VerticalSlabBlock(Block.Properties.copy(ARIDROCK_SLAB.get())));
     public static final RegistryObject<Block> ARIDROCK_STAIRS 						= registerBlock("aridrock_stairs", () -> new StairBlock(() -> ARIDROCK.get().defaultBlockState(), Block.Properties.of(Material.STONE, MaterialColor.SAND).requiresCorrectToolForDrops().strength(1.5f, 6.0f).sound(SoundType.STONE)));
@@ -116,7 +103,6 @@ public class DDBlocks {
     public static final RegistryObject<Block> ARIDROCK_BRICKS_STAIRS				= registerBlock("aridrock_bricks_stairs", () -> new StairBlock(ARIDROCK_BRICKS.get().defaultBlockState(), BlockBehaviour.Properties.of(Material.STONE).sound(SoundType.STONE).strength(1.5F, 6.0F).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> CHISELED_ARIDROCK_BRICKS				= registerBlock("chiseled_aridrock_bricks", () -> new Block(Block.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(1.5f, 6.0f).sound(SoundType.STONE)));
     public static final RegistryObject<Block> CRACKED_ARIDROCK_BRICKS				= registerBlock("cracked_aridrock_bricks", () -> new Block(BlockBehaviour.Properties.of(Material.STONE).sound(SoundType.STONE).strength(1.5F, 6.0F).requiresCorrectToolForDrops()));
-//    public static final RegistryObject<Block> ARIDROCK_SPELEOTHEM					= registerCompatBlock("quark", "aridrock_speleothem", () -> new SpeleothemBlock(BlockBehaviour.Properties.copy(DDBlocks.ARIDROCK.get()).strength(1.5F).noOcclusion()));
     public static final RegistryObject<Block> LIMESTONE		 						= registerBlock("limestone", () -> new Block(Block.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(1.5f, 6.0f).sound(SoundType.STONE)) {
         @Override
         public boolean canSustainPlant(BlockState state, BlockGetter world, BlockPos pos, Direction facing, IPlantable plantable) {
@@ -136,7 +122,6 @@ public class DDBlocks {
     public static final RegistryObject<Block> LIMESTONE_BRICKS_STAIRS				= registerBlock("limestone_bricks_stairs", () -> new StairBlock(() -> POLISHED_LIMESTONE.get().defaultBlockState(), Block.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(1.5f, 6.0f).sound(SoundType.STONE)));
     public static final RegistryObject<Block> CHISELED_LIMESTONE_BRICKS				= registerBlock("chiseled_limestone_bricks", () -> new Block(Block.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(1.5f, 6.0f).sound(SoundType.STONE)));
     public static final RegistryObject<Block> CRACKED_LIMESTONE_BRICKS				= registerBlock("cracked_limestone_bricks", () -> new Block(BlockBehaviour.Properties.of(Material.STONE).sound(SoundType.STONE).strength(1.5F, 6.0F).requiresCorrectToolForDrops()));
-//    public static final RegistryObject<Block> LIMESTONE_SPELEOTHEM					= registerCompatBlock("quark", "limestone_speleothem", () -> new SpeleothemBlock(BlockBehaviour.Properties.copy(DDBlocks.LIMESTONE.get()).strength(1.5F).noOcclusion()));
     public static final RegistryObject<Block> ARIDROCK_GOLD_ORE 					= registerBlock("aridrock_gold_ore", () -> new Block(Block.Properties.of(Material.STONE, MaterialColor.SAND).requiresCorrectToolForDrops().strength(3.0F, 3.0F).sound(SoundType.STONE)));
     public static final RegistryObject<Block> ARIDROCK_IRON_ORE 					= registerBlock("aridrock_iron_ore", () -> new Block(Block.Properties.of(Material.STONE, MaterialColor.SAND).requiresCorrectToolForDrops().strength(3.0F, 3.0F).sound(SoundType.STONE)));
     public static final RegistryObject<Block> ARIDROCK_COAL_ORE 					= registerBlock("aridrock_coal_ore", () -> new OreBlock(Block.Properties.of(Material.STONE, MaterialColor.SAND).requiresCorrectToolForDrops().strength(3.0F, 3.0F).sound(SoundType.STONE)));
@@ -165,22 +150,17 @@ public class DDBlocks {
     public static final RegistryObject<Block> GRIMESTONE_BRICKS_VERTICAL_SLAB 		= registerCompatBlock("quark", "grimestone_bricks_vertical_slab", () -> new VerticalSlabBlock(BlockBehaviour.Properties.copy(GRIMESTONE_BRICKS_SLAB.get())));
     public static final RegistryObject<Block> GRIMESTONE_BRICKS_STAIRS				= registerBlock("grimestone_bricks_stairs", () -> new StairBlock(GRIMESTONE_BRICKS.get().defaultBlockState(), BlockBehaviour.Properties.of(Material.STONE).sound(SoundType.STONE).strength(1.5F, 6.0F).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> CRACKED_GRIMESTONE_BRICKS				= registerBlock("cracked_grimestone_bricks", () -> new Block(BlockBehaviour.Properties.of(Material.STONE).sound(SoundType.STONE).strength(1.5F, 6.0F).requiresCorrectToolForDrops()));
-//    public static final RegistryObject<Block> GRIMESTONE_SPELEOTHEM					= registerCompatBlock("quark", "grimestone_speleothem", () -> new SpeleothemBlock(BlockBehaviour.Properties.copy(DDBlocks.GRIMESTONE.get()).strength(1.5F).noOcclusion()));
     public static final RegistryObject<Block> STONE_BRICK_PILLAR					= registerBlock("stone_brick_pillar", () -> new RotatedPillarBlock(RotatedPillarBlock.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(1.5f, 6.0f).sound(SoundType.STONE)));
     public static final RegistryObject<Block> ASH_BLOCK 							= registerBlock("ash_block", () -> new AshFullBlock(Block.Properties.of(Material.SNOW, MaterialColor.COLOR_BLACK).requiresCorrectToolForDrops().strength(0.2f).sound(SoundType.SNOW).randomTicks()));
     public static final RegistryObject<Block> SILVER_ORE 							= registerBlock("silver_ore", () -> new Block(Block.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(3.0F, 3.0F).sound(SoundType.STONE)));
-    public static final RegistryObject<Block> DETRITUS	 							= registerBlock("detritus", () -> new DetritusBlock(BlockBehaviour.Properties.copy(Blocks.DEAD_BUSH)));
-    public static final RegistryObject<Block> ALOE 									= registerCompatBlock("indev", "aloe", () -> new AloeBlock(BlockBehaviour.Properties.copy(Blocks.GRASS).randomTicks()));
     public static final RegistryObject<Block> GLOWSHROOM							= registerBlock("glowshroom", () -> new GlowshroomBlock(BlockBehaviour.Properties.of(Material.GRASS).strength(0.0F, 1.0F).sound(SoundType.SLIME_BLOCK).lightLevel((state) -> 2 + (3 * state.getValue(GlowshroomBlock.CLUSTERS_1_3))).noCollission()));
     public static final RegistryObject<Block> GLOWSPURS								= registerBlock("glowspurs", () -> new GlowspursBlock(BlockBehaviour.Properties.of(Material.GRASS).instabreak().sound(SoundType.SLIME_BLOCK).noCollission()));
     public static final RegistryObject<Block> ROOTS 								= registerBlock("roots", () -> new DecayedRootBlock(BlockBehaviour.Properties.of(Material.REPLACEABLE_PLANT, MaterialColor.WOOD).noCollission().instabreak().sound(SoundType.GRASS)));
     public static final RegistryObject<Block> LONG_ROOTS 							= registerBlock("long_roots", () -> new HangingDoublePlantBlock(BlockBehaviour.Properties.of(Material.REPLACEABLE_PLANT, MaterialColor.WOOD).noCollission().instabreak().sound(SoundType.GRASS)));
-    public static final RegistryObject<Block> DRY_SPROUTS   						= registerBlock("dry_sprouts", () -> new SproutsBlock(BlockBehaviour.Properties.copy(Blocks.DEAD_BUSH)));
+    public static final RegistryObject<Block> DRY_SPROUTS   						= registerBlock("dry_sprouts", () -> new DrySproutsBlock(BlockBehaviour.Properties.copy(Blocks.DEAD_BUSH)));
     public static final RegistryObject<Block> LUSH_SPROUTS 							= registerBlock("lush_sprouts", () -> new SproutsBlock(BlockBehaviour.Properties.copy(Blocks.GRASS)));
     public static final RegistryObject<Block> MOSSY_SPROUTS 						= registerBlock("mossy_sprouts", () -> new SproutsBlock(BlockBehaviour.Properties.copy(Blocks.GRASS)));
     public static final RegistryObject<Block> POTTED_GLOWSHROOM						= registerNoTabBlock("potted_glowshroom", () -> new FlowerPotBlock(GLOWSHROOM.get(), BlockBehaviour.Properties.of(Material.DECORATION).instabreak().noOcclusion()));
-    public static final RegistryObject<Block> POTTED_DETRITUS						= registerNoTabBlock("potted_detritus", () -> new FlowerPotBlock(DETRITUS.get(), BlockBehaviour.Properties.of(Material.DECORATION).instabreak().noOcclusion()));
-    public static final RegistryObject<Block> POTTED_ALOE							= registerNoTabBlock("potted_aloe", () -> new FlowerPotBlock(ALOE.get(), BlockBehaviour.Properties.of(Material.DECORATION).instabreak().noOcclusion()));
     public static final RegistryObject<Block> GLOWSPIRE								= registerBlock("glowspire", () -> new GlowSpireBlock(BlockBehaviour.Properties.of(Material.GRASS).noCollission().lightLevel(value -> 8).sound(SoundType.GRASS)));
     public static final RegistryObject<Block> GLOWSPIRE_PLANT						= registerNoTabBlock("glowspire_plant", () -> new GlowSpirePlantBlock(BlockBehaviour.Properties.copy(GLOWSPIRE.get()).sound(SoundType.GRASS)));
     public static final RegistryObject<Block> ASH									= registerBlock("ash", () -> new AshBlock(BlockBehaviour.Properties.of(Material.SNOW, MaterialColor.COLOR_BLACK).randomTicks().strength(0.1f).requiresCorrectToolForDrops().sound(SoundType.SNOW)));
@@ -214,6 +194,11 @@ public class DDBlocks {
     public static final RegistryObject<Block> RAW_SILVER_BLOCK						= registerBlock("raw_silver_block", () -> new Block(BlockBehaviour.Properties.of(Material.GRASS).requiresCorrectToolForDrops().strength(5.0F, 6.0F)));
     public static final RegistryObject<Block> SILVER_BLOCK							= registerBlock("silver_block", () -> new Block(BlockBehaviour.Properties.of(Material.GRASS).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL)));
 //    public static final RegistryObject<Block> REPELLENT_BLOCK 						= registerCompatBlock("indev", "repellent_block", () -> new RepellentBlock(BlockBehaviour.Properties.of(Material.DECORATION).strength(2.0F).requiresCorrectToolForDrops().sound(SoundType.NETHERITE)));
+
+    /*
+    1.18 Update
+     */
+    public static final RegistryObject<Block> ARID_DEEPSLATE                        = registerBlock("arid_deepslate", () -> new RotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE)));
 
     public static <B extends Block> RegistryObject<B> registerBlock(String name, Supplier<? extends B> blocks) {
         RegistryObject<B> block = BLOCKS.register(name, blocks);

@@ -6,6 +6,7 @@ import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.blocks.AshBlock;
 import com.naterbobber.darkerdepths.blocks.GlowshroomBlock;
 import com.naterbobber.darkerdepths.blocks.GlowspursBlock;
+import com.naterbobber.darkerdepths.world.gen.features.config.LargeGeyserConfiguration;
 import com.naterbobber.darkerdepths.world.gen.features.config.ReplaceListConfig;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Registry;
@@ -15,6 +16,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.random.SimpleWeightedRandomList;
 import net.minecraft.util.valueproviders.ConstantInt;
+import net.minecraft.util.valueproviders.UniformFloat;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
@@ -22,6 +24,7 @@ import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.ReplaceBlobsFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.LargeDripstoneConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.RandomPatchConfiguration;
@@ -51,9 +54,8 @@ public class DDConfiguredFeatures {
     public static final ConfiguredFeature<SimpleBlockConfiguration, ?> ASH_PLACEMENTS = registerConfiguredFeature("ash_placement", Feature.SIMPLE_BLOCK.configured(new SimpleBlockConfiguration(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder().add(DDBlocks.ASH.get().defaultBlockState().setValue(AshBlock.LAYERS, 1), 25).add(DDBlocks.ASH.get().defaultBlockState().setValue(AshBlock.LAYERS, 2), 15).build()))));
     public static final ConfiguredFeature<?, ?> MOLTEN_POOL = registerConfiguredFeature("molten_pool", DDFeatures.LAVA_VEGETATION_PATCH_FEATURE.get().configured(new VegetationPatchConfiguration(BlockTags.BASE_STONE_OVERWORLD.getName(), BlockStateProvider.simple(DDBlocks.ASH_BLOCK.get().defaultBlockState()), ASH_PLACEMENTS::placed, CaveSurface.FLOOR, ConstantInt.of(1), 0.0F, 5, 0.8F, UniformInt.of(4, 7), 0.3F)));
     public static final ConfiguredFeature<SimpleBlockConfiguration, ?> GRIME_VEGETATION = registerConfiguredFeature("grime_vegetation", Feature.SIMPLE_BLOCK.configured(new SimpleBlockConfiguration(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder().add(DDBlocks.GLOWSHROOM.get().defaultBlockState().setValue(GlowshroomBlock.CLUSTERS_1_3, 1), 3).add(DDBlocks.GLOWSHROOM.get().defaultBlockState().setValue(GlowshroomBlock.CLUSTERS_1_3, 2), 1).add(DDBlocks.GLOWSHROOM.get().defaultBlockState().setValue(GlowshroomBlock.CLUSTERS_1_3, 3), 1).add(DDBlocks.GLOWSPURS.get().defaultBlockState().setValue(GlowspursBlock.FACING, Direction.NORTH), 1).add(DDBlocks.GLOWSPURS.get().defaultBlockState().setValue(GlowspursBlock.FACING, Direction.EAST), 1).add(DDBlocks.GLOWSPURS.get().defaultBlockState().setValue(GlowspursBlock.FACING, Direction.SOUTH), 1).add(DDBlocks.GLOWSPURS.get().defaultBlockState().setValue(GlowspursBlock.FACING, Direction.WEST), 1).add(DDBlocks.MOSSY_SPROUTS.get().defaultBlockState(), 30).add(Blocks.AIR.defaultBlockState(), 100)))));
-    public static final ConfiguredFeature<VegetationPatchConfiguration, ?> GRIME_PATCH = registerConfiguredFeature("grime_patch", Feature.VEGETATION_PATCH.configured(new VegetationPatchConfiguration(BlockTags.MOSS_REPLACEABLE.getName(), BlockStateProvider.simple(DDBlocks.MOSSY_GRIMESTONE.get()), () -> {
-        return GRIME_VEGETATION.placed();
-    }, CaveSurface.FLOOR, ConstantInt.of(1), 0.0F, 5, 0.8F, UniformInt.of(4, 7), 0.3F)));
+    public static final ConfiguredFeature<SimpleBlockConfiguration, ?> ARID_VEGETATION = registerConfiguredFeature("arid_vegetation", Feature.SIMPLE_BLOCK.configured(new SimpleBlockConfiguration(BlockStateProvider.simple(DDBlocks.DRY_SPROUTS.get()))));
+    public static final ConfiguredFeature<VegetationPatchConfiguration, ?> GRIME_PATCH = registerConfiguredFeature("grime_patch", Feature.VEGETATION_PATCH.configured(new VegetationPatchConfiguration(BlockTags.LUSH_GROUND_REPLACEABLE.getName(), BlockStateProvider.simple(DDBlocks.MOSSY_GRIMESTONE.get()), GRIME_VEGETATION::placed, CaveSurface.FLOOR, ConstantInt.of(1), 0.0F, 5, 0.8F, UniformInt.of(4, 7), 0.3F)));
     public static final ConfiguredFeature<ReplaceListConfig, ?> SHALE_PLACEMENT = registerConfiguredFeature("shale_placement", DDFeatures.REPLACE_LIST.get().configured(new ReplaceListConfig(OVERWORLD_REPLACEABLES, DDBlocks.SHALE.get().defaultBlockState(), UniformInt.of(6, 7))));
     public static final ConfiguredFeature<ReplaceListConfig, ?> ARIDROCK_PLACEMENT = registerConfiguredFeature("aridrock_placement", DDFeatures.REPLACE_LIST.get().configured(new ReplaceListConfig(OVERWORLD_REPLACEABLES, DDBlocks.ARIDROCK.get().defaultBlockState(), UniformInt.of(6, 7))));
     public static final ConfiguredFeature<ReplaceListConfig, ?> LIMESTONE_PLACEMENT = registerConfiguredFeature("limestone_placement", DDFeatures.REPLACE_LIST.get().configured(new ReplaceListConfig(OVERWORLD_REPLACEABLES, DDBlocks.LIMESTONE.get().defaultBlockState(), UniformInt.of(6, 7))));
@@ -62,6 +64,8 @@ public class DDConfiguredFeatures {
     public static final ConfiguredFeature<?, ?> SOUL_SOIL = registerConfiguredFeature("soul_soil", DDFeatures.SOUL_SOIL.get().configured(FeatureConfiguration.NONE));
     public static final ConfiguredFeature<OreConfiguration, ?> MAGMA_ORE = registerConfiguredFeature("magma_ore", Feature.ORE.configured(new OreConfiguration(new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES), Blocks.MAGMA_BLOCK.defaultBlockState(), 15)));
     public static final ConfiguredFeature<OreConfiguration, ?> SILVER_ORE = registerConfiguredFeature("silver_ore", Feature.ORE.configured(new OreConfiguration(new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES), DDBlocks.SILVER_ORE.get().defaultBlockState(), 8)));
+    public static final ConfiguredFeature<?, ?> ARID_SURFACE = registerConfiguredFeature("arid_surface", DDFeatures.CORRESPONDENT.get().configured(new VegetationPatchConfiguration(BlockTags.LUSH_GROUND_REPLACEABLE.getName(), BlockStateProvider.simple(DDBlocks.ARIDROCK.get()), ARID_VEGETATION::placed, CaveSurface.FLOOR, ConstantInt.of(1), 0.0F, 5, 0.8F, UniformInt.of(4, 7), 0.3F)));
+    public static final ConfiguredFeature<?, ?> ARID_BOULDER = registerConfiguredFeature("arid_boulder", DDFeatures.ARID_BOULDER.get().configured(FeatureConfiguration.NONE));
 
     public static <C extends FeatureConfiguration, F extends Feature<C>, CF extends ConfiguredFeature<C, F>> CF registerConfiguredFeature(String key, CF configuredFeature) {
         ResourceLocation ID = new ResourceLocation(DarkerDepths.MODID, key);

@@ -54,20 +54,16 @@ public class ClientEvents {
 
     @SubscribeEvent
     public static void onClientSetup(FMLClientSetupEvent event) {
-        ItemBlockRenderTypes.setRenderLayer(DDBlocks.ALOE.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(DDBlocks.CELESTINE_CRYSTAL.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(DDBlocks.DRY_SPROUTS.get(), RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(DDBlocks.DETRITUS.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(DDBlocks.ROPE.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(DDBlocks.ROOTS.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(DDBlocks.LONG_ROOTS.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(DDBlocks.LUSH_SPROUTS.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(DDBlocks.MOSSY_SPROUTS.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(DDBlocks.GLOWSPURS.get(), RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(DDBlocks.POTTED_DETRITUS.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(DDBlocks.GLOWSPIRE.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(DDBlocks.GLOWSPIRE_PLANT.get(), RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(DDBlocks.POTTED_ALOE.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(DDBlocks.PETRIFIED_DOOR.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(DDBlocks.PETRIFIED_TRAPDOOR.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(DDBlocks.PETRIFIED_POST.get(), RenderType.cutout());
