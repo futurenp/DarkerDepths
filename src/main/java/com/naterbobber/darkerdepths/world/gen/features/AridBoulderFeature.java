@@ -7,6 +7,7 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.levelgen.feature.DripstoneUtils;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
@@ -24,7 +25,6 @@ public class AridBoulderFeature extends Feature<NoneFeatureConfiguration> {
         BlockPos blockpos = context.origin();
         WorldGenLevel world = context.level();
         Random random = context.random();
-
         if (!world.isEmptyBlock(blockpos) || !world.getBlockState(blockpos.below()).is(BlockTags.BASE_STONE_OVERWORLD)) {
             return false;
         } else {
@@ -34,11 +34,25 @@ public class AridBoulderFeature extends Feature<NoneFeatureConfiguration> {
             for (int x = -radius; x <= radius; x++) {
                 for (int z = -radius; z <= radius; z++) {
                     for (int y = 0; y <= height; y++) {
-                        BlockPos blockPos = new BlockPos(blockpos.getX() + x, blockpos.getY() + y, blockpos.getZ() + z);
+                        BlockPos blockPos = new BlockPos(blockpos.getX() + x, blockpos.getY() - 3 + y, blockpos.getZ() + z);
                         if (y > 1) {
                             if (y * (x * x) + ((y * y) / 4) + y * (z * z) <= radius * radius) {
-                                Block block = y > height / 2 ? DDBlocks.ARIDROCK.get() : DDBlocks.LIMESTONE.get();
-                                world.setBlock(blockPos, block.defaultBlockState(), 2);
+                                Block block = y % 4 == 0 ? DDBlocks.ARIDROCK.get() : DDBlocks.LIMESTONE.get();
+                                if (!world.isStateAtPosition(blockPos, DripstoneUtils::isEmptyOrWaterOrLava)) {
+                                    flag = false;
+                                } else {
+                                    for (int i = 0; i < 4; i++) {
+                                        if (world.isEmptyBlock(blockPos.below(i))) {
+                                            blockPos = blockPos.below();
+                                        }
+                                    }
+                                    if (world.isEmptyBlock(blockPos.below(5))) {
+                                        flag = false;
+                                    } else {
+                                        world.setBlock(blockPos, block.defaultBlockState(), 2);
+                                        flag = true;
+                                    }
+                                }
                             }
                         }
                     }

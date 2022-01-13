@@ -5,8 +5,11 @@
     "minecraft:granite",
     "minecraft:diorite",
     "minecraft:andesite",
+    "minecraft:tuff",
+    "minecraft:deepslate",
     "darkerdepths:shale",
     "darkerdepths:aridrock",
+    "darkerdepths:arid_deepslate",
     "darkerdepths:limestone",
     "darkerdepths:grimestone"
   ]

@@ -36,7 +36,7 @@ public class GlowshroomCapItem extends ArmorItem implements Vanishable {
         player.addEffect(new MobEffectInstance(MobEffect.byId(3), 1, 0, false, false, false));
     }
 
-    private static class GlowshroomArmorMaterial implements ArmorMaterial{
+    private static class GlowshroomArmorMaterial implements ArmorMaterial {
 
         @Override
         public int getDurabilityForSlot(EquipmentSlot slot) {
@@ -44,7 +44,7 @@ public class GlowshroomCapItem extends ArmorItem implements Vanishable {
         }
 
         @Override
-        public int getDefenseForSlot(EquipmentSlot p_40411_) {
+        public int getDefenseForSlot(EquipmentSlot slot) {
             return 1;
         }
 
