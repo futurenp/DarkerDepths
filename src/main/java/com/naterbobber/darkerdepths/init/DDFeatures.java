@@ -10,6 +10,7 @@ import com.naterbobber.darkerdepths.world.gen.features.LavaVegetationPatchFeatur
 import com.naterbobber.darkerdepths.world.gen.features.PetrifiedBranchFeature;
 import com.naterbobber.darkerdepths.world.gen.features.ReplaceListFeature;
 import com.naterbobber.darkerdepths.world.gen.features.SoulSoilFeature;
+import com.naterbobber.darkerdepths.world.gen.features.config.PetrifiedBranchConfig;
 import com.naterbobber.darkerdepths.world.gen.features.config.ReplaceListConfig;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
@@ -28,7 +29,7 @@ public class DDFeatures {
     public static final RegistryObject<Feature<NoneFeatureConfiguration>> GEYSER = FEATURES.register("geyser", () -> new GeyserFeature(NoneFeatureConfiguration.CODEC));
     public static final RegistryObject<Feature<NoneFeatureConfiguration>> GEMSTONE = FEATURES.register("gemstone", () -> new GemstoneFeature(NoneFeatureConfiguration.CODEC));
     public static final RegistryObject<Feature<NoneFeatureConfiguration>> HUGE_GLOWSHROOM = FEATURES.register("huge_glowshroom", () -> new HugeGlowshroomFeature(NoneFeatureConfiguration.CODEC));
-    public static final RegistryObject<Feature<NoneFeatureConfiguration>> PETRIFIED_BRANCH = FEATURES.register("petrified_branch", () -> new PetrifiedBranchFeature(NoneFeatureConfiguration.CODEC));
+    public static final RegistryObject<Feature<PetrifiedBranchConfig>> PETRIFIED_BRANCH = FEATURES.register("petrified_branch", () -> new PetrifiedBranchFeature(PetrifiedBranchConfig.CODEC));
     public static final RegistryObject<Feature<VegetationPatchConfiguration>> LAVA_VEGETATION_PATCH_FEATURE = FEATURES.register("lava_vegetation_patch", () -> new LavaVegetationPatchFeature(VegetationPatchConfiguration.CODEC));
     public static final RegistryObject<Feature<NoneFeatureConfiguration>> SOUL_SOIL = FEATURES.register("soul_soil", () -> new SoulSoilFeature(NoneFeatureConfiguration.CODEC));
     public static final RegistryObject<Feature<VegetationPatchConfiguration>> CORRESPONDENT = FEATURES.register("correspondent_layer", () -> new CorrespondentLayerFeature(VegetationPatchConfiguration.CODEC));
