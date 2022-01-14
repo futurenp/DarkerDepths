@@ -43,6 +43,7 @@ public class WorldEvents {
         }
 
         if (biome == DDBiomes.GLOWSHROOM_FOREST.get()) {
+            builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, DDPlacedFeatures.GLIMMERING_VINES);
             builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, DDPlacedFeatures.GRIMESTONE_PLACEMENT);
             builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, DDPlacedFeatures.HUGE_GLOWSHROOM);
             builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, DDPlacedFeatures.GRIME_VEGETATION);

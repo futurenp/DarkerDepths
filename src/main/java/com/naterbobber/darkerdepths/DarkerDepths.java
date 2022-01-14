@@ -10,6 +10,7 @@ import com.naterbobber.darkerdepths.init.DDFeatures;
 import com.naterbobber.darkerdepths.init.DDItems;
 import com.naterbobber.darkerdepths.init.DDParticleTypes;
 import com.naterbobber.darkerdepths.init.DDSoundEvents;
+import com.naterbobber.darkerdepths.init.DDVanillaIntegration;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
@@ -51,6 +52,7 @@ public class DarkerDepths {
     }
 
     private void setup(final FMLCommonSetupEvent event) {
+//        DDVanillaIntegration.init();
     }
 
 }

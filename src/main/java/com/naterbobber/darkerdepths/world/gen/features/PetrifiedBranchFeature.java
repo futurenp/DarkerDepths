@@ -8,6 +8,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.Mth;
 import net.minecraft.util.valueproviders.ConstantInt;
+import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.AmethystClusterBlock;
@@ -34,7 +35,7 @@ public class PetrifiedBranchFeature extends Feature<NoneFeatureConfiguration> {
             return false;
         } else {
             BlockPos.MutableBlockPos mutable = new BlockPos.MutableBlockPos();
-            for (int i = 0; i < Mth.nextInt(random, 2, 4); i++) {
+            for (int i = 0; i < UniformInt.of(10, 20).sample(random); i++) {
                 mutable.setWithOffset(pos, random.nextInt(2) - random.nextInt(2), 0, random.nextInt(2) - random.nextInt(2)).move(Direction.DOWN, i);
                 spawnLogs(world, mutable, random);
             }
@@ -45,8 +46,12 @@ public class PetrifiedBranchFeature extends Feature<NoneFeatureConfiguration> {
     private void spawnLogs(LevelAccessor world, BlockPos pos, Random random) {
         if (world.isEmptyBlock(pos)) {
             this.setBlock(world, pos, DDBlocks.PETRIFIED_LOG.get().defaultBlockState());
+            if (world.isEmptyBlock(pos.below()) && world.isEmptyBlock(pos.below(2))) {
+                HangingDoublePlantBlock root = (HangingDoublePlantBlock) DDBlocks.LONG_ROOTS.get();
+                root.placeAt(world, pos.below());
+            }
         }
-        if (random.nextInt(25) == 0) {
+        if (random.nextInt(10) == 0) {
             if (world.isEmptyBlock(pos)) {
                 this.setBlock(world, pos, DDBlocks.POROUS_PETRIFIED_LOG.get().defaultBlockState());
                 if (random.nextInt(5) == 0) {
@@ -57,10 +62,6 @@ public class PetrifiedBranchFeature extends Feature<NoneFeatureConfiguration> {
                     }
                 }
             }
-        }
-        if (world.getBlockState(pos.above()).isFaceSturdy(world, pos.below(), Direction.UP) && (world.isEmptyBlock(pos.below()) && world.isEmptyBlock(pos.below(2)))) {
-            this.setBlock(world, pos.below(), DDBlocks.LONG_ROOTS.get().defaultBlockState());
-            this.setBlock(world, pos.below(2), DDBlocks.LONG_ROOTS.get().defaultBlockState().setValue(HangingDoublePlantBlock.HALF, DoubleBlockHalf.LOWER));
         }
     }
 }

@@ -62,9 +62,9 @@ public class HangingDoublePlantBlock extends DecayedRootBlock {
         }
     }
 
-    public void placeAt(LevelAccessor worldIn, BlockPos pos, int flags) {
-        worldIn.setBlock(pos, this.defaultBlockState().setValue(HALF, DoubleBlockHalf.UPPER), flags);
-        worldIn.setBlock(pos.below(), this.defaultBlockState().setValue(HALF, DoubleBlockHalf.LOWER), flags);
+    public void placeAt(LevelAccessor worldIn, BlockPos pos) {
+        worldIn.setBlock(pos, this.defaultBlockState().setValue(HALF, DoubleBlockHalf.UPPER), 2);
+        worldIn.setBlock(pos.below(), this.defaultBlockState().setValue(HALF, DoubleBlockHalf.LOWER), 2);
     }
 
     @Override
