@@ -14,24 +14,25 @@ import org.spongepowered.asm.mixin.Mixin;
 import java.util.Random;
 
 @Mixin(RotatedPillarBlock.class)
-public class LogBlockMixin extends Block {
+public class RotatedPillarBlockMixin extends Block {
 
-    public LogBlockMixin(Properties properties) {
+    public RotatedPillarBlockMixin(Properties properties) {
         super(properties);
     }
 
     @Override
-    public void onPlace(BlockState state, Level world, BlockPos pos, BlockState oldState, boolean isMoving) {
-        super.onPlace(state, world, pos, oldState, isMoving);
-        world.scheduleTick(pos, this, 40);
+    public void onPlace(BlockState p_60566_, Level p_60567_, BlockPos p_60568_, BlockState p_60569_, boolean p_60570_) {
+        super.onPlace(p_60566_, p_60567_, p_60568_, p_60569_, p_60570_);
+        p_60567_.scheduleTick(p_60568_, this, 40);
     }
 
     @Override
     public void tick(BlockState state, ServerLevel world, BlockPos pos, Random random) {
         super.tick(state, world, pos, random);
-        Block block = DDBlocks.PETRIFIED_LOG.get();
-        if ((world.getBlockState(pos.below()).is(Blocks.SOUL_FIRE) || world.getBlockState(pos.below()).is(Blocks.SOUL_CAMPFIRE)) && world.getBlockState(pos).is(BlockTags.LOGS_THAT_BURN)) {
-            world.setBlock(pos, block.defaultBlockState().setValue(RotatedPillarBlock.AXIS, state.getValue(RotatedPillarBlock.AXIS)), 2);
+        BlockState blockState = world.getBlockState(pos);
+        BlockState belowState = world.getBlockState(pos.below());
+        if ((belowState.is(Blocks.SOUL_FIRE) || belowState.is(Blocks.SOUL_CAMPFIRE)) && blockState.is(BlockTags.LOGS_THAT_BURN)) {
+            world.setBlock(pos, DDBlocks.PETRIFIED_LOG.get().defaultBlockState().setValue(RotatedPillarBlock.AXIS, blockState.getValue(RotatedPillarBlock.AXIS)), 2);
             world.levelEvent(1501, pos, 0);
         }
     }

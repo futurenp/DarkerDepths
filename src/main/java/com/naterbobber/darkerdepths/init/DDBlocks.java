@@ -199,6 +199,7 @@ public class DDBlocks {
     1.18 Update
      */
     public static final RegistryObject<Block> ARID_DEEPSLATE                        = registerBlock("arid_deepslate", () -> new RotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE)));
+    public static final RegistryObject<Block> GRIME_DEEPSLATE                       = registerBlock("grime_deepslate", () -> new RotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE)));
 
     public static <B extends Block> RegistryObject<B> registerBlock(String name, Supplier<? extends B> blocks) {
         RegistryObject<B> block = BLOCKS.register(name, blocks);

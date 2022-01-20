@@ -44,13 +44,10 @@
     "block.darkerdepths.silver_ore": "銀鉱石",
     "block.darkerdepths.ash_block": "灰ブロック",
     "block.darkerdepths.ash": "灰",
-    "item.darkerdepths.elytrine_crystal": "エリトリンクリスタル",
     "item.darkerdepths.silver_ingot": "銀インゴット",
     "block.darkerdepths.rope": "ロープ",
     "item.darkerdepths.spawner_fragment": "スポナーの破片",
     "block.darkerdepths.crystal_melon": "クリスタルメロン",
-    "block.darkerdepths.celestine_crystal": "セレスティンクリスタル",
-    "block.darkerdepths.celestine_crystal_block": "セレスティンクリスタルブロック",
     "block.darkerdepths.redstone_cluster": "レッドストーンの塊",
     "block.darkerdepths.redstone_cluster_block": "レッドストーンの塊ブロック",
     "block.darkerdepths.amber": "琥珀",
@@ -156,6 +153,5 @@
     "item.darkerdepths.glowshroom_cap": "グロウシュルームの帽子",
     "biome.darkerdepths.molten_cavern": "融解大洞窟",
     "biome.darkerdepths.sandy_catacombs": "砂地のカタコンベ",
-    "biome.darkerdepths.crystal_cave": "クリスタル洞窟",
     "biome.darkerdepths.glowshroom_forest": "グロウシュルーム大洞窟"
 }

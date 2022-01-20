@@ -1,6 +1,7 @@
 package com.naterbobber.darkerdepths.events;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
+import com.naterbobber.darkerdepths.client.DynamicLightHandler;
 import com.naterbobber.darkerdepths.client.models.GlowshroomMonsterModel;
 import com.naterbobber.darkerdepths.client.particle.DrippingParticle;
 import com.naterbobber.darkerdepths.client.renderers.GlowshroomMonsterRenderer;
@@ -22,6 +23,8 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.ParticleFactoryRegisterEvent;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -69,6 +72,9 @@ public class ClientEvents {
         ItemBlockRenderTypes.setRenderLayer(DDBlocks.PETRIFIED_POST.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(DDBlocks.STRIPPED_PETRIFIED_POST.get(), RenderType.cutout());
 
+        MinecraftForge.EVENT_BUS.addListener((LivingEvent.LivingUpdateEvent livingEvent) -> {
+            DynamicLightHandler.tick(livingEvent.getEntityLiving());
+        });
         event.enqueueWork(DDWoodType::setupWoodTypes);
     }
 

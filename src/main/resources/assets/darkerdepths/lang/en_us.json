@@ -44,13 +44,10 @@
   "block.darkerdepths.silver_ore": "Silver Ore",
   "block.darkerdepths.ash_block": "Ash Block",
   "block.darkerdepths.ash": "Ash",
-  "item.darkerdepths.elytrine_crystal": "Elytrine Crystal",
   "item.darkerdepths.silver_ingot": "Silver Ingot",
   "block.darkerdepths.rope": "Rope",
   "item.darkerdepths.spawner_fragment": "Spawner Fragment",
   "block.darkerdepths.crystal_melon": "Crystal Melon",
-  "block.darkerdepths.celestine_crystal": "Celestine Crystal",
-  "block.darkerdepths.celestine_crystal_block": "Celestine Crystal Block",
   "block.darkerdepths.redstone_cluster": "Redstone Cluster",
   "block.darkerdepths.redstone_cluster_block": "Redstone Cluster Block",
   "block.darkerdepths.amber": "Amber",
@@ -158,6 +155,5 @@
   "item.darkerdepths.glowshroom_cap": "Glowshroom Cap",
   "biome.darkerdepths.molten_cavern": "Molten Cavern Biome",
   "biome.darkerdepths.sandy_catacombs": "Sandy Catacombs Biome",
-  "biome.darkerdepths.crystal_cave": "Crystal Cave Biome",
   "biome.darkerdepths.glowshroom_forest": "Glowshroom Forest Biome"
 }
