@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column_horizontal",
+  "textures": {
+    "end": "darkerdepths:block/grime_deepslate_top",
+    "side": "darkerdepths:block/grime_deepslate"
+  }
+}

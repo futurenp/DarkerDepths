@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "darkerdepths:block/grime_deepslate_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "darkerdepths:block/grime_deepslate"
+    },
+    "axis=z": {
+      "model": "darkerdepths:block/grime_deepslate_horizontal",
+      "x": 90
+    }
+  }
+}
