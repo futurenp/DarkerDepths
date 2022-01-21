@@ -1,6 +1,7 @@
 package com.naterbobber.darkerdepths.world.gen.features;
 
 import com.mojang.serialization.Codec;
+import com.naterbobber.darkerdepths.init.DDConfiguredFeatures;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.WorldGenLevel;
@@ -31,7 +32,7 @@ public class LavaVegetationPatchFeature extends VegetationPatchFeature {
         Iterator<BlockPos> posIterator = landGroundPatch.iterator();
 
         BlockPos positions;
-        while(posIterator.hasNext()) {
+        while (posIterator.hasNext()) {
             positions = posIterator.next();
             if (!isExposed(world, positions, mutable)) {
                 lavaGroundPatch.add(positions);
@@ -40,7 +41,7 @@ public class LavaVegetationPatchFeature extends VegetationPatchFeature {
 
         posIterator = lavaGroundPatch.iterator();
 
-        while(posIterator.hasNext()) {
+        while (posIterator.hasNext()) {
             positions = posIterator.next();
             world.setBlock(positions, Blocks.LAVA.defaultBlockState(), 2);
         }
@@ -59,15 +60,6 @@ public class LavaVegetationPatchFeature extends VegetationPatchFeature {
 
     @Override
     protected boolean placeVegetation(WorldGenLevel world, VegetationPatchConfiguration config, ChunkGenerator generator, Random random, BlockPos pos) {
-        if (super.placeVegetation(world, config, generator, random, pos.below())) {
-            BlockState state = world.getBlockState(pos);
-            if (state.hasProperty(BlockStateProperties.WATERLOGGED) && !state.getValue(BlockStateProperties.WATERLOGGED)) {
-                world.setBlock(pos, state.setValue(BlockStateProperties.WATERLOGGED, true), 2);
-            }
-
-            return true;
-        } else {
-            return false;
-        }
+        return random.nextFloat() < 0.25F && super.placeVegetation(world, config, generator, random, pos.below(2));
     }
 }

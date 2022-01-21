@@ -16,6 +16,7 @@ import com.naterbobber.darkerdepths.blocks.GlowshroomBlock;
 import com.naterbobber.darkerdepths.blocks.GlowspursBlock;
 import com.naterbobber.darkerdepths.blocks.GrimestoneBlock;
 import com.naterbobber.darkerdepths.blocks.HangingDoublePlantBlock;
+import com.naterbobber.darkerdepths.blocks.LayeredDeepslateBlock;
 import com.naterbobber.darkerdepths.blocks.MossyGrimestoneBlock;
 import com.naterbobber.darkerdepths.blocks.PorousBlock;
 import com.naterbobber.darkerdepths.blocks.RopeBlock;
@@ -181,8 +182,6 @@ public class DDBlocks {
     public static final RegistryObject<Block> AMBER 								= registerBlock("amber", () -> new AmethystClusterBlock(4, 2, BlockBehaviour.Properties.of(DDMaterial.AMBER).requiresCorrectToolForDrops().strength(1.0f).sound(SoundType.GLASS).lightLevel(value -> 7)));
     public static final RegistryObject<Block> AMBER_BLOCK 							= registerBlock("amber_block", () -> new Block(BlockBehaviour.Properties.of(DDMaterial.AMBER).requiresCorrectToolForDrops().strength(1.0f).sound(SoundType.GLASS).lightLevel(value -> 7)));
     public static final RegistryObject<Block> CRYSTAL_MELON 						= registerBlock("crystal_melon", () -> new CrystalMelon(BlockBehaviour.Properties.of(Material.STONE).strength(0.3F, 0.6F).sound(SoundType.GLASS).lightLevel(value -> 10)));
-    public static final RegistryObject<Block> CELESTINE_CRYSTAL 					= registerBlock("celestine_crystal", () -> new AmethystClusterBlock(14, 2, BlockBehaviour.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(1.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).lightLevel(value -> 10)));
-    public static final RegistryObject<Block> CELESTINE_CRYSTAL_BLOCK				= registerBlock("celestine_crystal_block", () -> new Block(Block.Properties.of(Material.STONE).strength(1.0f, 1.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).lightLevel(value -> 10)));
     public static final RegistryObject<Block> PETRIFIED_SIGN						= registerNoTabBlock("petrified_sign", () -> new DDStandingSignBlock(BlockBehaviour.Properties.of(Material.STONE).noCollission().strength(1.0F).requiresCorrectToolForDrops().sound(SoundType.WOOD), DDWoodType.PETRIFIED));
     public static final RegistryObject<Block> PETRIFIED_WALL_SIGN					= registerNoTabBlock("petrified_wall_sign", () -> new DDWallSignBlock(BlockBehaviour.Properties.of(Material.STONE).noCollission().strength(1.0F).requiresCorrectToolForDrops().sound(SoundType.WOOD), DDWoodType.PETRIFIED));
     public static final RegistryObject<Block> GEYSER								= registerBlock("geyser", () -> new GeyserBlock(BlockBehaviour.Properties.of(Material.STONE).strength(1.5F, 6.0F).requiresCorrectToolForDrops().randomTicks()));
@@ -198,8 +197,8 @@ public class DDBlocks {
     /*
     1.18 Update
      */
-    public static final RegistryObject<Block> ARID_DEEPSLATE                        = registerBlock("arid_deepslate", () -> new RotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE)));
-    public static final RegistryObject<Block> GRIME_DEEPSLATE                       = registerBlock("grime_deepslate", () -> new RotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE)));
+    public static final RegistryObject<Block> ARID_DEEPSLATE                        = registerBlock("arid_deepslate", () -> new LayeredDeepslateBlock(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE).randomTicks()));
+    public static final RegistryObject<Block> GRIME_DEEPSLATE                       = registerBlock("grime_deepslate", () -> new LayeredDeepslateBlock(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE).randomTicks()));
 
     public static <B extends Block> RegistryObject<B> registerBlock(String name, Supplier<? extends B> blocks) {
         RegistryObject<B> block = BLOCKS.register(name, blocks);

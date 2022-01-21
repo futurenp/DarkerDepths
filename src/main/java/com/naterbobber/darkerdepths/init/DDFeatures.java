@@ -8,6 +8,7 @@ import com.naterbobber.darkerdepths.world.gen.features.GeyserFeature;
 import com.naterbobber.darkerdepths.world.gen.features.HugeGlowshroomFeature;
 import com.naterbobber.darkerdepths.world.gen.features.LavaVegetationPatchFeature;
 import com.naterbobber.darkerdepths.world.gen.features.PetrifiedBranchFeature;
+import com.naterbobber.darkerdepths.world.gen.features.RandomSpreadFeature;
 import com.naterbobber.darkerdepths.world.gen.features.ReplaceListFeature;
 import com.naterbobber.darkerdepths.world.gen.features.SoulSoilFeature;
 import com.naterbobber.darkerdepths.world.gen.features.config.CorrespondentLayersConfig;
@@ -27,7 +28,7 @@ public class DDFeatures {
     public static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(ForgeRegistries.FEATURES, DarkerDepths.MODID);
 
     public static final RegistryObject<Feature<ReplaceListConfig>> REPLACE_LIST = FEATURES.register("replace_list", () -> new ReplaceListFeature(ReplaceListConfig.CODEC));
-    public static final RegistryObject<Feature<NoneFeatureConfiguration>> GEYSER = FEATURES.register("geyser", () -> new GeyserFeature(NoneFeatureConfiguration.CODEC));
+    public static final RegistryObject<Feature<NoneFeatureConfiguration>> RANDOM_GLOWSHROOM_PATCHES = FEATURES.register("random_glowshroom_patches", () -> new RandomSpreadFeature(NoneFeatureConfiguration.CODEC));
     public static final RegistryObject<Feature<NoneFeatureConfiguration>> GEMSTONE = FEATURES.register("gemstone", () -> new GemstoneFeature(NoneFeatureConfiguration.CODEC));
     public static final RegistryObject<Feature<NoneFeatureConfiguration>> HUGE_GLOWSHROOM = FEATURES.register("huge_glowshroom", () -> new HugeGlowshroomFeature(NoneFeatureConfiguration.CODEC));
     public static final RegistryObject<Feature<PetrifiedBranchConfig>> PETRIFIED_BRANCH = FEATURES.register("petrified_branch", () -> new PetrifiedBranchFeature(PetrifiedBranchConfig.CODEC));

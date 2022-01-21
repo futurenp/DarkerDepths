@@ -37,7 +37,7 @@ import java.util.Random;
 
 public class GlowshroomBlock extends Block implements BonemealableBlock, SimpleWaterloggedBlock {
     public static final IntegerProperty CLUSTERS_1_3 = IntegerProperty.create("clusters", 1, 3);
-    private static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
+    public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     protected static final VoxelShape SHAPE_1  = Block.box(5.0D, 0.0D, 5.0D, 11.0D, 9.0D, 11.0D);
     protected static final VoxelShape SHAPE_2  = Block.box(3.0D, 0.0D, 3.0D, 13.0D, 9.0D, 13.0D);
     protected static final VoxelShape SHAPE_3  = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 9.0D, 14.0D);

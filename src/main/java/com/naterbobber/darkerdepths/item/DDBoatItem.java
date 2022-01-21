@@ -1,10 +1,8 @@
 package com.naterbobber.darkerdepths.item;
 
-import com.mojang.math.Vector3d;
 import com.naterbobber.darkerdepths.entities.PetrifiedBoatEntity;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntitySelector;
@@ -19,6 +17,7 @@ import net.minecraft.world.phys.Vec3;
 
 import java.util.List;
 import java.util.function.Predicate;
+
 public class DDBoatItem extends Item {
     private static final Predicate<Entity> NON_COLLIDABLE_ENTITIES = EntitySelector.NO_SPECTATORS.and(Entity::canBeCollidedWith);
     private final PetrifiedBoatEntity.BoatType type;
