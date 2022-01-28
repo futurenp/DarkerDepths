@@ -8,6 +8,7 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.Tag;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.ChunkGenerator;
@@ -111,7 +112,12 @@ public class CorrespondentLayersFeature extends Feature<CorrespondentLayersConfi
                 }
 
                 world.setBlock(pos, blockstate, 2);
-                world.setBlock(pos.below(), belowState, 2);
+                if (world.isStateAtPosition(pos.below(), DripstoneUtils::isEmptyOrWaterOrLava)) {
+                    world.setBlock(pos.below(), belowState, 2);
+                }
+                if (world.isStateAtPosition(pos.below(2), DripstoneUtils::isEmptyOrWaterOrLava)) {
+                    world.setBlock(pos.below(2), Blocks.DEEPSLATE.defaultBlockState(), 2);
+                }
                 pos.move(config.surface.getDirection());
             }
         }
