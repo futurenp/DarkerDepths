@@ -53,7 +53,7 @@ public class AridTombStructure extends StructureFeature<JigsawConfiguration> {
         JigsawConfiguration newConfig = new JigsawConfiguration(
                 () -> context.registryAccess().ownedRegistryOrThrow(Registry.TEMPLATE_POOL_REGISTRY)
                         //Directs to the json file
-                        .get(new ResourceLocation(DarkerDepths.MODID, "arid_tomb/arid_tombs_room")),
+                        .get(new ResourceLocation(DarkerDepths.MODID, "arid_catacomb/arid_catacombs")),
                 10
         );
 
