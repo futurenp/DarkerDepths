@@ -101,18 +101,6 @@ public class DarkerDepths {
 
             associateBiomeToConfiguredStructure(STStructureToMultiMap, DDConfiguredStructures.CONFIGURED_ARID_CATACOMBS, ResourceKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(DarkerDepths.MODID, "sandy_catacombs")));
 
-//            ImmutableSet<ResourceKey<Biome>> overworldBiomes = ImmutableSet.<ResourceKey<Biome>>builder()
-//                    .add(Biomes.FOREST)
-//                    .add(Biomes.MEADOW)
-//                    .add(Biomes.PLAINS)
-//                    .add(Biomes.SAVANNA)
-//                    .add(Biomes.SNOWY_PLAINS)
-//                    .add(Biomes.SWAMP)
-//                    .add(Biomes.SUNFLOWER_PLAINS)
-//                    .add(Biomes.TAIGA)
-//                    .build();
-//            overworldBiomes.forEach(biomeKey -> associateBiomeToConfiguredStructure(STStructureToMultiMap, STConfiguredStructures.CONFIGURED_RUN_DOWN_HOUSE, biomeKey));
-
             ImmutableMap.Builder<StructureFeature<?>, ImmutableMultimap<ConfiguredStructureFeature<?, ?>, ResourceKey<Biome>>> tempStructureToMultiMap = ImmutableMap.builder();
             worldStructureConfig.configuredStructures.entrySet().stream().filter(entry -> !STStructureToMultiMap.containsKey(entry.getKey())).forEach(tempStructureToMultiMap::put);
 

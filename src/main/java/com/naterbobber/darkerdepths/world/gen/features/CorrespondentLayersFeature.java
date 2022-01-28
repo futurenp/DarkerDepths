@@ -112,10 +112,10 @@ public class CorrespondentLayersFeature extends Feature<CorrespondentLayersConfi
                 }
 
                 world.setBlock(pos, blockstate, 2);
-                if (world.isStateAtPosition(pos.below(), DripstoneUtils::isEmptyOrWaterOrLava)) {
+                if (world.isStateAtPosition(pos.below(), DripstoneUtils::isEmptyOrWaterOrLava) || world.getBlockState(pos.below()).is(BlockTags.BASE_STONE_OVERWORLD)) {
                     world.setBlock(pos.below(), belowState, 2);
                 }
-                if (world.isStateAtPosition(pos.below(2), DripstoneUtils::isEmptyOrWaterOrLava)) {
+                if (world.isStateAtPosition(pos.below(2), DripstoneUtils::isEmptyOrWaterOrLava) || world.getBlockState(pos.below(2)).is(BlockTags.BASE_STONE_OVERWORLD)) {
                     world.setBlock(pos.below(2), Blocks.DEEPSLATE.defaultBlockState(), 2);
                 }
                 pos.move(config.surface.getDirection());
