@@ -2,6 +2,7 @@ package com.naterbobber.darkerdepths.events;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.client.DynamicLightHandler;
+import com.naterbobber.darkerdepths.client.models.GlowshroomCapModel;
 import com.naterbobber.darkerdepths.client.models.GlowshroomMonsterModel;
 import com.naterbobber.darkerdepths.client.particle.DrippingParticle;
 import com.naterbobber.darkerdepths.client.renderers.GlowshroomMonsterRenderer;
@@ -45,6 +46,7 @@ public class ClientEvents {
     public static void registerEntityModelLayers(EntityRenderersEvent.RegisterLayerDefinitions event) {
         event.registerLayerDefinition(PetrifiedBoatRenderer.createBoatLayerLocation(PetrifiedBoatEntity.BoatType.PETRIFIED), BoatModel::createBodyModel);
         event.registerLayerDefinition(DDModelLayers.GLOWSHROOM_MONSTER, GlowshroomMonsterModel::createBodyLayer);
+        event.registerLayerDefinition(DDModelLayers.GLOWSHROOM_CAP, GlowshroomCapModel::createBodyLayer);
     }
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
