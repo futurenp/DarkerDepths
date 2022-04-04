@@ -1,6 +1,7 @@
 package com.naterbobber.darkerdepths.world.gen.features;
 
 import com.mojang.serialization.Codec;
+import com.naterbobber.darkerdepths.init.DDBlocks;
 import com.naterbobber.darkerdepths.world.gen.features.config.CorrespondentLayersConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -106,20 +107,26 @@ public class CorrespondentLayersFeature extends Feature<CorrespondentLayersConfi
             BlockState blockstate = config.groundState.getState(random, pos);
             BlockState belowState = config.belowState.getState(random, pos);
             BlockState blockstate1 = world.getBlockState(pos);
-            if (!blockstate.is(blockstate1.getBlock())) {
-                if (!predicate.test(blockstate1)) {
-                    return i != 0;
+            if (world.getBlockState(pos.below()).is(Blocks.TUFF) || world.getBlockState(pos.below()).is(Blocks.DEEPSLATE)) {
+                world.setBlock(pos, DDBlocks.ARID_DEEPSLATE.get().defaultBlockState(), 2);
+                if (world.isStateAtPosition(pos.above(), DripstoneUtils::isEmptyOrWaterOrLava)) {
+                    world.setBlock(pos.above(), DDBlocks.ARIDROCK.get().defaultBlockState(), 2);
                 }
-
-                world.setBlock(pos, blockstate, 2);
-                if (world.isStateAtPosition(pos.below(), DripstoneUtils::isEmptyOrWaterOrLava) || world.getBlockState(pos.below()).is(BlockTags.BASE_STONE_OVERWORLD)) {
-                    world.setBlock(pos.below(), belowState, 2);
-                }
-                if (world.isStateAtPosition(pos.below(2), DripstoneUtils::isEmptyOrWaterOrLava) || world.getBlockState(pos.below(2)).is(BlockTags.BASE_STONE_OVERWORLD)) {
-                    world.setBlock(pos.below(2), Blocks.DEEPSLATE.defaultBlockState(), 2);
-                }
-                pos.move(config.surface.getDirection());
             }
+//            if (!blockstate.is(blockstate1.getBlock())) {
+//                if (!predicate.test(blockstate1)) {
+//                    return i != 0;
+//                }
+//
+//                world.setBlock(pos, blockstate, 2);
+//                if (world.isStateAtPosition(pos.below(), DripstoneUtils::isEmptyOrWaterOrLava) || world.getBlockState(pos.below()).is(BlockTags.BASE_STONE_OVERWORLD)) {
+//                    world.setBlock(pos.below(), belowState, 2);
+//                }
+//                if (world.isStateAtPosition(pos.below(2), DripstoneUtils::isEmptyOrWaterOrLava) || world.getBlockState(pos.below(2)).is(BlockTags.BASE_STONE_OVERWORLD)) {
+//                    world.setBlock(pos.below(2), Blocks.DEEPSLATE.defaultBlockState(), 2);
+//                }
+//                pos.move(config.surface.getDirection());
+//            }
         }
 
         return true;
