@@ -1,8 +1,8 @@
 package com.naterbobber.darkerdepths.init;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
-import com.naterbobber.darkerdepths.blockentities.DDSignBlockEntity;
-import com.naterbobber.darkerdepths.blockentities.GeyserBlockEntity;
+import com.naterbobber.darkerdepths.blocks.blockentities.DDSignBlockEntity;
+import com.naterbobber.darkerdepths.blocks.blockentities.GeyserBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;

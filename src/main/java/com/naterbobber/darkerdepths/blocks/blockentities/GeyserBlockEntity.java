@@ -1,4 +1,4 @@
-package com.naterbobber.darkerdepths.blockentities;
+package com.naterbobber.darkerdepths.blocks.blockentities;
 
 import com.naterbobber.darkerdepths.init.DDBlockEntities;
 import net.minecraft.core.BlockPos;

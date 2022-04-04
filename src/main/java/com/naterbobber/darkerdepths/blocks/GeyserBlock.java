@@ -1,6 +1,6 @@
 package com.naterbobber.darkerdepths.blocks;
 
-import com.naterbobber.darkerdepths.blockentities.GeyserBlockEntity;
+import com.naterbobber.darkerdepths.blocks.blockentities.GeyserBlockEntity;
 import com.naterbobber.darkerdepths.init.DDBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
