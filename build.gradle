@@ -22,7 +22,7 @@ group = 'com'
 version = '1.0.0'
 
 java {
-    archivesBaseName = 'natebobber'
+    archivesBaseName = 'darkerdepths'
     toolchain.languageVersion = JavaLanguageVersion.of(17)
 }
 
@@ -94,9 +94,9 @@ repositories {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.18.1-39.0.14'
-    implementation fg.deobf("curse.maven:jade-324717:3564963")
-    implementation fg.deobf("curse.maven:jei-238222:3550020")
+    minecraft 'net.minecraftforge:forge:1.18.1-39.1.2'
+    implementation fg.deobf("curse.maven:jade-324717:3681458")
+    implementation fg.deobf("curse.maven:jei-238222:3599262")
     annotationProcessor "org.spongepowered:mixin:0.8.5:processor"
 }
 

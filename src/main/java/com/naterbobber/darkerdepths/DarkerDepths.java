@@ -16,6 +16,7 @@ import com.naterbobber.darkerdepths.init.DDItems;
 import com.naterbobber.darkerdepths.init.DDParticleTypes;
 import com.naterbobber.darkerdepths.init.DDSoundEvents;
 import com.naterbobber.darkerdepths.init.DDStructures;
+import com.naterbobber.darkerdepths.init.DDVanillaIntegration;
 import net.minecraft.core.Registry;
 import net.minecraft.data.BuiltinRegistries;
 import net.minecraft.resources.ResourceKey;
@@ -80,7 +81,7 @@ public class DarkerDepths {
     }
 
     private void setup(final FMLCommonSetupEvent event) {
-//        DDVanillaIntegration.init();
+        DDVanillaIntegration.init();
         event.enqueueWork(() -> {
             DDStructures.setupStructures();
             DDConfiguredStructures.registerConfiguredStructures();

@@ -58,7 +58,7 @@ public class ClientEvents {
     }
 
     @SubscribeEvent
-    public static void onClientSetup(FMLClientSetupEvent event) {
+    public static void onClientSetup(final FMLClientSetupEvent event) {
         ItemBlockRenderTypes.setRenderLayer(DDBlocks.DRY_SPROUTS.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(DDBlocks.ROPE.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(DDBlocks.ROOTS.get(), RenderType.cutout());

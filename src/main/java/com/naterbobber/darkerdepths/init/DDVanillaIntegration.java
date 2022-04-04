@@ -1,5 +1,6 @@
 package com.naterbobber.darkerdepths.init;
 
+import com.google.common.collect.Maps;
 import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -29,6 +30,7 @@ public class DDVanillaIntegration {
     }
 
     private static void registerStrippable(Block unstrippedBlock, Block strippedBlock) {
+        AxeItem.STRIPPABLES = Maps.newHashMap(AxeItem.STRIPPABLES);
         AxeItem.STRIPPABLES.put(unstrippedBlock, strippedBlock);
     }
 

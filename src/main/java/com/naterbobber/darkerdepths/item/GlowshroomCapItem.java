@@ -54,8 +54,8 @@ public class GlowshroomCapItem extends ArmorItem implements Vanishable {
     public void initializeClient(Consumer<IItemRenderProperties> consumer) {
         consumer.accept(new IItemRenderProperties() {
             @Override
-            public <A extends HumanoidModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlot armorSlot, A _default) {
-                return (A) new GlowshroomCapModel(GlowshroomCapModel.createBodyLayer().bakeRoot());
+            public HumanoidModel<?> getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlot armorSlot, HumanoidModel<?> _default) {
+                return new GlowshroomCapModel<>(GlowshroomCapModel.createBodyLayer().bakeRoot());
             }
         });
     }

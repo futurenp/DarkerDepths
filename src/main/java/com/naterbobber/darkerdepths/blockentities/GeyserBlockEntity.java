@@ -1,9 +1,6 @@
 package com.naterbobber.darkerdepths.blockentities;
 
-import com.mojang.math.Vector3d;
-import com.naterbobber.darkerdepths.blocks.GeyserBlock;
 import com.naterbobber.darkerdepths.init.DDBlockEntities;
-import com.naterbobber.darkerdepths.init.DDBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
