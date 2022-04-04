@@ -108,9 +108,9 @@ public class CorrespondentLayersFeature extends Feature<CorrespondentLayersConfi
             BlockState belowState = config.belowState.getState(random, pos);
             BlockState blockstate1 = world.getBlockState(pos);
             if (world.getBlockState(pos.below()).is(Blocks.TUFF) || world.getBlockState(pos.below()).is(Blocks.DEEPSLATE)) {
-                world.setBlock(pos, DDBlocks.ARID_DEEPSLATE.get().defaultBlockState(), 2);
+                world.setBlock(pos, belowState, 2);
                 if (world.isStateAtPosition(pos.above(), DripstoneUtils::isEmptyOrWaterOrLava)) {
-                    world.setBlock(pos.above(), DDBlocks.ARIDROCK.get().defaultBlockState(), 2);
+                    world.setBlock(pos.above(), blockstate, 2);
                 }
             }
 //            if (!blockstate.is(blockstate1.getBlock())) {
