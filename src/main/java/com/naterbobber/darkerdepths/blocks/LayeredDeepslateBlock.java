@@ -26,8 +26,8 @@ public class LayeredDeepslateBlock extends RotatedPillarBlock {
 
     @Override
     public void randomTick(BlockState state, ServerLevel world, BlockPos pos, Random random) {
-        if (state.getValue(AXIS) == Direction.Axis.Y && !canBeNylium(state, world, pos)) {
-            world.setBlockAndUpdate(pos, Blocks.DEEPSLATE.defaultBlockState());
-        }
+//        if (state.getValue(AXIS) == Direction.Axis.Y && !canBeNylium(state, world, pos)) {
+//            world.setBlockAndUpdate(pos, Blocks.DEEPSLATE.defaultBlockState());
+//        }
     }
 }

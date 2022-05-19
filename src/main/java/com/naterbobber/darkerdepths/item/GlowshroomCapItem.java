@@ -1,13 +1,13 @@
 package com.naterbobber.darkerdepths.item;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
+import com.naterbobber.darkerdepths.client.models.DaBaby;
 import com.naterbobber.darkerdepths.client.models.GlowshroomCapModel;
 import com.naterbobber.darkerdepths.init.DDItems;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
@@ -27,7 +27,7 @@ import java.util.function.Consumer;
 
 public class GlowshroomCapItem extends ArmorItem implements Vanishable {
     private static final GlowshroomArmorMaterial material = new GlowshroomArmorMaterial();
-    private static final ResourceLocation TEXTURE = new ResourceLocation(DarkerDepths.MODID, "textures/misc/glowshroom_cap.png");
+    private static final ResourceLocation TEXTURE = new ResourceLocation(DarkerDepths.MODID, "textures/misc/glowshroomcapmodel.png");
 
     public GlowshroomCapItem(Properties properties) {
         super(material, EquipmentSlot.HEAD, properties);

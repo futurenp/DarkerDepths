@@ -106,27 +106,10 @@ public class CorrespondentLayersFeature extends Feature<CorrespondentLayersConfi
         for(int i = 0; i < tries; ++i) {
             BlockState blockstate = config.groundState.getState(random, pos);
             BlockState belowState = config.belowState.getState(random, pos);
-            BlockState blockstate1 = world.getBlockState(pos);
             if (world.getBlockState(pos.below()).is(Blocks.TUFF) || world.getBlockState(pos.below()).is(Blocks.DEEPSLATE)) {
-                world.setBlock(pos, belowState, 2);
-                if (world.isStateAtPosition(pos.above(), DripstoneUtils::isEmptyOrWaterOrLava)) {
-                    world.setBlock(pos.above(), blockstate, 2);
-                }
+                world.setBlock(pos.below(), belowState, 2);
+                world.setBlock(pos, blockstate, 2);
             }
-//            if (!blockstate.is(blockstate1.getBlock())) {
-//                if (!predicate.test(blockstate1)) {
-//                    return i != 0;
-//                }
-//
-//                world.setBlock(pos, blockstate, 2);
-//                if (world.isStateAtPosition(pos.below(), DripstoneUtils::isEmptyOrWaterOrLava) || world.getBlockState(pos.below()).is(BlockTags.BASE_STONE_OVERWORLD)) {
-//                    world.setBlock(pos.below(), belowState, 2);
-//                }
-//                if (world.isStateAtPosition(pos.below(2), DripstoneUtils::isEmptyOrWaterOrLava) || world.getBlockState(pos.below(2)).is(BlockTags.BASE_STONE_OVERWORLD)) {
-//                    world.setBlock(pos.below(2), Blocks.DEEPSLATE.defaultBlockState(), 2);
-//                }
-//                pos.move(config.surface.getDirection());
-//            }
         }
 
         return true;
