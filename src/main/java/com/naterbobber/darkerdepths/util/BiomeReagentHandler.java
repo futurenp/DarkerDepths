@@ -13,7 +13,7 @@ import java.util.function.Consumer;
 public class BiomeReagentHandler {
 
     public static final Climate.Parameter FULL_RANGE = Climate.Parameter.span(-1.0F, 1.0F);
-    public static final Climate.Parameter CAVE_BIOME_RANGE = Climate.Parameter.span(0.2F, 0.9F);
+    public static final Climate.Parameter DEFAULT_CAVE_BIOME_RANGE = Climate.Parameter.span(0.2F, 0.9F);
 
     public static ResourceKey<Biome> MOLTEN_CAVERN;
     public static ResourceKey<Biome> SANDY_CATACOMBS;
@@ -26,14 +26,13 @@ public class BiomeReagentHandler {
         if (SANDY_CATACOMBS == null)
             SANDY_CATACOMBS = ResourceKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(DarkerDepths.MODID, "sandy_catacombs"));
 
-
         if (GLOWSHROOM_FOREST == null)
             GLOWSHROOM_FOREST = ResourceKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(DarkerDepths.MODID, "glowshroom_forest"));
 
 
-        consumer.accept(Pair.of(Climate.parameters(Climate.Parameter.span(0.8F, 1.0F), Climate.Parameter.span(0.4F, 1.0F), FULL_RANGE, FULL_RANGE, CAVE_BIOME_RANGE, FULL_RANGE, 0.0F), MOLTEN_CAVERN));
-        consumer.accept(Pair.of(Climate.parameters(Climate.Parameter.span(0.0F, 1.0F), Climate.Parameter.span(0.1F, 1.0F), Climate.Parameter.span(0.3F, 1.0F), Climate.Parameter.span(0.5F, 1.0F), CAVE_BIOME_RANGE, FULL_RANGE, 0.0F), SANDY_CATACOMBS));
-        consumer.accept(Pair.of(Climate.parameters(Climate.Parameter.span(-1.0F, -0.5F), Climate.Parameter.span(0.5F, 1.0F), FULL_RANGE, Climate.Parameter.span(0.2F, 1.0F), CAVE_BIOME_RANGE, Climate.Parameter.span(-0.5F, 0.1F), 0.0F), GLOWSHROOM_FOREST));
+        consumer.accept(Pair.of(Climate.parameters(Climate.Parameter.span(0.8F, 1.0F), Climate.Parameter.span(0.4F, 1.0F), FULL_RANGE, FULL_RANGE, DEFAULT_CAVE_BIOME_RANGE, FULL_RANGE, 0.0F), MOLTEN_CAVERN));
+        consumer.accept(Pair.of(Climate.parameters(Climate.Parameter.span(0.0F, 1.0F), Climate.Parameter.span(0.1F, 1.0F), Climate.Parameter.span(0.3F, 1.0F), Climate.Parameter.span(0.5F, 1.0F), DEFAULT_CAVE_BIOME_RANGE, FULL_RANGE, 0.0F), SANDY_CATACOMBS));
+        consumer.accept(Pair.of(Climate.parameters(Climate.Parameter.span(-1.0F, -0.5F), Climate.Parameter.span(0.5F, 1.0F), FULL_RANGE, Climate.Parameter.span(0.2F, 1.0F), DEFAULT_CAVE_BIOME_RANGE, Climate.Parameter.span(-0.5F, 0.1F), 0.0F), GLOWSHROOM_FOREST));
 
     }
 
