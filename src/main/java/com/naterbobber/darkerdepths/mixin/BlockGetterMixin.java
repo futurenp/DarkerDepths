@@ -14,7 +14,7 @@ public interface BlockGetterMixin {
     @Shadow BlockState getBlockState(BlockPos pos);
 
     /**
-     * @author Duck N Susje
+     * @author Blackgear
      */
     @Overwrite
     default int getLightEmission(BlockPos pos) {

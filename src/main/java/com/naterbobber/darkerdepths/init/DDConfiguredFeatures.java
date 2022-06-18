@@ -49,9 +49,12 @@ import java.util.List;
 
 public class DDConfiguredFeatures {
 
-    public static final RuleTest STONE_ORE_REPLACEABLES = new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES);
-    public static final ImmutableList<BlockState> OVERWORLD_REPLACEABLES    = ImmutableList.of(Blocks.STONE.defaultBlockState(), Blocks.ANDESITE.defaultBlockState(), Blocks.GRANITE.defaultBlockState(), Blocks.DIORITE.defaultBlockState(), Blocks.DIRT.defaultBlockState(), DDBlocks.SHALE.get().defaultBlockState(), DDBlocks.ARIDROCK.get().defaultBlockState(), DDBlocks.LIMESTONE.get().defaultBlockState(), Blocks.GRAVEL.defaultBlockState(), Blocks.DEEPSLATE.defaultBlockState(), Blocks.TUFF.defaultBlockState());
+    public static void init() {
+    }
 
+    public static final RuleTest STONE_ORE_REPLACEABLES = new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES);
+
+    public static final ImmutableList<BlockState> OVERWORLD_REPLACEABLES    = ImmutableList.of(Blocks.STONE.defaultBlockState(), Blocks.ANDESITE.defaultBlockState(), Blocks.GRANITE.defaultBlockState(), Blocks.DIORITE.defaultBlockState(), Blocks.DIRT.defaultBlockState(), DDBlocks.SHALE.get().defaultBlockState(), DDBlocks.ARIDROCK.get().defaultBlockState(), DDBlocks.LIMESTONE.get().defaultBlockState(), Blocks.GRAVEL.defaultBlockState(), Blocks.DEEPSLATE.defaultBlockState(), Blocks.TUFF.defaultBlockState());
     public static final Holder<ConfiguredFeature<NoneFeatureConfiguration, ?>> GLOWSHROOM_PATCH = registerConfiguredFeature("glowshroom_patch", DDFeatures.RANDOM_GLOWSHROOM_PATCHES.get(), FeatureConfiguration.NONE);
     public static final Holder<ConfiguredFeature<NoneFeatureConfiguration, ?>> HUGE_GLOWSHROOM = registerConfiguredFeature("huge_glowshroom", DDFeatures.HUGE_GLOWSHROOM.get(), FeatureConfiguration.NONE);
     public static final Holder<ConfiguredFeature<NoneFeatureConfiguration, ?>> HUGE_GLOWSHROOM_PLANTED = registerConfiguredFeature("huge_glowshroom_planted", DDFeatures.HUGE_GLOWSHROOM.get(), FeatureConfiguration.NONE);
@@ -66,12 +69,12 @@ public class DDConfiguredFeatures {
     public static final Holder<ConfiguredFeature<PetrifiedBranchConfig, ?>> SHORT_PETRIFIED_BRANCH = registerConfiguredFeature("short_petrified_branch", DDFeatures.PETRIFIED_BRANCH.get(), new PetrifiedBranchConfig(4, 8));
     public static final Holder<ConfiguredFeature<PetrifiedBranchConfig, ?>> LONG_PETRIFIED_BRANCH = registerConfiguredFeature("long_petrified_branch", DDFeatures.PETRIFIED_BRANCH.get(), new PetrifiedBranchConfig(8, 16));
     public static final Holder<ConfiguredFeature<RandomBooleanFeatureConfiguration, ?>> PETRIFIED_BRANCH = registerConfiguredFeature("petrified_branch", Feature.RANDOM_BOOLEAN_SELECTOR, new RandomBooleanFeatureConfiguration(PlacementUtils.inlinePlaced(SHORT_PETRIFIED_BRANCH), PlacementUtils.inlinePlaced(LONG_PETRIFIED_BRANCH)));
-    public static final Holder<ConfiguredFeature<NoneFeatureConfiguration, ?>> SOUL_SOIL = registerConfiguredFeature("soul_soil", DDFeatures.SOUL_SOIL.get(), FeatureConfiguration.NONE);
     public static final Holder<ConfiguredFeature<OreConfiguration, ?>> MAGMA_ORE = registerConfiguredFeature("magma_ore", Feature.ORE, new OreConfiguration(new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES), Blocks.MAGMA_BLOCK.defaultBlockState(), 15));
     public static final Holder<ConfiguredFeature<OreConfiguration, ?>> SILVER_ORE = registerConfiguredFeature("silver_ore", Feature.ORE, new OreConfiguration(new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES), DDBlocks.SILVER_ORE.get().defaultBlockState(), 8));
     public static final Holder<ConfiguredFeature<CorrespondentLayersConfig, ?>> ARID_SURFACE = registerConfiguredFeature("arid_surface", DDFeatures.CORRESPONDENT.get(), new CorrespondentLayersConfig(BlockTags.LUSH_GROUND_REPLACEABLE, BlockStateProvider.simple(DDBlocks.ARIDROCK.get()), BlockStateProvider.simple(DDBlocks.ARID_DEEPSLATE.get()), PlacementUtils.inlinePlaced(ARID_VEGETATION), CaveSurface.FLOOR, ConstantInt.of(1), 0.0F, 5, 0.8F, UniformInt.of(4, 7), 0.3F));
     public static final Holder<ConfiguredFeature<CorrespondentLayersConfig, ?>> GRIME_SURFACE = registerConfiguredFeature("grime_surface", DDFeatures.CORRESPONDENT.get(), new CorrespondentLayersConfig(BlockTags.LUSH_GROUND_REPLACEABLE, BlockStateProvider.simple(DDBlocks.MOSSY_GRIMESTONE.get()), BlockStateProvider.simple(DDBlocks.GRIME_DEEPSLATE.get()), PlacementUtils.inlinePlaced(GRIME_VEGETATION), CaveSurface.FLOOR, ConstantInt.of(1), 0.0F, 5, 0.8F, UniformInt.of(4, 7), 0.3F));
     public static final Holder<ConfiguredFeature<NoneFeatureConfiguration, ?>> ARID_BOULDER = registerConfiguredFeature("arid_boulder", DDFeatures.ARID_BOULDER.get(), FeatureConfiguration.NONE);
+
     public static final Holder<ConfiguredFeature<BlockColumnConfiguration, ?>> GLIMMERING_VINES = registerConfiguredFeature("glimmering_vines", Feature.BLOCK_COLUMN, new BlockColumnConfiguration(List.of(BlockColumnConfiguration.layer(new WeightedListInt(SimpleWeightedRandomList.<IntProvider>builder().add(UniformInt.of(0, 19), 2).add(UniformInt.of(0, 2), 3).add(UniformInt.of(0, 6), 10).build()), BlockStateProvider.simple(DDBlocks.GLOWSPIRE_PLANT.get().defaultBlockState())), BlockColumnConfiguration.layer(ConstantInt.of(1), BlockStateProvider.simple(DDBlocks.GLOWSPIRE.get().defaultBlockState()))), Direction.DOWN, BlockPredicate.ONLY_IN_AIR_PREDICATE, true));
 
     public static <FC extends FeatureConfiguration, F extends Feature<FC>> Holder<ConfiguredFeature<FC, ?>> registerConfiguredFeature(String id, F feature, FC featureConfiguration) {

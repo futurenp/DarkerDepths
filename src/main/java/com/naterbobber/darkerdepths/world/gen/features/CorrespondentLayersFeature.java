@@ -91,7 +91,7 @@ public class CorrespondentLayersFeature extends Feature<CorrespondentLayersConfi
     }
 
     protected boolean placeVegetation(WorldGenLevel world, CorrespondentLayersConfig config, ChunkGenerator generator, RandomSource random, BlockPos pos) {
-        if (world.isStateAtPosition(pos.relative(config.surface.getDirection().getOpposite()), BlockBehaviour.BlockStateBase::isAir)) {
+        if (world.isStateAtPosition(pos.relative(config.surface.getDirection().getOpposite()), BlockBehaviour.BlockStateBase::isAir) && world.getBlockState(pos).is(config.groundState.getState(random, pos).getBlock())) {
             return config.vegetationFeature.get().place(world, generator, random, pos.relative(config.surface.getDirection().getOpposite()));
         } else {
             return false;
@@ -99,7 +99,7 @@ public class CorrespondentLayersFeature extends Feature<CorrespondentLayersConfi
     }
 
     protected boolean placeGround(WorldGenLevel world, CorrespondentLayersConfig config, Predicate<BlockState> predicate, RandomSource random, BlockPos.MutableBlockPos pos, int tries) {
-        for(int i = 0; i < tries; ++i) {
+        for (int i = 0; i < tries; ++i) {
             BlockState blockstate = config.groundState.getState(random, pos);
             BlockState belowState = config.belowState.getState(random, pos);
             if (world.getBlockState(pos.below()).is(Blocks.TUFF) || world.getBlockState(pos.below()).is(Blocks.DEEPSLATE)) {

@@ -5,10 +5,12 @@ import com.naterbobber.darkerdepths.init.DDBiomeModifiers;
 import com.naterbobber.darkerdepths.init.DDBiomes;
 import com.naterbobber.darkerdepths.init.DDBlockEntities;
 import com.naterbobber.darkerdepths.init.DDBlocks;
+import com.naterbobber.darkerdepths.init.DDConfiguredFeatures;
 import com.naterbobber.darkerdepths.init.DDEntityTypes;
 import com.naterbobber.darkerdepths.init.DDFeatures;
 import com.naterbobber.darkerdepths.init.DDItems;
 import com.naterbobber.darkerdepths.init.DDParticleTypes;
+import com.naterbobber.darkerdepths.init.DDPlacedFeatures;
 import com.naterbobber.darkerdepths.init.DDSoundEvents;
 import com.naterbobber.darkerdepths.init.DDVanillaIntegration;
 import net.minecraft.world.item.CreativeModeTab;
@@ -53,6 +55,10 @@ public class DarkerDepths {
 
     private void setup(final FMLCommonSetupEvent event) {
         DDVanillaIntegration.init();
+        event.enqueueWork(() -> {
+            DDConfiguredFeatures.init();
+            DDPlacedFeatures.init();
+        });
     }
 
 }
