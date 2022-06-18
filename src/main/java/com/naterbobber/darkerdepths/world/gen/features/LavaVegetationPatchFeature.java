@@ -4,6 +4,7 @@ import com.mojang.serialization.Codec;
 import com.naterbobber.darkerdepths.init.DDConfiguredFeatures;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
@@ -25,7 +26,7 @@ public class LavaVegetationPatchFeature extends VegetationPatchFeature {
     }
 
     @Override
-    protected Set<BlockPos> placeGroundPatch(WorldGenLevel world, VegetationPatchConfiguration config, Random random, BlockPos pos, Predicate<BlockState> statePredicate, int xRadius, int zRadius) {
+    protected Set<BlockPos> placeGroundPatch(WorldGenLevel world, VegetationPatchConfiguration config, RandomSource random, BlockPos pos, Predicate<BlockState> statePredicate, int xRadius, int zRadius) {
         Set<BlockPos> landGroundPatch = super.placeGroundPatch(world, config, random, pos, statePredicate, xRadius, zRadius);
         Set<BlockPos> lavaGroundPatch = new HashSet<>();
         BlockPos.MutableBlockPos mutable = new BlockPos.MutableBlockPos();
@@ -59,7 +60,7 @@ public class LavaVegetationPatchFeature extends VegetationPatchFeature {
     }
 
     @Override
-    protected boolean placeVegetation(WorldGenLevel world, VegetationPatchConfiguration config, ChunkGenerator generator, Random random, BlockPos pos) {
+    protected boolean placeVegetation(WorldGenLevel world, VegetationPatchConfiguration config, ChunkGenerator generator, RandomSource random, BlockPos pos) {
         return random.nextFloat() > 0.85F && super.placeVegetation(world, config, generator, random, pos.below(2));
     }
 }

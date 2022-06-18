@@ -3,6 +3,7 @@ package com.naterbobber.darkerdepths.blocks;
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -31,12 +32,12 @@ public class GrimestoneBlock extends RotatedPillarBlock implements BonemealableB
     }
 
     @Override
-    public boolean isBonemealSuccess(Level p_50901_, Random p_50902_, BlockPos p_50903_, BlockState p_50904_) {
+    public boolean isBonemealSuccess(Level p_50901_, RandomSource p_50902_, BlockPos p_50903_, BlockState p_50904_) {
         return true;
     }
 
     @Override
-    public void performBonemeal(ServerLevel worldIn, Random p_50894_, BlockPos pos, BlockState p_50896_) {
+    public void performBonemeal(ServerLevel worldIn, RandomSource p_50894_, BlockPos pos, BlockState p_50896_) {
         boolean flag = false;
         for(BlockPos blockpos : BlockPos.betweenClosed(pos.offset(-1, -1, -1), pos.offset(1, 1, 1))) {
             BlockState blockstate = worldIn.getBlockState(blockpos);

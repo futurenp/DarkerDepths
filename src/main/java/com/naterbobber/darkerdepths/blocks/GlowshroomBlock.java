@@ -33,7 +33,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 public class GlowshroomBlock extends Block implements BonemealableBlock, SimpleWaterloggedBlock {
     public static final IntegerProperty CLUSTERS_1_3 = IntegerProperty.create("clusters", 1, 3);
@@ -106,13 +106,13 @@ public class GlowshroomBlock extends Block implements BonemealableBlock, SimpleW
     }
 
     @Override
-    public boolean isBonemealSuccess(Level p_50901_, Random random, BlockPos p_50903_, BlockState state) {
+    public boolean isBonemealSuccess(Level p_50901_, RandomSource random, BlockPos p_50903_, BlockState state) {
         return random.nextFloat() < 0.4D && state.getValue(CLUSTERS_1_3) == 1;
     }
 
     @Override
-    public void performBonemeal(ServerLevel world, Random random, BlockPos pos, BlockState state) {
-        DDConfiguredFeatures.HUGE_GLOWSHROOM_PLANTED.place(world, world.getChunkSource().getGenerator(), random, pos);
+    public void performBonemeal(ServerLevel world, RandomSource random, BlockPos pos, BlockState state) {
+        DDConfiguredFeatures.HUGE_GLOWSHROOM_PLANTED.get().place(world, world.getChunkSource().getGenerator(), random, pos);
     }
 
     @Override

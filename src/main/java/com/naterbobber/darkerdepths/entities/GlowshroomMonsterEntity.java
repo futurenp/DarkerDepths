@@ -4,6 +4,7 @@ import com.naterbobber.darkerdepths.init.DDSoundEvents;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
@@ -102,7 +103,7 @@ public class GlowshroomMonsterEntity extends Monster {
                 ;
     }
 
-    public static boolean canSpawn(EntityType<? extends Mob> typeIn, ServerLevelAccessor worldIn, MobSpawnType reason, BlockPos pos, Random randomIn) {
+    public static boolean canSpawn(EntityType<? extends Mob> typeIn, ServerLevelAccessor worldIn, MobSpawnType reason, BlockPos pos, RandomSource randomIn) {
         return worldIn.getDifficulty() != Difficulty.PEACEFUL && pos.getY() <= 40 && isDarkEnoughToSpawn(worldIn, pos, randomIn);
     }
 }

@@ -4,6 +4,7 @@ import com.mojang.serialization.Codec;
 import com.naterbobber.darkerdepths.world.gen.features.config.ReplaceListConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.state.BlockState;
@@ -23,7 +24,7 @@ public class ReplaceListFeature extends Feature<ReplaceListConfig> {
     public boolean place(FeaturePlaceContext<ReplaceListConfig> context) {
         ReplaceListConfig config = context.config();
         WorldGenLevel worldgenlevel = context.level();
-        Random random = context.random();
+        RandomSource random = context.random();
         BlockPos blockpos = findTarget(worldgenlevel, context.origin().mutable().clamp(Direction.Axis.Y, worldgenlevel.getMinBuildHeight() + 1, worldgenlevel.getMaxBuildHeight() - 1), config);
         if (blockpos == null) {
             return false;

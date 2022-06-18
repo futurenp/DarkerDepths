@@ -44,7 +44,7 @@ public class ClientEvents {
 
     @SubscribeEvent
     public static void registerEntityModelLayers(EntityRenderersEvent.RegisterLayerDefinitions event) {
-        event.registerLayerDefinition(PetrifiedBoatRenderer.createBoatLayerLocation(PetrifiedBoatEntity.BoatType.PETRIFIED), BoatModel::createBodyModel);
+        event.registerLayerDefinition(PetrifiedBoatRenderer.createBoatLayerLocation(PetrifiedBoatEntity.BoatType.PETRIFIED), () -> BoatModel.createBodyModel(false));
         event.registerLayerDefinition(DDModelLayers.GLOWSHROOM_MONSTER, GlowshroomMonsterModel::createBodyLayer);
         event.registerLayerDefinition(DDModelLayers.GLOWSHROOM_CAP, GlowshroomCapModel::createBodyLayer);
     }

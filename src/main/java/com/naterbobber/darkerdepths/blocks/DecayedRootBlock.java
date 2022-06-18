@@ -4,6 +4,7 @@ import com.naterbobber.darkerdepths.init.DDBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
@@ -52,12 +53,12 @@ public class DecayedRootBlock extends BushBlock implements BonemealableBlock {
     }
 
     @Override
-    public boolean isBonemealSuccess(Level world, Random random, BlockPos pos, BlockState state) {
+    public boolean isBonemealSuccess(Level world, RandomSource random, BlockPos pos, BlockState state) {
         return true;
     }
 
     @Override
-    public void performBonemeal(ServerLevel worldIn, Random random, BlockPos pos, BlockState state) {
+    public void performBonemeal(ServerLevel worldIn, RandomSource random, BlockPos pos, BlockState state) {
         if(!worldIn.isClientSide() && !worldIn.isEmptyBlock(pos.below(2))) {
             worldIn.setBlock(pos, DDBlocks.LONG_ROOTS.get().defaultBlockState(), 2);
             worldIn.setBlock(pos.below(), DDBlocks.ROOTS.get().defaultBlockState(), 2);

@@ -4,6 +4,7 @@ import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.feature.Feature;
@@ -24,7 +25,7 @@ public class SoulSoilFeature extends Feature<NoneFeatureConfiguration> {
     public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> context) {
         WorldGenLevel world = context.level();
         BlockPos blockPos = context.origin();
-        Random random = context.random();
+        RandomSource random = context.random();
         if (!world.getBlockState(blockPos).is(BlockTags.BASE_STONE_OVERWORLD)) {
             return false;
         } else {

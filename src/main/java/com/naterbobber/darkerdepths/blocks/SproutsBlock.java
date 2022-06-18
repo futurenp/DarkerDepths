@@ -20,8 +20,4 @@ public class SproutsBlock extends BushBlock {
         return SHAPE;
     }
 
-    @Override
-    public OffsetType getOffsetType() {
-        return OffsetType.XZ;
-    }
 }

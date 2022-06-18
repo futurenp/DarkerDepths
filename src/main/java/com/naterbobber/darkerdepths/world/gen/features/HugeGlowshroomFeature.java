@@ -5,6 +5,7 @@ import com.naterbobber.darkerdepths.init.DDBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.levelgen.feature.Feature;
@@ -23,7 +24,7 @@ public class HugeGlowshroomFeature extends Feature<NoneFeatureConfiguration> {
     public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> context) {
         WorldGenLevel world = context.level();
         BlockPos pos = context.origin();
-        Random rand = context.random();
+        RandomSource rand = context.random();
         if (!checkBelowState(world, pos)) {
             return false;
         } else {

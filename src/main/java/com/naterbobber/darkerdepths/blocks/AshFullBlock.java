@@ -5,6 +5,7 @@ import com.naterbobber.darkerdepths.init.DDBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.BlockGetter;
@@ -32,7 +33,7 @@ public class AshFullBlock extends FallingBlock {
 
     private void spawnAshParticles(Level worldIn, Vector3d vector3d) {
         if (worldIn.isClientSide()) {
-            Random rand = worldIn.getRandom();
+            RandomSource rand = worldIn.getRandom();
             double getY = vector3d.y + 1.0d;
 
             for (int i = 0; i < rand.nextInt(3); ++i) {
@@ -42,7 +43,7 @@ public class AshFullBlock extends FallingBlock {
     }
 
     @Override
-    public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, Random rand) {
+    public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, RandomSource rand) {
         if (rand.nextInt(16) == 0) {
             BlockPos blockPos = pos.below();
             boolean isSolidAsh = DDBlocks.ASH.get().defaultBlockState().getValue(AshBlock.LAYERS) == 8;

@@ -5,6 +5,7 @@ import com.naterbobber.darkerdepths.init.DDParticleTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.AmethystClusterBlock;
 import net.minecraft.world.level.block.Blocks;
@@ -23,7 +24,7 @@ public class PorousBlock extends RotatedPillarBlock {
     }
 
     @Override
-    public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, Random random) {
+    public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource random) {
         if (random.nextInt(17) == 0) {
             Direction direction = Direction.getRandom(random);
             BlockPos blockPos = pos.relative(direction);
@@ -39,7 +40,7 @@ public class PorousBlock extends RotatedPillarBlock {
     }
 
     @Override
-    public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, Random rand) {
+    public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, RandomSource rand) {
         if (rand.nextInt(10) == 0) {
             Direction direction = Direction.getRandom(rand);
             if (direction != Direction.UP) {

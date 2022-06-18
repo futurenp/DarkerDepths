@@ -99,11 +99,6 @@ public class HangingDoublePlantBlock extends DecayedRootBlock {
     }
 
     @Override
-    public OffsetType getOffsetType() {
-        return OffsetType.XZ;
-    }
-
-    @Override
     public long getSeed(BlockState state, BlockPos pos) {
         return Mth.getSeed(pos.getX(), pos.above(state.getValue(HALF) == DoubleBlockHalf.UPPER ? 0 : 1).getY(), pos.getZ());
     }

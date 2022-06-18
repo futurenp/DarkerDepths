@@ -26,8 +26,4 @@ public class DrySproutsBlock extends DeadBushBlock {
         return state.is(DDBlocks.ARIDROCK.get()) || state.is(DDBlocks.LIMESTONE.get()) || state.is(DDBlocks.ARID_DEEPSLATE.get()) || super.mayPlaceOn(state, world, pos);
     }
 
-    @Override
-    public OffsetType getOffsetType() {
-        return OffsetType.XZ;
-    }
 }

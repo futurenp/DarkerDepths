@@ -3,6 +3,7 @@ package com.naterbobber.darkerdepths.blocks;
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
@@ -25,7 +26,7 @@ public class GlowSpireBlock extends GrowingPlantHeadBlock {
     }
 
     @Override
-    protected int getBlocksToGrowWhenBonemealed(Random rand) {
+    protected int getBlocksToGrowWhenBonemealed(RandomSource rand) {
         double d0 = 1.0D;
 
         int i;

@@ -2,8 +2,12 @@ package com.naterbobber.darkerdepths.world.gen.features.config;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.core.Holder;
+import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagKey;
 import net.minecraft.util.valueproviders.IntProvider;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
 import com.naterbobber.darkerdepths.world.gen.features.config.CorrespondentLayersConfig;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
@@ -14,7 +18,7 @@ import java.util.function.Supplier;
 
 public class CorrespondentLayersConfig implements FeatureConfiguration {
     public static final Codec<CorrespondentLayersConfig> CODEC = RecordCodecBuilder.create((p_161304_) -> {
-        return p_161304_.group(ResourceLocation.CODEC.fieldOf("replaceable").forGetter((p_161324_) -> {
+        return p_161304_.group(TagKey.hashedCodec(Registry.BLOCK_REGISTRY).fieldOf("replaceable").forGetter((p_161324_) -> {
             return p_161324_.replaceable;
         }), BlockStateProvider.CODEC.fieldOf("ground_state").forGetter((p_161322_) -> {
             return p_161322_.groundState;
@@ -38,10 +42,10 @@ public class CorrespondentLayersConfig implements FeatureConfiguration {
             return p_161306_.extraEdgeColumnChance;
         })).apply(p_161304_, CorrespondentLayersConfig::new);
     });
-    public final ResourceLocation replaceable;
+    public final TagKey<Block> replaceable;
     public final BlockStateProvider groundState;
     public final BlockStateProvider belowState;
-    public final Supplier<PlacedFeature> vegetationFeature;
+    public final Holder<PlacedFeature> vegetationFeature;
     public final CaveSurface surface;
     public final IntProvider depth;
     public final float extraBottomBlockChance;
@@ -50,7 +54,7 @@ public class CorrespondentLayersConfig implements FeatureConfiguration {
     public final IntProvider xzRadius;
     public final float extraEdgeColumnChance;
 
-    public CorrespondentLayersConfig(ResourceLocation replaceableTags, BlockStateProvider groundState, BlockStateProvider belowState, Supplier<PlacedFeature> feature, CaveSurface p_161296_, IntProvider p_161297_, float p_161298_, int p_161299_, float p_161300_, IntProvider p_161301_, float p_161302_) {
+    public CorrespondentLayersConfig(TagKey<Block> replaceableTags, BlockStateProvider groundState, BlockStateProvider belowState, Holder<PlacedFeature> feature, CaveSurface p_161296_, IntProvider p_161297_, float p_161298_, int p_161299_, float p_161300_, IntProvider p_161301_, float p_161302_) {
         this.replaceable = replaceableTags;
         this.groundState = groundState;
         this.belowState = belowState;

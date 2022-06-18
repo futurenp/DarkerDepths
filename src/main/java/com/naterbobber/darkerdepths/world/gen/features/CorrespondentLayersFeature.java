@@ -1,14 +1,11 @@
 package com.naterbobber.darkerdepths.world.gen.features;
 
 import com.mojang.serialization.Codec;
-import com.naterbobber.darkerdepths.init.DDBlocks;
 import com.naterbobber.darkerdepths.world.gen.features.config.CorrespondentLayersConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.Tag;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
@@ -18,7 +15,6 @@ import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 
 import java.util.HashSet;
-import java.util.Random;
 import java.util.Set;
 import java.util.function.Predicate;
 
@@ -32,9 +28,9 @@ public class CorrespondentLayersFeature extends Feature<CorrespondentLayersConfi
     public boolean place(FeaturePlaceContext<CorrespondentLayersConfig> context) {
         WorldGenLevel worldgenlevel = context.level();
         CorrespondentLayersConfig config = context.config();
-        Random random = context.random();
+        RandomSource random = context.random();
         BlockPos blockpos = context.origin();
-        Predicate<BlockState> predicate = getReplaceableTag(config);
+        Predicate<BlockState> predicate = state -> state.is(config.replaceable);
         int i = config.xzRadius.sample(random) + 1;
         int j = config.xzRadius.sample(random) + 1;
         Set<BlockPos> set = this.placeGroundPatch(worldgenlevel, config, random, blockpos, predicate, i, j);
@@ -42,7 +38,7 @@ public class CorrespondentLayersFeature extends Feature<CorrespondentLayersConfi
         return !set.isEmpty();
     }
 
-    protected Set<BlockPos> placeGroundPatch(WorldGenLevel world, CorrespondentLayersConfig config, Random random, BlockPos pos, Predicate<BlockState> predicate, int xRadius, int zRadius) {
+    protected Set<BlockPos> placeGroundPatch(WorldGenLevel world, CorrespondentLayersConfig config, RandomSource random, BlockPos pos, Predicate<BlockState> predicate, int xRadius, int zRadius) {
         BlockPos.MutableBlockPos mut = pos.mutable();
         BlockPos.MutableBlockPos mut1 = mut.mutable();
         Direction direction = config.surface.getDirection();
@@ -85,7 +81,7 @@ public class CorrespondentLayersFeature extends Feature<CorrespondentLayersConfi
         return set;
     }
 
-    protected void distributeVegetation(FeaturePlaceContext<CorrespondentLayersConfig> context, WorldGenLevel world, CorrespondentLayersConfig config, Random random, Set<BlockPos> pos, int p_160619_, int p_160620_) {
+    protected void distributeVegetation(FeaturePlaceContext<CorrespondentLayersConfig> context, WorldGenLevel world, CorrespondentLayersConfig config, RandomSource random, Set<BlockPos> pos, int p_160619_, int p_160620_) {
         for(BlockPos blockpos : pos) {
             if (config.vegetationChance > 0.0F && random.nextFloat() < config.vegetationChance) {
                 this.placeVegetation(world, config, context.chunkGenerator(), random, blockpos);
@@ -94,7 +90,7 @@ public class CorrespondentLayersFeature extends Feature<CorrespondentLayersConfi
 
     }
 
-    protected boolean placeVegetation(WorldGenLevel world, CorrespondentLayersConfig config, ChunkGenerator generator, Random random, BlockPos pos) {
+    protected boolean placeVegetation(WorldGenLevel world, CorrespondentLayersConfig config, ChunkGenerator generator, RandomSource random, BlockPos pos) {
         if (world.isStateAtPosition(pos.relative(config.surface.getDirection().getOpposite()), BlockBehaviour.BlockStateBase::isAir)) {
             return config.vegetationFeature.get().place(world, generator, random, pos.relative(config.surface.getDirection().getOpposite()));
         } else {
@@ -102,7 +98,7 @@ public class CorrespondentLayersFeature extends Feature<CorrespondentLayersConfi
         }
     }
 
-    protected boolean placeGround(WorldGenLevel world, CorrespondentLayersConfig config, Predicate<BlockState> predicate, Random random, BlockPos.MutableBlockPos pos, int tries) {
+    protected boolean placeGround(WorldGenLevel world, CorrespondentLayersConfig config, Predicate<BlockState> predicate, RandomSource random, BlockPos.MutableBlockPos pos, int tries) {
         for(int i = 0; i < tries; ++i) {
             BlockState blockstate = config.groundState.getState(random, pos);
             BlockState belowState = config.belowState.getState(random, pos);
@@ -115,8 +111,4 @@ public class CorrespondentLayersFeature extends Feature<CorrespondentLayersConfi
         return true;
     }
 
-    private static Predicate<BlockState> getReplaceableTag(CorrespondentLayersConfig config) {
-        Tag<Block> tag = BlockTags.getAllTags().getTag(config.replaceable);
-        return tag == null ? (blockState) -> true : (state) -> state.is(tag);
-    }
 }

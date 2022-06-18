@@ -29,7 +29,6 @@ public class BiomeReagentHandler {
         if (GLOWSHROOM_FOREST == null)
             GLOWSHROOM_FOREST = ResourceKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(DarkerDepths.MODID, "glowshroom_forest"));
 
-
         consumer.accept(Pair.of(Climate.parameters(Climate.Parameter.span(0.8F, 1.0F), Climate.Parameter.span(0.4F, 1.0F), FULL_RANGE, FULL_RANGE, DEFAULT_CAVE_BIOME_RANGE, FULL_RANGE, 0.0F), MOLTEN_CAVERN));
         consumer.accept(Pair.of(Climate.parameters(Climate.Parameter.span(0.0F, 1.0F), Climate.Parameter.span(0.1F, 1.0F), Climate.Parameter.span(0.3F, 1.0F), Climate.Parameter.span(0.5F, 1.0F), DEFAULT_CAVE_BIOME_RANGE, FULL_RANGE, 0.0F), SANDY_CATACOMBS));
         consumer.accept(Pair.of(Climate.parameters(Climate.Parameter.span(-1.0F, -0.5F), Climate.Parameter.span(0.5F, 1.0F), FULL_RANGE, Climate.Parameter.span(0.2F, 1.0F), DEFAULT_CAVE_BIOME_RANGE, Climate.Parameter.span(-0.5F, 0.1F), 0.0F), GLOWSHROOM_FOREST));

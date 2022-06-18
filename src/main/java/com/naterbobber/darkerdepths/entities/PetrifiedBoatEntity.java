@@ -41,11 +41,7 @@ public class PetrifiedBoatEntity extends Boat {
 
     @Override
     public Item getDropItem() {
-        switch (this.getBoatTypeDropItem()) {
-            case PETRIFIED:
-            default:
-                return DDItems.PETRIFIED_BOAT.get();
-        }
+        return DDItems.PETRIFIED_BOAT.get();
     }
 
     public void setBoatType(BoatType type) {
@@ -77,7 +73,6 @@ public class PetrifiedBoatEntity extends Boat {
 
     public enum BoatType {
         PETRIFIED(DDBlocks.PETRIFIED_PLANKS.get(), "petrified");
-        ;
         private final String name;
         private final Block planks;
 

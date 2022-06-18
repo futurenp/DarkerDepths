@@ -8,8 +8,4 @@ public class DetritusBlock extends DeadBushBlock {
         super(properties);
     }
 
-    @Override
-    public OffsetType getOffsetType() {
-        return OffsetType.XZ;
-    }
 }

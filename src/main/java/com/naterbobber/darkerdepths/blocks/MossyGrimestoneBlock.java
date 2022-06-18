@@ -5,6 +5,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
@@ -13,8 +14,6 @@ import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.lighting.LayerLightEngine;
 import net.minecraftforge.common.IPlantable;
-
-import java.util.Random;
 
 public class MossyGrimestoneBlock extends Block implements BonemealableBlock {
 
@@ -30,7 +29,7 @@ public class MossyGrimestoneBlock extends Block implements BonemealableBlock {
     }
 
     @Override
-    public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, Random random) {
+    public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource random) {
         if (!isDarkEnough(state, worldIn, pos)) {
             worldIn.setBlockAndUpdate(pos, DDBlocks.GRIMESTONE.get().defaultBlockState());
         }
@@ -42,12 +41,12 @@ public class MossyGrimestoneBlock extends Block implements BonemealableBlock {
     }
 
     @Override
-    public boolean isBonemealSuccess(Level worldIn, Random random, BlockPos pos, BlockState state) {
+    public boolean isBonemealSuccess(Level worldIn, RandomSource random, BlockPos pos, BlockState state) {
         return true;
     }
 
     @Override
-    public void performBonemeal(ServerLevel worldIn, Random rand, BlockPos pos, BlockState state) {
+    public void performBonemeal(ServerLevel worldIn, RandomSource rand, BlockPos pos, BlockState state) {
         BlockPos blockpos = pos.above();
         BlockState blockstate = DDBlocks.MOSSY_GRIMESTONE.get().defaultBlockState();
 

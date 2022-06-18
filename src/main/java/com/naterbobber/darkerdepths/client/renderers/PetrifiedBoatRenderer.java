@@ -29,7 +29,7 @@ public class PetrifiedBoatRenderer extends EntityRenderer<PetrifiedBoatEntity> {
 
     public PetrifiedBoatRenderer(EntityRendererProvider.Context context) {
         super(context);
-        this.boatResources = Stream.of(PetrifiedBoatEntity.BoatType.values()).collect(ImmutableMap.toImmutableMap((type) -> type, (boatType) -> Pair.of(new ResourceLocation(DarkerDepths.MODID, "textures/entity/boat/" + boatType.getName() + ".png"), new BoatModel(context.bakeLayer(createBoatLayerLocation(boatType))))));
+        this.boatResources = Stream.of(PetrifiedBoatEntity.BoatType.values()).collect(ImmutableMap.toImmutableMap((type) -> type, (boatType) -> Pair.of(new ResourceLocation(DarkerDepths.MODID, "textures/entity/boat/" + boatType.getName() + ".png"), new BoatModel(context.bakeLayer(createBoatLayerLocation(boatType)), false))));
     }
 
     public static ModelLayerLocation createBoatLayerLocation(PetrifiedBoatEntity.BoatType type) {

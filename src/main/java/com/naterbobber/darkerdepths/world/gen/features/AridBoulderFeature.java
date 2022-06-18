@@ -5,6 +5,7 @@ import com.naterbobber.darkerdepths.init.DDBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.levelgen.feature.DripstoneUtils;
@@ -24,7 +25,7 @@ public class AridBoulderFeature extends Feature<NoneFeatureConfiguration> {
     public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> context) {
         BlockPos blockpos = context.origin();
         WorldGenLevel world = context.level();
-        Random random = context.random();
+        RandomSource random = context.random();
         if (!world.isEmptyBlock(blockpos) || !world.getBlockState(blockpos.below()).is(BlockTags.BASE_STONE_OVERWORLD)) {
             return false;
         } else {

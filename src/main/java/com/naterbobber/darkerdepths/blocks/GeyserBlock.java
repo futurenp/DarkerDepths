@@ -25,7 +25,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 public class GeyserBlock extends BaseEntityBlock {
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
@@ -72,14 +72,14 @@ public class GeyserBlock extends BaseEntityBlock {
     }
 
     @Override
-    public void tick(BlockState state, ServerLevel worldIn, BlockPos pos, Random p_60465_) {
+    public void tick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource p_60465_) {
         if (state.getValue(POWERED) && !worldIn.hasNeighborSignal(pos)) {
             worldIn.setBlock(pos, state.cycle(POWERED), 2);
         }
     }
 
     @Override
-    public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, Random rand) {
+    public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, RandomSource rand) {
         int xPos = pos.getX();
         int yPos = pos.getY();
         int zPos = pos.getZ();
@@ -91,7 +91,7 @@ public class GeyserBlock extends BaseEntityBlock {
         }
     }
 
-    private void addParticle(Level worldIn, Random rand, double x, double y, double z, BlockPos pos, boolean waterlogged) {
+    private void addParticle(Level worldIn, RandomSource rand, double x, double y, double z, BlockPos pos, boolean waterlogged) {
         if (waterlogged) {
             for (int i = 1; i < 7; i++) {
                 if (worldIn.isEmptyBlock(pos.above(i))) {
@@ -122,7 +122,7 @@ public class GeyserBlock extends BaseEntityBlock {
     }
 
     @Override
-    public void randomTick(BlockState p_60551_, ServerLevel worldIn, BlockPos pos, Random rand) {
+    public void randomTick(BlockState p_60551_, ServerLevel worldIn, BlockPos pos, RandomSource rand) {
         BlockPos blockpos = pos.above();
         if (worldIn.getFluidState(pos).is(FluidTags.WATER)) {
             worldIn.playSound(null, pos, SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 0.5F, 2.6F + (worldIn.random.nextFloat() - worldIn.random.nextFloat()) * 0.8F);

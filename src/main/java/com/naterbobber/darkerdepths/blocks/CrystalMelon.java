@@ -85,7 +85,6 @@ public class CrystalMelon extends Block implements SimpleWaterloggedBlock {
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         boolean water = context.getLevel().getBlockState(context.getClickedPos()).getBlock() == Blocks.WATER;
-        BlockState state = super.getStateForPlacement(context);
-        return state.setValue(WATERLOGGED, water);
+        return super.getStateForPlacement(context).setValue(WATERLOGGED, water);
     }
 }

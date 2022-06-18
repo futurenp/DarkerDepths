@@ -8,6 +8,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.LevelAccessor;
@@ -36,7 +37,7 @@ public class PetrifiedBranchFeature extends Feature<PetrifiedBranchConfig> {
     public boolean place(FeaturePlaceContext<PetrifiedBranchConfig> context) {
         WorldGenLevel world = context.level();
         BlockPos pos = context.origin();
-        Random random = context.random();
+        RandomSource random = context.random();
         PetrifiedBranchConfig config = context.config();
         if (!world.isEmptyBlock(pos) || !world.getBlockState(pos.above()).is(BlockTags.BASE_STONE_OVERWORLD)) {
             return false;

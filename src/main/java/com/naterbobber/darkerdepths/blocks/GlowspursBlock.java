@@ -8,6 +8,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -67,7 +68,7 @@ public class GlowspursBlock extends Block {
     }
 
     @Override
-    public void tick(BlockState state, ServerLevel worldIn, BlockPos pos, Random random) {
+    public void tick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource random) {
         boolean bl = state.getValue(POWERED);
         if (bl) {
             worldIn.setBlock(pos, state.setValue(POWERED, false), 2);
