@@ -1,12 +1,15 @@
 package com.naterbobber.darkerdepths.item;
 
 import com.naterbobber.darkerdepths.entities.PetrifiedBoatEntity;
+import com.naterbobber.darkerdepths.entities.PetrifiedChestBoatEntity;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntitySelector;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.vehicle.Boat;
+import net.minecraft.world.entity.vehicle.ChestBoat;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ClipContext;
@@ -21,10 +24,12 @@ import java.util.function.Predicate;
 public class DDBoatItem extends Item {
     private static final Predicate<Entity> NON_COLLIDABLE_ENTITIES = EntitySelector.NO_SPECTATORS.and(Entity::canBeCollidedWith);
     private final PetrifiedBoatEntity.BoatType type;
+    private final boolean hasChest;
 
-    public DDBoatItem(PetrifiedBoatEntity.BoatType typeIn, Properties properties) {
+    public DDBoatItem(boolean hasChest, PetrifiedBoatEntity.BoatType typeIn, Properties properties) {
         super(properties);
         this.type = typeIn;
+        this.hasChest = hasChest;
     }
 
     public InteractionResultHolder<ItemStack> use(Level worldIn, Player playerIn, InteractionHand handIn) {
@@ -47,7 +52,7 @@ public class DDBoatItem extends Item {
             }
 
             if (raytraceresult.getType() == HitResult.Type.BLOCK) {
-                PetrifiedBoatEntity boatentity = new PetrifiedBoatEntity(worldIn, raytraceresult.getLocation().x, raytraceresult.getLocation().y, raytraceresult.getLocation().z);
+                PetrifiedBoatEntity boatentity = this.getBoat(worldIn, raytraceresult);
                 boatentity.setBoatType(this.type);
                 boatentity.setYRot(playerIn.getYRot());
                 if (!worldIn.noCollision(boatentity, boatentity.getBoundingBox())) {
@@ -67,6 +72,10 @@ public class DDBoatItem extends Item {
                 return InteractionResultHolder.pass(itemstack);
             }
         }
+    }
+
+    private PetrifiedBoatEntity getBoat(Level p_220017_, HitResult p_220018_) {
+        return this.hasChest ? new PetrifiedChestBoatEntity(p_220017_, p_220018_.getLocation().x, p_220018_.getLocation().y, p_220018_.getLocation().z) : new PetrifiedBoatEntity(p_220017_, p_220018_.getLocation().x, p_220018_.getLocation().y, p_220018_.getLocation().z);
     }
 
 }

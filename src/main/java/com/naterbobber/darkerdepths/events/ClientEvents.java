@@ -16,10 +16,12 @@ import com.naterbobber.darkerdepths.init.DDParticleTypes;
 import com.naterbobber.darkerdepths.init.DDWoodType;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.BoatModel;
+import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.particle.ParticleEngine;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.SignRenderer;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.EntityRenderersEvent;
@@ -38,13 +40,15 @@ public class ClientEvents {
     @SubscribeEvent
     public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerBlockEntityRenderer(DDBlockEntities.DD_SIGN.get(), SignRenderer::new);
-        event.registerEntityRenderer(DDEntityTypes.PETRIFIED_BOAT.get(), PetrifiedBoatRenderer::new);
+        event.registerEntityRenderer(DDEntityTypes.PETRIFIED_BOAT.get(), context -> new PetrifiedBoatRenderer(context, false));
+        event.registerEntityRenderer(DDEntityTypes.PETRIFIED_CHEST_BOAT.get(), context -> new PetrifiedBoatRenderer(context, true));
         event.registerEntityRenderer(DDEntityTypes.GLOWSHROOM_MONSTER.get(), GlowshroomMonsterRenderer::new);
     }
 
     @SubscribeEvent
     public static void registerEntityModelLayers(EntityRenderersEvent.RegisterLayerDefinitions event) {
-        event.registerLayerDefinition(PetrifiedBoatRenderer.createBoatLayerLocation(PetrifiedBoatEntity.BoatType.PETRIFIED), () -> BoatModel.createBodyModel(false));
+        event.registerLayerDefinition(new ModelLayerLocation(new ResourceLocation(DarkerDepths.MODID, "boat/petrified"), "main"), () -> BoatModel.createBodyModel(false));
+        event.registerLayerDefinition(new ModelLayerLocation(new ResourceLocation(DarkerDepths.MODID, "chest_boat/petrified"), "main"), () -> BoatModel.createBodyModel(true));
         event.registerLayerDefinition(DDModelLayers.GLOWSHROOM_MONSTER, GlowshroomMonsterModel::createBodyLayer);
         event.registerLayerDefinition(DDModelLayers.GLOWSHROOM_CAP, GlowshroomCapModel::createBodyLayer);
     }
