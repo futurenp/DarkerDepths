@@ -1,5 +1,6 @@
 {
   "item.darkerdepths.petrified_boat": "Petrified Boat",
+  "item.darkerdepths.petrified_chest_boat": "Petrified Boat with Chest",
   "block.darkerdepths.limestone": "Limestone",
   "block.darkerdepths.polished_limestone": "Polished Limestone",
   "block.darkerdepths.limestone_wall": "Limestone Wall",
@@ -154,7 +155,6 @@
   "item.darkerdepths.glowshroom_monster_spawn_egg": "Glowshroom Monster Spawn Egg",
   "item.darkerdepths.magma_minion_spawn_egg": "Magma Minion Spawn Egg",
   "item.darkerdepths.resin": "Resin",
-  "item.darkerdepths.resinous_grime": "Resinous Grime",
   "item.darkerdepths.glowshroom_cap": "Glowshroom Cap",
   "biome.darkerdepths.molten_cavern": "Molten Cavern Biome",
   "biome.darkerdepths.sandy_catacombs": "Sandy Catacombs Biome",
