@@ -23,7 +23,7 @@ public class PetrifiedBoatRenderer extends BoatRenderer {
 
     @Override
     public Pair<ResourceLocation, BoatModel> getModelWithLocation(Boat boat) {
-        return super.getModelWithLocation(boat);
+        return this.boatResources;
     }
 
     @NotNull
