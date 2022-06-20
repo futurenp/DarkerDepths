@@ -4,7 +4,7 @@ import com.naterbobber.darkerdepths.entities.GlowshroomMonsterEntity;
 import com.naterbobber.darkerdepths.events.MobEvents;
 import com.naterbobber.darkerdepths.init.DDBiomeModifiers;
 import com.naterbobber.darkerdepths.init.DDBiomes;
-import com.naterbobber.darkerdepths.init.DDBlockEntities;
+import com.naterbobber.darkerdepths.init.DDBlockEntityTypes;
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import com.naterbobber.darkerdepths.init.DDConfiguredFeatures;
 import com.naterbobber.darkerdepths.init.DDEntityTypes;
@@ -17,7 +17,6 @@ import com.naterbobber.darkerdepths.init.DDVanillaIntegration;
 import com.naterbobber.darkerdepths.util.DarkerDepthsTab;
 import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -39,14 +38,14 @@ public class DarkerDepths {
         modEventBus.addListener(this::setup);
 
         DDBlocks.BLOCKS.register(modEventBus);
+        DDBiomes.BIOMES.register(modEventBus);
         DDBiomeModifiers.BIOME_MODIFIERS.register(modEventBus);
-        DDItems.ITEMS.register(modEventBus);
-        DDBlockEntities.BLOCK_ENTITIES.register(modEventBus);
-        DDParticleTypes.PARTICLE_TYPES.register(modEventBus);
-        DDSoundEvents.SOUND_EVENTS.register(modEventBus);
+        DDBlockEntityTypes.BLOCK_ENTITIES.register(modEventBus);
         DDEntityTypes.ENTITY_TYPES.register(modEventBus);
         DDFeatures.FEATURES.register(modEventBus);
-        DDBiomes.BIOMES.register(modEventBus);
+        DDItems.ITEMS.register(modEventBus);
+        DDParticleTypes.PARTICLE_TYPES.register(modEventBus);
+        DDSoundEvents.SOUND_EVENTS.register(modEventBus);
 
         MinecraftForge.EVENT_BUS.register(this);
         MinecraftForge.EVENT_BUS.register(new MobEvents());

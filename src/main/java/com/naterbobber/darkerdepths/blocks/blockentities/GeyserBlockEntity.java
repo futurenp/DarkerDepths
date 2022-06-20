@@ -1,6 +1,6 @@
 package com.naterbobber.darkerdepths.blocks.blockentities;
 
-import com.naterbobber.darkerdepths.init.DDBlockEntities;
+import com.naterbobber.darkerdepths.init.DDBlockEntityTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
@@ -15,7 +15,7 @@ import java.util.List;
 public class GeyserBlockEntity extends BlockEntity {
 
     public GeyserBlockEntity(BlockPos pos, BlockState state) {
-        super(DDBlockEntities.GEYSER.get(), pos, state);
+        super(DDBlockEntityTypes.GEYSER.get(), pos, state);
     }
 
     public static void geyserTick(Level world, BlockPos pos, BlockState state, GeyserBlockEntity geyserBlockEntity) {

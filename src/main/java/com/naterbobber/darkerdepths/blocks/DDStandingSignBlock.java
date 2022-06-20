@@ -1,6 +1,6 @@
 package com.naterbobber.darkerdepths.blocks;
 
-import com.naterbobber.darkerdepths.init.DDBlockEntities;
+import com.naterbobber.darkerdepths.init.DDBlockEntityTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.StandingSignBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -15,6 +15,6 @@ public class DDStandingSignBlock extends StandingSignBlock {
 
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        return DDBlockEntities.DD_SIGN.get().create(pos, state);
+        return DDBlockEntityTypes.DD_SIGN.get().create(pos, state);
     }
 }

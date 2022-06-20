@@ -1,6 +1,6 @@
 package com.naterbobber.darkerdepths.blocks.blockentities;
 
-import com.naterbobber.darkerdepths.init.DDBlockEntities;
+import com.naterbobber.darkerdepths.init.DDBlockEntityTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.entity.SignBlockEntity;
@@ -14,6 +14,6 @@ public class DDSignBlockEntity extends SignBlockEntity {
 
     @Override
     public BlockEntityType<?> getType() {
-        return DDBlockEntities.DD_SIGN.get();
+        return DDBlockEntityTypes.DD_SIGN.get();
     }
 }

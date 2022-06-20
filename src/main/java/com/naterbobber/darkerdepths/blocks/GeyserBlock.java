@@ -1,7 +1,7 @@
 package com.naterbobber.darkerdepths.blocks;
 
 import com.naterbobber.darkerdepths.blocks.blockentities.GeyserBlockEntity;
-import com.naterbobber.darkerdepths.init.DDBlockEntities;
+import com.naterbobber.darkerdepths.init.DDBlockEntityTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
@@ -44,16 +44,16 @@ public class GeyserBlock extends BaseEntityBlock {
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        return DDBlockEntities.GEYSER.get().create(pos, state);
+        return DDBlockEntityTypes.GEYSER.get().create(pos, state);
     }
 
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level worldIn, BlockState state, BlockEntityType<T> blockEntityType) {
         if (worldIn.isClientSide) {
-            return !state.getValue(POWERED) ? createTickerHelper(blockEntityType, DDBlockEntities.GEYSER.get(), GeyserBlockEntity::geyserTick) : null;
+            return !state.getValue(POWERED) ? createTickerHelper(blockEntityType, DDBlockEntityTypes.GEYSER.get(), GeyserBlockEntity::geyserTick) : null;
         } else {
-            return createTickerHelper(blockEntityType, DDBlockEntities.GEYSER.get(), GeyserBlockEntity::geyserTick);
+            return createTickerHelper(blockEntityType, DDBlockEntityTypes.GEYSER.get(), GeyserBlockEntity::geyserTick);
         }
     }
 

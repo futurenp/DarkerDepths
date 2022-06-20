@@ -7,8 +7,7 @@ import com.naterbobber.darkerdepths.client.models.GlowshroomMonsterModel;
 import com.naterbobber.darkerdepths.client.particle.DrippingParticle;
 import com.naterbobber.darkerdepths.client.renderers.GlowshroomMonsterRenderer;
 import com.naterbobber.darkerdepths.client.renderers.PetrifiedBoatRenderer;
-import com.naterbobber.darkerdepths.entities.PetrifiedBoatEntity;
-import com.naterbobber.darkerdepths.init.DDBlockEntities;
+import com.naterbobber.darkerdepths.init.DDBlockEntityTypes;
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import com.naterbobber.darkerdepths.init.DDEntityTypes;
 import com.naterbobber.darkerdepths.init.DDModelLayers;
@@ -39,7 +38,7 @@ public class ClientEvents {
 
     @SubscribeEvent
     public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
-        event.registerBlockEntityRenderer(DDBlockEntities.DD_SIGN.get(), SignRenderer::new);
+        event.registerBlockEntityRenderer(DDBlockEntityTypes.DD_SIGN.get(), SignRenderer::new);
         event.registerEntityRenderer(DDEntityTypes.PETRIFIED_BOAT.get(), context -> new PetrifiedBoatRenderer(context, false));
         event.registerEntityRenderer(DDEntityTypes.PETRIFIED_CHEST_BOAT.get(), context -> new PetrifiedBoatRenderer(context, true));
         event.registerEntityRenderer(DDEntityTypes.GLOWSHROOM_MONSTER.get(), GlowshroomMonsterRenderer::new);
