@@ -33,8 +33,7 @@ public class DDFeatures {
     public static final RegistryObject<Feature<NoneFeatureConfiguration>> HUGE_GLOWSHROOM = FEATURES.register("huge_glowshroom", () -> new HugeGlowshroomFeature(NoneFeatureConfiguration.CODEC));
     public static final RegistryObject<Feature<PetrifiedBranchConfig>> PETRIFIED_BRANCH = FEATURES.register("petrified_branch", () -> new PetrifiedBranchFeature(PetrifiedBranchConfig.CODEC));
     public static final RegistryObject<Feature<VegetationPatchConfiguration>> LAVA_VEGETATION_PATCH_FEATURE = FEATURES.register("lava_vegetation_patch", () -> new LavaVegetationPatchFeature(VegetationPatchConfiguration.CODEC));
-    public static final RegistryObject<Feature<NoneFeatureConfiguration>> SOUL_SOIL = FEATURES.register("soul_soil", () -> new SoulSoilFeature(NoneFeatureConfiguration.CODEC));
-    public static final RegistryObject<Feature<CorrespondentLayersConfig>> CORRESPONDENT = FEATURES.register("correspondent_layer", () -> new CorrespondentLayersFeature(CorrespondentLayersConfig.CODEC));
+    public static final RegistryObject<Feature<CorrespondentLayersConfig>> CORRESPONDENT_LAYER = FEATURES.register("correspondent_layer", () -> new CorrespondentLayersFeature(CorrespondentLayersConfig.CODEC));
     public static final RegistryObject<Feature<NoneFeatureConfiguration>> ARID_BOULDER = FEATURES.register("arid_boulder", () -> new AridBoulderFeature(NoneFeatureConfiguration.CODEC));
 
 }

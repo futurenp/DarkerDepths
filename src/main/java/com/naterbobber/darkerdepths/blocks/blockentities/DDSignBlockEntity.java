@@ -8,8 +8,8 @@ import net.minecraft.world.level.block.state.BlockState;
 
 public class DDSignBlockEntity extends SignBlockEntity {
 
-    public DDSignBlockEntity(BlockPos p_155700_, BlockState p_155701_) {
-        super(p_155700_, p_155701_);
+    public DDSignBlockEntity(BlockPos pos, BlockState state) {
+        super(pos, state);
     }
 
     @Override

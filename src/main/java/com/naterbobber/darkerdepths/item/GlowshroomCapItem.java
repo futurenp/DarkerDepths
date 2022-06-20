@@ -1,7 +1,6 @@
 package com.naterbobber.darkerdepths.item;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
-import com.naterbobber.darkerdepths.client.models.DaBaby;
 import com.naterbobber.darkerdepths.client.models.GlowshroomCapModel;
 import com.naterbobber.darkerdepths.init.DDItems;
 import net.minecraft.client.model.HumanoidModel;
