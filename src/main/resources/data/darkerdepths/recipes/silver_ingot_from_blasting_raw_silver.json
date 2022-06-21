@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:blasting",
-  "ingredient": {
-    "item": "darkerdepths:raw_silver"
-  },
-  "result": "darkerdepths:silver_ingot",
-  "experience": 0.7,
-  "cookingtime": 100
-}

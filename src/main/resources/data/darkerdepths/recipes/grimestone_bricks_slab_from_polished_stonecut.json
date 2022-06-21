@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "darkerdepths:polished_grimestone"
-  },
-  "result": "darkerdepths:grimestone_bricks_slab",
-  "count": 2
-}

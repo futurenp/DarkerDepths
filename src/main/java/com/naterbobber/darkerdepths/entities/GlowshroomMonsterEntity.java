@@ -26,8 +26,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Random;
-
 public class GlowshroomMonsterEntity extends Monster {
     private int attackTick;
 
@@ -38,12 +36,12 @@ public class GlowshroomMonsterEntity extends Monster {
 
     @Override
     protected void registerGoals() {
-        this.goalSelector.addGoal(1, new MeleeAttackGoal(this, this.getAttributeValue(Attributes.MOVEMENT_SPEED) + 0.2D, true));
-        this.goalSelector.addGoal(2, new WaterAvoidingRandomStrollGoal(this, this.getAttributeValue(Attributes.MOVEMENT_SPEED)));
-        this.goalSelector.addGoal(2, new LookAtPlayerGoal(this, Player.class, 6.0F));
+        this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 0.85D, true));
+        this.goalSelector.addGoal(2, new WaterAvoidingRandomStrollGoal(this, 0.85D));
+        this.goalSelector.addGoal(3, new LookAtPlayerGoal(this, Player.class, 8.0F));
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
-        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Mob.class, 0, false, false, (entity) -> !(entity instanceof Creeper) && !(entity instanceof GlowshroomMonsterEntity) && !(entity instanceof Bat)));
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Mob.class, 10, false, false, (entity) -> !(entity instanceof Creeper) && !(entity instanceof GlowshroomMonsterEntity) && !(entity instanceof Bat)));
     }
 
     @Override
@@ -94,13 +92,7 @@ public class GlowshroomMonsterEntity extends Monster {
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return Mob.createMobAttributes()
-                .add(Attributes.MAX_HEALTH, 45.0D)
-                .add(Attributes.MOVEMENT_SPEED, 0.5D)
-                .add(Attributes.ATTACK_KNOCKBACK, 1.3D)
-                .add(Attributes.ATTACK_DAMAGE, 8.0D)
-                .add(Attributes.KNOCKBACK_RESISTANCE, 0.75D)
-                ;
+        return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 45.0D).add(Attributes.MOVEMENT_SPEED, 0.5D).add(Attributes.ATTACK_KNOCKBACK, 1.3D).add(Attributes.ATTACK_DAMAGE, 8.0D).add(Attributes.KNOCKBACK_RESISTANCE, 0.75D);
     }
 
     public static boolean canSpawn(EntityType<? extends Mob> typeIn, ServerLevelAccessor worldIn, MobSpawnType reason, BlockPos pos, RandomSource randomIn) {

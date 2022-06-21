@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "darkerdepths:polished_shale"
-  },
-  "result": "darkerdepths:shale_bricks",
-  "count": 1
-}

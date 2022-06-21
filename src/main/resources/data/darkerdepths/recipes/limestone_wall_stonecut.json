@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "darkerdepths:limestone"
-  },
-  "result": "darkerdepths:limestone_wall",
-  "count": 1
-}

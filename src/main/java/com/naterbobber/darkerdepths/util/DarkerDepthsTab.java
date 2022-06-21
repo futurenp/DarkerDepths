@@ -1,5 +1,6 @@
 package com.naterbobber.darkerdepths.util;
 
+import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.init.DDItems;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
@@ -7,7 +8,7 @@ import net.minecraft.world.item.ItemStack;
 public class DarkerDepthsTab extends CreativeModeTab {
 
     public DarkerDepthsTab() {
-        super("DarkerDepths");
+        super(DarkerDepths.MODID);
     }
 
     @Override

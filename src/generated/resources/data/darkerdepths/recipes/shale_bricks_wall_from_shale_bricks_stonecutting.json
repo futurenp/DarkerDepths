@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 1,
+  "ingredient": {
+    "item": "darkerdepths:shale_bricks"
+  },
+  "result": "darkerdepths:shale_bricks_wall"
+}

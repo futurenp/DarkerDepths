@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": {
+      "item": "darkerdepths:resin"
+    },
+    "G": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    " # ",
+    " G ",
+    " # "
+  ],
+  "result": {
+    "count": 2,
+    "item": "darkerdepths:rope"
+  }
+}

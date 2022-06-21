@@ -1,0 +1,10 @@
+// 1.19	2022-06-21T11:47:18.3374804	Tags for minecraft:block
+73fc08448c91ba1c28b185a8e6df159250cf66ee data/minecraft/tags/blocks/base_stone_overworld.json
+2f55c1673c5af67553864fe4d1bfdc9576285e75 data/minecraft/tags/blocks/beacon_base_blocks.json
+d46196cd8880069d772cedd2866445ceffda8735 data/minecraft/tags/blocks/fence_gates.json
+5e277297b74dc60b3a92d2fe9b9fc06fe32cf551 data/minecraft/tags/blocks/logs.json
+e60249f463d936522505a016b677de35274b6d21 data/minecraft/tags/blocks/mineable/hoe.json
+fb34ebf8f31f546d0f28fd3674f558f278698fed data/minecraft/tags/blocks/mineable/pickaxe.json
+7a0301efb3765b21b4d17f79d065044da8501821 data/minecraft/tags/blocks/mineable/shovel.json
+5cc2a8a39b3d6e9f7bfec85c28059d68c70d0bc8 data/minecraft/tags/blocks/walls.json
+f554d471ce51b93b48815f100f6e9e6a04baecf5 data/minecraft/tags/blocks/wooden_fences.json

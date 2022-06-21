@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "cookingtime": 200,
+  "experience": 0.1,
+  "group": "lapis_lazuli",
+  "ingredient": {
+    "item": "darkerdepths:limestone_lapis_ore"
+  },
+  "result": "minecraft:lapis_lazuli"
+}

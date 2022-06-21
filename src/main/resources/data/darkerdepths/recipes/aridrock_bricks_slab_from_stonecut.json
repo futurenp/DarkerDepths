@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "darkerdepths:aridrock"
-  },
-  "result": "darkerdepths:aridrock_bricks_slab",
-  "count": 2
-}

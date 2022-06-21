@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 1,
+  "ingredient": {
+    "item": "darkerdepths:limestone"
+  },
+  "result": "darkerdepths:polished_limestone_stairs"
+}
