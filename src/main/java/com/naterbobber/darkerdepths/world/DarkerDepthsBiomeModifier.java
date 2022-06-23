@@ -22,8 +22,8 @@ public class DarkerDepthsBiomeModifier implements BiomeModifier {
         BiomeGenerationSettingsBuilder generationSettings = builder.getGenerationSettings();
         MobSpawnSettingsBuilder mobSpawnSettings = builder.getMobSpawnSettings();
         if (phase == Phase.ADD) {
-            generationSettings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, DDPlacedFeatures.GLOWSHROOM_PATCH);
-            generationSettings.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, DDPlacedFeatures.SILVER_ORE);
+//            generationSettings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, DDPlacedFeatures.GLOWSHROOM_PATCH);
+//            generationSettings.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, DDPlacedFeatures.SILVER_ORE);
             if (biome.is(DDBiomes.MOLTEN_CAVERN.getId())) {
                 generationSettings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, DDPlacedFeatures.SHALE_PLACEMENT);
                 generationSettings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, DDPlacedFeatures.AMBER);

@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_chiseled_aridrock_bricks": {
+    "has_limestone": {
       "conditions": {
         "items": [
           {
             "items": [
-              "darkerdepths:chiseled_aridrock_bricks"
+              "darkerdepths:limestone"
             ]
           }
         ]
@@ -15,20 +15,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "darkerdepths:polished_aridrock_slab"
+        "recipe": "darkerdepths:limestone_wall"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_chiseled_aridrock_bricks",
+      "has_limestone",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "darkerdepths:polished_aridrock_slab"
+      "darkerdepths:limestone_wall"
     ]
   }
 }

@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_polished_grimestone": {
+    "has_chiseled_grimestone_bricks": {
       "conditions": {
         "items": [
           {
             "items": [
-              "darkerdepths:polished_grimestone"
+              "darkerdepths:chiseled_grimestone_bricks"
             ]
           }
         ]
@@ -22,7 +22,7 @@
   },
   "requirements": [
     [
-      "has_polished_grimestone",
+      "has_chiseled_grimestone_bricks",
       "has_the_recipe"
     ]
   ],

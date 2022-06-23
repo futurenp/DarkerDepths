@@ -2,14 +2,14 @@
   "type": "minecraft:crafting_shaped",
   "key": {
     "#": {
-      "item": "darkerdepths:polished_grimestone"
+      "item": "darkerdepths:chiseled_grimestone_bricks"
     }
   },
   "pattern": [
-    "###"
+    "#",
+    "#"
   ],
   "result": {
-    "count": 6,
     "item": "darkerdepths:polished_grimestone_slab"
   }
 }

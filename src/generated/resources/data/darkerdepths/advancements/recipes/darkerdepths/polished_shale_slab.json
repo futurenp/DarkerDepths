@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_polished_shale": {
+    "has_chiseled_shale_bricks": {
       "conditions": {
         "items": [
           {
             "items": [
-              "darkerdepths:polished_shale"
+              "darkerdepths:chiseled_shale_bricks"
             ]
           }
         ]
@@ -22,7 +22,7 @@
   },
   "requirements": [
     [
-      "has_polished_shale",
+      "has_chiseled_shale_bricks",
       "has_the_recipe"
     ]
   ],

@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_chiseled_aridrock_bricks": {
+    "has_shale": {
       "conditions": {
         "items": [
           {
             "items": [
-              "darkerdepths:chiseled_aridrock_bricks"
+              "darkerdepths:shale"
             ]
           }
         ]
@@ -15,20 +15,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "darkerdepths:polished_aridrock_slab"
+        "recipe": "darkerdepths:shale_wall"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_chiseled_aridrock_bricks",
+      "has_shale",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "darkerdepths:polished_aridrock_slab"
+      "darkerdepths:shale_wall"
     ]
   }
 }

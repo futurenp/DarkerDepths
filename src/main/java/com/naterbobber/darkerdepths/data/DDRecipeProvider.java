@@ -3,6 +3,7 @@ package com.naterbobber.darkerdepths.data;
 import com.google.common.collect.ImmutableList;
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.init.DDBlocks;
+import com.naterbobber.darkerdepths.init.DDItemTags;
 import com.naterbobber.darkerdepths.init.DDItems;
 import net.minecraft.core.Registry;
 import net.minecraft.data.DataGenerator;
@@ -13,6 +14,7 @@ import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
 import net.minecraft.data.recipes.SingleItemRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -45,6 +47,11 @@ public class DDRecipeProvider extends RecipeProvider {
         oreSmelting(consumer, ImmutableList.of(DDBlocks.AMBER.get()), DDItems.RESIN.get(), 0.1F, 200, "resin");
         oreBlasting(consumer, ImmutableList.of(DDBlocks.AMBER.get()), DDItems.RESIN.get(), 0.1F, 100, "resin");
 
+        chiseledBricks(consumer, DDBlocks.CHISELED_SHALE_BRICKS.get(), DDBlocks.POLISHED_SHALE_SLAB.get().asItem());
+        chiseledBricks(consumer, DDBlocks.CHISELED_ARIDROCK_BRICKS.get(), DDBlocks.POLISHED_ARIDROCK_SLAB.get().asItem());
+        chiseledBricks(consumer, DDBlocks.CHISELED_LIMESTONE_BRICKS.get(), DDBlocks.POLISHED_LIMESTONE_SLAB.get().asItem());
+        chiseledBricks(consumer, DDBlocks.CHISELED_GRIMESTONE_BRICKS.get(), DDBlocks.POLISHED_GRIMESTONE_SLAB.get().asItem());
+
         stairsBlock(consumer, DDBlocks.SHALE_STAIRS.get(), DDBlocks.SHALE.get().asItem());
         stairsBlock(consumer, DDBlocks.ARIDROCK_STAIRS.get(), DDBlocks.ARIDROCK.get().asItem());
         stairsBlock(consumer, DDBlocks.LIMESTONE_STAIRS.get(), DDBlocks.LIMESTONE.get().asItem());
@@ -72,6 +79,15 @@ public class DDRecipeProvider extends RecipeProvider {
         slabBlock(consumer, DDBlocks.LIMESTONE_BRICKS_SLAB.get(), DDBlocks.LIMESTONE_BRICKS.get().asItem());
         slabBlock(consumer, DDBlocks.GRIMESTONE_BRICKS_SLAB.get(), DDBlocks.GRIMESTONE_BRICKS.get().asItem());
         slabBlock(consumer, DDBlocks.PETRIFIED_SLAB.get(), DDBlocks.PETRIFIED_PLANKS.get().asItem());
+
+        wallBlock(consumer, DDBlocks.SHALE_WALL.get(), DDBlocks.SHALE.get().asItem());
+        wallBlock(consumer, DDBlocks.ARIDROCK_WALL.get(), DDBlocks.ARIDROCK.get().asItem());
+        wallBlock(consumer, DDBlocks.LIMESTONE_WALL.get(), DDBlocks.LIMESTONE.get().asItem());
+        wallBlock(consumer, DDBlocks.GRIMESTONE_WALL.get(), DDBlocks.GRIMESTONE.get().asItem());
+        wallBlock(consumer, DDBlocks.SHALE_BRICKS_WALL.get(), DDBlocks.SHALE_BRICKS.get().asItem());
+        wallBlock(consumer, DDBlocks.ARIDROCK_BRICKS_WALL.get(), DDBlocks.ARIDROCK_BRICKS.get().asItem());
+        wallBlock(consumer, DDBlocks.LIMESTONE_BRICKS_WALL.get(), DDBlocks.LIMESTONE_BRICKS.get().asItem());
+        wallBlock(consumer, DDBlocks.GRIMESTONE_BRICKS_WALL.get(), DDBlocks.GRIMESTONE_BRICKS.get().asItem());
 
         oreSmelting(consumer, ImmutableList.of(DDBlocks.ARIDROCK_COAL_ORE.get()), Items.COAL, 0.1F, 200, "coal");
         oreSmelting(consumer, ImmutableList.of(DDBlocks.ARIDROCK_IRON_ORE.get()), Items.IRON_INGOT, 0.1F, 200, "iron_ingot");
@@ -114,6 +130,17 @@ public class DDRecipeProvider extends RecipeProvider {
         shaplessOne(consumer, DDItems.RAW_SILVER.get(), DDBlocks.RAW_SILVER_BLOCK.get().asItem(), 9);
 
         fenceBlock(consumer, DDBlocks.PETRIFIED_FENCE.get(), DDBlocks.PETRIFIED_PLANKS.get().asItem());
+
+        planksFromLogs(consumer, DDBlocks.PETRIFIED_PLANKS.get(), DDItemTags.PETRIFIED_LOGS);
+
+        stonecutterResultFromBase(consumer, DDBlocks.CHISELED_SHALE_BRICKS.get(), DDBlocks.SHALE.get());
+        stonecutterResultFromBase(consumer, DDBlocks.CHISELED_ARIDROCK_BRICKS.get(), DDBlocks.ARIDROCK.get());
+        stonecutterResultFromBase(consumer, DDBlocks.CHISELED_LIMESTONE_BRICKS.get(), DDBlocks.LIMESTONE.get());
+        stonecutterResultFromBase(consumer, DDBlocks.CHISELED_GRIMESTONE_BRICKS.get(), DDBlocks.GRIMESTONE.get());
+        stonecutterResultFromBase(consumer, DDBlocks.CHISELED_SHALE_BRICKS.get(), DDBlocks.POLISHED_SHALE.get());
+        stonecutterResultFromBase(consumer, DDBlocks.CHISELED_ARIDROCK_BRICKS.get(), DDBlocks.POLISHED_ARIDROCK.get());
+        stonecutterResultFromBase(consumer, DDBlocks.CHISELED_LIMESTONE_BRICKS.get(), DDBlocks.POLISHED_LIMESTONE.get());
+        stonecutterResultFromBase(consumer, DDBlocks.CHISELED_GRIMESTONE_BRICKS.get(), DDBlocks.POLISHED_GRIMESTONE.get());
 
         stonecutterResultFromBase(consumer, DDBlocks.SHALE_STAIRS.get(), DDBlocks.SHALE.get());
         stonecutterResultFromBase(consumer, DDBlocks.ARIDROCK_STAIRS.get(), DDBlocks.ARIDROCK.get());
@@ -211,6 +238,14 @@ public class DDRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_resin", has(DDItems.RESIN.get())).save(consumer);
     }
 
+    protected static void planksFromLogs(Consumer<FinishedRecipe> consumer, ItemLike result, TagKey<Item> item) {
+        ShapelessRecipeBuilder
+                .shapeless(result, 4)
+                .requires(item)
+                .group("planks")
+                .unlockedBy("has_logs", has(item)).save(consumer);
+    }
+
     protected static void stonecutterResultFromBase(Consumer<FinishedRecipe> consumer, ItemLike result, ItemLike ingredient) {
         stonecutterResultFromBase(consumer, result, ingredient, 1);
     }
@@ -225,6 +260,24 @@ public class DDRecipeProvider extends RecipeProvider {
 
     protected static String getItemName(ItemLike item) {
         return ForgeRegistries.ITEMS.getKey(item.asItem()).getPath();
+    }
+
+    private void chiseledBricks(Consumer<FinishedRecipe> consumer, ItemLike result, Item item) {
+        ShapedRecipeBuilder
+                .shaped(result)
+                .define('#', item)
+                .pattern("#")
+                .pattern("#")
+                .unlockedBy("has_" + Registry.ITEM.getKey(item).getPath(), has(item)).save(consumer);
+    }
+
+    private void wallBlock(Consumer<FinishedRecipe> consumer, ItemLike result, Item item) {
+        ShapedRecipeBuilder
+                .shaped(result, 6)
+                .define('#', item)
+                .pattern("###")
+                .pattern("###")
+                .unlockedBy("has_" + Registry.ITEM.getKey(item).getPath(), has(item)).save(consumer);
     }
 
     private void twoXtwo(Consumer<FinishedRecipe> consumer, ItemLike result, Item item, int count) {

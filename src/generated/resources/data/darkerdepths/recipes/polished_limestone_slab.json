@@ -2,14 +2,14 @@
   "type": "minecraft:crafting_shaped",
   "key": {
     "#": {
-      "item": "darkerdepths:polished_limestone"
+      "item": "darkerdepths:chiseled_limestone_bricks"
     }
   },
   "pattern": [
-    "###"
+    "#",
+    "#"
   ],
   "result": {
-    "count": 6,
     "item": "darkerdepths:polished_limestone_slab"
   }
 }
