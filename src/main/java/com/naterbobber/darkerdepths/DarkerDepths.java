@@ -57,7 +57,6 @@ public class DarkerDepths {
             DDConfiguredFeatures.init();
             DDPlacedFeatures.init();
 
-            SpawnPlacements.register(DDEntityTypes.GLOWSHROOM_MONSTER.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, GlowshroomMonsterEntity::canSpawn);
         });
     }
 

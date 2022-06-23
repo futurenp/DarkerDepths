@@ -1,5 +1,6 @@
 package com.naterbobber.darkerdepths.entities;
 
+import com.naterbobber.darkerdepths.init.DDBlocks;
 import com.naterbobber.darkerdepths.init.DDSoundEvents;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvent;
@@ -96,6 +97,6 @@ public class GlowshroomMonsterEntity extends Monster {
     }
 
     public static boolean canSpawn(EntityType<? extends Mob> typeIn, ServerLevelAccessor worldIn, MobSpawnType reason, BlockPos pos, RandomSource randomIn) {
-        return worldIn.getDifficulty() != Difficulty.PEACEFUL && pos.getY() <= 40 && isDarkEnoughToSpawn(worldIn, pos, randomIn);
+        return worldIn.getDifficulty() != Difficulty.PEACEFUL && pos.getY() <= 40 && worldIn.getBlockState(pos.below()).is(DDBlocks.MOSSY_GRIMESTONE.get());
     }
 }
