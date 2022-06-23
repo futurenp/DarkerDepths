@@ -2,14 +2,14 @@
   "type": "minecraft:crafting_shaped",
   "key": {
     "#": {
-      "item": "darkerdepths:chiseled_shale_bricks"
+      "item": "darkerdepths:polished_shale"
     }
   },
   "pattern": [
-    "#",
-    "#"
+    "###"
   ],
   "result": {
+    "count": 6,
     "item": "darkerdepths:polished_shale_slab"
   }
 }

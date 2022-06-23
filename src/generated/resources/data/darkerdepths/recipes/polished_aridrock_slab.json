@@ -2,14 +2,14 @@
   "type": "minecraft:crafting_shaped",
   "key": {
     "#": {
-      "item": "darkerdepths:chiseled_aridrock_bricks"
+      "item": "darkerdepths:polished_aridrock"
     }
   },
   "pattern": [
-    "#",
-    "#"
+    "###"
   ],
   "result": {
+    "count": 6,
     "item": "darkerdepths:polished_aridrock_slab"
   }
 }

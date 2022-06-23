@@ -77,12 +77,12 @@ public class DDBiomes {
         return biome(Biome.Precipitation.RAIN, 0.5F, 0.5F, mobBuilder, biomeBuilder, music);
     }
 
-    private static Biome biome(Biome.Precipitation percipitation, float p_194864_, float p_194865_, MobSpawnSettings.Builder p_194866_, BiomeGenerationSettings.Builder p_194867_, @Nullable Music p_194868_) {
-        return biome(percipitation, p_194864_, p_194865_, 4159204, 329011, p_194866_, p_194867_, p_194868_);
+    private static Biome biome(Biome.Precipitation percipitation, float temperature, float downfall, MobSpawnSettings.Builder mobBuilder, BiomeGenerationSettings.Builder biomeBuilder, @Nullable Music music) {
+        return biome(percipitation, temperature, downfall, 4159204, 329011, mobBuilder, biomeBuilder, music);
     }
 
-    private static Biome biome(Biome.Precipitation percipitation, float p_194854_, float p_194855_, int p_194856_, int p_194857_, MobSpawnSettings.Builder p_194858_, BiomeGenerationSettings.Builder p_194859_, @Nullable Music p_194860_) {
-        return (new Biome.BiomeBuilder()).precipitation(percipitation).temperature(p_194854_).downfall(p_194855_).specialEffects((new BiomeSpecialEffects.Builder()).waterColor(p_194856_).waterFogColor(p_194857_).fogColor(12638463).skyColor(calculateSkyColor(p_194854_)).ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS).backgroundMusic(p_194860_).build()).mobSpawnSettings(p_194858_.build()).generationSettings(p_194859_.build()).build();
+    private static Biome biome(Biome.Precipitation percipitation, float temperature, float downfall, int waterColor, int waterFogColor, MobSpawnSettings.Builder builder, BiomeGenerationSettings.Builder biomeBuilder, @Nullable Music music) {
+        return (new Biome.BiomeBuilder()).precipitation(percipitation).temperature(temperature).downfall(downfall).specialEffects((new BiomeSpecialEffects.Builder()).waterColor(waterColor).waterFogColor(waterFogColor).fogColor(12638463).skyColor(calculateSkyColor(temperature)).ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS).backgroundMusic(music).build()).mobSpawnSettings(builder.build()).generationSettings(biomeBuilder.build()).build();
     }
 
     protected static int calculateSkyColor(float temperature) {

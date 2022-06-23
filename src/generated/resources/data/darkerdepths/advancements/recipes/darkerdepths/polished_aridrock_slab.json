@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_chiseled_aridrock_bricks": {
+    "has_polished_aridrock": {
       "conditions": {
         "items": [
           {
             "items": [
-              "darkerdepths:chiseled_aridrock_bricks"
+              "darkerdepths:polished_aridrock"
             ]
           }
         ]
@@ -22,7 +22,7 @@
   },
   "requirements": [
     [
-      "has_chiseled_aridrock_bricks",
+      "has_polished_aridrock",
       "has_the_recipe"
     ]
   ],

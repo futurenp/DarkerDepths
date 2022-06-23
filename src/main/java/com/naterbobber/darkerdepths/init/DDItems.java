@@ -25,8 +25,8 @@ public class DDItems {
     public static final RegistryObject<Item> GLOWSHROOM_MONSTER_SPAWN_EGG = ITEMS.register("glowshroom_monster_spawn_egg", () -> new ForgeSpawnEggItem(DDEntityTypes.GLOWSHROOM_MONSTER, 8290688, 8513702, new Item.Properties().tab(DarkerDepths.DARKER_DEPTHS)));
     public static final RegistryObject<Item> PETRIFIED_SIGN = ITEMS.register("petrified_sign", () -> new SignItem(new Item.Properties().stacksTo(16).tab(DarkerDepths.DARKER_DEPTHS), DDBlocks.PETRIFIED_SIGN.get(), DDBlocks.PETRIFIED_WALL_SIGN.get()));
     public static final RegistryObject<Item> RESIN = createSimpleItem("resin");
-    public static final RegistryObject<Item> RAW_SILVER = createItem("raw_silver");
-    public static final RegistryObject<Item> SILVER_INGOT = createItem("silver_ingot");
+    public static final RegistryObject<Item> RAW_SILVER = createSimpleItem("raw_silver");
+    public static final RegistryObject<Item> SILVER_INGOT = createSimpleItem("silver_ingot");
 
     private static RegistryObject<Item> createItem(String name) {
         return ITEMS.register(name, () -> new Item(new Item.Properties()));
