@@ -1,9 +1,11 @@
 package com.naterbobber.darkerdepths.world.gen.features;
 
 import com.mojang.serialization.Codec;
+import com.naterbobber.darkerdepths.init.DDBlocks;
 import com.naterbobber.darkerdepths.world.gen.features.config.CorrespondentLayersConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Blocks;
@@ -102,7 +104,20 @@ public class CorrespondentLayersFeature extends Feature<CorrespondentLayersConfi
         for (int i = 0; i < tries; ++i) {
             BlockState blockstate = config.groundState.getState(random, pos);
             BlockState belowState = config.belowState.getState(random, pos);
-            if (world.getBlockState(pos.below()).is(Blocks.TUFF) || world.getBlockState(pos.below()).is(Blocks.DEEPSLATE)) {
+            BlockState posBelow = world.getBlockState(pos.below());
+
+            if (blockstate == DDBlocks.ARIDROCK.get().defaultBlockState() && (world.getBlockState(pos).is(DDBlocks.LIMESTONE.get()) || posBelow.is(DDBlocks.LIMESTONE.get()))) continue;
+
+            if (blockstate == DDBlocks.ARIDROCK.get().defaultBlockState() && !(posBelow.is(Blocks.DEEPSLATE) || posBelow.is(Blocks.TUFF))) {
+                belowState = DDBlocks.ARIDROCK.get().defaultBlockState();
+            }
+
+            if (posBelow.is(Blocks.TUFF) || posBelow.is(Blocks.DEEPSLATE)) {
+                world.setBlock(pos.below(), belowState, 2);
+                world.setBlock(pos, blockstate, 2);
+            }
+            else if (posBelow.is(BlockTags.BASE_STONE_OVERWORLD)) {
+                belowState = belowState.is(DDBlocks.ARID_DEEPSLATE.get()) ? DDBlocks.ARIDROCK.get().defaultBlockState() : belowState;
                 world.setBlock(pos.below(), belowState, 2);
                 world.setBlock(pos, blockstate, 2);
             }
