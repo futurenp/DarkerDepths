@@ -4,19 +4,15 @@ import com.mojang.serialization.Codec;
 import com.naterbobber.darkerdepths.blocks.GlowshroomBlock;
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.WorldGenLevel;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.levelgen.feature.DripstoneUtils;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import net.minecraft.world.level.material.Fluids;
-
-import java.util.Random;
 
 public class RandomSpreadFeature extends Feature<NoneFeatureConfiguration> {
 

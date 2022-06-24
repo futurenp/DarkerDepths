@@ -1,21 +1,18 @@
 package com.naterbobber.darkerdepths.world.gen.features;
 
 import com.mojang.serialization.Codec;
-import com.naterbobber.darkerdepths.init.DDConfiguredFeatures;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.feature.VegetationPatchFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.VegetationPatchConfiguration;
 
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.Random;
 import java.util.Set;
 import java.util.function.Predicate;
 

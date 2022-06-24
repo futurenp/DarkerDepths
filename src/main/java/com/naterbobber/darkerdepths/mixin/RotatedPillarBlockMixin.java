@@ -12,8 +12,6 @@ import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
 
-import java.util.Random;
-
 @Mixin(RotatedPillarBlock.class)
 public class RotatedPillarBlockMixin extends Block {
 

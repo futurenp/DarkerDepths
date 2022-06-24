@@ -12,7 +12,6 @@ import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 
 import javax.annotation.Nullable;
-import java.util.Random;
 
 public class ReplaceListFeature extends Feature<ReplaceListConfig> {
 

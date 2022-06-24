@@ -13,10 +13,6 @@ import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluids;
 
-import java.util.Random;
-
-//<>
-
 public class PorousBlock extends RotatedPillarBlock {
 
     public PorousBlock(Properties properties) {

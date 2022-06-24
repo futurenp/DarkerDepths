@@ -1,13 +1,11 @@
 package com.naterbobber.darkerdepths.blocks;
 
-import com.mojang.math.Vector3d;
 import com.naterbobber.darkerdepths.init.DDEntityTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -29,8 +27,6 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-
-import java.util.Random;
 
 public class GlowspursBlock extends Block {
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;

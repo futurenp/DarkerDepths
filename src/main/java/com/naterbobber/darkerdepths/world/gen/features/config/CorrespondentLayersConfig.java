@@ -4,17 +4,13 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.valueproviders.IntProvider;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
-import com.naterbobber.darkerdepths.world.gen.features.config.CorrespondentLayersConfig;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.minecraft.world.level.levelgen.placement.CaveSurface;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
-
-import java.util.function.Supplier;
 
 public class CorrespondentLayersConfig implements FeatureConfiguration {
     public static final Codec<CorrespondentLayersConfig> CODEC = RecordCodecBuilder.create((p_161304_) -> {
