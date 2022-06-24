@@ -20,6 +20,7 @@ public class DDDataGenerator {
         dataGenerator.addProvider(event.includeServer(), new DDRecipeProvider(dataGenerator));
         dataGenerator.addProvider(event.includeServer(), new DDBlockTagsProvider(dataGenerator, existingFileHelper));
         dataGenerator.addProvider(event.includeServer(), new DDItemTagsProvider(dataGenerator, existingFileHelper));
+        dataGenerator.addProvider(event.includeServer(), new DDBiomeTagsProvider(dataGenerator, existingFileHelper));
     }
 
 }

@@ -1,0 +1,4 @@
+// 1.19	2022-06-24T08:12:10.4877008	Tags for minecraft:worldgen/biome
+7f4a5e44b49d5967f3a73ecdf5088113eb0a96ee data/minecraft/tags/worldgen/biome/has_structure/mineshaft.json
+7f4a5e44b49d5967f3a73ecdf5088113eb0a96ee data/minecraft/tags/worldgen/biome/has_structure/ruined_portal_standard.json
+7f4a5e44b49d5967f3a73ecdf5088113eb0a96ee data/minecraft/tags/worldgen/biome/stronghold_biased_to.json

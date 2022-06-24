@@ -18,11 +18,11 @@ mixin {
     add sourceSets.main, "darkerdepths.refmap.json"
 }
 
-group = 'com'
+group = 'com.naterbobber'
 version = '1.19-1.0.0'
 
 java {
-    archivesBaseName = 'darkerdepths'
+    archivesBaseName = 'DarkerDepths'
     toolchain.languageVersion = JavaLanguageVersion.of(17)
 }
 
