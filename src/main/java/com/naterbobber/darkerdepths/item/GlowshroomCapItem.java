@@ -1,7 +1,6 @@
 package com.naterbobber.darkerdepths.item;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
-import com.naterbobber.darkerdepths.client.models.DaBaby;
 import com.naterbobber.darkerdepths.client.models.GlowshroomCapModel;
 import com.naterbobber.darkerdepths.init.DDItems;
 import net.minecraft.client.model.HumanoidModel;
@@ -20,6 +19,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Vanishable;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.IItemRenderProperties;
 import org.jetbrains.annotations.Nullable;
 
@@ -51,6 +52,7 @@ public class GlowshroomCapItem extends ArmorItem implements Vanishable {
     }
 
     @Override
+    @OnlyIn(Dist.CLIENT)
     public void initializeClient(Consumer<IItemRenderProperties> consumer) {
         consumer.accept(new IItemRenderProperties() {
             @Override
