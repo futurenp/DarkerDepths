@@ -27,7 +27,7 @@ java {
 }
 
 minecraft {
-    mappings channel: 'official', version: '1.18.1'
+    mappings channel: 'official', version: '1.18.2'
 
     accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
 
@@ -94,9 +94,9 @@ repositories {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.18.1-39.1.2'
-    implementation fg.deobf("curse.maven:jade-324717:3681458")
-    implementation fg.deobf("curse.maven:jei-238222:3599262")
+    minecraft 'net.minecraftforge:forge:1.18.2-40.0.36'
+    implementation fg.deobf("curse.maven:jei-238222:3670531")
+    implementation fg.deobf("curse.maven:jade-324717:3671210")
     annotationProcessor "org.spongepowered:mixin:0.8.5:processor"
 }
 

@@ -2,24 +2,19 @@ package com.naterbobber.darkerdepths.world.gen.features;
 
 import com.mojang.serialization.Codec;
 import com.naterbobber.darkerdepths.blocks.HangingDoublePlantBlock;
-import com.naterbobber.darkerdepths.init.DDBlockTags;
 import com.naterbobber.darkerdepths.init.DDBlocks;
+import com.naterbobber.darkerdepths.world.gen.features.config.PetrifiedBranchConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.util.Mth;
-import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.util.valueproviders.UniformInt;
-import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.AmethystClusterBlock;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.levelgen.feature.DripstoneUtils;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
-import com.naterbobber.darkerdepths.world.gen.features.config.PetrifiedBranchConfig;
 import net.minecraft.world.level.material.Fluids;
 import org.apache.commons.compress.utils.Lists;
 

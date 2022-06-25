@@ -36,29 +36,33 @@ public class AridBoulderFeature extends Feature<NoneFeatureConfiguration> {
                     for (int y = 0; y <= height; y++) {
                         BlockPos blockPos = new BlockPos(blockpos.getX() + x, blockpos.getY() - 3 + y, blockpos.getZ() + z);
                         if (y > 1) {
-                            if (y * (x * x) + ((y * y) / 4) + y * (z * z) <= radius * radius) {
-                                Block block = y % 4 == 0 ? DDBlocks.ARIDROCK.get() : DDBlocks.LIMESTONE.get();
-                                if (!world.isStateAtPosition(blockPos, DripstoneUtils::isEmptyOrWaterOrLava)) {
-                                    flag = false;
-                                } else {
-                                    for (int i = 0; i < 4; i++) {
-                                        if (world.isEmptyBlock(blockPos.below(i))) {
-                                            blockPos = blockPos.below();
-                                        }
-                                    }
-                                    if (world.isEmptyBlock(blockPos.below(5))) {
-                                        flag = false;
-                                    } else {
-                                        world.setBlock(blockPos, block.defaultBlockState(), 2);
-                                        flag = true;
-                                    }
-                                }
-                            }
+                            flag = this.generateBoulder(world, flag, radius, x, z, y, blockPos);
                         }
                     }
                 }
             }
             return flag;
         }
+    }
+
+    private boolean generateBoulder(WorldGenLevel world, boolean flag, int radius, int x, int z, int y, BlockPos blockPos) {
+        if (y * (x * x) + ((y * y) / 4) + y * (z * z) <= radius * radius) {
+            Block block = y % 4 == 0 ? DDBlocks.ARIDROCK.get() : DDBlocks.LIMESTONE.get();
+            if (!world.isStateAtPosition(blockPos, DripstoneUtils::isEmptyOrWaterOrLava)) {
+                flag = false;
+            } else {
+                if (world.isStateAtPosition(blockPos.below(), DripstoneUtils::isEmptyOrWater)) {
+                    if (blockPos.below().getY() < world.getMinBuildHeight()) {
+                        return false;
+                    }
+                    return this.generateBoulder(world, flag, radius, x / 2, z / 2, y, blockPos.below());
+                }
+                if (world.isStateAtPosition(blockPos, DripstoneUtils::isEmptyOrWaterOrLava) || world.getBlockState(blockPos).is(BlockTags.BASE_STONE_OVERWORLD)) {
+                    world.setBlock(blockPos, block.defaultBlockState(), 2);
+                }
+                flag = true;
+            }
+        }
+        return flag;
     }
 }

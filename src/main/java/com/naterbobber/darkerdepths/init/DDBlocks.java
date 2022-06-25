@@ -7,7 +7,6 @@ import com.naterbobber.darkerdepths.blocks.CrystalMelon;
 import com.naterbobber.darkerdepths.blocks.DDStandingSignBlock;
 import com.naterbobber.darkerdepths.blocks.DDWallSignBlock;
 import com.naterbobber.darkerdepths.blocks.DecayedRootBlock;
-import com.naterbobber.darkerdepths.blocks.DetritusBlock;
 import com.naterbobber.darkerdepths.blocks.DrySproutsBlock;
 import com.naterbobber.darkerdepths.blocks.GeyserBlock;
 import com.naterbobber.darkerdepths.blocks.GlowSpireBlock;
@@ -192,13 +191,11 @@ public class DDBlocks {
     public static final RegistryObject<Block> PETRIFIED_DOOR 						= registerBlock("petrified_door", () -> new DoorBlock(Block.Properties.of(Material.STONE).requiresCorrectToolForDrops().noOcclusion().strength(2.5f, 3.0f).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> RAW_SILVER_BLOCK						= registerBlock("raw_silver_block", () -> new Block(BlockBehaviour.Properties.of(Material.GRASS).requiresCorrectToolForDrops().strength(5.0F, 6.0F)));
     public static final RegistryObject<Block> SILVER_BLOCK							= registerBlock("silver_block", () -> new Block(BlockBehaviour.Properties.of(Material.GRASS).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL)));
-//    public static final RegistryObject<Block> REPELLENT_BLOCK 						= registerCompatBlock("indev", "repellent_block", () -> new RepellentBlock(BlockBehaviour.Properties.of(Material.DECORATION).strength(2.0F).requiresCorrectToolForDrops().sound(SoundType.NETHERITE)));
 
     /*
     1.18 Update
      */
     public static final RegistryObject<Block> ARID_DEEPSLATE                        = registerBlock("arid_deepslate", () -> new LayeredDeepslateBlock(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE).randomTicks()));
-    public static final RegistryObject<Block> GRIME_DEEPSLATE                       = registerBlock("grime_deepslate", () -> new LayeredDeepslateBlock(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE).randomTicks()));
 
     public static <B extends Block> RegistryObject<B> registerBlock(String name, Supplier<? extends B> blocks) {
         RegistryObject<B> block = BLOCKS.register(name, blocks);

@@ -8,6 +8,20 @@ displayName="DarkerDepths"
 authors="Nate, Blackgear, Toxteer, Orcinus"
 description='''
 A mod all about expanding vanilla caves
+
+Author:
+- Nate
+
+Main Developers:
+- Orcinus
+- Blackgear
+
+Artist:
+- Nate
+- Toxteer
+
+Ambasssador:
+- Qbert
 '''
 [[dependencies.darkerdepths]]
    modId="forge"

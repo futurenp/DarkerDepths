@@ -2,8 +2,11 @@ package com.naterbobber.darkerdepths.events;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.init.DDBiomes;
+import com.naterbobber.darkerdepths.init.DDEntityTypes;
 import com.naterbobber.darkerdepths.init.DDPlacedFeatures;
+import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.biome.MobSpawnSettings;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraftforge.common.world.BiomeGenerationSettingsBuilder;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
@@ -21,9 +24,6 @@ public class WorldEvents {
 
         if (category == Biome.BiomeCategory.NONE || category == Biome.BiomeCategory.THEEND || category == Biome.BiomeCategory.NETHER) return;
 
-        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, DDPlacedFeatures.GLOWSHROOM_PATCH);
-        builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, DDPlacedFeatures.SILVER_ORE);
-
         Biome biome = ForgeRegistries.BIOMES.getValue(event.getName());
 
         if (biome == DDBiomes.MOLTEN_CAVERN.get()) {
@@ -37,7 +37,6 @@ public class WorldEvents {
         if (biome == DDBiomes.SANDY_CATACOMBS.get()) {
             builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, DDPlacedFeatures.ARID_SURFACE);
             builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, DDPlacedFeatures.ARID_BOULDER);
-//            builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, DDPlacedFeatures.LIMESTONE_PLACEMENT);
             builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, DDPlacedFeatures.PETRIFIED_BRANCH);
         }
 
@@ -45,6 +44,7 @@ public class WorldEvents {
             builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, DDPlacedFeatures.GLIMMERING_VINES);
             builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, DDPlacedFeatures.HUGE_GLOWSHROOM);
             builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, DDPlacedFeatures.GRIME_SURFACE);
+            event.getSpawns().addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(DDEntityTypes.GLOWSHROOM_MONSTER.get(), 50, 1, 2));
         }
     }
 

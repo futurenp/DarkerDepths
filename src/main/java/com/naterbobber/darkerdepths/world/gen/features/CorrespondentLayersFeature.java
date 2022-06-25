@@ -6,9 +6,7 @@ import com.naterbobber.darkerdepths.world.gen.features.config.CorrespondentLayer
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.Tag;
 import net.minecraft.world.level.WorldGenLevel;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
@@ -34,7 +32,7 @@ public class CorrespondentLayersFeature extends Feature<CorrespondentLayersConfi
         CorrespondentLayersConfig config = context.config();
         Random random = context.random();
         BlockPos blockpos = context.origin();
-        Predicate<BlockState> predicate = getReplaceableTag(config);
+        Predicate<BlockState> predicate = state -> state.is(config.replaceable);
         int i = config.xzRadius.sample(random) + 1;
         int j = config.xzRadius.sample(random) + 1;
         Set<BlockPos> set = this.placeGroundPatch(worldgenlevel, config, random, blockpos, predicate, i, j);
@@ -95,18 +93,32 @@ public class CorrespondentLayersFeature extends Feature<CorrespondentLayersConfi
     }
 
     protected boolean placeVegetation(WorldGenLevel world, CorrespondentLayersConfig config, ChunkGenerator generator, Random random, BlockPos pos) {
-        if (world.isStateAtPosition(pos.relative(config.surface.getDirection().getOpposite()), BlockBehaviour.BlockStateBase::isAir)) {
-            return config.vegetationFeature.get().place(world, generator, random, pos.relative(config.surface.getDirection().getOpposite()));
+        if (world.isStateAtPosition(pos.relative(config.surface.getDirection().getOpposite()), BlockBehaviour.BlockStateBase::isAir) && world.getBlockState(pos).is(config.groundState.getState(random, pos).getBlock())) {
+            return config.vegetationFeature.value().place(world, generator, random, pos.relative(config.surface.getDirection().getOpposite()));
         } else {
             return false;
         }
     }
 
     protected boolean placeGround(WorldGenLevel world, CorrespondentLayersConfig config, Predicate<BlockState> predicate, Random random, BlockPos.MutableBlockPos pos, int tries) {
-        for(int i = 0; i < tries; ++i) {
+        for (int i = 0; i < tries; ++i) {
             BlockState blockstate = config.groundState.getState(random, pos);
             BlockState belowState = config.belowState.getState(random, pos);
-            if (world.getBlockState(pos.below()).is(Blocks.TUFF) || world.getBlockState(pos.below()).is(Blocks.DEEPSLATE)) {
+            BlockState posBelow = world.getBlockState(pos.below());
+
+            //Check whether the config is aridrocks' config. Redo this system in the future
+            if (blockstate == DDBlocks.ARIDROCK.get().defaultBlockState() && (world.getBlockState(pos).is(DDBlocks.LIMESTONE.get()) || posBelow.is(DDBlocks.LIMESTONE.get()))) continue;
+
+            if (blockstate == DDBlocks.ARIDROCK.get().defaultBlockState() && !(posBelow.is(Blocks.DEEPSLATE) || posBelow.is(Blocks.TUFF))) {
+                belowState = DDBlocks.ARIDROCK.get().defaultBlockState();
+            }
+
+            if (posBelow.is(Blocks.TUFF) || posBelow.is(Blocks.DEEPSLATE)) {
+                world.setBlock(pos.below(), belowState, 2);
+                world.setBlock(pos, blockstate, 2);
+            }
+            else if (posBelow.is(BlockTags.BASE_STONE_OVERWORLD)) {
+                belowState = belowState.is(DDBlocks.ARID_DEEPSLATE.get()) ? DDBlocks.ARIDROCK.get().defaultBlockState() : belowState;
                 world.setBlock(pos.below(), belowState, 2);
                 world.setBlock(pos, blockstate, 2);
             }
@@ -115,8 +127,4 @@ public class CorrespondentLayersFeature extends Feature<CorrespondentLayersConfi
         return true;
     }
 
-    private static Predicate<BlockState> getReplaceableTag(CorrespondentLayersConfig config) {
-        Tag<Block> tag = BlockTags.getAllTags().getTag(config.replaceable);
-        return tag == null ? (blockState) -> true : (state) -> state.is(tag);
-    }
 }
