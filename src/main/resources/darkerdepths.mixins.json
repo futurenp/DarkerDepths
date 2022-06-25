@@ -4,11 +4,11 @@
   "compatibilityLevel": "JAVA_8",
   "refmap": "darkerdepths.refmap.json",
   "mixins": [
-    "BlockGetterMixin",
     "OverworldBiomeBuilderMixin",
     "RotatedPillarBlockMixin"
   ],
   "client": [
+    "BlockGetterMixin"
   ],
   "injectors": {
     "defaultRequire": 1
