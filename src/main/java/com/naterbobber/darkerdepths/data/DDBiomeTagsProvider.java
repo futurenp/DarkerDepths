@@ -20,4 +20,5 @@ public class DDBiomeTagsProvider extends BiomeTagsProvider {
         this.tag(BiomeTags.HAS_RUINED_PORTAL_STANDARD).add(DDBiomes.MOLTEN_CAVERN.get(), DDBiomes.SANDY_CATACOMBS.get(), DDBiomes.GLOWSHROOM_FOREST.get());
         this.tag(BiomeTags.HAS_STRONGHOLD).add(DDBiomes.MOLTEN_CAVERN.get(), DDBiomes.SANDY_CATACOMBS.get(), DDBiomes.GLOWSHROOM_FOREST.get());
     }
+
 }

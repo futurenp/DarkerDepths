@@ -11,8 +11,10 @@ import com.naterbobber.darkerdepths.init.DDItems;
 import com.naterbobber.darkerdepths.init.DDParticleTypes;
 import com.naterbobber.darkerdepths.init.DDSoundEvents;
 import com.naterbobber.darkerdepths.init.DDVanillaIntegration;
+import com.naterbobber.darkerdepths.util.BiomeReagentHandler;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
@@ -53,6 +55,11 @@ public class DarkerDepths {
 
     private void setup(final FMLCommonSetupEvent event) {
         DDVanillaIntegration.init();
+        event.enqueueWork(() -> {
+            BiomeDictionary.addTypes(BiomeReagentHandler.MOLTEN_CAVERN, BiomeDictionary.Type.OVERWORLD, BiomeDictionary.Type.UNDERGROUND);
+            BiomeDictionary.addTypes(BiomeReagentHandler.SANDY_CATACOMBS, BiomeDictionary.Type.OVERWORLD, BiomeDictionary.Type.UNDERGROUND);
+            BiomeDictionary.addTypes(BiomeReagentHandler.GLOWSHROOM_FOREST, BiomeDictionary.Type.OVERWORLD, BiomeDictionary.Type.UNDERGROUND);
+        });
     }
 
 }
