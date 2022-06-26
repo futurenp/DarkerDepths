@@ -1,5 +1,6 @@
 package com.naterbobber.darkerdepths.world.gen.features;
 
+import com.google.common.collect.Lists;
 import com.mojang.serialization.Codec;
 import com.naterbobber.darkerdepths.blocks.HangingDoublePlantBlock;
 import com.naterbobber.darkerdepths.init.DDBlocks;
@@ -16,7 +17,6 @@ import net.minecraft.world.level.levelgen.feature.DripstoneUtils;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.material.Fluids;
-import org.apache.commons.compress.utils.Lists;
 
 import java.util.List;
 import java.util.Random;
