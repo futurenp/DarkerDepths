@@ -58,8 +58,6 @@ import net.minecraftforge.registries.RegistryObject;
 
 import java.util.function.Supplier;
 
-//<>
-
 @Mod.EventBusSubscriber(modid = DarkerDepths.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class DDBlocks {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, DarkerDepths.MODID);
@@ -137,9 +135,9 @@ public class DDBlocks {
     public static final RegistryObject<Block> LIMESTONE_REDSTONE_ORE = registerBlock("limestone_redstone_ore", () -> new RedStoneOreBlock(Block.Properties.of(Material.STONE, MaterialColor.SAND).requiresCorrectToolForDrops().strength(3.0F, 3.0F).lightLevel(state -> 9).sound(SoundType.STONE)));
     public static final RegistryObject<Block> LIMESTONE_SILVER_ORE = registerBlock("limestone_silver_ore", () -> new Block(Block.Properties.of(Material.STONE, MaterialColor.SAND).requiresCorrectToolForDrops().strength(3.0F, 3.0F).sound(SoundType.STONE)));
     public static final RegistryObject<Block> GRIMESTONE = registerBlock("grimestone", () -> new GrimestoneBlock(BlockBehaviour.Properties.of(Material.STONE).strength(1.5F, 6.0F).sound(DDSoundEvents.GRIMESTONE).requiresCorrectToolForDrops()));
-    public static final RegistryObject<Block> GRIMESTONE_SLAB = registerBlock("grimestone_slab", () -> new SlabBlock(BlockBehaviour.Properties.of(Material.STONE).strength(1.5F, 6.0F).sound(SoundType.STONE).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> GRIMESTONE_SLAB = registerBlock("grimestone_slab", () -> new SlabBlock(BlockBehaviour.Properties.of(Material.STONE).strength(1.5F, 6.0F).sound(DDSoundEvents.GRIMESTONE).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> GRIMESTONE_VERTICAL_SLAB = registerCompatBlock("quark", "grimestone_vertical_slab", () -> new VerticalSlabBlock(BlockBehaviour.Properties.copy(GRIMESTONE_SLAB.get())));
-    public static final RegistryObject<Block> GRIMESTONE_STAIRS = registerBlock("grimestone_stairs", () -> new StairBlock(GRIMESTONE.get().defaultBlockState(), BlockBehaviour.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
+    public static final RegistryObject<Block> GRIMESTONE_STAIRS = registerBlock("grimestone_stairs", () -> new StairBlock(GRIMESTONE.get().defaultBlockState(), BlockBehaviour.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(DDSoundEvents.GRIMESTONE)));
     public static final RegistryObject<Block> POLISHED_GRIMESTONE = registerBlock("polished_grimestone", () -> new Block(BlockBehaviour.Properties.of(Material.STONE).strength(1.5F, 6.0F)));
     public static final RegistryObject<Block> POLISHED_GRIMESTONE_SLAB = registerBlock("polished_grimestone_slab", () -> new SlabBlock(BlockBehaviour.Properties.of(Material.STONE).strength(1.5F, 6.0F)));
     public static final RegistryObject<Block> POLISHED_GRIMESTONE_VERTICAL_SLAB = registerCompatBlock("quark", "polished_grimestone_vertical_slab", () -> new VerticalSlabBlock(Block.Properties.copy(POLISHED_GRIMESTONE_SLAB.get())));

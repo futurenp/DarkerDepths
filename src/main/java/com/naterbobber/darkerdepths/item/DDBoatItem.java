@@ -30,6 +30,7 @@ public class DDBoatItem extends Item {
         this.hasChest = hasChest;
     }
 
+    @Override
     public InteractionResultHolder<ItemStack> use(Level worldIn, Player playerIn, InteractionHand handIn) {
         ItemStack itemstack = playerIn.getItemInHand(handIn);
         HitResult raytraceresult = getPlayerPOVHitResult(worldIn, playerIn, ClipContext.Fluid.ANY);
@@ -72,8 +73,8 @@ public class DDBoatItem extends Item {
         }
     }
 
-    private PetrifiedBoatEntity getBoat(Level p_220017_, HitResult p_220018_) {
-        return this.hasChest ? new PetrifiedChestBoatEntity(p_220017_, p_220018_.getLocation().x, p_220018_.getLocation().y, p_220018_.getLocation().z) : new PetrifiedBoatEntity(p_220017_, p_220018_.getLocation().x, p_220018_.getLocation().y, p_220018_.getLocation().z);
+    private PetrifiedBoatEntity getBoat(Level world, HitResult hit) {
+        return this.hasChest ? new PetrifiedChestBoatEntity(world, hit.getLocation().x, hit.getLocation().y, hit.getLocation().z) : new PetrifiedBoatEntity(world, hit.getLocation().x, hit.getLocation().y, hit.getLocation().z);
     }
 
 }
