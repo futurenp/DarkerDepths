@@ -27,7 +27,7 @@ public class WorldEvents {
         Biome biome = ForgeRegistries.BIOMES.getValue(event.getName());
 
         if (biome == DDBiomes.MOLTEN_CAVERN.get()) {
-            builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, DDPlacedFeatures.SHALE_PLACEMENT);
+            builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, DDPlacedFeatures.SHALE_SURFACE);
             builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, DDPlacedFeatures.AMBER);
             builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, DDPlacedFeatures.MOLTEN_POOL);
             builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, DDPlacedFeatures.MOLTEN_SPRING);

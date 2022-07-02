@@ -60,6 +60,6 @@ public class LavaVegetationPatchFeature extends VegetationPatchFeature {
 
     @Override
     protected boolean placeVegetation(WorldGenLevel world, VegetationPatchConfiguration config, ChunkGenerator generator, Random random, BlockPos pos) {
-        return random.nextFloat() > 0.85F && super.placeVegetation(world, config, generator, random, pos.below(2));
+        return random.nextFloat() > 0.035F && super.placeVegetation(world, config, generator, random, pos.below(2));
     }
 }
