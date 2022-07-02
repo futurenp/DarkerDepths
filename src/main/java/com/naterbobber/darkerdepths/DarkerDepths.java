@@ -1,5 +1,6 @@
 package com.naterbobber.darkerdepths;
 
+import com.naterbobber.darkerdepths.events.MiscEvents;
 import com.naterbobber.darkerdepths.events.MobEvents;
 import com.naterbobber.darkerdepths.events.WorldEvents;
 import com.naterbobber.darkerdepths.init.DDBiomes;
@@ -37,6 +38,7 @@ public class DarkerDepths {
 
     public DarkerDepths() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        IEventBus eventBus = MinecraftForge.EVENT_BUS;
         modEventBus.addListener(this::setup);
 
         DDBlocks.BLOCKS.register(modEventBus);
@@ -48,9 +50,10 @@ public class DarkerDepths {
         DDFeatures.FEATURES.register(modEventBus);
         DDBiomes.BIOMES.register(modEventBus);
 
-        MinecraftForge.EVENT_BUS.register(this);
-        MinecraftForge.EVENT_BUS.register(new WorldEvents());
-        MinecraftForge.EVENT_BUS.register(new MobEvents());
+        eventBus.register(this);
+        eventBus.register(new WorldEvents());
+        eventBus.register(new MobEvents());
+        eventBus.register(new MiscEvents());
     }
 
     private void setup(final FMLCommonSetupEvent event) {

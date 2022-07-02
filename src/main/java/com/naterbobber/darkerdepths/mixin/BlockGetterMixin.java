@@ -8,13 +8,14 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 
-@Mixin(value = BlockGetter.class, priority = 124)
+@Mixin(BlockGetter.class)
 public interface BlockGetterMixin {
 
     @Shadow BlockState getBlockState(BlockPos pos);
 
     /**
-     * @author Duck N Susje
+     * @author Blackgear
+     * @reason Insert a reason here
      */
     @Overwrite
     default int getLightEmission(BlockPos pos) {

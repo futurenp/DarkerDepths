@@ -9,6 +9,7 @@ import net.minecraft.world.level.block.AmethystClusterBlock;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.levelgen.feature.DripstoneUtils;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
@@ -24,7 +25,7 @@ public class GemstoneFeature extends Feature<NoneFeatureConfiguration> {
         WorldGenLevel worldIn = context.level();
         BlockPos pos = context.origin();
         BlockState state = worldIn.getBlockState(pos);
-        if (!worldIn.isStateAtPosition(pos, blockstate -> blockstate.isAir() || blockstate.is(Blocks.WATER))) {
+        if (!worldIn.isStateAtPosition(pos, DripstoneUtils::isEmptyOrWater)) {
             return false;
         } else {
             for (Direction direction : Direction.values()) {
