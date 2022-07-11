@@ -28,7 +28,7 @@ import java.util.function.Consumer;
 
 public class GlowshroomCapItem extends ArmorItem implements Vanishable {
     private static final GlowshroomArmorMaterial material = new GlowshroomArmorMaterial();
-    private static final ResourceLocation TEXTURE = new ResourceLocation(DarkerDepths.MODID, "textures/misc/glowshroomcapmodel.png");
+    private static final ResourceLocation TEXTURE = new ResourceLocation(DarkerDepths.MODID, "textures/models/armor/glowshroom_cap_model.png");
 
     public GlowshroomCapItem(Properties properties) {
         super(material, EquipmentSlot.HEAD, properties);
