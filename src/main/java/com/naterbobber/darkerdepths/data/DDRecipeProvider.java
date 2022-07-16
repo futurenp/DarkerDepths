@@ -184,6 +184,22 @@ public class DDRecipeProvider extends RecipeProvider {
                 .group("planks")
                 .unlockedBy("has_logs", has(DDItemTags.PETRIFIED_LOGS)).save(consumer);
 
+        ShapedRecipeBuilder
+                .shaped(DDBlocks.PETRIFIED_WOOD.get(), 3)
+                .group("bark")
+                .define('#', DDBlocks.PETRIFIED_LOG.get())
+                .pattern("##")
+                .pattern("##")
+                .unlockedBy("has_log", has(DDBlocks.PETRIFIED_LOG.get())).save(consumer);
+
+        ShapedRecipeBuilder
+                .shaped(DDBlocks.STRIPPED_PETRIFIED_WOOD.get(), 3)
+                .group("bark")
+                .define('#', DDBlocks.STRIPPED_PETRIFIED_LOG.get())
+                .pattern("##")
+                .pattern("##")
+                .unlockedBy("has_log", has(DDBlocks.STRIPPED_PETRIFIED_LOG.get())).save(consumer);
+
         stonecutterResultFromBase(consumer, DDBlocks.CHISELED_SHALE_BRICKS.get(), DDBlocks.SHALE.get());
         stonecutterResultFromBase(consumer, DDBlocks.CHISELED_ARIDROCK_BRICKS.get(), DDBlocks.ARIDROCK.get());
         stonecutterResultFromBase(consumer, DDBlocks.CHISELED_LIMESTONE_BRICKS.get(), DDBlocks.LIMESTONE.get());
