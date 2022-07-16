@@ -140,8 +140,8 @@ public class DDRecipeProvider extends RecipeProvider {
                 .save(consumer);
 
         ShapelessRecipeBuilder.shapeless(DDBlocks.PETRIFIED_BUTTON.get())
-                        .requires(DDBlocks.PETRIFIED_PLANKS.get().asItem())
-                        .unlockedBy("has_planks", has(DDBlocks.PETRIFIED_PLANKS.get())).save(consumer);
+                .requires(DDBlocks.PETRIFIED_PLANKS.get().asItem())
+                .unlockedBy("has_planks", has(DDBlocks.PETRIFIED_PLANKS.get())).save(consumer);
 
         ShapedRecipeBuilder
                 .shaped(DDItems.PETRIFIED_SIGN.get(), 3)
@@ -183,6 +183,22 @@ public class DDRecipeProvider extends RecipeProvider {
                 .requires(DDItemTags.PETRIFIED_LOGS)
                 .group("planks")
                 .unlockedBy("has_logs", has(DDItemTags.PETRIFIED_LOGS)).save(consumer);
+
+        ShapedRecipeBuilder
+                .shaped(DDBlocks.PETRIFIED_WOOD.get(), 3)
+                .group("bark")
+                .define('#', DDBlocks.PETRIFIED_LOG.get())
+                .pattern("##")
+                .pattern("##")
+                .unlockedBy("has_log", has(DDBlocks.PETRIFIED_LOG.get())).save(consumer);
+
+        ShapedRecipeBuilder
+                .shaped(DDBlocks.STRIPPED_PETRIFIED_WOOD.get(), 3)
+                .group("bark")
+                .define('#', DDBlocks.STRIPPED_PETRIFIED_LOG.get())
+                .pattern("##")
+                .pattern("##")
+                .unlockedBy("has_log", has(DDBlocks.STRIPPED_PETRIFIED_LOG.get())).save(consumer);
 
         stonecutterResultFromBase(consumer, DDBlocks.CHISELED_SHALE_BRICKS.get(), DDBlocks.SHALE.get());
         stonecutterResultFromBase(consumer, DDBlocks.CHISELED_ARIDROCK_BRICKS.get(), DDBlocks.ARIDROCK.get());
