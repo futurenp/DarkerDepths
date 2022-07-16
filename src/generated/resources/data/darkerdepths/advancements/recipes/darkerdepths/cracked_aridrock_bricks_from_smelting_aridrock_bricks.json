@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "darkerdepths:cracked_aridrock_bricks_from_smelting_aridrock_bricks"
+    ]
+  },
+  "criteria": {
+    "has_aridrock_bricks": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "darkerdepths:aridrock_bricks"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "darkerdepths:cracked_aridrock_bricks_from_smelting_aridrock_bricks"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_aridrock_bricks",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -17,7 +17,7 @@ public class DDDataGenerator {
     public static void onGatherData(GatherDataEvent event) {
         DataGenerator dataGenerator = event.getGenerator();
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
-//        dataGenerator.addProvider(new DDRecipeProvider(dataGenerator));
+        dataGenerator.addProvider(new DDRecipeProvider(dataGenerator));
         dataGenerator.addProvider(new DDBlockTagsProvider(dataGenerator, existingFileHelper));
         dataGenerator.addProvider(new DDItemTagsProvider(dataGenerator, existingFileHelper));
         dataGenerator.addProvider(new DDBiomeTagsProvider(dataGenerator, existingFileHelper));

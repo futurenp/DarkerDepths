@@ -13,6 +13,7 @@ import com.naterbobber.darkerdepths.init.DDParticleTypes;
 import com.naterbobber.darkerdepths.init.DDSoundEvents;
 import com.naterbobber.darkerdepths.init.DDVanillaIntegration;
 import com.naterbobber.darkerdepths.util.BiomeReagentHandler;
+import com.naterbobber.darkerdepths.util.DarkerDepthsTab;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.BiomeDictionary;
@@ -29,12 +30,7 @@ public class DarkerDepths {
 
     public static final Logger LOGGER = LogManager.getLogger();
     public static final String MODID = "darkerdepths";
-    public static final CreativeModeTab DARKER_DEPTHS = new CreativeModeTab("DarkerDepths") {
-        @Override
-        public ItemStack makeIcon() {
-            return new ItemStack(DDItems.GLOWSHROOM_CAP.get());
-        }
-    };
+    public static final CreativeModeTab DARKER_DEPTHS = new DarkerDepthsTab();
 
     public DarkerDepths() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();

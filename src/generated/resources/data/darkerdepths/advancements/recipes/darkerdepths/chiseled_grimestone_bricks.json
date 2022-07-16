@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "darkerdepths:chiseled_grimestone_bricks"
+    ]
+  },
+  "criteria": {
+    "has_polished_grimestone_slab": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "darkerdepths:polished_grimestone_slab"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "darkerdepths:chiseled_grimestone_bricks"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_polished_grimestone_slab",
+      "has_the_recipe"
+    ]
+  ]
+}

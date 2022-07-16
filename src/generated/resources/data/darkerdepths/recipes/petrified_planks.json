@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    {
+      "tag": "darkerdepths:petrified_logs"
+    }
+  ],
+  "result": {
+    "item": "darkerdepths:petrified_planks",
+    "count": 4
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "darkerdepths:chiseled_shale_bricks"
+    ]
+  },
+  "criteria": {
+    "has_polished_shale_slab": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "darkerdepths:polished_shale_slab"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "darkerdepths:chiseled_shale_bricks"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_polished_shale_slab",
+      "has_the_recipe"
+    ]
+  ]
+}

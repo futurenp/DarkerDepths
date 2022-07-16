@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "darkerdepths:resin_from_smelting_amber"
+    ]
+  },
+  "criteria": {
+    "has_amber": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "darkerdepths:amber"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "darkerdepths:resin_from_smelting_amber"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_amber",
+      "has_the_recipe"
+    ]
+  ]
+}

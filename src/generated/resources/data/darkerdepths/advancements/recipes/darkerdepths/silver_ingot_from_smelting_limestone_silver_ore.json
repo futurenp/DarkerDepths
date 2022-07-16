@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "darkerdepths:silver_ingot_from_smelting_limestone_silver_ore"
+    ]
+  },
+  "criteria": {
+    "has_limestone_silver_ore": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "darkerdepths:limestone_silver_ore"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "darkerdepths:silver_ingot_from_smelting_limestone_silver_ore"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_limestone_silver_ore",
+      "has_the_recipe"
+    ]
+  ]
+}

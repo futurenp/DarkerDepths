@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "darkerdepths:petrified_stairs"
+    ]
+  },
+  "criteria": {
+    "has_petrified_planks": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "darkerdepths:petrified_planks"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "darkerdepths:petrified_stairs"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_petrified_planks",
+      "has_the_recipe"
+    ]
+  ]
+}

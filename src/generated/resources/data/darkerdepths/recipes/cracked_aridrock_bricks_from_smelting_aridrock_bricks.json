@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "group": "cracked_aridrock_bricks",
+  "ingredient": {
+    "item": "darkerdepths:aridrock_bricks"
+  },
+  "result": "darkerdepths:cracked_aridrock_bricks",
+  "experience": 0.1,
+  "cookingtime": 200
+}

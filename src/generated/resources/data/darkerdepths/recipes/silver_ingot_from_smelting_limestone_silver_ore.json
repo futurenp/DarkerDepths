@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "group": "silver_ingot",
+  "ingredient": {
+    "item": "darkerdepths:limestone_silver_ore"
+  },
+  "result": "darkerdepths:silver_ingot",
+  "experience": 0.1,
+  "cookingtime": 200
+}

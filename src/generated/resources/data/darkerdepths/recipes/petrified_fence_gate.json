@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#W#",
+    "#W#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:stick"
+    },
+    "W": {
+      "item": "darkerdepths:petrified_planks"
+    }
+  },
+  "result": {
+    "item": "darkerdepths:petrified_fence_gate"
+  }
+}

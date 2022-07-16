@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "ingredient": {
-    "item": "darkerdepths:aridrock_silver_ore"
-  },
-  "result": "darkerdepths:silver_ingot",
-  "experience": 0.7,
-  "cookingtime": 200
-}
