@@ -16,6 +16,7 @@ import com.naterbobber.darkerdepths.blocks.GlowspursBlock;
 import com.naterbobber.darkerdepths.blocks.GrimestoneBlock;
 import com.naterbobber.darkerdepths.blocks.HangingDoublePlantBlock;
 import com.naterbobber.darkerdepths.blocks.LayeredDeepslateBlock;
+import com.naterbobber.darkerdepths.blocks.LimestoneBlock;
 import com.naterbobber.darkerdepths.blocks.MossyGrimestoneBlock;
 import com.naterbobber.darkerdepths.blocks.PorousBlock;
 import com.naterbobber.darkerdepths.blocks.RopeBlock;
@@ -101,12 +102,7 @@ public class DDBlocks {
     public static final RegistryObject<Block> ARIDROCK_BRICKS_STAIRS = registerBlock("aridrock_bricks_stairs", () -> new StairBlock(ARIDROCK_BRICKS.get().defaultBlockState(), BlockBehaviour.Properties.of(Material.STONE).sound(SoundType.STONE).strength(1.5F, 6.0F).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> CHISELED_ARIDROCK_BRICKS = registerBlock("chiseled_aridrock_bricks", () -> new Block(Block.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(1.5f, 6.0f).sound(SoundType.STONE)));
     public static final RegistryObject<Block> CRACKED_ARIDROCK_BRICKS = registerBlock("cracked_aridrock_bricks", () -> new Block(BlockBehaviour.Properties.of(Material.STONE).sound(SoundType.STONE).strength(1.5F, 6.0F).requiresCorrectToolForDrops()));
-    public static final RegistryObject<Block> LIMESTONE = registerBlock("limestone", () -> new Block(Block.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(1.5f, 6.0f).sound(SoundType.STONE)) {
-        @Override
-        public boolean canSustainPlant(BlockState state, BlockGetter world, BlockPos pos, Direction facing, IPlantable plantable) {
-            return plantable instanceof DeadBushBlock || plantable instanceof SproutsBlock;
-        }
-    });
+    public static final RegistryObject<Block> LIMESTONE = registerBlock("limestone", () -> new LimestoneBlock(Block.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(1.5f, 6.0f).sound(SoundType.STONE)));
     public static final RegistryObject<Block> LIMESTONE_SLAB = registerBlock("limestone_slab", () -> new SlabBlock(Block.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(1.5f, 6.0f).sound(SoundType.STONE)));
     public static final RegistryObject<Block> LIMESTONE_VERTICAL_SLAB = registerCompatBlock("quark", "limestone_vertical_slab", () -> new VerticalSlabBlock(BlockBehaviour.Properties.copy(LIMESTONE_SLAB.get())));
     public static final RegistryObject<Block> LIMESTONE_STAIRS = registerBlock("limestone_stairs", () -> new StairBlock(() -> LIMESTONE.get().defaultBlockState(), Block.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(1.5f, 6.0f).sound(SoundType.STONE)));

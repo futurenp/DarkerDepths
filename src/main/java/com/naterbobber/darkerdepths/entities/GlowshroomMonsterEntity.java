@@ -48,7 +48,9 @@ public class GlowshroomMonsterEntity extends Monster {
     @Override
     public void aiStep() {
         super.aiStep();
-        if (this.attackTick > 0) this.attackTick--;
+        if (this.attackTick > 0) {
+            this.attackTick--;
+        }
     }
 
     @Override
@@ -99,4 +101,5 @@ public class GlowshroomMonsterEntity extends Monster {
     public static boolean canSpawn(EntityType<? extends Mob> typeIn, ServerLevelAccessor worldIn, MobSpawnType reason, BlockPos pos, RandomSource randomIn) {
         return worldIn.getDifficulty() != Difficulty.PEACEFUL && pos.getY() <= 40 && worldIn.getBlockState(pos.below()).is(DDBlocks.MOSSY_GRIMESTONE.get());
     }
+
 }

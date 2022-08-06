@@ -44,7 +44,6 @@ public class DecayedRootBlock extends BushBlock implements BonemealableBlock {
         return SHAPE;
     }
 
-
     @Override
     public boolean isValidBonemealTarget(BlockGetter world, BlockPos pos, BlockState state, boolean isClient) {
         return true;
@@ -57,7 +56,7 @@ public class DecayedRootBlock extends BushBlock implements BonemealableBlock {
 
     @Override
     public void performBonemeal(ServerLevel worldIn, RandomSource random, BlockPos pos, BlockState state) {
-        if(!worldIn.isClientSide() && !worldIn.isEmptyBlock(pos.below(2))) {
+        if (!worldIn.isClientSide() && !worldIn.isEmptyBlock(pos.below(2))) {
             worldIn.setBlock(pos, DDBlocks.LONG_ROOTS.get().defaultBlockState(), 2);
             worldIn.setBlock(pos.below(), DDBlocks.ROOTS.get().defaultBlockState(), 2);
         }

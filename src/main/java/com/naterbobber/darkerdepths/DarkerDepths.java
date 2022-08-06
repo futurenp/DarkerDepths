@@ -52,8 +52,8 @@ public class DarkerDepths {
     }
 
     private void setup(final FMLCommonSetupEvent event) {
-        DDVanillaIntegration.init();
         event.enqueueWork(() -> {
+            DDVanillaIntegration.init();
             DDConfiguredFeatures.init();
             DDPlacedFeatures.init();
 
