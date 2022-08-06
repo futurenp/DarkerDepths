@@ -19,7 +19,7 @@ mixin {
 }
 
 group = 'com.naterbobber'
-version = '1.18.2-1.0.6-patch2'
+version = '1.18.2-1.0.6-patch4'
 
 java {
     archivesBaseName = 'DarkerDepths'
