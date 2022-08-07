@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": {
+      "item": "darkerdepths:ash_block"
+    },
+    "A": {
+      "item": "darkerdepths:amber"
+    },
+    "S": {
+      "item": "darkerdepths:shale"
+    }
+  },
+  "pattern": [
+    "###",
+    "SAS",
+    "SSS"
+  ],
+  "result": {
+    "item": "darkerdepths:geyser"
+  }
+}

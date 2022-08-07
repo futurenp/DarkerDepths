@@ -131,6 +131,16 @@ public class DDRecipeProvider extends RecipeProvider {
         chiseled(consumer, DDBlocks.POLISHED_GRIMESTONE_SLAB.get().asItem(), DDBlocks.CHISELED_GRIMESTONE_BRICKS.get().asItem());
 
         ShapedRecipeBuilder
+                .shaped(DDBlocks.GEYSER.get().asItem())
+                .define('#', DDBlocks.ASH_BLOCK.get().asItem())
+                .define('S', DDBlocks.SHALE.get().asItem())
+                .define('A', DDBlocks.AMBER.get().asItem())
+                .pattern("###")
+                .pattern("SAS")
+                .pattern("SSS")
+                .unlockedBy("has_ash_block", has(DDBlocks.ASH_BLOCK.get().asItem())).save(consumer);
+
+        ShapedRecipeBuilder
                 .shaped(DDBlocks.PETRIFIED_FENCE_GATE.get().asItem())
                 .define('#', Items.STICK)
                 .define('W', DDBlocks.PETRIFIED_PLANKS.get().asItem())

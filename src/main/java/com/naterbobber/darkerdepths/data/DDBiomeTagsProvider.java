@@ -24,9 +24,9 @@ public class DDBiomeTagsProvider extends BiomeTagsProvider {
         this.tag(BiomeTags.HAS_MINESHAFT).add(DDBiomes.MOLTEN_CAVERN.get(), DDBiomes.SANDY_CATACOMBS.get(), DDBiomes.GLOWSHROOM_FOREST.get());
         this.tag(BiomeTags.HAS_RUINED_PORTAL_STANDARD).add(DDBiomes.MOLTEN_CAVERN.get(), DDBiomes.SANDY_CATACOMBS.get(), DDBiomes.GLOWSHROOM_FOREST.get());
         this.tag(BiomeTags.STRONGHOLD_BIASED_TO).add(DDBiomes.MOLTEN_CAVERN.get(), DDBiomes.SANDY_CATACOMBS.get(), DDBiomes.GLOWSHROOM_FOREST.get());
-        this.tag(DDBiomes.MOLTEN_CAVERN, Tags.Biomes.IS_UNDERGROUND, Tags.Biomes.IS_OVERWORLD);
-        this.tag(DDBiomes.SANDY_CATACOMBS, Tags.Biomes.IS_UNDERGROUND, Tags.Biomes.IS_OVERWORLD);
-        this.tag(DDBiomes.GLOWSHROOM_FOREST, Tags.Biomes.IS_UNDERGROUND, Tags.Biomes.IS_OVERWORLD);
+        this.tag(DDBiomes.MOLTEN_CAVERN, Tags.Biomes.IS_UNDERGROUND, Tags.Biomes.IS_HOT_OVERWORLD);
+        this.tag(DDBiomes.SANDY_CATACOMBS, Tags.Biomes.IS_UNDERGROUND, Tags.Biomes.IS_DRY_OVERWORLD);
+        this.tag(DDBiomes.GLOWSHROOM_FOREST, Tags.Biomes.IS_UNDERGROUND, Tags.Biomes.IS_COLD_OVERWORLD);
     }
 
     private void tag(RegistryObject<Biome> biome, TagKey<Biome>... tags) {

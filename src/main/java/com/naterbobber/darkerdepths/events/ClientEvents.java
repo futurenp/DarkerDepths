@@ -24,7 +24,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.EntityRenderersEvent;
-import net.minecraftforge.client.event.ParticleFactoryRegisterEvent;
+import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
@@ -53,7 +53,7 @@ public class ClientEvents {
     }
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
-    public static void registerParticles(ParticleFactoryRegisterEvent event) {
+    public static void registerParticles(RegisterParticleProvidersEvent event) {
         ParticleEngine engine = Minecraft.getInstance().particleEngine;
         engine.register(DDParticleTypes.DRIPPING_RESIN.get(), DrippingParticle.DrippingResinFactory::new);
         engine.register(DDParticleTypes.FALLING_RESIN.get(), DrippingParticle.FallingResinFactory::new);
@@ -76,8 +76,8 @@ public class ClientEvents {
         ItemBlockRenderTypes.setRenderLayer(DDBlocks.PETRIFIED_POST.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(DDBlocks.STRIPPED_PETRIFIED_POST.get(), RenderType.cutout());
 
-        MinecraftForge.EVENT_BUS.addListener((LivingEvent.LivingUpdateEvent livingEvent) -> {
-            DynamicLightHandler.tick(livingEvent.getEntityLiving());
+        MinecraftForge.EVENT_BUS.addListener((LivingEvent.LivingTickEvent livingEvent) -> {
+            DynamicLightHandler.tick(livingEvent.getEntity());
         });
         event.enqueueWork(DDWoodType::setupWoodTypes);
     }

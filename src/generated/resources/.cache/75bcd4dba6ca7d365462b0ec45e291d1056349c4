@@ -1,11 +1,14 @@
-// 1.19	2022-06-24T06:01:14.3670553	Tags for minecraft:block
+// 1.19	2022-08-06T18:21:26.2713675	Tags for minecraft:block
+f0f92c5f0b5c5412980a4ca8436b4cb180919deb data/darkerdepths/tags/blocks/geyser_boosters.json
+8ad8a6a2ad3451d39018b9318b5eedc2b4e31134 data/darkerdepths/tags/blocks/geyser_bypasses.json
 021e86d55679a27d4519fa177cd4425c51105d50 data/forge/tags/blocks/ores.json
+194037f40201c1ebb4d9c68dbb4964cc4c85bb58 data/forge/tags/blocks/ores/coal.json
 4a6cde1aba70f375316d18a64a0825c36f5b8bb6 data/forge/tags/blocks/ores/diamond.json
 38086d609c16ed7afcdb02ac65c358faf9fa5ac5 data/forge/tags/blocks/ores/gold.json
 bfb02c95dad6af8513a5faf40955e49df25a53d0 data/forge/tags/blocks/ores/iron.json
 4f4715d545f099f3f6a65e8ae87201604fea9bcc data/forge/tags/blocks/ores/lapis.json
 c44378bf8e79d5254d3277750c09ab05e149b741 data/forge/tags/blocks/ores/redstone.json
-59f29b5a06f8298ad6540888f74484af7d63f042 data/forge/tags/blocks/ores/silver.json
+ea5924c016d979e04c3afb9bd0d3a7b541903bdd data/forge/tags/blocks/ores/silver.json
 947e93f58ab65dc0dcb8bc7db4b06fd6b517391f data/forge/tags/blocks/storage_blocks.json
 2f55c1673c5af67553864fe4d1bfdc9576285e75 data/forge/tags/blocks/storage_blocks/silver.json
 73fc08448c91ba1c28b185a8e6df159250cf66ee data/minecraft/tags/blocks/base_stone_overworld.json

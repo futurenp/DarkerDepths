@@ -36,9 +36,9 @@ import org.jetbrains.annotations.Nullable;
 public class GlowshroomBlock extends Block implements BonemealableBlock, SimpleWaterloggedBlock {
     public static final IntegerProperty CLUSTERS_1_3 = IntegerProperty.create("clusters", 1, 3);
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
-    protected static final VoxelShape SHAPE_1  = Block.box(5.0D, 0.0D, 5.0D, 11.0D, 9.0D, 11.0D);
-    protected static final VoxelShape SHAPE_2  = Block.box(3.0D, 0.0D, 3.0D, 13.0D, 9.0D, 13.0D);
-    protected static final VoxelShape SHAPE_3  = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 9.0D, 14.0D);
+    protected static final VoxelShape SHAPE_1 = Block.box(5.0D, 0.0D, 5.0D, 11.0D, 9.0D, 11.0D);
+    protected static final VoxelShape SHAPE_2 = Block.box(3.0D, 0.0D, 3.0D, 13.0D, 9.0D, 13.0D);
+    protected static final VoxelShape SHAPE_3 = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 9.0D, 14.0D);
 
     public GlowshroomBlock(Properties properties) {
         super(properties);
@@ -75,17 +75,11 @@ public class GlowshroomBlock extends Block implements BonemealableBlock, SimpleW
 
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter p_60556_, BlockPos p_60557_, CollisionContext p_60558_) {
-        switch (state.getValue(CLUSTERS_1_3)) {
-            case 1:
-            default:
-                return SHAPE_1;
-
-            case 2:
-                return SHAPE_2;
-
-            case 3:
-                return SHAPE_3;
-        }
+        return switch (state.getValue(CLUSTERS_1_3)) {
+            case 2 -> SHAPE_2;
+            case 3 -> SHAPE_3;
+            default -> SHAPE_1;
+        };
     }
 
     @Override

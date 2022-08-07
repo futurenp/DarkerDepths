@@ -1,7 +1,30 @@
 {
   "variants": {
-    "": {
+    "facing=down": {
+      "model": "darkerdepths:block/geyser",
+      "x": 180
+    },
+    "facing=east": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90
+    },
+    "facing=south": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 180
+    },
+    "facing=up": {
       "model": "darkerdepths:block/geyser"
+    },
+    "facing=west": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 270
     }
   }
 }

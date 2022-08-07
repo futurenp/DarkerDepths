@@ -12,7 +12,7 @@ import net.minecraftforge.registries.RegistryObject;
 @Mod.EventBusSubscriber(modid = DarkerDepths.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class DDBlockEntityTypes {
 
-    public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITIES, DarkerDepths.MODID);
+    public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, DarkerDepths.MODID);
 
     public static final RegistryObject<BlockEntityType<DDSignBlockEntity>> DD_SIGN = BLOCK_ENTITIES.register("dd_sign", () -> BlockEntityType.Builder.of(DDSignBlockEntity::new, DDBlocks.PETRIFIED_SIGN.get(), DDBlocks.PETRIFIED_WALL_SIGN.get()).build(null));
     public static final RegistryObject<BlockEntityType<GeyserBlockEntity>> GEYSER = BLOCK_ENTITIES.register("geyser", () -> BlockEntityType.Builder.of(GeyserBlockEntity::new, DDBlocks.GEYSER.get()).build(null));

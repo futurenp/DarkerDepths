@@ -1,5 +1,7 @@
-// 1.19	2022-06-26T12:23:46.8488827	Tags for minecraft:worldgen/biome
-7f4a5e44b49d5967f3a73ecdf5088113eb0a96ee data/forge/tags/worldgen/biome/is_overworld.json
+// 1.19	2022-08-06T17:57:16.3548836	Tags for minecraft:worldgen/biome
+48cb267d23e01bcc9a3ea777999ea410930a377c data/forge/tags/worldgen/biome/is_cold/overworld.json
+e0f2b728f780db7c855f44f6b4ec6ef1fd5a4408 data/forge/tags/worldgen/biome/is_dry/overworld.json
+a873756c8c0e1fb58ffb3fd6b21da6f530fd3cce data/forge/tags/worldgen/biome/is_hot/overworld.json
 7f4a5e44b49d5967f3a73ecdf5088113eb0a96ee data/forge/tags/worldgen/biome/is_underground.json
 7f4a5e44b49d5967f3a73ecdf5088113eb0a96ee data/minecraft/tags/worldgen/biome/has_structure/mineshaft.json
 7f4a5e44b49d5967f3a73ecdf5088113eb0a96ee data/minecraft/tags/worldgen/biome/has_structure/ruined_portal_standard.json
