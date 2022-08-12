@@ -1,6 +1,7 @@
 {
-  "parent": "block/cube_all",
+  "parent": "minecraft:block/cube_column",
   "textures": {
-    "all": "darkerdepths:block/shale"
+    "end": "darkerdepths:block/shale_top",
+    "side": "darkerdepths:block/shale"
   }
 }
