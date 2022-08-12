@@ -101,11 +101,11 @@ jar {
     manifest {
         attributes([
                 "Specification-Title"     : "darkerdepths",
-                "Specification-Vendor"    : "Nate, Qbert, Blackgear, Toxteer, Orcinus",
+                "Specification-Vendor"    : "Nate, Blackgear, Toxteer, Orcinus",
                 "Specification-Version"   : "1",
                 "Implementation-Title"    : project.name,
                 "Implementation-Version"  : project.jar.archiveVersion,
-                "Implementation-Vendor"   : "Nate, Qbert, Blackgear, Toxteer, Orcinus",
+                "Implementation-Vendor"   : "Nate, Blackgear, Toxteer, Orcinus",
                 "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
                 "MixinConfigs"            : "darkerdepths.mixins.json"
         ])
