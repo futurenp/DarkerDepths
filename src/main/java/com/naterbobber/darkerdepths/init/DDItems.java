@@ -5,8 +5,12 @@ import com.naterbobber.darkerdepths.entities.PetrifiedBoatEntity;
 import com.naterbobber.darkerdepths.item.DDBoatItem;
 import com.naterbobber.darkerdepths.item.GlowshroomCapItem;
 import com.naterbobber.darkerdepths.item.RopeItem;
+import net.minecraft.world.item.BucketItem;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.SignItem;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
@@ -27,6 +31,7 @@ public class DDItems {
     public static final RegistryObject<Item> RESIN = createSimpleItem("resin");
     public static final RegistryObject<Item> RAW_SILVER = createSimpleItem("raw_silver");
     public static final RegistryObject<Item> SILVER_INGOT = createSimpleItem("silver_ingot");
+    public static final RegistryObject<Item> AMBER_BUCKET = ITEMS.register("amber_bucket", () -> new BucketItem(DDFluids.AMBER, (new Item.Properties()).craftRemainder(Items.BUCKET).stacksTo(1).tab(DarkerDepths.DARKER_DEPTHS)));
 
     private static RegistryObject<Item> createItem(String name) {
         return ITEMS.register(name, () -> new Item(new Item.Properties()));

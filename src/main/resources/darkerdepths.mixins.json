@@ -4,6 +4,8 @@
   "compatibilityLevel": "JAVA_8",
   "refmap": "darkerdepths.refmap.json",
   "mixins": [
+    "EntityAccessor",
+    "LivingEntityMixin",
     "OverworldBiomeBuilderMixin",
     "RotatedPillarBlockMixin"
   ],
