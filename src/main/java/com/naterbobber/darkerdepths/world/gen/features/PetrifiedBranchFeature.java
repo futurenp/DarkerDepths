@@ -8,6 +8,7 @@ import com.naterbobber.darkerdepths.world.gen.features.config.PetrifiedBranchCon
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.util.Mth;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.AmethystClusterBlock;
@@ -39,7 +40,7 @@ public class PetrifiedBranchFeature extends Feature<PetrifiedBranchConfig> {
             boolean flag = false;
             List<BlockPos> woodPos = Lists.newArrayList();
             List<BlockPos> porousPos = Lists.newArrayList();
-            int height = UniformInt.of(config.minLength, config.maxLength).sample(random);
+            int height = Mth.nextInt(random, config.minLength, config.maxLength);
             for (int x = -1; x <= 1; x++) {
                 for (int z = -1; z <= 1; z++) {
                     for (int y = -1; y <= height; y++) {

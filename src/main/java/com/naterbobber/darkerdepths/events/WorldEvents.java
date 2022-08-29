@@ -44,7 +44,7 @@ public class WorldEvents {
             builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, DDPlacedFeatures.GLIMMERING_VINES);
             builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, DDPlacedFeatures.HUGE_GLOWSHROOM);
             builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, DDPlacedFeatures.GRIME_SURFACE);
-            event.getSpawns().addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(DDEntityTypes.GLOWSHROOM_MONSTER.get(), 50, 1, 2));
+            event.getSpawns().addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(DDEntityTypes.GLOWSHROOM_MONSTER.get(), 30, 1, 2));
         }
     }
 

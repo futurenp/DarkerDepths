@@ -115,12 +115,16 @@ public class CorrespondentLayersFeature extends Feature<CorrespondentLayersConfi
 
             if (posBelow.is(Blocks.TUFF) || posBelow.is(Blocks.DEEPSLATE)) {
                 world.setBlock(pos.below(), belowState, 2);
-                world.setBlock(pos, blockstate, 2);
+                if (world.getBlockState(pos).is(config.replaceable)) {
+                    world.setBlock(pos, blockstate, 2);
+                }
             }
             else if (posBelow.is(BlockTags.BASE_STONE_OVERWORLD)) {
                 belowState = belowState.is(DDBlocks.ARID_DEEPSLATE.get()) ? DDBlocks.ARIDROCK.get().defaultBlockState() : belowState;
                 world.setBlock(pos.below(), belowState, 2);
-                world.setBlock(pos, blockstate, 2);
+                if (world.getBlockState(pos).is(config.replaceable)) {
+                    world.setBlock(pos, blockstate, 2);
+                }
             }
         }
 

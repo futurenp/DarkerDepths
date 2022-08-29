@@ -3,7 +3,7 @@ loaderVersion="[39,)"
 license="All Rights Reserved"
 [[mods]]
 modId="darkerdepths"
-version="${file.jarVersion}"
+version="1.18.2-1.0.7"
 displayName="DarkerDepths"
 authors="Nate, Blackgear, Toxteer, Orcinus"
 description='''
@@ -20,8 +20,6 @@ Artist:
 - Nate
 - Toxteer
 
-Ambasssador:
-- Qbert
 '''
 [[dependencies.darkerdepths]]
    modId="forge"
