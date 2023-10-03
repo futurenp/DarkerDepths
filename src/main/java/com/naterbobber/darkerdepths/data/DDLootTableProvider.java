@@ -19,13 +19,13 @@ import java.util.function.Supplier;
 
 public class DDLootTableProvider extends LootTableProvider {
 
-    public DDLootTableProvider(DataGenerator p_124437_) {
-        super(p_124437_);
+    public DDLootTableProvider(DataGenerator dataGenerator) {
+        super(dataGenerator);
     }
 
     @Override
     protected List<Pair<Supplier<Consumer<BiConsumer<ResourceLocation, LootTable.Builder>>>, LootContextParamSet>> getTables() {
-        return ImmutableList.of(Pair.of(DDBlockLoot::new, LootContextParamSets.BLOCK));
+        return ImmutableList.of(Pair.of(DDEntityLoot::new, LootContextParamSets.ENTITY));
     }
 
     @Override

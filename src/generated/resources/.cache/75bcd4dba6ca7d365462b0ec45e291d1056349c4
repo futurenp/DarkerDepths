@@ -1,4 +1,4 @@
-// 1.19.2	2023-10-03T16:35:52.0509789	Tags for minecraft:block
+// 1.19.2	2023-10-04T07:06:07.0892609	Tags for minecraft:block
 f0f92c5f0b5c5412980a4ca8436b4cb180919deb data/darkerdepths/tags/blocks/geyser_boosters.json
 8ad8a6a2ad3451d39018b9318b5eedc2b4e31134 data/darkerdepths/tags/blocks/geyser_bypasses.json
 021e86d55679a27d4519fa177cd4425c51105d50 data/forge/tags/blocks/ores.json
@@ -16,7 +16,7 @@ ea5924c016d979e04c3afb9bd0d3a7b541903bdd data/forge/tags/blocks/ores/silver.json
 d46196cd8880069d772cedd2866445ceffda8735 data/minecraft/tags/blocks/fence_gates.json
 5e277297b74dc60b3a92d2fe9b9fc06fe32cf551 data/minecraft/tags/blocks/logs.json
 e60249f463d936522505a016b677de35274b6d21 data/minecraft/tags/blocks/mineable/hoe.json
-5a54933c0a5f19d6bda01e433a03fb7fc1b73097 data/minecraft/tags/blocks/mineable/pickaxe.json
+44e5475fc2a65799e665c8ef95487bc4bac4268b data/minecraft/tags/blocks/mineable/pickaxe.json
 7a0301efb3765b21b4d17f79d065044da8501821 data/minecraft/tags/blocks/mineable/shovel.json
 5cc2a8a39b3d6e9f7bfec85c28059d68c70d0bc8 data/minecraft/tags/blocks/walls.json
 f554d471ce51b93b48815f100f6e9e6a04baecf5 data/minecraft/tags/blocks/wooden_fences.json
