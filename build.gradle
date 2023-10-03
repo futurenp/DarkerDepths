@@ -3,31 +3,35 @@ buildscript {
         maven { url = 'https://maven.minecraftforge.net' }
         maven { url = "https://files.minecraftforge.net/maven" }
         maven { url = "https://repo.spongepowered.org/repository/maven-public/" }
+        maven { url = 'https://maven.parchmentmc.org' }
         mavenCentral()
     }
     dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: "${project.forgegradle_version}", changing: true
+        classpath 'org.parchmentmc:librarian:1.+'
         classpath group: "org.spongepowered", name: "mixingradle", version: "0.7-SNAPSHOT"
     }
 }
 
 apply plugin: 'net.minecraftforge.gradle'
+apply plugin: 'eclipse'
+apply plugin: 'maven-publish'
 apply plugin: "org.spongepowered.mixin"
+apply plugin: 'org.parchmentmc.librarian.forgegradle'
 
 mixin {
     add sourceSets.main, "darkerdepths.refmap.json"
 }
 
-group = 'com.naterbobber'
-version = '1.19-1.0.6-patch2'
+version = "${project.minecraft_version}-${project.mod_version}"
+group = 'com.natebobber.darkerdepths'
+archivesBaseName = 'darkerdepths'
 
-java {
-    archivesBaseName = 'DarkerDepths'
-    toolchain.languageVersion = JavaLanguageVersion.of(17)
-}
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
+println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
 minecraft {
-    mappings channel: 'official', version: '1.19'
+    mappings channel: "${project.mappings_channel}", version: "${project.mappings_version}"
 
     accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
 
@@ -38,9 +42,7 @@ minecraft {
             property 'forge.logging.markers', 'REGISTRIES'
 
             property 'forge.logging.console.level', 'debug'
-
             arg "-mixin.config=darkerdepths.mixins.json"
-
             mods {
                 darkerdepths {
                     source sourceSets.main
@@ -54,7 +56,6 @@ minecraft {
             property 'forge.logging.markers', 'REGISTRIES'
 
             property 'forge.logging.console.level', 'debug'
-
             arg "-mixin.config=darkerdepths.mixins.json"
 
             mods {
@@ -93,23 +94,40 @@ repositories {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.19-41.1.0'
+    minecraft "net.minecraftforge:forge:${project.minecraft_version}-${project.forge_version}"
     annotationProcessor "org.spongepowered:mixin:0.8.5:processor"
+    implementation fg.deobf('com.github.glitchfiend:TerraBlender-forge:1.19.2-2.0.1.128')
+    implementation fg.deobf('curse.maven:autoreglib-250363:4100299')
+    implementation fg.deobf('curse.maven:quark-243121:4205585')
 }
 
 jar {
     manifest {
         attributes([
                 "Specification-Title"     : "darkerdepths",
-                "Specification-Vendor"    : "Nate, Blackgear, Toxteer, Orcinus",
+                "Specification-Vendor"    : "Nate",
                 "Specification-Version"   : "1",
-                "Implementation-Title"    : project.name,
-                "Implementation-Version"  : project.jar.archiveVersion,
-                "Implementation-Vendor"   : "Nate, Blackgear, Toxteer, Orcinus",
+                "Implementation-Title"    : "darkerdepths",
+                "Implementation-Version"  : "1.0.0",
+                "Implementation-Vendor"   : "Nate",
                 "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
                 "MixinConfigs"            : "darkerdepths.mixins.json"
         ])
     }
+    finalizedBy 'reobfJar'
 }
 
 jar.finalizedBy('reobfJar')
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifact jar
+        }
+    }
+    repositories {
+        maven {
+            url "https://maven.minecraftforge.net"
+        }
+    }
+}

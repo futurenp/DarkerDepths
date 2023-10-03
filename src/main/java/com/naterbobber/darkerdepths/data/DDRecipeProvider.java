@@ -20,6 +20,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.SimpleCookingSerializer;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.List;
@@ -131,6 +132,55 @@ public class DDRecipeProvider extends RecipeProvider {
         chiseled(consumer, DDBlocks.POLISHED_GRIMESTONE_SLAB.get().asItem(), DDBlocks.CHISELED_GRIMESTONE_BRICKS.get().asItem());
 
         ShapedRecipeBuilder
+                .shaped(DDBlocks.POROUS_PETRIFIED_LOG.get())
+                .define('#', DDBlocks.AMBER.get())
+                .define('C', DDBlocks.PETRIFIED_LOG.get())
+                .pattern("###")
+                .pattern("#C#")
+                .pattern("###")
+                .unlockedBy("has_amber", has(DDBlocks.AMBER.get().asItem())).save(consumer);
+
+        ShapedRecipeBuilder
+                .shaped(DDBlocks.ARIDROCK.get(), 4)
+                .define('#', Blocks.COBBLESTONE)
+                .define('C', Blocks.SAND)
+                .pattern("#C")
+                .pattern("C#")
+                .unlockedBy("has_cobblestone", has(Blocks.COBBLESTONE)).save(consumer);
+
+        ShapedRecipeBuilder
+                .shaped(DDBlocks.LIMESTONE.get(), 4)
+                .define('#', Blocks.MUD)
+                .define('C', DDBlocks.ARIDROCK.get())
+                .pattern("#C")
+                .pattern("C#")
+                .unlockedBy("has_aridrock", has(DDBlocks.ARIDROCK.get())).save(consumer);
+
+        ShapedRecipeBuilder
+                .shaped(DDBlocks.SHALE.get(), 4)
+                .define('#', Blocks.STONE)
+                .define('C', Blocks.MUD)
+                .pattern("#C")
+                .pattern("C#")
+                .unlockedBy("has_mud", has(Blocks.MUD)).save(consumer);
+
+        ShapedRecipeBuilder
+                .shaped(DDBlocks.GRIMESTONE.get(), 4)
+                .define('#', DDItems.GLOW_GRIME.get())
+                .define('C', Blocks.COBBLESTONE)
+                .pattern("#C")
+                .pattern("C#")
+                .unlockedBy("has_glowgrime", has(DDItems.GLOW_GRIME.get())).save(consumer);
+
+        ShapedRecipeBuilder
+                .shaped(DDBlocks.GLOWSHROOM_BLOCK.get(), 2)
+                .define('#', DDItems.GLOW_GRIME.get())
+                .pattern("###")
+                .pattern("# #")
+                .pattern("###")
+                .unlockedBy("has_glowgrime", has(DDItems.GLOW_GRIME.get())).save(consumer);
+
+        ShapedRecipeBuilder
                 .shaped(DDBlocks.GEYSER.get().asItem())
                 .define('#', DDBlocks.ASH_BLOCK.get().asItem())
                 .define('S', DDBlocks.SHALE.get().asItem())
@@ -209,6 +259,8 @@ public class DDRecipeProvider extends RecipeProvider {
                 .pattern("##")
                 .pattern("##")
                 .unlockedBy("has_log", has(DDBlocks.STRIPPED_PETRIFIED_LOG.get())).save(consumer);
+
+        ShapelessRecipeBuilder.shapeless(DDItems.GLOW_GRIME.get()).requires(DDBlocks.GLOWSHROOM.get()).unlockedBy("has_glowshroom", has(DDBlocks.GLOWSHROOM.get())).save(consumer);
 
         stonecutterResultFromBase(consumer, DDBlocks.CHISELED_SHALE_BRICKS.get(), DDBlocks.SHALE.get());
         stonecutterResultFromBase(consumer, DDBlocks.CHISELED_ARIDROCK_BRICKS.get(), DDBlocks.ARIDROCK.get());
@@ -306,7 +358,7 @@ public class DDRecipeProvider extends RecipeProvider {
         stonecutterResultFromBase(consumer, DDBlocks.GRIMESTONE_BRICKS_WALL.get(), DDBlocks.GRIMESTONE_BRICKS.get());
 
         ShapedRecipeBuilder.
-                shaped(DDItems.ROPE.get(), 2)
+                shaped(DDItems.ROPE.get(), 4)
                 .define('#', DDItems.RESIN.get())
                 .define('G', Items.STICK)
                 .pattern(" # ")

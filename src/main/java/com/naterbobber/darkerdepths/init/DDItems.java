@@ -31,7 +31,7 @@ public class DDItems {
     public static final RegistryObject<Item> RESIN = createSimpleItem("resin");
     public static final RegistryObject<Item> RAW_SILVER = createSimpleItem("raw_silver");
     public static final RegistryObject<Item> SILVER_INGOT = createSimpleItem("silver_ingot");
-    public static final RegistryObject<Item> AMBER_BUCKET = ITEMS.register("amber_bucket", () -> new BucketItem(DDFluids.AMBER, (new Item.Properties()).craftRemainder(Items.BUCKET).stacksTo(1).tab(DarkerDepths.DARKER_DEPTHS)));
+    public static final RegistryObject<Item> GLOW_GRIME = createSimpleItem("glow_grime");
 
     private static RegistryObject<Item> createItem(String name) {
         return ITEMS.register(name, () -> new Item(new Item.Properties()));

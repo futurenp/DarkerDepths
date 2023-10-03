@@ -188,9 +188,6 @@ public class DDBlocks {
     public static final RegistryObject<Block> RAW_SILVER_BLOCK = registerBlock("raw_silver_block", () -> new Block(BlockBehaviour.Properties.of(Material.GRASS).requiresCorrectToolForDrops().strength(5.0F, 6.0F)));
     public static final RegistryObject<Block> SILVER_BLOCK = registerBlock("silver_block", () -> new Block(BlockBehaviour.Properties.of(Material.GRASS).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL)));
     public static final RegistryObject<Block> ARID_DEEPSLATE = registerBlock("arid_deepslate", () -> new LayeredDeepslateBlock(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE).randomTicks()));
-    public static final RegistryObject<Block> AMBER_FLUID = registerNoTabBlock("amber_fluid", () -> new LiquidBlock(DDFluids.AMBER, BlockBehaviour.Properties.of(Material.LAVA).noCollission().randomTicks().strength(100.0F).lightLevel((p_50755_) -> {
-        return 15;
-    }).noLootTable()));
 
     public static <B extends Block> RegistryObject<B> registerBlock(String name, Supplier<? extends B> blocks) {
         RegistryObject<B> block = BLOCKS.register(name, blocks);

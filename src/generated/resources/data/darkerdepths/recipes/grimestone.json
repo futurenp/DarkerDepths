@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": {
+      "item": "darkerdepths:glow_grime"
+    },
+    "C": {
+      "item": "minecraft:cobblestone"
+    }
+  },
+  "pattern": [
+    "#C",
+    "C#"
+  ],
+  "result": {
+    "count": 4,
+    "item": "darkerdepths:grimestone"
+  }
+}

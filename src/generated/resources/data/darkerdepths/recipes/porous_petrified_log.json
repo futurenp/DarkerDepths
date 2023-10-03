@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": {
+      "item": "darkerdepths:amber"
+    },
+    "C": {
+      "item": "darkerdepths:petrified_log"
+    }
+  },
+  "pattern": [
+    "###",
+    "#C#",
+    "###"
+  ],
+  "result": {
+    "item": "darkerdepths:porous_petrified_log"
+  }
+}

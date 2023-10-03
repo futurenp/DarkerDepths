@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": {
+      "item": "minecraft:stone"
+    },
+    "C": {
+      "item": "minecraft:mud"
+    }
+  },
+  "pattern": [
+    "#C",
+    "C#"
+  ],
+  "result": {
+    "count": 4,
+    "item": "darkerdepths:shale"
+  }
+}

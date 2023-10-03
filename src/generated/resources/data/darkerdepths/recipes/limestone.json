@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": {
+      "item": "minecraft:mud"
+    },
+    "C": {
+      "item": "darkerdepths:aridrock"
+    }
+  },
+  "pattern": [
+    "#C",
+    "C#"
+  ],
+  "result": {
+    "count": 4,
+    "item": "darkerdepths:limestone"
+  }
+}
