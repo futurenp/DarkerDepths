@@ -4,6 +4,7 @@ import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.entities.PetrifiedBoatEntity;
 import com.naterbobber.darkerdepths.item.DDBoatItem;
 import com.naterbobber.darkerdepths.item.GlowshroomCapItem;
+import com.naterbobber.darkerdepths.item.QuickRopeItem;
 import com.naterbobber.darkerdepths.item.RopeItem;
 import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.CreativeModeTab;
@@ -32,6 +33,7 @@ public class DDItems {
     public static final RegistryObject<Item> RAW_SILVER = createSimpleItem("raw_silver");
     public static final RegistryObject<Item> SILVER_INGOT = createSimpleItem("silver_ingot");
     public static final RegistryObject<Item> GLOW_GRIME = createSimpleItem("glow_grime");
+    public static final RegistryObject<Item> QUICKROPE = ITEMS.register("quickrope", () -> new QuickRopeItem(new Item.Properties().durability(16).tab(DarkerDepths.DARKER_DEPTHS)));
 
     private static RegistryObject<Item> createItem(String name) {
         return ITEMS.register(name, () -> new Item(new Item.Properties()));

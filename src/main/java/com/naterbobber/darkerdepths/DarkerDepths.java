@@ -25,6 +25,8 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+//TODO: Add recipe and loot table for glowshroom lantern and lamp
+
 @Mod(DarkerDepths.MODID)
 public class DarkerDepths {
 

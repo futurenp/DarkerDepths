@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "hanging=false": {
+      "model": "darkerdepths:block/glowshroom_lantern"
+    },
+    "hanging=true": {
+      "model": "darkerdepths:block/glowshroom_lantern_hanging"
+    }
+  }
+}

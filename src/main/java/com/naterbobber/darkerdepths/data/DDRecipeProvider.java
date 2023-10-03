@@ -181,6 +181,37 @@ public class DDRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_glowgrime", has(DDItems.GLOW_GRIME.get())).save(consumer);
 
         ShapedRecipeBuilder
+                .shaped(DDItems.QUICKROPE.get())
+                .define('#', DDItems.ROPE.get())
+                .define('G', Items.GOLD_INGOT)
+                .define('C', Items.COPPER_INGOT)
+                .pattern(" # ")
+                .pattern("GCG")
+                .pattern(" # ")
+                .unlockedBy("has_rope", has(DDItems.ROPE.get())).save(consumer);
+
+        ShapedRecipeBuilder
+                .shaped(DDBlocks.GLOWSHROOM_LANTERN.get())
+                .define('#', Items.IRON_NUGGET)
+                .define('C', DDItems.GLOW_GRIME.get())
+                .pattern("###")
+                .pattern("#C#")
+                .pattern("###")
+                .unlockedBy("has_glow_grime", has(DDItems.GLOW_GRIME.get()))
+                .save(consumer);
+
+        ShapedRecipeBuilder
+                .shaped(DDBlocks.GLOWSHROOM_LAMP.get())
+                .define('#', Items.IRON_INGOT)
+                .define('R', Items.REDSTONE)
+                .define('G', DDItems.GLOW_GRIME.get())
+                .pattern("#R#")
+                .pattern("RGR")
+                .pattern("#R#")
+                .unlockedBy("has_glow_grime", has(DDItems.GLOW_GRIME.get()))
+                .save(consumer);
+
+        ShapedRecipeBuilder
                 .shaped(DDBlocks.GEYSER.get().asItem())
                 .define('#', DDBlocks.ASH_BLOCK.get().asItem())
                 .define('S', DDBlocks.SHALE.get().asItem())

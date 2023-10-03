@@ -1,0 +1,34 @@
+{
+  "render_type": "cutout",
+  "textures": {
+    "0": "darkerdepths:block/glowshroom_lantern",
+    "particle": "darkerdepths:block/glowshroom_lantern"
+  },
+  "elements": [
+    {
+      "from": [5, 0, 5],
+      "to": [11, 10, 11],
+      "faces": {
+        "north": {"uv": [0, 0, 6, 10], "texture": "#0"},
+        "east": {"uv": [0, 0, 6, 10], "texture": "#0"},
+        "south": {"uv": [0, 0, 6, 10], "texture": "#0"},
+        "west": {"uv": [0, 0, 6, 10], "texture": "#0"},
+        "up": {"uv": [0, 10, 6, 16], "texture": "#0"},
+        "down": {"uv": [0, 10, 6, 16], "texture": "#0"}
+      }
+    },
+    {
+      "from": [6.5, 10, 8],
+      "to": [9.5, 12, 8],
+      "rotation": {"angle": -45, "axis": "y", "origin": [8, 15, 8]},
+      "faces": {
+        "north": {"uv": [11, 10, 14, 12], "texture": "#0"},
+        "east": {"uv": [0, 0, 6, 10], "texture": "#0"},
+        "south": {"uv": [11, 10, 14, 12], "texture": "#0"},
+        "west": {"uv": [0, 0, 6, 10], "texture": "#0"},
+        "up": {"uv": [0, 10, 6, 16], "texture": "#0"},
+        "down": {"uv": [0, 10, 6, 16], "texture": "#0"}
+      }
+    }
+  ]
+}

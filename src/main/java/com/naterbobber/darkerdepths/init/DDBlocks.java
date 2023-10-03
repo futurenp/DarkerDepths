@@ -37,9 +37,11 @@ import net.minecraft.world.level.block.DropExperienceBlock;
 import net.minecraft.world.level.block.FenceBlock;
 import net.minecraft.world.level.block.FenceGateBlock;
 import net.minecraft.world.level.block.FlowerPotBlock;
+import net.minecraft.world.level.block.LanternBlock;
 import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.PressurePlateBlock;
 import net.minecraft.world.level.block.RedStoneOreBlock;
+import net.minecraft.world.level.block.RedstoneLampBlock;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.SoundType;
@@ -165,7 +167,7 @@ public class DDBlocks {
     public static final RegistryObject<Block> STRIPPED_PETRIFIED_POST = registerCompatBlock("quark", "stripped_petrified_post", () -> new WoodPostBlock(Block.Properties.of(Material.STONE).requiresCorrectToolForDrops().noOcclusion().strength(2.5f, 3.0f).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> GLOWSHROOM_BLOCK = registerBlock("glowshroom_block", () -> new Block(BlockBehaviour.Properties.of(Material.GRASS).lightLevel(value -> 8).strength(0.2F).sound(SoundType.SLIME_BLOCK)));
     public static final RegistryObject<Block> GLOWSHROOM_STEM = registerBlock("glowshroom_stem", () -> new Block(BlockBehaviour.Properties.of(Material.GRASS).strength(0.2F).sound(SoundType.STEM)));
-    public static final RegistryObject<Block> ROPE = registerNoTabBlock("rope", () -> new RopeBlock(BlockBehaviour.Properties.of(Material.DECORATION).instabreak().sound(SoundType.WOOL)));
+    public static final RegistryObject<Block> ROPE = registerNoTabBlock("rope", () -> new RopeBlock(BlockBehaviour.Properties.of(Material.DECORATION).strength(0.1F).sound(SoundType.WOOL)));
     public static final RegistryObject<Block> SHALE_WALL = registerBlock("shale_wall", () -> new WallBlock(Block.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(1.5f, 6.0f).sound(SoundType.STONE)));
     public static final RegistryObject<Block> SHALE_BRICKS_WALL = registerBlock("shale_bricks_wall", () -> new WallBlock(Block.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(1.5f, 6.0f).sound(SoundType.STONE)));
     public static final RegistryObject<Block> ARIDROCK_WALL = registerBlock("aridrock_wall", () -> new WallBlock(Block.Properties.of(Material.STONE, MaterialColor.SAND).requiresCorrectToolForDrops().strength(1.5f, 6.0f).sound(SoundType.STONE)));
@@ -188,6 +190,8 @@ public class DDBlocks {
     public static final RegistryObject<Block> RAW_SILVER_BLOCK = registerBlock("raw_silver_block", () -> new Block(BlockBehaviour.Properties.of(Material.GRASS).requiresCorrectToolForDrops().strength(5.0F, 6.0F)));
     public static final RegistryObject<Block> SILVER_BLOCK = registerBlock("silver_block", () -> new Block(BlockBehaviour.Properties.of(Material.GRASS).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL)));
     public static final RegistryObject<Block> ARID_DEEPSLATE = registerBlock("arid_deepslate", () -> new LayeredDeepslateBlock(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE).randomTicks()));
+    public static final RegistryObject<Block> GLOWSHROOM_LANTERN = registerBlock("glowshroom_lantern", () -> new LanternBlock(BlockBehaviour.Properties.copy(Blocks.LANTERN)));
+    public static final RegistryObject<Block> GLOWSHROOM_LAMP = registerBlock("glowshroom_lamp", () -> new RedstoneLampBlock(BlockBehaviour.Properties.copy(Blocks.REDSTONE_LAMP)));
 
     public static <B extends Block> RegistryObject<B> registerBlock(String name, Supplier<? extends B> blocks) {
         RegistryObject<B> block = BLOCKS.register(name, blocks);

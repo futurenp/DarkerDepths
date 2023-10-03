@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "lit=false": {
+      "model": "darkerdepths:block/glowshroom_lamp"
+    },
+    "lit=true": {
+      "model": "darkerdepths:block/glowshroom_lamp_lit"
+    }
+  }
+}
