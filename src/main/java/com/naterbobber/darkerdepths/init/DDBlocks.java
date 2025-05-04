@@ -1,5 +1,6 @@
 package com.naterbobber.darkerdepths.init;
 
+import com.google.common.collect.Maps;
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.blocks.AshBlock;
 import com.naterbobber.darkerdepths.blocks.AshFullBlock;
@@ -51,11 +52,13 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
+import java.util.Map;
 import java.util.function.Supplier;
 
 @Mod.EventBusSubscriber(modid = DarkerDepths.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class DDBlocks {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, DarkerDepths.MODID);
+    public static final Map<RegistryObject<? extends Item>, String> COMPAT = Maps.newLinkedHashMap();
 
     public static final RegistryObject<Block> PETRIFIED_PLANKS = registerBlock("petrified_planks", () -> new Block(Block.Properties.of().requiresCorrectToolForDrops().strength(2.5f, 3.0f).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> VERTICAL_PETRIFIED_PLANKS = registerCompatBlock("quark", "vertical_petrified_planks", () -> new Block(Block.Properties.copy(PETRIFIED_PLANKS.get())));
@@ -195,7 +198,8 @@ public class DDBlocks {
 
     public static <B extends Block> RegistryObject<B> registerCompatBlock(String modId, String key, Supplier<? extends B> block) {
         RegistryObject<B> blocks = BLOCKS.register(key, block);
-        DDItems.ITEMS.register(key, () -> new BlockItem(blocks.get(), new Item.Properties()));
+        RegistryObject<BlockItem> item = DDItems.ITEMS.register(key, () -> new BlockItem(blocks.get(), new Item.Properties()));
+        COMPAT.put(item, modId);
         return blocks;
     }
 
