@@ -33,6 +33,7 @@
         "max_inclusive": 7,
         "min_inclusive": 4
       }
-    }
+    },
+    "xz_replace": false
   }
 }

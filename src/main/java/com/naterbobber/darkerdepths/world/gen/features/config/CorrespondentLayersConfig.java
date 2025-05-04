@@ -37,7 +37,8 @@ public class CorrespondentLayersConfig implements FeatureConfiguration {
             return p_161308_.xzRadius;
         }), Codec.floatRange(0.0F, 1.0F).fieldOf("extra_edge_column_chance").forGetter((p_161306_) -> {
             return p_161306_.extraEdgeColumnChance;
-        })).apply(p_161304_, CorrespondentLayersConfig::new);
+        }), Codec.BOOL.fieldOf("xz_replace").forGetter((config) -> config.xzReplace))
+                .apply(p_161304_, CorrespondentLayersConfig::new);
     });
     public final TagKey<Block> replaceable;
     public final BlockStateProvider groundState;
@@ -50,8 +51,9 @@ public class CorrespondentLayersConfig implements FeatureConfiguration {
     public final float vegetationChance;
     public final IntProvider xzRadius;
     public final float extraEdgeColumnChance;
+    public final boolean xzReplace;
 
-    public CorrespondentLayersConfig(TagKey<Block> replaceableTags, BlockStateProvider groundState, BlockStateProvider belowState, Holder<PlacedFeature> feature, CaveSurface p_161296_, IntProvider p_161297_, float p_161298_, int p_161299_, float p_161300_, IntProvider p_161301_, float p_161302_) {
+    public CorrespondentLayersConfig(TagKey<Block> replaceableTags, BlockStateProvider groundState, BlockStateProvider belowState, Holder<PlacedFeature> feature, CaveSurface p_161296_, IntProvider p_161297_, float p_161298_, int p_161299_, float p_161300_, IntProvider p_161301_, float p_161302_, boolean xzReplace) {
         this.replaceable = replaceableTags;
         this.groundState = groundState;
         this.belowState = belowState;
@@ -63,5 +65,6 @@ public class CorrespondentLayersConfig implements FeatureConfiguration {
         this.vegetationChance = p_161300_;
         this.xzRadius = p_161301_;
         this.extraEdgeColumnChance = p_161302_;
+        this.xzReplace = xzReplace;
     }
 }
