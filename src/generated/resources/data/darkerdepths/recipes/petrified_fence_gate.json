@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "building",
   "key": {
     "#": {
       "item": "minecraft:stick"
@@ -14,5 +15,6 @@
   ],
   "result": {
     "item": "darkerdepths:petrified_fence_gate"
-  }
+  },
+  "show_notification": true
 }

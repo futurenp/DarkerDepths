@@ -30,5 +30,6 @@
     "recipes": [
       "darkerdepths:lapis_lazuli_from_smelting_limestone_lapis_ore"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

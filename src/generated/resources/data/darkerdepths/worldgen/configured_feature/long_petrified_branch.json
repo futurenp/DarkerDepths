@@ -1,0 +1,7 @@
+{
+  "type": "darkerdepths:petrified_branch",
+  "config": {
+    "maxLength": 16,
+    "minLength": 8
+  }
+}

@@ -15,6 +15,7 @@ import com.naterbobber.darkerdepths.init.DDParticleTypes;
 import com.naterbobber.darkerdepths.init.DDWoodType;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.BoatModel;
+import net.minecraft.client.model.ChestBoatModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.particle.ParticleEngine;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
@@ -46,8 +47,8 @@ public class ClientEvents {
 
     @SubscribeEvent
     public static void registerEntityModelLayers(EntityRenderersEvent.RegisterLayerDefinitions event) {
-        event.registerLayerDefinition(new ModelLayerLocation(new ResourceLocation(DarkerDepths.MODID, "boat/petrified"), "main"), () -> BoatModel.createBodyModel(false));
-        event.registerLayerDefinition(new ModelLayerLocation(new ResourceLocation(DarkerDepths.MODID, "chest_boat/petrified"), "main"), () -> BoatModel.createBodyModel(true));
+        event.registerLayerDefinition(new ModelLayerLocation(DarkerDepths.id("boat/petrified"), "main"), BoatModel::createBodyModel);
+        event.registerLayerDefinition(new ModelLayerLocation(DarkerDepths.id("chest_boat/petrified"), "main"), ChestBoatModel::createBodyModel);
         event.registerLayerDefinition(DDModelLayers.GLOWSHROOM_MONSTER, GlowshroomMonsterModel::createBodyLayer);
         event.registerLayerDefinition(DDModelLayers.GLOWSHROOM_CAP, GlowshroomCapModel::createBodyLayer);
     }

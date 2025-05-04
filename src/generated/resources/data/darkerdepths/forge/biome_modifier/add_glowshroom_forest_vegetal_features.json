@@ -1,0 +1,10 @@
+{
+  "type": "forge:add_features",
+  "biomes": "darkerdepths:glowshroom_forest",
+  "features": [
+    "darkerdepths:glimmering_vines",
+    "darkerdepths:huge_glowshroom",
+    "darkerdepths:grime_surface"
+  ],
+  "step": "vegetal_decoration"
+}

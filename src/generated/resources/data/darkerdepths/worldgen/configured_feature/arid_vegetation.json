@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:simple_block",
+  "config": {
+    "to_place": {
+      "type": "minecraft:weighted_state_provider",
+      "entries": [
+        {
+          "data": {
+            "Name": "darkerdepths:dry_sprouts"
+          },
+          "weight": 3
+        },
+        {
+          "data": {
+            "Name": "minecraft:air"
+          },
+          "weight": 60
+        }
+      ]
+    }
+  }
+}

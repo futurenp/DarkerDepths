@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:simple_block",
+  "config": {
+    "to_place": {
+      "type": "minecraft:weighted_state_provider",
+      "entries": [
+        {
+          "data": {
+            "Name": "darkerdepths:ash",
+            "Properties": {
+              "layers": "1"
+            }
+          },
+          "weight": 25
+        },
+        {
+          "data": {
+            "Name": "darkerdepths:ash",
+            "Properties": {
+              "layers": "2"
+            }
+          },
+          "weight": 15
+        }
+      ]
+    }
+  }
+}

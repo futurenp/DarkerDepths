@@ -6,8 +6,11 @@ import com.naterbobber.darkerdepths.init.DDBlocks;
 import com.naterbobber.darkerdepths.init.DDItemTags;
 import com.naterbobber.darkerdepths.init.DDItems;
 import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
@@ -16,6 +19,7 @@ import net.minecraft.data.recipes.SingleItemRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.AbstractCookingRecipe;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.SimpleCookingSerializer;
@@ -28,12 +32,12 @@ import java.util.function.Consumer;
 
 public class DDRecipeProvider extends RecipeProvider {
 
-    public DDRecipeProvider(DataGenerator generator) {
-        super(generator);
+    public DDRecipeProvider(PackOutput packOutput) {
+        super(packOutput);
     }
 
     @Override
-    protected void buildCraftingRecipes(Consumer<FinishedRecipe> consumer) {
+    protected void buildRecipes(Consumer<FinishedRecipe> consumer) {
         twoXtwo(consumer, DDBlocks.POLISHED_SHALE.get(), DDBlocks.SHALE.get().asItem(), 4);
         twoXtwo(consumer, DDBlocks.POLISHED_ARIDROCK.get(), DDBlocks.ARIDROCK.get().asItem(), 4);
         twoXtwo(consumer, DDBlocks.POLISHED_LIMESTONE.get(), DDBlocks.LIMESTONE.get().asItem(), 4);
@@ -44,8 +48,8 @@ public class DDRecipeProvider extends RecipeProvider {
         twoXtwo(consumer, DDBlocks.GRIMESTONE_BRICKS.get(), DDBlocks.POLISHED_GRIMESTONE.get().asItem(), 4);
         threeXthree(consumer, DDBlocks.SILVER_BLOCK.get(), DDItems.SILVER_INGOT.get());
         threeXthree(consumer, DDBlocks.AMBER_BLOCK.get(), DDBlocks.AMBER.get().asItem());
-        oreSmelting(consumer, ImmutableList.of(DDBlocks.AMBER.get()), DDItems.RESIN.get(), 0.1F, 200, "resin");
-        oreBlasting(consumer, ImmutableList.of(DDBlocks.AMBER.get()), DDItems.RESIN.get(), 0.1F, 100, "resin");
+        oreSmelting(consumer, ImmutableList.of(DDBlocks.AMBER.get()), RecipeCategory.MISC, DDItems.RESIN.get(), 0.1F, 200, "resin");
+        oreBlasting(consumer, ImmutableList.of(DDBlocks.AMBER.get()), RecipeCategory.MISC, DDItems.RESIN.get(), 0.1F, 100, "resin");
 
         stairsBlock(consumer, DDBlocks.SHALE_STAIRS.get(), DDBlocks.SHALE.get().asItem());
         stairsBlock(consumer, DDBlocks.ARIDROCK_STAIRS.get(), DDBlocks.ARIDROCK.get().asItem());
@@ -84,42 +88,42 @@ public class DDRecipeProvider extends RecipeProvider {
         wallBlock(consumer, DDBlocks.LIMESTONE_BRICKS_WALL.get(), DDBlocks.LIMESTONE_BRICKS.get().asItem());
         wallBlock(consumer, DDBlocks.GRIMESTONE_BRICKS_WALL.get(), DDBlocks.GRIMESTONE_BRICKS.get().asItem());
 
-        oreSmelting(consumer, ImmutableList.of(DDBlocks.ARIDROCK_COAL_ORE.get()), Items.COAL, 0.1F, 200, "coal");
-        oreSmelting(consumer, ImmutableList.of(DDBlocks.ARIDROCK_IRON_ORE.get()), Items.IRON_INGOT, 0.1F, 200, "iron_ingot");
-        oreSmelting(consumer, ImmutableList.of(DDBlocks.ARIDROCK_GOLD_ORE.get()), Items.GOLD_INGOT, 0.1F, 200, "gold_ingot");
-        oreSmelting(consumer, ImmutableList.of(DDBlocks.ARIDROCK_REDSTONE_ORE.get()), Items.REDSTONE, 0.1F, 200, "redstone");
-        oreSmelting(consumer, ImmutableList.of(DDBlocks.ARIDROCK_LAPIS_ORE.get()), Items.LAPIS_LAZULI, 0.1F, 200, "lapis_lazuli");
-        oreSmelting(consumer, ImmutableList.of(DDBlocks.ARIDROCK_DIAMOND_ORE.get()), Items.DIAMOND, 0.1F, 200, "diamond");
-        oreSmelting(consumer, ImmutableList.of(DDBlocks.ARIDROCK_SILVER_ORE.get()), DDItems.SILVER_INGOT.get(), 0.1F, 200, "silver_ingot");
+        oreSmelting(consumer, ImmutableList.of(DDBlocks.ARIDROCK_COAL_ORE.get()), RecipeCategory.MISC, Items.COAL, 0.1F, 200, "coal");
+        oreSmelting(consumer, ImmutableList.of(DDBlocks.ARIDROCK_IRON_ORE.get()), RecipeCategory.MISC, Items.IRON_INGOT, 0.1F, 200, "iron_ingot");
+        oreSmelting(consumer, ImmutableList.of(DDBlocks.ARIDROCK_GOLD_ORE.get()), RecipeCategory.MISC, Items.GOLD_INGOT, 0.1F, 200, "gold_ingot");
+        oreSmelting(consumer, ImmutableList.of(DDBlocks.ARIDROCK_REDSTONE_ORE.get()), RecipeCategory.MISC, Items.REDSTONE, 0.1F, 200, "redstone");
+        oreSmelting(consumer, ImmutableList.of(DDBlocks.ARIDROCK_LAPIS_ORE.get()), RecipeCategory.MISC, Items.LAPIS_LAZULI, 0.1F, 200, "lapis_lazuli");
+        oreSmelting(consumer, ImmutableList.of(DDBlocks.ARIDROCK_DIAMOND_ORE.get()), RecipeCategory.MISC, Items.DIAMOND, 0.1F, 200, "diamond");
+        oreSmelting(consumer, ImmutableList.of(DDBlocks.ARIDROCK_SILVER_ORE.get()), RecipeCategory.MISC, DDItems.SILVER_INGOT.get(), 0.1F, 200, "silver_ingot");
 
-        oreBlasting(consumer, ImmutableList.of(DDBlocks.ARIDROCK_COAL_ORE.get()), Items.COAL, 0.1F, 100, "coal");
-        oreBlasting(consumer, ImmutableList.of(DDBlocks.ARIDROCK_IRON_ORE.get()), Items.IRON_INGOT, 0.1F, 100, "iron_ingot");
-        oreBlasting(consumer, ImmutableList.of(DDBlocks.ARIDROCK_GOLD_ORE.get()), Items.GOLD_INGOT, 0.1F, 100, "gold_ingot");
-        oreBlasting(consumer, ImmutableList.of(DDBlocks.ARIDROCK_REDSTONE_ORE.get()), Items.REDSTONE, 0.1F, 100, "redstone");
-        oreBlasting(consumer, ImmutableList.of(DDBlocks.ARIDROCK_LAPIS_ORE.get()), Items.LAPIS_LAZULI, 0.1F, 100, "lapis_lazuli");
-        oreBlasting(consumer, ImmutableList.of(DDBlocks.ARIDROCK_DIAMOND_ORE.get()), Items.DIAMOND, 0.1F, 100, "diamond");
-        oreBlasting(consumer, ImmutableList.of(DDBlocks.ARIDROCK_SILVER_ORE.get()), DDItems.SILVER_INGOT.get(), 0.1F, 100, "silver_ingot");
+        oreBlasting(consumer, ImmutableList.of(DDBlocks.ARIDROCK_COAL_ORE.get()), RecipeCategory.MISC, Items.COAL, 0.1F, 100, "coal");
+        oreBlasting(consumer, ImmutableList.of(DDBlocks.ARIDROCK_IRON_ORE.get()), RecipeCategory.MISC, Items.IRON_INGOT, 0.1F, 100, "iron_ingot");
+        oreBlasting(consumer, ImmutableList.of(DDBlocks.ARIDROCK_GOLD_ORE.get()), RecipeCategory.MISC, Items.GOLD_INGOT, 0.1F, 100, "gold_ingot");
+        oreBlasting(consumer, ImmutableList.of(DDBlocks.ARIDROCK_REDSTONE_ORE.get()), RecipeCategory.MISC, Items.REDSTONE, 0.1F, 100, "redstone");
+        oreBlasting(consumer, ImmutableList.of(DDBlocks.ARIDROCK_LAPIS_ORE.get()), RecipeCategory.MISC, Items.LAPIS_LAZULI, 0.1F, 100, "lapis_lazuli");
+        oreBlasting(consumer, ImmutableList.of(DDBlocks.ARIDROCK_DIAMOND_ORE.get()), RecipeCategory.MISC, Items.DIAMOND, 0.1F, 100, "diamond");
+        oreBlasting(consumer, ImmutableList.of(DDBlocks.ARIDROCK_SILVER_ORE.get()), RecipeCategory.MISC, DDItems.SILVER_INGOT.get(), 0.1F, 100, "silver_ingot");
 
-        oreSmelting(consumer, ImmutableList.of(DDBlocks.LIMESTONE_COAL_ORE.get()), Items.COAL, 0.1F, 200, "coal");
-        oreSmelting(consumer, ImmutableList.of(DDBlocks.LIMESTONE_IRON_ORE.get()), Items.IRON_INGOT, 0.1F, 200, "iron_ingot");
-        oreSmelting(consumer, ImmutableList.of(DDBlocks.LIMESTONE_GOLD_ORE.get()), Items.GOLD_INGOT, 0.1F, 200, "gold_ingot");
-        oreSmelting(consumer, ImmutableList.of(DDBlocks.LIMESTONE_REDSTONE_ORE.get()), Items.REDSTONE, 0.1F, 200, "redstone");
-        oreSmelting(consumer, ImmutableList.of(DDBlocks.LIMESTONE_LAPIS_ORE.get()), Items.LAPIS_LAZULI, 0.1F, 200, "lapis_lazuli");
-        oreSmelting(consumer, ImmutableList.of(DDBlocks.LIMESTONE_DIAMOND_ORE.get()), Items.DIAMOND, 0.1F, 200, "diamond");
-        oreSmelting(consumer, ImmutableList.of(DDBlocks.LIMESTONE_SILVER_ORE.get()), DDItems.SILVER_INGOT.get(), 0.1F, 200, "silver_ingot");
+        oreSmelting(consumer, ImmutableList.of(DDBlocks.LIMESTONE_COAL_ORE.get()), RecipeCategory.MISC, Items.COAL, 0.1F, 200, "coal");
+        oreSmelting(consumer, ImmutableList.of(DDBlocks.LIMESTONE_IRON_ORE.get()), RecipeCategory.MISC, Items.IRON_INGOT, 0.1F, 200, "iron_ingot");
+        oreSmelting(consumer, ImmutableList.of(DDBlocks.LIMESTONE_GOLD_ORE.get()), RecipeCategory.MISC, Items.GOLD_INGOT, 0.1F, 200, "gold_ingot");
+        oreSmelting(consumer, ImmutableList.of(DDBlocks.LIMESTONE_REDSTONE_ORE.get()), RecipeCategory.MISC, Items.REDSTONE, 0.1F, 200, "redstone");
+        oreSmelting(consumer, ImmutableList.of(DDBlocks.LIMESTONE_LAPIS_ORE.get()), RecipeCategory.MISC, Items.LAPIS_LAZULI, 0.1F, 200, "lapis_lazuli");
+        oreSmelting(consumer, ImmutableList.of(DDBlocks.LIMESTONE_DIAMOND_ORE.get()), RecipeCategory.MISC, Items.DIAMOND, 0.1F, 200, "diamond");
+        oreSmelting(consumer, ImmutableList.of(DDBlocks.LIMESTONE_SILVER_ORE.get()), RecipeCategory.MISC, DDItems.SILVER_INGOT.get(), 0.1F, 200, "silver_ingot");
 
-        oreSmelting(consumer, ImmutableList.of(DDBlocks.SHALE_BRICKS.get()), DDBlocks.CRACKED_SHALE_BRICKS.get(), 0.1F, 200, "cracked_shale_bricks");
-        oreSmelting(consumer, ImmutableList.of(DDBlocks.ARIDROCK_BRICKS.get()), DDBlocks.CRACKED_ARIDROCK_BRICKS.get(), 0.1F, 200, "cracked_aridrock_bricks");
-        oreSmelting(consumer, ImmutableList.of(DDBlocks.LIMESTONE_BRICKS.get()), DDBlocks.CRACKED_LIMESTONE_BRICKS.get(), 0.1F, 200, "cracked_limestone_bricks");
-        oreSmelting(consumer, ImmutableList.of(DDBlocks.GRIMESTONE_BRICKS.get()), DDBlocks.CRACKED_GRIMESTONE_BRICKS.get(), 0.1F, 200, "cracked_grimestone_bricks");
+        oreSmelting(consumer, ImmutableList.of(DDBlocks.SHALE_BRICKS.get()), RecipeCategory.BUILDING_BLOCKS, DDBlocks.CRACKED_SHALE_BRICKS.get(), 0.1F, 200, "cracked_shale_bricks");
+        oreSmelting(consumer, ImmutableList.of(DDBlocks.ARIDROCK_BRICKS.get()), RecipeCategory.BUILDING_BLOCKS, DDBlocks.CRACKED_ARIDROCK_BRICKS.get(), 0.1F, 200, "cracked_aridrock_bricks");
+        oreSmelting(consumer, ImmutableList.of(DDBlocks.LIMESTONE_BRICKS.get()), RecipeCategory.BUILDING_BLOCKS, DDBlocks.CRACKED_LIMESTONE_BRICKS.get(), 0.1F, 200, "cracked_limestone_bricks");
+        oreSmelting(consumer, ImmutableList.of(DDBlocks.GRIMESTONE_BRICKS.get()), RecipeCategory.BUILDING_BLOCKS, DDBlocks.CRACKED_GRIMESTONE_BRICKS.get(), 0.1F, 200, "cracked_grimestone_bricks");
 
-        oreBlasting(consumer, ImmutableList.of(DDBlocks.LIMESTONE_COAL_ORE.get()), Items.COAL, 0.1F, 100, "coal");
-        oreBlasting(consumer, ImmutableList.of(DDBlocks.LIMESTONE_IRON_ORE.get()), Items.IRON_INGOT, 0.1F, 100, "iron_ingot");
-        oreBlasting(consumer, ImmutableList.of(DDBlocks.LIMESTONE_GOLD_ORE.get()), Items.GOLD_INGOT, 0.1F, 100, "gold_ingot");
-        oreBlasting(consumer, ImmutableList.of(DDBlocks.LIMESTONE_REDSTONE_ORE.get()), Items.REDSTONE, 0.1F, 100, "redstone");
-        oreBlasting(consumer, ImmutableList.of(DDBlocks.LIMESTONE_LAPIS_ORE.get()), Items.LAPIS_LAZULI, 0.1F, 100, "lapis_lazuli");
-        oreBlasting(consumer, ImmutableList.of(DDBlocks.LIMESTONE_DIAMOND_ORE.get()), Items.DIAMOND, 0.1F, 100, "diamond");
-        oreBlasting(consumer, ImmutableList.of(DDBlocks.LIMESTONE_SILVER_ORE.get()), DDItems.SILVER_INGOT.get(), 0.1F, 100, "silver_ingot");
+        oreBlasting(consumer, ImmutableList.of(DDBlocks.LIMESTONE_COAL_ORE.get()), RecipeCategory.MISC, Items.COAL, 0.1F, 100, "coal");
+        oreBlasting(consumer, ImmutableList.of(DDBlocks.LIMESTONE_IRON_ORE.get()), RecipeCategory.MISC, Items.IRON_INGOT, 0.1F, 100, "iron_ingot");
+        oreBlasting(consumer, ImmutableList.of(DDBlocks.LIMESTONE_GOLD_ORE.get()), RecipeCategory.MISC, Items.GOLD_INGOT, 0.1F, 100, "gold_ingot");
+        oreBlasting(consumer, ImmutableList.of(DDBlocks.LIMESTONE_REDSTONE_ORE.get()), RecipeCategory.MISC, Items.REDSTONE, 0.1F, 100, "redstone");
+        oreBlasting(consumer, ImmutableList.of(DDBlocks.LIMESTONE_LAPIS_ORE.get()), RecipeCategory.MISC, Items.LAPIS_LAZULI, 0.1F, 100, "lapis_lazuli");
+        oreBlasting(consumer, ImmutableList.of(DDBlocks.LIMESTONE_DIAMOND_ORE.get()), RecipeCategory.MISC, Items.DIAMOND, 0.1F, 100, "diamond");
+        oreBlasting(consumer, ImmutableList.of(DDBlocks.LIMESTONE_SILVER_ORE.get()), RecipeCategory.MISC, DDItems.SILVER_INGOT.get(), 0.1F, 100, "silver_ingot");
 
         shaplessOne(consumer, DDItems.SILVER_INGOT.get(), DDBlocks.SILVER_BLOCK.get().asItem(), 9);
         shaplessOne(consumer, DDItems.RAW_SILVER.get(), DDBlocks.RAW_SILVER_BLOCK.get().asItem(), 9);
@@ -132,7 +136,7 @@ public class DDRecipeProvider extends RecipeProvider {
         chiseled(consumer, DDBlocks.POLISHED_GRIMESTONE_SLAB.get().asItem(), DDBlocks.CHISELED_GRIMESTONE_BRICKS.get().asItem());
 
         ShapedRecipeBuilder
-                .shaped(DDBlocks.POROUS_PETRIFIED_LOG.get())
+                .shaped(RecipeCategory.BUILDING_BLOCKS, DDBlocks.POROUS_PETRIFIED_LOG.get())
                 .define('#', DDBlocks.AMBER.get())
                 .define('C', DDBlocks.PETRIFIED_LOG.get())
                 .pattern("###")
@@ -141,7 +145,7 @@ public class DDRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_amber", has(DDBlocks.AMBER.get().asItem())).save(consumer);
 
         ShapedRecipeBuilder
-                .shaped(DDBlocks.ARIDROCK.get(), 4)
+                .shaped(RecipeCategory.BUILDING_BLOCKS, DDBlocks.ARIDROCK.get(), 4)
                 .define('#', Blocks.COBBLESTONE)
                 .define('C', Blocks.SAND)
                 .pattern("#C")
@@ -149,7 +153,7 @@ public class DDRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_cobblestone", has(Blocks.COBBLESTONE)).save(consumer);
 
         ShapedRecipeBuilder
-                .shaped(DDBlocks.LIMESTONE.get(), 4)
+                .shaped(RecipeCategory.BUILDING_BLOCKS, DDBlocks.LIMESTONE.get(), 4)
                 .define('#', Blocks.MUD)
                 .define('C', DDBlocks.ARIDROCK.get())
                 .pattern("#C")
@@ -157,7 +161,7 @@ public class DDRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_aridrock", has(DDBlocks.ARIDROCK.get())).save(consumer);
 
         ShapedRecipeBuilder
-                .shaped(DDBlocks.SHALE.get(), 4)
+                .shaped(RecipeCategory.BUILDING_BLOCKS, DDBlocks.SHALE.get(), 4)
                 .define('#', Blocks.STONE)
                 .define('C', Blocks.MUD)
                 .pattern("#C")
@@ -165,7 +169,7 @@ public class DDRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_mud", has(Blocks.MUD)).save(consumer);
 
         ShapedRecipeBuilder
-                .shaped(DDBlocks.GRIMESTONE.get(), 4)
+                .shaped(RecipeCategory.BUILDING_BLOCKS, DDBlocks.GRIMESTONE.get(), 4)
                 .define('#', DDItems.GLOW_GRIME.get())
                 .define('C', Blocks.COBBLESTONE)
                 .pattern("#C")
@@ -173,7 +177,7 @@ public class DDRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_glowgrime", has(DDItems.GLOW_GRIME.get())).save(consumer);
 
         ShapedRecipeBuilder
-                .shaped(DDBlocks.GLOWSHROOM_BLOCK.get(), 2)
+                .shaped(RecipeCategory.BUILDING_BLOCKS, DDBlocks.GLOWSHROOM_BLOCK.get(), 2)
                 .define('#', DDItems.GLOW_GRIME.get())
                 .pattern("###")
                 .pattern("# #")
@@ -181,7 +185,7 @@ public class DDRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_glowgrime", has(DDItems.GLOW_GRIME.get())).save(consumer);
 
         ShapedRecipeBuilder
-                .shaped(DDItems.QUICKROPE.get())
+                .shaped(RecipeCategory.TOOLS, DDItems.QUICKROPE.get())
                 .define('#', DDItems.ROPE.get())
                 .define('G', Items.GOLD_INGOT)
                 .define('C', Items.COPPER_INGOT)
@@ -191,7 +195,7 @@ public class DDRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_rope", has(DDItems.ROPE.get())).save(consumer);
 
         ShapedRecipeBuilder
-                .shaped(DDBlocks.GLOWSHROOM_LANTERN.get())
+                .shaped(RecipeCategory.DECORATIONS, DDBlocks.GLOWSHROOM_LANTERN.get())
                 .define('#', Items.IRON_NUGGET)
                 .define('C', DDItems.GLOW_GRIME.get())
                 .pattern("###")
@@ -201,7 +205,7 @@ public class DDRecipeProvider extends RecipeProvider {
                 .save(consumer);
 
         ShapedRecipeBuilder
-                .shaped(DDBlocks.GLOWSHROOM_LAMP.get())
+                .shaped(RecipeCategory.DECORATIONS, DDBlocks.GLOWSHROOM_LAMP.get())
                 .define('#', Items.IRON_INGOT)
                 .define('R', Items.REDSTONE)
                 .define('G', DDItems.GLOW_GRIME.get())
@@ -212,7 +216,7 @@ public class DDRecipeProvider extends RecipeProvider {
                 .save(consumer);
 
         ShapedRecipeBuilder
-                .shaped(DDBlocks.GEYSER.get().asItem())
+                .shaped(RecipeCategory.BUILDING_BLOCKS, DDBlocks.GEYSER.get().asItem())
                 .define('#', DDBlocks.ASH_BLOCK.get().asItem())
                 .define('S', DDBlocks.SHALE.get().asItem())
                 .define('A', DDBlocks.AMBER.get().asItem())
@@ -222,7 +226,7 @@ public class DDRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_ash_block", has(DDBlocks.ASH_BLOCK.get().asItem())).save(consumer);
 
         ShapedRecipeBuilder
-                .shaped(DDBlocks.PETRIFIED_FENCE_GATE.get().asItem())
+                .shaped(RecipeCategory.BUILDING_BLOCKS, DDBlocks.PETRIFIED_FENCE_GATE.get().asItem())
                 .define('#', Items.STICK)
                 .define('W', DDBlocks.PETRIFIED_PLANKS.get().asItem())
                 .pattern("#W#")
@@ -230,12 +234,12 @@ public class DDRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_planks", has(DDBlocks.PETRIFIED_PLANKS.get().asItem()))
                 .save(consumer);
 
-        ShapelessRecipeBuilder.shapeless(DDBlocks.PETRIFIED_BUTTON.get())
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, DDBlocks.PETRIFIED_BUTTON.get())
                 .requires(DDBlocks.PETRIFIED_PLANKS.get().asItem())
                 .unlockedBy("has_planks", has(DDBlocks.PETRIFIED_PLANKS.get())).save(consumer);
 
         ShapedRecipeBuilder
-                .shaped(DDItems.PETRIFIED_SIGN.get(), 3)
+                .shaped(RecipeCategory.DECORATIONS, DDItems.PETRIFIED_SIGN.get(), 3)
                 .group("sign")
                 .define('#', DDBlocks.PETRIFIED_PLANKS.get())
                 .define('X', Items.STICK)
@@ -246,14 +250,14 @@ public class DDRecipeProvider extends RecipeProvider {
                 .save(consumer);
 
         ShapedRecipeBuilder
-                .shaped(DDBlocks.PETRIFIED_PRESSURE_PLATE.get())
+                .shaped(RecipeCategory.REDSTONE, DDBlocks.PETRIFIED_PRESSURE_PLATE.get())
                 .define('#', DDBlocks.PETRIFIED_PLANKS.get())
                 .pattern("##")
                 .unlockedBy("has_planks", has(DDBlocks.PETRIFIED_PLANKS.get()))
                 .save(consumer);
 
         ShapedRecipeBuilder
-                .shaped(DDBlocks.PETRIFIED_DOOR.get(), 3)
+                .shaped(RecipeCategory.REDSTONE, DDBlocks.PETRIFIED_DOOR.get(), 3)
                 .group("wooden_door")
                 .define('#', DDBlocks.PETRIFIED_PLANKS.get())
                 .pattern("##")
@@ -262,7 +266,7 @@ public class DDRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_planks", has(DDBlocks.PETRIFIED_PLANKS.get())).save(consumer);
 
         ShapedRecipeBuilder
-                .shaped(DDBlocks.PETRIFIED_TRAPDOOR.get(), 2)
+                .shaped(RecipeCategory.REDSTONE, DDBlocks.PETRIFIED_TRAPDOOR.get(), 2)
                 .group("wooden_trapdoor")
                 .define('#', DDBlocks.PETRIFIED_PLANKS.get())
                 .pattern("###")
@@ -270,13 +274,13 @@ public class DDRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_planks", has(DDBlocks.PETRIFIED_PLANKS.get())).save(consumer);
 
         ShapelessRecipeBuilder
-                .shapeless(DDBlocks.PETRIFIED_PLANKS.get(), 4)
+                .shapeless(RecipeCategory.BUILDING_BLOCKS, DDBlocks.PETRIFIED_PLANKS.get(), 4)
                 .requires(DDItemTags.PETRIFIED_LOGS)
                 .group("planks")
                 .unlockedBy("has_logs", has(DDItemTags.PETRIFIED_LOGS)).save(consumer);
 
         ShapedRecipeBuilder
-                .shaped(DDBlocks.PETRIFIED_WOOD.get(), 3)
+                .shaped(RecipeCategory.BUILDING_BLOCKS, DDBlocks.PETRIFIED_WOOD.get(), 3)
                 .group("bark")
                 .define('#', DDBlocks.PETRIFIED_LOG.get())
                 .pattern("##")
@@ -284,14 +288,14 @@ public class DDRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_log", has(DDBlocks.PETRIFIED_LOG.get())).save(consumer);
 
         ShapedRecipeBuilder
-                .shaped(DDBlocks.STRIPPED_PETRIFIED_WOOD.get(), 3)
+                .shaped(RecipeCategory.BUILDING_BLOCKS, DDBlocks.STRIPPED_PETRIFIED_WOOD.get(), 3)
                 .group("bark")
                 .define('#', DDBlocks.STRIPPED_PETRIFIED_LOG.get())
                 .pattern("##")
                 .pattern("##")
                 .unlockedBy("has_log", has(DDBlocks.STRIPPED_PETRIFIED_LOG.get())).save(consumer);
 
-        ShapelessRecipeBuilder.shapeless(DDItems.GLOW_GRIME.get()).requires(DDBlocks.GLOWSHROOM.get()).unlockedBy("has_glowshroom", has(DDBlocks.GLOWSHROOM.get())).save(consumer);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, DDItems.GLOW_GRIME.get()).requires(DDBlocks.GLOWSHROOM.get()).unlockedBy("has_glowshroom", has(DDBlocks.GLOWSHROOM.get())).save(consumer);
 
         stonecutterResultFromBase(consumer, DDBlocks.CHISELED_SHALE_BRICKS.get(), DDBlocks.SHALE.get());
         stonecutterResultFromBase(consumer, DDBlocks.CHISELED_ARIDROCK_BRICKS.get(), DDBlocks.ARIDROCK.get());
@@ -389,7 +393,7 @@ public class DDRecipeProvider extends RecipeProvider {
         stonecutterResultFromBase(consumer, DDBlocks.GRIMESTONE_BRICKS_WALL.get(), DDBlocks.GRIMESTONE_BRICKS.get());
 
         ShapedRecipeBuilder.
-                shaped(DDItems.ROPE.get(), 4)
+                shaped(RecipeCategory.DECORATIONS, DDItems.ROPE.get(), 4)
                 .define('#', DDItems.RESIN.get())
                 .define('G', Items.STICK)
                 .pattern(" # ")
@@ -403,7 +407,7 @@ public class DDRecipeProvider extends RecipeProvider {
     }
 
     protected static void stonecutterResultFromBase(Consumer<FinishedRecipe> consumer, ItemLike result, ItemLike ingredient, int count) {
-        SingleItemRecipeBuilder.stonecutting(Ingredient.of(ingredient), result, count).unlockedBy(getHasName(ingredient), has(ingredient)).save(consumer, new ResourceLocation(DarkerDepths.MODID, getConversionRecipeName(result, ingredient) + "_stonecutting"));
+        SingleItemRecipeBuilder.stonecutting(Ingredient.of(ingredient), RecipeCategory.BUILDING_BLOCKS, result, count).unlockedBy(getHasName(ingredient), has(ingredient)).save(consumer, DarkerDepths.id(getConversionRecipeName(result, ingredient) + "_stonecutting"));
     }
 
     protected static String getConversionRecipeName(ItemLike result, ItemLike ingredient) {
@@ -415,88 +419,88 @@ public class DDRecipeProvider extends RecipeProvider {
     }
 
     private void chiseled(Consumer<FinishedRecipe> consumer, Item slab, Item result) {
-        ShapedRecipeBuilder.shaped(result, 1)
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, result)
                 .define('#', slab)
                 .pattern("#")
                 .pattern("#")
-                .unlockedBy("has_" + Registry.ITEM.getKey(slab).getPath(), has(slab))
+                .unlockedBy("has_" + BuiltInRegistries.ITEM.getKey(slab).getPath(), has(slab))
                 .save(consumer);
     }
 
     private void wallBlock(Consumer<FinishedRecipe> consumer, ItemLike result, Item item) {
         ShapedRecipeBuilder
-                .shaped(result, 6)
+                .shaped(RecipeCategory.BUILDING_BLOCKS, result, 6)
                 .define('#', item)
                 .pattern("###")
                 .pattern("###")
-                .unlockedBy("has_" + Registry.ITEM.getKey(item).getPath(), has(item)).save(consumer);
+                .unlockedBy("has_" + BuiltInRegistries.ITEM.getKey(item).getPath(), has(item)).save(consumer);
     }
 
     private void twoXtwo(Consumer<FinishedRecipe> consumer, ItemLike result, Item item, int count) {
         ShapedRecipeBuilder.
-                shaped(result, count)
+                shaped(RecipeCategory.BUILDING_BLOCKS, result, count)
                 .define('S', item)
                 .pattern("SS")
                 .pattern("SS")
-                .unlockedBy("has_" + Registry.ITEM.getKey(item).getPath(), has(item)).save(consumer);
+                .unlockedBy("has_" + BuiltInRegistries.ITEM.getKey(item).getPath(), has(item)).save(consumer);
     }
 
     private void threeXthree(Consumer<FinishedRecipe> consumer, ItemLike result, Item item) {
         ShapedRecipeBuilder.
-                shaped(result)
+                shaped(RecipeCategory.BUILDING_BLOCKS, result)
                 .define('S', item)
                 .pattern("SSS")
                 .pattern("SSS")
                 .pattern("SSS")
-                .unlockedBy("has_" + Registry.ITEM.getKey(item).getPath(), has(item)).save(consumer);
+                .unlockedBy("has_" + BuiltInRegistries.ITEM.getKey(item).getPath(), has(item)).save(consumer);
     }
 
     private void stairsBlock(Consumer<FinishedRecipe> consumer, ItemLike result, Item item) {
         ShapedRecipeBuilder.
-                shaped(result, 4)
+                shaped(RecipeCategory.BUILDING_BLOCKS, result, 4)
                 .define('#', item)
                 .pattern("#  ")
                 .pattern("## ")
                 .pattern("###")
-                .unlockedBy("has_" + Registry.ITEM.getKey(item).getPath(), has(item)).save(consumer);
+                .unlockedBy("has_" + BuiltInRegistries.ITEM.getKey(item).getPath(), has(item)).save(consumer);
     }
 
     private void fenceBlock(Consumer<FinishedRecipe> consumer, ItemLike result, Item item) {
         ShapedRecipeBuilder.
-                shaped(result, 3)
+                shaped(RecipeCategory.BUILDING_BLOCKS, result, 3)
                 .define('#', item)
                 .define('S', Items.STICK)
                 .pattern("#S#")
                 .pattern("#S#")
-                .unlockedBy("has_" + Registry.ITEM.getKey(item).getPath(), has(item)).save(consumer);
+                .unlockedBy("has_" + BuiltInRegistries.ITEM.getKey(item).getPath(), has(item)).save(consumer);
     }
 
     private void slabBlock(Consumer<FinishedRecipe> consumer, ItemLike result, Item item) {
         ShapedRecipeBuilder.
-                shaped(result, 6)
+                shaped(RecipeCategory.BUILDING_BLOCKS, result, 6)
                 .define('#', item)
                 .pattern("###")
-                .unlockedBy("has_" + Registry.ITEM.getKey(item).getPath(), has(item)).save(consumer);
+                .unlockedBy("has_" + BuiltInRegistries.ITEM.getKey(item).getPath(), has(item)).save(consumer);
     }
 
-    protected static void oreSmelting(Consumer<FinishedRecipe> consumer, List<ItemLike> items, ItemLike p_176594_, float p_176595_, int p_176596_, String p_176597_) {
-        oreCooking(consumer, RecipeSerializer.SMELTING_RECIPE, items, p_176594_, p_176595_, p_176596_, p_176597_, "_from_smelting");
+    protected static void oreSmelting(Consumer<FinishedRecipe> consumer, List<ItemLike> items, RecipeCategory recipeCategory, ItemLike p_176594_, float p_176595_, int p_176596_, String p_176597_) {
+        oreCooking(consumer, recipeCategory, RecipeSerializer.SMELTING_RECIPE, items, p_176594_, p_176595_, p_176596_, p_176597_, "_from_smelting");
     }
 
-    protected static void oreBlasting(Consumer<FinishedRecipe> consumer, List<ItemLike> items, ItemLike p_176628_, float p_176629_, int p_176630_, String p_176631_) {
-        oreCooking(consumer, RecipeSerializer.BLASTING_RECIPE, items, p_176628_, p_176629_, p_176630_, p_176631_, "_from_blasting");
+    protected static void oreBlasting(Consumer<FinishedRecipe> consumer, List<ItemLike> items, RecipeCategory recipeCategory, ItemLike p_176628_, float p_176629_, int p_176630_, String p_176631_) {
+        oreCooking(consumer, recipeCategory, RecipeSerializer.BLASTING_RECIPE, items, p_176628_, p_176629_, p_176630_, p_176631_, "_from_blasting");
     }
 
-    protected static void oreCooking(Consumer<FinishedRecipe> consumer, SimpleCookingSerializer<?> serializer, List<ItemLike> itemLike, ItemLike item, float experience, int time, String group, String name) {
+    protected static void oreCooking(Consumer<FinishedRecipe> consumer, RecipeCategory recipeCategory, RecipeSerializer<? extends AbstractCookingRecipe> serializer, List<ItemLike> itemLike, ItemLike item, float experience, int time, String group, String name) {
         for (ItemLike itemlike : itemLike) {
-            SimpleCookingRecipeBuilder.cooking(Ingredient.of(itemlike), item, experience, time, serializer).group(group).unlockedBy(getHasName(itemlike), has(itemlike)).save(consumer, new ResourceLocation(DarkerDepths.MODID, getItemName(item) + name + "_" + getItemName(itemlike)));
+            SimpleCookingRecipeBuilder.generic(Ingredient.of(itemlike), recipeCategory, item, experience, time, serializer).group(group).unlockedBy(getHasName(itemlike), has(itemlike)).save(consumer, DarkerDepths.id(getItemName(item) + name + "_" + getItemName(itemlike)));
         }
     }
 
     private void shaplessOne(Consumer<FinishedRecipe> consumer, Item result, Item item, int count) {
         ShapelessRecipeBuilder.
-                shapeless(result, count)
+                shapeless(RecipeCategory.MISC, result, count)
                 .requires(item)
-                .unlockedBy("has_" + Registry.ITEM.getKey(item).getPath(), has(item)).save(consumer);
+                .unlockedBy("has_" + BuiltInRegistries.ITEM.getKey(item).getPath(), has(item)).save(consumer);
     }
 }

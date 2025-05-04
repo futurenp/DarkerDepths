@@ -25,7 +25,7 @@ mixin {
 
 version = "${project.minecraft_version}-${project.mod_version}"
 group = 'com.natebobber.darkerdepths'
-archivesBaseName = 'darkerdepths'
+archivesBaseName = 'Darker Depths'
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
@@ -96,18 +96,16 @@ repositories {
 dependencies {
     minecraft "net.minecraftforge:forge:${project.minecraft_version}-${project.forge_version}"
     annotationProcessor "org.spongepowered:mixin:0.8.5:processor"
-    implementation fg.deobf('com.github.glitchfiend:TerraBlender-forge:1.19.2-2.0.1.128')
-    implementation fg.deobf('curse.maven:autoreglib-250363:4100299')
-    implementation fg.deobf('curse.maven:quark-243121:4205585')
+    implementation fg.deobf('com.github.glitchfiend:TerraBlender-forge:1.20-3.0.0.163')
 }
 
 jar {
     manifest {
         attributes([
-                "Specification-Title"     : "darkerdepths",
+                "Specification-Title"     : "Darker Depths",
                 "Specification-Vendor"    : "Nate",
                 "Specification-Version"   : "1",
-                "Implementation-Title"    : "darkerdepths",
+                "Implementation-Title"    : "Darker Depths",
                 "Implementation-Version"  : "1.0.0",
                 "Implementation-Vendor"   : "Nate",
                 "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),

@@ -1,5 +1,8 @@
 {
   "values": [
-    "darkerdepths:sandy_catacombs"
+    {
+      "id": "darkerdepths:sandy_catacombs",
+      "required": false
+    }
   ]
 }

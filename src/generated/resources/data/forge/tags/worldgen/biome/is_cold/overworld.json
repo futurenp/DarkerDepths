@@ -1,5 +1,8 @@
 {
   "values": [
-    "darkerdepths:glowshroom_forest"
+    {
+      "id": "darkerdepths:glowshroom_forest",
+      "required": false
+    }
   ]
 }

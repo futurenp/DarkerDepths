@@ -23,24 +23,24 @@ public class DDItems {
 
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, DarkerDepths.MODID);
 
-    public static final RegistryObject<Item> ROPE = ITEMS.register("rope", () -> new RopeItem(DDBlocks.ROPE.get(), new Item.Properties().tab(DarkerDepths.DARKER_DEPTHS)));
-    public static final RegistryObject<Item> GLOWSHROOM_CAP = ITEMS.register("glowshroom_cap", () -> new GlowshroomCapItem(new Item.Properties().stacksTo(1).tab(DarkerDepths.DARKER_DEPTHS)));
-    public static final RegistryObject<Item> PETRIFIED_BOAT = ITEMS.register("petrified_boat", () -> new DDBoatItem(false, PetrifiedBoatEntity.BoatType.PETRIFIED, new Item.Properties().stacksTo(1).tab(DarkerDepths.DARKER_DEPTHS)));
-    public static final RegistryObject<Item> PETRIFIED_CHEST_BOAT = ITEMS.register("petrified_chest_boat", () -> new DDBoatItem(true, PetrifiedBoatEntity.BoatType.PETRIFIED, new Item.Properties().stacksTo(1).tab(DarkerDepths.DARKER_DEPTHS)));
-    public static final RegistryObject<Item> GLOWSHROOM_MONSTER_SPAWN_EGG = ITEMS.register("glowshroom_monster_spawn_egg", () -> new ForgeSpawnEggItem(DDEntityTypes.GLOWSHROOM_MONSTER, 8290688, 8513702, new Item.Properties().tab(DarkerDepths.DARKER_DEPTHS)));
-    public static final RegistryObject<Item> PETRIFIED_SIGN = ITEMS.register("petrified_sign", () -> new SignItem(new Item.Properties().stacksTo(16).tab(DarkerDepths.DARKER_DEPTHS), DDBlocks.PETRIFIED_SIGN.get(), DDBlocks.PETRIFIED_WALL_SIGN.get()));
+    public static final RegistryObject<Item> ROPE = ITEMS.register("rope", () -> new RopeItem(DDBlocks.ROPE.get(), new Item.Properties()));
+    public static final RegistryObject<Item> GLOWSHROOM_CAP = ITEMS.register("glowshroom_cap", () -> new GlowshroomCapItem(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> PETRIFIED_BOAT = ITEMS.register("petrified_boat", () -> new DDBoatItem(false, PetrifiedBoatEntity.BoatType.PETRIFIED, new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> PETRIFIED_CHEST_BOAT = ITEMS.register("petrified_chest_boat", () -> new DDBoatItem(true, PetrifiedBoatEntity.BoatType.PETRIFIED, new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> GLOWSHROOM_MONSTER_SPAWN_EGG = ITEMS.register("glowshroom_monster_spawn_egg", () -> new ForgeSpawnEggItem(DDEntityTypes.GLOWSHROOM_MONSTER, 8290688, 8513702, new Item.Properties()));
+    public static final RegistryObject<Item> PETRIFIED_SIGN = ITEMS.register("petrified_sign", () -> new SignItem(new Item.Properties().stacksTo(16), DDBlocks.PETRIFIED_SIGN.get(), DDBlocks.PETRIFIED_WALL_SIGN.get()));
     public static final RegistryObject<Item> RESIN = createSimpleItem("resin");
     public static final RegistryObject<Item> RAW_SILVER = createSimpleItem("raw_silver");
     public static final RegistryObject<Item> SILVER_INGOT = createSimpleItem("silver_ingot");
     public static final RegistryObject<Item> GLOW_GRIME = createSimpleItem("glow_grime");
-    public static final RegistryObject<Item> QUICKROPE = ITEMS.register("quickrope", () -> new QuickRopeItem(new Item.Properties().durability(16).tab(DarkerDepths.DARKER_DEPTHS)));
+    public static final RegistryObject<Item> QUICKROPE = ITEMS.register("quickrope", () -> new QuickRopeItem(new Item.Properties().durability(16)));
 
     private static RegistryObject<Item> createItem(String name) {
         return ITEMS.register(name, () -> new Item(new Item.Properties()));
     }
 
     private static RegistryObject<Item> createSimpleItem(String name) {
-        return ITEMS.register(name, () -> new Item(new Item.Properties().tab(DarkerDepths.DARKER_DEPTHS)));
+        return ITEMS.register(name, () -> new Item(new Item.Properties()));
     }
 
 }

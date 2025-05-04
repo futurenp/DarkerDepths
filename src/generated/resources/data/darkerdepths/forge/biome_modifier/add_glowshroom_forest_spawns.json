@@ -1,0 +1,10 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": "darkerdepths:glowshroom_forest",
+  "spawners": {
+    "type": "darkerdepths:glowshroom_monster",
+    "maxCount": 2,
+    "minCount": 1,
+    "weight": 50
+  }
+}

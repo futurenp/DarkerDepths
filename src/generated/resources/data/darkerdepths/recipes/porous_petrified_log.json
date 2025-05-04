@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "building",
   "key": {
     "#": {
       "item": "darkerdepths:amber"
@@ -15,5 +16,6 @@
   ],
   "result": {
     "item": "darkerdepths:porous_petrified_log"
-  }
+  },
+  "show_notification": true
 }

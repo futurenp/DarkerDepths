@@ -26,11 +26,11 @@ import org.jetbrains.annotations.Nullable;
 import java.util.function.Consumer;
 
 public class GlowshroomCapItem extends ArmorItem implements Vanishable {
-    private static final GlowshroomArmorMaterial material = new GlowshroomArmorMaterial();
-    private static final ResourceLocation TEXTURE = new ResourceLocation(DarkerDepths.MODID, "textures/models/armor/glowshroom_cap_model.png");
+    private static final GlowshroomArmorMaterial MATERIAL = new GlowshroomArmorMaterial();
+    private static final ResourceLocation TEXTURE = DarkerDepths.id("textures/models/armor/glowshroom_cap_model.png");
 
     public GlowshroomCapItem(Properties properties) {
-        super(material, EquipmentSlot.HEAD, properties);
+        super(MATERIAL, Type.HELMET, properties);
     }
 
     @Nullable
@@ -40,8 +40,10 @@ public class GlowshroomCapItem extends ArmorItem implements Vanishable {
     }
 
     @Override
-    public void onArmorTick(ItemStack stack, Level world, Player player) {
-        player.addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, 1, 0, false, false, false));
+    public void onInventoryTick(ItemStack stack, Level level, Player player, int slotIndex, int selectedIndex) {
+        if (player.getItemBySlot(EquipmentSlot.HEAD).is(DDItems.GLOWSHROOM_CAP.get())) {
+            player.addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, 1, 0, false, false, false));
+        }
     }
 
     @Nullable
@@ -63,12 +65,12 @@ public class GlowshroomCapItem extends ArmorItem implements Vanishable {
     private static class GlowshroomArmorMaterial implements ArmorMaterial {
 
         @Override
-        public int getDurabilityForSlot(EquipmentSlot slot) {
+        public int getDurabilityForType(Type type) {
             return 13 * 12;
         }
 
         @Override
-        public int getDefenseForSlot(EquipmentSlot slot) {
+        public int getDefenseForType(Type type) {
             return 1;
         }
 

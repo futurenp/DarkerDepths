@@ -12,7 +12,7 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.lighting.LayerLightEngine;
+import net.minecraft.world.level.lighting.LightEngine;
 import net.minecraftforge.common.IPlantable;
 
 public class MossyGrimestoneBlock extends Block implements BonemealableBlock {
@@ -24,7 +24,7 @@ public class MossyGrimestoneBlock extends Block implements BonemealableBlock {
     private static boolean isDarkEnough(BlockState state, LevelReader world, BlockPos pos) {
         BlockPos above = pos.above();
         BlockState aboveState = world.getBlockState(above);
-        int lightLevel = LayerLightEngine.getLightBlockInto(world, state, pos, aboveState, above, Direction.UP, aboveState.getLightBlock(world, above));
+        int lightLevel = LightEngine.getLightBlockInto(world, state, pos, aboveState, above, Direction.UP, aboveState.getLightBlock(world, above));
         return lightLevel < world.getMaxLightLevel();
     }
 
@@ -36,7 +36,7 @@ public class MossyGrimestoneBlock extends Block implements BonemealableBlock {
     }
 
     @Override
-    public boolean isValidBonemealTarget(BlockGetter worldIn, BlockPos pos, BlockState state, boolean isClient) {
+    public boolean isValidBonemealTarget(LevelReader worldIn, BlockPos pos, BlockState state, boolean isClient) {
         return worldIn.getBlockState(pos.above()).isAir();
     }
 

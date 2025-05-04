@@ -4,22 +4,25 @@ import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.compat.init.ForgeBlockTags;
 import com.naterbobber.darkerdepths.init.DDBlockTags;
 import com.naterbobber.darkerdepths.init.DDBlocks;
-import net.minecraft.data.DataGenerator;
-import net.minecraft.data.tags.BlockTagsProvider;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.Tags;
+import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.concurrent.CompletableFuture;
+
 public class DDBlockTagsProvider extends BlockTagsProvider {
 
-    public DDBlockTagsProvider(DataGenerator dataGenerator, @Nullable ExistingFileHelper existingFileHelper) {
-        super(dataGenerator, DarkerDepths.MODID, existingFileHelper);
+    public DDBlockTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, @Nullable ExistingFileHelper existingFileHelper) {
+        super(output, lookupProvider, DarkerDepths.MODID, existingFileHelper);
     }
 
     @Override
-    protected void addTags() {
+    protected void addTags(HolderLookup.Provider provider) {
         this.tag(BlockTags.LOGS).add(DDBlocks.PETRIFIED_LOG.get(), DDBlocks.STRIPPED_PETRIFIED_LOG.get(), DDBlocks.PETRIFIED_WOOD.get(), DDBlocks.STRIPPED_PETRIFIED_WOOD.get());
         this.tag(BlockTags.BASE_STONE_OVERWORLD).add(DDBlocks.SHALE.get(), DDBlocks.ARIDROCK.get(), DDBlocks.LIMESTONE.get(), DDBlocks.GRIMESTONE.get());
         this.tag(BlockTags.BEACON_BASE_BLOCKS).add(DDBlocks.SILVER_BLOCK.get());

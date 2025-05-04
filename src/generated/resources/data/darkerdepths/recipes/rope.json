@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "misc",
   "key": {
     "#": {
       "item": "darkerdepths:resin"
@@ -16,5 +17,6 @@
   "result": {
     "count": 4,
     "item": "darkerdepths:rope"
-  }
+  },
+  "show_notification": true
 }

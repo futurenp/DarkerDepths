@@ -8,6 +8,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageSources;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
@@ -71,9 +72,9 @@ public class GlowshroomMonsterEntity extends Monster {
     @Override
     public boolean doHurtTarget(Entity entity) {
         this.attackTick = 10;
-        this.level.broadcastEntityEvent(this, (byte) 4);
+        this.level().broadcastEntityEvent(this, (byte) 4);
         float f = (float) this.getAttributeValue(Attributes.ATTACK_DAMAGE);
-        boolean flag = entity.hurt(DamageSource.mobAttack(this), f);
+        boolean flag = entity.hurt(this.level().damageSources().mobAttack(this), f);
         this.playSound(SoundEvents.RAVAGER_ATTACK, 1.0F, 1.0F);
         return flag;
     }

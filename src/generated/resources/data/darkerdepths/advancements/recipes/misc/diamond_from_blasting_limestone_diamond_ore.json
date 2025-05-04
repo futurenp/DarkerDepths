@@ -30,5 +30,6 @@
     "recipes": [
       "darkerdepths:diamond_from_blasting_limestone_diamond_ore"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

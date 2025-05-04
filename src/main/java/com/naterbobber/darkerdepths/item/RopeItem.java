@@ -27,7 +27,7 @@ public class RopeItem extends BlockItem {
             int j = 1;
             while (!flag) {
                 BlockPos checkingPos = pos.relative(face.getOpposite()).below(j);
-                if (world.getBlockState(checkingPos).getMaterial().isReplaceable() && (world.getBlockState(checkingPos).getFluidState().isEmpty()) || world.getBlockState(checkingPos).getFluidState().getType() == Fluids.WATER) {
+                if (world.getBlockState(checkingPos).canBeReplaced() && (world.getBlockState(checkingPos).getFluidState().isEmpty()) || world.getBlockState(checkingPos).getFluidState().getType() == Fluids.WATER) {
                     return BlockPlaceContext.at(context, checkingPos, Direction.DOWN);
                 } else if (world.getBlockState(checkingPos).getBlock() instanceof RopeBlock) {
                     j++;

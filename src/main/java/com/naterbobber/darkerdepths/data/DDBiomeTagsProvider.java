@@ -2,36 +2,38 @@ package com.naterbobber.darkerdepths.data;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.init.DDBiomes;
-import net.minecraft.data.DataGenerator;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.BiomeTagsProvider;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.BiomeTags;
-import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.registries.RegistryObject;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.concurrent.CompletableFuture;
 
 public class DDBiomeTagsProvider extends BiomeTagsProvider {
 
-    public DDBiomeTagsProvider(DataGenerator p_211094_, @Nullable ExistingFileHelper existingFileHelper) {
-        super(p_211094_, DarkerDepths.MODID, existingFileHelper);
+    public DDBiomeTagsProvider(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> completableFuture, @Nullable ExistingFileHelper existingFileHelper) {
+        super(packOutput, completableFuture, DarkerDepths.MODID, existingFileHelper);
     }
 
     @Override
-    protected void addTags() {
-        this.tag(BiomeTags.HAS_MINESHAFT).add(DDBiomes.MOLTEN_CAVERN.get(), DDBiomes.SANDY_CATACOMBS.get(), DDBiomes.GLOWSHROOM_FOREST.get());
-        this.tag(BiomeTags.HAS_RUINED_PORTAL_STANDARD).add(DDBiomes.MOLTEN_CAVERN.get(), DDBiomes.SANDY_CATACOMBS.get(), DDBiomes.GLOWSHROOM_FOREST.get());
-        this.tag(BiomeTags.STRONGHOLD_BIASED_TO).add(DDBiomes.MOLTEN_CAVERN.get(), DDBiomes.SANDY_CATACOMBS.get(), DDBiomes.GLOWSHROOM_FOREST.get());
-        this.tag(DDBiomes.MOLTEN_CAVERN, Tags.Biomes.IS_UNDERGROUND, Tags.Biomes.IS_HOT_OVERWORLD);
-        this.tag(DDBiomes.SANDY_CATACOMBS, Tags.Biomes.IS_UNDERGROUND, Tags.Biomes.IS_DRY_OVERWORLD);
-        this.tag(DDBiomes.GLOWSHROOM_FOREST, Tags.Biomes.IS_UNDERGROUND, Tags.Biomes.IS_COLD_OVERWORLD);
+    protected void addTags(HolderLookup.Provider provider) {
+        DDBiomes.BIOMES.stream().forEach(this::addBiomeTags);
+        this.tag(Tags.Biomes.IS_HOT_OVERWORLD).addOptional(DDBiomes.MOLTEN_CAVERN.location());
+        this.tag(Tags.Biomes.IS_DRY_OVERWORLD).addOptional(DDBiomes.SANDY_CATACOMBS.location());
+        this.tag(Tags.Biomes.IS_COLD_OVERWORLD).addOptional(DDBiomes.GLOWSHROOM_FOREST.location());
     }
 
-    private void tag(RegistryObject<Biome> biome, TagKey<Biome>... tags) {
-        for (TagKey<Biome> key : tags) {
-            tag(key).add(biome.getKey());
-        }
+    private void addBiomeTags(ResourceKey<Biome> biome) {
+        this.tag(BiomeTags.HAS_MINESHAFT).addOptional(biome.location());
+        this.tag(BiomeTags.HAS_RUINED_PORTAL_STANDARD).addOptional(biome.location());
+        this.tag(BiomeTags.STRONGHOLD_BIASED_TO).addOptional(biome.location());
+        this.tag(BiomeTags.IS_OVERWORLD).addOptional(biome.location());
+        this.tag(Tags.Biomes.IS_UNDERGROUND).addOptional(biome.location());
     }
+
 }

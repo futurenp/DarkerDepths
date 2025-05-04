@@ -71,29 +71,38 @@ public class PetrifiedChestBoatEntity extends PetrifiedBoatEntity implements Has
     @Override
     public void destroy(DamageSource p_219892_) {
         super.destroy(p_219892_);
-        this.chestVehicleDestroyed(p_219892_, this.level, this);
+        this.chestVehicleDestroyed(p_219892_, this.level(), this);
     }
 
     @Override
     public void remove(Entity.RemovalReason p_219894_) {
-        if (!this.level.isClientSide && p_219894_.shouldDestroy()) {
-            Containers.dropContents(this.level, this, this);
+        if (!this.level().isClientSide && p_219894_.shouldDestroy()) {
+            Containers.dropContents(this.level(), this, this);
         }
 
         super.remove(p_219894_);
     }
 
     @Override
-    public InteractionResult interact(Player p_219898_, InteractionHand p_219899_) {
-        return this.canAddPassenger(p_219898_) && !p_219898_.isSecondaryUseActive() ? super.interact(p_219898_, p_219899_) : this.interactWithChestVehicle(this::gameEvent, p_219898_);
+    public InteractionResult interact(Player player, InteractionHand hand) {
+        if (this.canAddPassenger(player) && !player.isSecondaryUseActive()) {
+            return super.interact(player, hand);
+        } else {
+            InteractionResult interactionresult = this.interactWithContainerVehicle(player);
+            if (interactionresult.consumesAction()) {
+                this.gameEvent(GameEvent.CONTAINER_OPEN, player);
+                PiglinAi.angerNearbyPiglins(player, true);
+            }
+            return interactionresult;
+        }
     }
 
     @Override
-    public void openCustomInventoryScreen(Player p_219906_) {
-        p_219906_.openMenu(this);
-        if (!p_219906_.level.isClientSide) {
-            this.gameEvent(GameEvent.CONTAINER_OPEN, p_219906_);
-            PiglinAi.angerNearbyPiglins(p_219906_, true);
+    public void openCustomInventoryScreen(Player player) {
+        player.openMenu(this);
+        if (!player.level().isClientSide) {
+            this.gameEvent(GameEvent.CONTAINER_OPEN, player);
+            PiglinAi.angerNearbyPiglins(player, true);
         }
 
     }

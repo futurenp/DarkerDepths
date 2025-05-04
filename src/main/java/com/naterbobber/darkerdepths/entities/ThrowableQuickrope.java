@@ -17,9 +17,9 @@ public class ThrowableQuickrope extends ThrowableItemProjectile {
     @Override
     protected void onHitBlock(BlockHitResult hit) {
         super.onHitBlock(hit);
-        if (this.getLevel().getBlockState(hit.getBlockPos().below()).isAir()) {
+        if (this.level().getBlockState(hit.getBlockPos().below()).isAir()) {
             for (int i = 0; i < 16; i++) {
-                this.getLevel().setBlock(hit.getBlockPos().below(i), DDBlocks.ROPE.get().defaultBlockState(), 2);
+                this.level().setBlock(hit.getBlockPos().below(i), DDBlocks.ROPE.get().defaultBlockState(), 2);
             }
         }
     }

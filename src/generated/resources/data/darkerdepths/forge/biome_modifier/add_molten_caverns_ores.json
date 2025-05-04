@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "darkerdepths:molten_cavern",
+  "features": "darkerdepths:magma_ore",
+  "step": "underground_ores"
+}

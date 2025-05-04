@@ -28,7 +28,7 @@ public class HugeGlowshroomFeature extends Feature<NoneFeatureConfiguration> {
         RandomSource rand = context.random();
         BlockState belowState = world.getBlockState(pos.below());
         boolean flag = belowState.is(BlockTags.BASE_STONE_OVERWORLD) || belowState.is(DDBlocks.MOSSY_GRIMESTONE.get()) || belowState.is(DDBlocks.GRIMESTONE.get());
-        boolean flag2 = world.isStateAtPosition(pos, BlockBehaviour.BlockStateBase::isAir) || world.getBlockState(pos).getMaterial().isReplaceable();
+        boolean flag2 = world.isStateAtPosition(pos, BlockBehaviour.BlockStateBase::isAir) || world.getBlockState(pos).canBeReplaced();
         if (flag2 && flag) {
             int height = Mth.nextInt(rand, 2, 4);
             int chanceHeight = 3;
@@ -50,11 +50,11 @@ public class HugeGlowshroomFeature extends Feature<NoneFeatureConfiguration> {
                     BlockPos.MutableBlockPos mutable = new BlockPos.MutableBlockPos();
                     mutable.set(pos).move(Direction.UP, i);
                     if (world.getBlockState(pos).getBlock() == DDBlocks.GLOWSHROOM.get()) world.removeBlock(pos, true);
-                    if (world.getBlockState(mutable).getMaterial().isReplaceable()) {
+                    if (world.getBlockState(mutable).canBeReplaced()) {
                         this.setBlock(world, mutable, DDBlocks.GLOWSHROOM_STEM.get().defaultBlockState());
                     }
                     mutable.setWithOffset(pos, x, height, z).move(Direction.UP, i);
-                    if (world.getBlockState(mutable).getMaterial().isReplaceable()) {
+                    if (world.getBlockState(mutable).canBeReplaced()) {
                         this.setBlock(world, mutable, DDBlocks.GLOWSHROOM_BLOCK.get().defaultBlockState());
                     }
                 }
@@ -69,7 +69,7 @@ public class HugeGlowshroomFeature extends Feature<NoneFeatureConfiguration> {
                     for (int z = -2; z <= 2; z++) {
                         BlockPos.MutableBlockPos mutable = new BlockPos.MutableBlockPos();
                         mutable.set(pos).move(Direction.UP, j);
-                        if (world.getBlockState(mutable).getMaterial().isReplaceable()) {
+                        if (world.getBlockState(mutable).canBeReplaced()) {
                             this.setBlock(world, mutable, DDBlocks.GLOWSHROOM_STEM.get().defaultBlockState());
                         }
                         if (world.getBlockState(pos).getBlock() == DDBlocks.GLOWSHROOM.get()) world.removeBlock(pos, true);
@@ -79,13 +79,13 @@ public class HugeGlowshroomFeature extends Feature<NoneFeatureConfiguration> {
                         boolean bl3 = z == -1 || z == 0 || z == 1;
                         if (!bl2 || !bl3) {
                             mutable.setWithOffset(pos, x, i, z);
-                            if (world.getBlockState(mutable).getMaterial().isReplaceable()) {
+                            if (world.getBlockState(mutable).canBeReplaced()) {
                                 this.setBlock(world, mutable, DDBlocks.GLOWSHROOM_BLOCK.get().defaultBlockState());
                             }
                         }
                         if (!bl || !bl1) {
                             mutable.setWithOffset(pos, x, height + 1, z);
-                            if (world.getBlockState(mutable).getMaterial().isReplaceable()) {
+                            if (world.getBlockState(mutable).canBeReplaced()) {
                                 this.setBlock(world, mutable, DDBlocks.GLOWSHROOM_BLOCK.get().defaultBlockState());
                             }
                         }

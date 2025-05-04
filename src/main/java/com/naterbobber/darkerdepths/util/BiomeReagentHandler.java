@@ -2,9 +2,8 @@ package com.naterbobber.darkerdepths.util;
 
 import com.mojang.datafixers.util.Pair;
 import com.naterbobber.darkerdepths.DarkerDepths;
-import net.minecraft.core.Registry;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Climate;
 
@@ -35,8 +34,8 @@ public class BiomeReagentHandler {
 //        consumer.accept(Pair.of(Climate.parameters(Climate.Parameter.span(-1.0F, -0.15F), Climate.Parameter.span(-0.1F, 0.3F), Climate.Parameter.span(-0.11F, 0.8F), Climate.Parameter.span(0.45F, 1.0F),  DEFAULT_CAVE_BIOME_RANGE, FULL_RANGE, 0.0F), GLOWSHROOM_FOREST));
     }
 
-    private static ResourceKey<Biome> register(String id) {
-        return ResourceKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(DarkerDepths.MODID, id));
+    private static ResourceKey<Biome> register(String name) {
+        return ResourceKey.create(Registries.BIOME, DarkerDepths.id(name));
     }
 
 

@@ -4,6 +4,7 @@ import com.naterbobber.darkerdepths.init.DDBlocks;
 import com.naterbobber.darkerdepths.init.DDConfiguredFeatures;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -93,7 +94,7 @@ public class GlowshroomBlock extends Block implements BonemealableBlock, SimpleW
     }
 
     @Override
-    public boolean isValidBonemealTarget(BlockGetter worldIn, BlockPos pos, BlockState state, boolean isClient) {
+    public boolean isValidBonemealTarget(LevelReader worldIn, BlockPos pos, BlockState state, boolean isClient) {
         return state.getValue(CLUSTERS_1_3) == 1 && worldIn.getBlockState(pos.below()) == DDBlocks.MOSSY_GRIMESTONE.get().defaultBlockState();
     }
 
@@ -104,7 +105,9 @@ public class GlowshroomBlock extends Block implements BonemealableBlock, SimpleW
 
     @Override
     public void performBonemeal(ServerLevel world, RandomSource random, BlockPos pos, BlockState state) {
-        DDConfiguredFeatures.HUGE_GLOWSHROOM_PLANTED.get().place(world, world.getChunkSource().getGenerator(), random, pos);
+        world.registryAccess().registryOrThrow(Registries.CONFIGURED_FEATURE).getHolder(DDConfiguredFeatures.HUGE_GLOWSHROOM_PLANTED).ifPresent(feature -> {
+            feature.value().place(world, world.getChunkSource().getGenerator(), random, pos);
+        });
     }
 
     @Override

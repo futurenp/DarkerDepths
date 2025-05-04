@@ -59,14 +59,14 @@ public class PetrifiedBranchFeature extends Feature<PetrifiedBranchConfig> {
                 }
             }
             for (BlockPos blockPos : woodPos) {
-                if (world.getFluidState(blockPos.below()).isEmpty() && world.getFluidState(blockPos.below(2)).isEmpty() && world.getBlockState(blockPos.below(2)).getMaterial().isReplaceable() && world.getBlockState(blockPos.below()).getMaterial().isReplaceable()) {
+                if (world.getFluidState(blockPos.below()).isEmpty() && world.getFluidState(blockPos.below(2)).isEmpty() && world.getBlockState(blockPos.below(2)).canBeReplaced() && world.getBlockState(blockPos.below()).canBeReplaced()) {
                     world.setBlock(blockPos.below(), DDBlocks.LONG_ROOTS.get().defaultBlockState().setValue(HangingDoublePlantBlock.HALF, DoubleBlockHalf.UPPER), 2);
                     world.setBlock(blockPos.below(2), DDBlocks.LONG_ROOTS.get().defaultBlockState().setValue(HangingDoublePlantBlock.HALF, DoubleBlockHalf.LOWER), 2);
                 }
-                else if (world.getFluidState(blockPos.below()).isEmpty() && world.getBlockState(blockPos.below()).getMaterial().isReplaceable() && (!world.getBlockState(blockPos.below(2)).is(DDBlocks.PETRIFIED_LOG.get()) || world.isEmptyBlock(blockPos.below(2)))) {
+                else if (world.getFluidState(blockPos.below()).isEmpty() && world.getBlockState(blockPos.below()).canBeReplaced() && (!world.getBlockState(blockPos.below(2)).is(DDBlocks.PETRIFIED_LOG.get()) || world.isEmptyBlock(blockPos.below(2)))) {
                     world.setBlock(blockPos.below(), DDBlocks.ROOTS.get().defaultBlockState(), 2);
                 }
-                else if (world.getFluidState(blockPos.below()).isEmpty() && world.getBlockState(blockPos.below()).getMaterial().isReplaceable() && world.getBlockState(blockPos.below(2)).is(DDBlocks.PETRIFIED_LOG.get())) {
+                else if (world.getFluidState(blockPos.below()).isEmpty() && world.getBlockState(blockPos.below()).canBeReplaced() && world.getBlockState(blockPos.below(2)).is(DDBlocks.PETRIFIED_LOG.get())) {
                     world.setBlock(blockPos.below(), DDBlocks.LONG_ROOTS.get().defaultBlockState().setValue(HangingDoublePlantBlock.HALF, DoubleBlockHalf.UPPER), 2);
                 }
             }

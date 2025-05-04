@@ -1,21 +1,19 @@
 package com.naterbobber.darkerdepths.data;
 
 import com.naterbobber.darkerdepths.init.DDBlocks;
-import net.minecraft.data.loot.BlockLoot;
-import net.minecraft.util.valueproviders.ConstantInt;
+import net.minecraft.data.loot.packs.VanillaBlockLoot;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
-import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 import java.util.stream.Collectors;
 
-public class DDBlockLoot extends BlockLoot {
+public class DDBlockLoot extends VanillaBlockLoot {
 
     @Override
-    protected void addTables() {
+    protected void generate() {
         this.dropSelf(DDBlocks.PETRIFIED_PLANKS.get());
         this.dropSelf(DDBlocks.VERTICAL_PETRIFIED_PLANKS.get());
         this.dropSelf(DDBlocks.PETRIFIED_LOG.get());
@@ -32,7 +30,7 @@ public class DDBlockLoot extends BlockLoot {
     }
 
     private void dropSlab(RegistryObject<Block> slab) {
-        this.add(slab.get(), BlockLoot::createSlabItemTable);
+        this.add(slab.get(), this::createSlabItemTable);
     }
 
     @Override

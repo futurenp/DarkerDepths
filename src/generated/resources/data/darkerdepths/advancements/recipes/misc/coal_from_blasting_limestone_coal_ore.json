@@ -30,5 +30,6 @@
     "recipes": [
       "darkerdepths:coal_from_blasting_limestone_coal_ore"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

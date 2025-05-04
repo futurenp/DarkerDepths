@@ -1,0 +1,9 @@
+// 1.20.1	2025-05-04T15:52:07.2097838	Tags for minecraft:worldgen/biome mod id darkerdepths
+0d84e04f5fb8065a1b56b949ea995c0220a00941 data/forge/tags/worldgen/biome/is_cold/overworld.json
+cf4bc2d806bc26f541b4806c4318493bcda81ae2 data/forge/tags/worldgen/biome/is_dry/overworld.json
+7e8a1b3a712430aa542b87aed27646cd74f114d2 data/forge/tags/worldgen/biome/is_hot/overworld.json
+a0468beda91d0a58671c9dd7769797fea665b288 data/forge/tags/worldgen/biome/is_underground.json
+a0468beda91d0a58671c9dd7769797fea665b288 data/minecraft/tags/worldgen/biome/has_structure/mineshaft.json
+a0468beda91d0a58671c9dd7769797fea665b288 data/minecraft/tags/worldgen/biome/has_structure/ruined_portal_standard.json
+a0468beda91d0a58671c9dd7769797fea665b288 data/minecraft/tags/worldgen/biome/is_overworld.json
+a0468beda91d0a58671c9dd7769797fea665b288 data/minecraft/tags/worldgen/biome/stronghold_biased_to.json

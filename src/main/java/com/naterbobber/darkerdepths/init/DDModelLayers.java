@@ -6,7 +6,7 @@ import net.minecraft.resources.ResourceLocation;
 
 public class DDModelLayers {
 
-    public static final ModelLayerLocation GLOWSHROOM_MONSTER = new ModelLayerLocation(new ResourceLocation(DarkerDepths.MODID, "glowshroom_monster"), "main");
-    public static final ModelLayerLocation GLOWSHROOM_CAP = new ModelLayerLocation(new ResourceLocation(DarkerDepths.MODID, "glowshroom_cap"), "main");
+    public static final ModelLayerLocation GLOWSHROOM_MONSTER = new ModelLayerLocation(DarkerDepths.id("glowshroom_monster"), "main");
+    public static final ModelLayerLocation GLOWSHROOM_CAP = new ModelLayerLocation(DarkerDepths.id("glowshroom_cap"), "main");
 
 }

@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "building",
   "key": {
     "#": {
       "item": "darkerdepths:aridrock"
@@ -12,5 +13,6 @@
   "result": {
     "count": 6,
     "item": "darkerdepths:aridrock_wall"
-  }
+  },
+  "show_notification": true
 }

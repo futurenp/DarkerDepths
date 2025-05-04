@@ -1,5 +1,8 @@
 {
   "values": [
-    "darkerdepths:molten_cavern"
+    {
+      "id": "darkerdepths:molten_cavern",
+      "required": false
+    }
   ]
 }

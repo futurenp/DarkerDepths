@@ -27,7 +27,7 @@ public class DDSoundEvents {
     public static final SoundType GRIMESTONE = new ForgeSoundType(1.0F, 1.0F, BLOCK_GRIMESTONE_BREAK, BLOCK_GRIMESTONE_STEP, BLOCK_GRIMESTONE_PLACE, BLOCK_GRIMESTONE_HIT, BLOCK_GRIMESTONE_FALL);
 
     public static RegistryObject<SoundEvent> registerSoundEvent(String name) {
-        return SOUND_EVENTS.register(name, () -> new SoundEvent(new ResourceLocation(DarkerDepths.MODID, name)));
+        return SOUND_EVENTS.register(name, () -> SoundEvent.createVariableRangeEvent(DarkerDepths.id(name)));
     }
 
 }
