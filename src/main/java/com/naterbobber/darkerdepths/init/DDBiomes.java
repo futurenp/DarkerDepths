@@ -81,7 +81,6 @@ public class DDBiomes {
 
     public static Biome createSandyCatacombs(HolderGetter<PlacedFeature> holderGetter, HolderGetter<ConfiguredWorldCarver<?>> holderGetter1) {
         MobSpawnSettings.Builder mobBuilder = new MobSpawnSettings.Builder();
-        BiomeDefaultFeatures.commonSpawns(mobBuilder);
         BiomeGenerationSettings.Builder biomeBuilder = new BiomeGenerationSettings.Builder(holderGetter, holderGetter1);
         BiomeDefaultFeatures.addDefaultCarversAndLakes(biomeBuilder);
         BiomeDefaultFeatures.addDefaultCrystalFormations(biomeBuilder);

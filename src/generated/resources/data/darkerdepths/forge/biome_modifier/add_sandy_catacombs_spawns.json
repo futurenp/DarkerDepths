@@ -1,0 +1,24 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": "darkerdepths:sandy_catacombs",
+  "spawners": [
+    {
+      "type": "minecraft:spider",
+      "maxCount": 4,
+      "minCount": 4,
+      "weight": 100
+    },
+    {
+      "type": "minecraft:enderman",
+      "maxCount": 4,
+      "minCount": 1,
+      "weight": 10
+    },
+    {
+      "type": "minecraft:husk",
+      "maxCount": 4,
+      "minCount": 4,
+      "weight": 95
+    }
+  ]
+}

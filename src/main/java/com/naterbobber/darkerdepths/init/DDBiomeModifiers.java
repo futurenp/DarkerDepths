@@ -5,6 +5,7 @@ import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.MobSpawnSettings;
 import net.minecraft.world.level.levelgen.GenerationStep;
@@ -23,6 +24,7 @@ public class DDBiomeModifiers {
     public static final ResourceKey<BiomeModifier> ADD_MOLTEN_CAVERNS_VEGETAL_FEATURES = createKey("add_molten_caverns_vegetal_features");
     public static final ResourceKey<BiomeModifier> ADD_MOLTEN_CAVERNS_ORES = createKey("add_molten_caverns_ores");
     public static final ResourceKey<BiomeModifier> ADD_SANDY_CATACOMBS_VEGETAL_FEATURES = createKey("add_sandy_catacombs_vegetal_features");
+    public static final ResourceKey<BiomeModifier> ADD_SANDY_CATACOMBS_SPAWNS = createKey("add_sandy_catacombs_spawns");
     public static final ResourceKey<BiomeModifier> ADD_GLOWSHROOM_FOREST_VEGETAL_FEATURES = createKey("add_glowshroom_forest_vegetal_features");
     public static final ResourceKey<BiomeModifier> ADD_GLOWSHROOM_FOREST_SPAWNS = createKey("add_glowshroom_forest_spawns");
 
@@ -60,6 +62,14 @@ public class DDBiomeModifiers {
                 ),
                 GenerationStep.Decoration.VEGETAL_DECORATION)
         );
+        context.register(ADD_SANDY_CATACOMBS_SPAWNS, new ForgeBiomeModifiers.AddSpawnsBiomeModifier(
+                getBiome(context, DDBiomes.SANDY_CATACOMBS),
+                List.of(
+                        new MobSpawnSettings.SpawnerData(EntityType.SPIDER, 100, 4, 4),
+                        new MobSpawnSettings.SpawnerData(EntityType.ENDERMAN, 10, 1, 4),
+                        new MobSpawnSettings.SpawnerData(EntityType.HUSK, 95, 4, 4)
+                )
+        ));
         context.register(ADD_GLOWSHROOM_FOREST_VEGETAL_FEATURES, new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
                 getBiome(context, DDBiomes.GLOWSHROOM_FOREST),
                 getPlacedFeature(

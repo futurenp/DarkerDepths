@@ -11,6 +11,7 @@ public class DDBlockTags {
 
     public static final TagKey<Block> GEYSER_BOOSTERS = create("geyser_boosters");
     public static final TagKey<Block> GEYSER_BYPASSES = create("geyser_bypasses");
+    public static final TagKey<Block> HUSKS_SPAWNABLE_ON = create("husks_spawnable_on");
 
     private static TagKey<Block> create(String name) {
         return TagKey.create(Registries.BLOCK, DarkerDepths.id(name));

@@ -1,6 +1,7 @@
-// 1.20.1	2025-05-04T15:52:07.2017879	Tags for minecraft:block mod id darkerdepths
+// 1.20.1	2025-05-04T18:48:46.8585511	Tags for minecraft:block mod id darkerdepths
 f0f92c5f0b5c5412980a4ca8436b4cb180919deb data/darkerdepths/tags/blocks/geyser_boosters.json
 8ad8a6a2ad3451d39018b9318b5eedc2b4e31134 data/darkerdepths/tags/blocks/geyser_bypasses.json
+3dfb0ae86440be076ba09273ec3517fb643e005c data/darkerdepths/tags/blocks/husks_spawnable_on.json
 021e86d55679a27d4519fa177cd4425c51105d50 data/forge/tags/blocks/ores.json
 194037f40201c1ebb4d9c68dbb4964cc4c85bb58 data/forge/tags/blocks/ores/coal.json
 4a6cde1aba70f375316d18a64a0825c36f5b8bb6 data/forge/tags/blocks/ores/diamond.json

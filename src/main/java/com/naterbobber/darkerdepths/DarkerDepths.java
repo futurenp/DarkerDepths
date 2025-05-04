@@ -29,8 +29,8 @@ public class DarkerDepths {
     public static final Logger LOGGER = LogManager.getLogger();
     public static final String MODID = "darkerdepths";
 
-    public DarkerDepths() {
-        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+    public DarkerDepths(FMLJavaModLoadingContext context) {
+        IEventBus modEventBus = context.getModEventBus();
         IEventBus eventBus = MinecraftForge.EVENT_BUS;
         modEventBus.addListener(this::commonSetup);
 

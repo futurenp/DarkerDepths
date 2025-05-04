@@ -35,6 +35,7 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
 
         this.tag(DDBlockTags.GEYSER_BOOSTERS).add(Blocks.MAGMA_BLOCK);
         this.tag(DDBlockTags.GEYSER_BYPASSES).add(Blocks.SNOW, Blocks.MOSS_CARPET, Blocks.GLOW_LICHEN, Blocks.SCULK_VEIN).addTag(BlockTags.WOOL_CARPETS);
+        this.tag(DDBlockTags.HUSKS_SPAWNABLE_ON).add(DDBlocks.ARIDROCK.get());
 
         this.tag(Tags.Blocks.ORES_COAL).add(DDBlocks.ARIDROCK_COAL_ORE.get()).add(DDBlocks.LIMESTONE_COAL_ORE.get());
         this.tag(Tags.Blocks.ORES_DIAMOND).add(DDBlocks.ARIDROCK_DIAMOND_ORE.get()).add(DDBlocks.LIMESTONE_DIAMOND_ORE.get());

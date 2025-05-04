@@ -5,6 +5,7 @@
   "refmap": "darkerdepths.refmap.json",
   "mixins": [
     "BlockLightEngineMixin",
+    "HuskMixin",
     "LivingEntityMixin",
     "OverworldBiomeBuilderMixin",
     "RotatedPillarBlockMixin"
