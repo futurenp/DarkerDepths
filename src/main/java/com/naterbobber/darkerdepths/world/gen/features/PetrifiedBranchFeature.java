@@ -39,7 +39,7 @@ public class PetrifiedBranchFeature extends Feature<PetrifiedBranchConfig> {
             boolean flag = false;
             List<BlockPos> woodPos = Lists.newArrayList();
             List<BlockPos> porousPos = Lists.newArrayList();
-            int height = UniformInt.of(config.minLength, config.maxLength).sample(random);
+            int height = UniformInt.of(config.minLength(), config.maxLength()).sample(random);
             for (int x = -1; x <= 1; x++) {
                 for (int z = -1; z <= 1; z++) {
                     for (int y = -1; y <= height; y++) {

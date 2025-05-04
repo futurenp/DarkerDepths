@@ -11,7 +11,7 @@ import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfigur
 import java.util.List;
 import java.util.Set;
 
-public class ReplaceListConfig implements FeatureConfiguration {
+public record ReplaceListConfig(Set<BlockState> targetList, BlockState replaceState, IntProvider radius) implements FeatureConfiguration {
     public static final Codec<ReplaceListConfig> CODEC = RecordCodecBuilder.create((instance) -> {
         return instance.group(BlockState.CODEC.listOf().fieldOf("target").forGetter((config) -> {
             return ImmutableList.copyOf(config.targetList);
@@ -22,18 +22,8 @@ public class ReplaceListConfig implements FeatureConfiguration {
         })).apply(instance, ReplaceListConfig::new);
     });
 
-    public final Set<BlockState> targetList;
-    public final BlockState replaceState;
-    private final IntProvider radius;
-
     public ReplaceListConfig(List<BlockState> target, BlockState state, IntProvider radius) {
         this(ImmutableSet.copyOf(target), state, radius);
-    }
-
-    public ReplaceListConfig(Set<BlockState> targetList, BlockState replaceState, IntProvider radius) {
-        this.targetList = targetList;
-        this.replaceState = replaceState;
-        this.radius = radius;
     }
 
     public IntProvider radius() {

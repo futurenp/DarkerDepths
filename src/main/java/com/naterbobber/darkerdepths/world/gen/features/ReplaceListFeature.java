@@ -40,8 +40,8 @@ public class ReplaceListFeature extends Feature<ReplaceListConfig> {
                 }
 
                 BlockState blockstate = worldgenlevel.getBlockState(blockpos1);
-                if (config.targetList.contains(blockstate)) {
-                    this.setBlock(worldgenlevel, blockpos1, config.replaceState);
+                if (config.targetList().contains(blockstate)) {
+                    this.setBlock(worldgenlevel, blockpos1, config.replaceState());
                     flag = true;
                 }
             }
