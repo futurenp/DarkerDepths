@@ -400,6 +400,14 @@ public class DDRecipeProvider extends RecipeProvider {
                 .pattern(" G ")
                 .pattern(" # ")
                 .unlockedBy("has_resin", has(DDItems.RESIN.get())).save(consumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, DDBlocks.SKULL_WALL.get(), 4)
+                .define('#', DDBlocks.ARIDROCK.get())
+                .define('X', Blocks.BONE_BLOCK)
+                .pattern(" # ")
+                .pattern("#X#")
+                .pattern(" # ")
+                .unlockedBy("has_aridrock", has(DDBlocks.ARIDROCK.get())).save(consumer);
     }
 
     protected static void stonecutterResultFromBase(Consumer<FinishedRecipe> consumer, ItemLike result, ItemLike ingredient) {

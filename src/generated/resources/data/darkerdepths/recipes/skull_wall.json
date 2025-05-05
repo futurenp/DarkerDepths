@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "#": {
+      "item": "darkerdepths:aridrock"
+    },
+    "X": {
+      "item": "minecraft:bone_block"
+    }
+  },
+  "pattern": [
+    " # ",
+    "#X#",
+    " # "
+  ],
+  "result": {
+    "count": 4,
+    "item": "darkerdepths:skull_wall"
+  },
+  "show_notification": true
+}
