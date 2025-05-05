@@ -6,6 +6,7 @@ import com.naterbobber.darkerdepths.init.DDBiomeModifiers;
 import com.naterbobber.darkerdepths.init.DDBlockEntityTypes;
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import com.naterbobber.darkerdepths.init.DDCreativeModeTabs;
+import com.naterbobber.darkerdepths.init.DDEnchantments;
 import com.naterbobber.darkerdepths.init.DDEntityTypes;
 import com.naterbobber.darkerdepths.init.DDFeatures;
 import com.naterbobber.darkerdepths.init.DDFluidTypes;
@@ -38,6 +39,7 @@ public class DarkerDepths {
         DDBlockEntityTypes.BLOCK_ENTITIES.register(modEventBus);
         DDCreativeModeTabs.CREATIVE_MODE_TABS.register(modEventBus);
         DDEntityTypes.ENTITY_TYPES.register(modEventBus);
+        DDEnchantments.ENCHANTMENTS.register(modEventBus);
         DDFluidTypes.FLUID_TYPES.register(modEventBus);
         DDFeatures.FEATURES.register(modEventBus);
         DDItems.ITEMS.register(modEventBus);

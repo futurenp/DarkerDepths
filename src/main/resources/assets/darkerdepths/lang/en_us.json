@@ -162,5 +162,7 @@
   "item.darkerdepths.stiletto": "Stiletto",
   "biome.darkerdepths.molten_cavern": "Molten Cavern",
   "biome.darkerdepths.sandy_catacombs": "Sandy Catacombs",
-  "biome.darkerdepths.glowshroom_forest": "Glowshroom Forest"
+  "biome.darkerdepths.glowshroom_forest": "Glowshroom Forest",
+  "enchantment.darkerdepths.swift_strike": "Swift Strike",
+  "enchantment.darkerdepths.quick_dash": "Quick Dash"
 }

@@ -1,13 +1,17 @@
 package com.naterbobber.darkerdepths.item;
 
+import com.naterbobber.darkerdepths.init.DDEnchantments;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 
 public class StilettoItem extends SwordItem {
@@ -24,11 +28,29 @@ public class StilettoItem extends SwordItem {
 
         double dash = 1.85D;
         player.addDeltaMovement(player.getLookAngle().multiply(1.0D, 1.5D, 1.0D).normalize().multiply(dash, dash / 2.0D, dash));
-        player.getCooldowns().addCooldown(this, 200);
 
         player.playSound(SoundEvents.PLAYER_ATTACK_SWEEP, 1.0F, 1.0F);
+        int quickDash = EnchantmentHelper.getTagEnchantmentLevel(DDEnchantments.QUICK_DASH.get(), itemStack);
+        int cooldown = 200;
+        int reducedCooldown = (int) (cooldown * (1 - (0.25F * quickDash)));
+
+        if (!player.getCooldowns().isOnCooldown(itemStack.getItem())) {
+            player.getCooldowns().addCooldown(itemStack.getItem(), reducedCooldown);
+        }
+        itemStack.getOrCreateTag().putInt("Timeframe", 20);
 
         return InteractionResultHolder.success(itemStack);
+    }
+
+    @Override
+    public void inventoryTick(ItemStack itemStack, Level level, Entity entity, int index, boolean selected) {
+        CompoundTag tag = itemStack.getTag();
+        if (tag != null) {
+            int timeframe = tag.getInt("Timeframe");
+            if (timeframe > 0) {
+                tag.putInt("Timeframe", timeframe - 1);
+            }
+        }
     }
 
     public static class StilettoTier implements Tier {
