@@ -12,7 +12,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class GlowshroomMonsterRenderer extends MobRenderer<GlowshroomMonsterEntity, GlowshroomMonsterModel<GlowshroomMonsterEntity>> {
-    public static final ResourceLocation TEXTURE = new ResourceLocation(DarkerDepths.MODID, "textures/entity/glowshroom_monster.png");
+    public static final ResourceLocation TEXTURE = DarkerDepths.id("textures/entity/glowshroom_monster.png");
 
     public GlowshroomMonsterRenderer(EntityRendererProvider.Context context) {
         super(context, new GlowshroomMonsterModel<>(context.bakeLayer(DDModelLayers.GLOWSHROOM_MONSTER)), 0.8F);

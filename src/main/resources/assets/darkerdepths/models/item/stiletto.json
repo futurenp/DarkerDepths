@@ -2,5 +2,19 @@
   "parent": "minecraft:item/handheld",
   "textures": {
     "layer0": "darkerdepths:item/stiletto"
-  }
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "darkerdepths:charge": 0.5
+      },
+      "model": "darkerdepths:item/stiletto_recharge"
+    },
+    {
+      "predicate": {
+        "darkerdepths:charge": 1
+      },
+      "model": "darkerdepths:item/stiletto_dash"
+    }
+  ]
 }

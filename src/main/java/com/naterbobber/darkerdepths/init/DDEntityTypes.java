@@ -1,6 +1,7 @@
 package com.naterbobber.darkerdepths.init;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
+import com.naterbobber.darkerdepths.entities.BodySnatcher;
 import com.naterbobber.darkerdepths.entities.GlowshroomMonsterEntity;
 import com.naterbobber.darkerdepths.entities.PetrifiedBoatEntity;
 import com.naterbobber.darkerdepths.entities.PetrifiedChestBoatEntity;
@@ -20,5 +21,6 @@ public class DDEntityTypes {
     public static final RegistryObject<EntityType<PetrifiedBoatEntity>> PETRIFIED_BOAT = ENTITY_TYPES.register("petrified_boat", () -> EntityType.Builder.<PetrifiedBoatEntity>of(PetrifiedBoatEntity::new, MobCategory.MISC).sized(1.375F, 0.5625F).build(DarkerDepths.id("petrified_boat").toString()));
     public static final RegistryObject<EntityType<PetrifiedChestBoatEntity>> PETRIFIED_CHEST_BOAT = ENTITY_TYPES.register("petrified_chest_boat", () -> EntityType.Builder.<PetrifiedChestBoatEntity>of(PetrifiedChestBoatEntity::new, MobCategory.MISC).sized(1.375F, 0.5625F).build(DarkerDepths.id("petrified_chest_boat").toString()));
     public static final RegistryObject<EntityType<GlowshroomMonsterEntity>> GLOWSHROOM_MONSTER = ENTITY_TYPES.register("glowshroom_monster", () -> EntityType.Builder.of(GlowshroomMonsterEntity::new, MobCategory.MONSTER).sized(1.3964844F, 1.4F).clientTrackingRange(8).build(DarkerDepths.id("glowshroom_monster").toString()));
+    public static final RegistryObject<EntityType<BodySnatcher>> BODY_SNATCHER = ENTITY_TYPES.register("body_snatcher", () -> EntityType.Builder.of(BodySnatcher::new, MobCategory.MONSTER).sized(0.35F, 1.0F).clientTrackingRange(8).updateInterval(2).build(DarkerDepths.id("body_snatcher").toString()));
 
 }

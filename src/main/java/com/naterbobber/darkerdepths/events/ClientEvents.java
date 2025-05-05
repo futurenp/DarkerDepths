@@ -2,14 +2,17 @@ package com.naterbobber.darkerdepths.events;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.client.DynamicLightHandler;
+import com.naterbobber.darkerdepths.client.models.BodySnatcherModel;
 import com.naterbobber.darkerdepths.client.models.GlowshroomCapModel;
 import com.naterbobber.darkerdepths.client.models.GlowshroomMonsterModel;
 import com.naterbobber.darkerdepths.client.particle.DrippingParticle;
+import com.naterbobber.darkerdepths.client.renderers.BodySnatcherRenderer;
 import com.naterbobber.darkerdepths.client.renderers.GlowshroomMonsterRenderer;
 import com.naterbobber.darkerdepths.client.renderers.PetrifiedBoatRenderer;
 import com.naterbobber.darkerdepths.init.DDBlockEntityTypes;
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import com.naterbobber.darkerdepths.init.DDEntityTypes;
+import com.naterbobber.darkerdepths.init.DDItems;
 import com.naterbobber.darkerdepths.init.DDModelLayers;
 import com.naterbobber.darkerdepths.init.DDParticleTypes;
 import com.naterbobber.darkerdepths.init.DDWoodType;
@@ -21,7 +24,9 @@ import net.minecraft.client.particle.ParticleEngine;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.SignRenderer;
+import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.EntityRenderersEvent;
@@ -43,6 +48,7 @@ public class ClientEvents {
         event.registerEntityRenderer(DDEntityTypes.PETRIFIED_BOAT.get(), context -> new PetrifiedBoatRenderer(context, false));
         event.registerEntityRenderer(DDEntityTypes.PETRIFIED_CHEST_BOAT.get(), context -> new PetrifiedBoatRenderer(context, true));
         event.registerEntityRenderer(DDEntityTypes.GLOWSHROOM_MONSTER.get(), GlowshroomMonsterRenderer::new);
+        event.registerEntityRenderer(DDEntityTypes.BODY_SNATCHER.get(), BodySnatcherRenderer::new);
     }
 
     @SubscribeEvent
@@ -51,6 +57,7 @@ public class ClientEvents {
         event.registerLayerDefinition(new ModelLayerLocation(DarkerDepths.id("chest_boat/petrified"), "main"), ChestBoatModel::createBodyModel);
         event.registerLayerDefinition(DDModelLayers.GLOWSHROOM_MONSTER, GlowshroomMonsterModel::createBodyLayer);
         event.registerLayerDefinition(DDModelLayers.GLOWSHROOM_CAP, GlowshroomCapModel::createBodyLayer);
+        event.registerLayerDefinition(DDModelLayers.BODY_SNATCHER, BodySnatcherModel::createBodyLayer);
     }
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
@@ -80,7 +87,21 @@ public class ClientEvents {
         MinecraftForge.EVENT_BUS.addListener((LivingEvent.LivingTickEvent livingEvent) -> {
             DynamicLightHandler.tick(livingEvent.getEntity());
         });
-        event.enqueueWork(DDWoodType::setupWoodTypes);
+        event.enqueueWork(() -> {
+            DDWoodType.setupWoodTypes();
+
+            ItemProperties.register(DDItems.STILETTO.get(), DarkerDepths.id("charge"), (itemStack, clientLevel, livingEntity, i) -> {
+                if (itemStack.getTag() != null && itemStack.getTag().getInt("Timeframe") > 0) {
+                    return 1.0F;
+                }
+
+                if (livingEntity instanceof Player player && player.getCooldowns().isOnCooldown(itemStack.getItem())) {
+                    return 0.0F;
+                }
+
+                return 0.5F;
+            });
+        });
     }
 
 }

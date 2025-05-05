@@ -30,6 +30,7 @@ public class DDItems {
     public static final RegistryObject<Item> PETRIFIED_BOAT = ITEMS.register("petrified_boat", () -> new DDBoatItem(false, PetrifiedBoatEntity.BoatType.PETRIFIED, new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> PETRIFIED_CHEST_BOAT = ITEMS.register("petrified_chest_boat", () -> new DDBoatItem(true, PetrifiedBoatEntity.BoatType.PETRIFIED, new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> GLOWSHROOM_MONSTER_SPAWN_EGG = ITEMS.register("glowshroom_monster_spawn_egg", () -> new ForgeSpawnEggItem(DDEntityTypes.GLOWSHROOM_MONSTER, 8290688, 8513702, new Item.Properties()));
+    public static final RegistryObject<Item> BODY_SNATCHER_SPAWN_EGG = ITEMS.register("body_snatcher_spawn_egg", () -> new ForgeSpawnEggItem(DDEntityTypes.BODY_SNATCHER, 2496017, 16775339, new Item.Properties()));
     public static final RegistryObject<Item> PETRIFIED_SIGN = ITEMS.register("petrified_sign", () -> new SignItem(new Item.Properties().stacksTo(16), DDBlocks.PETRIFIED_SIGN.get(), DDBlocks.PETRIFIED_WALL_SIGN.get()));
     public static final RegistryObject<Item> RESIN = createSimpleItem("resin");
     public static final RegistryObject<Item> RAW_SILVER = createSimpleItem("raw_silver");
