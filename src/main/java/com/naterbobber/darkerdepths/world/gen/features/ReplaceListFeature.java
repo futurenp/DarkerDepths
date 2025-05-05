@@ -54,7 +54,7 @@ public class ReplaceListFeature extends Feature<ReplaceListConfig> {
     private static BlockPos findTarget(LevelAccessor p_66635_, BlockPos.MutableBlockPos mutable, ReplaceListConfig config) {
         while(mutable.getY() > p_66635_.getMinBuildHeight() + 1) {
             BlockState blockstate = p_66635_.getBlockState(mutable);
-            if (config.targetList.contains(blockstate)) {
+            if (config.targetList().contains(blockstate)) {
                 return mutable;
             }
 

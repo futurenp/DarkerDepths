@@ -6,11 +6,13 @@ import com.naterbobber.darkerdepths.item.DDBoatItem;
 import com.naterbobber.darkerdepths.item.GlowshroomCapItem;
 import com.naterbobber.darkerdepths.item.QuickRopeItem;
 import com.naterbobber.darkerdepths.item.RopeItem;
+import com.naterbobber.darkerdepths.item.StilettoItem;
 import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.SignItem;
+import net.minecraft.world.item.Tiers;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.fml.common.Mod;
@@ -34,6 +36,7 @@ public class DDItems {
     public static final RegistryObject<Item> SILVER_INGOT = createSimpleItem("silver_ingot");
     public static final RegistryObject<Item> GLOW_GRIME = createSimpleItem("glow_grime");
     public static final RegistryObject<Item> QUICKROPE = ITEMS.register("quickrope", () -> new QuickRopeItem(new Item.Properties().durability(16)));
+    public static final RegistryObject<Item> STILETTO = ITEMS.register("stiletto", () -> new StilettoItem(2, -1.6F, new Item.Properties()));
 
     private static RegistryObject<Item> createItem(String name) {
         return ITEMS.register(name, () -> new Item(new Item.Properties()));

@@ -1,4 +1,4 @@
-// 1.20.1	2025-05-04T18:56:14.1952529	Registries
+// 1.20.1	2025-05-05T10:25:40.8709967	Registries
 e4bd8206b28b2c8ed9c6475b102986060f9d1863 data/darkerdepths/forge/biome_modifier/add_glowshroom_forest_spawns.json
 0f0eb5704a1d7960f028ecfdb5dbb9bac032d4ea data/darkerdepths/forge/biome_modifier/add_glowshroom_forest_vegetal_features.json
 bff5415a61a85a14c72280d2151595dfee7b948d data/darkerdepths/forge/biome_modifier/add_molten_caverns_ores.json
@@ -7,7 +7,7 @@ a435806828bcd38187ae9c73208cd3ec6336220d data/darkerdepths/forge/biome_modifier/
 8a6bd4df757a48c04f1d10f7f86fd585d5d2a571 data/darkerdepths/forge/biome_modifier/add_sandy_catacombs_vegetal_features.json
 d02a0af240f0ba590f479c91a0a45e2c3e8eeb68 data/darkerdepths/worldgen/biome/glowshroom_forest.json
 8eae08dce358680636601a9e3b5bda120e19ac63 data/darkerdepths/worldgen/biome/molten_cavern.json
-4dd0fafbc02d5e50d9985383c373e427e3678cac data/darkerdepths/worldgen/biome/sandy_catacombs.json
+dc033153051c1f24ccaab33896384556ffd8cef9 data/darkerdepths/worldgen/biome/sandy_catacombs.json
 2ac38a3856b81d10b86c1ef83c3e51732a97522a data/darkerdepths/worldgen/configured_feature/amber_placement.json
 d88cd5b9d571a27136e13ae57dda928aed21cdca data/darkerdepths/worldgen/configured_feature/arid_boulder.json
 80d8da4b3db5449fe20699dde37b31ce46dc5d5c data/darkerdepths/worldgen/configured_feature/arid_surface.json
