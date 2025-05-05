@@ -2,6 +2,7 @@ package com.naterbobber.darkerdepths.client.renderers;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.client.models.BodySnatcherModel;
+import com.naterbobber.darkerdepths.client.renderers.layers.BodySnatcherLayer;
 import com.naterbobber.darkerdepths.entities.BodySnatcher;
 import com.naterbobber.darkerdepths.init.DDModelLayers;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -16,6 +17,7 @@ public class BodySnatcherRenderer extends MobRenderer<BodySnatcher, BodySnatcher
 
     public BodySnatcherRenderer(EntityRendererProvider.Context ctx) {
         super(ctx, new BodySnatcherModel<>(ctx.bakeLayer(DDModelLayers.BODY_SNATCHER)), 0.4F);
+        this.addLayer(new BodySnatcherLayer(this));
     }
 
     @Override

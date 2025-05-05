@@ -16,6 +16,7 @@ import com.naterbobber.darkerdepths.init.DDItems;
 import com.naterbobber.darkerdepths.init.DDModelLayers;
 import com.naterbobber.darkerdepths.init.DDParticleTypes;
 import com.naterbobber.darkerdepths.init.DDWoodType;
+import com.naterbobber.darkerdepths.item.StilettoItem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.BoatModel;
 import net.minecraft.client.model.ChestBoatModel;
@@ -25,6 +26,7 @@ import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.SignRenderer;
 import net.minecraft.client.renderer.item.ItemProperties;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.api.distmarker.Dist;
@@ -91,15 +93,17 @@ public class ClientEvents {
             DDWoodType.setupWoodTypes();
 
             ItemProperties.register(DDItems.STILETTO.get(), DarkerDepths.id("charge"), (itemStack, clientLevel, livingEntity, i) -> {
-                if (itemStack.getTag() != null && itemStack.getTag().getInt("Timeframe") > 0) {
-                    return 1.0F;
+                CompoundTag tag = itemStack.getTag();
+                if (tag != null) {
+                    if (tag.getInt(StilettoItem.TIME_FRAME) > 0) {
+                        return 1.0F;
+                    }
+                    if (tag.getInt(StilettoItem.READY_TICKS) > 0) {
+                        return 0.5F;
+                    }
                 }
 
-                if (livingEntity instanceof Player player && player.getCooldowns().isOnCooldown(itemStack.getItem())) {
-                    return 0.0F;
-                }
-
-                return 0.5F;
+                return 0.0F;
             });
         });
     }

@@ -6,6 +6,7 @@ import com.naterbobber.darkerdepths.entities.GlowshroomMonsterEntity;
 import com.naterbobber.darkerdepths.init.DDEnchantments;
 import com.naterbobber.darkerdepths.init.DDEntityTypes;
 import com.naterbobber.darkerdepths.init.DDItems;
+import com.naterbobber.darkerdepths.item.StilettoItem;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -42,7 +43,7 @@ public class MobEvents {
             ItemStack itemStack = player.getItemInHand(player.getUsedItemHand());
             if (itemStack.is(DDItems.STILETTO.get())) {
                 CompoundTag tag = itemStack.getTag();
-                if (EnchantmentHelper.getTagEnchantmentLevel(DDEnchantments.SWIFT_STRIKE.get(), itemStack) > 0 && tag != null && tag.getInt("Timeframe") > 0) {
+                if (EnchantmentHelper.getTagEnchantmentLevel(DDEnchantments.SWIFT_STRIKE.get(), itemStack) > 0 && tag != null && tag.getInt(StilettoItem.TIME_FRAME) > 0) {
                     player.getCooldowns().removeCooldown(itemStack.getItem());
                     entity.playSound(SoundEvents.EXPERIENCE_ORB_PICKUP);
                 }

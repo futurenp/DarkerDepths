@@ -16,6 +16,8 @@ import net.minecraft.world.level.Level;
 
 public class StilettoItem extends SwordItem {
     public static final StilettoTier STILETTO = new StilettoTier();
+    public static final String TIME_FRAME = "TimeFrame";
+    public static final String READY_TICKS = "ReadyTicks";
 
     public StilettoItem(int damage, float speed, Properties properties) {
         super(STILETTO, damage, speed, properties);
@@ -37,7 +39,7 @@ public class StilettoItem extends SwordItem {
         if (!player.getCooldowns().isOnCooldown(itemStack.getItem())) {
             player.getCooldowns().addCooldown(itemStack.getItem(), reducedCooldown);
         }
-        itemStack.getOrCreateTag().putInt("Timeframe", 20);
+        itemStack.getOrCreateTag().putInt(TIME_FRAME, 20);
 
         return InteractionResultHolder.success(itemStack);
     }
@@ -46,10 +48,17 @@ public class StilettoItem extends SwordItem {
     public void inventoryTick(ItemStack itemStack, Level level, Entity entity, int index, boolean selected) {
         CompoundTag tag = itemStack.getTag();
         if (tag != null) {
-            int timeframe = tag.getInt("Timeframe");
+            int timeframe = tag.getInt(TIME_FRAME);
             if (timeframe > 0) {
-                tag.putInt("Timeframe", timeframe - 1);
+                tag.putInt(TIME_FRAME, timeframe - 1);
             }
+            int readyTicks = tag.getInt(READY_TICKS);
+            if (readyTicks > 0) {
+                tag.putInt(READY_TICKS, readyTicks - 1);
+            }
+        }
+        if (entity instanceof Player player && player.getCooldowns().getCooldownPercent(this, 0.0F) == 0.1F) {
+            itemStack.getOrCreateTag().putInt(READY_TICKS, 10);
         }
     }
 
