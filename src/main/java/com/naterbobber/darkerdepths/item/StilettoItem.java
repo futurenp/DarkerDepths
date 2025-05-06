@@ -33,7 +33,7 @@ public class StilettoItem extends SwordItem {
             return InteractionResultHolder.pass(itemStack);
         }
 
-        itemStack.hurtAndBreak(1, player, e -> e.broadcastBreakEvent(hand));
+        itemStack.hurtAndBreak(2, player, e -> e.broadcastBreakEvent(hand));
 
         double dash = 1.85D;
         player.addDeltaMovement(player.getLookAngle().multiply(1.0D, 1.5D, 1.0D).normalize().multiply(dash, dash / 2.0D, dash));
@@ -72,7 +72,7 @@ public class StilettoItem extends SwordItem {
     public static class StilettoTier implements Tier {
         @Override
         public int getUses() {
-            return 800;
+            return 400;
         }
 
         @Override
