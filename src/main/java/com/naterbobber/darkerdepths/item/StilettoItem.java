@@ -25,7 +25,14 @@ public class StilettoItem extends SwordItem {
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
+
         ItemStack itemStack = player.getItemInHand(hand);
+
+        //Check for flying with elytra
+        if (player.isFallFlying()) {
+            return InteractionResultHolder.pass(itemStack);
+        }
+
         itemStack.hurtAndBreak(1, player, e -> e.broadcastBreakEvent(hand));
 
         double dash = 1.85D;
@@ -90,7 +97,7 @@ public class StilettoItem extends SwordItem {
 
         @Override
         public Ingredient getRepairIngredient() {
-            return null;
+            return Ingredient.EMPTY;
         }
     }
 
