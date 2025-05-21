@@ -33,7 +33,7 @@ public class DynamicLightHandler {
     }
 
     public static boolean shouldGlow(LivingEntity entity) {
-        return entity.getItemBySlot(EquipmentSlot.HEAD).getItem() == DDItems.GLOWSHROOM_CAP.get();
+        return entity.getItemBySlot(EquipmentSlot.HEAD).getItem() == DDItems.GLOWSHROOM_CAP.get() && !entity.isSpectator();
     }
 
     public static class LightValue {
