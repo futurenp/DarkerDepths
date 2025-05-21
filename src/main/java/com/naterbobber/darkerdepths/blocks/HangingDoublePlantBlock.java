@@ -19,7 +19,7 @@ import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import org.jetbrains.annotations.Nullable;
 
-public class HangingDoublePlantBlock extends DecayedRootBlock {
+public class HangingDoublePlantBlock extends PetrifiedRootBlock {
     public static final EnumProperty<DoubleBlockHalf> HALF = BlockStateProperties.DOUBLE_BLOCK_HALF;
 
     public HangingDoublePlantBlock(Properties properties) {
@@ -75,7 +75,6 @@ public class HangingDoublePlantBlock extends DecayedRootBlock {
                 dropResources(state, worldIn, pos, null, player, player.getMainHandItem());
             }
         }
-
         super.playerWillDestroy(worldIn, pos, state, player);
     }
 
@@ -93,7 +92,6 @@ public class HangingDoublePlantBlock extends DecayedRootBlock {
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        super.createBlockStateDefinition(builder);
         builder.add(HALF);
     }
 

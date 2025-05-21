@@ -1,0 +1,7 @@
+{
+  "render_type": "cutout",
+  "parent": "block/cross",
+  "textures": {
+    "cross": "darkerdepths:block/petrified_roots"
+  }
+}

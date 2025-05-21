@@ -74,8 +74,6 @@ public class ClientEvents {
     public static void onClientSetup(final FMLClientSetupEvent event) {
         ItemBlockRenderTypes.setRenderLayer(DDBlocks.DRY_SPROUTS.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(DDBlocks.ROPE.get(), RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(DDBlocks.ROOTS.get(), RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(DDBlocks.LONG_ROOTS.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(DDBlocks.LUSH_SPROUTS.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(DDBlocks.MOSSY_SPROUTS.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(DDBlocks.GLOWSPURS.get(), RenderType.cutout());
