@@ -6,7 +6,6 @@
   "mixins": [
     "BlockLightEngineMixin",
     "HuskMixin",
-    "LivingEntityMixin",
     "OverworldBiomeBuilderMixin",
     "RotatedPillarBlockMixin"
   ],
