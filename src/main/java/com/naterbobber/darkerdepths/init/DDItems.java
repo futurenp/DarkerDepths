@@ -2,11 +2,7 @@ package com.naterbobber.darkerdepths.init;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.entities.PetrifiedBoatEntity;
-import com.naterbobber.darkerdepths.item.DDBoatItem;
-import com.naterbobber.darkerdepths.item.GlowshroomCapItem;
-import com.naterbobber.darkerdepths.item.QuickRopeItem;
-import com.naterbobber.darkerdepths.item.RopeItem;
-import com.naterbobber.darkerdepths.item.StilettoItem;
+import com.naterbobber.darkerdepths.item.*;
 import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
@@ -38,6 +34,7 @@ public class DDItems {
     public static final RegistryObject<Item> GLOW_GRIME = createSimpleItem("glow_grime");
     public static final RegistryObject<Item> QUICKROPE = ITEMS.register("quickrope", () -> new QuickRopeItem(new Item.Properties().durability(16)));
     public static final RegistryObject<Item> STILETTO = ITEMS.register("stiletto", () -> new StilettoItem(2, -1.6F, new Item.Properties()));
+    public static final RegistryObject<Item> VOID_SOUL_TORCH = ITEMS.register("void_soul_torch", () -> new VoidSoulTorchItem(DDBlocks.VOID_SOUL_TORCH.get(), DDBlocks.WALL_VOID_SOUL_TORCH.get(), new Item.Properties()));
 
     private static RegistryObject<Item> createItem(String name) {
         return ITEMS.register(name, () -> new Item(new Item.Properties()));

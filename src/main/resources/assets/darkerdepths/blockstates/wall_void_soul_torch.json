@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "darkerdepths:block/wall_void_soul_torch"
+    },
+    "facing=north": {
+      "model": "darkerdepths:block/wall_void_soul_torch",
+      "y": 270
+    },
+    "facing=south": {
+      "model": "darkerdepths:block/wall_void_soul_torch",
+      "y": 90
+    },
+    "facing=west": {
+      "model": "darkerdepths:block/wall_void_soul_torch",
+      "y": 180
+    }
+  }
+}
