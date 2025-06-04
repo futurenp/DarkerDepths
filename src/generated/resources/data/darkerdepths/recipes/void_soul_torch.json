@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "darkerdepths:bottle_of_void_soul"
+    },
+    "G": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    " # ",
+    " G "
+  ],
+  "result": {
+    "count": 4,
+    "item": "darkerdepths:void_soul_torch"
+  },
+  "show_notification": true
+}
