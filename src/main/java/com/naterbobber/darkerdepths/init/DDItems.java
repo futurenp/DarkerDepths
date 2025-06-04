@@ -20,7 +20,6 @@ import net.minecraftforge.registries.RegistryObject;
 public class DDItems {
 
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, DarkerDepths.MODID);
-
     public static final RegistryObject<Item> ROPE = ITEMS.register("rope", () -> new RopeItem(DDBlocks.ROPE.get(), new Item.Properties()));
     public static final RegistryObject<Item> GLOWSHROOM_CAP = ITEMS.register("glowshroom_cap", () -> new GlowshroomCapItem(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> PETRIFIED_BOAT = ITEMS.register("petrified_boat", () -> new DDBoatItem(false, PetrifiedBoatEntity.BoatType.PETRIFIED, new Item.Properties().stacksTo(1)));

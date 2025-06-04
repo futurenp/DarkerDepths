@@ -2,12 +2,12 @@
 	"credit": "Made with Blockbench",
 	"textures": {
 		"0": "darkerdepths:block/void_soul_torch",
-		"particle": "darkerdepths:block/void_soul_torch"
+		"particle": "darkerdepths:block/petrified_planks"
 	},
 	"elements": [
 		{
-			"from": [3.5, 12.5, 9.5],
-			"to": [0.5, 9.5, 6.5],
+			"from": [3.6, 12.6, 9.6],
+			"to": [0.4, 9.4, 6.4],
 			"rotation": {"angle": -22.5, "axis": "z", "origin": [2, 9, 8]},
 			"faces": {
 				"north": {"uv": [5, 3, 7, 5], "texture": "#0"},

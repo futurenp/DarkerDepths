@@ -16,6 +16,7 @@ public class DDParticleTypes {
     public static final RegistryObject<SimpleParticleType> DRIPPING_RESIN    = registerParticle("dripping_resin", false);
     public static final RegistryObject<SimpleParticleType> FALLING_RESIN     = registerParticle("falling_resin", false);
     public static final RegistryObject<SimpleParticleType> LANDING_RESIN     = registerParticle("landing_resin", false);
+    public static final RegistryObject<SimpleParticleType> VOID_SOUL_FLAME     = registerParticle("void_soul_flame", false);
 
     public static RegistryObject<SimpleParticleType> registerParticle(String name, boolean alwaysShow) {
         return PARTICLE_TYPES.register(name, () -> new SimpleParticleType(alwaysShow));

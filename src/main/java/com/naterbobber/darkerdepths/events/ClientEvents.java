@@ -6,6 +6,7 @@ import com.naterbobber.darkerdepths.client.models.BodySnatcherModel;
 import com.naterbobber.darkerdepths.client.models.GlowshroomCapModel;
 import com.naterbobber.darkerdepths.client.models.GlowshroomMonsterModel;
 import com.naterbobber.darkerdepths.client.particle.DrippingParticle;
+import com.naterbobber.darkerdepths.client.particle.VoidSoulFlameParticle;
 import com.naterbobber.darkerdepths.client.renderers.BodySnatcherRenderer;
 import com.naterbobber.darkerdepths.client.renderers.GlowshroomMonsterRenderer;
 import com.naterbobber.darkerdepths.client.renderers.PetrifiedBoatRenderer;
@@ -21,6 +22,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.BoatModel;
 import net.minecraft.client.model.ChestBoatModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
+import net.minecraft.client.particle.FlameParticle;
 import net.minecraft.client.particle.ParticleEngine;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
@@ -68,6 +70,7 @@ public class ClientEvents {
         engine.register(DDParticleTypes.DRIPPING_RESIN.get(), DrippingParticle.DrippingResinFactory::new);
         engine.register(DDParticleTypes.FALLING_RESIN.get(), DrippingParticle.FallingResinFactory::new);
         engine.register(DDParticleTypes.LANDING_RESIN.get(), DrippingParticle.LandingResinFactory::new);
+        engine.register(DDParticleTypes.VOID_SOUL_FLAME.get(), VoidSoulFlameParticle.VoidSoulFlameFactory::new);
     }
 
     @SubscribeEvent
