@@ -1,6 +1,0 @@
-{
-  "parent": "block/cube_all",
-  "textures": {
-    "all": "darkerdepths:block/limestone_diamond_ore"
-  }
-}

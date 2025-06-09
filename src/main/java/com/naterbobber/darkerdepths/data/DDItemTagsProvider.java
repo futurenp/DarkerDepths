@@ -30,12 +30,6 @@ public class DDItemTagsProvider extends ItemTagsProvider {
         this.tag(ItemTags.STONE_TOOL_MATERIALS).add(DDBlocks.SHALE.get().asItem(), DDBlocks.ARIDROCK.get().asItem(), DDBlocks.LIMESTONE.get().asItem(), DDBlocks.GRIMESTONE.get().asItem());
         this.tag(DDItemTags.PETRIFIED_LOGS).add(DDBlocks.PETRIFIED_LOG.get().asItem(), DDBlocks.PETRIFIED_WOOD.get().asItem(), DDBlocks.STRIPPED_PETRIFIED_LOG.get().asItem(), DDBlocks.STRIPPED_PETRIFIED_WOOD.get().asItem());
         this.tag(ItemTags.PLANKS).add(DDBlocks.PETRIFIED_PLANKS.get().asItem());
-        this.tag(Tags.Items.ORES_COAL).add(DDBlocks.ARIDROCK_COAL_ORE.get().asItem()).add(DDBlocks.LIMESTONE_COAL_ORE.get().asItem());
-        this.tag(Tags.Items.ORES_DIAMOND).add(DDBlocks.ARIDROCK_DIAMOND_ORE.get().asItem()).add(DDBlocks.LIMESTONE_DIAMOND_ORE.get().asItem());
-        this.tag(Tags.Items.ORES_GOLD).add(DDBlocks.ARIDROCK_GOLD_ORE.get().asItem()).add(DDBlocks.LIMESTONE_GOLD_ORE.get().asItem());
-        this.tag(Tags.Items.ORES_IRON).add(DDBlocks.ARIDROCK_IRON_ORE.get().asItem()).add(DDBlocks.LIMESTONE_IRON_ORE.get().asItem());
-        this.tag(Tags.Items.ORES_LAPIS).add(DDBlocks.ARIDROCK_LAPIS_ORE.get().asItem()).add(DDBlocks.LIMESTONE_LAPIS_ORE.get().asItem());
-        this.tag(Tags.Items.ORES_REDSTONE).add(DDBlocks.ARIDROCK_REDSTONE_ORE.get().asItem()).add(DDBlocks.LIMESTONE_REDSTONE_ORE.get().asItem());
     }
 
 }
