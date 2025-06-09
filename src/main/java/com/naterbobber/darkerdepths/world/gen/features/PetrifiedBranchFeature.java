@@ -11,6 +11,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.AmethystClusterBlock;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.levelgen.feature.DripstoneUtils;
@@ -60,14 +61,14 @@ public class PetrifiedBranchFeature extends Feature<PetrifiedBranchConfig> {
             }
             for (BlockPos blockPos : woodPos) {
                 if (world.getFluidState(blockPos.below()).isEmpty() && world.getFluidState(blockPos.below(2)).isEmpty() && world.getBlockState(blockPos.below(2)).canBeReplaced() && world.getBlockState(blockPos.below()).canBeReplaced()) {
-                    world.setBlock(blockPos.below(), DDBlocks.PETRIFIED_ROOTS_PLANT.get().defaultBlockState().setValue(HangingDoublePlantBlock.HALF, DoubleBlockHalf.UPPER), 2);
-                    world.setBlock(blockPos.below(2), DDBlocks.PETRIFIED_ROOTS_PLANT.get().defaultBlockState().setValue(HangingDoublePlantBlock.HALF, DoubleBlockHalf.LOWER), 2);
+                    world.setBlock(blockPos.below(), DDBlocks.PETRIFIED_ROOTS_PLANT.get().defaultBlockState(), 2);
+                    world.setBlock(blockPos.below(2), DDBlocks.PETRIFIED_ROOTS.get().defaultBlockState(), 2);
                 }
                 else if (world.getFluidState(blockPos.below()).isEmpty() && world.getBlockState(blockPos.below()).canBeReplaced() && (!world.getBlockState(blockPos.below(2)).is(DDBlocks.PETRIFIED_LOG.get()) || world.isEmptyBlock(blockPos.below(2)))) {
                     world.setBlock(blockPos.below(), DDBlocks.PETRIFIED_ROOTS.get().defaultBlockState(), 2);
                 }
                 else if (world.getFluidState(blockPos.below()).isEmpty() && world.getBlockState(blockPos.below()).canBeReplaced() && world.getBlockState(blockPos.below(2)).is(DDBlocks.PETRIFIED_LOG.get())) {
-                    world.setBlock(blockPos.below(), DDBlocks.PETRIFIED_ROOTS_PLANT.get().defaultBlockState().setValue(HangingDoublePlantBlock.HALF, DoubleBlockHalf.UPPER), 2);
+                    world.setBlock(blockPos.below(), DDBlocks.PETRIFIED_ROOTS_PLANT.get().defaultBlockState(), 2);
                 }
             }
             if (flag) {
