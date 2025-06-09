@@ -34,7 +34,6 @@ public class DDPlacedFeatures {
     public static final ResourceKey<PlacedFeature> SHALE_PLACEMENT = createKey("shale_placement");
     public static final ResourceKey<PlacedFeature> PETRIFIED_BRANCH = createKey("petrified_branch");
     public static final ResourceKey<PlacedFeature> MAGMA_ORE = createKey("magma_ore");
-    public static final ResourceKey<PlacedFeature> SILVER_ORE = createKey("silver_ore");
     public static final ResourceKey<PlacedFeature> GRIME_SURFACE = createKey("grime_surface");
     public static final ResourceKey<PlacedFeature> ARID_SURFACE = createKey("arid_surface");
     public static final ResourceKey<PlacedFeature> SHALE_SURFACE = createKey("shale_surface");
@@ -51,7 +50,6 @@ public class DDPlacedFeatures {
         PlacementUtils.register(context, SHALE_PLACEMENT, lookup.getOrThrow(DDConfiguredFeatures.SHALE_PLACEMENT), CountPlacement.of(175), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT, BiomeFilter.biome());
         PlacementUtils.register(context, PETRIFIED_BRANCH, lookup.getOrThrow(DDConfiguredFeatures.PETRIFIED_BRANCH), CountPlacement.of(150), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT, BiomeFilter.biome());
         PlacementUtils.register(context, MAGMA_ORE, lookup.getOrThrow(DDConfiguredFeatures.MAGMA_ORE), CountPlacement.of(50), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT, BiomeFilter.biome());
-        PlacementUtils.register(context, SILVER_ORE, lookup.getOrThrow(DDConfiguredFeatures.SILVER_ORE), CountPlacement.of(50), InSquarePlacement.spread(), HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(16)));
         PlacementUtils.register(context, GRIME_SURFACE, lookup.getOrThrow(DDConfiguredFeatures.GRIME_SURFACE), CountPlacement.of(UniformInt.of(192, 256)), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT, BiomeFilter.biome());
         PlacementUtils.register(context, ARID_SURFACE, lookup.getOrThrow(DDConfiguredFeatures.ARID_SURFACE), CountPlacement.of(UniformInt.of(192, 256)), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT, BiomeFilter.biome());
         PlacementUtils.register(context, SHALE_SURFACE, lookup.getOrThrow(DDConfiguredFeatures.SHALE_SURFACE), CountPlacement.of(UniformInt.of(192, 256)), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT, BiomeFilter.biome());

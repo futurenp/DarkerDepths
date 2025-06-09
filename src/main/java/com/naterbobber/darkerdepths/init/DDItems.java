@@ -28,8 +28,6 @@ public class DDItems {
     public static final RegistryObject<Item> BODY_SNATCHER_SPAWN_EGG = ITEMS.register("body_snatcher_spawn_egg", () -> new ForgeSpawnEggItem(DDEntityTypes.BODY_SNATCHER, 2496017, 16775339, new Item.Properties()));
     public static final RegistryObject<Item> PETRIFIED_SIGN = ITEMS.register("petrified_sign", () -> new SignItem(new Item.Properties().stacksTo(16), DDBlocks.PETRIFIED_SIGN.get(), DDBlocks.PETRIFIED_WALL_SIGN.get()));
     public static final RegistryObject<Item> RESIN = createSimpleItem("resin");
-    public static final RegistryObject<Item> RAW_SILVER = createSimpleItem("raw_silver");
-    public static final RegistryObject<Item> SILVER_INGOT = createSimpleItem("silver_ingot");
     public static final RegistryObject<Item> GLOW_GRIME = createSimpleItem("glow_grime");
     public static final RegistryObject<Item> QUICKROPE = ITEMS.register("quickrope", () -> new QuickRopeItem(new Item.Properties().durability(16)));
     public static final RegistryObject<Item> STILETTO = ITEMS.register("stiletto", () -> new StilettoItem(2, -1.6F, new Item.Properties()));

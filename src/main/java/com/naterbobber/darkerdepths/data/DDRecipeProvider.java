@@ -46,7 +46,6 @@ public class DDRecipeProvider extends RecipeProvider {
         twoXtwo(consumer, DDBlocks.ARIDROCK_BRICKS.get(), DDBlocks.POLISHED_ARIDROCK.get().asItem(), 4);
         twoXtwo(consumer, DDBlocks.LIMESTONE_BRICKS.get(), DDBlocks.POLISHED_LIMESTONE.get().asItem(), 4);
         twoXtwo(consumer, DDBlocks.GRIMESTONE_BRICKS.get(), DDBlocks.POLISHED_GRIMESTONE.get().asItem(), 4);
-        threeXthree(consumer, DDBlocks.SILVER_BLOCK.get(), DDItems.SILVER_INGOT.get());
         threeXthree(consumer, DDBlocks.AMBER_BLOCK.get(), DDBlocks.AMBER.get().asItem());
         oreSmelting(consumer, ImmutableList.of(DDBlocks.AMBER.get()), RecipeCategory.MISC, DDItems.RESIN.get(), 0.1F, 200, "resin");
         oreBlasting(consumer, ImmutableList.of(DDBlocks.AMBER.get()), RecipeCategory.MISC, DDItems.RESIN.get(), 0.1F, 100, "resin");
@@ -94,7 +93,6 @@ public class DDRecipeProvider extends RecipeProvider {
         oreSmelting(consumer, ImmutableList.of(DDBlocks.ARIDROCK_REDSTONE_ORE.get()), RecipeCategory.MISC, Items.REDSTONE, 0.1F, 200, "redstone");
         oreSmelting(consumer, ImmutableList.of(DDBlocks.ARIDROCK_LAPIS_ORE.get()), RecipeCategory.MISC, Items.LAPIS_LAZULI, 0.1F, 200, "lapis_lazuli");
         oreSmelting(consumer, ImmutableList.of(DDBlocks.ARIDROCK_DIAMOND_ORE.get()), RecipeCategory.MISC, Items.DIAMOND, 0.1F, 200, "diamond");
-        oreSmelting(consumer, ImmutableList.of(DDBlocks.ARIDROCK_SILVER_ORE.get()), RecipeCategory.MISC, DDItems.SILVER_INGOT.get(), 0.1F, 200, "silver_ingot");
 
         oreBlasting(consumer, ImmutableList.of(DDBlocks.ARIDROCK_COAL_ORE.get()), RecipeCategory.MISC, Items.COAL, 0.1F, 100, "coal");
         oreBlasting(consumer, ImmutableList.of(DDBlocks.ARIDROCK_IRON_ORE.get()), RecipeCategory.MISC, Items.IRON_INGOT, 0.1F, 100, "iron_ingot");
@@ -102,7 +100,6 @@ public class DDRecipeProvider extends RecipeProvider {
         oreBlasting(consumer, ImmutableList.of(DDBlocks.ARIDROCK_REDSTONE_ORE.get()), RecipeCategory.MISC, Items.REDSTONE, 0.1F, 100, "redstone");
         oreBlasting(consumer, ImmutableList.of(DDBlocks.ARIDROCK_LAPIS_ORE.get()), RecipeCategory.MISC, Items.LAPIS_LAZULI, 0.1F, 100, "lapis_lazuli");
         oreBlasting(consumer, ImmutableList.of(DDBlocks.ARIDROCK_DIAMOND_ORE.get()), RecipeCategory.MISC, Items.DIAMOND, 0.1F, 100, "diamond");
-        oreBlasting(consumer, ImmutableList.of(DDBlocks.ARIDROCK_SILVER_ORE.get()), RecipeCategory.MISC, DDItems.SILVER_INGOT.get(), 0.1F, 100, "silver_ingot");
 
         oreSmelting(consumer, ImmutableList.of(DDBlocks.LIMESTONE_COAL_ORE.get()), RecipeCategory.MISC, Items.COAL, 0.1F, 200, "coal");
         oreSmelting(consumer, ImmutableList.of(DDBlocks.LIMESTONE_IRON_ORE.get()), RecipeCategory.MISC, Items.IRON_INGOT, 0.1F, 200, "iron_ingot");
@@ -110,7 +107,6 @@ public class DDRecipeProvider extends RecipeProvider {
         oreSmelting(consumer, ImmutableList.of(DDBlocks.LIMESTONE_REDSTONE_ORE.get()), RecipeCategory.MISC, Items.REDSTONE, 0.1F, 200, "redstone");
         oreSmelting(consumer, ImmutableList.of(DDBlocks.LIMESTONE_LAPIS_ORE.get()), RecipeCategory.MISC, Items.LAPIS_LAZULI, 0.1F, 200, "lapis_lazuli");
         oreSmelting(consumer, ImmutableList.of(DDBlocks.LIMESTONE_DIAMOND_ORE.get()), RecipeCategory.MISC, Items.DIAMOND, 0.1F, 200, "diamond");
-        oreSmelting(consumer, ImmutableList.of(DDBlocks.LIMESTONE_SILVER_ORE.get()), RecipeCategory.MISC, DDItems.SILVER_INGOT.get(), 0.1F, 200, "silver_ingot");
 
         oreSmelting(consumer, ImmutableList.of(DDBlocks.SHALE_BRICKS.get()), RecipeCategory.BUILDING_BLOCKS, DDBlocks.CRACKED_SHALE_BRICKS.get(), 0.1F, 200, "cracked_shale_bricks");
         oreSmelting(consumer, ImmutableList.of(DDBlocks.ARIDROCK_BRICKS.get()), RecipeCategory.BUILDING_BLOCKS, DDBlocks.CRACKED_ARIDROCK_BRICKS.get(), 0.1F, 200, "cracked_aridrock_bricks");
@@ -123,10 +119,6 @@ public class DDRecipeProvider extends RecipeProvider {
         oreBlasting(consumer, ImmutableList.of(DDBlocks.LIMESTONE_REDSTONE_ORE.get()), RecipeCategory.MISC, Items.REDSTONE, 0.1F, 100, "redstone");
         oreBlasting(consumer, ImmutableList.of(DDBlocks.LIMESTONE_LAPIS_ORE.get()), RecipeCategory.MISC, Items.LAPIS_LAZULI, 0.1F, 100, "lapis_lazuli");
         oreBlasting(consumer, ImmutableList.of(DDBlocks.LIMESTONE_DIAMOND_ORE.get()), RecipeCategory.MISC, Items.DIAMOND, 0.1F, 100, "diamond");
-        oreBlasting(consumer, ImmutableList.of(DDBlocks.LIMESTONE_SILVER_ORE.get()), RecipeCategory.MISC, DDItems.SILVER_INGOT.get(), 0.1F, 100, "silver_ingot");
-
-        shaplessOne(consumer, DDItems.SILVER_INGOT.get(), DDBlocks.SILVER_BLOCK.get().asItem(), 9);
-        shaplessOne(consumer, DDItems.RAW_SILVER.get(), DDBlocks.RAW_SILVER_BLOCK.get().asItem(), 9);
 
         fenceBlock(consumer, DDBlocks.PETRIFIED_FENCE.get(), DDBlocks.PETRIFIED_PLANKS.get().asItem());
 
