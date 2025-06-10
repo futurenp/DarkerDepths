@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cross",
   "textures": {
-    "cross": "darkerdepths:block/glowvines_plant"
+    "cross": "darkerdepths:block/glimmering_vines"
   }
 }

@@ -1,19 +1,34 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "category": "building",
-  "key": {
-    "#": {
+  "type": "minecraft:crafting_shapeless",
+  "group": "void_storage",
+  "ingredients": [
+    {
+      "item": "darkerdepths:glow_grime"
+    },
+    {
+      "item": "darkerdepths:glow_grime"
+    },
+    {
+      "item": "darkerdepths:glow_grime"
+    },
+    {
+      "item": "darkerdepths:glow_grime"
+    },
+    {
+      "item": "darkerdepths:glow_grime"
+    },
+    {
+      "item": "darkerdepths:glow_grime"
+    },
+    {
+      "item": "darkerdepths:glow_grime"
+    },
+    {
       "item": "darkerdepths:glow_grime"
     }
-  },
-  "pattern": [
-    "###",
-    "# #",
-    "###"
   ],
   "result": {
-    "count": 2,
-    "item": "darkerdepths:glowshroom_block"
-  },
-  "show_notification": true
+    "item": "darkerdepths:glowshroom_block",
+    "count": 2
+  }
 }

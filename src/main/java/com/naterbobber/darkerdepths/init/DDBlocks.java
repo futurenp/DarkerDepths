@@ -3,7 +3,6 @@ package com.naterbobber.darkerdepths.init;
 import com.google.common.collect.Maps;
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.blocks.*;
-import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
@@ -13,7 +12,6 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
-import net.minecraft.core.particles.ParticleTypes;
 
 import java.util.Map;
 import java.util.function.Supplier;
@@ -103,8 +101,8 @@ public class DDBlocks {
     public static final RegistryObject<Block> LUSH_SPROUTS = registerBlock("lush_sprouts", () -> new SproutsBlock(BlockBehaviour.Properties.copy(Blocks.GRASS).offsetType(BlockBehaviour.OffsetType.XZ)));
     public static final RegistryObject<Block> MOSSY_SPROUTS = registerBlock("mossy_sprouts", () -> new SproutsBlock(BlockBehaviour.Properties.copy(Blocks.GRASS).sound(SoundType.WET_GRASS).offsetType(BlockBehaviour.OffsetType.XZ)));
     public static final RegistryObject<Block> POTTED_GLOWSHROOM = registerNoTabBlock("potted_glowshroom", () -> new FlowerPotBlock(GLOWSHROOM.get(), BlockBehaviour.Properties.of().instabreak().noOcclusion()));
-    public static final RegistryObject<Block> GLOWSPIRE = registerBlock("glowspire", () -> new GlowSpireBlock(BlockBehaviour.Properties.of().noCollission().lightLevel(value -> 8).sound(SoundType.SPORE_BLOSSOM)));
-    public static final RegistryObject<Block> GLOWSPIRE_PLANT = registerNoTabBlock("glowspire_plant", () -> new GlowSpirePlantBlock(BlockBehaviour.Properties.copy(GLOWSPIRE.get()).sound(SoundType.SPORE_BLOSSOM)));
+    public static final RegistryObject<Block> GLIMMERING_VINES = registerBlock("glimmering_vines", () -> new GlimmeringVinesBlock(BlockBehaviour.Properties.of().noCollission().lightLevel(value -> 8).sound(SoundType.SPORE_BLOSSOM)));
+    public static final RegistryObject<Block> GLIMMERING_VINE_PLANT = registerNoTabBlock("glimmering_vine_plant", () -> new GlimmeringVinePlantBlock(BlockBehaviour.Properties.copy(GLIMMERING_VINES.get()).sound(SoundType.SPORE_BLOSSOM)));
     public static final RegistryObject<Block> ASH = registerBlock("ash", () -> new AshBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BLACK).randomTicks().strength(0.1f).requiresCorrectToolForDrops().sound(SoundType.SNOW)));
     public static final RegistryObject<Block> PETRIFIED_FENCE = registerBlock("petrified_fence", () -> new FenceBlock(Block.Properties.of().requiresCorrectToolForDrops().strength(2.5f, 3.0f).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> PETRIFIED_POST = registerCompatBlock("quark", "petrified_post", () -> new WoodPostBlock(Block.Properties.of().requiresCorrectToolForDrops().noOcclusion().strength(2.5f, 3.0f).sound(SoundType.WOOD)));

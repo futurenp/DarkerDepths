@@ -80,8 +80,8 @@ public class ClientEvents {
         ItemBlockRenderTypes.setRenderLayer(DDBlocks.LUSH_SPROUTS.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(DDBlocks.MOSSY_SPROUTS.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(DDBlocks.GLOWSPURS.get(), RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(DDBlocks.GLOWSPIRE.get(), RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(DDBlocks.GLOWSPIRE_PLANT.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(DDBlocks.GLIMMERING_VINES.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(DDBlocks.GLIMMERING_VINE_PLANT.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(DDBlocks.PETRIFIED_DOOR.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(DDBlocks.PETRIFIED_TRAPDOOR.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(DDBlocks.PETRIFIED_POST.get(), RenderType.cutout());

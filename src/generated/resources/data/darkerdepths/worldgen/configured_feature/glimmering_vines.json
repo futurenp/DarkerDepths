@@ -46,7 +46,7 @@
         "provider": {
           "type": "minecraft:simple_state_provider",
           "state": {
-            "Name": "darkerdepths:glowspire_plant"
+            "Name": "darkerdepths:glimmering_vine_plant"
           }
         }
       },
@@ -55,7 +55,7 @@
         "provider": {
           "type": "minecraft:simple_state_provider",
           "state": {
-            "Name": "darkerdepths:glowspire",
+            "Name": "darkerdepths:glimmering_vines",
             "Properties": {
               "age": "0"
             }

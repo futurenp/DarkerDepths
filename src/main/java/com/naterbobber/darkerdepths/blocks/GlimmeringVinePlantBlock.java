@@ -11,10 +11,10 @@ import net.minecraft.world.level.block.GrowingPlantHeadBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class GlowSpirePlantBlock extends GrowingPlantBodyBlock {
+public class GlimmeringVinePlantBlock extends GrowingPlantBodyBlock {
     public static final VoxelShape SHAPE = Block.box(1.0D, 0.0D, 1.0D, 15.0D, 16.0D, 15.0D);
 
-    public GlowSpirePlantBlock(Properties properties) {
+    public GlimmeringVinePlantBlock(Properties properties) {
         super(properties, Direction.DOWN, SHAPE, false);
     }
 
@@ -25,6 +25,6 @@ public class GlowSpirePlantBlock extends GrowingPlantBodyBlock {
 
     @Override
     protected GrowingPlantHeadBlock getHeadBlock() {
-        return (GrowingPlantHeadBlock) DDBlocks.GLOWSPIRE.get();
+        return (GrowingPlantHeadBlock) DDBlocks.GLIMMERING_VINES.get();
     }
 }
