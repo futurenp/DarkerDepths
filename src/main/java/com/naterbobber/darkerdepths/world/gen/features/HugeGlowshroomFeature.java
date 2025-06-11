@@ -14,6 +14,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
+import com.naterbobber.darkerdepths.blocks.GlowshroomBlock;
 
 public class HugeGlowshroomFeature extends Feature<NoneFeatureConfiguration> {
 
@@ -43,23 +44,43 @@ public class HugeGlowshroomFeature extends Feature<NoneFeatureConfiguration> {
         }
     }
 
+
     private void smallGlowshroom(WorldGenLevel world, BlockPos pos, int height) {
         for (int i = 0; i < height; i++) {
+            BlockPos stalkPos = pos.above(i);
+            if (world.getBlockState(stalkPos).canBeReplaced()) {
+                this.setBlock(world, stalkPos, DDBlocks.GLOWSHROOM_STEM.get().defaultBlockState());
+            }
+        }
+
+        BlockPos capBase = pos.above(height);
+        for (int y = 0; y < 4; y++) {
             for (int x = -1; x <= 1; x++) {
                 for (int z = -1; z <= 1; z++) {
-                    BlockPos.MutableBlockPos mutable = new BlockPos.MutableBlockPos();
-                    mutable.set(pos).move(Direction.UP, i);
-                    if (world.getBlockState(pos).getBlock() == DDBlocks.GLOWSHROOM.get()) world.removeBlock(pos, true);
-                    if (world.getBlockState(mutable).canBeReplaced()) {
-                        this.setBlock(world, mutable, DDBlocks.GLOWSHROOM_STEM.get().defaultBlockState());
-                    }
-                    mutable.setWithOffset(pos, x, height, z).move(Direction.UP, i);
-                    if (world.getBlockState(mutable).canBeReplaced()) {
-                        this.setBlock(world, mutable, DDBlocks.GLOWSHROOM_BLOCK.get().defaultBlockState());
+                    BlockPos capPos = capBase.offset(x, y, z);
+
+                    if(world.getBlockState(capPos).canBeReplaced()) {
+                        if (Math.abs(x) == 1 && Math.abs(z) == 1 && y == 0) {
+                            int glowVineRandom = (int) (Math.random() * 2);
+                            if (glowVineRandom == 0) {
+                                this.setBlock(world, capPos, DDBlocks.GLIMMERING_VINES.get().defaultBlockState());
+                            } else {
+                                this.setBlock(world, capPos, DDBlocks.GLOWSHROOM_BLOCK.get().defaultBlockState());
+                            }
+                        } else if (y == 3) {
+                            int glowshroomRandom = (int) (Math.random() * 9);
+                            int blockstateRandom = (int) (Math.random() * 3 + 1);
+                            if (glowshroomRandom == 0) {
+                                this.setBlock(world, capPos, DDBlocks.GLOWSHROOM.get().defaultBlockState().setValue(GlowshroomBlock.CLUSTERS_1_3, blockstateRandom));
+                            }
+                        } else {
+                            this.setBlock(world, capPos, DDBlocks.GLOWSHROOM_BLOCK.get().defaultBlockState());
+                        }
                     }
                 }
             }
         }
+
     }
 
     private void hugeGlowshroom(WorldGenLevel world, BlockPos pos, int height) {
