@@ -3,18 +3,20 @@ package com.naterbobber.darkerdepths.world.gen.features;
 import com.mojang.serialization.Codec;
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import com.naterbobber.darkerdepths.blocks.GlowshroomBlock;
+import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.level.material.WaterFluid;
 
 public class HugeGlowshroomFeature extends Feature<NoneFeatureConfiguration> {
 
@@ -28,8 +30,8 @@ public class HugeGlowshroomFeature extends Feature<NoneFeatureConfiguration> {
         BlockPos pos = context.origin();
         RandomSource rand = context.random();
         BlockState belowState = world.getBlockState(pos.below());
-        boolean flag = belowState.is(BlockTags.BASE_STONE_OVERWORLD) || belowState.is(DDBlocks.MOSSY_GRIMESTONE.get()) || belowState.is(DDBlocks.GRIMESTONE.get());
-        boolean flag2 = world.isStateAtPosition(pos, BlockBehaviour.BlockStateBase::isAir) || world.getBlockState(pos).canBeReplaced();
+        boolean flag = (belowState.is(BlockTags.BASE_STONE_OVERWORLD) || belowState.is(DDBlocks.MOSSY_GRIMESTONE.get()) || belowState.is(DDBlocks.GRIMESTONE.get())) && !belowState.is(Blocks.LAVA);
+        boolean flag2 = (world.isStateAtPosition(pos, BlockBehaviour.BlockStateBase::isAir) || world.getBlockState(pos).canBeReplaced()) && !world.getBlockState(pos).is(Blocks.LAVA);
         if (flag2 && flag) {
             int height = Mth.nextInt(rand, 2, 4);
             int chanceHeight = 3;
@@ -53,62 +55,188 @@ public class HugeGlowshroomFeature extends Feature<NoneFeatureConfiguration> {
             }
         }
 
-        BlockPos capBase = pos.above(height);
-        for (int y = 0; y < 4; y++) {
+        BlockPos capBase = pos.above(height - 1);
+
+        //0 = nothing, 1 = glowshroom block, 2 = glimmering vines chance, 3 = glimmering vines / glowshroom block chance, 4 = glowshroom cluster chance
+        int[][][] smallGlowshroomMap = {
+                {
+                        {0, 2, 0},
+                        {2, 0, 2},
+                        {0, 2, 0}
+                },
+                {
+                        {3, 1, 3},
+                        {1, 1, 1},
+                        {3, 1, 3}
+                },
+                {
+                        {1, 1, 1},
+                        {1, 1, 1},
+                        {1, 1, 1}
+                },
+                {
+                        {1, 1, 1},
+                        {1, 1, 1},
+                        {1, 1, 1}
+                },
+                {
+                        {4, 4, 4},
+                        {4, 4, 4},
+                        {4, 4, 4}
+                }
+        };
+
+        for (int y = 0; y < 5; y++) {
             for (int x = -1; x <= 1; x++) {
                 for (int z = -1; z <= 1; z++) {
-                    BlockPos capPos = capBase.offset(x, y, z);
 
+                    int blockIndex = smallGlowshroomMap[y][x + 1][z + 1];
+                    BlockPos capPos = capBase.offset(x, y, z);
                     if(world.getBlockState(capPos).canBeReplaced()) {
-                        if (Math.abs(x) == 1 && Math.abs(z) == 1 && y == 0) {
-                            int glowVineRandom = (int) (Math.random() * 2);
-                            if (glowVineRandom == 0) {
-                                this.setBlock(world, capPos, DDBlocks.GLIMMERING_VINES.get().defaultBlockState());
-                            } else {
+                        switch (blockIndex) {
+                            case 1:
                                 this.setBlock(world, capPos, DDBlocks.GLOWSHROOM_BLOCK.get().defaultBlockState());
-                            }
-                        } else if (y == 3) {
-                            int glowshroomRandom = (int) (Math.random() * 9);
-                            int blockstateRandom = (int) (Math.random() * 3 + 1);
-                            if (glowshroomRandom == 0) {
-                                this.setBlock(world, capPos, DDBlocks.GLOWSHROOM.get().defaultBlockState().setValue(GlowshroomBlock.CLUSTERS_1_3, blockstateRandom));
-                            }
-                        } else {
-                            this.setBlock(world, capPos, DDBlocks.GLOWSHROOM_BLOCK.get().defaultBlockState());
+                                break;
+                            case 2:
+                                if(!world.getBlockState(capPos).is(Blocks.WATER)){
+                                    int glimmeringVinesRandom = (int) (Math.random() * 8);
+                                    if (glimmeringVinesRandom == 0) {
+                                        this.setBlock(world, capPos, DDBlocks.GLIMMERING_VINES.get().defaultBlockState());
+                                    }
+                                }
+                                break;
+                            case 3:
+                                int glowVineRandom = (int) (Math.random() * 4);
+                                if(world.getBlockState(capPos).is(Blocks.WATER)) {
+                                    glowVineRandom = 1;
+                                }
+                                if (glowVineRandom == 0) {
+                                    this.setBlock(world, capPos, DDBlocks.GLIMMERING_VINES.get().defaultBlockState());
+                                } else {
+                                    this.setBlock(world, capPos, DDBlocks.GLOWSHROOM_BLOCK.get().defaultBlockState());
+                                }
+                                break;
+                            case 4:
+                                int glowshroomRandom = (int) (Math.random() * 9);
+                                int blockStateRandom = (int) (Math.random() * 3 + 1);
+                                if (glowshroomRandom == 0) {
+                                    if(world.getBlockState(capPos).is(Blocks.WATER)){
+                                        this.setBlock(world, capPos, DDBlocks.GLOWSHROOM.get().defaultBlockState().setValue(GlowshroomBlock.CLUSTERS_1_3, blockStateRandom).setValue(GlowshroomBlock.WATERLOGGED, true));
+                                    } else {
+                                        this.setBlock(world, capPos, DDBlocks.GLOWSHROOM.get().defaultBlockState().setValue(GlowshroomBlock.CLUSTERS_1_3, blockStateRandom));
+                                    }
+                                }
+                                break;
+                            default:
+                                break;
                         }
                     }
                 }
             }
         }
-
     }
 
     private void hugeGlowshroom(WorldGenLevel world, BlockPos pos, int height) {
-        for (int j = 0; j <= height; j++) {
-            for (int i = height - 2; i <= height; i++) {
-                for (int x = -2; x <= 2; x++) {
-                    for (int z = -2; z <= 2; z++) {
-                        BlockPos.MutableBlockPos mutable = new BlockPos.MutableBlockPos();
-                        mutable.set(pos).move(Direction.UP, j);
-                        if (world.getBlockState(mutable).canBeReplaced()) {
-                            this.setBlock(world, mutable, DDBlocks.GLOWSHROOM_STEM.get().defaultBlockState());
-                        }
-                        if (world.getBlockState(pos).getBlock() == DDBlocks.GLOWSHROOM.get()) world.removeBlock(pos, true);
-                        boolean bl = x == -2 || x == 2;
-                        boolean bl1 = z == -2 || z == 2;
-                        boolean bl2 = x == -1 || x == 0 || x == 1;
-                        boolean bl3 = z == -1 || z == 0 || z == 1;
-                        if (!bl2 || !bl3) {
-                            mutable.setWithOffset(pos, x, i, z);
-                            if (world.getBlockState(mutable).canBeReplaced()) {
-                                this.setBlock(world, mutable, DDBlocks.GLOWSHROOM_BLOCK.get().defaultBlockState());
-                            }
-                        }
-                        if (!bl || !bl1) {
-                            mutable.setWithOffset(pos, x, height + 1, z);
-                            if (world.getBlockState(mutable).canBeReplaced()) {
-                                this.setBlock(world, mutable, DDBlocks.GLOWSHROOM_BLOCK.get().defaultBlockState());
-                            }
+        for (int i = 0; i < height; i++) {
+            BlockPos stalkPos = pos.above(i);
+            if (world.getBlockState(stalkPos).canBeReplaced()) {
+                this.setBlock(world, stalkPos, DDBlocks.GLOWSHROOM_STEM.get().defaultBlockState());
+            }
+        }
+
+        BlockPos capBase = pos.above(height - 3);
+
+        //0 = nothing, 1 = glowshroom block, 2 = glimmering vines chance, 3 = glimmering vines / glowshroom block chance, 4 = glowshroom cluster chance, 5 = shroomlight
+        int[][][] smallGlowshroomMap = {
+                {
+                        {0, 2, 2, 2, 0},
+                        {2, 0, 0, 0, 2},
+                        {2, 0, 0, 0, 2},
+                        {2, 0, 0, 0, 2},
+                        {0, 2, 2, 2, 0}                },
+                {
+                        {3, 1, 1, 1, 3},
+                        {1, 0, 0, 0, 1},
+                        {1, 0, 0, 0, 1},
+                        {1, 0, 0, 0, 1},
+                        {3, 1, 1, 1, 3}
+                },
+                {
+                        {1, 1, 1, 1, 1},
+                        {1, 0, 0, 0, 1},
+                        {1, 0, 0, 0, 1},
+                        {1, 0, 0, 0, 1},
+                        {1, 1, 1, 1, 1}
+                },
+                {
+                        {1, 1, 1, 1, 1},
+                        {1, 0, 0, 0, 1},
+                        {1, 0, 5, 0, 1},
+                        {1, 0, 0, 0, 1},
+                        {1, 1, 1, 1, 1}
+                },
+                {
+                        {4, 1, 1, 1, 4},
+                        {1, 1, 1, 1, 1},
+                        {1, 1, 1, 1, 1},
+                        {1, 1, 1, 1, 1},
+                        {4, 1, 1, 1, 4}
+                },
+                {
+                        {0, 4, 4, 4, 0},
+                        {4, 4, 4, 4, 4},
+                        {4, 4, 4, 4, 4},
+                        {4, 4, 4, 4, 4},
+                        {0, 4, 4, 4, 0}
+                }
+        };
+
+        for (int y = 0; y < 6; y++) {
+            for (int x = -2; x <= 2; x++) {
+                for (int z = -2; z <= 2; z++) {
+
+                    int blockIndex = smallGlowshroomMap[y][x + 2][z + 2];
+                    BlockPos capPos = capBase.offset(x, y, z);
+                    if(world.getBlockState(capPos).canBeReplaced()){
+                        switch (blockIndex) {
+                            case 1:
+                                this.setBlock(world, capPos, DDBlocks.GLOWSHROOM_BLOCK.get().defaultBlockState());
+                                break;
+                            case 2:
+                                if(!world.getBlockState(capPos).is(Blocks.WATER)) {
+                                    int glimmeringVinesRandom = (int) (Math.random() * 8);
+                                    if (glimmeringVinesRandom == 0) {
+                                        this.setBlock(world, capPos, DDBlocks.GLIMMERING_VINES.get().defaultBlockState());
+                                    }
+                                }
+                                break;
+                            case 3:
+                                int glowVineRandom = (int) (Math.random() * 4);
+                                if(world.getBlockState(capPos).is(Blocks.WATER)) {
+                                    glowVineRandom = 1;
+                                }
+                                if (glowVineRandom == 0) {
+                                    this.setBlock(world, capPos, DDBlocks.GLIMMERING_VINES.get().defaultBlockState());
+                                } else {
+                                    this.setBlock(world, capPos, DDBlocks.GLOWSHROOM_BLOCK.get().defaultBlockState());
+                                }
+                                break;
+                            case 4:
+                                int glowshroomRandom = (int) (Math.random() * 18);
+                                int blockStateRandom = (int) (Math.random() * 3 + 1);
+                                if (glowshroomRandom == 0) {
+                                    if(world.getBlockState(capPos).is(Blocks.WATER)){
+                                        this.setBlock(world, capPos, DDBlocks.GLOWSHROOM.get().defaultBlockState().setValue(GlowshroomBlock.CLUSTERS_1_3, blockStateRandom).setValue(GlowshroomBlock.WATERLOGGED, true));
+                                    } else {
+                                        this.setBlock(world, capPos, DDBlocks.GLOWSHROOM.get().defaultBlockState().setValue(GlowshroomBlock.CLUSTERS_1_3, blockStateRandom));
+                                    }
+                                }
+                                break;
+                            case 5:
+                                this.setBlock(world, capPos, Blocks.SHROOMLIGHT.defaultBlockState());
+                                break;
+                            default:
+                                break;
                         }
                     }
                 }

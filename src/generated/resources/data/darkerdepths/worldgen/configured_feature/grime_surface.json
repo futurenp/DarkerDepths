@@ -14,10 +14,26 @@
     "extra_bottom_block_chance": 0.0,
     "extra_edge_column_chance": 0.3,
     "ground_state": {
-      "type": "minecraft:simple_state_provider",
-      "state": {
-        "Name": "darkerdepths:mossy_grimestone"
-      }
+      "type": "minecraft:noise_provider",
+      "seed": 0,
+      "noise": {
+        "firstOctave": -3,
+        "amplitudes": [
+          1.0, 1.0, 0.5
+        ]
+      },
+      "scale": 1,
+      "states": [
+        {
+          "Name": "darkerdepths:mossy_grimestone"
+        },
+        {
+          "Name": "darkerdepths:mossy_grimestone"
+        },
+        {
+          "Name": "darkerdepths:grimestone"
+        }
+      ]
     },
     "replaceable": "#minecraft:lush_ground_replaceable",
     "surface": "floor",
