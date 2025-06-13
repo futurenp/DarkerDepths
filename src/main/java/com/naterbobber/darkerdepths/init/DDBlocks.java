@@ -130,6 +130,7 @@ public class DDBlocks {
     public static final RegistryObject<Block> PETRIFIED_BUTTON = registerBlock("petrified_button", () -> new ButtonBlock(Block.Properties.of().requiresCorrectToolForDrops().strength(0.5f).sound(SoundType.WOOD), DDBlockSetTypes.PETRIFIED, 30, true));
     public static final RegistryObject<Block> PETRIFIED_DOOR = registerBlock("petrified_door", () -> new DoorBlock(Block.Properties.of().requiresCorrectToolForDrops().noOcclusion().strength(2.5f, 3.0f).sound(SoundType.WOOD), DDBlockSetTypes.PETRIFIED));
     public static final RegistryObject<Block> DEATH_ANCHOR = registerBlock("death_anchor", () -> new Block(BlockBehaviour.Properties.of().sound(SoundType.NETHER_BRICKS)));
+    public static final RegistryObject<Block> GLOWSHROOM_HEART = registerBlock("glowshroom_heart", () -> new Block(BlockBehaviour.Properties.of().sound(SoundType.SHROOMLIGHT).lightLevel(value -> 15)));
     public static final RegistryObject<Block> ARID_DEEPSLATE = registerBlock("arid_deepslate", () -> new LayeredDeepslateBlock(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE).randomTicks()));
     public static final RegistryObject<Block> GLOWSHROOM_LANTERN = registerBlock("glowshroom_lantern", () -> new GlowshroomLanternBlock(BlockBehaviour.Properties.copy(Blocks.LANTERN)));
     public static final RegistryObject<Block> GLOWSHROOM_LAMP = registerBlock("glowshroom_lamp", () -> new RedstoneLampBlock(BlockBehaviour.Properties.copy(Blocks.REDSTONE_LAMP)));

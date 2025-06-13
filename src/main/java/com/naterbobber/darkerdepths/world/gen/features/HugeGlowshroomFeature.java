@@ -233,7 +233,8 @@ public class HugeGlowshroomFeature extends Feature<NoneFeatureConfiguration> {
                                 }
                                 break;
                             case 5:
-                                this.setBlock(world, capPos, Blocks.SHROOMLIGHT.defaultBlockState());
+                                //this.setBlock(world, capPos, Blocks.SHROOMLIGHT.defaultBlockState());
+                                this.setBlock(world, capPos, DDBlocks.GLOWSHROOM_HEART.get().defaultBlockState());
                                 break;
                             default:
                                 break;

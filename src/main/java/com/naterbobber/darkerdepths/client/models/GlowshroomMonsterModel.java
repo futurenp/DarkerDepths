@@ -26,6 +26,8 @@ public class GlowshroomMonsterModel<T extends GlowshroomMonsterEntity> extends E
     private final ModelPart left_leg;
     private final ModelPart right_leg;
 
+
+
     public GlowshroomMonsterModel(ModelPart root) {
         this.head = root.getChild("head");
         this.body = root.getChild("body");
@@ -83,10 +85,10 @@ public class GlowshroomMonsterModel<T extends GlowshroomMonsterEntity> extends E
         this.head.xRot = headPitch * ((float)Math.PI / 180F);
         this.head.yRot = netHeadYaw * ((float)Math.PI / 180F);
         this.body.xRot = ((float)100);
-        this.right_leg.xRot = Mth.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
-        this.left_leg.xRot = Mth.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
-        this.right_arm.xRot = Mth.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
-        this.left_arm.xRot = Mth.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
+        this.right_leg.xRot = Mth.cos(limbSwing * 0.6662F) * limbSwingAmount;
+        this.left_leg.xRot = Mth.cos(limbSwing * 0.6662F + (float)Math.PI) * limbSwingAmount;
+        this.right_arm.xRot = Mth.cos(limbSwing * 0.6662F + (float)Math.PI) * limbSwingAmount;
+        this.left_arm.xRot = Mth.cos(limbSwing * 0.6662F) * limbSwingAmount;
         int i = entity.getAttackTick();
         if (i > 0) {
             this.left_arm.xRot = Mth.lerp(i, -0.2F, -0.5F);
