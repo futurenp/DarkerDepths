@@ -1,7 +1,10 @@
 {
   "variants": {
-    "": {
+    "powered=false": {
       "model": "darkerdepths:block/death_anchor"
+    },
+    "powered=true": {
+      "model": "darkerdepths:block/death_anchor_powered"
     }
   }
 }

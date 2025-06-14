@@ -9,7 +9,9 @@ import com.naterbobber.darkerdepths.init.DDEnchantments;
 import com.naterbobber.darkerdepths.init.DDEntityTypes;
 import com.naterbobber.darkerdepths.init.DDFeatures;
 import com.naterbobber.darkerdepths.init.DDItems;
+import com.naterbobber.darkerdepths.init.DDMobEffects;
 import com.naterbobber.darkerdepths.init.DDParticleTypes;
+import com.naterbobber.darkerdepths.init.DDPoiTypes;
 import com.naterbobber.darkerdepths.init.DDSoundEvents;
 import com.naterbobber.darkerdepths.init.DDVanillaIntegration;
 import net.minecraft.resources.ResourceLocation;
@@ -40,7 +42,9 @@ public class DarkerDepths {
         DDEnchantments.ENCHANTMENTS.register(modEventBus);
         DDFeatures.FEATURES.register(modEventBus);
         DDItems.ITEMS.register(modEventBus);
+        DDPoiTypes.POI_TYPES.register(modEventBus);
         DDParticleTypes.PARTICLE_TYPES.register(modEventBus);
+        DDMobEffects.MOB_EFFECTS.register(modEventBus);
         DDSoundEvents.SOUND_EVENTS.register(modEventBus);
 
         eventBus.register(this);
