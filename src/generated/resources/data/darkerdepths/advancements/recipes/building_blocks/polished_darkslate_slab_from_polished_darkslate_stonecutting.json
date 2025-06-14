@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_polished_darkslate": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "darkerdepths:polished_darkslate"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "darkerdepths:polished_darkslate_slab_from_polished_darkslate_stonecutting"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_polished_darkslate",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "darkerdepths:polished_darkslate_slab_from_polished_darkslate_stonecutting"
+    ]
+  },
+  "sends_telemetry_event": false
+}

@@ -2,7 +2,7 @@
   "type": "forge:add_features",
   "biomes": "darkerdepths:molten_cavern",
   "features": [
-    "darkerdepths:shale_placement",
+    "darkerdepths:darkslate_placement",
     "darkerdepths:amber",
     "darkerdepths:molten_pool",
     "darkerdepths:molten_spring"

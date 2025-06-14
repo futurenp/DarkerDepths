@@ -9,7 +9,7 @@
       }
     },
     "state": {
-      "Name": "darkerdepths:shale"
+      "Name": "darkerdepths:darkslate"
     },
     "target": [
       {
@@ -28,7 +28,7 @@
         "Name": "minecraft:dirt"
       },
       {
-        "Name": "darkerdepths:shale"
+        "Name": "darkerdepths:darkslate"
       },
       {
         "Name": "darkerdepths:aridrock",

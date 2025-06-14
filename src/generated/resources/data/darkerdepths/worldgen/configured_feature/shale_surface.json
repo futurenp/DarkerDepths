@@ -4,7 +4,7 @@
     "below_state": {
       "type": "minecraft:simple_state_provider",
       "state": {
-        "Name": "darkerdepths:shale"
+        "Name": "darkerdepths:darkslate"
       }
     },
     "depth": 1,
@@ -13,7 +13,7 @@
     "ground_state": {
       "type": "minecraft:simple_state_provider",
       "state": {
-        "Name": "darkerdepths:shale"
+        "Name": "darkerdepths:darkslate"
       }
     },
     "replaceable": "#minecraft:lush_ground_replaceable",

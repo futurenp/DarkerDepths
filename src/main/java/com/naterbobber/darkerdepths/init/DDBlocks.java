@@ -94,7 +94,6 @@ public class DDBlocks {
     public static final RegistryObject<Block> CRACKED_LIMESTONE_BRICKS = registerBlock("cracked_limestone_bricks", () -> new Block(BlockBehaviour.Properties.of().sound(SoundType.STONE).strength(1.5F, 6.0F).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> ARID_DEEPSLATE = registerBlock("arid_deepslate", () -> new LayeredDeepslateBlock(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE).randomTicks()));
     public static final RegistryObject<Block> SKULL_WALL = registerBlock("skull_wall", () -> new Block(BlockBehaviour.Properties.of().sound(SoundType.STONE).strength(1.5F, 6.0F).requiresCorrectToolForDrops()));
-    public static final RegistryObject<Block> DEATH_ANCHOR = registerBlock("death_anchor", () -> new Block(BlockBehaviour.Properties.of().sound(SoundType.NETHER_BRICKS)));
     public static final RegistryObject<Block> VOID_SOUL_TORCH = registerNoTabBlock("void_soul_torch", () -> new VoidSoulTorchBlock(BlockBehaviour.Properties.of().strength(0.0F, 1.0F).noCollission().sound(SoundType.WOOD).lightLevel(state -> 12), DDParticleTypes.VOID_SOUL_FLAME::get));
     public static final RegistryObject<Block> WALL_VOID_SOUL_TORCH = registerNoTabBlock("wall_void_soul_torch", () -> new WallVoidSoulTorchBlock(BlockBehaviour.Properties.of().strength(0.0F, 1.0F).noCollission().sound(SoundType.WOOD).lootFrom(VOID_SOUL_TORCH).lightLevel(state -> 12), DDParticleTypes.VOID_SOUL_FLAME::get));
     public static final RegistryObject<Block> PETRIFIED_ROOTS = registerBlock("petrified_roots", () -> new PetrifiedRootBlock(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).offsetType(BlockBehaviour.OffsetType.XZ).noCollission().instabreak().sound(SoundType.HANGING_ROOTS)));
@@ -134,22 +133,7 @@ public class DDBlocks {
     public static final RegistryObject<Block> AMBER = registerBlock("amber", () -> new AmethystClusterBlock(4, 2, BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(1.0f).sound(SoundType.GLASS).lightLevel(value -> 7)));
     public static final RegistryObject<Block> AMBER_BLOCK = registerBlock("amber_block", () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(1.0f).sound(SoundType.GLASS).lightLevel(value -> 7)));
     public static final RegistryObject<Block> CRYSTAL_MELON = registerBlock("crystal_melon", () -> new CrystalMelon(BlockBehaviour.Properties.of().strength(0.3F, 0.6F).sound(SoundType.GLASS).lightLevel(value -> 10)));
-<<<<<<< Updated upstream
-    public static final RegistryObject<Block> PETRIFIED_SIGN = registerNoTabBlock("petrified_sign", () -> new DDStandingSignBlock(BlockBehaviour.Properties.of().noCollission().strength(1.0F).requiresCorrectToolForDrops().sound(SoundType.WOOD), DDWoodType.PETRIFIED));
-    public static final RegistryObject<Block> PETRIFIED_WALL_SIGN = registerNoTabBlock("petrified_wall_sign", () -> new DDWallSignBlock(BlockBehaviour.Properties.of().noCollission().strength(1.0F).requiresCorrectToolForDrops().sound(SoundType.WOOD), DDWoodType.PETRIFIED));
-    public static final RegistryObject<Block> GEYSER = registerBlock("geyser", () -> new GeyserBlock(BlockBehaviour.Properties.of().strength(1.5F, 6.0F).requiresCorrectToolForDrops().randomTicks()));
-    public static final RegistryObject<Block> PETRIFIED_PRESSURE_PLATE = registerBlock("petrified_pressure_plate", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING ,Block.Properties.of().requiresCorrectToolForDrops().strength(0.5f).sound(SoundType.WOOD), DDBlockSetTypes.PETRIFIED));
-    public static final RegistryObject<Block> PETRIFIED_TRAPDOOR = registerBlock("petrified_trapdoor", () -> new TrapDoorBlock(Block.Properties.of().requiresCorrectToolForDrops().noOcclusion().strength(2.5f, 3.0f).sound(SoundType.WOOD), DDBlockSetTypes.PETRIFIED));
-    public static final RegistryObject<Block> PETRIFIED_FENCE_GATE = registerBlock("petrified_fence_gate", () -> new FenceGateBlock(Block.Properties.of().requiresCorrectToolForDrops().strength(2.5f, 3.0f).sound(SoundType.WOOD), DDWoodType.PETRIFIED));
-    public static final RegistryObject<Block> PETRIFIED_BUTTON = registerBlock("petrified_button", () -> new ButtonBlock(Block.Properties.of().requiresCorrectToolForDrops().strength(0.5f).sound(SoundType.WOOD), DDBlockSetTypes.PETRIFIED, 30, true));
-    public static final RegistryObject<Block> PETRIFIED_DOOR = registerBlock("petrified_door", () -> new DoorBlock(Block.Properties.of().requiresCorrectToolForDrops().noOcclusion().strength(2.5f, 3.0f).sound(SoundType.WOOD), DDBlockSetTypes.PETRIFIED));
     public static final RegistryObject<Block> DEATH_ANCHOR = registerBlock("death_anchor", () -> new DeathAnchorBlock(BlockBehaviour.Properties.of().sound(SoundType.NETHER_BRICKS)));
-    public static final RegistryObject<Block> GLOWSHROOM_HEART = registerBlock("glowshroom_heart", () -> new Block(BlockBehaviour.Properties.of().sound(SoundType.SHROOMLIGHT).lightLevel(value -> 15)));
-    public static final RegistryObject<Block> ARID_DEEPSLATE = registerBlock("arid_deepslate", () -> new LayeredDeepslateBlock(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE).randomTicks()));
-    public static final RegistryObject<Block> GLOWSHROOM_LANTERN = registerBlock("glowshroom_lantern", () -> new GlowshroomLanternBlock(BlockBehaviour.Properties.copy(Blocks.LANTERN)));
-    public static final RegistryObject<Block> GLOWSHROOM_LAMP = registerBlock("glowshroom_lamp", () -> new RedstoneLampBlock(BlockBehaviour.Properties.copy(Blocks.REDSTONE_LAMP)));
-=======
->>>>>>> Stashed changes
 
     public static <B extends Block> RegistryObject<B> registerBlock(String name, Supplier<? extends B> blocks) {
         RegistryObject<B> block = BLOCKS.register(name, blocks);
