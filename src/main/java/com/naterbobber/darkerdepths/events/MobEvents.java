@@ -62,7 +62,8 @@ public class MobEvents {
         DamageSource damageSource = event.getSource();
         Entity damageSourceEntity = damageSource.getEntity();
         if (entity.hasEffect(DDMobEffects.SOUL_BINDING.get()) && entity.getEffect(DDMobEffects.SOUL_BINDING.get()).getDuration() > 0) {
-            event.setCanceled(false);
+            event.setAmount(0.0F);
+            event.setCanceled(true);
         }
         if (damageSourceEntity instanceof Player player) {
             ItemStack itemStack = player.getItemInHand(player.getUsedItemHand());
