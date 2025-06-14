@@ -8,6 +8,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.material.PushReaction;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -41,6 +42,7 @@ public class DDBlocks {
     public static final RegistryObject<Block> PETRIFIED_POST = registerCompatBlock("quark", "petrified_post", () -> new WoodPostBlock(Block.Properties.of().requiresCorrectToolForDrops().noOcclusion().strength(2.5f, 3.0f).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> STRIPPED_PETRIFIED_POST = registerCompatBlock("quark", "stripped_petrified_post", () -> new WoodPostBlock(Block.Properties.of().requiresCorrectToolForDrops().noOcclusion().strength(2.5f, 3.0f).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> POROUS_PETRIFIED_LOG = registerBlock("porous_petrified_log", () -> new PorousBlock(BlockBehaviour.Properties.copy(PETRIFIED_LOG.get()).randomTicks().lightLevel(value -> 6)));
+    public static final RegistryObject<Block> MAGMA_PAD = registerNoTabBlock("magma_pad", () -> new MagmaPadBlock(BlockBehaviour.Properties.of().strength(0.1F).lightLevel(state -> 3).sound(DDSoundEvents.GRIMESTONE).noOcclusion().pushReaction(PushReaction.DESTROY)));
     public static final RegistryObject<Block> DARKSLATE = registerBlock("darkslate", () -> new Block(Block.Properties.of().requiresCorrectToolForDrops().strength(1.5f, 6.0f).sound(SoundType.STONE)));
     public static final RegistryObject<Block> DARKSLATE_STAIRS = registerBlock("darkslate_stairs", () -> new StairBlock(() -> DARKSLATE.get().defaultBlockState(), Block.Properties.of().requiresCorrectToolForDrops().strength(1.5f, 6.0f).sound(SoundType.STONE)));
     public static final RegistryObject<Block> DARKSLATE_SLAB = registerBlock("darkslate_slab", () -> new SlabBlock(Block.Properties.of().requiresCorrectToolForDrops().strength(1.5f, 6.0f).sound(SoundType.STONE)));

@@ -1,12 +1,14 @@
 package com.naterbobber.darkerdepths.world.gen.features;
 
 import com.mojang.serialization.Codec;
+import com.naterbobber.darkerdepths.init.DDBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.feature.VegetationPatchFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.VegetationPatchConfiguration;
@@ -58,6 +60,10 @@ public class LavaVegetationPatchFeature extends VegetationPatchFeature {
 
     @Override
     protected boolean placeVegetation(WorldGenLevel world, VegetationPatchConfiguration config, ChunkGenerator generator, RandomSource random, BlockPos pos) {
+        if (random.nextFloat() < 0.1F) {
+            world.setBlock(pos.above(), DDBlocks.MAGMA_PAD.get().defaultBlockState().setValue(BlockStateProperties.HORIZONTAL_FACING, Direction.Plane.HORIZONTAL.getRandomDirection(random)), 2);
+            return true;
+        }
         return random.nextFloat() < 0.035F && super.placeVegetation(world, config, generator, random, pos.below(2));
     }
 }

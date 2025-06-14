@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "darkerdepths:block/magma_pad",
+      "y": 90
+    },
+    "facing=west": {
+      "model": "darkerdepths:block/magma_pad",
+      "y": 270
+    },
+    "facing=north": {
+      "model": "darkerdepths:block/magma_pad"
+    },
+    "facing=south": {
+      "model": "darkerdepths:block/magma_pad",
+      "y": 180
+    }
+  }
+}
