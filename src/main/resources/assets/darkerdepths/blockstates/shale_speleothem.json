@@ -1,7 +1,0 @@
-{
-  "variants": {
-    "size=small": { "model": "darkerdepths:block/shale_speleothem_small" },
-    "size=medium": { "model": "darkerdepths:block/shale_speleothem_medium" },
-    "size=big": { "model": "darkerdepths:block/shale_speleothem_big" }
-  }
-}
