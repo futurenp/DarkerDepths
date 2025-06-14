@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "count": 2,
-  "ingredient": {
-    "item": "darkerdepths:shale"
-  },
-  "result": "darkerdepths:shale_bricks_slab"
-}

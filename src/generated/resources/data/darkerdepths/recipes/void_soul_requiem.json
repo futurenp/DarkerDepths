@@ -1,18 +1,18 @@
 {
   "type": "minecraft:crafting_shaped",
-  "category": "misc",
+  "category": "building",
   "key": {
-    "#": {
+    "A": {
       "item": "darkerdepths:resin"
     },
-    "C": {
+    "B": {
       "item": "darkerdepths:bottle_of_void_soul"
     }
   },
   "pattern": [
-    "###",
-    "#C#",
-    "###"
+    "AAA",
+    "ABA",
+    "AAA"
   ],
   "result": {
     "item": "darkerdepths:void_soul_requiem"

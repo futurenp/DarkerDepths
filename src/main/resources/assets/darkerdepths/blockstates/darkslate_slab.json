@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "darkerdepths:block/darkslate_slab"
+    },
+    "type=double": {
+      "model": "darkerdepths:block/darkslate"
+    },
+    "type=top": {
+      "model": "darkerdepths:block/darkslate_slab_top"
+    }
+  }
+}

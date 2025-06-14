@@ -31,12 +31,12 @@ public class DDPlacedFeatures {
     public static final ResourceKey<PlacedFeature> AMBER = createKey("amber");
     public static final ResourceKey<PlacedFeature> MOLTEN_SPRING = createKey("molten_spring");
     public static final ResourceKey<PlacedFeature> MOLTEN_POOL = createKey("molten_pool");
-    public static final ResourceKey<PlacedFeature> SHALE_PLACEMENT = createKey("shale_placement");
+    public static final ResourceKey<PlacedFeature> DARKSLATE_PLACEMENT = createKey("darkslate_placement");
     public static final ResourceKey<PlacedFeature> PETRIFIED_BRANCH = createKey("petrified_branch");
     public static final ResourceKey<PlacedFeature> MAGMA_ORE = createKey("magma_ore");
     public static final ResourceKey<PlacedFeature> GRIME_SURFACE = createKey("grime_surface");
     public static final ResourceKey<PlacedFeature> ARID_SURFACE = createKey("arid_surface");
-    public static final ResourceKey<PlacedFeature> SHALE_SURFACE = createKey("shale_surface");
+    public static final ResourceKey<PlacedFeature> DARKSLATE_SURFACE = createKey("darkslate_surface");
     public static final ResourceKey<PlacedFeature> ARID_BOULDER = createKey("arid_boulder");
     public static final ResourceKey<PlacedFeature> GLIMMERING_VINES = createKey("glimmering_vines");
 
@@ -47,12 +47,12 @@ public class DDPlacedFeatures {
         PlacementUtils.register(context, AMBER, lookup.getOrThrow(DDConfiguredFeatures.AMBERS_PLACEMENT), CountPlacement.of(UniformInt.of(120, 180)), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT, BiomeFilter.biome());
         PlacementUtils.register(context, MOLTEN_SPRING, lookup.getOrThrow(DDConfiguredFeatures.MOLTEN_SPRING), CountPlacement.of(20), InSquarePlacement.spread(), HeightRangePlacement.of(VeryBiasedToBottomHeight.of(VerticalAnchor.bottom(), VerticalAnchor.belowTop(32), 32)), BiomeFilter.biome());
         PlacementUtils.register(context, MOLTEN_POOL, lookup.getOrThrow(DDConfiguredFeatures.MOLTEN_POOL), CountPlacement.of(60), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT, EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.solid(), BlockPredicate.ONLY_IN_AIR_PREDICATE, 12), RandomOffsetPlacement.vertical(ConstantInt.of(1)), BiomeFilter.biome());
-        PlacementUtils.register(context, SHALE_PLACEMENT, lookup.getOrThrow(DDConfiguredFeatures.SHALE_PLACEMENT), CountPlacement.of(175), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT, BiomeFilter.biome());
+        PlacementUtils.register(context, DARKSLATE_PLACEMENT, lookup.getOrThrow(DDConfiguredFeatures.DARKSLATE_PLACEMENT), CountPlacement.of(175), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT, BiomeFilter.biome());
         PlacementUtils.register(context, PETRIFIED_BRANCH, lookup.getOrThrow(DDConfiguredFeatures.PETRIFIED_BRANCH), CountPlacement.of(150), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT, BiomeFilter.biome());
         PlacementUtils.register(context, MAGMA_ORE, lookup.getOrThrow(DDConfiguredFeatures.MAGMA_ORE), CountPlacement.of(50), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT, BiomeFilter.biome());
         PlacementUtils.register(context, GRIME_SURFACE, lookup.getOrThrow(DDConfiguredFeatures.GRIME_SURFACE), CountPlacement.of(UniformInt.of(192, 256)), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT, BiomeFilter.biome());
         PlacementUtils.register(context, ARID_SURFACE, lookup.getOrThrow(DDConfiguredFeatures.ARID_SURFACE), CountPlacement.of(UniformInt.of(192, 256)), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT, BiomeFilter.biome());
-        PlacementUtils.register(context, SHALE_SURFACE, lookup.getOrThrow(DDConfiguredFeatures.SHALE_SURFACE), CountPlacement.of(UniformInt.of(192, 256)), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT, BiomeFilter.biome());
+        PlacementUtils.register(context, DARKSLATE_SURFACE, lookup.getOrThrow(DDConfiguredFeatures.DARKSLATE_SURFACE), CountPlacement.of(UniformInt.of(192, 256)), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT, BiomeFilter.biome());
         PlacementUtils.register(context, ARID_BOULDER, lookup.getOrThrow(DDConfiguredFeatures.ARID_BOULDER), CountPlacement.of(UniformInt.of(192, 256)), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT, BiomeFilter.biome());
         PlacementUtils.register(context, GLIMMERING_VINES, lookup.getOrThrow(DDConfiguredFeatures.GLIMMERING_VINES), CountPlacement.of(125), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT, EnvironmentScanPlacement.scanningFor(Direction.UP, BlockPredicate.solid(), BlockPredicate.ONLY_IN_AIR_PREDICATE, 12), RandomOffsetPlacement.vertical(ConstantInt.of(-1)), BiomeFilter.biome());
     }

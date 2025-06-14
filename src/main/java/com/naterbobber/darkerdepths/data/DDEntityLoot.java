@@ -20,6 +20,7 @@ public class DDEntityLoot extends VanillaEntityLoot {
     @Override
     public void generate() {
         this.add(DDEntityTypes.GLOWSHROOM_MONSTER.get(), LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(DDItems.GLOWSHROOM_CAP.get()))).withPool(LootPool.lootPool().add(LootItem.lootTableItem(DDItems.GLOW_GRIME.get())).apply(SetItemCountFunction.setCount(UniformGenerator.between(0.0F, 2.0F)))).withPool(LootPool.lootPool().add(LootItem.lootTableItem(DDBlocks.GRIMESTONE.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(0.0F, 3.0F))))));
+        this.add(DDEntityTypes.BODY_SNATCHER.get(), LootTable.lootTable());
     }
 
     @Override

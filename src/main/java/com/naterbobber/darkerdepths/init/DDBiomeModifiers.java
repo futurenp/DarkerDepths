@@ -37,7 +37,7 @@ public class DDBiomeModifiers {
                 getBiome(context, DDBiomes.MOLTEN_CAVERN),
                 getPlacedFeature(
                         context,
-                        DDPlacedFeatures.SHALE_PLACEMENT,
+                        DDPlacedFeatures.DARKSLATE_PLACEMENT,
                         DDPlacedFeatures.AMBER,
                         DDPlacedFeatures.MOLTEN_POOL,
                         DDPlacedFeatures.MOLTEN_SPRING

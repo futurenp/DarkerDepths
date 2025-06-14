@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "darkerdepths:block/polished_darkslate_slab"
+    },
+    "type=double": {
+      "model": "darkerdepths:block/polished_darkslate"
+    },
+    "type=top": {
+      "model": "darkerdepths:block/polished_darkslate_slab_top"
+    }
+  }
+}
