@@ -31,14 +31,14 @@ public class GeyserBlockEntity extends BlockEntity {
             if (!(world.isStateAtPosition(relativePosition, DripstoneUtils::isEmptyOrWaterOrLava) || (relativeState.hasProperty(BlockStateProperties.LAYERS) && relativeState.getValue(BlockStateProperties.LAYERS) == 1))) {
                 break;
             }
-            List<Entity> nearbyEntities = world.getEntitiesOfClass(Entity.class, new AABB(relativePosition.mutable().move(direction)).inflate(1.0D));
+            List<Entity> nearbyEntities = world.getEntitiesOfClass(Entity.class, new AABB(relativePosition));
             for (Entity entity : nearbyEntities) {
                 Vec3 motion = entity.getDeltaMovement();
-                double xBooster = direction.getAxis() == Direction.Axis.X ? booster : 0.0D;
-                double yBooster = direction.getAxis() == Direction.Axis.Y ? booster : 0.0D;
-                double zBooster = direction.getAxis() == Direction.Axis.Z ? booster : 0.0D;
+                double xBooster = -(direction.getAxis() == Direction.Axis.X ? booster : 0.0D);
+                double yBooster = -(direction.getAxis() == Direction.Axis.Y ? booster : 0.0D);
+                double zBooster = -(direction.getAxis() == Direction.Axis.Z ? booster : 0.0D);
                 Vec3 vec3 = motion.scale(2.0D);
-                entity.setDeltaMovement(motion. x + xBooster, motion.y + yBooster, motion.z + zBooster);
+                entity.setDeltaMovement(motion.x + xBooster, motion.y + yBooster, motion.z + zBooster);
                 entity.fallDistance = 0.0F;
             }
         }
