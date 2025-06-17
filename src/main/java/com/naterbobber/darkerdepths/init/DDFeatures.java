@@ -1,14 +1,7 @@
 package com.naterbobber.darkerdepths.init;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
-import com.naterbobber.darkerdepths.world.gen.features.AridBoulderFeature;
-import com.naterbobber.darkerdepths.world.gen.features.CorrespondentLayersFeature;
-import com.naterbobber.darkerdepths.world.gen.features.GemstoneFeature;
-import com.naterbobber.darkerdepths.world.gen.features.HugeGlowshroomFeature;
-import com.naterbobber.darkerdepths.world.gen.features.LavaVegetationPatchFeature;
-import com.naterbobber.darkerdepths.world.gen.features.PetrifiedBranchFeature;
-import com.naterbobber.darkerdepths.world.gen.features.RandomSpreadFeature;
-import com.naterbobber.darkerdepths.world.gen.features.ReplaceListFeature;
+import com.naterbobber.darkerdepths.world.gen.features.*;
 import com.naterbobber.darkerdepths.world.gen.features.config.CorrespondentLayersConfig;
 import com.naterbobber.darkerdepths.world.gen.features.config.PetrifiedBranchConfig;
 import com.naterbobber.darkerdepths.world.gen.features.config.ReplaceListConfig;
@@ -33,5 +26,7 @@ public class DDFeatures {
     public static final RegistryObject<Feature<VegetationPatchConfiguration>> LAVA_VEGETATION_PATCH_FEATURE = FEATURES.register("lava_vegetation_patch", () -> new LavaVegetationPatchFeature(VegetationPatchConfiguration.CODEC));
     public static final RegistryObject<Feature<CorrespondentLayersConfig>> CORRESPONDENT_LAYER = FEATURES.register("correspondent_layer", () -> new CorrespondentLayersFeature(CorrespondentLayersConfig.CODEC));
     public static final RegistryObject<Feature<NoneFeatureConfiguration>> ARID_BOULDER = FEATURES.register("arid_boulder", () -> new AridBoulderFeature(NoneFeatureConfiguration.CODEC));
+    public static final RegistryObject<Feature<NoneFeatureConfiguration>> CATACOMBS_LAVA_LINING = FEATURES.register("catacombs_lava_lining", () -> new CatacombsLavaLiningFeature(NoneFeatureConfiguration.CODEC));
+    public static final RegistryObject<Feature<NoneFeatureConfiguration>> LIMESTONE_STRIPE = FEATURES.register("limestone_stripe", () -> new LimestoneStripeFeature(NoneFeatureConfiguration.CODEC));
 
 }
