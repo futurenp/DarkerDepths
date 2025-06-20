@@ -30,10 +30,12 @@ import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.entity.ai.village.poi.PoiManager;
 import net.minecraft.world.entity.ai.village.poi.PoiType;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.vehicle.DismountHelper;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.util.ITeleporter;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
@@ -97,7 +99,31 @@ public class MobEvents {
             if (!exists) return;
 
             entity.setHealth(1.0F);
-            entity.teleportTo(newServer, pos.getX() + 0.5D, pos.getY() + 1.0D, pos.getZ() + 0.5D, Set.of(), 0, 0);
+
+            BlockPos teleportPos = pos.above();
+
+            if (!serverLevel.getBlockState(teleportPos).isAir()) {
+                boolean safe = false;
+                int radius = 1;
+                for (int y = -radius; y <= radius; y++) {
+                    for (int x = -radius; x <= radius; x++) {
+                        for (int z = -radius; z <= radius; z++) {
+                            BlockPos blockPos = teleportPos.offset(x, y, z);
+                            Vec3 vec3 = DismountHelper.findSafeDismountLocation(entity.getType(), serverLevel, blockPos, true);
+                            if (vec3 != null) {
+                                teleportPos = BlockPos.containing(vec3);
+                                safe = true;
+                            }
+                        }
+                    }
+                }
+                if (!safe) {
+                    serverLevel.destroyBlock(teleportPos, false);
+                    serverLevel.destroyBlock(teleportPos.above(), false);
+                }
+            }
+
+            entity.teleportTo(newServer, teleportPos.getX() + 0.5D, teleportPos.getY(), teleportPos.getZ() + 0.5D, Set.of(), 0, 0);
             entity.addEffect(new MobEffectInstance(DDMobEffects.SOUL_BINDING.get(), 200));
             newServer.broadcastEntityEvent(entity, (byte)35);
         }
@@ -130,7 +156,9 @@ public class MobEvents {
 
                 deathAnchorLocation.setDeathAnchorLocation(Optional.empty());
             }
-            entity.kill();
+            if (entity instanceof Player player && !player.getAbilities().instabuild) {
+                entity.kill();
+            }
         }
     }
 
