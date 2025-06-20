@@ -6,14 +6,21 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "darkerdepths:petrified_roots"
+          "name": "darkerdepths:darkslate_speleothem"
         }
       ],
       "conditions": [
         {
           "condition": "minecraft:match_tool",
           "predicate": {
-            "item": "minecraft:shears"
+            "enchantments": [
+              {
+                "enchantment": "minecraft:silk_touch",
+                "levels": {
+                  "min": 1
+                }
+              }
+            ]
           }
         }
       ]

@@ -1,5 +1,4 @@
 {
-	"parent": "darkerdepths:block/potted_glowshroom",
 	"textures": {
 		"0": "darkerdepths:block/glowshroom",
 		"1": "block/flower_pot",

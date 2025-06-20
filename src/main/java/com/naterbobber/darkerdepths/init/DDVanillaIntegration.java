@@ -22,7 +22,6 @@ public class DDVanillaIntegration {
         registerCompostable(0.65F, DDBlocks.GLOWSHROOM.get().asItem());
         registerCompostable(0.85F, DDBlocks.GLOWSPURS.get().asItem());
         registerCompostable(0.5F,  DDBlocks.GLIMMERING_VINES.get().asItem());
-        registerCompostable(0.65F, DDBlocks.LUSH_SPROUTS.get().asItem());
         registerCompostable(0.65F, DDBlocks.MOSSY_SPROUTS.get().asItem());
         registerCompostable(0.3F,  DDBlocks.PETRIFIED_ROOTS.get().asItem());
     }

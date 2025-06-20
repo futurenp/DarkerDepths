@@ -9,6 +9,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
+import net.minecraftforge.event.entity.living.LivingUseTotemEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -120,7 +121,6 @@ public class DDBlocks {
     public static final RegistryObject<Block> GLOWSHROOM = registerBlock("glowshroom", () -> new GlowshroomBlock(BlockBehaviour.Properties.of().strength(0.0F, 1.0F).sound(SoundType.SLIME_BLOCK).lightLevel((state) -> 2 + (3 * state.getValue(GlowshroomBlock.CLUSTERS_1_3))).noCollission()));
     public static final RegistryObject<Block> GLOWSPURS = registerBlock("glowspurs", () -> new GlowspursBlock(BlockBehaviour.Properties.of().instabreak().sound(SoundType.SLIME_BLOCK).noCollission()));
     public static final RegistryObject<Block> DRY_SPROUTS = registerBlock("dry_sprouts", () -> new DrySproutsBlock(BlockBehaviour.Properties.copy(Blocks.DEAD_BUSH).offsetType(BlockBehaviour.OffsetType.XZ)));
-    public static final RegistryObject<Block> LUSH_SPROUTS = registerBlock("lush_sprouts", () -> new SproutsBlock(BlockBehaviour.Properties.copy(Blocks.GRASS).offsetType(BlockBehaviour.OffsetType.XZ)));
     public static final RegistryObject<Block> MOSSY_SPROUTS = registerBlock("mossy_sprouts", () -> new SproutsBlock(BlockBehaviour.Properties.copy(Blocks.GRASS).sound(SoundType.WET_GRASS).offsetType(BlockBehaviour.OffsetType.XZ)));
     public static final RegistryObject<Block> POTTED_GLOWSHROOM = registerNoTabBlock("potted_glowshroom", () -> new FlowerPotBlock(GLOWSHROOM.get(), BlockBehaviour.Properties.of().instabreak().noOcclusion()));
     public static final RegistryObject<Block> GLIMMERING_VINES = registerBlock("glimmering_vines", () -> new GlimmeringVinesBlock(BlockBehaviour.Properties.of().noCollission().lightLevel(value -> 8).sound(SoundType.SPORE_BLOSSOM)));
@@ -129,7 +129,7 @@ public class DDBlocks {
     public static final RegistryObject<Block> GLOWSHROOM_STEM = registerBlock("glowshroom_stem", () -> new Block(BlockBehaviour.Properties.of().strength(0.2F).sound(SoundType.STEM)));
     public static final RegistryObject<Block> GLOWSHROOM_HEART = registerBlock("glowshroom_heart", () -> new Block(BlockBehaviour.Properties.of().sound(SoundType.SHROOMLIGHT).lightLevel(value -> 15)));
     public static final RegistryObject<Block> GLOWSHROOM_LANTERN = registerBlock("glowshroom_lantern", () -> new GlowshroomLanternBlock(BlockBehaviour.Properties.copy(Blocks.LANTERN)));
-    public static final RegistryObject<Block> GLOWSHROOM_LAMP = registerBlock("glowshroom_lamp", () -> new RedstoneLampBlock(BlockBehaviour.Properties.copy(Blocks.REDSTONE_LAMP)));
+    public static final RegistryObject<Block> GLOWSHROOM_LAMP = registerBlock("glowshroom_lamp", () -> new GlowshroomLampBlock(BlockBehaviour.Properties.of().lightLevel(level -> 15).sound(SoundType.GLASS)));
     public static final RegistryObject<Block> ROPE = registerNoTabBlock("rope", () -> new RopeBlock(BlockBehaviour.Properties.of().strength(0.1F).sound(SoundType.WOOL)));
     public static final RegistryObject<Block> STONE_BRICK_PILLAR = registerBlock("stone_brick_pillar", () -> new RotatedPillarBlock(RotatedPillarBlock.Properties.of().requiresCorrectToolForDrops().strength(1.5f, 6.0f).sound(SoundType.STONE)));
     public static final RegistryObject<Block> AMBER = registerBlock("amber", () -> new AmethystClusterBlock(4, 2, BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(1.0f).sound(SoundType.GLASS).lightLevel(value -> 7)));
