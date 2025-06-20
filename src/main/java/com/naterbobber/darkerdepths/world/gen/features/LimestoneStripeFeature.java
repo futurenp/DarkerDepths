@@ -27,7 +27,7 @@ public class LimestoneStripeFeature extends Feature<NoneFeatureConfiguration> {
 
         PerlinNoise noise = PerlinNoise.create(new WorldgenRandom(new LegacyRandomSource(level.getSeed() + origin.asLong())), -4, 1.0);
 
-        int patchRadius = 12; // How far out from the origin the patch extends.
+        int patchRadius = 11; // How far out from the origin the patch extends.
         double noiseScaleXZ = 100.0; // Larger numbers = wider, more stretched stripes.
         double noiseScaleY = 5.0;  // Smaller numbers = thicker vertical stripes.
         double noiseThreshold = 0.68; // From 0.0 to 1.0. Higher numbers = thinner, rarer stripes.

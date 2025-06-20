@@ -18,7 +18,7 @@ public class DDCreativeModeTabs {
 
     public static final RegistryObject<CreativeModeTab> DARKER_DEPTHS = CREATIVE_MODE_TABS.register("darker_depths", () -> {
         return CreativeModeTab.builder()
-                .title(Component.translatable("itemGroup.darkerdepths.darkerdepths"))
+                .title(Component.translatable("itemGroup.darkerdepths.creative_tab"))
                 .icon(() -> new ItemStack(DDItems.GLOWSHROOM_CAP.get()))
                 .displayItems((itemDisplayParameters, output) -> {
                     for (RegistryObject<Item> item : DDItems.ITEMS.getEntries()) {
