@@ -95,7 +95,7 @@ public class GlowshroomBlock extends Block implements BonemealableBlock, SimpleW
 
     @Override
     public boolean isValidBonemealTarget(LevelReader worldIn, BlockPos pos, BlockState state, boolean isClient) {
-        return state.getValue(CLUSTERS_1_3) == 1 && worldIn.getBlockState(pos.below()) == DDBlocks.MOSSY_GRIMESTONE.get().defaultBlockState();
+        return state.getValue(CLUSTERS_1_3) == 1;
     }
 
     @Override
