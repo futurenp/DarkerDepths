@@ -20,6 +20,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageSources;
 import net.minecraft.world.effect.MobEffect;
@@ -117,8 +118,10 @@ public class MobEvents {
                     }
                 }
                 if (!safe) {
-                    serverLevel.destroyBlock(teleportPos, false);
-                    serverLevel.destroyBlock(teleportPos.above(), false);
+                    if (serverLevel.getBlockState(teleportPos).is(BlockTags.FEATURES_CANNOT_REPLACE) && serverLevel.getBlockState(teleportPos.above()).is(BlockTags.FEATURES_CANNOT_REPLACE)) {
+                        serverLevel.destroyBlock(teleportPos, false);
+                        serverLevel.destroyBlock(teleportPos.above(), false);
+                    }
                 }
             }
 
