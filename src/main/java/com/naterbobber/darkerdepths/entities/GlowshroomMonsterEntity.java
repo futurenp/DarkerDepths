@@ -118,8 +118,4 @@ public class GlowshroomMonsterEntity extends Monster {
                 .add(Attributes.KNOCKBACK_RESISTANCE, KNOCKBACK_RESISTANCE)
                 .add(Attributes.FOLLOW_RANGE, FOLLOW_RANGE);
     }
-
-    public static boolean canSpawn(EntityType<? extends Mob> typeIn, ServerLevelAccessor worldIn, MobSpawnType reason, BlockPos pos, RandomSource randomIn) {
-        return worldIn.getDifficulty() != Difficulty.PEACEFUL && pos.getY() <= 40 && (worldIn.getBlockState(pos.below()).is(DDBlocks.MOSSY_GRIMESTONE.get()) || worldIn.getBlockState(pos.below()).is(DDBlocks.GRIMESTONE.get()));
-    }
 }
