@@ -42,6 +42,7 @@ public class LimestoneStripeFeature extends Feature<NoneFeatureConfiguration> {
                     if(mutablePos.distSqr(origin) > patchRadius * patchRadius) {
                         continue;
                     }
+                    //normal noise?
 
                     double noiseValue = noise.getValue(
                             mutablePos.getX() / noiseScaleXZ,

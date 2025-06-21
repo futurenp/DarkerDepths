@@ -24,7 +24,9 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageSources;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.entity.ai.village.poi.PoiManager;
@@ -40,6 +42,7 @@ import net.minecraftforge.common.util.ITeleporter;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
 import net.minecraftforge.event.entity.living.MobEffectEvent;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -160,5 +163,29 @@ public class MobEvents {
             }
         }
     }
+
+    @SubscribeEvent
+    public void onEquipmentChange(LivingEquipmentChangeEvent event) {
+        if (!(event.getEntity() instanceof Player player)) {
+            return;
+        }
+
+        if (event.getSlot() != EquipmentSlot.HEAD) {
+            return;
+        }
+
+        ItemStack newlyEquipped = event.getTo();
+        ItemStack previouslyEquipped = event.getFrom();
+
+        // Check if the player just put ON the helmet
+        if (newlyEquipped.is(DDItems.GLOWSHROOM_CAP.get())) {
+            player.addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, MobEffectInstance.INFINITE_DURATION, 0, false, false, true));
+        }
+
+        if (previouslyEquipped.is(DDItems.GLOWSHROOM_CAP.get())) {
+            player.removeEffect(MobEffects.DIG_SPEED);
+        }
+    }
+
 
 }
