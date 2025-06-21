@@ -83,8 +83,6 @@ public class MobEvents {
     public void onLivingDeathEvent(LivingDeathEvent event) {
         LivingEntity entity = event.getEntity();
         if (entity.level() instanceof ServerLevel serverLevel && entity instanceof DeathAnchorLocation deathAnchorLocation && deathAnchorLocation.getDeathAnchorLocation().isPresent()) {
-            event.setCanceled(true);
-
             GlobalPos globalPos = deathAnchorLocation.getDeathAnchorLocation().get();
             ResourceKey<Level> resourcekey = globalPos.dimension();
             ServerLevel newServer =  serverLevel.getServer().getLevel(resourcekey);
@@ -98,6 +96,7 @@ public class MobEvents {
 
             if (!exists) return;
 
+            event.setCanceled(true);
             entity.setHealth(1.0F);
 
             BlockPos teleportPos = pos.above();
