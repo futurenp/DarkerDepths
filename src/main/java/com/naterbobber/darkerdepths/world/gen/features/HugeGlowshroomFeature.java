@@ -31,7 +31,7 @@ public class HugeGlowshroomFeature extends Feature<NoneFeatureConfiguration> {
         RandomSource rand = context.random();
         BlockState belowState = world.getBlockState(pos.below());
         boolean flag = (belowState.is(BlockTags.BASE_STONE_OVERWORLD) || belowState.is(DDBlocks.MOSSY_GRIMESTONE.get()) || belowState.is(DDBlocks.GRIMESTONE.get())) && !belowState.is(Blocks.LAVA);
-        boolean flag2 = (world.isStateAtPosition(pos, BlockBehaviour.BlockStateBase::isAir) || world.getBlockState(pos).canBeReplaced()) && !world.getBlockState(pos).is(Blocks.LAVA);
+        boolean flag2 = (world.isStateAtPosition(pos, BlockBehaviour.BlockStateBase::isAir) || world.getBlockState(pos).is(DDBlocks.GLOWSHROOM.get()) || world.getBlockState(pos).canBeReplaced()) && !world.getBlockState(pos).is(Blocks.LAVA);
         if (flag2 && flag) {
             int height = Mth.nextInt(rand, 2, 4);
             int chanceHeight = 3;
