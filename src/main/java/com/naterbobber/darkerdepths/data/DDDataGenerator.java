@@ -17,6 +17,7 @@ public class DDDataGenerator {
     private DDDataGenerator() {
     }
 
+
     @SubscribeEvent
     public static void onGatherData(GatherDataEvent event) {
         DataGenerator dataGenerator = event.getGenerator();
@@ -34,6 +35,7 @@ public class DDDataGenerator {
         dataGenerator.addProvider(server, blockTagsProvider);
         dataGenerator.addProvider(server, new DDItemTagsProvider(packOutput, lookupProvider, blockTagsProvider.contentsGetter(), existingFileHelper));
         dataGenerator.addProvider(server, new DDBiomeTagsProvider(packOutput, lookupProvider, existingFileHelper));
+        dataGenerator.addProvider(event.includeServer(), new DDDamageTypeTagsProvider(packOutput, lookupProvider, existingFileHelper));
         dataGenerator.addProvider(server, new DDDatapackBuiltinEntriesProvider(packOutput, lookupProvider));
     }
 

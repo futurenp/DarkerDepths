@@ -1,10 +1,7 @@
 package com.naterbobber.darkerdepths.data;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
-import com.naterbobber.darkerdepths.init.DDBiomeModifiers;
-import com.naterbobber.darkerdepths.init.DDBiomes;
-import com.naterbobber.darkerdepths.init.DDConfiguredFeatures;
-import com.naterbobber.darkerdepths.init.DDPlacedFeatures;
+import com.naterbobber.darkerdepths.init.*;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.registries.Registries;

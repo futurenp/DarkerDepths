@@ -5,15 +5,11 @@ import com.naterbobber.darkerdepths.api.DeathAnchorLocation;
 import com.naterbobber.darkerdepths.blocks.DeathAnchorBlock;
 import com.naterbobber.darkerdepths.entities.BodySnatcher;
 import com.naterbobber.darkerdepths.entities.GlowshroomMonsterEntity;
-import com.naterbobber.darkerdepths.init.DDBlocks;
-import com.naterbobber.darkerdepths.init.DDEnchantments;
-import com.naterbobber.darkerdepths.init.DDEntityTypes;
-import com.naterbobber.darkerdepths.init.DDItems;
-import com.naterbobber.darkerdepths.init.DDMobEffects;
-import com.naterbobber.darkerdepths.init.DDPoiTypes;
+import com.naterbobber.darkerdepths.init.*;
 import com.naterbobber.darkerdepths.item.StilettoItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.GlobalPos;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.MinecraftServer;
@@ -162,7 +158,16 @@ public class MobEvents {
                 deathAnchorLocation.setDeathAnchorLocation(Optional.empty());
             }
             if (entity instanceof Player player && !player.getAbilities().instabuild) {
-                entity.kill();
+                // --- THIS IS THE CORRECTED PART ---
+
+                // 1. Create the DamageSource object from our custom DamageType key.
+                DamageSource damageSource = new DamageSource(
+                        entity.level().registryAccess().registryOrThrow(Registries.DAMAGE_TYPE)
+                                .getHolderOrThrow(DDDamageTypes.SOUL_BINDING_DAMAGE)
+                );
+
+                // 2. Use the created DamageSource object to hurt the entity.
+                entity.hurt(damageSource, Float.MAX_VALUE);
             }
         }
     }

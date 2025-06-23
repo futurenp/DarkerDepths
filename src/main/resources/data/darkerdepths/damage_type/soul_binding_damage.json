@@ -1,0 +1,8 @@
+{
+  "message_id": "death.attack.soul_binding_damage",
+  "exhaustion": 0.0,
+  "scaling": "never",
+  "bypasses_armor": true,
+  "bypasses_magic": true,
+  "bypasses_resistance": true
+}
