@@ -25,6 +25,8 @@ public class DDBiomeModifiers {
     public static final ResourceKey<BiomeModifier> ADD_MOLTEN_CAVERNS_ORES = createKey("add_molten_caverns_ores");
     public static final ResourceKey<BiomeModifier> ADD_SANDY_CATACOMBS_VEGETAL_FEATURES = createKey("add_sandy_catacombs_vegetal_features");
     public static final ResourceKey<BiomeModifier> ADD_SANDY_CATACOMBS_SPAWNS = createKey("add_sandy_catacombs_spawns");
+    public static final ResourceKey<BiomeModifier> ADD_SANDY_CATACOMBS_RAW_GENERATION = createKey("add_sandy_catacombs_raw_generation");
+    public static final ResourceKey<BiomeModifier> ADD_SANDY_CATACOMBS_UNDERGROUND_DECORATION = createKey("add_sandy_catacombs_underground_decoration");
     public static final ResourceKey<BiomeModifier> ADD_GLOWSHROOM_FOREST_VEGETAL_FEATURES = createKey("add_glowshroom_forest_vegetal_features");
     public static final ResourceKey<BiomeModifier> ADD_GLOWSHROOM_FOREST_SPAWNS = createKey("add_glowshroom_forest_spawns");
 
@@ -56,7 +58,6 @@ public class DDBiomeModifiers {
                 getBiome(context, DDBiomes.SANDY_CATACOMBS),
                 getPlacedFeature(
                         context,
-                        DDPlacedFeatures.ARID_SURFACE,
                         DDPlacedFeatures.ARID_BOULDER,
                         DDPlacedFeatures.PETRIFIED_BRANCH
                 ),
@@ -70,6 +71,23 @@ public class DDBiomeModifiers {
                         new MobSpawnSettings.SpawnerData(EntityType.HUSK, 95, 4, 4)
                 )
         ));
+        context.register(ADD_SANDY_CATACOMBS_RAW_GENERATION, new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
+                        getBiome(context, DDBiomes.SANDY_CATACOMBS),
+                        getPlacedFeature(
+                                context,
+                                DDPlacedFeatures.ARID_SURFACE,
+                                DDPlacedFeatures.LIMESTONE_STRIPE
+                        ),
+                        GenerationStep.Decoration.RAW_GENERATION)
+        );
+        context.register(ADD_SANDY_CATACOMBS_UNDERGROUND_DECORATION, new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
+                getBiome(context, DDBiomes.SANDY_CATACOMBS),
+                getPlacedFeature(
+                        context,
+                        DDPlacedFeatures.CATACOMBS_LAVA_LINING
+                ),
+                GenerationStep.Decoration.UNDERGROUND_DECORATION)
+        );
         context.register(ADD_GLOWSHROOM_FOREST_VEGETAL_FEATURES, new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
                 getBiome(context, DDBiomes.GLOWSHROOM_FOREST),
                 getPlacedFeature(

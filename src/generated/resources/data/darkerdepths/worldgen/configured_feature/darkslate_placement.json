@@ -9,7 +9,10 @@
       }
     },
     "state": {
-      "Name": "darkerdepths:darkslate"
+      "Name": "darkerdepths:darkslate",
+      "Properties": {
+        "axis": "y"
+      }
     },
     "target": [
       {
@@ -28,7 +31,10 @@
         "Name": "minecraft:dirt"
       },
       {
-        "Name": "darkerdepths:darkslate"
+        "Name": "darkerdepths:darkslate",
+        "Properties": {
+          "axis": "y"
+        }
       },
       {
         "Name": "darkerdepths:aridrock",

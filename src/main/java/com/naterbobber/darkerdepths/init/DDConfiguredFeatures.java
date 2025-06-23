@@ -57,17 +57,18 @@ public static final ImmutableList<BlockState> OVERWORLD_REPLACEABLES    = Immuta
     public static final ResourceKey<ConfiguredFeature<?, ?>> MOLTEN_POOL = createKey("molten_pool");
     public static final ResourceKey<ConfiguredFeature<?, ?>> GRIME_VEGETATION = createKey("grime_vegetation");
     public static final ResourceKey<ConfiguredFeature<?, ?>> ARID_VEGETATION = createKey("arid_vegetation");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> DARKSLATE_VEGETATION = createKey("shale_vegetation");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> DARKSLATE_PLACEMENT = createKey("shale_placement");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> DARKSLATE_VEGETATION = createKey("darkslate_vegetation");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> DARKSLATE_PLACEMENT = createKey("darkslate_placement");
     public static final ResourceKey<ConfiguredFeature<?, ?>> SHORT_PETRIFIED_BRANCH = createKey("short_petrified_branch");
     public static final ResourceKey<ConfiguredFeature<?, ?>> LONG_PETRIFIED_BRANCH = createKey("long_petrified_branch");
     public static final ResourceKey<ConfiguredFeature<?, ?>> PETRIFIED_BRANCH = createKey("petrified_branch");
     public static final ResourceKey<ConfiguredFeature<?, ?>> MAGMA_ORE = createKey("magma_ore");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> SILVER_ORE = createKey("silver_ore");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> DARKSLATE_SURFACE = createKey("shale_surface");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> DARKSLATE_SURFACE = createKey("darkslate_surface");
     public static final ResourceKey<ConfiguredFeature<?, ?>> ARID_SURFACE = createKey("arid_surface");
     public static final ResourceKey<ConfiguredFeature<?, ?>> GRIME_SURFACE = createKey("grime_surface");
     public static final ResourceKey<ConfiguredFeature<?, ?>> ARID_BOULDER = createKey("arid_boulder");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> CATACOMBS_LAVA_LINING = createKey("catacombs_lava_lining");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> LIMESTONE_STRIPE = createKey("limestone_stripe");
     public static final ResourceKey<ConfiguredFeature<?, ?>> GLIMMERING_VINES = createKey("glimmering_vines");
 
     public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> context) {
@@ -92,6 +93,8 @@ public static final ImmutableList<BlockState> OVERWORLD_REPLACEABLES    = Immuta
         FeatureUtils.register(context, ARID_SURFACE, DDFeatures.CORRESPONDENT_LAYER.get(), new CorrespondentLayersConfig(BlockTags.LUSH_GROUND_REPLACEABLE, BlockStateProvider.simple(DDBlocks.ARIDROCK.get()), BlockStateProvider.simple(DDBlocks.ARID_DEEPSLATE.get()), PlacementUtils.inlinePlaced(lookup.getOrThrow(ARID_VEGETATION)), CaveSurface.FLOOR, ConstantInt.of(1), 0.0F, 5, 0.8F, UniformInt.of(4, 7), 0.3F, true));
         FeatureUtils.register(context, GRIME_SURFACE, DDFeatures.CORRESPONDENT_LAYER.get(), new CorrespondentLayersConfig(BlockTags.LUSH_GROUND_REPLACEABLE, BlockStateProvider.simple(DDBlocks.MOSSY_GRIMESTONE.get()), BlockStateProvider.simple(DDBlocks.GRIMESTONE.get()), PlacementUtils.inlinePlaced(lookup.getOrThrow(GRIME_VEGETATION)), CaveSurface.FLOOR, ConstantInt.of(1), 0.0F, 5, 0.8F, UniformInt.of(4, 7), 0.3F, false));
         FeatureUtils.register(context, ARID_BOULDER, DDFeatures.ARID_BOULDER.get(), FeatureConfiguration.NONE);
+        FeatureUtils.register(context, CATACOMBS_LAVA_LINING, DDFeatures.CATACOMBS_LAVA_LINING.get(), FeatureConfiguration.NONE);
+        FeatureUtils.register(context, LIMESTONE_STRIPE, DDFeatures.LIMESTONE_STRIPE.get(), FeatureConfiguration.NONE);
         FeatureUtils.register(context, GLIMMERING_VINES, Feature.BLOCK_COLUMN, new BlockColumnConfiguration(List.of(BlockColumnConfiguration.layer(new WeightedListInt(SimpleWeightedRandomList.<IntProvider>builder().add(UniformInt.of(0, 19), 2).add(UniformInt.of(0, 2), 3).add(UniformInt.of(0, 6), 10).build()), BlockStateProvider.simple(DDBlocks.GLIMMERING_VINE_PLANT.get().defaultBlockState())), BlockColumnConfiguration.layer(ConstantInt.of(1), BlockStateProvider.simple(DDBlocks.GLIMMERING_VINES.get().defaultBlockState()))), Direction.DOWN, BlockPredicate.ONLY_IN_AIR_PREDICATE, true));
     }
 

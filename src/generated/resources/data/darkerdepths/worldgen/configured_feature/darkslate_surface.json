@@ -4,7 +4,10 @@
     "below_state": {
       "type": "minecraft:simple_state_provider",
       "state": {
-        "Name": "darkerdepths:darkslate"
+        "Name": "darkerdepths:darkslate",
+        "Properties": {
+          "axis": "y"
+        }
       }
     },
     "depth": 1,
@@ -13,14 +16,17 @@
     "ground_state": {
       "type": "minecraft:simple_state_provider",
       "state": {
-        "Name": "darkerdepths:darkslate"
+        "Name": "darkerdepths:darkslate",
+        "Properties": {
+          "axis": "y"
+        }
       }
     },
     "replaceable": "#minecraft:lush_ground_replaceable",
     "surface": "floor",
     "vegetation_chance": 0.8,
     "vegetation_feature": {
-      "feature": "darkerdepths:shale_vegetation",
+      "feature": "darkerdepths:darkslate_vegetation",
       "placement": []
     },
     "vertical_range": 5,

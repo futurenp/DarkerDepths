@@ -9,18 +9,12 @@ import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.util.valueproviders.UniformInt;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
 import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.heightproviders.VeryBiasedToBottomHeight;
-import net.minecraft.world.level.levelgen.placement.BiomeFilter;
-import net.minecraft.world.level.levelgen.placement.CountPlacement;
-import net.minecraft.world.level.levelgen.placement.EnvironmentScanPlacement;
-import net.minecraft.world.level.levelgen.placement.HeightRangePlacement;
-import net.minecraft.world.level.levelgen.placement.InSquarePlacement;
-import net.minecraft.world.level.levelgen.placement.PlacedFeature;
-import net.minecraft.world.level.levelgen.placement.PlacementModifier;
-import net.minecraft.world.level.levelgen.placement.RandomOffsetPlacement;
+import net.minecraft.world.level.levelgen.placement.*;
 
 import java.util.List;
 
@@ -38,6 +32,8 @@ public class DDPlacedFeatures {
     public static final ResourceKey<PlacedFeature> ARID_SURFACE = createKey("arid_surface");
     public static final ResourceKey<PlacedFeature> DARKSLATE_SURFACE = createKey("darkslate_surface");
     public static final ResourceKey<PlacedFeature> ARID_BOULDER = createKey("arid_boulder");
+    public static final ResourceKey<PlacedFeature> CATACOMBS_LAVA_LINING = createKey("catacombs_lava_lining");
+    public static final ResourceKey<PlacedFeature> LIMESTONE_STRIPE = createKey("limestone_stripe");
     public static final ResourceKey<PlacedFeature> GLIMMERING_VINES = createKey("glimmering_vines");
 
     public static void bootstrap(BootstapContext<PlacedFeature> context) {
@@ -54,6 +50,8 @@ public class DDPlacedFeatures {
         PlacementUtils.register(context, ARID_SURFACE, lookup.getOrThrow(DDConfiguredFeatures.ARID_SURFACE), CountPlacement.of(UniformInt.of(192, 256)), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT, BiomeFilter.biome());
         PlacementUtils.register(context, DARKSLATE_SURFACE, lookup.getOrThrow(DDConfiguredFeatures.DARKSLATE_SURFACE), CountPlacement.of(UniformInt.of(192, 256)), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT, BiomeFilter.biome());
         PlacementUtils.register(context, ARID_BOULDER, lookup.getOrThrow(DDConfiguredFeatures.ARID_BOULDER), CountPlacement.of(UniformInt.of(192, 256)), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT, BiomeFilter.biome());
+        PlacementUtils.register(context, CATACOMBS_LAVA_LINING, lookup.getOrThrow(DDConfiguredFeatures.CATACOMBS_LAVA_LINING), List.of(CountPlacement.of(96), InSquarePlacement.spread(), HeightRangePlacement.uniform(VerticalAnchor.absolute(-63), VerticalAnchor.absolute(-1)), BlockPredicateFilter.forPredicate(BlockPredicate.not(BlockPredicate.matchesBlocks(Blocks.AIR))), BiomeFilter.biome()));
+        PlacementUtils.register(context, LIMESTONE_STRIPE, lookup.getOrThrow(DDConfiguredFeatures.LIMESTONE_STRIPE), CountPlacement.of(UniformInt.of(96, 128)), InSquarePlacement.spread(), HeightRangePlacement.uniform(VerticalAnchor.BOTTOM, VerticalAnchor.belowTop(16)), BiomeFilter.biome());
         PlacementUtils.register(context, GLIMMERING_VINES, lookup.getOrThrow(DDConfiguredFeatures.GLIMMERING_VINES), CountPlacement.of(125), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT, EnvironmentScanPlacement.scanningFor(Direction.UP, BlockPredicate.solid(), BlockPredicate.ONLY_IN_AIR_PREDICATE, 12), RandomOffsetPlacement.vertical(ConstantInt.of(-1)), BiomeFilter.biome());
     }
 
