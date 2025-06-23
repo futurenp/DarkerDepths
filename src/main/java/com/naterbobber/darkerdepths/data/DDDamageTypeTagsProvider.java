@@ -20,7 +20,10 @@ public class DDDamageTypeTagsProvider extends TagsProvider<DamageType> {
 
     @Override
     protected void addTags(HolderLookup.Provider pProvider) {
-        this.tag(DamageTypeTags.BYPASSES_INVULNERABILITY)
-                .add(DDDamageTypes.SOUL_BINDING_DAMAGE);
+        this.tag(DamageTypeTags.BYPASSES_INVULNERABILITY).add(DDDamageTypes.SOUL_BINDING_DAMAGE);
+        this.tag(DamageTypeTags.BYPASSES_ARMOR).add(DDDamageTypes.SOUL_BINDING_DAMAGE);
+        this.tag(DamageTypeTags.BYPASSES_ENCHANTMENTS).add(DDDamageTypes.SOUL_BINDING_DAMAGE);
+        this.tag(DamageTypeTags.BYPASSES_RESISTANCE).add(DDDamageTypes.SOUL_BINDING_DAMAGE);
+        this.tag(DamageTypeTags.BYPASSES_EFFECTS).add(DDDamageTypes.SOUL_BINDING_DAMAGE);
     }
 }

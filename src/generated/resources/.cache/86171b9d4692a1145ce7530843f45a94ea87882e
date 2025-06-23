@@ -1,0 +1,6 @@
+// 1.20.1	2025-06-22T23:07:37.4314035	Tags for minecraft:damage_type mod id darkerdepths
+c21c7f7540af8f82f176bb16e3c7690240c70a55 data/minecraft/tags/damage_type/bypasses_armor.json
+c21c7f7540af8f82f176bb16e3c7690240c70a55 data/minecraft/tags/damage_type/bypasses_effects.json
+c21c7f7540af8f82f176bb16e3c7690240c70a55 data/minecraft/tags/damage_type/bypasses_enchantments.json
+c21c7f7540af8f82f176bb16e3c7690240c70a55 data/minecraft/tags/damage_type/bypasses_invulnerability.json
+c21c7f7540af8f82f176bb16e3c7690240c70a55 data/minecraft/tags/damage_type/bypasses_resistance.json
