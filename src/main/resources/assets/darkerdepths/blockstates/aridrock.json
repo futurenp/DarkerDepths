@@ -1,7 +1,16 @@
 {
   "variants": {
-    "": {
+    "axis=x": {
+      "model": "darkerdepths:block/aridrock_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
       "model": "darkerdepths:block/aridrock"
+    },
+    "axis=z": {
+      "model": "darkerdepths:block/aridrock_horizontal",
+      "x": 90
     }
   }
 }

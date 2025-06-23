@@ -158,15 +158,10 @@ public class MobEvents {
                 deathAnchorLocation.setDeathAnchorLocation(Optional.empty());
             }
             if (entity instanceof Player player && !player.getAbilities().instabuild) {
-                // --- THIS IS THE CORRECTED PART ---
-
-                // 1. Create the DamageSource object from our custom DamageType key.
                 DamageSource damageSource = new DamageSource(
                         entity.level().registryAccess().registryOrThrow(Registries.DAMAGE_TYPE)
                                 .getHolderOrThrow(DDDamageTypes.SOUL_BINDING_DAMAGE)
                 );
-
-                // 2. Use the created DamageSource object to hurt the entity.
                 entity.hurt(damageSource, Float.MAX_VALUE);
             }
         }
@@ -185,7 +180,6 @@ public class MobEvents {
         ItemStack newlyEquipped = event.getTo();
         ItemStack previouslyEquipped = event.getFrom();
 
-        // Check if the player just put ON the helmet
         if (newlyEquipped.is(DDItems.GLOWSHROOM_CAP.get())) {
             player.addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, MobEffectInstance.INFINITE_DURATION, 0, false, false, true));
         }

@@ -2,22 +2,15 @@ package com.naterbobber.darkerdepths.entities;
 
 import com.naterbobber.darkerdepths.entities.ai.AttackMemoryTargetGoal;
 import com.naterbobber.darkerdepths.entities.control.ConfigurableMoveControl;
-import com.naterbobber.darkerdepths.init.DDBlocks;
 import com.naterbobber.darkerdepths.init.DDSoundEvents;
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.util.RandomSource;
-import net.minecraft.world.Difficulty;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.ai.control.MoveControl;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
 import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
@@ -28,9 +21,6 @@ import net.minecraft.world.entity.monster.Creeper;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.ServerLevelAccessor;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
 public class GlowshroomMonsterEntity extends Monster {
@@ -45,8 +35,6 @@ public class GlowshroomMonsterEntity extends Monster {
     public GlowshroomMonsterEntity(EntityType<? extends Monster> type, Level world) {
         super(type, world);
         this.xpReward = 20;
-
-        // Apply our custom, safer movement controller
         this.moveControl = new ConfigurableMoveControl(this, 12.0F);
     }
 
@@ -59,9 +47,6 @@ public class GlowshroomMonsterEntity extends Monster {
         this.targetSelector.addGoal(2, new AttackMemoryTargetGoal<>(this, Player.class, 300, true));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Mob.class, 10, false, false, (entity) -> !(entity instanceof Creeper) && !(entity instanceof GlowshroomMonsterEntity) && !(entity instanceof Bat)));
     }
-
-    // You don't need a custom aiStep() or setYRot() anymore.
-    // This makes your entity class much cleaner and safer.
 
     @Override
     public void aiStep() {
