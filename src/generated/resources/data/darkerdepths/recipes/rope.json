@@ -3,19 +3,19 @@
   "category": "misc",
   "key": {
     "#": {
-      "item": "darkerdepths:resin"
+      "item": "minecraft:string"
     },
     "G": {
       "item": "minecraft:stick"
     }
   },
   "pattern": [
-    " # ",
-    " G ",
-    " # "
+    " ##",
+    "#G#",
+    "## "
   ],
   "result": {
-    "count": 4,
+    "count": 16,
     "item": "darkerdepths:rope"
   },
   "show_notification": true

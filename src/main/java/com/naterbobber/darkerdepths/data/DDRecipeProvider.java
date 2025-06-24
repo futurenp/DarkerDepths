@@ -359,13 +359,13 @@ public class DDRecipeProvider extends RecipeProvider {
         stonecutterResultFromBase(consumer, DDBlocks.GRIMESTONE_BRICKS_WALL.get(), DDBlocks.GRIMESTONE_BRICKS.get());
 
         ShapedRecipeBuilder.
-                shaped(RecipeCategory.DECORATIONS, DDItems.ROPE.get(), 4)
-                .define('#', DDItems.RESIN.get())
+                shaped(RecipeCategory.DECORATIONS, DDItems.ROPE.get(), 12)
+                .define('#', Items.STRING)
                 .define('G', Items.STICK)
-                .pattern(" # ")
-                .pattern(" G ")
-                .pattern(" # ")
-                .unlockedBy("has_resin", has(DDItems.RESIN.get())).save(consumer);
+                .pattern(" ##")
+                .pattern("#G#")
+                .pattern("## ")
+                .unlockedBy("has_string", has(Items.STRING)).save(consumer);
 
         ShapedRecipeBuilder.
                 shaped(RecipeCategory.MISC, DDItems.VOID_SOUL_REQUIEM.get(), 1)
