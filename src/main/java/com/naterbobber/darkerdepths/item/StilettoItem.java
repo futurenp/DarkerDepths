@@ -1,6 +1,7 @@
 package com.naterbobber.darkerdepths.item;
 
 import com.naterbobber.darkerdepths.init.DDEnchantments;
+import com.naterbobber.darkerdepths.init.DDItems;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.nbt.CompoundTag;
@@ -115,7 +116,7 @@ public class StilettoItem extends SwordItem {
 
         @Override
         public Ingredient getRepairIngredient() {
-            return Ingredient.EMPTY;
+            return Ingredient.of(DDItems.VOID_SOUL_REQUIEM.get());
         }
     }
 
