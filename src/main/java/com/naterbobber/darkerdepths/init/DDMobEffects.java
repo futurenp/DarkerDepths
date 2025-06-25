@@ -1,6 +1,7 @@
 package com.naterbobber.darkerdepths.init;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
+import com.naterbobber.darkerdepths.effects.ParanoiaEffect;
 import com.naterbobber.darkerdepths.effects.SoulBindingEffect;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
@@ -15,5 +16,7 @@ public class DDMobEffects {
     public static final DeferredRegister<MobEffect> MOB_EFFECTS = DeferredRegister.create(ForgeRegistries.MOB_EFFECTS, DarkerDepths.MODID);
 
     public static final RegistryObject<MobEffect> SOUL_BINDING = MOB_EFFECTS.register("soul_binding", () -> new SoulBindingEffect(MobEffectCategory.NEUTRAL, 16185078));
+    public static final RegistryObject<MobEffect> PARANOIA = MOB_EFFECTS.register("paranoia", () -> new ParanoiaEffect());
+
 
 }

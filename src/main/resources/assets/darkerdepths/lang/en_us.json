@@ -150,6 +150,7 @@
   "enchantment.darkerdepths.swift_strike": "Swift Strike",
   "enchantment.darkerdepths.quick_dash": "Quick Dash",
   "effect.darkerdepths.soul_binding": "Soul Binding",
+  "effect.darkerdepths.paranoia": "Paranoia",
   "death.attack.soul_binding_damage": "%1$s's soul was consumed by the Death Anchor.",
   "tooltip.darkerdepths.press_shift": "Press [SHIFT]",
   "tooltip.darkerdepths.glowshroom_cap.shift_desc_1": "Provides light and haste when worn.",

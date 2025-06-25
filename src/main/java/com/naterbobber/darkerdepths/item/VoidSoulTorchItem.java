@@ -1,5 +1,6 @@
 package com.naterbobber.darkerdepths.item;
 
+import com.naterbobber.darkerdepths.init.DDMobEffects;
 import net.minecraft.core.Direction;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
@@ -24,8 +25,9 @@ public class VoidSoulTorchItem extends StandingAndWallBlockItem {
             boolean inMainHand = player.getMainHandItem() == stack;
             boolean inOffHand = player.getOffhandItem() == stack;
             if (inMainHand || inOffHand) {
-                if (player.hasEffect(MobEffects.BLINDNESS)) {
+                if (player.hasEffect(MobEffects.BLINDNESS) || player.hasEffect(DDMobEffects.PARANOIA.get())) {
                     player.removeEffect(MobEffects.BLINDNESS);
+                    player.removeEffect(DDMobEffects.PARANOIA.get());
                 }
             }
         }
