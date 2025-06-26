@@ -135,7 +135,7 @@ public class DDBlocks {
     public static final RegistryObject<Block> AMBER = registerBlock("amber", () -> new AmethystClusterBlock(4, 2, BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(1.0f).sound(SoundType.GLASS).lightLevel(value -> 7)));
     public static final RegistryObject<Block> AMBER_BLOCK = registerBlock("amber_block", () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(1.0f).sound(SoundType.GLASS).lightLevel(value -> 7)));
     public static final RegistryObject<Block> CRYSTAL_MELON = registerBlock("crystal_melon", () -> new CrystalMelon(BlockBehaviour.Properties.of().strength(0.3F, 0.6F).sound(SoundType.GLASS).lightLevel(value -> 10)));
-    public static final RegistryObject<Block> DEATH_ANCHOR = registerBlock("death_anchor", () -> new DeathAnchorBlock(BlockBehaviour.Properties.of().sound(SoundType.NETHER_BRICKS)));
+    public static final RegistryObject<Block> DEATH_ANCHOR = registerBlock("death_anchor", () -> new DeathAnchorBlock(BlockBehaviour.Properties.of().sound(SoundType.NETHER_BRICKS).requiresCorrectToolForDrops()));
 
     public static <B extends Block> RegistryObject<B> registerBlock(String name, Supplier<? extends B> blocks) {
         RegistryObject<B> block = BLOCKS.register(name, blocks);
