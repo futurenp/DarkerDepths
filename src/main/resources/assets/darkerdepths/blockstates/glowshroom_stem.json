@@ -1,5 +1,16 @@
 {
   "variants": {
-    "": { "model": "darkerdepths:block/glowshroom_stem" }
+    "axis=x": {
+      "model": "darkerdepths:block/glowshroom_stem_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "darkerdepths:block/glowshroom_stem"
+    },
+    "axis=z": {
+      "model": "darkerdepths:block/glowshroom_stem_horizontal",
+      "x": 90
+    }
   }
 }

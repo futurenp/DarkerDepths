@@ -126,7 +126,7 @@ public class DDBlocks {
     public static final RegistryObject<Block> GLIMMERING_VINES = registerBlock("glimmering_vines", () -> new GlimmeringVinesBlock(BlockBehaviour.Properties.of().noCollission().lightLevel(value -> 8).sound(SoundType.SPORE_BLOSSOM)));
     public static final RegistryObject<Block> GLIMMERING_VINE_PLANT = registerNoTabBlock("glimmering_vine_plant", () -> new GlimmeringVinePlantBlock(BlockBehaviour.Properties.copy(GLIMMERING_VINES.get()).sound(SoundType.SPORE_BLOSSOM)));
     public static final RegistryObject<Block> GLOWSHROOM_BLOCK = registerBlock("glowshroom_block", () -> new Block(BlockBehaviour.Properties.of().strength(0.2F).sound(SoundType.SLIME_BLOCK)));
-    public static final RegistryObject<Block> GLOWSHROOM_STEM = registerBlock("glowshroom_stem", () -> new Block(BlockBehaviour.Properties.of().strength(0.2F).sound(SoundType.STEM)));
+    public static final RegistryObject<Block> GLOWSHROOM_STEM = registerBlock("glowshroom_stem", () -> new RotatedPillarBlock(BlockBehaviour.Properties.of().strength(0.2F).sound(SoundType.STEM)));
     public static final RegistryObject<Block> GLOWSHROOM_HEART = registerBlock("glowshroom_heart", () -> new Block(BlockBehaviour.Properties.of().sound(SoundType.SHROOMLIGHT).lightLevel(value -> 15)));
     public static final RegistryObject<Block> GLOWSHROOM_LANTERN = registerBlock("glowshroom_lantern", () -> new GlowshroomLanternBlock(BlockBehaviour.Properties.copy(Blocks.LANTERN)));
     public static final RegistryObject<Block> GLOWSHROOM_LAMP = registerBlock("glowshroom_lamp", () -> new GlowshroomLampBlock(BlockBehaviour.Properties.of().lightLevel(level -> 15).sound(SoundType.GLASS)));

@@ -1,7 +1,7 @@
 {
   "parent": "block/cube_column",
   "textures": {
-    "end": "darkerdepths:block/glowshroom_heart_top",
+    "end": "darkerdepths:block/glowshroom_block",
     "side": "darkerdepths:block/glowshroom_heart"
   }
 }
