@@ -1,0 +1,26 @@
+package com.naterbobber.darkerdepths.client.renderers.layers;
+
+import com.naterbobber.darkerdepths.DarkerDepths;
+import com.naterbobber.darkerdepths.client.models.BodySnatcherModel;
+import com.naterbobber.darkerdepths.client.models.GlowshroomMonsterModel;
+import com.naterbobber.darkerdepths.entities.BodySnatcher;
+import com.naterbobber.darkerdepths.entities.GlowshroomMonsterEntity;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.entity.RenderLayerParent;
+import net.minecraft.client.renderer.entity.layers.EyesLayer;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+
+@OnlyIn(Dist.CLIENT)
+public class GlowshroomMonsterLayer extends EyesLayer<GlowshroomMonsterEntity, GlowshroomMonsterModel<GlowshroomMonsterEntity>> {
+    private static final RenderType GLOWSHROOM_MONSTER = RenderType.eyes(DarkerDepths.id("textures/entity/glowshroom_monster/glowshroom_monster_emissive_layer.png"));
+
+    public GlowshroomMonsterLayer(RenderLayerParent<GlowshroomMonsterEntity, GlowshroomMonsterModel<GlowshroomMonsterEntity>> parent) {
+        super(parent);
+    }
+
+    @Override
+    public RenderType renderType() {
+        return GLOWSHROOM_MONSTER;
+    }
+}

@@ -140,7 +140,7 @@ public class DDRecipeProvider extends RecipeProvider {
                 .define('C', Blocks.COBBLESTONE)
                 .pattern("#C")
                 .pattern("C#")
-                .unlockedBy("has_glowgrime", has(DDItems.GLOW_GRIME.get())).save(consumer);
+                .unlockedBy("has_glow_grime", has(DDItems.GLOW_GRIME.get())).save(consumer);
 
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.BUILDING_BLOCKS, DDBlocks.GLOWSHROOM_BLOCK.get(), 2)
@@ -148,7 +148,7 @@ public class DDRecipeProvider extends RecipeProvider {
                 .pattern("###")
                 .pattern("# #")
                 .pattern("###")
-                .unlockedBy("has_glowgrime", has(DDItems.GLOW_GRIME.get())).save(consumer);
+                .unlockedBy("has_glow_grime", has(DDItems.GLOW_GRIME.get())).save(consumer);
 
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.TOOLS, DDItems.QUICKROPE.get())
@@ -263,6 +263,11 @@ public class DDRecipeProvider extends RecipeProvider {
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, DDItems.GLOW_GRIME.get()).requires(DDBlocks.GLOWSHROOM.get()).unlockedBy("has_glowshroom", has(DDBlocks.GLOWSHROOM.get())).save(consumer);
 
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.GLOW_INK_SAC, 2)
+                .requires(DDItems.GLOW_GRIME.get())
+                .requires(Items.INK_SAC)
+                .unlockedBy("has_glow_grime", has(DDItems.GLOW_GRIME.get())).save(consumer);
+
         stonecutterResultFromBase(consumer, DDBlocks.CHISELED_DARKSLATE_BRICKS.get(), DDBlocks.DARKSLATE.get());
         stonecutterResultFromBase(consumer, DDBlocks.CHISELED_ARIDROCK_BRICKS.get(), DDBlocks.ARIDROCK.get());
         stonecutterResultFromBase(consumer, DDBlocks.CHISELED_LIMESTONE_BRICKS.get(), DDBlocks.LIMESTONE.get());
@@ -357,6 +362,8 @@ public class DDRecipeProvider extends RecipeProvider {
         stonecutterResultFromBase(consumer, DDBlocks.ARIDROCK_BRICKS_WALL.get(), DDBlocks.ARIDROCK_BRICKS.get());
         stonecutterResultFromBase(consumer, DDBlocks.LIMESTONE_BRICKS_WALL.get(), DDBlocks.LIMESTONE_BRICKS.get());
         stonecutterResultFromBase(consumer, DDBlocks.GRIMESTONE_BRICKS_WALL.get(), DDBlocks.GRIMESTONE_BRICKS.get());
+
+
 
         ShapedRecipeBuilder.
                 shaped(RecipeCategory.DECORATIONS, DDItems.ROPE.get(), 12)

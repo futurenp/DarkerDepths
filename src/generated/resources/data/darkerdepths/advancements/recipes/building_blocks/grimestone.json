@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_glowgrime": {
+    "has_glow_grime": {
       "conditions": {
         "items": [
           {
@@ -22,7 +22,7 @@
   },
   "requirements": [
     [
-      "has_glowgrime",
+      "has_glow_grime",
       "has_the_recipe"
     ]
   ],

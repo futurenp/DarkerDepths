@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "darkerdepths:glowshroom_block"
+        "recipe": "minecraft:glow_ink_sac"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "darkerdepths:glowshroom_block"
+      "minecraft:glow_ink_sac"
     ]
   },
   "sends_telemetry_event": false

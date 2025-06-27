@@ -18,12 +18,14 @@ public class DDVanillaIntegration {
         registerFlammables(DDBlocks.ROPE.get(), 60, 100);
         registerFlammables(DDBlocks.PETRIFIED_ROOTS.get(), 60, 100);
         registerFlammables(DDBlocks.DRY_SPROUTS.get(), 60, 100);
+        registerFlammables(DDBlocks.MOSSY_SPROUTS.get(), 60, 100);
 
-        registerCompostable(0.65F, DDBlocks.GLOWSHROOM.get().asItem());
-        registerCompostable(0.85F, DDBlocks.GLOWSPURS.get().asItem());
-        registerCompostable(0.5F,  DDBlocks.GLIMMERING_VINES.get().asItem());
-        registerCompostable(0.65F, DDBlocks.MOSSY_SPROUTS.get().asItem());
-        registerCompostable(0.3F,  DDBlocks.PETRIFIED_ROOTS.get().asItem());
+        registerCompostable(0.5F, DDBlocks.GLOWSHROOM.get().asItem());
+        registerCompostable(0.85F, DDBlocks.GLOWSHROOM_BLOCK.get().asItem());
+        registerCompostable(0.5F, DDBlocks.GLOWSPURS.get().asItem());
+        registerCompostable(0.3F,  DDBlocks.GLIMMERING_VINES.get().asItem());
+        registerCompostable(0.3F, DDBlocks.MOSSY_SPROUTS.get().asItem());
+        registerCompostable(0.2F,  DDBlocks.PETRIFIED_ROOTS.get().asItem());
     }
 
     private static void registerStrippable(Block unstrippedBlock, Block strippedBlock) {
