@@ -3,7 +3,7 @@
   "category": "blocks",
   "cookingtime": 200,
   "experience": 0.1,
-  "group": "cracked_shale_bricks",
+  "group": "cracked_darkslate_bricks",
   "ingredient": {
     "item": "darkerdepths:darkslate_bricks"
   },

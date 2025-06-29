@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_cobbled_deepslate": {
+    "has_glow_grime": {
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:cobbled_deepslate"
+              "darkerdepths:glow_grime"
             ]
           }
         ]
@@ -15,20 +15,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "darkerdepths:darkslate"
+        "recipe": "minecraft:slime_ball"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_cobbled_deepslate",
+      "has_glow_grime",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "darkerdepths:darkslate"
+      "minecraft:slime_ball"
     ]
   },
   "sends_telemetry_event": false

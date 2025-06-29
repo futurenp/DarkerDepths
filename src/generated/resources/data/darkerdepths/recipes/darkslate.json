@@ -3,10 +3,10 @@
   "category": "building",
   "key": {
     "#": {
-      "item": "minecraft:stone"
+      "item": "minecraft:cobbled_deepslate"
     },
     "C": {
-      "item": "minecraft:mud"
+      "item": "minecraft:blackstone"
     }
   },
   "pattern": [

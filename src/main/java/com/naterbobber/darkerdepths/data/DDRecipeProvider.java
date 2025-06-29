@@ -87,7 +87,7 @@ public class DDRecipeProvider extends RecipeProvider {
         wallBlock(consumer, DDBlocks.LIMESTONE_BRICKS_WALL.get(), DDBlocks.LIMESTONE_BRICKS.get().asItem());
         wallBlock(consumer, DDBlocks.GRIMESTONE_BRICKS_WALL.get(), DDBlocks.GRIMESTONE_BRICKS.get().asItem());
 
-        oreSmelting(consumer, ImmutableList.of(DDBlocks.DARKSLATE_BRICKS.get()), RecipeCategory.BUILDING_BLOCKS, DDBlocks.CRACKED_DARKSLATE_BRICKS.get(), 0.1F, 200, "cracked_shale_bricks");
+        oreSmelting(consumer, ImmutableList.of(DDBlocks.DARKSLATE_BRICKS.get()), RecipeCategory.BUILDING_BLOCKS, DDBlocks.CRACKED_DARKSLATE_BRICKS.get(), 0.1F, 200, "cracked_darkslate_bricks");
         oreSmelting(consumer, ImmutableList.of(DDBlocks.ARIDROCK_BRICKS.get()), RecipeCategory.BUILDING_BLOCKS, DDBlocks.CRACKED_ARIDROCK_BRICKS.get(), 0.1F, 200, "cracked_aridrock_bricks");
         oreSmelting(consumer, ImmutableList.of(DDBlocks.LIMESTONE_BRICKS.get()), RecipeCategory.BUILDING_BLOCKS, DDBlocks.CRACKED_LIMESTONE_BRICKS.get(), 0.1F, 200, "cracked_limestone_bricks");
         oreSmelting(consumer, ImmutableList.of(DDBlocks.GRIMESTONE_BRICKS.get()), RecipeCategory.BUILDING_BLOCKS, DDBlocks.CRACKED_GRIMESTONE_BRICKS.get(), 0.1F, 200, "cracked_grimestone_bricks");
@@ -128,11 +128,11 @@ public class DDRecipeProvider extends RecipeProvider {
 
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.BUILDING_BLOCKS, DDBlocks.DARKSLATE.get(), 4)
-                .define('#', Blocks.STONE)
-                .define('C', Blocks.MUD)
+                .define('#', Blocks.COBBLED_DEEPSLATE)
+                .define('C', Blocks.BLACKSTONE)
                 .pattern("#C")
                 .pattern("C#")
-                .unlockedBy("has_mud", has(Blocks.MUD)).save(consumer);
+                .unlockedBy("has_cobbled_deepslate", has(Blocks.COBBLED_DEEPSLATE)).save(consumer);
 
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.BUILDING_BLOCKS, DDBlocks.GRIMESTONE.get(), 4)
@@ -263,9 +263,16 @@ public class DDRecipeProvider extends RecipeProvider {
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, DDItems.GLOW_GRIME.get()).requires(DDBlocks.GLOWSHROOM.get()).unlockedBy("has_glowshroom", has(DDBlocks.GLOWSHROOM.get())).save(consumer);
 
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, DDItems.GLOW_GRIME.get(), 2).requires(DDBlocks.GLOWSHROOM_BLOCK.get()).unlockedBy("has_glowshroom_block", has(DDBlocks.GLOWSHROOM_BLOCK.get())).save(consumer, DarkerDepths.id("glow_grime_from_glowshroom_block"));
+
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.GLOW_INK_SAC, 2)
                 .requires(DDItems.GLOW_GRIME.get())
                 .requires(Items.INK_SAC)
+                .unlockedBy("has_glow_grime", has(DDItems.GLOW_GRIME.get())).save(consumer);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.SLIME_BALL)
+                .requires(DDItems.GLOW_GRIME.get())
+                .requires(Items.CLAY_BALL)
                 .unlockedBy("has_glow_grime", has(DDItems.GLOW_GRIME.get())).save(consumer);
 
         stonecutterResultFromBase(consumer, DDBlocks.CHISELED_DARKSLATE_BRICKS.get(), DDBlocks.DARKSLATE.get());

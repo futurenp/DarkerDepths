@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_cobbled_deepslate": {
+    "has_glowshroom_block": {
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:cobbled_deepslate"
+              "darkerdepths:glowshroom_block"
             ]
           }
         ]
@@ -15,20 +15,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "darkerdepths:darkslate"
+        "recipe": "darkerdepths:glow_grime_from_glowshroom_block"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_cobbled_deepslate",
+      "has_glowshroom_block",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "darkerdepths:darkslate"
+      "darkerdepths:glow_grime_from_glowshroom_block"
     ]
   },
   "sends_telemetry_event": false
