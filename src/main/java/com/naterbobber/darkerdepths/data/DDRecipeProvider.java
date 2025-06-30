@@ -46,9 +46,6 @@ public class DDRecipeProvider extends RecipeProvider {
         twoXtwo(consumer, DDBlocks.ARIDROCK_BRICKS.get(), DDBlocks.POLISHED_ARIDROCK.get().asItem(), 4);
         twoXtwo(consumer, DDBlocks.LIMESTONE_BRICKS.get(), DDBlocks.POLISHED_LIMESTONE.get().asItem(), 4);
         twoXtwo(consumer, DDBlocks.GRIMESTONE_BRICKS.get(), DDBlocks.POLISHED_GRIMESTONE.get().asItem(), 4);
-        threeXthree(consumer, DDBlocks.AMBER_BLOCK.get(), DDBlocks.AMBER.get().asItem());
-        oreSmelting(consumer, ImmutableList.of(DDBlocks.AMBER.get()), RecipeCategory.MISC, DDItems.RESIN.get(), 0.1F, 200, "resin");
-        oreBlasting(consumer, ImmutableList.of(DDBlocks.AMBER.get()), RecipeCategory.MISC, DDItems.RESIN.get(), 0.1F, 100, "resin");
 
         stairsBlock(consumer, DDBlocks.DARKSLATE_STAIRS.get(), DDBlocks.DARKSLATE.get().asItem());
         stairsBlock(consumer, DDBlocks.ARIDROCK_STAIRS.get(), DDBlocks.ARIDROCK.get().asItem());
@@ -101,14 +98,17 @@ public class DDRecipeProvider extends RecipeProvider {
         chiseled(consumer, DDBlocks.POLISHED_LIMESTONE_SLAB.get().asItem(), DDBlocks.CHISELED_LIMESTONE_BRICKS.get().asItem());
         chiseled(consumer, DDBlocks.POLISHED_GRIMESTONE_SLAB.get().asItem(), DDBlocks.CHISELED_GRIMESTONE_BRICKS.get().asItem());
 
+        threeXthree(consumer, DDBlocks.AMBER_BLOCK.get(), DDItems.AMBER.get());
+        shaplessOne(consumer, DDItems.AMBER.get(), DDBlocks.AMBER_BLOCK.get().asItem(), 9);
+
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.BUILDING_BLOCKS, DDBlocks.POROUS_PETRIFIED_LOG.get())
-                .define('#', DDBlocks.AMBER.get())
+                .define('#', DDItems.AMBER.get())
                 .define('C', DDBlocks.PETRIFIED_LOG.get())
                 .pattern("###")
                 .pattern("#C#")
                 .pattern("###")
-                .unlockedBy("has_amber", has(DDBlocks.AMBER.get().asItem())).save(consumer);
+                .unlockedBy("has_amber", has(DDItems.AMBER.get())).save(consumer);
 
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.BUILDING_BLOCKS, DDBlocks.ARIDROCK.get(), 4)
@@ -185,11 +185,12 @@ public class DDRecipeProvider extends RecipeProvider {
                 .shaped(RecipeCategory.BUILDING_BLOCKS, DDBlocks.GEYSER.get().asItem())
                 .define('#', DDBlocks.ASH_BLOCK.get().asItem())
                 .define('S', DDBlocks.DARKSLATE.get().asItem())
-                .define('A', DDBlocks.AMBER.get().asItem())
+                .define('A', Items.LAVA_BUCKET)
                 .pattern("###")
                 .pattern("SAS")
                 .pattern("SSS")
-                .unlockedBy("has_ash_block", has(DDBlocks.ASH_BLOCK.get().asItem())).save(consumer);
+                .unlockedBy("has_ash_block", has(Items.LAVA_BUCKET))
+                .save(consumer);
 
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.BUILDING_BLOCKS, DDBlocks.PETRIFIED_FENCE_GATE.get().asItem())
@@ -383,12 +384,12 @@ public class DDRecipeProvider extends RecipeProvider {
 
         ShapedRecipeBuilder.
                 shaped(RecipeCategory.MISC, DDItems.VOID_SOUL_REQUIEM.get(), 1)
-                .define('A', DDItems.RESIN.get())
+                .define('A', DDItems.AMBER.get())
                 .define('B', DDItems.BOTTLE_OF_VOID_SOUL.get())
                 .pattern("AAA")
                 .pattern("ABA")
                 .pattern("AAA")
-                .unlockedBy("has_resin", has(DDItems.RESIN.get())).save(consumer);
+                .unlockedBy("has_resin", has(DDItems.AMBER.get())).save(consumer);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, DDBlocks.SKULL_WALL.get(), 4)
                 .define('#', DDBlocks.ARIDROCK.get())

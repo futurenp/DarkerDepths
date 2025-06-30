@@ -29,7 +29,7 @@ public class GemstoneFeature extends Feature<NoneFeatureConfiguration> {
         } else {
             for (Direction direction : Direction.values()) {
                 if (AmethystClusterBlock.isFaceFull(worldIn.getBlockState(pos.relative(direction)).getCollisionShape(worldIn, pos.relative(direction)), direction.getOpposite())) {
-                    worldIn.setBlock(pos, DDBlocks.AMBER.get().defaultBlockState().setValue(AmethystClusterBlock.FACING, direction.getOpposite()).setValue(BlockStateProperties.WATERLOGGED, state.is(Blocks.WATER)), 2);
+                    worldIn.setBlock(pos, DDBlocks.AMBER_CLUSTER.get().defaultBlockState().setValue(AmethystClusterBlock.FACING, direction.getOpposite()).setValue(BlockStateProperties.WATERLOGGED, state.is(Blocks.WATER)), 2);
                     return true;
                 }
             }

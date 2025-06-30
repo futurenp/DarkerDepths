@@ -26,7 +26,7 @@ public class PorousBlock extends RotatedPillarBlock {
             BlockPos blockPos = pos.relative(direction);
             BlockState blockState = worldIn.getBlockState(blockPos);
             if (canGrowIn(blockState) && direction != Direction.UP) {
-                worldIn.setBlockAndUpdate(blockPos, DDBlocks.AMBER.get().defaultBlockState().setValue(AmethystClusterBlock.FACING, direction).setValue(AmethystClusterBlock.WATERLOGGED, blockState.getFluidState().getType() == Fluids.WATER));
+                worldIn.setBlockAndUpdate(blockPos, DDBlocks.AMBER_CLUSTER.get().defaultBlockState().setValue(AmethystClusterBlock.FACING, direction).setValue(AmethystClusterBlock.WATERLOGGED, blockState.getFluidState().getType() == Fluids.WATER));
             }
         }
     }

@@ -87,7 +87,7 @@ public class GlowshroomCapItem extends ArmorItem implements Vanishable {
 
         @Override
         public Ingredient getRepairIngredient() {
-            return Ingredient.of(DDItems.RESIN.get());
+            return Ingredient.of(DDItems.GLOW_GRIME.get());
         }
 
         @Override

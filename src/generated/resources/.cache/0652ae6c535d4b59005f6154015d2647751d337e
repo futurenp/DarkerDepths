@@ -1,4 +1,4 @@
-// 1.20.1	2025-06-27T17:00:16.2672485	Tags for minecraft:block mod id darkerdepths
+// 1.20.1	2025-06-29T21:26:40.8528733	Tags for minecraft:block mod id darkerdepths
 f0f92c5f0b5c5412980a4ca8436b4cb180919deb data/darkerdepths/tags/blocks/geyser_boosters.json
 8ad8a6a2ad3451d39018b9318b5eedc2b4e31134 data/darkerdepths/tags/blocks/geyser_bypasses.json
 3dfb0ae86440be076ba09273ec3517fb643e005c data/darkerdepths/tags/blocks/husks_spawnable_on.json
@@ -6,7 +6,7 @@ aaa6bb2befc247243ea8e98dcc4397deb4218610 data/minecraft/tags/blocks/base_stone_o
 d46196cd8880069d772cedd2866445ceffda8735 data/minecraft/tags/blocks/fence_gates.json
 5e277297b74dc60b3a92d2fe9b9fc06fe32cf551 data/minecraft/tags/blocks/logs.json
 e60249f463d936522505a016b677de35274b6d21 data/minecraft/tags/blocks/mineable/hoe.json
-ca04c8038d2b95ec7652172d25f3f14dfd2e644e data/minecraft/tags/blocks/mineable/pickaxe.json
+fe6c46892484929144bcdcb2041209aacf398c03 data/minecraft/tags/blocks/mineable/pickaxe.json
 7a0301efb3765b21b4d17f79d065044da8501821 data/minecraft/tags/blocks/mineable/shovel.json
 9d2d0ace08ac60e8df44eea5f071d2d39b8130c1 data/minecraft/tags/blocks/walls.json
 f554d471ce51b93b48815f100f6e9e6a04baecf5 data/minecraft/tags/blocks/wooden_fences.json

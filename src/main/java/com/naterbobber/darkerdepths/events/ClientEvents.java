@@ -83,7 +83,7 @@ public class ClientEvents {
         ItemBlockRenderTypes.setRenderLayer(DDBlocks.PETRIFIED_TRAPDOOR.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(DDBlocks.PETRIFIED_POST.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(DDBlocks.STRIPPED_PETRIFIED_POST.get(), RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(DDBlocks.AMBER.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(DDBlocks.AMBER_CLUSTER.get(), RenderType.cutout());
 
 
         MinecraftForge.EVENT_BUS.addListener((LivingEvent.LivingTickEvent livingEvent) -> {

@@ -76,7 +76,7 @@ public class PetrifiedBranchFeature extends Feature<PetrifiedBranchConfig> {
                     for (Direction direction : Direction.values()) {
                         for (BlockPos blockPos : porousPos) {
                             if (random.nextBoolean() && world.isStateAtPosition(blockPos.relative(direction), DripstoneUtils::isEmptyOrWater)) {
-                                world.setBlock(blockPos.relative(direction), DDBlocks.AMBER.get().defaultBlockState().setValue(AmethystClusterBlock.WATERLOGGED, world.getFluidState(blockPos.relative(direction)).getType() == Fluids.WATER).setValue(AmethystClusterBlock.FACING, direction), 2);
+                                world.setBlock(blockPos.relative(direction), DDBlocks.AMBER_CLUSTER.get().defaultBlockState().setValue(AmethystClusterBlock.WATERLOGGED, world.getFluidState(blockPos.relative(direction)).getType() == Fluids.WATER).setValue(AmethystClusterBlock.FACING, direction), 2);
                             }
                         }
                     }

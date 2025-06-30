@@ -118,7 +118,7 @@ public class DDBlocks {
     public static final RegistryObject<Block> GRIMESTONE_BRICKS_VERTICAL_SLAB = registerCompatBlock("quark", "grimestone_bricks_vertical_slab", () -> new VerticalSlabBlock(BlockBehaviour.Properties.copy(GRIMESTONE_BRICKS_SLAB.get())));
     public static final RegistryObject<Block> CRACKED_GRIMESTONE_BRICKS = registerBlock("cracked_grimestone_bricks", () -> new Block(BlockBehaviour.Properties.of().sound(SoundType.STONE).strength(1.5F, 6.0F).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> GRIMESTONE_BRICKS_WALL = registerBlock("grimestone_bricks_wall", () -> new WallBlock(BlockBehaviour.Properties.of().sound(SoundType.STONE).strength(1.5F, 6.0F).requiresCorrectToolForDrops()));
-    public static final RegistryObject<Block> GLOWSHROOM = registerBlock("glowshroom", () -> new GlowshroomBlock(BlockBehaviour.Properties.of().strength(0.0F, 1.0F).sound(SoundType.SLIME_BLOCK).lightLevel((state) -> 2 + (3 * state.getValue(GlowshroomBlock.CLUSTERS_1_3))).noCollission()));
+    public static final RegistryObject<Block> GLOWSHROOM = registerBlock("glowshroom", () -> new GlowshroomBlock(BlockBehaviour.Properties.of().strength(0.0F, 1.0F).sound(SoundType.SLIME_BLOCK).lightLevel((state) -> 3 + (2 * state.getValue(GlowshroomBlock.CLUSTERS_1_3))).noCollission()));
     public static final RegistryObject<Block> GLOWSPURS = registerBlock("glowspurs", () -> new GlowspursBlock(BlockBehaviour.Properties.of().instabreak().sound(SoundType.SLIME_BLOCK).noCollission()));
     public static final RegistryObject<Block> DRY_SPROUTS = registerBlock("dry_sprouts", () -> new DrySproutsBlock(BlockBehaviour.Properties.copy(Blocks.DEAD_BUSH).offsetType(BlockBehaviour.OffsetType.XZ)));
     public static final RegistryObject<Block> MOSSY_SPROUTS = registerBlock("mossy_sprouts", () -> new SproutsBlock(BlockBehaviour.Properties.copy(Blocks.GRASS).sound(SoundType.WET_GRASS).offsetType(BlockBehaviour.OffsetType.XZ)));
@@ -131,10 +131,9 @@ public class DDBlocks {
     public static final RegistryObject<Block> GLOWSHROOM_LANTERN = registerBlock("glowshroom_lantern", () -> new GlowshroomLanternBlock(BlockBehaviour.Properties.copy(Blocks.LANTERN)));
     public static final RegistryObject<Block> GLOWSHROOM_LAMP = registerBlock("glowshroom_lamp", () -> new GlowshroomLampBlock(BlockBehaviour.Properties.of().lightLevel(level -> 15).sound(SoundType.GLASS)));
     public static final RegistryObject<Block> ROPE = registerNoTabBlock("rope", () -> new RopeBlock(BlockBehaviour.Properties.of().strength(0.1F).sound(SoundType.WOOL)));
-    public static final RegistryObject<Block> STONE_BRICK_PILLAR = registerBlock("stone_brick_pillar", () -> new RotatedPillarBlock(RotatedPillarBlock.Properties.of().requiresCorrectToolForDrops().strength(1.5f, 6.0f).sound(SoundType.STONE)));
-    public static final RegistryObject<Block> AMBER = registerBlock("amber", () -> new AmethystClusterBlock(4, 2, BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(1.0f).sound(SoundType.GLASS).lightLevel(value -> 7)));
-    public static final RegistryObject<Block> AMBER_BLOCK = registerBlock("amber_block", () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(1.0f).sound(SoundType.GLASS).lightLevel(value -> 7)));
-    public static final RegistryObject<Block> CRYSTAL_MELON = registerBlock("crystal_melon", () -> new CrystalMelon(BlockBehaviour.Properties.of().strength(0.3F, 0.6F).sound(SoundType.GLASS).lightLevel(value -> 10)));
+    public static final RegistryObject<Block> AMBER_CLUSTER = registerBlock("amber_cluster", () -> new AmethystClusterBlock(4, 2, BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(1.0f).sound(SoundType.SMALL_AMETHYST_BUD).lightLevel(value -> 7)));
+    public static final RegistryObject<Block> AMBER_BLOCK = registerBlock("amber_block", () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(1.0f).sound(SoundType.AMETHYST).lightLevel(value -> 7)));
+    public static final RegistryObject<Block> CRYSTAL_MELON = registerBlock("crystal_melon", () -> new CrystalMelon(BlockBehaviour.Properties.of().strength(0.3F, 0.6F).sound(SoundType.AMETHYST).lightLevel(value -> 10)));
     public static final RegistryObject<Block> DEATH_ANCHOR = registerBlock("death_anchor", () -> new DeathAnchorBlock(BlockBehaviour.Properties.of().sound(SoundType.NETHER_BRICKS).requiresCorrectToolForDrops()));
 
     public static <B extends Block> RegistryObject<B> registerBlock(String name, Supplier<? extends B> blocks) {

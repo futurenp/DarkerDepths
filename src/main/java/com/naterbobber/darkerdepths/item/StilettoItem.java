@@ -41,7 +41,7 @@ public class StilettoItem extends SwordItem {
         ItemStack itemStack = player.getItemInHand(hand);
 
         //Check for flying with elytra
-        if (player.isFallFlying()) {
+        if (player.isFallFlying() || player.isCrouching()) {
             return InteractionResultHolder.pass(itemStack);
         }
 
