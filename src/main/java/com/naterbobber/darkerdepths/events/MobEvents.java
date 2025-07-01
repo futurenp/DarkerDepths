@@ -37,10 +37,7 @@ import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.util.ITeleporter;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
-import net.minecraftforge.event.entity.living.LivingDamageEvent;
-import net.minecraftforge.event.entity.living.LivingDeathEvent;
-import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
-import net.minecraftforge.event.entity.living.MobEffectEvent;
+import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -169,7 +166,7 @@ public class MobEvents {
 
     @SubscribeEvent
     public void onEquipmentChange(LivingEquipmentChangeEvent event) {
-        if (!(event.getEntity() instanceof Player player)) {
+        if (!(event.getEntity() instanceof Player player) || player.level().isClientSide()) {
             return;
         }
 
@@ -185,9 +182,9 @@ public class MobEvents {
         }
 
         if (previouslyEquipped.is(DDItems.GLOWSHROOM_CAP.get())) {
-            player.removeEffect(MobEffects.DIG_SPEED);
+            if (!newlyEquipped.is(DDItems.GLOWSHROOM_CAP.get())) {
+                player.removeEffect(MobEffects.DIG_SPEED);
+            }
         }
     }
-
-
 }

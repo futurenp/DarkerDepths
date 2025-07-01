@@ -1,9 +1,12 @@
 package com.naterbobber.darkerdepths.util;
 
 import com.google.common.collect.Multimap;
+import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -15,8 +18,6 @@ import java.util.Map;
 import java.util.UUID;
 
 public class SuperchargeHelper {
-
-    // NBT Keys
     public static final String TAG_UPGRADE_MAIN = "darkerdepths_upgrades";
     public static final String TAG_WAS_UNBREAKABLE = "was_unbreakable";
     public static final String TAG_HAD_MODIFIERS = "had_modifiers";
@@ -32,6 +33,7 @@ public class SuperchargeHelper {
     private static int digSpeedBuff = superchargeBuff;
     private static int attackDamageBuff = superchargeBuff;
     private static int attackSpeedBuff = superchargeBuff;
+
 
     public static void applyUpgrades(ItemStack tool, Level level) {
         if (tool.isEmpty() || level.isClientSide) {
@@ -49,6 +51,11 @@ public class SuperchargeHelper {
         }
 
         long expirationTick = level.getGameTime() + (superchargeMinutes * 60 * 20);
+
+        MutableComponent prefix = Component.literal("Supercharged ").withStyle(ChatFormatting.AQUA).withStyle(style -> style.withItalic(false));
+        MutableComponent originalName = tool.getHoverName().copy().withStyle(ChatFormatting.WHITE).withStyle(style -> style.withItalic(false));
+
+        tool.setHoverName(prefix.append(originalName));
 
         CompoundTag mainTag = tool.getOrCreateTag();
         CompoundTag upgradeTag = new CompoundTag();
@@ -91,6 +98,7 @@ public class SuperchargeHelper {
         boolean hadOriginalModifiers = upgradeTag.getBoolean(TAG_HAD_MODIFIERS);
 
         tool.resetHoverName();
+
         mainTag.remove("HideFlags");
         mainTag.remove(TAG_UPGRADE_MAIN);
 
