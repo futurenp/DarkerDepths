@@ -9,10 +9,8 @@ import net.minecraft.world.level.block.RedstoneLampBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 
-
 //Block needs custom sounds
 public class GlowshroomLampBlock extends RedstoneLampBlock {
-
 
     public GlowshroomLampBlock(BlockBehaviour.Properties properties){
         super(properties);

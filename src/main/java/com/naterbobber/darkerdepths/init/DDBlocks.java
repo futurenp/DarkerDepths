@@ -7,6 +7,7 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraftforge.fml.common.Mod;
@@ -128,7 +129,7 @@ public class DDBlocks {
     public static final RegistryObject<Block> GLOWSHROOM_STEM = registerBlock("glowshroom_stem", () -> new RotatedPillarBlock(BlockBehaviour.Properties.of().strength(0.2F).sound(SoundType.STEM)));
     public static final RegistryObject<Block> GLOWSHROOM_HEART = registerBlock("glowshroom_heart", () -> new Block(BlockBehaviour.Properties.of().sound(SoundType.SHROOMLIGHT).lightLevel(value -> 15)));
     public static final RegistryObject<Block> GLOWSHROOM_LANTERN = registerBlock("glowshroom_lantern", () -> new GlowshroomLanternBlock(BlockBehaviour.Properties.copy(Blocks.LANTERN)));
-    public static final RegistryObject<Block> GLOWSHROOM_LAMP = registerBlock("glowshroom_lamp", () -> new GlowshroomLampBlock(BlockBehaviour.Properties.of().lightLevel(level -> 15).sound(SoundType.GLASS)));
+    public static final RegistryObject<Block> GLOWSHROOM_LAMP = registerBlock("glowshroom_lamp", () -> new GlowshroomLampBlock(BlockBehaviour.Properties.of().lightLevel(state -> state.getValue(BlockStateProperties.LIT) ? 15 : 0).sound(SoundType.GLASS)));
     public static final RegistryObject<Block> ROPE = registerNoTabBlock("rope", () -> new RopeBlock(BlockBehaviour.Properties.of().strength(0.1F).sound(SoundType.WOOL)));
     public static final RegistryObject<Block> AMBER_CLUSTER = registerBlock("amber_cluster", () -> new AmethystClusterBlock(4, 2, BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(1.0f).sound(SoundType.SMALL_AMETHYST_BUD).lightLevel(value -> 7)));
     public static final RegistryObject<Block> AMBER_BLOCK = registerBlock("amber_block", () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(1.0f).sound(SoundType.AMETHYST).lightLevel(value -> 7)));
