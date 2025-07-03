@@ -9,7 +9,6 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
-import net.minecraftforge.event.entity.living.LivingUseTotemEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -133,7 +132,7 @@ public class DDBlocks {
     public static final RegistryObject<Block> ROPE = registerNoTabBlock("rope", () -> new RopeBlock(BlockBehaviour.Properties.of().strength(0.1F).sound(SoundType.WOOL)));
     public static final RegistryObject<Block> AMBER_CLUSTER = registerBlock("amber_cluster", () -> new AmethystClusterBlock(4, 2, BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(1.0f).sound(SoundType.SMALL_AMETHYST_BUD).lightLevel(value -> 7)));
     public static final RegistryObject<Block> AMBER_BLOCK = registerBlock("amber_block", () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(1.0f).sound(SoundType.AMETHYST).lightLevel(value -> 7)));
-    public static final RegistryObject<Block> CRYSTAL_MELON = registerBlock("crystal_melon", () -> new CrystalMelon(BlockBehaviour.Properties.of().strength(0.3F, 0.6F).sound(SoundType.AMETHYST).lightLevel(value -> 10)));
+    public static final RegistryObject<Block> CRYSTAL_MELON = registerBlock("crystal_melon", () -> new CrystalMelonBlock(BlockBehaviour.Properties.of().strength(0.3F, 0.6F).sound(SoundType.AMETHYST).lightLevel(value -> 10)));
     public static final RegistryObject<Block> LIVING_CRYSTAL = registerBlock("living_crystal", () -> new Block(BlockBehaviour.Properties.of().sound(SoundType.DEEPSLATE).strength(1.5F, 6.0F).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> DEAD_LIVING_CRYSTAL = registerBlock("dead_living_crystal", () -> new Block(BlockBehaviour.Properties.of().sound(SoundType.DEEPSLATE).strength(1.5F, 6.0F).requiresCorrectToolForDrops()));
 

@@ -21,11 +21,11 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
-public class CrystalMelon extends Block implements SimpleWaterloggedBlock {
+public class CrystalMelonBlock extends Block implements SimpleWaterloggedBlock {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     protected static final VoxelShape SHAPE = Block.box(1.0D, 0.0D, 1.0D, 15.0D, 14.0D, 15.0D);
 
-    public CrystalMelon(Properties properties) {
+    public CrystalMelonBlock(Properties properties) {
         super(properties);
         this.registerDefaultState(this.stateDefinition.any().setValue(WATERLOGGED, false));
     }
@@ -85,6 +85,7 @@ public class CrystalMelon extends Block implements SimpleWaterloggedBlock {
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         boolean water = context.getLevel().getBlockState(context.getClickedPos()).getBlock() == Blocks.WATER;
+
         return super.getStateForPlacement(context).setValue(WATERLOGGED, water);
     }
 }
