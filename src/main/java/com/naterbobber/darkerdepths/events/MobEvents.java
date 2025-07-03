@@ -17,6 +17,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageSources;
 import net.minecraft.world.effect.MobEffect;
@@ -33,11 +34,14 @@ import net.minecraft.world.entity.vehicle.DismountHelper;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.util.ITeleporter;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.event.entity.living.*;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -185,6 +189,24 @@ public class MobEvents {
             if (!newlyEquipped.is(DDItems.GLOWSHROOM_CAP.get())) {
                 player.removeEffect(MobEffects.DIG_SPEED);
             }
+        }
+    }
+
+    @SubscribeEvent
+    public void onRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
+        ItemStack itemStack = event.getItemStack();
+        BlockPos pos = event.getPos();
+        Level level = event.getLevel();
+        BlockState blockState = level.getBlockState(pos);
+        Player player = event.getEntity();
+        if (blockState.is(Blocks.MELON) && itemStack.is(DDBlocks.DARKSLATE.get().asItem())) {
+            event.setCanceled(true);
+            if (!player.getAbilities().instabuild) {
+                itemStack.shrink(1);
+            }
+            level.setBlock(pos, DDBlocks.STONE_MELON.get().defaultBlockState(), 2);
+            level.playSound(null, pos, SoundEvents.DEEPSLATE_PLACE, SoundSource.BLOCKS, 1.0F, 1.0F);
+            event.setCancellationResult(InteractionResult.SUCCESS);
         }
     }
 }

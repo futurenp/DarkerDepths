@@ -52,6 +52,8 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
                 DDBlocks.GLOWSHROOM_STEM.get()
         );
         this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(
+                DDBlocks.DEAD_LIVING_CRYSTAL.get(),
+                DDBlocks.LIVING_CRYSTAL.get(),
                 DDBlocks.DARKSLATE.get(),
                 DDBlocks.ARIDROCK.get(),
                 DDBlocks.LIMESTONE.get(),
@@ -124,6 +126,7 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
                 DDBlocks.CHISELED_ARIDROCK_BRICKS.get(),
                 DDBlocks.CHISELED_LIMESTONE_BRICKS.get(),
                 DDBlocks.CHISELED_GRIMESTONE_BRICKS.get(),
+                DDBlocks.STONE_MELON.get(),
                 DDBlocks.CRYSTAL_MELON.get(),
                 DDBlocks.ARID_DEEPSLATE.get(),
                 DDBlocks.GLOWSHROOM_LAMP.get(),

@@ -1,5 +1,7 @@
 {
   "values": [
+    "darkerdepths:dead_living_crystal",
+    "darkerdepths:living_crystal",
     "darkerdepths:darkslate",
     "darkerdepths:aridrock",
     "darkerdepths:limestone",
@@ -72,6 +74,7 @@
     "darkerdepths:chiseled_aridrock_bricks",
     "darkerdepths:chiseled_limestone_bricks",
     "darkerdepths:chiseled_grimestone_bricks",
+    "darkerdepths:stone_melon",
     "darkerdepths:crystal_melon",
     "darkerdepths:arid_deepslate",
     "darkerdepths:glowshroom_lamp",
