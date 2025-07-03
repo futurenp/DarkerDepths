@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:slime_ball"
+        "recipe": "darkerdepths:slime_ball_from_glow_grime"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "minecraft:slime_ball"
+      "darkerdepths:slime_ball_from_glow_grime"
     ]
   },
   "sends_telemetry_event": false

@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:glow_ink_sac"
+        "recipe": "darkerdepths:glow_ink_sac_from_glow_grime"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "minecraft:glow_ink_sac"
+      "darkerdepths:glow_ink_sac_from_glow_grime"
     ]
   },
   "sends_telemetry_event": false

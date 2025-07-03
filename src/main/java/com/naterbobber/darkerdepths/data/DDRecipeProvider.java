@@ -269,12 +269,12 @@ public class DDRecipeProvider extends RecipeProvider {
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.GLOW_INK_SAC, 2)
                 .requires(DDItems.GLOW_GRIME.get())
                 .requires(Items.INK_SAC)
-                .unlockedBy("has_glow_grime", has(DDItems.GLOW_GRIME.get())).save(consumer);
+                .unlockedBy("has_glow_grime", has(DDItems.GLOW_GRIME.get())).save(consumer, DarkerDepths.id("glow_ink_sac_from_glow_grime"));
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.SLIME_BALL)
                 .requires(DDItems.GLOW_GRIME.get())
                 .requires(Items.CLAY_BALL)
-                .unlockedBy("has_glow_grime", has(DDItems.GLOW_GRIME.get())).save(consumer);
+                .unlockedBy("has_glow_grime", has(DDItems.GLOW_GRIME.get())).save(consumer, DarkerDepths.id("slime_ball_from_glow_grime"));
 
         stonecutterResultFromBase(consumer, DDBlocks.CHISELED_DARKSLATE_BRICKS.get(), DDBlocks.DARKSLATE.get());
         stonecutterResultFromBase(consumer, DDBlocks.CHISELED_ARIDROCK_BRICKS.get(), DDBlocks.ARIDROCK.get());
