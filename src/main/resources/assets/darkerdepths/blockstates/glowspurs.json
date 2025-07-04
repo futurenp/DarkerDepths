@@ -17,21 +17,17 @@
     },
     "powered=true,facing=north": {
       "model": "darkerdepths:block/glowspurs_powered",
-      "x": 270,
       "y": 180
     },
     "powered=true,facing=south": {
-      "model": "darkerdepths:block/glowspurs_powered",
-      "x": 270
+      "model": "darkerdepths:block/glowspurs_powered"
     },
     "powered=true,facing=west": {
       "model": "darkerdepths:block/glowspurs_powered",
-      "x": 270,
       "y": 90
     },
     "powered=true,facing=east": {
       "model": "darkerdepths:block/glowspurs_powered",
-      "x": 270,
       "y": 270
     }
   }

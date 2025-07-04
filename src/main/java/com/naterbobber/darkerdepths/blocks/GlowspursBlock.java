@@ -9,6 +9,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -24,14 +25,17 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
+import java.util.List;
+
 public class GlowspursBlock extends Block {
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     private static final BooleanProperty POWERED = BlockStateProperties.POWERED;
-    private static final VoxelShape SHAPE = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 4.0D, 14.0D);
+    private static final VoxelShape SHAPE = Block.box(1.0D, 0.0D, 1.0D, 15.0D, 4.0D, 15.0D);
 
     public GlowspursBlock(Properties properties) {
         super(properties);
@@ -51,8 +55,9 @@ public class GlowspursBlock extends Block {
     @Override
     public void entityInside(BlockState state, Level worldIn, BlockPos pos, Entity entityIn) {
         if (entityIn instanceof LivingEntity && entityIn.getType() != DDEntityTypes.GLOWSHROOM_MONSTER.get()) {
-            entityIn.makeStuckInBlock(state, new Vec3(0.8F, 0.75D, 0.8F));
+            entityIn.makeStuckInBlock(state, new Vec3(0.45F, 1.0D, 0.45F));
             if (!worldIn.isClientSide() && !state.getValue(POWERED)) {
+                worldIn.playSound(null, pos, SoundEvents.PLAYER_HURT_SWEET_BERRY_BUSH, SoundSource.BLOCKS, 1.0F, 0.6F);
                 this.updateState(pos, state, worldIn);
             }
         }
@@ -67,8 +72,15 @@ public class GlowspursBlock extends Block {
     public void tick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource random) {
         boolean bl = state.getValue(POWERED);
         if (bl) {
-            worldIn.setBlock(pos, state.setValue(POWERED, false), 2);
-            worldIn.playSound(null, pos, SoundEvents.SLIME_BLOCK_PLACE, SoundSource.BLOCKS, 0.3F, 1.2F);
+            AABB boundingBox = getShape(state, worldIn, pos, CollisionContext.empty()).bounds().move(pos);
+            List<Player> playersInside = worldIn.getEntitiesOfClass(Player.class, boundingBox);
+
+            if (playersInside.isEmpty()) {
+                worldIn.setBlock(pos, state.setValue(POWERED, false), 2);
+                worldIn.playSound(null, pos, SoundEvents.PLAYER_HURT_SWEET_BERRY_BUSH, SoundSource.BLOCKS, 0.6F, 0.4F);
+            } else {
+                worldIn.scheduleTick(pos, this, 40);
+            }
         }
     }
 

@@ -4,6 +4,24 @@
     "minecraft:moss_carpet",
     "minecraft:glow_lichen",
     "minecraft:sculk_vein",
-    "#minecraft:wool_carpets"
+    "darkerdepths:glowshroom",
+    "darkerdepths:glowspurs",
+    "darkerdepths:glimmering_vines",
+    "darkerdepths:glimmering_vine_plant",
+    "darkerdepths:dry_sprouts",
+    "#minecraft:wool_carpets",
+    "#minecraft:all_signs",
+    "#minecraft:all_hanging_signs",
+    "#minecraft:beds",
+    "#minecraft:crops",
+    "#minecraft:campfires",
+    "#minecraft:candles",
+    "#minecraft:beds",
+    "#minecraft:coral_plants",
+    "#minecraft:fences",
+    "#minecraft:fence_gates",
+    "#minecraft:replaceable_by_trees",
+    "#minecraft:lush_ground_replaceable",
+    "#minecraft:saplings"
   ]
 }
