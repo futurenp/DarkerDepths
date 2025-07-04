@@ -54,7 +54,7 @@ public class DeadLivingCrystalBlock extends Block {
             level.setBlock(pos, state.setValue(CRACKED, cracked - 1), 2);
             level.playSound(null, pos, SoundEvents.TURTLE_EGG_CRACK, SoundSource.BLOCKS, 1.0F, 1.0F);
             level.scheduleTick(pos, this, 20);
-        } else {
+        } else if (cracked == 1) {
             level.setBlockAndUpdate(pos, DDBlocks.LIVING_CRYSTAL.get().defaultBlockState());
             level.playSound(null, pos, SoundEvents.DEEPSLATE_PLACE, SoundSource.BLOCKS, 1.0F, 1.0F);
         }
