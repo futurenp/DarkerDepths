@@ -11,6 +11,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class LivingCrystalBlock extends Block {
@@ -29,6 +30,8 @@ public class LivingCrystalBlock extends Block {
             int relativeCrack;
             if (blockstate.is(BlockTags.DIAMOND_ORES)) {
                 block = DDBlocks.LIVING_CRYSTAL.get().defaultBlockState();
+            } else if (blockstate.is(Blocks.MELON)) {
+                block = DDBlocks.STONE_MELON.get().defaultBlockState();
             } else if (blockstate.is(DDBlocks.STONE_MELON.get()) && (relativeCrack = blockstate.getValue(DDBlockStateProperties.CRACKED)) <= 2) {
                 if (relativeCrack == 2) {
                     block = DDBlocks.CRYSTAL_MELON.get().defaultBlockState();

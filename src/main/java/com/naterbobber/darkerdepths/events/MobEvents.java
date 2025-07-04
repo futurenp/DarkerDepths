@@ -2,47 +2,44 @@ package com.naterbobber.darkerdepths.events;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.api.DeathAnchorLocation;
-import com.naterbobber.darkerdepths.blocks.DeathAnchorBlock;
 import com.naterbobber.darkerdepths.entities.BodySnatcher;
 import com.naterbobber.darkerdepths.entities.GlowshroomMonsterEntity;
-import com.naterbobber.darkerdepths.init.*;
+import com.naterbobber.darkerdepths.init.DDBlocks;
+import com.naterbobber.darkerdepths.init.DDDamageTypes;
+import com.naterbobber.darkerdepths.init.DDEnchantments;
+import com.naterbobber.darkerdepths.init.DDEntityTypes;
+import com.naterbobber.darkerdepths.init.DDItems;
+import com.naterbobber.darkerdepths.init.DDMobEffects;
+import com.naterbobber.darkerdepths.init.DDPoiTypes;
 import com.naterbobber.darkerdepths.item.StilettoItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.GlobalPos;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.damagesource.DamageSources;
-import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.SpawnPlacements;
-import net.minecraft.world.entity.ai.village.poi.PoiManager;
 import net.minecraft.world.entity.ai.village.poi.PoiType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.vehicle.DismountHelper;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.common.util.ITeleporter;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
-import net.minecraftforge.event.entity.living.*;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.eventbus.api.Event;
+import net.minecraftforge.event.entity.living.LivingDamageEvent;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
+import net.minecraftforge.event.entity.living.MobEffectEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -192,21 +189,4 @@ public class MobEvents {
         }
     }
 
-    @SubscribeEvent
-    public void onRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
-        ItemStack itemStack = event.getItemStack();
-        BlockPos pos = event.getPos();
-        Level level = event.getLevel();
-        BlockState blockState = level.getBlockState(pos);
-        Player player = event.getEntity();
-        if (blockState.is(Blocks.MELON) && itemStack.is(DDBlocks.DARKSLATE.get().asItem())) {
-            event.setCanceled(true);
-            if (!player.getAbilities().instabuild) {
-                itemStack.shrink(1);
-            }
-            level.setBlock(pos, DDBlocks.STONE_MELON.get().defaultBlockState(), 2);
-            level.playSound(null, pos, SoundEvents.DEEPSLATE_PLACE, SoundSource.BLOCKS, 1.0F, 1.0F);
-            event.setCancellationResult(InteractionResult.SUCCESS);
-        }
-    }
 }
