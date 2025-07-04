@@ -136,7 +136,7 @@ public class DDBlocks {
     public static final RegistryObject<Block> CRYSTAL_MELON = registerBlock("crystal_melon", () -> new CrystalMelonBlock(BlockBehaviour.Properties.of().strength(0.3F, 0.6F).sound(SoundType.AMETHYST).lightLevel(value -> 10)));
     public static final RegistryObject<Block> STONE_MELON = registerBlock("stone_melon", () -> new StoneMelonBlock(BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_GRAY).requiresCorrectToolForDrops().strength(1.0f).sound(SoundType.DEEPSLATE)));
     public static final RegistryObject<Block> LIVING_CRYSTAL = registerBlock("living_crystal", () -> new LivingCrystalBlock(BlockBehaviour.Properties.of().sound(SoundType.DEEPSLATE).strength(1.5F, 6.0F).randomTicks().requiresCorrectToolForDrops()));
-    public static final RegistryObject<Block> DEAD_LIVING_CRYSTAL = registerBlock("dead_living_crystal", () -> new DeadLivingCrystalBlock(BlockBehaviour.Properties.of().sound(SoundType.DEEPSLATE).strength(1.5F, 6.0F).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> DEAD_LIVING_CRYSTAL = registerBlock("dead_living_crystal", () -> new DeadLivingCrystalBlock(BlockBehaviour.Properties.of().sound(SoundType.DEEPSLATE).strength(1.5F, 6.0F).requiresCorrectToolForDrops().randomTicks()));
     public static final RegistryObject<Block> DEATH_ANCHOR = registerBlock("death_anchor", () -> new DeathAnchorBlock(BlockBehaviour.Properties.of().sound(SoundType.NETHER_BRICKS).requiresCorrectToolForDrops()));
 
     public static <B extends Block> RegistryObject<B> registerBlock(String name, Supplier<? extends B> blocks) {

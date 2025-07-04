@@ -33,22 +33,9 @@ public class DeadLivingCrystalBlock extends Block {
     }
 
     @Override
-    public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource p_222948_) {
-        int cracked = state.getValue(CRACKED);
-        if (cracked > 0) {
-            level.setBlock(pos, state.setValue(CRACKED, cracked - 1), 2);
-            level.playSound(null, pos, SoundEvents.TURTLE_EGG_CRACK, SoundSource.BLOCKS, 1.0F, 1.0F);
-            level.scheduleTick(pos, this, 20);
-        } else {
-            level.setBlockAndUpdate(pos, DDBlocks.LIVING_CRYSTAL.get().defaultBlockState());
-            level.playSound(null, pos, SoundEvents.DEEPSLATE_PLACE, SoundSource.BLOCKS, 1.0F, 1.0F);
-        }
-    }
-
-    @Override
     public InteractionResult use(BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand hand, BlockHitResult hitResult) {
         ItemStack itemStack = player.getItemInHand(hand);
-        if (itemStack.is(Items.DIAMOND)) {
+        if (itemStack.is(Items.DIAMOND) && blockState.getValue(CRACKED) == 0) {
             if (!player.getAbilities().instabuild) {
                 itemStack.shrink(1);
             }
@@ -58,5 +45,18 @@ public class DeadLivingCrystalBlock extends Block {
             return InteractionResult.SUCCESS;
         }
         return super.use(blockState, level, blockPos, player, hand, hitResult);
+    }
+
+    @Override
+    public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource randomSource) {
+        int cracked = state.getValue(CRACKED);
+        if (cracked > 1) {
+            level.setBlock(pos, state.setValue(CRACKED, cracked - 1), 2);
+            level.playSound(null, pos, SoundEvents.TURTLE_EGG_CRACK, SoundSource.BLOCKS, 1.0F, 1.0F);
+            level.scheduleTick(pos, this, 20);
+        } else {
+            level.setBlockAndUpdate(pos, DDBlocks.LIVING_CRYSTAL.get().defaultBlockState());
+            level.playSound(null, pos, SoundEvents.DEEPSLATE_PLACE, SoundSource.BLOCKS, 1.0F, 1.0F);
+        }
     }
 }
