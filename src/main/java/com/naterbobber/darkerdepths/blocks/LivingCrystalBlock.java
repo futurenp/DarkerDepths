@@ -4,6 +4,7 @@ import com.naterbobber.darkerdepths.init.DDBlockStateProperties;
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
@@ -35,10 +36,12 @@ public class LivingCrystalBlock extends Block {
             } else if (blockstate.is(DDBlocks.STONE_MELON.get()) && (relativeCrack = blockstate.getValue(DDBlockStateProperties.CRYSTAL_LEVEL)) <= 2) {
                 if (relativeCrack == 2) {
                     block = DDBlocks.CRYSTAL_MELON.get().defaultBlockState();
+                    level.setBlock(blockPos, DDBlocks.DEAD_LIVING_CRYSTAL.get().defaultBlockState(), 2);
                 } else {
                     block = DDBlocks.STONE_MELON.get().defaultBlockState().setValue(DDBlockStateProperties.CRYSTAL_LEVEL, relativeCrack + 1);
                 }
                 level.playSound(null, blockpos, SoundEvents.AMETHYST_BLOCK_PLACE, SoundSource.BLOCKS, 1.0F, 1.0F);
+                level.levelEvent(2001, blockpos, getId(blockstate));
             }
 
             if (block != null) {
