@@ -86,8 +86,12 @@ public class GeyserBlock extends BaseEntityBlock {
 
     @Override
     public void tick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource p_60465_) {
-        if (state.getValue(POWERED) && !worldIn.hasNeighborSignal(pos)) {
-            worldIn.setBlock(pos, state.cycle(POWERED), 2);
+        if (state.getValue(POWERED)) {
+            if (!worldIn.hasNeighborSignal(pos)) {
+                worldIn.setBlock(pos, state.cycle(POWERED), 2);
+            } else {
+
+            }
         }
     }
 

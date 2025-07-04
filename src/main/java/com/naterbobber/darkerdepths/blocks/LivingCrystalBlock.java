@@ -32,7 +32,7 @@ public class LivingCrystalBlock extends Block {
                 block = DDBlocks.LIVING_CRYSTAL.get().defaultBlockState();
             } else if (blockstate.is(Blocks.MELON)) {
                 block = DDBlocks.STONE_MELON.get().defaultBlockState();
-            } else if (blockstate.is(DDBlocks.STONE_MELON.get()) && (relativeCrack = blockstate.getValue(DDBlockStateProperties.CRACKED)) <= 2) {
+            } else if (blockstate.is(DDBlocks.STONE_MELON.get()) && (relativeCrack = blockstate.getValue(DDBlockStateProperties.CRYSTAL_LEVEL)) <= 2) {
                 if (relativeCrack == 2) {
                     block = DDBlocks.CRYSTAL_MELON.get().defaultBlockState();
                 } else {
