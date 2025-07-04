@@ -1,7 +1,9 @@
 {
-  "parent": "block/cube_column",
+  "parent": "darkerdepths:block/cube_unique_top_bottom",
   "textures": {
-    "end": "darkerdepths:block/glowshroom_block",
-    "side": "darkerdepths:block/glowshroom_heart"
+    "bottom": "darkerdepths:block/glowshroom_stem_top",
+    "side": "darkerdepths:block/glowshroom_heart",
+    "top": "darkerdepths:block/glowshroom_block",
+    "particle": "darkerdepths:block/glowshroom_stem"
   }
 }

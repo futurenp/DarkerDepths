@@ -1,5 +1,16 @@
 {
   "variants": {
-    "": { "model": "darkerdepths:block/dead_living_crystal" }
+    "cracked=3": {
+      "model": "darkerdepths:block/growing_living_crystal_1"
+    },
+    "cracked=2": {
+      "model": "darkerdepths:block/growing_living_crystal_2"
+    },
+    "cracked=1": {
+      "model": "darkerdepths:block/growing_living_crystal_3"
+    },
+    "cracked=0": {
+      "model": "darkerdepths:block/dead_living_crystal"
+    }
   }
 }

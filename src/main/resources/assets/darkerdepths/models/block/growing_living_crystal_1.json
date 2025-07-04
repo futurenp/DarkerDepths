@@ -1,0 +1,6 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "darkerdepths:block/growing_living_crystal_1"
+  }
+}

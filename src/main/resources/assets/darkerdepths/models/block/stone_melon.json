@@ -1,6 +1,9 @@
 {
-  "parent": "block/cube_all",
+  "parent": "darkerdepths:block/cube_unique_top_bottom",
   "textures": {
-    "all": "darkerdepths:block/stone_melon"
+    "bottom": "darkerdepths:block/stone_melon_bottom",
+    "side": "darkerdepths:block/stone_melon",
+    "top": "darkerdepths:block/stone_melon_top",
+    "particle": "darkerdepths:block/stone_melon"
   }
 }

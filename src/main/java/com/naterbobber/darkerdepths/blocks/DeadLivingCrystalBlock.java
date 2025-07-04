@@ -41,7 +41,7 @@ public class DeadLivingCrystalBlock extends Block {
             }
             level.setBlock(blockPos, blockState.setValue(CRACKED, 3), 2);
             level.playSound(null, blockPos, SoundEvents.TURTLE_EGG_CRACK, SoundSource.BLOCKS, 1.0F, 1.0F);
-            level.scheduleTick(blockPos, this, 20);
+            level.scheduleTick(blockPos, this, 1);
             return InteractionResult.SUCCESS;
         }
         return super.use(blockState, level, blockPos, player, hand, hitResult);
