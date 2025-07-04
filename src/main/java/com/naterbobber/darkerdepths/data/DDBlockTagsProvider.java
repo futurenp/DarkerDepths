@@ -47,9 +47,11 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
         );
         this.tag(BlockTags.WOODEN_FENCES).add(DDBlocks.PETRIFIED_FENCE.get());
         this.tag(BlockTags.FENCE_GATES).add(DDBlocks.PETRIFIED_FENCE_GATE.get());
+
         this.tag(BlockTags.MINEABLE_WITH_HOE).add(
                 DDBlocks.GLOWSHROOM_BLOCK.get(),
-                DDBlocks.GLOWSHROOM_STEM.get()
+                DDBlocks.GLOWSHROOM_STEM.get(),
+                DDBlocks.GLOWSHROOM_HEART.get()
         );
         this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(
                 DDBlocks.DEAD_LIVING_CRYSTAL.get(),
@@ -140,10 +142,34 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
         );
 
         this.tag(DDBlockTags.GEYSER_BOOSTERS).add(Blocks.MAGMA_BLOCK);
+
+        //only works on snow?
+        //Also only works with 1 snow layer
+        //fix later ig
         this.tag(DDBlockTags.GEYSER_BYPASSES).add(
-                Blocks.SNOW, Blocks.MOSS_CARPET,
-                Blocks.GLOW_LICHEN, Blocks.SCULK_VEIN)
-                .addTag(BlockTags.WOOL_CARPETS);
+                Blocks.SNOW,
+                Blocks.MOSS_CARPET,
+                Blocks.GLOW_LICHEN,
+                Blocks.SCULK_VEIN,
+                DDBlocks.GLOWSHROOM.get(),
+                DDBlocks.GLOWSPURS.get(),
+                DDBlocks.GLIMMERING_VINES.get(),
+                DDBlocks.GLIMMERING_VINE_PLANT.get(),
+                DDBlocks.DRY_SPROUTS.get())
+                .addTag(BlockTags.WOOL_CARPETS)
+                .addTag(BlockTags.ALL_SIGNS)
+                .addTag(BlockTags.ALL_HANGING_SIGNS)
+                .addTag(BlockTags.BEDS)
+                .addTag(BlockTags.CROPS)
+                .addTag(BlockTags.CAMPFIRES)
+                .addTag(BlockTags.CANDLES)
+                .addTag(BlockTags.BEDS)
+                .addTag(BlockTags.CORAL_PLANTS)
+                .addTag(BlockTags.FENCES)
+                .addTag(BlockTags.FENCE_GATES)
+                .addTag(BlockTags.REPLACEABLE_BY_TREES)
+                .addTag(BlockTags.LUSH_GROUND_REPLACEABLE)
+                .addTag(BlockTags.SAPLINGS);
         this.tag(DDBlockTags.HUSKS_SPAWNABLE_ON).add(DDBlocks.ARIDROCK.get());
     }
 }
