@@ -31,6 +31,8 @@ public class LivingCrystalBlock extends Block {
             int relativeCrack;
             if (blockstate.is(BlockTags.DIAMOND_ORES)) {
                 block = DDBlocks.LIVING_CRYSTAL.get().defaultBlockState();
+                level.playSound(null, blockpos, SoundEvents.AMETHYST_BLOCK_PLACE, SoundSource.BLOCKS, 1.0F, 1.0F);
+                level.levelEvent(2001, blockpos, getId(blockstate));
             } else if (blockstate.is(Blocks.MELON)) {
                 block = DDBlocks.STONE_MELON.get().defaultBlockState();
             } else if (blockstate.is(DDBlocks.STONE_MELON.get()) && (relativeCrack = blockstate.getValue(DDBlockStateProperties.CRYSTAL_LEVEL)) <= 2) {
