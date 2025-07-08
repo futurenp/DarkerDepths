@@ -1,5 +1,6 @@
 package com.naterbobber.darkerdepths;
 
+import com.naterbobber.darkerdepths.config.DDConfigs;
 import com.naterbobber.darkerdepths.events.MiscEvents;
 import com.naterbobber.darkerdepths.events.MobEvents;
 import com.naterbobber.darkerdepths.init.DDBlockEntityTypes;
@@ -18,6 +19,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
@@ -31,6 +33,7 @@ public class DarkerDepths {
     public static final String MODID = "darkerdepths";
 
     public DarkerDepths(FMLJavaModLoadingContext context) {
+        context.registerConfig(ModConfig.Type.COMMON, DDConfigs.SPEC, "darkerdepths-common.toml");
         IEventBus modEventBus = context.getModEventBus();
         IEventBus eventBus = MinecraftForge.EVENT_BUS;
         modEventBus.addListener(this::commonSetup);

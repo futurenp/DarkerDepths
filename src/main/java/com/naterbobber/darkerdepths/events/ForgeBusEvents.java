@@ -1,6 +1,7 @@
 package com.naterbobber.darkerdepths.events;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
+import com.naterbobber.darkerdepths.config.DDConfigs;
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import com.naterbobber.darkerdepths.util.SuperchargeHelper;
 import net.minecraft.ChatFormatting;
@@ -24,8 +25,6 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = DarkerDepths.MODID)
 public class ForgeBusEvents {
-
-    private static int superchargeBuff = SuperchargeHelper.getSuperchargeBuff();
 
     @SubscribeEvent
     public static void onApplySupercharge(PlayerInteractEvent.RightClickItem event) {
@@ -59,6 +58,9 @@ public class ForgeBusEvents {
 
     @SubscribeEvent
     public static void onItemTooltip(ItemTooltipEvent event) {
+        int digSpeedBuff = DDConfigs.SUPERCHARGE_DIG_SPEED.get();
+        int attackSpeedBuff = DDConfigs.SUPERCHARGE_ATTACK_SPEED.get();
+        int attackDamageBuff = DDConfigs.SUPERCHARGE_ATTACK_DAMAGE.get();
         ItemStack stack = event.getItemStack();
         Player player = event.getEntity();
 
@@ -68,10 +70,12 @@ public class ForgeBusEvents {
 
         event.getToolTip().add(Component.empty()); // Adds a blank line for spacing
         event.getToolTip().add(Component.literal("Supercharged:").withStyle(ChatFormatting.AQUA));
-        event.getToolTip().add(Component.literal(" +"+ superchargeBuff +"% Dig Speed").withStyle(ChatFormatting.GRAY));
-        event.getToolTip().add(Component.literal(" +"+ superchargeBuff +"% Attack Damage").withStyle(ChatFormatting.GRAY));
-        event.getToolTip().add(Component.literal(" +"+ superchargeBuff +"% Attack Speed").withStyle(ChatFormatting.GRAY));
-        event.getToolTip().add(Component.literal("Unbreakable").withStyle(ChatFormatting.BLUE));
+        event.getToolTip().add(Component.literal(" +"+ digSpeedBuff +"% Dig Speed").withStyle(ChatFormatting.GRAY));
+        event.getToolTip().add(Component.literal(" +"+ attackSpeedBuff +"% Attack Damage").withStyle(ChatFormatting.GRAY));
+        event.getToolTip().add(Component.literal(" +"+ attackDamageBuff +"% Attack Speed").withStyle(ChatFormatting.GRAY));
+        if(DDConfigs.SUPERCHARGE_UNBREAKABLE.get()){
+            event.getToolTip().add(Component.literal("Unbreakable").withStyle(ChatFormatting.BLUE));
+        }
 
         CompoundTag upgradeTag = stack.getTag().getCompound(SuperchargeHelper.TAG_UPGRADE_MAIN);
         long expirationTick = upgradeTag.getLong(SuperchargeHelper.TAG_EXPIRATION);
@@ -103,7 +107,7 @@ public class ForgeBusEvents {
         if (isSuperchargedAndNotExpired(heldItem, level)) {
 
             float currentSpeed = event.getNewSpeed();
-            event.setNewSpeed(currentSpeed * (1F + (superchargeBuff) / 100F));
+            event.setNewSpeed(currentSpeed * (1F + (DDConfigs.SUPERCHARGE_DIG_SPEED.get()) / 100F));
         }
     }
 

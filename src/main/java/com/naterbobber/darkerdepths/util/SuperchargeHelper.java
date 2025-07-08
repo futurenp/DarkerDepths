@@ -1,6 +1,7 @@
 package com.naterbobber.darkerdepths.util;
 
 import com.google.common.collect.Multimap;
+import com.naterbobber.darkerdepths.config.DDConfigs;
 import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
@@ -28,14 +29,14 @@ public class SuperchargeHelper {
     public static final String TAG_ATTACK_SPEED_BOOST_LEVEL = "attack_speed_boost_level";
     private static final UUID ATTACK_DAMAGE_MODIFIER_UUID = UUID.fromString("f8b8e0a8-f8a0-449e-917b-88a3a2dff83e");
     private static final UUID ATTACK_SPEED_MODIFIER_UUID = UUID.fromString("a7a7a3b8-1b0f-4859-866c-844a49e5e79f");
-    private static int superchargeMinutes = 5;
-    private static int superchargeBuff = 20;
-    private static int digSpeedBuff = superchargeBuff;
-    private static int attackDamageBuff = superchargeBuff;
-    private static int attackSpeedBuff = superchargeBuff;
 
 
     public static void applyUpgrades(ItemStack tool, Level level) {
+        int superchargeMinutes = DDConfigs.SUPERCHARGE_MINUTES.get();
+        int digSpeedBuff = DDConfigs.SUPERCHARGE_DIG_SPEED.get();
+        int attackSpeedBuff = DDConfigs.SUPERCHARGE_ATTACK_SPEED.get();
+        int attackDamageBuff = DDConfigs.SUPERCHARGE_ATTACK_DAMAGE.get();
+
         if (tool.isEmpty() || level.isClientSide) {
             return;
         }
@@ -69,7 +70,9 @@ public class SuperchargeHelper {
         upgradeTag.putBoolean(TAG_HAD_MODIFIERS, hadExistingModifiers);
         mainTag.put(TAG_UPGRADE_MAIN, upgradeTag);
 
-        mainTag.putBoolean("Unbreakable", true);
+        if(DDConfigs.SUPERCHARGE_UNBREAKABLE.get()){
+            mainTag.putBoolean("Unbreakable", true);
+        }
 
         float damageMultiplier = attackDamageBuff / 100F;
         float speedMultiplier = attackSpeedBuff / 100F;
@@ -129,9 +132,5 @@ public class SuperchargeHelper {
         if (mainTag.isEmpty()) {
             tool.setTag(null);
         }
-    }
-
-    public static int getSuperchargeBuff(){
-        return superchargeBuff;
     }
 }
