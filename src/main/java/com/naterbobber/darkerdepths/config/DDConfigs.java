@@ -31,7 +31,6 @@ public class DDConfigs {
 
         SUPERCHARGE_UNBREAKABLE = BUILDER.comment("Supercharge tool unbreakablity:").define("supercharge_unbreakable", true);
 
-        // Pop the "Supercharge Multipliers" section
         BUILDER.pop();
 
         SPEC = BUILDER.build();

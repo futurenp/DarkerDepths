@@ -3,6 +3,8 @@ package com.naterbobber.darkerdepths.blocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.item.FallingBlockEntity;
@@ -45,6 +47,8 @@ public class AshFullBlock extends Block implements Fallable {
     private void fall(Level world, BlockPos blockPos, BlockState state) {
         if (FallingBlock.isFree(world.getBlockState(blockPos.below())) && blockPos.getY() >= world.getMinBuildHeight()) {
             FallingBlockEntity.fall(world, blockPos, state);
+            world.playSound(null, blockPos, SoundEvents.SNOW_FALL, SoundSource.BLOCKS, 1.0F, 1.0F);
+            world.levelEvent(2001, blockPos, getId(state));
             world.scheduleTick(blockPos, this, 120);
         }
     }
