@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/cube_column",
   "textures": {
-    "end": "darkerdepths:block/skull_wall_top",
+    "end": "darkerdepths:block/aridrock_pillar_top",
     "side": "darkerdepths:block/skull_wall"
   }
 }
