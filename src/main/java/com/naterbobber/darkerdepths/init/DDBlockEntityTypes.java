@@ -3,6 +3,7 @@ package com.naterbobber.darkerdepths.init;
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.blocks.blockentities.DDSignBlockEntity;
 import com.naterbobber.darkerdepths.blocks.blockentities.GeyserBlockEntity;
+import com.naterbobber.darkerdepths.blocks.blockentities.TombBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
@@ -16,5 +17,6 @@ public class DDBlockEntityTypes {
 
     public static final RegistryObject<BlockEntityType<DDSignBlockEntity>> DD_SIGN = BLOCK_ENTITIES.register("dd_sign", () -> BlockEntityType.Builder.of(DDSignBlockEntity::new, DDBlocks.PETRIFIED_SIGN.get(), DDBlocks.PETRIFIED_WALL_SIGN.get()).build(null));
     public static final RegistryObject<BlockEntityType<GeyserBlockEntity>> GEYSER = BLOCK_ENTITIES.register("geyser", () -> BlockEntityType.Builder.of(GeyserBlockEntity::new, DDBlocks.GEYSER.get()).build(null));
+    public static final RegistryObject<BlockEntityType<TombBlockEntity>> TOMB = BLOCK_ENTITIES.register("tomb", () -> BlockEntityType.Builder.of(TombBlockEntity::new, DDBlocks.TOMB.get()).build(null));
 
 }
