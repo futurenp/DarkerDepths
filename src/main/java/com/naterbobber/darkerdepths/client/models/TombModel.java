@@ -12,14 +12,12 @@ import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.client.renderer.RenderType;
 
-// Changed to extend Model instead of EntityModel
 public class TombModel extends Model {
 	private final ModelPart bottom;
 	private final ModelPart top;
 	private final ModelPart bone;
 
 	public TombModel(ModelPart root) {
-		// We must call the super constructor. This RenderType is standard for block/entity models.
 		super(RenderType::entityCutoutNoCull);
 		this.bone = root.getChild("bone");
 		this.top = this.bone.getChild("top");
@@ -30,7 +28,7 @@ public class TombModel extends Model {
 		MeshDefinition meshdefinition = new MeshDefinition();
 		PartDefinition partdefinition = meshdefinition.getRoot();
 
-		PartDefinition bone = partdefinition.addOrReplaceChild("bone", CubeListBuilder.create(), PartPose.offsetAndRotation(0.0F, 24.0F, 0.0F, 0.0F, -1.5708F, 0.0F));
+		PartDefinition bone = partdefinition.addOrReplaceChild("bone", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, 0.0F));
 
 		PartDefinition top = bone.addOrReplaceChild("top", CubeListBuilder.create().texOffs(1, 0).addBox(-23.0F, -10.0F, -4.0F, 46.0F, 5.0F, 24.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -5.0F, -8.0F));
 
@@ -42,8 +40,6 @@ public class TombModel extends Model {
 
 		return LayerDefinition.create(meshdefinition, 256, 128);
 	}
-
-	// The setupAnim method is removed as it's part of EntityModel and not needed.
 
 	@Override
 	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {

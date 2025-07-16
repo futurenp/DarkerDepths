@@ -140,8 +140,6 @@ public class DDBlocks {
     public static final RegistryObject<Block> DEAD_LIVING_CRYSTAL = registerBlock("dead_living_crystal", () -> new DeadLivingCrystalBlock(BlockBehaviour.Properties.of().sound(SoundType.DEEPSLATE).strength(1.5F, 6.0F).requiresCorrectToolForDrops().randomTicks()));
     public static final RegistryObject<Block> DEATH_ANCHOR = registerBlock("death_anchor", () -> new DeathAnchorBlock(BlockBehaviour.Properties.of().strength(5F, 12.0F).sound(SoundType.NETHER_BRICKS).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> TOMB = registerBlock("tomb", () -> new TombBlock(BlockBehaviour.Properties.copy(Blocks.STONE_BRICKS).strength(5.0f).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> TOMB_PART = registerBlock("tomb_part", () -> new TombPartBlock(BlockBehaviour.Properties.copy(Blocks.STONE_BRICKS).strength(5.0f).requiresCorrectToolForDrops().noOcclusion()));
-
     public static <B extends Block> RegistryObject<B> registerBlock(String name, Supplier<? extends B> blocks) {
         RegistryObject<B> block = BLOCKS.register(name, blocks);
         DDItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
