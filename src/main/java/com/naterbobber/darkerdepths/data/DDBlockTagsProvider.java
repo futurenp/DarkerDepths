@@ -134,7 +134,8 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
                 DDBlocks.GLOWSHROOM_LAMP.get(),
                 DDBlocks.GLOWSHROOM_LANTERN.get(),
                 DDBlocks.SKULL_WALL.get(),
-                DDBlocks.DEATH_ANCHOR.get()
+                DDBlocks.DEATH_ANCHOR.get(),
+                DDBlocks.TOMB.get()
         );
         this.tag(BlockTags.MINEABLE_WITH_SHOVEL).add(
                 DDBlocks.ASH.get(),

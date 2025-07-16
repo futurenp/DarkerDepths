@@ -48,7 +48,7 @@ public class TombBlock extends BaseEntityBlock {
             Block.box(0, 10, 4, 16, 15, 16));
 
     private static final VoxelShape FRONT_CENTER_SHAPE = CENTER_PART;
-    private static final VoxelShape BACK_CENTER_SHAPE = rotateVoxelShape(FRONT_CENTER_SHAPE, Direction.SOUTH);
+    private static final VoxelShape BACK_CENTER_SHAPE = rotateVoxelShape(CENTER_PART, Direction.SOUTH);
     private static final VoxelShape FRONT_LEFT_SHAPE = CORNER_PART;
     private static final VoxelShape FRONT_RIGHT_SHAPE = CORNER_PART_MIRRORED;
     private static final VoxelShape BACK_LEFT_SHAPE = rotateVoxelShape(CORNER_PART_MIRRORED, Direction.SOUTH);
