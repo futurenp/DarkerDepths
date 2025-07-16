@@ -19,8 +19,12 @@ import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -30,9 +34,10 @@ import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TombBlock extends BaseEntityBlock {
+public class TombBlock extends BaseEntityBlock implements SimpleWaterloggedBlock {
 
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
+    public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public static final EnumProperty<Part> PART = EnumProperty.create("part", Part.class);
     private static final VoxelShape CORNER_PART = Shapes.or(
             Block.box(2, 0, 5, 16, 3, 16),
@@ -90,12 +95,13 @@ public class TombBlock extends BaseEntityBlock {
         super(properties);
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(FACING, Direction.NORTH)
-                .setValue(PART, Part.FRONT_CENTER));
+                .setValue(PART, Part.FRONT_CENTER)
+                .setValue(WATERLOGGED, false));
     }
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(FACING, PART);
+        builder.add(FACING, PART, WATERLOGGED);
     }
 
     @Override
@@ -114,6 +120,7 @@ public class TombBlock extends BaseEntityBlock {
         return Shapes.block();
     }
 
+
     @Override
     public RenderShape getRenderShape(BlockState state) {
         return state.getValue(PART) == Part.FRONT_CENTER ? RenderShape.ENTITYBLOCK_ANIMATED : RenderShape.MODEL;
@@ -122,9 +129,16 @@ public class TombBlock extends BaseEntityBlock {
     @Nullable
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
+        FluidState fluidstate = context.getLevel().getFluidState(context.getClickedPos());
         return this.defaultBlockState()
                 .setValue(FACING, context.getHorizontalDirection().getOpposite())
-                .setValue(PART, Part.FRONT_CENTER);
+                .setValue(PART, Part.FRONT_CENTER)
+                .setValue(WATERLOGGED, fluidstate.getType() == Fluids.WATER);
+    }
+
+    @Override
+    public FluidState getFluidState(BlockState pState) {
+        return pState.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(pState);
     }
 
     @Override
@@ -154,7 +168,8 @@ public class TombBlock extends BaseEntityBlock {
                 BlockPos partPos = getPartPos(pos, part, facing);
                 BlockState partState = this.defaultBlockState()
                         .setValue(FACING, facing)
-                        .setValue(PART, part);
+                        .setValue(PART, part)
+                        .setValue(WATERLOGGED, state.getValue(WATERLOGGED));
                 level.setBlock(partPos, partState, 3);
             }
         }
@@ -174,6 +189,9 @@ public class TombBlock extends BaseEntityBlock {
 
     @Override
     public BlockState updateShape(BlockState pState, Direction pFacing, BlockState pFacingState, LevelAccessor pLevel, BlockPos pCurrentPos, BlockPos pFacingPos) {
+        if (pState.getValue(WATERLOGGED)) {
+            pLevel.scheduleTick(pCurrentPos, Fluids.WATER, Fluids.WATER.getTickDelay(pLevel));
+        }
         Part part = pState.getValue(PART);
         if (part != Part.FRONT_CENTER) {
             BlockPos mainPos = getMainBlockPos(pCurrentPos, pState);
@@ -238,19 +256,16 @@ public class TombBlock extends BaseEntityBlock {
             VoxelShape rotatedBox;
             switch (direction) {
                 case SOUTH:
-                    // Rotate 180 degrees
                     rotatedBox = Shapes.box(1 - maxX, minY, 1 - maxZ, 1 - minX, maxY, 1 - minZ);
                     break;
                 case WEST:
-                    // Rotate 270 degrees
                     rotatedBox = Shapes.box(minZ, minY, 1 - maxX, maxZ, maxY, 1 - minX);
                     break;
                 case EAST:
-                    // Rotate 90 degrees
                     rotatedBox = Shapes.box(1 - maxZ, minY, minX, 1 - minZ, maxY, maxX);
                     break;
-                default: // NORTH
-                    rotatedBox = Shapes.box(minX, minY, minZ, maxX, maxY, maxZ);
+                default:
+                    rotatedBox = shape;
                     break;
             }
             rotatedBoxes.add(rotatedBox);
