@@ -16,6 +16,6 @@ public class ForgeItemTags {
     }
 
     private static TagKey<Item> forge(String path) {
-        return TagKey.create(Registries.ITEM, new ResourceLocation("forge", path));
+        return TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("forge", path));
     }
 }

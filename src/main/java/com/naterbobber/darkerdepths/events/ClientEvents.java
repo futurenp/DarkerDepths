@@ -47,8 +47,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 public class ClientEvents {
 
 
-    public static final ModelLayerLocation TOMB_LAYER = new ModelLayerLocation(new ResourceLocation(DarkerDepths.MODID, "tomb"), "main");
-
+    public static final ModelLayerLocation TOMB_LAYER = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(DarkerDepths.MODID, "tomb"), "main");
     @SubscribeEvent
     public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerBlockEntityRenderer(DDBlockEntityTypes.DD_SIGN.get(), SignRenderer::new);
@@ -81,20 +80,6 @@ public class ClientEvents {
 
     @SubscribeEvent
     public static void onClientSetup(final FMLClientSetupEvent event) {
-        ItemBlockRenderTypes.setRenderLayer(DDBlocks.DRY_SPROUTS.get(), RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(DDBlocks.ROPE.get(), RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(DDBlocks.MOSSY_SPROUTS.get(), RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(DDBlocks.GLOWSPURS.get(), RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(DDBlocks.GLIMMERING_VINES.get(), RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(DDBlocks.GLIMMERING_VINE_PLANT.get(), RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(DDBlocks.PETRIFIED_DOOR.get(), RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(DDBlocks.PETRIFIED_TRAPDOOR.get(), RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(DDBlocks.PETRIFIED_POST.get(), RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(DDBlocks.STRIPPED_PETRIFIED_POST.get(), RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(DDBlocks.AMBER_CLUSTER.get(), RenderType.cutout());
-
-
-
         MinecraftForge.EVENT_BUS.addListener((LivingEvent.LivingTickEvent livingEvent) -> {
             DynamicLightHandler.tick(livingEvent.getEntity());
         });

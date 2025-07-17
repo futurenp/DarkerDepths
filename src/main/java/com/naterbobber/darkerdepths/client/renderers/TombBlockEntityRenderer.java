@@ -16,15 +16,14 @@ import net.minecraft.world.level.block.state.BlockState;
 
 public class TombBlockEntityRenderer implements BlockEntityRenderer<TombBlockEntity> {
 
-    private static final ResourceLocation TEXTURE_LOCATION = new ResourceLocation(DarkerDepths.MODID, "textures/entity/tomb/tomb.png");
-    private final TombModel model;
+    private static final ResourceLocation TEXTURE_LOCATION = ResourceLocation.fromNamespaceAndPath(DarkerDepths.MODID, "textures/entity/tomb/tomb.png");    private final TombModel model;
 
     public TombBlockEntityRenderer(BlockEntityRendererProvider.Context context) {
         this.model = new TombModel(context.bakeLayer(createModelLayerLocation()));
     }
 
     public static ModelLayerLocation createModelLayerLocation() {
-        return new ModelLayerLocation(new ResourceLocation(DarkerDepths.MODID, "tomb"), "main");
+        return new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(DarkerDepths.MODID, "tomb"), "main");
     }
 
     @Override
