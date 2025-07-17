@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "#": {
+      "item": "darkerdepths:polished_duskrock_slab"
+    }
+  },
+  "pattern": [
+    "#",
+    "#"
+  ],
+  "result": {
+    "item": "darkerdepths:chiseled_duskrock_bricks"
+  },
+  "show_notification": true
+}

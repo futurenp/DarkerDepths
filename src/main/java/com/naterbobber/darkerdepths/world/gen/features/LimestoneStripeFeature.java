@@ -52,8 +52,8 @@ public class LimestoneStripeFeature extends Feature<NoneFeatureConfiguration> {
 
                     if (noiseValue > noiseThreshold) {
                         BlockState currentState = level.getBlockState(mutablePos);
-                        if (currentState.is(BlockTags.BASE_STONE_OVERWORLD) || currentState.is(DDBlocks.LIMESTONE.get()) || currentState.is(DDBlocks.ARID_DEEPSLATE.get())) {
-                            level.setBlock(mutablePos, DDBlocks.LIMESTONE.get().defaultBlockState(), 2);
+                        if (currentState.is(BlockTags.BASE_STONE_OVERWORLD) || currentState.is(DDBlocks.DUSKROCK.get()) || currentState.is(DDBlocks.ARID_DEEPSLATE.get())) {
+                            level.setBlock(mutablePos, DDBlocks.DUSKROCK.get().defaultBlockState(), 2);
                             hasPlacedAny = true;
                         }
                     }

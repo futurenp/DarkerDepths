@@ -3,7 +3,7 @@
   "biomes": "darkerdepths:sandy_catacombs",
   "features": [
     "darkerdepths:arid_surface",
-    "darkerdepths:limestone_stripe"
+    "darkerdepths:duskrock_stripe"
   ],
   "step": "raw_generation"
 }

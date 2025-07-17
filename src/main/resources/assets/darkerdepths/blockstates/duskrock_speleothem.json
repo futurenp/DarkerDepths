@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "size=small": { "model": "darkerdepths:block/duskrock_speleothem_small" },
+    "size=medium": { "model": "darkerdepths:block/duskrock_speleothem_medium" },
+    "size=big": { "model": "darkerdepths:block/duskrock_speleothem_big" }
+  }
+}
+

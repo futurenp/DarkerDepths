@@ -26,8 +26,8 @@ public class DDItemTagsProvider extends ItemTagsProvider {
     @Override
     protected void addTags(HolderLookup.Provider provider) {
         this.tag(ItemTags.LOGS).add(DDBlocks.PETRIFIED_LOG.get().asItem(), DDBlocks.STRIPPED_PETRIFIED_LOG.get().asItem(), DDBlocks.PETRIFIED_WOOD.get().asItem(), DDBlocks.STRIPPED_PETRIFIED_WOOD.get().asItem());
-        this.tag(ItemTags.STONE_CRAFTING_MATERIALS).add(DDBlocks.DARKSLATE.get().asItem(), DDBlocks.ARIDROCK.get().asItem(), DDBlocks.LIMESTONE.get().asItem(), DDBlocks.GRIMESTONE.get().asItem());
-        this.tag(ItemTags.STONE_TOOL_MATERIALS).add(DDBlocks.DARKSLATE.get().asItem(), DDBlocks.ARIDROCK.get().asItem(), DDBlocks.LIMESTONE.get().asItem(), DDBlocks.GRIMESTONE.get().asItem());
+        this.tag(ItemTags.STONE_CRAFTING_MATERIALS).add(DDBlocks.DARKSLATE.get().asItem(), DDBlocks.ARIDROCK.get().asItem(), DDBlocks.DUSKROCK.get().asItem(), DDBlocks.GRIMESTONE.get().asItem());
+        this.tag(ItemTags.STONE_TOOL_MATERIALS).add(DDBlocks.DARKSLATE.get().asItem(), DDBlocks.ARIDROCK.get().asItem(), DDBlocks.DUSKROCK.get().asItem(), DDBlocks.GRIMESTONE.get().asItem());
         this.tag(DDItemTags.PETRIFIED_LOGS).add(DDBlocks.PETRIFIED_LOG.get().asItem(), DDBlocks.PETRIFIED_WOOD.get().asItem(), DDBlocks.STRIPPED_PETRIFIED_LOG.get().asItem(), DDBlocks.STRIPPED_PETRIFIED_WOOD.get().asItem());
         this.tag(ItemTags.PLANKS).add(DDBlocks.PETRIFIED_PLANKS.get().asItem());
         this.tag(ForgeItemTags.ROPES).add(DDItems.ROPE.get());

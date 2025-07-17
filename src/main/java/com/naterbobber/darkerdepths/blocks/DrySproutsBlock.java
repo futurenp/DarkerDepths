@@ -23,7 +23,7 @@ public class DrySproutsBlock extends DeadBushBlock {
 
     @Override
     protected boolean mayPlaceOn(BlockState state, BlockGetter world, BlockPos pos) {
-        return state.is(DDBlocks.ARIDROCK.get()) || state.is(DDBlocks.LIMESTONE.get()) || state.is(DDBlocks.ARID_DEEPSLATE.get()) || super.mayPlaceOn(state, world, pos);
+        return state.is(DDBlocks.ARIDROCK.get()) || state.is(DDBlocks.DUSKROCK.get()) || state.is(DDBlocks.ARID_DEEPSLATE.get()) || super.mayPlaceOn(state, world, pos);
     }
 
 }

@@ -8,9 +8,6 @@ import net.minecraft.world.level.block.Block;
 
 public class ForgeBlockTags {
 
-    public static final TagKey<Block> SILVER_ORE = bind("ores/silver");
-    public static final TagKey<Block> SILVER_STORAGE_BLOCKS = bind("storage_blocks/silver");
-
     private static TagKey<Block> bind(String path) {
         return TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("forge", path));
     }

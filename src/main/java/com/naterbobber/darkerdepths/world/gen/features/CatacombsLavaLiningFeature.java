@@ -44,7 +44,7 @@ public class CatacombsLavaLiningFeature extends Feature<NoneFeatureConfiguration
                             if (!adjacentBlockState.is(Blocks.LAVA) &&
                                     (adjacentBlockState.is(BlockTags.BASE_STONE_OVERWORLD) // Includes stone, deepslate, etc.
                                             || adjacentBlockState.is(DDBlocks.ARID_DEEPSLATE.get())
-                                            // Don't include DDBlocks.LIMESTONE.get() here if you want to replace it *with* limestone
+                                            // Don't include DDBlocks.DUSKROCK.get() here if you want to replace it *with* limestone
                                             || adjacentBlockState.is(DDBlocks.ARIDROCK.get())
                                     )) {
 
@@ -101,7 +101,7 @@ public class CatacombsLavaLiningFeature extends Feature<NoneFeatureConfiguration
 
                             // You might want to add a small chance here too, if you don't want 100% replacement
                             // if (random.nextFloat() < 0.9F) { // Example: 90% chance to replace in the cluster
-                            world.setBlock(currentClusterPos, DDBlocks.LIMESTONE.get().defaultBlockState(), 2);
+                            world.setBlock(currentClusterPos, DDBlocks.DUSKROCK.get().defaultBlockState(), 2);
                             replacedCount++;
                             // }
                         }

@@ -1,0 +1,7 @@
+{
+  "parent": "darkerdepths:block/speleothem_big",
+  "textures": {
+    "block": "darkerdepths:block/duskrock"
+  }
+}
+

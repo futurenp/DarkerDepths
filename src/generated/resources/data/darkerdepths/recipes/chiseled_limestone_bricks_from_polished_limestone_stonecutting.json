@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "count": 1,
-  "ingredient": {
-    "item": "darkerdepths:polished_limestone"
-  },
-  "result": "darkerdepths:chiseled_limestone_bricks"
-}

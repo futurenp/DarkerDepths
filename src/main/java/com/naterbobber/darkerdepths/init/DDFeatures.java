@@ -27,6 +27,6 @@ public class DDFeatures {
     public static final RegistryObject<Feature<CorrespondentLayersConfig>> CORRESPONDENT_LAYER = FEATURES.register("correspondent_layer", () -> new CorrespondentLayersFeature(CorrespondentLayersConfig.CODEC));
     public static final RegistryObject<Feature<NoneFeatureConfiguration>> ARID_BOULDER = FEATURES.register("arid_boulder", () -> new AridBoulderFeature(NoneFeatureConfiguration.CODEC));
     public static final RegistryObject<Feature<NoneFeatureConfiguration>> CATACOMBS_LAVA_LINING = FEATURES.register("catacombs_lava_lining", () -> new CatacombsLavaLiningFeature(NoneFeatureConfiguration.CODEC));
-    public static final RegistryObject<Feature<NoneFeatureConfiguration>> LIMESTONE_STRIPE = FEATURES.register("limestone_stripe", () -> new LimestoneStripeFeature(NoneFeatureConfiguration.CODEC));
+    public static final RegistryObject<Feature<NoneFeatureConfiguration>> DUSKROCK_STRIPE = FEATURES.register("limestone_stripe", () -> new LimestoneStripeFeature(NoneFeatureConfiguration.CODEC));
 
 }

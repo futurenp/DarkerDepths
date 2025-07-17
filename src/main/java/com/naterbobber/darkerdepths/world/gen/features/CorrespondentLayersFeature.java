@@ -107,7 +107,7 @@ public class CorrespondentLayersFeature extends Feature<CorrespondentLayersConfi
             BlockState posBelow = world.getBlockState(pos.below());
 
             //Check whether the config is aridrocks' config. Redo this system in the future
-            if (blockstate == DDBlocks.ARIDROCK.get().defaultBlockState() && (world.getBlockState(pos).is(DDBlocks.LIMESTONE.get()) || posBelow.is(DDBlocks.LIMESTONE.get()))) continue;
+            if (blockstate == DDBlocks.ARIDROCK.get().defaultBlockState() && (world.getBlockState(pos).is(DDBlocks.DUSKROCK.get()) || posBelow.is(DDBlocks.DUSKROCK.get()))) continue;
 
             if (blockstate == DDBlocks.ARIDROCK.get().defaultBlockState() && !(posBelow.is(Blocks.DEEPSLATE) || posBelow.is(Blocks.TUFF))) {
                 belowState = DDBlocks.ARIDROCK.get().defaultBlockState();

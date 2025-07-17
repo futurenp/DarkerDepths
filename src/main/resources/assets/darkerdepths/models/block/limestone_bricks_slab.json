@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab",
-  "textures": {
-    "bottom": "darkerdepths:block/limestone_bricks",
-    "top": "darkerdepths:block/limestone_bricks",
-    "side": "darkerdepths:block/limestone_bricks"
-  }
-}

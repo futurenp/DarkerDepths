@@ -45,7 +45,7 @@ import java.util.List;
 
 public class DDConfiguredFeatures {
 
-public static final ImmutableList<BlockState> OVERWORLD_REPLACEABLES    = ImmutableList.of(Blocks.STONE.defaultBlockState(), Blocks.ANDESITE.defaultBlockState(), Blocks.GRANITE.defaultBlockState(), Blocks.DIORITE.defaultBlockState(), Blocks.DIRT.defaultBlockState(), DDBlocks.DARKSLATE.get().defaultBlockState(), DDBlocks.ARIDROCK.get().defaultBlockState(), DDBlocks.LIMESTONE.get().defaultBlockState(), Blocks.GRAVEL.defaultBlockState(), Blocks.DEEPSLATE.defaultBlockState(), Blocks.TUFF.defaultBlockState());
+public static final ImmutableList<BlockState> OVERWORLD_REPLACEABLES    = ImmutableList.of(Blocks.STONE.defaultBlockState(), Blocks.ANDESITE.defaultBlockState(), Blocks.GRANITE.defaultBlockState(), Blocks.DIORITE.defaultBlockState(), Blocks.DIRT.defaultBlockState(), DDBlocks.DARKSLATE.get().defaultBlockState(), DDBlocks.ARIDROCK.get().defaultBlockState(), DDBlocks.DUSKROCK.get().defaultBlockState(), Blocks.GRAVEL.defaultBlockState(), Blocks.DEEPSLATE.defaultBlockState(), Blocks.TUFF.defaultBlockState());
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> GLOWSHROOM_PATCH = createKey("glowshroom_patch");
     public static final ResourceKey<ConfiguredFeature<?, ?>> HUGE_GLOWSHROOM = createKey("huge_glowshroom");
@@ -68,7 +68,7 @@ public static final ImmutableList<BlockState> OVERWORLD_REPLACEABLES    = Immuta
     public static final ResourceKey<ConfiguredFeature<?, ?>> GRIME_SURFACE = createKey("grime_surface");
     public static final ResourceKey<ConfiguredFeature<?, ?>> ARID_BOULDER = createKey("arid_boulder");
     public static final ResourceKey<ConfiguredFeature<?, ?>> CATACOMBS_LAVA_LINING = createKey("catacombs_lava_lining");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> LIMESTONE_STRIPE = createKey("limestone_stripe");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> DUSKROCK_STRIPE = createKey("duskrock_stripe");
     public static final ResourceKey<ConfiguredFeature<?, ?>> GLIMMERING_VINES = createKey("glimmering_vines");
 
     public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> context) {
@@ -94,7 +94,7 @@ public static final ImmutableList<BlockState> OVERWORLD_REPLACEABLES    = Immuta
         FeatureUtils.register(context, GRIME_SURFACE, DDFeatures.CORRESPONDENT_LAYER.get(), new CorrespondentLayersConfig(BlockTags.LUSH_GROUND_REPLACEABLE, BlockStateProvider.simple(DDBlocks.MOSSY_GRIMESTONE.get()), BlockStateProvider.simple(DDBlocks.GRIMESTONE.get()), PlacementUtils.inlinePlaced(lookup.getOrThrow(GRIME_VEGETATION)), CaveSurface.FLOOR, ConstantInt.of(1), 0.0F, 5, 0.8F, UniformInt.of(4, 7), 0.3F, false));
         FeatureUtils.register(context, ARID_BOULDER, DDFeatures.ARID_BOULDER.get(), FeatureConfiguration.NONE);
         FeatureUtils.register(context, CATACOMBS_LAVA_LINING, DDFeatures.CATACOMBS_LAVA_LINING.get(), FeatureConfiguration.NONE);
-        FeatureUtils.register(context, LIMESTONE_STRIPE, DDFeatures.LIMESTONE_STRIPE.get(), FeatureConfiguration.NONE);
+        FeatureUtils.register(context, DUSKROCK_STRIPE, DDFeatures.DUSKROCK_STRIPE.get(), FeatureConfiguration.NONE);
         FeatureUtils.register(context, GLIMMERING_VINES, Feature.BLOCK_COLUMN, new BlockColumnConfiguration(List.of(BlockColumnConfiguration.layer(new WeightedListInt(SimpleWeightedRandomList.<IntProvider>builder().add(UniformInt.of(0, 19), 2).add(UniformInt.of(0, 2), 3).add(UniformInt.of(0, 6), 10).build()), BlockStateProvider.simple(DDBlocks.GLIMMERING_VINE_PLANT.get().defaultBlockState())), BlockColumnConfiguration.layer(ConstantInt.of(1), BlockStateProvider.simple(DDBlocks.GLIMMERING_VINES.get().defaultBlockState()))), Direction.DOWN, BlockPredicate.ONLY_IN_AIR_PREDICATE, true));
     }
 
