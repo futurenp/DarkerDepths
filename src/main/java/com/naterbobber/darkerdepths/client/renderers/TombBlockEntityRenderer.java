@@ -2,6 +2,7 @@ package com.naterbobber.darkerdepths.client.renderers;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.mojang.math.Axis;
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.blocks.TombBlock;
 import com.naterbobber.darkerdepths.blocks.blockentities.TombBlockEntity;
@@ -38,10 +39,20 @@ public class TombBlockEntityRenderer implements BlockEntityRenderer<TombBlockEnt
         poseStack.translate(0.0, 1.5, 0.0);
 
         switch (facing) {
-            case NORTH -> poseStack.translate(0.5, 0.0, 1.0);  // (0.5 + 1.0, 1.5, 0.5 - 1.0)
-            case EAST  -> poseStack.translate(0.0, 0.0, 0.5);  // (0.5 - 1.0, 1.5, 0.5 - 1.0)
-            case SOUTH -> poseStack.translate(0.5, 0.0, 0.0);  // (0.5 - 1.0, 1.5, 0.5 + 1.0)
-            case WEST  -> poseStack.translate(1.0, 0.0, 0.5);   // (0.5 + 1.0, 1.5, 0.5 + 1.0)
+            case NORTH:
+                poseStack.translate(0.5, 0.0, 1.0);
+                poseStack.mulPose(Axis.YP.rotationDegrees(180));
+                break;
+            case EAST:
+                poseStack.translate(0.0, 0.0, 0.5);
+                break;
+            case SOUTH:
+                poseStack.translate(0.5, 0.0, 0.0);
+                poseStack.mulPose(Axis.YP.rotationDegrees(180));
+                break;
+            case WEST:
+                poseStack.translate(1.0, 0.0, 0.5);
+                break;
         }
 
         poseStack.mulPose(com.mojang.math.Axis.YP.rotationDegrees(facing.toYRot()));

@@ -8,6 +8,7 @@ import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -25,6 +26,7 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -32,6 +34,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class TombBlock extends BaseEntityBlock implements SimpleWaterloggedBlock {
@@ -176,15 +179,22 @@ public class TombBlock extends BaseEntityBlock implements SimpleWaterloggedBlock
     }
 
     @Override
-    public void playerWillDestroy(Level level, BlockPos pos, BlockState state, Player player) {
-        if (!level.isClientSide) {
+    public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean isMoving) {
+        if (!level.isClientSide && !state.is(newState.getBlock())) {
             BlockPos mainPos = getMainBlockPos(pos, state);
-            if (level.getBlockState(mainPos).getBlock() == this) {
-                level.setBlock(mainPos, Blocks.AIR.defaultBlockState(), 35);
-                level.addDestroyBlockEffect(mainPos, level.getBlockState(mainPos));
+            BlockState mainState = level.getBlockState(mainPos);
+            if (mainState.is(this)) {
+                Direction facing = mainState.getValue(FACING);
+                for (Part part : Part.values()) {
+                    BlockPos partPos = getPartPos(mainPos, part, facing);
+                    if (level.getBlockState(partPos).is(this)) {
+                        level.setBlock(partPos, Blocks.AIR.defaultBlockState(), 35);
+                        level.addDestroyBlockEffect(partPos, level.getBlockState(partPos));
+                    }
+                }
             }
         }
-        super.playerWillDestroy(level, pos, state, player);
+        super.onRemove(state, level, pos, newState, isMoving);
     }
 
     @Override
@@ -214,6 +224,14 @@ public class TombBlock extends BaseEntityBlock implements SimpleWaterloggedBlock
         Direction left = facing.getCounterClockWise();
         return partPos.relative(part.getxOffset() > 0 ? left : left.getOpposite(), Math.abs(part.getxOffset()))
                 .relative(part.getzOffset() > 0 ? facing.getOpposite() : facing, Math.abs(part.getzOffset()));
+    }
+
+    @Override
+    public List<ItemStack> getDrops(BlockState state, LootParams.Builder params) {
+        if (state.getValue(PART) == Part.FRONT_CENTER) {
+            return super.getDrops(state, params);
+        }
+        return Collections.emptyList();
     }
 
     @Nullable
