@@ -146,6 +146,8 @@ public class DDBlocks {
         return block;
     }
 
+
+
     public static <B extends Block> RegistryObject<B> registerNoTabBlock(String name, Supplier<? extends B> blocks) {
         return BLOCKS.register(name, blocks);
     }

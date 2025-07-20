@@ -24,6 +24,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import software.bernie.geckolib.GeckoLib;
 
 // TODO: Add recipe and loot table for glowshroom lantern and lamp
 @Mod(DarkerDepths.MODID)
@@ -34,6 +35,7 @@ public class DarkerDepths {
 
     public DarkerDepths(FMLJavaModLoadingContext context) {
         context.registerConfig(ModConfig.Type.COMMON, DDConfigs.SPEC, "darkerdepths-common.toml");
+        GeckoLib.initialize();
         IEventBus modEventBus = context.getModEventBus();
         IEventBus eventBus = MinecraftForge.EVENT_BUS;
         modEventBus.addListener(this::commonSetup);

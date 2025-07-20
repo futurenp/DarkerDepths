@@ -66,7 +66,6 @@ public class ClientEvents {
         event.registerLayerDefinition(DDModelLayers.GLOWSHROOM_MONSTER, GlowshroomMonsterModel::createBodyLayer);
         event.registerLayerDefinition(DDModelLayers.GLOWSHROOM_CAP, GlowshroomCapModel::createBodyLayer);
         event.registerLayerDefinition(DDModelLayers.BODY_SNATCHER, BodySnatcherModel::createBodyLayer);
-        event.registerLayerDefinition(TombBlockEntityRenderer.createModelLayerLocation(), TombModel::createBodyLayer);
     }
 
     @SubscribeEvent(priority = EventPriority.LOWEST)

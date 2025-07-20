@@ -41,6 +41,8 @@ public class TombBlock extends BaseEntityBlock implements SimpleWaterloggedBlock
 
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
+
+    
     public static final EnumProperty<Part> PART = EnumProperty.create("part", Part.class);
     private static final VoxelShape CORNER_PART = Shapes.or(
             Block.box(2, 0, 5, 16, 3, 16),
