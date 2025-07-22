@@ -1,5 +1,6 @@
 package com.naterbobber.darkerdepths.effects;
 
+import com.google.common.collect.Maps;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -8,11 +9,14 @@ import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.Vec3; // Import Vec3
+import net.minecraft.world.phys.Vec3;
 
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 public class ParanoiaEffect extends MobEffect {
+    private final Map<UUID, Integer> paranoiaCooldowns = Maps.newHashMap();
 
     private static final List<SoundEvent> PARANOIA_SOUNDS = List.of(
             SoundEvents.STONE_STEP,
@@ -26,10 +30,15 @@ public class ParanoiaEffect extends MobEffect {
     //random sound generator
     @Override
     public void applyEffectTick(LivingEntity entity, int amplifier) {
-        Level level = entity.level();
 
-        if (!level.isClientSide()) {
-            if (entity.getRandom().nextFloat() < 0.007f) {
+        int currentCooldown = this.paranoiaCooldowns.getOrDefault(entity.getUUID(), 0);
+
+        if (currentCooldown > 0) {
+            this.paranoiaCooldowns.put(entity.getUUID(), currentCooldown - 1);
+        }
+
+        if (currentCooldown <= 0 && !entity.level().isClientSide()) {
+            if (entity.getRandom().nextFloat() < 0.002f) {
 
                 RandomSource random = entity.getRandom();
                 for (int i = 0; i < 10; i++) {
@@ -53,7 +62,7 @@ public class ParanoiaEffect extends MobEffect {
                         double soundY = entity.getY() + entity.getEyeHeight() + yOffset;
                         double soundZ = entity.getZ() + zOffset;
 
-                        level.playSound(null, soundX, soundY, soundZ, randomSound, SoundSource.AMBIENT, 1.0F, 0.8F + random.nextFloat() * 0.4F);
+                        entity.level().playSound(null, soundX, soundY, soundZ, randomSound, SoundSource.AMBIENT, 1.0F, 0.8F + random.nextFloat() * 0.4F);
                         break;
                     }
                 }

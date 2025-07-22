@@ -38,5 +38,4 @@ public class DDDataGenerator {
         dataGenerator.addProvider(event.includeServer(), new DDDamageTypeTagsProvider(packOutput, lookupProvider, existingFileHelper));
         dataGenerator.addProvider(server, new DDDatapackBuiltinEntriesProvider(packOutput, lookupProvider));
     }
-
 }

@@ -8,6 +8,7 @@ import net.minecraft.data.tags.BiomeTagsProvider;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.BiomeTags;
 import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.biome.Biomes;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
@@ -26,6 +27,14 @@ public class DDBiomeTagsProvider extends BiomeTagsProvider {
         this.tag(Tags.Biomes.IS_HOT_OVERWORLD).addOptional(DDBiomes.MOLTEN_CAVERN.location());
         this.tag(Tags.Biomes.IS_DRY_OVERWORLD).addOptional(DDBiomes.SANDY_CATACOMBS.location());
         this.tag(Tags.Biomes.IS_COLD_OVERWORLD).addOptional(DDBiomes.GLOWSHROOM_FOREST.location());
+        this.tag(DDStructureTagsProvider.HAS_ROPE_MINE).add(
+                        Biomes.PLAINS,
+                        Biomes.FOREST,
+                        Biomes.DESERT,
+                        Biomes.DARK_FOREST,
+                        Biomes.BIRCH_FOREST,
+                        Biomes.JUNGLE,
+                        Biomes.MANGROVE_SWAMP);
     }
 
     private void addBiomeTags(ResourceKey<Biome> biome) {

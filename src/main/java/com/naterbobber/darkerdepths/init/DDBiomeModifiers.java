@@ -1,6 +1,7 @@
 package com.naterbobber.darkerdepths.init;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
+import com.naterbobber.darkerdepths.data.DDStructureTagsProvider;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstapContext;
@@ -10,6 +11,7 @@ import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.MobSpawnSettings;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
+import net.minecraftforge.common.data.ForgeBiomeTagsProvider;
 import net.minecraftforge.common.world.BiomeModifier;
 import net.minecraftforge.common.world.ForgeBiomeModifiers;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -72,13 +74,13 @@ public class DDBiomeModifiers {
                 )
         ));
         context.register(ADD_SANDY_CATACOMBS_RAW_GENERATION, new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
-                        getBiome(context, DDBiomes.SANDY_CATACOMBS),
-                        getPlacedFeature(
-                                context,
-                                DDPlacedFeatures.ARID_SURFACE,
-                                DDPlacedFeatures.DUSKROCK_STRIPE
-                        ),
-                        GenerationStep.Decoration.RAW_GENERATION)
+                getBiome(context, DDBiomes.SANDY_CATACOMBS),
+                getPlacedFeature(
+                        context,
+                        DDPlacedFeatures.ARID_SURFACE,
+                        DDPlacedFeatures.DUSKROCK_STRIPE
+                ),
+                GenerationStep.Decoration.RAW_GENERATION)
         );
         context.register(ADD_SANDY_CATACOMBS_UNDERGROUND_DECORATION, new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
                 getBiome(context, DDBiomes.SANDY_CATACOMBS),
@@ -104,6 +106,7 @@ public class DDBiomeModifiers {
                         new MobSpawnSettings.SpawnerData(DDEntityTypes.GLOWSHROOM_MONSTER.get(), 50, 1, 2)
                 )
         ));
+
     }
 
     @SafeVarargs

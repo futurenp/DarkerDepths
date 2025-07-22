@@ -1,0 +1,14 @@
+{
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 1234567890,
+    "separation": 8,
+    "spacing": 24
+  },
+  "structures": [
+    {
+      "structure": "darkerdepths:rope_mine_jigsaw",
+      "weight": 1
+    }
+  ]
+}

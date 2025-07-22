@@ -3,18 +3,7 @@ package com.naterbobber.darkerdepths;
 import com.naterbobber.darkerdepths.config.DDConfigs;
 import com.naterbobber.darkerdepths.events.MiscEvents;
 import com.naterbobber.darkerdepths.events.MobEvents;
-import com.naterbobber.darkerdepths.init.DDBlockEntityTypes;
-import com.naterbobber.darkerdepths.init.DDBlocks;
-import com.naterbobber.darkerdepths.init.DDCreativeModeTabs;
-import com.naterbobber.darkerdepths.init.DDEnchantments;
-import com.naterbobber.darkerdepths.init.DDEntityTypes;
-import com.naterbobber.darkerdepths.init.DDFeatures;
-import com.naterbobber.darkerdepths.init.DDItems;
-import com.naterbobber.darkerdepths.init.DDMobEffects;
-import com.naterbobber.darkerdepths.init.DDParticleTypes;
-import com.naterbobber.darkerdepths.init.DDPoiTypes;
-import com.naterbobber.darkerdepths.init.DDSoundEvents;
-import com.naterbobber.darkerdepths.init.DDVanillaIntegration;
+import com.naterbobber.darkerdepths.init.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -51,6 +40,7 @@ public class DarkerDepths {
         DDParticleTypes.PARTICLE_TYPES.register(modEventBus);
         DDMobEffects.MOB_EFFECTS.register(modEventBus);
         DDSoundEvents.SOUND_EVENTS.register(modEventBus);
+        DDStructures.STRUCTURE_TYPES.register(modEventBus);
 
         eventBus.register(this);
         eventBus.register(new MobEvents());
