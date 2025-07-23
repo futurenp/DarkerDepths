@@ -1,16 +1,8 @@
 {
   "variants": {
-    "axis=x": {
-      "model": "darkerdepths:block/aridrock_pillar_horizontal",
-      "x": 90,
-      "y": 90
-    },
-    "axis=y": {
-      "model": "darkerdepths:block/aridrock_pillar"
-    },
-    "axis=z": {
-      "model": "darkerdepths:block/aridrock_pillar_horizontal",
-      "x": 90
-    }
+    "pillar_state=default": { "model": "darkerdepths:block/aridrock_pillar" },
+    "pillar_state=lower":   { "model": "darkerdepths:block/aridrock_pillar_lower" },
+    "pillar_state=middle":  { "model": "darkerdepths:block/aridrock_pillar_middle" },
+    "pillar_state=upper":   { "model": "darkerdepths:block/aridrock_pillar_upper" }
   }
 }
