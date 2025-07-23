@@ -12,10 +12,10 @@ import net.minecraft.world.level.block.state.properties.EnumProperty;
 
 import javax.annotation.Nullable;
 
-public class AridrockPillarBlock extends Block {
+public class ConnectedPillarBlock extends Block {
     public static final EnumProperty<PillarState> PILLAR_STATE = EnumProperty.create("pillar_state", PillarState.class);
 
-    public AridrockPillarBlock(Properties properties) {
+    public ConnectedPillarBlock(Properties properties) {
         super(properties);
         this.registerDefaultState(this.stateDefinition.any().setValue(PILLAR_STATE, PillarState.DEFAULT));
     }
@@ -35,11 +35,11 @@ public class AridrockPillarBlock extends Block {
     }
 
     private BlockState getState(LevelAccessor level, BlockPos pos) {
-        BlockState blockAbove = level.getBlockState(pos.above());
-        BlockState blockBelow = level.getBlockState(pos.below());
+        Block blockAbove = level.getBlockState(pos.above()).getBlock();
+        Block blockBelow = level.getBlockState(pos.below()).getBlock();
 
-        boolean isPillarAbove = blockAbove.getBlock() instanceof AridrockPillarBlock;
-        boolean isPillarBelow = blockBelow.getBlock() instanceof AridrockPillarBlock;
+        boolean isPillarAbove = blockAbove == this;
+        boolean isPillarBelow = blockBelow == this;
 
         PillarState currentState;
 
