@@ -3,12 +3,14 @@ package com.naterbobber.darkerdepths.blocks.blockentities;
 import com.naterbobber.darkerdepths.blocks.TombBlock;
 import com.naterbobber.darkerdepths.init.DDBlockEntityTypes;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.AABB;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoBlockEntity;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
@@ -65,6 +67,26 @@ public class TombBlockEntity extends BlockEntity implements GeoBlockEntity {
         return PlayState.CONTINUE;
 
 
+    }
+
+    @Override
+    public AABB getRenderBoundingBox() {
+        BlockPos pos = getBlockPos();
+        BlockState state = getBlockState();
+
+        if (state.getBlock() instanceof TombBlock) {
+            Direction facing = state.getValue(TombBlock.FACING);
+
+            return switch (facing) {
+                case NORTH -> new AABB(pos.offset(-1, 0, -1), pos.offset(2, 1, 1));
+                case SOUTH -> new AABB(pos.offset(-1, 0, 0), pos.offset(2, 1, 2));
+                case EAST -> new AABB(pos.offset(0, 0, -1), pos.offset(2, 1, 2));
+                case WEST -> new AABB(pos.offset(-1, 0, -1), pos.offset(1, 1, 2));
+                default -> new AABB(pos.offset(-1, 0, -1), pos.offset(2, 1, 2));
+            };
+        }
+
+        return super.getRenderBoundingBox();
     }
 
     @Override
