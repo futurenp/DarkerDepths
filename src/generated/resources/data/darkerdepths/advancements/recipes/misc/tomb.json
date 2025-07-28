@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "darkerdepths:tomb"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_void_soul_brass": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "darkerdepths:void_soul_brass"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_void_soul_brass",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "darkerdepths:tomb"
+    ]
+  },
+  "sends_telemetry_event": false
+}

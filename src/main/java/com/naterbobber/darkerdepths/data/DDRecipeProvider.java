@@ -391,6 +391,39 @@ public class DDRecipeProvider extends RecipeProvider {
                 .pattern("AAA")
                 .unlockedBy("has_resin", has(DDItems.AMBER.get())).save(consumer);
 
+        ShapedRecipeBuilder
+                .shaped(RecipeCategory.MISC, DDBlocks.DEATH_ANCHOR.get().asItem())
+                .define('B', DDItems.VOID_SOUL_BRASS.get())
+                .define('D', DDBlocks.DUSKROCK.get().asItem())
+                .define('O', Blocks.OBSIDIAN.asItem())
+                .define('R', DDItems.VOID_SOUL_REQUIEM.get())
+                .pattern("BBB")
+                .pattern("DRD")
+                .pattern("DOD")
+                .unlockedBy("has_void_soul_brass", has(DDItems.VOID_SOUL_BRASS.get()))
+                .save(consumer);
+
+        ShapedRecipeBuilder
+                .shaped(RecipeCategory.MISC, DDBlocks.TOMB.get().asItem())
+                .define('B', DDItems.VOID_SOUL_BRASS.get())
+                .define('D', DDBlocks.DUSKROCK.get().asItem())
+                .define('S', DDBlocks.DARKSLATE.get().asItem())
+                .pattern(" B ")
+                .pattern("DDD")
+                .pattern("SSS")
+                .unlockedBy("has_void_soul_brass", has(DDItems.VOID_SOUL_BRASS.get()))
+                .save(consumer);
+
+        ShapedRecipeBuilder
+                .shaped(RecipeCategory.COMBAT, DDItems.STILETTO.get())
+                .define('B', DDItems.VOID_SOUL_BRASS.get())
+                .define('S', Items.STICK)
+                .pattern("B")
+                .pattern("B")
+                .pattern("S")
+                .unlockedBy("has_void_soul_brass", has(DDItems.VOID_SOUL_BRASS.get()))
+                .save(consumer);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, DDBlocks.SKULL_WALL.get(), 4)
                 .define('#', DDBlocks.ARIDROCK.get())
                 .define('X', Blocks.BONE_BLOCK)
