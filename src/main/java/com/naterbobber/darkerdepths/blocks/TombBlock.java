@@ -41,9 +41,8 @@ public class TombBlock extends BaseEntityBlock implements SimpleWaterloggedBlock
 
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
-
-    
     public static final EnumProperty<Part> PART = EnumProperty.create("part", Part.class);
+
     private static final VoxelShape CORNER_PART = Shapes.or(
             Block.box(2, 0, 5, 16, 3, 16),
             Block.box(3, 3, 6, 16, 10, 16),
@@ -87,12 +86,12 @@ public class TombBlock extends BaseEntityBlock implements SimpleWaterloggedBlock
             return this.name;
         }
 
-        public int getxOffset() {
-            return xOffset;
+        public int xOffset() {
+            return this.xOffset;
         }
 
-        public int getzOffset() {
-            return zOffset;
+        public int zOffset() {
+            return this.zOffset;
         }
     }
 
@@ -114,17 +113,17 @@ public class TombBlock extends BaseEntityBlock implements SimpleWaterloggedBlock
         Part part = state.getValue(PART);
         Direction facing = state.getValue(FACING);
 
-        switch (part) {
-            case FRONT_CENTER: return rotateVoxelShape(FRONT_CENTER_SHAPE, facing);
-            case FRONT_LEFT:   return rotateVoxelShape(FRONT_LEFT_SHAPE, facing);
-            case FRONT_RIGHT:  return rotateVoxelShape(FRONT_RIGHT_SHAPE, facing);
-            case BACK_CENTER:  return rotateVoxelShape(BACK_CENTER_SHAPE, facing);
-            case BACK_LEFT:    return rotateVoxelShape(BACK_LEFT_SHAPE, facing);
-            case BACK_RIGHT:   return rotateVoxelShape(BACK_RIGHT_SHAPE, facing);
-        }
-        return Shapes.block();
-    }
+        VoxelShape shape = switch (part) {
+            case FRONT_CENTER -> FRONT_CENTER_SHAPE;
+            case FRONT_LEFT -> FRONT_LEFT_SHAPE;
+            case FRONT_RIGHT -> FRONT_RIGHT_SHAPE;
+            case BACK_CENTER -> BACK_CENTER_SHAPE;
+            case BACK_LEFT -> BACK_LEFT_SHAPE;
+            case BACK_RIGHT -> BACK_RIGHT_SHAPE;
+        };
 
+        return rotateVoxelShape(shape, facing);
+    }
 
     @Override
     public RenderShape getRenderShape(BlockState state) {
@@ -134,16 +133,16 @@ public class TombBlock extends BaseEntityBlock implements SimpleWaterloggedBlock
     @Nullable
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
-        FluidState fluidstate = context.getLevel().getFluidState(context.getClickedPos());
+        FluidState fluid = context.getLevel().getFluidState(context.getClickedPos());
         return this.defaultBlockState()
                 .setValue(FACING, context.getHorizontalDirection().getOpposite())
                 .setValue(PART, Part.FRONT_CENTER)
-                .setValue(WATERLOGGED, fluidstate.getType() == Fluids.WATER);
+                .setValue(WATERLOGGED, fluid.getType() == Fluids.WATER);
     }
 
     @Override
-    public FluidState getFluidState(BlockState pState) {
-        return pState.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(pState);
+    public FluidState getFluidState(BlockState state) {
+        return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
     }
 
     @Override
@@ -167,73 +166,52 @@ public class TombBlock extends BaseEntityBlock implements SimpleWaterloggedBlock
     public void onPlace(BlockState state, Level level, BlockPos pos, BlockState oldState, boolean isMoving) {
         super.onPlace(state, level, pos, oldState, isMoving);
         if (!level.isClientSide && !isMoving && state.getValue(PART) == Part.FRONT_CENTER) {
-            Direction facing = state.getValue(FACING);
-            for (Part part : Part.values()) {
-                if (part == Part.FRONT_CENTER) continue;
-                BlockPos partPos = getPartPos(pos, part, facing);
-                BlockState partState = this.defaultBlockState()
-                        .setValue(FACING, facing)
-                        .setValue(PART, part)
-                        .setValue(WATERLOGGED, state.getValue(WATERLOGGED));
-                level.setBlock(partPos, partState, 3);
-            }
+            this.placeMultiblockParts(level, pos, state);
         }
     }
 
     @Override
     public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean isMoving) {
         if (!level.isClientSide && !state.is(newState.getBlock())) {
-            BlockPos mainPos = getMainBlockPos(pos, state);
-            BlockState mainState = level.getBlockState(mainPos);
-            if (mainState.is(this)) {
-                Direction facing = mainState.getValue(FACING);
-                for (Part part : Part.values()) {
-                    BlockPos partPos = getPartPos(mainPos, part, facing);
-                    if (level.getBlockState(partPos).is(this)) {
-                        level.setBlock(partPos, Blocks.AIR.defaultBlockState(), 35);
-                        level.addDestroyBlockEffect(partPos, level.getBlockState(partPos));
-                    }
-                }
-            }
+            this.removeMultiblockParts(level, pos, state);
         }
+
         super.onRemove(state, level, pos, newState, isMoving);
     }
 
     @Override
-    public BlockState updateShape(BlockState pState, Direction pFacing, BlockState pFacingState, LevelAccessor pLevel, BlockPos pCurrentPos, BlockPos pFacingPos) {
-        if (pState.getValue(WATERLOGGED)) {
-            pLevel.scheduleTick(pCurrentPos, Fluids.WATER, Fluids.WATER.getTickDelay(pLevel));
+    public BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor level, BlockPos currentPos, BlockPos facingPos) {
+        if (state.getValue(WATERLOGGED)) {
+            level.scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
         }
-        Part part = pState.getValue(PART);
+
+        Part part = state.getValue(PART);
         if (part != Part.FRONT_CENTER) {
-            BlockPos mainPos = getMainBlockPos(pCurrentPos, pState);
-            if (pLevel.getBlockState(mainPos).getBlock() != this) {
+            BlockPos mainPos = getMainBlockPos(currentPos, state);
+            if (!level.getBlockState(mainPos).is(this)) {
                 return Blocks.AIR.defaultBlockState();
             }
         }
-        return super.updateShape(pState, pFacing, pFacingState, pLevel, pCurrentPos, pFacingPos);
+
+        return super.updateShape(state, facing, facingState, level, currentPos, facingPos);
     }
 
-    public static BlockPos getPartPos(BlockPos mainPos, Part part, Direction facing) {
-        Direction right = facing.getClockWise();
-        return mainPos.relative(part.getxOffset() > 0 ? right : right.getOpposite(), Math.abs(part.getxOffset()))
-                .relative(part.getzOffset() > 0 ? facing : facing.getOpposite(), Math.abs(part.getzOffset()));
-    }
+    @Override
+    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+        if (!level.isClientSide) {
+            BlockPos mainPos = getMainBlockPos(pos, state);
+            BlockEntity blockEntity = level.getBlockEntity(mainPos);
+            if (blockEntity instanceof TombBlockEntity tombEntity) {
+                tombEntity.toggleTomb();
+            }
+        }
 
-    private BlockPos getMainBlockPos(BlockPos partPos, BlockState state) {
-        Part part = state.getValue(PART);
-        Direction facing = state.getValue(FACING);
-        Direction left = facing.getCounterClockWise();
-        return partPos.relative(part.getxOffset() > 0 ? left : left.getOpposite(), Math.abs(part.getxOffset()))
-                .relative(part.getzOffset() > 0 ? facing.getOpposite() : facing, Math.abs(part.getzOffset()));
+        return InteractionResult.SUCCESS;
     }
 
     @Override
     public List<ItemStack> getDrops(BlockState state, LootParams.Builder params) {
-        if (state.getValue(PART) == Part.FRONT_CENTER) {
-            return super.getDrops(state, params);
-        }
-        return Collections.emptyList();
+        return state.getValue(PART) == Part.FRONT_CENTER ? super.getDrops(state, params) : Collections.emptyList();
     }
 
     @Nullable
@@ -251,16 +229,49 @@ public class TombBlock extends BaseEntityBlock implements SimpleWaterloggedBlock
         return null;
     }
 
-    @Override
-    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-        if (!level.isClientSide) {
-            BlockPos mainPos = getMainBlockPos(pos, state);
-            BlockEntity be = level.getBlockEntity(mainPos);
-            if (be instanceof TombBlockEntity) {
-                player.displayClientMessage(net.minecraft.network.chat.Component.literal("Interacted with Tomb at " + mainPos), true);
+    private void placeMultiblockParts(Level level, BlockPos mainPos, BlockState mainState) {
+        Direction facing = mainState.getValue(FACING);
+        boolean waterlogged = mainState.getValue(WATERLOGGED);
+
+        for (Part part : Part.values()) {
+            if (part == Part.FRONT_CENTER) continue;
+            BlockPos partPos = getPartPos(mainPos, part, facing);
+            BlockState partState = this.defaultBlockState()
+                .setValue(FACING, facing)
+                .setValue(PART, part)
+                .setValue(WATERLOGGED, waterlogged);
+            level.setBlock(partPos, partState, 3);
+        }
+    }
+
+    private void removeMultiblockParts(Level level, BlockPos pos, BlockState state) {
+        BlockPos mainPos = getMainBlockPos(pos, state);
+        BlockState mainState = level.getBlockState(mainPos);
+
+        if (mainState.is(this)) {
+            Direction facing = mainState.getValue(FACING);
+            for (Part part : Part.values()) {
+                BlockPos partPos = getPartPos(mainPos, part, facing);
+                if (level.getBlockState(partPos).is(this)) {
+                    level.setBlock(partPos, Blocks.AIR.defaultBlockState(), 35);
+                    level.addDestroyBlockEffect(partPos, level.getBlockState(partPos));
+                }
             }
         }
-        return InteractionResult.SUCCESS;
+    }
+
+    public static BlockPos getPartPos(BlockPos mainPos, Part part, Direction facing) {
+        Direction right = facing.getClockWise();
+        return mainPos.relative(part.xOffset() > 0 ? right : right.getOpposite(), Math.abs(part.xOffset()))
+                .relative(part.zOffset() > 0 ? facing : facing.getOpposite(), Math.abs(part.zOffset()));
+    }
+
+    private BlockPos getMainBlockPos(BlockPos partPos, BlockState state) {
+        Part part = state.getValue(PART);
+        Direction facing = state.getValue(FACING);
+        Direction left = facing.getCounterClockWise();
+        return partPos.relative(part.xOffset() > 0 ? left : left.getOpposite(), Math.abs(part.xOffset()))
+                .relative(part.zOffset() > 0 ? facing.getOpposite() : facing, Math.abs(part.zOffset()));
     }
 
     private static VoxelShape rotateVoxelShape(VoxelShape shape, Direction direction) {
@@ -273,21 +284,12 @@ public class TombBlock extends BaseEntityBlock implements SimpleWaterloggedBlock
             double minX = aabb.minX, minY = aabb.minY, minZ = aabb.minZ;
             double maxX = aabb.maxX, maxY = aabb.maxY, maxZ = aabb.maxZ;
 
-            VoxelShape rotatedBox;
-            switch (direction) {
-                case SOUTH:
-                    rotatedBox = Shapes.box(1 - maxX, minY, 1 - maxZ, 1 - minX, maxY, 1 - minZ);
-                    break;
-                case WEST:
-                    rotatedBox = Shapes.box(minZ, minY, 1 - maxX, maxZ, maxY, 1 - minX);
-                    break;
-                case EAST:
-                    rotatedBox = Shapes.box(1 - maxZ, minY, minX, 1 - minZ, maxY, maxX);
-                    break;
-                default:
-                    rotatedBox = shape;
-                    break;
-            }
+            VoxelShape rotatedBox = switch (direction) {
+                case SOUTH -> Shapes.box(1 - maxX, minY, 1 - maxZ, 1 - minX, maxY, 1 - minZ);
+                case WEST -> Shapes.box(minZ, minY, 1 - maxX, maxZ, maxY, 1 - minX);
+                case EAST -> Shapes.box(1 - maxZ, minY, minX, 1 - minZ, maxY, maxX);
+                default -> shape;
+            };
             rotatedBoxes.add(rotatedBox);
         });
 
