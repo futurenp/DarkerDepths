@@ -1,9 +1,12 @@
 package com.naterbobber.darkerdepths.events;
 
 import com.mojang.blaze3d.shaders.FogShape;
+import com.naterbobber.darkerdepths.init.DDItems;
 import com.naterbobber.darkerdepths.init.DDMobEffects;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.client.event.ViewportEvent;
 import net.minecraftforge.event.TickEvent;
@@ -51,20 +54,39 @@ public class ClientForgeEvents {
 
     @SubscribeEvent
     public void onRenderFog(ViewportEvent.RenderFog event) {
-        if (paranoiaFactor > 0.0f) {
-            float defaultFarPlane = Minecraft.getInstance().gameRenderer.getRenderDistance();
+        Minecraft mc = Minecraft.getInstance();
+        LocalPlayer player = mc.player;
+        if (player != null && !player.isSpectator()) {
+            boolean hasVoidSoulTorch = player.getMainHandItem().is(DDItems.VOID_SOUL_TORCH.get()) || player.getOffhandItem().is(DDItems.VOID_SOUL_TORCH.get());
 
-            int amplifier = getEffectAmplifier();
-            float effectFarPlane = 15.0F - (amplifier * 15.0F);
-            float effectNearPlane = -5.0F;
+            if (hasVoidSoulTorch) {
+                if (player.hasEffect(MobEffects.BLINDNESS)) {
+                    event.setFarPlaneDistance(event.getFarPlaneDistance() * 1.75F);
+                    event.setCanceled(true);
+                }
+            }
 
-            float newFar = lerp(defaultFarPlane, effectFarPlane, paranoiaFactor);
-            float newNear = lerp(defaultFarPlane, effectNearPlane, paranoiaFactor);
+            if (paranoiaFactor > 0.0f) {
+                float defaultFarPlane = Minecraft.getInstance().gameRenderer.getRenderDistance();
 
-            event.setNearPlaneDistance(newNear);
-            event.setFarPlaneDistance(newFar);
-            event.setFogShape(FogShape.SPHERE);
-            event.setCanceled(true);
+                int amplifier = getEffectAmplifier();
+                float effectFarPlane = 15.0F - (amplifier * 15.0F);
+                float effectNearPlane = -5.0F;
+
+                if (event.getCamera().getEntity() instanceof LivingEntity living) {
+                    if (living.getMainHandItem().is(DDItems.VOID_SOUL_TORCH.get()) || living.getOffhandItem().is(DDItems.VOID_SOUL_TORCH.get())) {
+                        effectFarPlane *= 1.75F;
+                    }
+                }
+
+                float newFar = lerp(defaultFarPlane, effectFarPlane, paranoiaFactor);
+                float newNear = lerp(defaultFarPlane, effectNearPlane, paranoiaFactor);
+
+                event.setNearPlaneDistance(newNear);
+                event.setFarPlaneDistance(newFar);
+                event.setFogShape(FogShape.SPHERE);
+                event.setCanceled(true);
+            }
         }
     }
 
