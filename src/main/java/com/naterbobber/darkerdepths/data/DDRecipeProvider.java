@@ -5,9 +5,7 @@ import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import com.naterbobber.darkerdepths.init.DDItemTags;
 import com.naterbobber.darkerdepths.init.DDItems;
-import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeCategory;
@@ -16,13 +14,11 @@ import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
 import net.minecraft.data.recipes.SingleItemRecipeBuilder;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.AbstractCookingRecipe;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraft.world.item.crafting.SimpleCookingSerializer;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -393,35 +389,35 @@ public class DDRecipeProvider extends RecipeProvider {
 
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.MISC, DDBlocks.DEATH_ANCHOR.get().asItem())
-                .define('B', DDItems.VOID_SOUL_BRASS.get())
+                .define('B', DDItems.FORSAKEN_BRONZE_SCRAP.get())
                 .define('D', DDBlocks.DUSKROCK.get().asItem())
                 .define('O', Blocks.OBSIDIAN.asItem())
                 .define('R', DDItems.VOID_SOUL_REQUIEM.get())
                 .pattern("BBB")
                 .pattern("DRD")
                 .pattern("DOD")
-                .unlockedBy("has_void_soul_brass", has(DDItems.VOID_SOUL_BRASS.get()))
+                .unlockedBy("has_forsaken_bronze_scrap", has(DDItems.FORSAKEN_BRONZE_SCRAP.get()))
                 .save(consumer);
 
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.MISC, DDBlocks.TOMB.get().asItem())
-                .define('B', DDItems.VOID_SOUL_BRASS.get())
+                .define('B', DDItems.FORSAKEN_BRONZE_SCRAP.get())
                 .define('D', DDBlocks.DUSKROCK.get().asItem())
                 .define('S', DDBlocks.DARKSLATE.get().asItem())
                 .pattern(" B ")
                 .pattern("DDD")
                 .pattern("SSS")
-                .unlockedBy("has_void_soul_brass", has(DDItems.VOID_SOUL_BRASS.get()))
+                .unlockedBy("has_forsaken_bronze_scrap", has(DDItems.FORSAKEN_BRONZE_SCRAP.get()))
                 .save(consumer);
 
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.COMBAT, DDItems.STILETTO.get())
-                .define('B', DDItems.VOID_SOUL_BRASS.get())
+                .define('B', DDItems.FORSAKEN_BRONZE_SCRAP.get())
                 .define('S', Items.STICK)
                 .pattern("B")
                 .pattern("B")
                 .pattern("S")
-                .unlockedBy("has_void_soul_brass", has(DDItems.VOID_SOUL_BRASS.get()))
+                .unlockedBy("has_forsaken_bronze_scrap", has(DDItems.FORSAKEN_BRONZE_SCRAP.get()))
                 .save(consumer);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, DDBlocks.SKULL_WALL.get(), 4)

@@ -137,7 +137,7 @@ public class StilettoItem extends SwordItem {
 
         @Override
         public Ingredient getRepairIngredient() {
-            return Ingredient.of(DDItems.VOID_SOUL_REQUIEM.get());
+            return Ingredient.of(DDItems.FORSAKEN_BRONZE_SCRAP.get());
         }
     }
 

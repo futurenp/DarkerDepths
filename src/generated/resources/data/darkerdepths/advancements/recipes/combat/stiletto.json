@@ -7,12 +7,12 @@
       },
       "trigger": "minecraft:recipe_unlocked"
     },
-    "has_void_soul_brass": {
+    "has_forsaken_bronze_scrap": {
       "conditions": {
         "items": [
           {
             "items": [
-              "darkerdepths:void_soul_brass"
+              "darkerdepths:forsaken_bronze_scrap"
             ]
           }
         ]
@@ -22,7 +22,7 @@
   },
   "requirements": [
     [
-      "has_void_soul_brass",
+      "has_forsaken_bronze_scrap",
       "has_the_recipe"
     ]
   ],

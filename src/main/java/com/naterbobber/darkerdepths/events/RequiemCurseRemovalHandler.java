@@ -24,30 +24,16 @@ public class RequiemCurseRemovalHandler {
             return;
         }
 
-        boolean isDamaged = leftStack.getDamageValue() > 0;
-        boolean isCursed = hasCurse(leftStack);
-
-        if (!isDamaged && !isCursed) {
+        if (!hasCurse(leftStack)) {
             return;
         }
 
-        final int repairCost = 3;
-        final int cleanseCost = 10;
-
-        int finalCost;
-
-        if (isCursed) {
-            finalCost = cleanseCost;
-        } else {
-            finalCost = repairCost;
-        }
+        final int cost = 25;
 
         ItemStack output = leftStack.copy();
-        output.setDamageValue(0);
         removeCurses(output);
-
         event.setOutput(output);
-        event.setCost(finalCost);
+        event.setCost(cost);
         event.setMaterialCost(1);
     }
 
