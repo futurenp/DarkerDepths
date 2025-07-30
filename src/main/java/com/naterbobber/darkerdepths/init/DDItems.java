@@ -24,7 +24,6 @@ public class DDItems {
     public static final RegistryObject<Item> AMBER = createSimpleItem("amber");
     public static final RegistryObject<Item> STILETTO = ITEMS.register("stiletto", () -> new StilettoItem(2, -1.6F, new Item.Properties()));
     public static final RegistryObject<Item> VOID_SOUL_TORCH = ITEMS.register("void_soul_torch", () -> new VoidSoulTorchItem(DDBlocks.VOID_SOUL_TORCH.get(), DDBlocks.WALL_VOID_SOUL_TORCH.get(), new Item.Properties()));
-    public static final RegistryObject<Item> BOTTLE_OF_VOID_SOUL = createSimpleItem("bottle_of_void_soul");
     public static final RegistryObject<Item> VOID_SOUL_REQUIEM = createSimpleItem("void_soul_requiem");
     public static final RegistryObject<Item> GLOWSHROOM_MONSTER_SPAWN_EGG = ITEMS.register("glowshroom_monster_spawn_egg", () -> new ForgeSpawnEggItem(DDEntityTypes.GLOWSHROOM_MONSTER, 8290688, 8513702, new Item.Properties()));
     public static final RegistryObject<Item> BODY_SNATCHER_SPAWN_EGG = ITEMS.register("body_snatcher_spawn_egg", () -> new ForgeSpawnEggItem(DDEntityTypes.BODY_SNATCHER, 2496017, 16775339, new Item.Properties()));
