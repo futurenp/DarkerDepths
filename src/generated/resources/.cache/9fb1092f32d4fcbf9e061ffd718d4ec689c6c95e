@@ -1,4 +1,4 @@
-// 1.20.1	2025-07-29T21:22:29.141889	Recipes
+// 1.20.1	2025-07-30T18:54:36.8580532	Recipes
 cbbc30b09689a598589907eeea42fc8338b29e50 data/darkerdepths/advancements/recipes/building_blocks/amber_block.json
 19fa50158a1752fd00dac617b21811860d1f5411 data/darkerdepths/advancements/recipes/building_blocks/aridrock.json
 7a1754e268279efa7175cf7ca16f29b901092ce5 data/darkerdepths/advancements/recipes/building_blocks/aridrock_bricks.json
@@ -164,7 +164,8 @@ cda2ce5b2ccc359b9342a75d5f8c812267a031bf data/darkerdepths/advancements/recipes/
 ddf3388a9c9c10aaa091903d60a78d1ebe4d31e7 data/darkerdepths/advancements/recipes/misc/glow_ink_sac_from_glow_grime.json
 77b88a5c925c140bd69ebfd4b8aaaf63dadd51b5 data/darkerdepths/advancements/recipes/misc/slime_ball_from_glow_grime.json
 908dc2091d10fc6454171fa2569f4eaca8849f09 data/darkerdepths/advancements/recipes/misc/tomb.json
-5016757a47ef658b213471b84e6af48db0c19b5b data/darkerdepths/advancements/recipes/misc/void_soul_requiem.json
+8e273014be4da9f61a779f8132e82e3fe981e389 data/darkerdepths/advancements/recipes/misc/void_soul_requiem.json
+36504284b69d2d038014f9e177bed2664d902246 data/darkerdepths/advancements/recipes/misc/void_soul_torch.json
 9ba8c58b592b38ee3feaad54545d045b1cdfb58e data/darkerdepths/advancements/recipes/redstone/petrified_door.json
 88baed1ac26ca9174215dd2309f96bb491262097 data/darkerdepths/advancements/recipes/redstone/petrified_pressure_plate.json
 5112c78dafe08f70b83a5e3041e30ee44c753931 data/darkerdepths/advancements/recipes/redstone/petrified_trapdoor.json
@@ -339,3 +340,4 @@ ac04332c8b6c8b427cc45fe4736fcf758a8ba8ad data/darkerdepths/recipes/skull_wall.js
 bd10b870a075a56a19c0a8d85b13e55f53e4ce56 data/darkerdepths/recipes/stripped_petrified_wood.json
 1d6cc46aeb173b831e20e8bab000ff0e1d4bf92a data/darkerdepths/recipes/tomb.json
 38f2054fdd823b07f71320358c1190b0de96e8b8 data/darkerdepths/recipes/void_soul_requiem.json
+67db2fb402d540a254c44aa005ce06c919777cb7 data/darkerdepths/recipes/void_soul_torch.json

@@ -1,7 +1,13 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_amber": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "darkerdepths:void_soul_torch"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_void_soul_jar": {
       "conditions": {
         "items": [
           {
@@ -12,23 +18,17 @@
         ]
       },
       "trigger": "minecraft:inventory_changed"
-    },
-    "has_the_recipe": {
-      "conditions": {
-        "recipe": "darkerdepths:void_soul_requiem"
-      },
-      "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_amber",
+      "has_void_soul_jar",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "darkerdepths:void_soul_requiem"
+      "darkerdepths:void_soul_torch"
     ]
   },
   "sends_telemetry_event": false

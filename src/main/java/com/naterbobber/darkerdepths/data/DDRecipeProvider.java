@@ -385,7 +385,15 @@ public class DDRecipeProvider extends RecipeProvider {
                 .pattern("AAA")
                 .pattern("ABA")
                 .pattern("AAA")
-                .unlockedBy("has_resin", has(DDItems.AMBER.get())).save(consumer);
+                .unlockedBy("has_amber", has(DDItems.AMBER.get())).save(consumer);
+
+        ShapedRecipeBuilder.
+                shaped(RecipeCategory.MISC, DDItems.VOID_SOUL_TORCH.get(), 4)
+                .define('A', Items.STICK)
+                .define('B', DDBlocks.VOID_SOUL_JAR.get().asItem())
+                .pattern("B")
+                .pattern("A")
+                .unlockedBy("has_void_soul_jar", has(DDItems.AMBER.get())).save(consumer);
 
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.MISC, DDBlocks.DEATH_ANCHOR.get().asItem())

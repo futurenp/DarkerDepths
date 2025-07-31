@@ -231,15 +231,15 @@ public class TombBlock extends BaseEntityBlock implements SimpleWaterloggedBlock
 
     private void placeMultiblockParts(Level level, BlockPos mainPos, BlockState mainState) {
         Direction facing = mainState.getValue(FACING);
-        boolean waterlogged = mainState.getValue(WATERLOGGED);
 
         for (Part part : Part.values()) {
+            FluidState fluidAtPart = level.getFluidState(getPartPos(mainPos, part, facing));
             if (part == Part.FRONT_CENTER) continue;
             BlockPos partPos = getPartPos(mainPos, part, facing);
             BlockState partState = this.defaultBlockState()
                 .setValue(FACING, facing)
                 .setValue(PART, part)
-                .setValue(WATERLOGGED, waterlogged);
+                .setValue(WATERLOGGED, fluidAtPart.getType() == Fluids.WATER);
             level.setBlock(partPos, partState, 3);
         }
     }

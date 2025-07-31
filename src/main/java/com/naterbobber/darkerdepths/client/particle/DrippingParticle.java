@@ -146,17 +146,17 @@ public class DrippingParticle extends TextureSheetParticle {
     }
 
     @OnlyIn(Dist.CLIENT)
-    public static class DrippingResinFactory implements ParticleProvider<SimpleParticleType> {
+    public static class DrippingAmberFactory implements ParticleProvider<SimpleParticleType> {
         protected final SpriteSet spriteSet;
 
-        public DrippingResinFactory(SpriteSet spriteSet) {
+        public DrippingAmberFactory(SpriteSet spriteSet) {
             this.spriteSet = spriteSet;
         }
 
         @Nullable
         @Override
         public Particle createParticle(SimpleParticleType typeIn, ClientLevel worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
-            DrippingParticle dripping = new Dripping(worldIn, x, y, z, Fluids.EMPTY, DDParticleTypes.FALLING_RESIN.get());
+            DrippingParticle dripping = new Dripping(worldIn, x, y, z, Fluids.EMPTY, DDParticleTypes.FALLING_AMBER.get());
             dripping.fullBright = true;
             dripping.gravity *= 0.01F;
             dripping.lifetime = 100;
@@ -167,17 +167,17 @@ public class DrippingParticle extends TextureSheetParticle {
     }
 
     @OnlyIn(Dist.CLIENT)
-    public static class FallingResinFactory implements ParticleProvider<SimpleParticleType> {
+    public static class FallingAmberFactory implements ParticleProvider<SimpleParticleType> {
         protected final SpriteSet spriteSet;
 
-        public FallingResinFactory(SpriteSet spriteSet) {
+        public FallingAmberFactory(SpriteSet spriteSet) {
             this.spriteSet = spriteSet;
         }
 
         @Nullable
         @Override
         public Particle createParticle(SimpleParticleType typeIn, ClientLevel worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
-            DrippingParticle falling = new FallingLiquid(worldIn, x, y, z, Fluids.EMPTY, DDParticleTypes.LANDING_RESIN.get());
+            DrippingParticle falling = new FallingLiquid(worldIn, x, y, z, Fluids.EMPTY, DDParticleTypes.LANDING_AMBER.get());
             falling.fullBright = true;
             falling.gravity = 0.01F;
             falling.setColor(0.97F, 0.56F, 0.22F);
@@ -187,10 +187,10 @@ public class DrippingParticle extends TextureSheetParticle {
     }
 
     @OnlyIn(Dist.CLIENT)
-    public static class LandingResinFactory implements ParticleProvider<SimpleParticleType> {
+    public static class LandingAmberFactory implements ParticleProvider<SimpleParticleType> {
         protected final SpriteSet spriteSet;
 
-        public LandingResinFactory(SpriteSet spriteSet) {
+        public LandingAmberFactory(SpriteSet spriteSet) {
             this.spriteSet = spriteSet;
         }
 

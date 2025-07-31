@@ -4,6 +4,7 @@ import com.naterbobber.darkerdepths.init.DDBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DeadBushBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -17,13 +18,17 @@ public class DrySproutsBlock extends DeadBushBlock {
     }
 
     @Override
-    public VoxelShape getShape(BlockState p_52419_, BlockGetter p_52420_, BlockPos p_52421_, CollisionContext p_52422_) {
+    public VoxelShape getShape(BlockState state, BlockGetter getter, BlockPos pos, CollisionContext context) {
         return SHAPE;
     }
 
     @Override
     protected boolean mayPlaceOn(BlockState state, BlockGetter world, BlockPos pos) {
-        return state.is(DDBlocks.ARIDROCK.get()) || state.is(DDBlocks.DUSKROCK.get()) || state.is(DDBlocks.ARID_DEEPSLATE.get()) || super.mayPlaceOn(state, world, pos);
+        return state.is(DDBlocks.ARIDROCK.get()) ||
+                state.is(DDBlocks.DUSKROCK.get()) ||
+                state.is(DDBlocks.ARID_DEEPSLATE.get()) ||
+                state.is(Blocks.MUD) ||
+                super.mayPlaceOn(state, world, pos);
     }
 
 }

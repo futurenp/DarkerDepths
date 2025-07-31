@@ -46,7 +46,7 @@ public class PorousBlock extends RotatedPillarBlock {
                     double x = direction.getStepX() == 0 ? rand.nextDouble() : 0.5D + direction.getStepX() * 0.6D;
                     double y = direction.getStepY() == 0 ? rand.nextDouble() : 0.5D + direction.getStepY() * 0.6D;
                     double z = direction.getStepZ() == 0 ? rand.nextDouble() : 0.5D + direction.getStepZ() * 0.6D;
-                    worldIn.addParticle(DDParticleTypes.DRIPPING_RESIN.get(), pos.getX() + x, pos.getY() + y, pos.getZ() + z, 0.0D, 0.0D, 0.0D);
+                    worldIn.addParticle(DDParticleTypes.DRIPPING_AMBER.get(), pos.getX() + x, pos.getY() + y, pos.getZ() + z, 0.0D, 0.0D, 0.0D);
                 }
             }
         }
