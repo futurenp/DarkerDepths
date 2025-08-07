@@ -6,6 +6,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.level.Level;
@@ -108,9 +109,11 @@ public class TombBlockEntity extends BlockEntity implements GeoBlockEntity {
 
     private void playSound() {
         if (this.level != null) {
-            this.level.playSound(null, this.getBlockPos(),
-                this.isOpen ? SoundEvents.CHEST_OPEN : SoundEvents.CHEST_CLOSE,
-                SoundSource.BLOCKS, 0.5f, 0.9f);
+            if (this.isOpen) {
+                this.level.playSound(null, this.getBlockPos(), SoundEvents.GRINDSTONE_USE, SoundSource.BLOCKS, 1, 0.4f);
+            } else {
+                this.level.playSound(null, this.getBlockPos(), SoundEvents.GRINDSTONE_USE, SoundSource.BLOCKS, 1, 0.7f);
+            }
         }
     }
 
