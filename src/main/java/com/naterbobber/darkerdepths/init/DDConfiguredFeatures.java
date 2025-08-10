@@ -38,6 +38,7 @@ import net.minecraft.world.level.levelgen.feature.configurations.VegetationPatch
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
 import net.minecraft.world.level.levelgen.placement.CaveSurface;
+import net.minecraft.world.level.levelgen.structure.templatesystem.BlockMatchTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
 import net.minecraft.world.level.material.Fluids;
 
@@ -70,6 +71,9 @@ public static final ImmutableList<BlockState> OVERWORLD_REPLACEABLES    = Immuta
     public static final ResourceKey<ConfiguredFeature<?, ?>> CATACOMBS_LAVA_LINING = createKey("catacombs_lava_lining");
     public static final ResourceKey<ConfiguredFeature<?, ?>> DUSKROCK_STRIPE = createKey("duskrock_stripe");
     public static final ResourceKey<ConfiguredFeature<?, ?>> GLIMMERING_VINES = createKey("glimmering_vines");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> DEAD_LIVING_CRYSTAL_ORE = createKey("dead_living_crystal_ore");
+
+
 
     public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> context) {
         HolderGetter<ConfiguredFeature<?, ?>> lookup = context.lookup(Registries.CONFIGURED_FEATURE);
@@ -88,7 +92,8 @@ public static final ImmutableList<BlockState> OVERWORLD_REPLACEABLES    = Immuta
         FeatureUtils.register(context, SHORT_PETRIFIED_BRANCH, DDFeatures.PETRIFIED_BRANCH.get(), new PetrifiedBranchConfig(4, 8));
         FeatureUtils.register(context, LONG_PETRIFIED_BRANCH, DDFeatures.PETRIFIED_BRANCH.get(), new PetrifiedBranchConfig(8, 16));
         FeatureUtils.register(context, PETRIFIED_BRANCH, Feature.RANDOM_BOOLEAN_SELECTOR, new RandomBooleanFeatureConfiguration(PlacementUtils.inlinePlaced(lookup.getOrThrow(SHORT_PETRIFIED_BRANCH)), PlacementUtils.inlinePlaced(lookup.getOrThrow(LONG_PETRIFIED_BRANCH))));
-        FeatureUtils.register(context, MAGMA_ORE, Feature.ORE, new OreConfiguration(new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES), Blocks.MAGMA_BLOCK.defaultBlockState(), 15));
+        FeatureUtils.register(context, DEAD_LIVING_CRYSTAL_ORE, Feature.ORE, new OreConfiguration(List.of(OreConfiguration.target(new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES), DDBlocks.DEAD_LIVING_CRYSTAL.get().defaultBlockState()), OreConfiguration.target(new BlockMatchTest(DDBlocks.DARKSLATE.get()), DDBlocks.DEAD_LIVING_CRYSTAL.get().defaultBlockState())), 6));
+        FeatureUtils.register(context, MAGMA_ORE, Feature.ORE, new OreConfiguration(List.of(OreConfiguration.target(new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES), Blocks.MAGMA_BLOCK.defaultBlockState()), OreConfiguration.target(new BlockMatchTest(DDBlocks.DARKSLATE.get()), Blocks.MAGMA_BLOCK.defaultBlockState())), 30));
         FeatureUtils.register(context, DARKSLATE_SURFACE, DDFeatures.CORRESPONDENT_LAYER.get(), new CorrespondentLayersConfig(BlockTags.LUSH_GROUND_REPLACEABLE, BlockStateProvider.simple(DDBlocks.DARKSLATE.get()), BlockStateProvider.simple(DDBlocks.DARKSLATE.get()), PlacementUtils.inlinePlaced(lookup.getOrThrow(DARKSLATE_VEGETATION)), CaveSurface.FLOOR, ConstantInt.of(1), 0.0F, 5, 0.8F, UniformInt.of(4, 7), 0.3F, false));
         FeatureUtils.register(context, ARID_SURFACE, DDFeatures.CORRESPONDENT_LAYER.get(), new CorrespondentLayersConfig(BlockTags.LUSH_GROUND_REPLACEABLE, BlockStateProvider.simple(DDBlocks.ARIDROCK.get()), BlockStateProvider.simple(DDBlocks.ARID_DEEPSLATE.get()), PlacementUtils.inlinePlaced(lookup.getOrThrow(ARID_VEGETATION)), CaveSurface.FLOOR, ConstantInt.of(1), 0.0F, 5, 0.8F, UniformInt.of(4, 7), 0.3F, true));
         FeatureUtils.register(context, GRIME_SURFACE, DDFeatures.CORRESPONDENT_LAYER.get(), new CorrespondentLayersConfig(BlockTags.LUSH_GROUND_REPLACEABLE, BlockStateProvider.simple(DDBlocks.MOSSY_GRIMESTONE.get()), BlockStateProvider.simple(DDBlocks.GRIMESTONE.get()), PlacementUtils.inlinePlaced(lookup.getOrThrow(GRIME_VEGETATION)), CaveSurface.FLOOR, ConstantInt.of(1), 0.0F, 5, 0.8F, UniformInt.of(4, 7), 0.3F, false));

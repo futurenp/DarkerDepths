@@ -52,7 +52,8 @@ public class DDBiomeModifiers {
                 getBiome(context, DDBiomes.MOLTEN_CAVERN),
                 getPlacedFeature(
                         context,
-                        DDPlacedFeatures.MAGMA_ORE
+                        DDPlacedFeatures.MAGMA_ORE,
+                        DDPlacedFeatures.DEAD_LIVING_CRYSTAL_ORE
                 ),
                 GenerationStep.Decoration.UNDERGROUND_ORES
         ));

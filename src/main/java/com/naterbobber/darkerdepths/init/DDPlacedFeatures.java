@@ -35,6 +35,7 @@ public class DDPlacedFeatures {
     public static final ResourceKey<PlacedFeature> CATACOMBS_LAVA_LINING = createKey("catacombs_lava_lining");
     public static final ResourceKey<PlacedFeature> DUSKROCK_STRIPE = createKey("duskrock_stripe");
     public static final ResourceKey<PlacedFeature> GLIMMERING_VINES = createKey("glimmering_vines");
+    public static final ResourceKey<PlacedFeature> DEAD_LIVING_CRYSTAL_ORE = createKey("dead_living_crystal_ore");
 
     public static void bootstrap(BootstapContext<PlacedFeature> context) {
         HolderGetter<ConfiguredFeature<?, ?>> lookup = context.lookup(Registries.CONFIGURED_FEATURE);
@@ -45,7 +46,8 @@ public class DDPlacedFeatures {
         PlacementUtils.register(context, MOLTEN_POOL, lookup.getOrThrow(DDConfiguredFeatures.MOLTEN_POOL), CountPlacement.of(60), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT, EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.solid(), BlockPredicate.ONLY_IN_AIR_PREDICATE, 12), RandomOffsetPlacement.vertical(ConstantInt.of(1)), BiomeFilter.biome());
         PlacementUtils.register(context, DARKSLATE_PLACEMENT, lookup.getOrThrow(DDConfiguredFeatures.DARKSLATE_PLACEMENT), CountPlacement.of(175), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT, BiomeFilter.biome());
         PlacementUtils.register(context, PETRIFIED_BRANCH, lookup.getOrThrow(DDConfiguredFeatures.PETRIFIED_BRANCH), CountPlacement.of(150), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT, BiomeFilter.biome());
-        PlacementUtils.register(context, MAGMA_ORE, lookup.getOrThrow(DDConfiguredFeatures.MAGMA_ORE), CountPlacement.of(50), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT, BiomeFilter.biome());
+        PlacementUtils.register(context, DEAD_LIVING_CRYSTAL_ORE, lookup.getOrThrow(DDConfiguredFeatures.DEAD_LIVING_CRYSTAL_ORE), CountPlacement.of(256), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT, BiomeFilter.biome());
+        PlacementUtils.register(context, MAGMA_ORE, lookup.getOrThrow(DDConfiguredFeatures.MAGMA_ORE), CountPlacement.of(30), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT, BiomeFilter.biome());
         PlacementUtils.register(context, GRIME_SURFACE, lookup.getOrThrow(DDConfiguredFeatures.GRIME_SURFACE), CountPlacement.of(UniformInt.of(192, 256)), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT, BiomeFilter.biome());
         PlacementUtils.register(context, ARID_SURFACE, lookup.getOrThrow(DDConfiguredFeatures.ARID_SURFACE), CountPlacement.of(UniformInt.of(192, 256)), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT, BiomeFilter.biome());
         PlacementUtils.register(context, DARKSLATE_SURFACE, lookup.getOrThrow(DDConfiguredFeatures.DARKSLATE_SURFACE), CountPlacement.of(UniformInt.of(192, 256)), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT, BiomeFilter.biome());

@@ -1,9 +1,9 @@
 {
-  "feature": "darkerdepths:magma_ore",
+  "feature": "darkerdepths:dead_living_crystal_ore",
   "placement": [
     {
       "type": "minecraft:count",
-      "count": 30
+      "count": 256
     },
     {
       "type": "minecraft:in_square"
