@@ -13,8 +13,12 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 @OnlyIn(Dist.CLIENT)
 public class VoidSoulFlameParticle extends TextureSheetParticle {
     protected VoidSoulFlameParticle(ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
-        super(level, x + (Math.random() / 20 - 0.025) , y - .05f, z + (Math.random() / 20 - 0.025), xSpeed, ySpeed, zSpeed);
+        super(level, x, y, z, xSpeed, ySpeed, zSpeed);
 
+        double randomRange = 0.05;
+        this.x += (Math.random() * randomRange - randomRange/2);
+        this.z += (Math.random() * randomRange - randomRange/2);
+        this.y -= .05f;
         this.quadSize *= 2f + (this.random.nextFloat()/2);
         this.lifetime = 20;
         this.gravity = 0.0F;

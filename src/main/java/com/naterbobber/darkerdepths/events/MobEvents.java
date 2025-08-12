@@ -123,8 +123,9 @@ public class MobEvents {
             }
 
             entity.teleportTo(newServer, teleportPos.getX() + 0.5D, teleportPos.getY(), teleportPos.getZ() + 0.5D, Set.of(), 0, 0);
-            entity.addEffect(new MobEffectInstance(DDMobEffects.SOUL_BINDING.get(), 200));
-            newServer.broadcastEntityEvent(entity, (byte)35);
+            entity.addEffect(new MobEffectInstance(DDMobEffects.SOUL_BINDING.get(), 200, 1, true, false));
+            ClientDeathAnchorAnimationOverlay.startOverlay(0);
+            //newServer.broadcastEntityEvent(entity, (byte)35);
         }
     }
 
