@@ -5,6 +5,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.naterbobber.darkerdepths.DarkerDepths;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.screens.DeathScreen;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RenderGuiOverlayEvent;
@@ -18,15 +19,15 @@ import java.util.List;
 public class ClientDeathAnchorAnimationOverlay {
 
     private static boolean isOverlayActive = false;
-    private static int currentFrame = 0;
-    private static int startFrame = 0;
+    private static int currentFrame = 1;
+    private static int startFrame = 1;
     private static long lastFrameTime = 0;
-    public static final int FRAME_COUNT = 7;
-    private static final int FRAME_DURATION_MS = 100;
+    public static final int FRAME_COUNT = 200;
+    private static final int FRAME_DURATION_MS = 50;
     public static final List<ResourceLocation> ANIMATION_FRAMES = new ArrayList<>();
 
     static {
-        for (int i = 0; i < FRAME_COUNT; i++) {
+        for (int i = startFrame; i < FRAME_COUNT; i++) {
             ResourceLocation frameLocation = ResourceLocation.fromNamespaceAndPath(DarkerDepths.MODID,
                     "textures/gui/death_anchor_overlay/frame_" + i + ".png");
             ANIMATION_FRAMES.add(frameLocation);
@@ -48,6 +49,20 @@ public class ClientDeathAnchorAnimationOverlay {
     }
 
     private static void updateAnimation() {
+        Minecraft mc = Minecraft.getInstance();
+
+        if (mc.isPaused()) {
+            return;
+        }
+
+        if (mc.screen instanceof DeathScreen) {
+            return;
+        }
+
+        if (!mc.isWindowActive()) {
+            return;
+        }
+
         long currentTime = System.currentTimeMillis();
 
         if (currentTime - lastFrameTime >= FRAME_DURATION_MS) {

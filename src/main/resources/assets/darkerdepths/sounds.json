@@ -34,6 +34,12 @@
       "darkerdepths:block/grimestone/break3"
     ]
   },
+  "block.death_anchor.soul_binding": {
+    "category": "block",
+    "sounds": [
+      "darkerdepths:block/death_anchor/soul_binding"
+    ]
+  },
   "entity.glowshroom_monster.ambient": {
     "category": "block",
     "subtitle": "Glowshroom Monster Growls",
