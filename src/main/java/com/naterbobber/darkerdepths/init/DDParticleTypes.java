@@ -13,10 +13,11 @@ public class DDParticleTypes {
 
     public static final DeferredRegister<ParticleType<?>> PARTICLE_TYPES = DeferredRegister.create(ForgeRegistries.PARTICLE_TYPES, DarkerDepths.MODID);
 
-    public static final RegistryObject<SimpleParticleType> DRIPPING_AMBER    = registerParticle("dripping_amber", false);
-    public static final RegistryObject<SimpleParticleType> FALLING_AMBER     = registerParticle("falling_amber", false);
-    public static final RegistryObject<SimpleParticleType> LANDING_AMBER     = registerParticle("landing_amber", false);
-    public static final RegistryObject<SimpleParticleType> VOID_SOUL_FLAME     = registerParticle("void_soul_flame", false);
+    public static final RegistryObject<SimpleParticleType> DRIPPING_AMBER       = registerParticle("dripping_amber", false);
+    public static final RegistryObject<SimpleParticleType> FALLING_AMBER        = registerParticle("falling_amber", false);
+    public static final RegistryObject<SimpleParticleType> LANDING_AMBER        = registerParticle("landing_amber", false);
+    public static final RegistryObject<SimpleParticleType> VOID_SOUL            = registerParticle("void_soul", false);
+    public static final RegistryObject<SimpleParticleType> VOID_SOUL_FLAME      = registerParticle("void_soul_flame", false);
 
     public static RegistryObject<SimpleParticleType> registerParticle(String name, boolean alwaysShow) {
         return PARTICLE_TYPES.register(name, () -> new SimpleParticleType(alwaysShow));
