@@ -28,6 +28,7 @@ public class DrySproutsBlock extends DeadBushBlock {
                 state.is(DDBlocks.DUSKROCK.get()) ||
                 state.is(DDBlocks.ARID_DEEPSLATE.get()) ||
                 state.is(Blocks.MUD) ||
+                state.is(Blocks.PACKED_MUD) ||
                 super.mayPlaceOn(state, world, pos);
     }
 
