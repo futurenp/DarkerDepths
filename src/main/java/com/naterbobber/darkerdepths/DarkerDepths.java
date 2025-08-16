@@ -41,6 +41,7 @@ public class DarkerDepths {
         DDMobEffects.MOB_EFFECTS.register(modEventBus);
         DDSoundEvents.SOUND_EVENTS.register(modEventBus);
         DDStructures.STRUCTURE_TYPES.register(modEventBus);
+        DDStructureProcessorTypes.STRUCTURE_PROCESSORS.register(modEventBus);
 
         eventBus.register(this);
         eventBus.register(new MobEvents());

@@ -1,7 +1,6 @@
 package com.naterbobber.darkerdepths.init;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
-import com.naterbobber.darkerdepths.data.DDStructureTagsProvider;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstapContext;
@@ -11,7 +10,6 @@ import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.MobSpawnSettings;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
-import net.minecraftforge.common.data.ForgeBiomeTagsProvider;
 import net.minecraftforge.common.world.BiomeModifier;
 import net.minecraftforge.common.world.ForgeBiomeModifiers;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -25,6 +23,7 @@ public class DDBiomeModifiers {
 
     public static final ResourceKey<BiomeModifier> ADD_MOLTEN_CAVERNS_VEGETAL_FEATURES = createKey("add_molten_caverns_vegetal_features");
     public static final ResourceKey<BiomeModifier> ADD_MOLTEN_CAVERNS_ORES = createKey("add_molten_caverns_ores");
+    public static final ResourceKey<BiomeModifier> ADD_SANDY_CATACOMBS_LOCAL_MODIFICATIONS = createKey("add_sandy_catacombs_local_modifications");
     public static final ResourceKey<BiomeModifier> ADD_SANDY_CATACOMBS_VEGETAL_FEATURES = createKey("add_sandy_catacombs_vegetal_features");
     public static final ResourceKey<BiomeModifier> ADD_SANDY_CATACOMBS_SPAWNS = createKey("add_sandy_catacombs_spawns");
     public static final ResourceKey<BiomeModifier> ADD_SANDY_CATACOMBS_RAW_GENERATION = createKey("add_sandy_catacombs_raw_generation");
@@ -57,6 +56,14 @@ public class DDBiomeModifiers {
                 ),
                 GenerationStep.Decoration.UNDERGROUND_ORES
         ));
+        context.register(ADD_SANDY_CATACOMBS_LOCAL_MODIFICATIONS, new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
+                getBiome(context, DDBiomes.SANDY_CATACOMBS),
+                getPlacedFeature(
+                        context,
+                        DDPlacedFeatures.ARID_BOULDER
+                ),
+                GenerationStep.Decoration.LOCAL_MODIFICATIONS)
+        );
         context.register(ADD_SANDY_CATACOMBS_VEGETAL_FEATURES, new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
                 getBiome(context, DDBiomes.SANDY_CATACOMBS),
                 getPlacedFeature(

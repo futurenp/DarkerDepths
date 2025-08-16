@@ -27,14 +27,15 @@ public class DDBiomeTagsProvider extends BiomeTagsProvider {
         this.tag(Tags.Biomes.IS_HOT_OVERWORLD).addOptional(DDBiomes.MOLTEN_CAVERN.location());
         this.tag(Tags.Biomes.IS_DRY_OVERWORLD).addOptional(DDBiomes.SANDY_CATACOMBS.location());
         this.tag(Tags.Biomes.IS_COLD_OVERWORLD).addOptional(DDBiomes.GLOWSHROOM_FOREST.location());
-        this.tag(DDStructureTagsProvider.HAS_ROPE_MINE_FOREST).add(
+        this.tag(com.naterbobber.darkerdepths.init.DDBiomeTagsProvider.CATACOMBS).addOptional(DDBiomes.SANDY_CATACOMBS.location());
+        this.tag(com.naterbobber.darkerdepths.init.DDBiomeTagsProvider.HAS_ROPE_MINE_FOREST).add(
                         Biomes.PLAINS,
                         Biomes.FOREST,
                         Biomes.DARK_FOREST,
                         Biomes.BIRCH_FOREST,
                         Biomes.JUNGLE,
                         Biomes.MANGROVE_SWAMP);
-        this.tag(DDStructureTagsProvider.HAS_ROPE_MINE_DESERT).add(
+        this.tag(com.naterbobber.darkerdepths.init.DDBiomeTagsProvider.HAS_ROPE_MINE_DESERT).add(
                 Biomes.DESERT);
     }
 

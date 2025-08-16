@@ -32,7 +32,8 @@ public class DDDatapackBuiltinEntriesProvider extends DatapackBuiltinEntriesProv
             .add(ForgeRegistries.Keys.BIOME_MODIFIERS, DDBiomeModifiers::bootstrap)
             .add(Registries.TEMPLATE_POOL, DDStructures::bootstrapTemplatePool)
             .add(Registries.STRUCTURE, DDStructures::bootstrap)
-            .add(Registries.STRUCTURE_SET, DDStructures::bootstrapStructureSet);
+            .add(Registries.STRUCTURE_SET, DDStructures::bootstrapStructureSet)
+            .add(Registries.PROCESSOR_LIST, DDProcessorLists::bootstrap);
 
 
     public DDDatapackBuiltinEntriesProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
