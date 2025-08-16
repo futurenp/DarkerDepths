@@ -41,8 +41,7 @@ public class TombBlock extends BaseEntityBlock implements SimpleWaterloggedBlock
 
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
-    public static final EnumProperty<Part> PART = EnumProperty.create("part", Part.class);
-
+    private record MultiblockPartData(BlockPos pos, BlockState state) {}
     private static final VoxelShape CORNER_PART = Shapes.or(
             Block.box(2, 0, 5, 16, 3, 16),
             Block.box(3, 3, 6, 16, 10, 16),
@@ -56,29 +55,25 @@ public class TombBlock extends BaseEntityBlock implements SimpleWaterloggedBlock
             Block.box(0, 3, 6, 16, 10, 16),
             Block.box(0, 10, 4, 16, 15, 16));
 
-    private static final VoxelShape FRONT_CENTER_SHAPE = CENTER_PART;
-    private static final VoxelShape BACK_CENTER_SHAPE = rotateVoxelShape(CENTER_PART, Direction.SOUTH);
-    private static final VoxelShape FRONT_LEFT_SHAPE = CORNER_PART;
-    private static final VoxelShape FRONT_RIGHT_SHAPE = CORNER_PART_MIRRORED;
-    private static final VoxelShape BACK_LEFT_SHAPE = rotateVoxelShape(CORNER_PART_MIRRORED, Direction.SOUTH);
-    private static final VoxelShape BACK_RIGHT_SHAPE = rotateVoxelShape(CORNER_PART, Direction.SOUTH);
-
+    public static final EnumProperty<Part> PART = EnumProperty.create("part", Part.class);
     public enum Part implements StringRepresentable {
-        FRONT_CENTER("front_center", 0, 0),
-        FRONT_LEFT("front_left", -1, 0),
-        FRONT_RIGHT("front_right", 1, 0),
-        BACK_CENTER("back_center", 0, -1),
-        BACK_LEFT("back_left", -1, -1),
-        BACK_RIGHT("back_right", 1, -1);
+        FRONT_CENTER("front_center", 0, 0, CENTER_PART),
+        FRONT_LEFT("front_left", -1, 0, CORNER_PART),
+        FRONT_RIGHT("front_right", 1, 0, CORNER_PART_MIRRORED),
+        BACK_CENTER("back_center", 0, -1, rotateVoxelShape(CENTER_PART, Direction.SOUTH)),
+        BACK_LEFT("back_left", -1, -1, rotateVoxelShape(CORNER_PART_MIRRORED, Direction.SOUTH)),
+        BACK_RIGHT("back_right", 1, -1, rotateVoxelShape(CORNER_PART, Direction.SOUTH));
 
         private final String name;
         private final int xOffset;
         private final int zOffset;
+        private final VoxelShape shape;
 
-        Part(String name, int xOffset, int zOffset) {
+        Part(String name, int xOffset, int zOffset, VoxelShape shape) {
             this.name = name;
             this.xOffset = xOffset;
             this.zOffset = zOffset;
+            this.shape = shape;
         }
 
         @Override
@@ -89,9 +84,11 @@ public class TombBlock extends BaseEntityBlock implements SimpleWaterloggedBlock
         public int xOffset() {
             return this.xOffset;
         }
-
         public int zOffset() {
             return this.zOffset;
+        }
+        public VoxelShape shape() {
+            return this.shape;
         }
     }
 
@@ -112,15 +109,7 @@ public class TombBlock extends BaseEntityBlock implements SimpleWaterloggedBlock
     public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
         Part part = state.getValue(PART);
         Direction facing = state.getValue(FACING);
-
-        VoxelShape shape = switch (part) {
-            case FRONT_CENTER -> FRONT_CENTER_SHAPE;
-            case FRONT_LEFT -> FRONT_LEFT_SHAPE;
-            case FRONT_RIGHT -> FRONT_RIGHT_SHAPE;
-            case BACK_CENTER -> BACK_CENTER_SHAPE;
-            case BACK_LEFT -> BACK_LEFT_SHAPE;
-            case BACK_RIGHT -> BACK_RIGHT_SHAPE;
-        };
+        VoxelShape shape = part.shape();
 
         return rotateVoxelShape(shape, facing);
     }
@@ -147,19 +136,24 @@ public class TombBlock extends BaseEntityBlock implements SimpleWaterloggedBlock
 
     @Override
     public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
-        if (state.getValue(PART) != Part.FRONT_CENTER) {
-            return super.canSurvive(state, level, pos);
-        }
-
         Direction facing = state.getValue(FACING);
-        for (Part part : Part.values()) {
-            if (part == Part.FRONT_CENTER) continue;
-            BlockPos partPos = getPartPos(pos, part, facing);
-            if (!level.getBlockState(partPos).canBeReplaced()) {
+        Map<Part, MultiblockPartData> parts = generateMultiblockPartData(getMainBlockPos(pos, state), facing, level);
+
+        for (MultiblockPartData partData : parts.values()) {
+            BlockState block = level.getBlockState(partData.pos);
+            if(block.is(this)) {
+                if (
+                        block.getValue(FACING) != partData.state.getValue(FACING) ||
+                        block.getValue(PART) != partData.state.getValue(PART)
+                ) return false;
+            }
+            else if (!block.canBeReplaced()) return false;
+
+            if(!super.canSurvive(partData.state, level, partData.pos)) {
                 return false;
             }
         }
-        return super.canSurvive(state, level, pos);
+        return true;
     }
 
     @Override
@@ -229,8 +223,6 @@ public class TombBlock extends BaseEntityBlock implements SimpleWaterloggedBlock
         return null;
     }
 
-    private record MultiblockPartData(BlockPos pos, BlockState state) {}
-
     private static Map<Part, MultiblockPartData> generateMultiblockPartData(BlockPos mainPos, Direction facing, LevelReader level) {
         Map<Part, MultiblockPartData> parts = new HashMap<>();
 
@@ -238,8 +230,6 @@ public class TombBlock extends BaseEntityBlock implements SimpleWaterloggedBlock
             BlockPos partPos = getPartPos(mainPos, part, facing);
             boolean isWaterlogged = level.getFluidState(partPos).getType() == Fluids.WATER;
             BlockState partState = DDBlocks.TOMB.get().defaultBlockState().setValue(FACING, facing).setValue(PART, part).setValue(WATERLOGGED, isWaterlogged);
-
-
             parts.put(part, new MultiblockPartData(partPos, partState));
         }
 
@@ -251,7 +241,7 @@ public class TombBlock extends BaseEntityBlock implements SimpleWaterloggedBlock
         Map<Part, MultiblockPartData> parts = generateMultiblockPartData(mainPos, facing, level);
 
         for (MultiblockPartData partData : parts.values()) {
-            targetList.add(new StructureTemplate.StructureBlockInfo(relativePos.offset(partData.pos().subtract(mainPos)), partData.state(), null));
+            targetList.add(new StructureTemplate.StructureBlockInfo(relativePos.offset(partData.pos.subtract(mainPos)), partData.state, null));
         }
     }
 
@@ -260,7 +250,7 @@ public class TombBlock extends BaseEntityBlock implements SimpleWaterloggedBlock
         Map<Part, MultiblockPartData> parts = generateMultiblockPartData(mainPos, facing, level);
 
         for (MultiblockPartData partData : parts.values()) {
-            level.setBlock(partData.pos(), partData.state(), 3);
+            level.setBlock(partData.pos, partData.state, 3);
         }
     }
 
@@ -269,10 +259,10 @@ public class TombBlock extends BaseEntityBlock implements SimpleWaterloggedBlock
         Map<Part, MultiblockPartData> parts = generateMultiblockPartData(getMainBlockPos(pos, state), facing, level);
 
         for (MultiblockPartData partData : parts.values()) {
-            BlockState replace = partData.state().getValue(WATERLOGGED) ? Blocks.WATER.defaultBlockState() : Blocks.AIR.defaultBlockState();
-            level.setBlock(partData.pos(), replace, 3);
+            BlockState replace = partData.state.getValue(WATERLOGGED) ? Blocks.WATER.defaultBlockState() : Blocks.AIR.defaultBlockState();
+            level.setBlock(partData.pos, replace, 3);
             //particle effect only works on center state?
-            level.addDestroyBlockEffect(partData.pos(), partData.state());
+            level.addDestroyBlockEffect(partData.pos, partData.state);
         }
     }
 
