@@ -38,6 +38,8 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import static net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool.Projection.RIGID;
+
 public class DDStructures {
     public static final DeferredRegister<StructureType<?>> STRUCTURE_TYPES =
             DeferredRegister.create(Registries.STRUCTURE_TYPE, DarkerDepths.MODID);
@@ -57,6 +59,7 @@ public class DDStructures {
     public static final ResourceKey<StructureSet> CATACOMBS_SET = createStructureSetKey("catacombs_set");
     public static final ResourceKey<StructureTemplatePool> CATACOMBS_STARTS_POOL = createPoolKey("catacombs/starts");
     public static final ResourceKey<StructureTemplatePool> CATACOMBS_HALLS_POOL = createPoolKey("catacombs/halls");
+    public static final ResourceKey<StructureTemplatePool> CATACOMBS_CENTER_EXTENSIONS_POOL = createPoolKey("catacombs/center_extensions");
     public static final ResourceKey<StructureTemplatePool> CATACOMBS_HALLS_EXTENSIONS = createPoolKey("catacombs/extensions");
 
     public static void bootstrap(BootstapContext<Structure> context) {
@@ -152,57 +155,76 @@ public class DDStructures {
         HolderGetter<StructureProcessorList> processorList = context.lookup(Registries.PROCESSOR_LIST);
 
         context.register(ROPE_MINE_FOREST_POOL, new StructureTemplatePool(
-                emptyPoolHolder, List.of(Pair.of(StructurePoolElement.single("darkerdepths:rope_mine_forest").apply(StructureTemplatePool.Projection.RIGID), 1))
+                emptyPoolHolder, List.of(Pair.of(StructurePoolElement.single("darkerdepths:rope_mine_forest").apply(RIGID), 1))
         ));
 
         context.register(ROPE_MINE_DESERT_POOL, new StructureTemplatePool(
-                emptyPoolHolder, List.of(Pair.of(StructurePoolElement.single("darkerdepths:rope_mine_desert").apply(StructureTemplatePool.Projection.RIGID), 1))
+                emptyPoolHolder, List.of(Pair.of(StructurePoolElement.single("darkerdepths:rope_mine_desert").apply(RIGID), 1))
         ));
 
         context.register(CATACOMBS_STARTS_POOL, new StructureTemplatePool(
                 emptyPoolHolder,
                 List.of(
-                        Pair.of(StructurePoolElement.single("darkerdepths:catacombs/center_1").apply(StructureTemplatePool.Projection.RIGID), 1)
+                        Pair.of(StructurePoolElement.single("darkerdepths:catacombs/center_1").apply(RIGID), 1),
+                        Pair.of(StructurePoolElement.single("darkerdepths:catacombs/center_2").apply(RIGID), 1)
+                )
+        ));
+
+        context.register(CATACOMBS_CENTER_EXTENSIONS_POOL, new StructureTemplatePool(
+                emptyPoolHolder,
+                List.of(
+                        Pair.of(StructurePoolElement.single("darkerdepths:catacombs/cross_section_1").apply(RIGID), 5),
+                        Pair.of(StructurePoolElement.single("darkerdepths:catacombs/cross_section_2").apply(RIGID), 5),
+                        Pair.of(StructurePoolElement.single("darkerdepths:catacombs/cross_section_3").apply(RIGID), 5),
+                        Pair.of(StructurePoolElement.single("darkerdepths:catacombs/cross_section_4").apply(RIGID), 5),
+                        Pair.of(StructurePoolElement.single("darkerdepths:catacombs/cross_section_5").apply(RIGID), 5),
+                        Pair.of(StructurePoolElement.single("darkerdepths:catacombs/cross_section_6").apply(RIGID), 5),
+                        Pair.of(StructurePoolElement.single("darkerdepths:catacombs/hallway_1").apply(RIGID), 20),
+                        Pair.of(StructurePoolElement.single("darkerdepths:catacombs/hallway_2").apply(RIGID), 20),
+                        Pair.of(StructurePoolElement.single("darkerdepths:catacombs/hallway_3").apply(RIGID), 20),
+                        Pair.of(StructurePoolElement.single("darkerdepths:catacombs/hallway_4").apply(RIGID), 20),
+                        Pair.of(StructurePoolElement.single("darkerdepths:catacombs/hallway_large_1").apply(RIGID), 20),
+                        Pair.of(StructurePoolElement.single("darkerdepths:catacombs/hallway_large_2").apply(RIGID), 20)
                 )
         ));
 
         context.register(CATACOMBS_HALLS_POOL, new StructureTemplatePool(
                 emptyPoolHolder,
                 List.of(
-                        Pair.of(StructurePoolElement.single("darkerdepths:catacombs/cross_section_1").apply(StructureTemplatePool.Projection.RIGID), 30),
-                        Pair.of(StructurePoolElement.single("darkerdepths:catacombs/cross_section_2").apply(StructureTemplatePool.Projection.RIGID), 30),
-                        Pair.of(StructurePoolElement.single("darkerdepths:catacombs/cross_section_3").apply(StructureTemplatePool.Projection.RIGID), 30),
-                        Pair.of(StructurePoolElement.single("darkerdepths:catacombs/cross_section_4").apply(StructureTemplatePool.Projection.RIGID), 30),
-                        Pair.of(StructurePoolElement.single("darkerdepths:catacombs/cross_section_5").apply(StructureTemplatePool.Projection.RIGID), 30),
-                        Pair.of(StructurePoolElement.single("darkerdepths:catacombs/cross_section_6").apply(StructureTemplatePool.Projection.RIGID), 30),
-                        Pair.of(StructurePoolElement.single("darkerdepths:catacombs/hallway_1").apply(StructureTemplatePool.Projection.RIGID), 10),
-                        Pair.of(StructurePoolElement.single("darkerdepths:catacombs/hallway_2").apply(StructureTemplatePool.Projection.RIGID), 10),
-                        Pair.of(StructurePoolElement.single("darkerdepths:catacombs/hallway_3").apply(StructureTemplatePool.Projection.RIGID), 10),
-                        Pair.of(StructurePoolElement.single("darkerdepths:catacombs/hallway_4").apply(StructureTemplatePool.Projection.RIGID), 10),
-                        Pair.of(StructurePoolElement.single("darkerdepths:catacombs/hallway_large_1").apply(StructureTemplatePool.Projection.RIGID), 10),
-                        Pair.of(StructurePoolElement.single("darkerdepths:catacombs/hallway_large_2").apply(StructureTemplatePool.Projection.RIGID), 10)
+                        Pair.of(StructurePoolElement.single("darkerdepths:catacombs/cross_section_1").apply(RIGID), 30),
+                        Pair.of(StructurePoolElement.single("darkerdepths:catacombs/cross_section_2").apply(RIGID), 30),
+                        Pair.of(StructurePoolElement.single("darkerdepths:catacombs/cross_section_3").apply(RIGID), 30),
+                        Pair.of(StructurePoolElement.single("darkerdepths:catacombs/cross_section_4").apply(RIGID), 30),
+                        Pair.of(StructurePoolElement.single("darkerdepths:catacombs/cross_section_5").apply(RIGID), 30),
+                        Pair.of(StructurePoolElement.single("darkerdepths:catacombs/cross_section_6").apply(RIGID), 30),
+                        Pair.of(StructurePoolElement.single("darkerdepths:catacombs/hallway_1").apply(RIGID), 10),
+                        Pair.of(StructurePoolElement.single("darkerdepths:catacombs/hallway_2").apply(RIGID), 10),
+                        Pair.of(StructurePoolElement.single("darkerdepths:catacombs/hallway_3").apply(RIGID), 10),
+                        Pair.of(StructurePoolElement.single("darkerdepths:catacombs/hallway_4").apply(RIGID), 10),
+                        Pair.of(StructurePoolElement.single("darkerdepths:catacombs/hallway_large_1").apply(RIGID), 10),
+                        Pair.of(StructurePoolElement.single("darkerdepths:catacombs/hallway_large_2").apply(RIGID), 10)
                 )
         ));
 
         context.register(CATACOMBS_HALLS_EXTENSIONS, new StructureTemplatePool(
                 emptyPoolHolder,
                 List.of(
-                        Pair.of(StructurePoolElement.single("darkerdepths:catacombs/hallway_1").apply(StructureTemplatePool.Projection.RIGID), 50),
-                        Pair.of(StructurePoolElement.single("darkerdepths:catacombs/hallway_2").apply(StructureTemplatePool.Projection.RIGID), 50),
-                        Pair.of(StructurePoolElement.single("darkerdepths:catacombs/hallway_3").apply(StructureTemplatePool.Projection.RIGID), 50),
-                        Pair.of(StructurePoolElement.single("darkerdepths:catacombs/hallway_4").apply(StructureTemplatePool.Projection.RIGID), 50),
-                        Pair.of(StructurePoolElement.single("darkerdepths:catacombs/hallway_large_1").apply(StructureTemplatePool.Projection.RIGID), 50),
-                        Pair.of(StructurePoolElement.single("darkerdepths:catacombs/hallway_large_2").apply(StructureTemplatePool.Projection.RIGID), 50),
-                        Pair.of(StructurePoolElement.single("darkerdepths:catacombs/room_1").apply(StructureTemplatePool.Projection.RIGID), 10),
-                        Pair.of(StructurePoolElement.single("darkerdepths:catacombs/room_2").apply(StructureTemplatePool.Projection.RIGID), 10),
-                        Pair.of(StructurePoolElement.single("darkerdepths:catacombs/room_3").apply(StructureTemplatePool.Projection.RIGID), 5),
-                        Pair.of(StructurePoolElement.single("darkerdepths:catacombs/room_4").apply(StructureTemplatePool.Projection.RIGID), 10),
-                        Pair.of(StructurePoolElement.single("darkerdepths:catacombs/room_5").apply(StructureTemplatePool.Projection.RIGID), 10),
-                        Pair.of(StructurePoolElement.single("darkerdepths:catacombs/room_6").apply(StructureTemplatePool.Projection.RIGID), 10),
-                        Pair.of(StructurePoolElement.single("darkerdepths:catacombs/room_7").apply(StructureTemplatePool.Projection.RIGID), 10),
-                        Pair.of(StructurePoolElement.single("darkerdepths:catacombs/room_8").apply(StructureTemplatePool.Projection.RIGID), 10),
-                        Pair.of(StructurePoolElement.single("darkerdepths:catacombs/treasure_room_1", processorList.getOrThrow(DDProcessorLists.TOMBS)).apply(StructureTemplatePool.Projection.RIGID), 30),
-                        Pair.of(StructurePoolElement.single("darkerdepths:catacombs/treasure_room_2", processorList.getOrThrow(DDProcessorLists.TOMBS)).apply(StructureTemplatePool.Projection.RIGID), 30)
+                        Pair.of(StructurePoolElement.single("darkerdepths:catacombs/hallway_1").apply(RIGID), 50),
+                        Pair.of(StructurePoolElement.single("darkerdepths:catacombs/hallway_2").apply(RIGID), 50),
+                        Pair.of(StructurePoolElement.single("darkerdepths:catacombs/hallway_3").apply(RIGID), 50),
+                        Pair.of(StructurePoolElement.single("darkerdepths:catacombs/hallway_4").apply(RIGID), 50),
+                        Pair.of(StructurePoolElement.single("darkerdepths:catacombs/hallway_large_1").apply(RIGID), 50),
+                        Pair.of(StructurePoolElement.single("darkerdepths:catacombs/hallway_large_2").apply(RIGID), 50),
+                        Pair.of(StructurePoolElement.single("darkerdepths:catacombs/room_1").apply(RIGID), 10),
+                        Pair.of(StructurePoolElement.single("darkerdepths:catacombs/room_2").apply(RIGID), 10),
+                        Pair.of(StructurePoolElement.single("darkerdepths:catacombs/room_3").apply(RIGID), 5),
+                        Pair.of(StructurePoolElement.single("darkerdepths:catacombs/room_4").apply(RIGID), 10),
+                        Pair.of(StructurePoolElement.single("darkerdepths:catacombs/room_5").apply(RIGID), 10),
+                        Pair.of(StructurePoolElement.single("darkerdepths:catacombs/room_6").apply(RIGID), 10),
+                        Pair.of(StructurePoolElement.single("darkerdepths:catacombs/room_7").apply(RIGID), 10),
+                        Pair.of(StructurePoolElement.single("darkerdepths:catacombs/room_8").apply(RIGID), 10),
+                        Pair.of(StructurePoolElement.single("darkerdepths:catacombs/treasure_room_1", processorList.getOrThrow(DDProcessorLists.TOMBS)).apply(RIGID), 30),
+                        Pair.of(StructurePoolElement.single("darkerdepths:catacombs/treasure_room_2", processorList.getOrThrow(DDProcessorLists.TOMBS)).apply(RIGID), 30)
                 )
         ));
     }
