@@ -2,6 +2,7 @@ package com.naterbobber.darkerdepths.blocks;
 
 import com.naterbobber.darkerdepths.blocks.blockentities.TombBlockEntity;
 import com.naterbobber.darkerdepths.init.DDBlockEntityTypes;
+import com.naterbobber.darkerdepths.init.DDBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.StringRepresentable;
@@ -24,6 +25,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.storage.loot.LootParams;
@@ -33,9 +35,7 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class TombBlock extends BaseEntityBlock implements SimpleWaterloggedBlock {
 
@@ -211,7 +211,7 @@ public class TombBlock extends BaseEntityBlock implements SimpleWaterloggedBlock
 
     @Override
     public List<ItemStack> getDrops(BlockState state, LootParams.Builder params) {
-        return state.getValue(PART) == Part.FRONT_CENTER ? super.getDrops(state, params) : Collections.emptyList();
+        return super.getDrops(state, params);
     }
 
     @Nullable
@@ -229,34 +229,50 @@ public class TombBlock extends BaseEntityBlock implements SimpleWaterloggedBlock
         return null;
     }
 
-    private void placeMultiblockParts(Level level, BlockPos mainPos, BlockState mainState) {
-        Direction facing = mainState.getValue(FACING);
+    private record MultiblockPartData(BlockPos pos, BlockState state) {}
+
+    private static Map<Part, MultiblockPartData> generateMultiblockPartData(BlockPos mainPos, Direction facing, LevelReader level) {
+        Map<Part, MultiblockPartData> parts = new HashMap<>();
 
         for (Part part : Part.values()) {
-            FluidState fluidAtPart = level.getFluidState(getPartPos(mainPos, part, facing));
-            if (part == Part.FRONT_CENTER) continue;
             BlockPos partPos = getPartPos(mainPos, part, facing);
-            BlockState partState = this.defaultBlockState()
-                .setValue(FACING, facing)
-                .setValue(PART, part)
-                .setValue(WATERLOGGED, fluidAtPart.getType() == Fluids.WATER);
-            level.setBlock(partPos, partState, 3);
+            boolean isWaterlogged = level.getFluidState(partPos).getType() == Fluids.WATER;
+            BlockState partState = DDBlocks.TOMB.get().defaultBlockState().setValue(FACING, facing).setValue(PART, part).setValue(WATERLOGGED, isWaterlogged);
+
+
+            parts.put(part, new MultiblockPartData(partPos, partState));
+        }
+
+        return parts;
+    }
+
+    public static void generateMultiblockForProcessor(BlockPos mainPos, Direction facing, LevelReader level, List<StructureTemplate.StructureBlockInfo> targetList, BlockPos relativePos) {
+        targetList.clear();
+        Map<Part, MultiblockPartData> parts = generateMultiblockPartData(mainPos, facing, level);
+
+        for (MultiblockPartData partData : parts.values()) {
+            targetList.add(new StructureTemplate.StructureBlockInfo(relativePos.offset(partData.pos().subtract(mainPos)), partData.state(), null));
+        }
+    }
+
+    private void placeMultiblockParts(Level level, BlockPos mainPos, BlockState mainState) {
+        Direction facing = mainState.getValue(FACING);
+        Map<Part, MultiblockPartData> parts = generateMultiblockPartData(mainPos, facing, level);
+
+        for (MultiblockPartData partData : parts.values()) {
+            level.setBlock(partData.pos(), partData.state(), 3);
         }
     }
 
     private void removeMultiblockParts(Level level, BlockPos pos, BlockState state) {
-        BlockPos mainPos = getMainBlockPos(pos, state);
-        BlockState mainState = level.getBlockState(mainPos);
+        Direction facing = state.getValue(FACING);
+        Map<Part, MultiblockPartData> parts = generateMultiblockPartData(getMainBlockPos(pos, state), facing, level);
 
-        if (mainState.is(this)) {
-            Direction facing = mainState.getValue(FACING);
-            for (Part part : Part.values()) {
-                BlockPos partPos = getPartPos(mainPos, part, facing);
-                if (level.getBlockState(partPos).is(this)) {
-                    level.setBlock(partPos, Blocks.AIR.defaultBlockState(), 35);
-                    level.addDestroyBlockEffect(partPos, level.getBlockState(partPos));
-                }
-            }
+        for (MultiblockPartData partData : parts.values()) {
+            BlockState replace = partData.state().getValue(WATERLOGGED) ? Blocks.WATER.defaultBlockState() : Blocks.AIR.defaultBlockState();
+            level.setBlock(partData.pos(), replace, 3);
+            //particle effect only works on center state?
+            level.addDestroyBlockEffect(partData.pos(), partData.state());
         }
     }
 

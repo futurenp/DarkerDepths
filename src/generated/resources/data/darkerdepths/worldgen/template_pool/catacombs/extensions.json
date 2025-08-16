@@ -9,18 +9,7 @@
         },
         "projection": "rigid"
       },
-      "weight": 4
-    },
-    {
-      "element": {
-        "element_type": "minecraft:single_pool_element",
-        "location": "darkerdepths:catacombs/room_1",
-        "processors": {
-          "processors": []
-        },
-        "projection": "rigid"
-      },
-      "weight": 1
+      "weight": 50
     },
     {
       "element": {
@@ -31,18 +20,7 @@
         },
         "projection": "rigid"
       },
-      "weight": 4
-    },
-    {
-      "element": {
-        "element_type": "minecraft:single_pool_element",
-        "location": "darkerdepths:catacombs/room_2",
-        "processors": {
-          "processors": []
-        },
-        "projection": "rigid"
-      },
-      "weight": 1
+      "weight": 50
     },
     {
       "element": {
@@ -53,18 +31,7 @@
         },
         "projection": "rigid"
       },
-      "weight": 4
-    },
-    {
-      "element": {
-        "element_type": "minecraft:single_pool_element",
-        "location": "darkerdepths:catacombs/room_4",
-        "processors": {
-          "processors": []
-        },
-        "projection": "rigid"
-      },
-      "weight": 1
+      "weight": 50
     },
     {
       "element": {
@@ -75,69 +42,51 @@
         },
         "projection": "rigid"
       },
-      "weight": 4
+      "weight": 50
     },
     {
       "element": {
         "element_type": "minecraft:single_pool_element",
-        "location": "darkerdepths:catacombs/room_5",
+        "location": "darkerdepths:catacombs/hallway_large_1",
         "processors": {
           "processors": []
         },
         "projection": "rigid"
       },
-      "weight": 1
+      "weight": 50
     },
     {
       "element": {
         "element_type": "minecraft:single_pool_element",
-        "location": "darkerdepths:catacombs/room_6",
+        "location": "darkerdepths:catacombs/hallway_large_2",
         "processors": {
           "processors": []
         },
         "projection": "rigid"
       },
-      "weight": 1
+      "weight": 50
     },
     {
       "element": {
         "element_type": "minecraft:single_pool_element",
-        "location": "darkerdepths:catacombs/room_7",
+        "location": "darkerdepths:catacombs/room_1",
         "processors": {
           "processors": []
         },
         "projection": "rigid"
       },
-      "weight": 1
+      "weight": 10
     },
     {
       "element": {
         "element_type": "minecraft:single_pool_element",
-        "location": "darkerdepths:catacombs/room_8",
+        "location": "darkerdepths:catacombs/room_2",
         "processors": {
           "processors": []
         },
         "projection": "rigid"
       },
-      "weight": 1
-    },
-    {
-      "element": {
-        "element_type": "minecraft:single_pool_element",
-        "location": "darkerdepths:catacombs/treasure_room_1",
-        "processors": "darkerdepths:tombs",
-        "projection": "rigid"
-      },
-      "weight": 1
-    },
-    {
-      "element": {
-        "element_type": "minecraft:single_pool_element",
-        "location": "darkerdepths:catacombs/treasure_room_2",
-        "processors": "darkerdepths:tombs",
-        "projection": "rigid"
-      },
-      "weight": 1
+      "weight": 10
     },
     {
       "element": {
@@ -148,7 +97,80 @@
         },
         "projection": "rigid"
       },
-      "weight": 1
+      "weight": 5
+    },
+    {
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "darkerdepths:catacombs/room_4",
+        "processors": {
+          "processors": []
+        },
+        "projection": "rigid"
+      },
+      "weight": 10
+    },
+    {
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "darkerdepths:catacombs/room_5",
+        "processors": {
+          "processors": []
+        },
+        "projection": "rigid"
+      },
+      "weight": 10
+    },
+    {
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "darkerdepths:catacombs/room_6",
+        "processors": {
+          "processors": []
+        },
+        "projection": "rigid"
+      },
+      "weight": 10
+    },
+    {
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "darkerdepths:catacombs/room_7",
+        "processors": {
+          "processors": []
+        },
+        "projection": "rigid"
+      },
+      "weight": 10
+    },
+    {
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "darkerdepths:catacombs/room_8",
+        "processors": {
+          "processors": []
+        },
+        "projection": "rigid"
+      },
+      "weight": 10
+    },
+    {
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "darkerdepths:catacombs/treasure_room_1",
+        "processors": "darkerdepths:tombs",
+        "projection": "rigid"
+      },
+      "weight": 30
+    },
+    {
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "darkerdepths:catacombs/treasure_room_2",
+        "processors": "darkerdepths:tombs",
+        "projection": "rigid"
+      },
+      "weight": 30
     }
   ],
   "fallback": "minecraft:empty"
