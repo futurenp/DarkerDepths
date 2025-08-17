@@ -258,19 +258,27 @@ public class DDRecipeProvider extends RecipeProvider {
                 .pattern("##")
                 .unlockedBy("has_log", has(DDBlocks.STRIPPED_PETRIFIED_LOG.get())).save(consumer);
 
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, DDItems.GLOW_GRIME.get()).requires(DDBlocks.GLOWSHROOM.get()).unlockedBy("has_glowshroom", has(DDBlocks.GLOWSHROOM.get())).save(consumer);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, DDItems.GLOW_GRIME.get())
+                .requires(DDBlocks.GLOWSHROOM.get())
+                .unlockedBy("has_glowshroom", has(DDBlocks.GLOWSHROOM.get()))
+                .save(consumer);
 
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, DDItems.GLOW_GRIME.get(), 2).requires(DDBlocks.GLOWSHROOM_BLOCK.get()).unlockedBy("has_glowshroom_block", has(DDBlocks.GLOWSHROOM_BLOCK.get())).save(consumer, DarkerDepths.id("glow_grime_from_glowshroom_block"));
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, DDItems.GLOW_GRIME.get(), 2)
+                .requires(DDBlocks.GLOWSHROOM_BLOCK.get())
+                .unlockedBy("has_glowshroom_block", has(DDBlocks.GLOWSHROOM_BLOCK.get()))
+                .save(consumer, DarkerDepths.id("glow_grime_from_glowshroom_block"));
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.GLOW_INK_SAC, 2)
                 .requires(DDItems.GLOW_GRIME.get())
                 .requires(Items.INK_SAC)
-                .unlockedBy("has_glow_grime", has(DDItems.GLOW_GRIME.get())).save(consumer, DarkerDepths.id("glow_ink_sac_from_glow_grime"));
+                .unlockedBy("has_glow_grime", has(DDItems.GLOW_GRIME.get()))
+                .save(consumer, DarkerDepths.id("glow_ink_sac_from_glow_grime"));
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.SLIME_BALL)
                 .requires(DDItems.GLOW_GRIME.get())
                 .requires(Items.CLAY_BALL)
-                .unlockedBy("has_glow_grime", has(DDItems.GLOW_GRIME.get())).save(consumer, DarkerDepths.id("slime_ball_from_glow_grime"));
+                .unlockedBy("has_glow_grime", has(DDItems.GLOW_GRIME.get()))
+                .save(consumer, DarkerDepths.id("slime_ball_from_glow_grime"));
 
         stonecutterResultFromBase(consumer, DDBlocks.CHISELED_DARKSLATE_BRICKS.get(), DDBlocks.DARKSLATE.get());
         stonecutterResultFromBase(consumer, DDBlocks.CHISELED_ARIDROCK_BRICKS.get(), DDBlocks.ARIDROCK.get());
@@ -369,8 +377,8 @@ public class DDRecipeProvider extends RecipeProvider {
 
 
 
-        ShapedRecipeBuilder.
-                shaped(RecipeCategory.DECORATIONS, DDItems.ROPE.get(), 12)
+        ShapedRecipeBuilder
+                .shaped(RecipeCategory.DECORATIONS, DDItems.ROPE.get(), 12)
                 .define('#', Items.STRING)
                 .define('G', Items.STICK)
                 .pattern(" ##")
@@ -378,8 +386,8 @@ public class DDRecipeProvider extends RecipeProvider {
                 .pattern("## ")
                 .unlockedBy("has_string", has(Items.STRING)).save(consumer);
 
-        ShapedRecipeBuilder.
-                shaped(RecipeCategory.MISC, DDItems.VOID_SOUL_REQUIEM.get(), 1)
+        ShapedRecipeBuilder
+                .shaped(RecipeCategory.MISC, DDItems.VOID_SOUL_REQUIEM.get(), 1)
                 .define('A', DDItems.AMBER.get())
                 .define('B', DDBlocks.VOID_SOUL_JAR.get().asItem())
                 .pattern("AAA")
@@ -387,8 +395,8 @@ public class DDRecipeProvider extends RecipeProvider {
                 .pattern("AAA")
                 .unlockedBy("has_amber", has(DDItems.AMBER.get())).save(consumer);
 
-        ShapedRecipeBuilder.
-                shaped(RecipeCategory.MISC, DDItems.VOID_SOUL_TORCH.get(), 4)
+        ShapedRecipeBuilder
+                .shaped(RecipeCategory.MISC, DDItems.VOID_SOUL_TORCH.get(), 4)
                 .define('A', Items.STICK)
                 .define('B', DDBlocks.VOID_SOUL_JAR.get().asItem())
                 .pattern("B")
@@ -442,7 +450,9 @@ public class DDRecipeProvider extends RecipeProvider {
     }
 
     protected static void stonecutterResultFromBase(Consumer<FinishedRecipe> consumer, ItemLike result, ItemLike ingredient, int count) {
-        SingleItemRecipeBuilder.stonecutting(Ingredient.of(ingredient), RecipeCategory.BUILDING_BLOCKS, result, count).unlockedBy(getHasName(ingredient), has(ingredient)).save(consumer, DarkerDepths.id(getConversionRecipeName(result, ingredient) + "_stonecutting"));
+        SingleItemRecipeBuilder.stonecutting(Ingredient.of(ingredient), RecipeCategory.BUILDING_BLOCKS, result, count)
+                .unlockedBy(getHasName(ingredient), has(ingredient))
+                .save(consumer, DarkerDepths.id(getConversionRecipeName(result, ingredient) + "_stonecutting"));
     }
 
     protected static String getConversionRecipeName(ItemLike result, ItemLike ingredient) {
@@ -472,8 +482,8 @@ public class DDRecipeProvider extends RecipeProvider {
     }
 
     private void twoXtwo(Consumer<FinishedRecipe> consumer, ItemLike result, Item item, int count) {
-        ShapedRecipeBuilder.
-                shaped(RecipeCategory.BUILDING_BLOCKS, result, count)
+        ShapedRecipeBuilder
+                .shaped(RecipeCategory.BUILDING_BLOCKS, result, count)
                 .define('S', item)
                 .pattern("SS")
                 .pattern("SS")
@@ -481,8 +491,8 @@ public class DDRecipeProvider extends RecipeProvider {
     }
 
     private void threeXthree(Consumer<FinishedRecipe> consumer, ItemLike result, Item item) {
-        ShapedRecipeBuilder.
-                shaped(RecipeCategory.BUILDING_BLOCKS, result)
+        ShapedRecipeBuilder
+                .shaped(RecipeCategory.BUILDING_BLOCKS, result)
                 .define('S', item)
                 .pattern("SSS")
                 .pattern("SSS")
@@ -491,8 +501,8 @@ public class DDRecipeProvider extends RecipeProvider {
     }
 
     private void stairsBlock(Consumer<FinishedRecipe> consumer, ItemLike result, Item item) {
-        ShapedRecipeBuilder.
-                shaped(RecipeCategory.BUILDING_BLOCKS, result, 4)
+        ShapedRecipeBuilder
+                .shaped(RecipeCategory.BUILDING_BLOCKS, result, 4)
                 .define('#', item)
                 .pattern("#  ")
                 .pattern("## ")
@@ -501,8 +511,8 @@ public class DDRecipeProvider extends RecipeProvider {
     }
 
     private void fenceBlock(Consumer<FinishedRecipe> consumer, ItemLike result, Item item) {
-        ShapedRecipeBuilder.
-                shaped(RecipeCategory.BUILDING_BLOCKS, result, 3)
+        ShapedRecipeBuilder
+                .shaped(RecipeCategory.BUILDING_BLOCKS, result, 3)
                 .define('#', item)
                 .define('S', Items.STICK)
                 .pattern("#S#")
@@ -511,8 +521,8 @@ public class DDRecipeProvider extends RecipeProvider {
     }
 
     private void slabBlock(Consumer<FinishedRecipe> consumer, ItemLike result, Item item) {
-        ShapedRecipeBuilder.
-                shaped(RecipeCategory.BUILDING_BLOCKS, result, 6)
+        ShapedRecipeBuilder
+                .shaped(RecipeCategory.BUILDING_BLOCKS, result, 6)
                 .define('#', item)
                 .pattern("###")
                 .unlockedBy("has_" + BuiltInRegistries.ITEM.getKey(item).getPath(), has(item)).save(consumer);
@@ -528,13 +538,17 @@ public class DDRecipeProvider extends RecipeProvider {
 
     protected static void oreCooking(Consumer<FinishedRecipe> consumer, RecipeCategory recipeCategory, RecipeSerializer<? extends AbstractCookingRecipe> serializer, List<ItemLike> itemLike, ItemLike item, float experience, int time, String group, String name) {
         for (ItemLike itemlike : itemLike) {
-            SimpleCookingRecipeBuilder.generic(Ingredient.of(itemlike), recipeCategory, item, experience, time, serializer).group(group).unlockedBy(getHasName(itemlike), has(itemlike)).save(consumer, DarkerDepths.id(getItemName(item) + name + "_" + getItemName(itemlike)));
+            SimpleCookingRecipeBuilder
+                    .generic(Ingredient.of(itemlike), recipeCategory, item, experience, time, serializer)
+                    .group(group)
+                    .unlockedBy(getHasName(itemlike), has(itemlike))
+                    .save(consumer, DarkerDepths.id(getItemName(item) + name + "_" + getItemName(itemlike)));
         }
     }
 
     private void shaplessOne(Consumer<FinishedRecipe> consumer, Item result, Item item, int count) {
-        ShapelessRecipeBuilder.
-                shapeless(RecipeCategory.MISC, result, count)
+        ShapelessRecipeBuilder
+                .shapeless(RecipeCategory.MISC, result, count)
                 .requires(item)
                 .unlockedBy("has_" + BuiltInRegistries.ITEM.getKey(item).getPath(), has(item)).save(consumer);
     }

@@ -1,5 +1,3 @@
-// File: src/main/java/com/naterbobber/darkerdepths/entities/control/SlowTurnMoveControl.java
-
 package com.naterbobber.darkerdepths.entities.control;
 
 import net.minecraft.core.BlockPos;
@@ -49,7 +47,8 @@ public class ConfigurableMoveControl extends MoveControl {
             BlockPos blockpos = this.mob.blockPosition();
             BlockState blockstate = this.mob.level().getBlockState(blockpos);
             VoxelShape voxelshape = blockstate.getCollisionShape(this.mob.level(), blockpos);
-            if (d2 > (double) this.mob.getStepHeight() && d0 * d0 + d1 * d1 < (double) Math.max(1.0F, this.mob.getBbWidth()) || !voxelshape.isEmpty() && this.mob.getY() < voxelshape.max(Direction.Axis.Y) + (double) blockpos.getY() && !blockstate.is(BlockTags.DOORS) && !blockstate.is(BlockTags.FENCES)) {
+            if (d2 > (double) this.mob.getStepHeight() && d0 * d0 + d1 * d1 < (double) Math.max(1.0F, this.mob.getBbWidth()) ||
+                    !voxelshape.isEmpty() && this.mob.getY() < voxelshape.max(Direction.Axis.Y) + (double) blockpos.getY() && !blockstate.is(BlockTags.DOORS) && !blockstate.is(BlockTags.FENCES)) {
                 this.mob.getJumpControl().jump();
                 this.operation = Operation.JUMPING;
             }

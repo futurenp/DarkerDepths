@@ -102,7 +102,18 @@ public class DDBiomes {
     }
 
     private static Biome biome(boolean precipitation, float temperature, float downfall, int waterColor, int waterFogColor, MobSpawnSettings.Builder builder, BiomeGenerationSettings.Builder biomeBuilder, @Nullable Music music) {
-        return (new Biome.BiomeBuilder()).hasPrecipitation(precipitation).temperature(temperature).downfall(downfall).specialEffects((new BiomeSpecialEffects.Builder()).waterColor(waterColor).waterFogColor(waterFogColor).fogColor(12638463).skyColor(calculateSkyColor(temperature)).ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS).backgroundMusic(music).build()).mobSpawnSettings(builder.build()).generationSettings(biomeBuilder.build()).build();
+        return (new Biome.BiomeBuilder())
+                .hasPrecipitation(precipitation)
+                .temperature(temperature)
+                .downfall(downfall)
+                .specialEffects((new BiomeSpecialEffects.Builder())
+                        .waterColor(waterColor)
+                        .waterFogColor(waterFogColor)
+                        .fogColor(12638463)
+                        .skyColor(calculateSkyColor(temperature))
+                        .ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS)
+                        .backgroundMusic(music).build()).mobSpawnSettings(builder.build())
+                .generationSettings(biomeBuilder.build()).build();
     }
 
     protected static int calculateSkyColor(float temperature) {
