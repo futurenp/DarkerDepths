@@ -137,7 +137,8 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
                 DDBlocks.DEATH_ANCHOR.get(),
                 DDBlocks.TOMB.get(),
                 DDBlocks.VOID_SOUL_JAR.get(),
-                DDBlocks.PARANOIA_ALTAR.get()
+                DDBlocks.PARANOIA_ALTAR.get(),
+                DDBlocks.CRYSTAL_MELON.get()
         );
         this.tag(BlockTags.MINEABLE_WITH_SHOVEL).add(
                 DDBlocks.ASH.get(),
