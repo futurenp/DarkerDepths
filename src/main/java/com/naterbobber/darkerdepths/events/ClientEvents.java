@@ -8,10 +8,7 @@ import com.naterbobber.darkerdepths.client.models.GlowshroomMonsterModel;
 import com.naterbobber.darkerdepths.client.particle.DrippingParticle;
 import com.naterbobber.darkerdepths.client.particle.VoidSoulFlameParticle;
 import com.naterbobber.darkerdepths.client.particle.VoidSoulParticle;
-import com.naterbobber.darkerdepths.client.renderers.BodySnatcherRenderer;
-import com.naterbobber.darkerdepths.client.renderers.GlowshroomMonsterRenderer;
-import com.naterbobber.darkerdepths.client.renderers.PetrifiedBoatRenderer;
-import com.naterbobber.darkerdepths.client.renderers.TombBlockEntityRenderer;
+import com.naterbobber.darkerdepths.client.renderers.*;
 import com.naterbobber.darkerdepths.init.*;
 import com.naterbobber.darkerdepths.item.StilettoItem;
 import net.minecraft.client.Minecraft;
@@ -39,7 +36,6 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 public class ClientEvents {
 
 
-    public static final ModelLayerLocation TOMB_LAYER = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(DarkerDepths.MODID, "tomb"), "main");
     @SubscribeEvent
     public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerBlockEntityRenderer(DDBlockEntityTypes.DD_SIGN.get(), SignRenderer::new);
@@ -48,7 +44,7 @@ public class ClientEvents {
         event.registerEntityRenderer(DDEntityTypes.GLOWSHROOM_MONSTER.get(), GlowshroomMonsterRenderer::new);
         event.registerEntityRenderer(DDEntityTypes.BODY_SNATCHER.get(), BodySnatcherRenderer::new);
         event.registerBlockEntityRenderer(DDBlockEntityTypes.TOMB.get(), TombBlockEntityRenderer::new);
-
+        event.registerBlockEntityRenderer(DDBlockEntityTypes.PARANOIA_ALTAR.get(), ParanoiaAltarBlockEntityRenderer::new);
     }
 
     @SubscribeEvent

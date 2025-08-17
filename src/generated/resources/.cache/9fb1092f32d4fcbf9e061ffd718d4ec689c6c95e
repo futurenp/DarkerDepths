@@ -1,4 +1,4 @@
-// 1.20.1	2025-07-30T18:54:36.8580532	Recipes
+// 1.20.1	2025-08-16T20:33:03.4304321	Recipes
 cbbc30b09689a598589907eeea42fc8338b29e50 data/darkerdepths/advancements/recipes/building_blocks/amber_block.json
 19fa50158a1752fd00dac617b21811860d1f5411 data/darkerdepths/advancements/recipes/building_blocks/aridrock.json
 7a1754e268279efa7175cf7ca16f29b901092ce5 data/darkerdepths/advancements/recipes/building_blocks/aridrock_bricks.json
@@ -169,7 +169,6 @@ ddf3388a9c9c10aaa091903d60a78d1ebe4d31e7 data/darkerdepths/advancements/recipes/
 9ba8c58b592b38ee3feaad54545d045b1cdfb58e data/darkerdepths/advancements/recipes/redstone/petrified_door.json
 88baed1ac26ca9174215dd2309f96bb491262097 data/darkerdepths/advancements/recipes/redstone/petrified_pressure_plate.json
 5112c78dafe08f70b83a5e3041e30ee44c753931 data/darkerdepths/advancements/recipes/redstone/petrified_trapdoor.json
-548d37bff9b383da69dff081cd3cb6ca86b937a5 data/darkerdepths/advancements/recipes/tools/quickrope.json
 a199f205138c05017284b2742ba74b9c7103abbb data/darkerdepths/recipes/amber.json
 8c6c80c3152deda466439ab3904f904a372a4875 data/darkerdepths/recipes/amber_block.json
 9487f88c63684dbbf74d42895747a6f67094ee28 data/darkerdepths/recipes/aridrock.json
@@ -332,7 +331,6 @@ be3ade06d6802c36773fa7fa70bfdc2309d6f9ab data/darkerdepths/recipes/polished_grim
 b117a71729d4f21c6adafc1c8f833324b84cbc7e data/darkerdepths/recipes/polished_grimestone_stairs_from_grimestone_stonecutting.json
 6c29cfc23294db8b28977cd69e836bde576848ea data/darkerdepths/recipes/polished_grimestone_stairs_from_polished_grimestone_stonecutting.json
 0ff80f1454a8aa3ae3d232baf4a9eefde657a285 data/darkerdepths/recipes/porous_petrified_log.json
-a0ee0f96e099dfeb2803b5db9853d7338c07f63b data/darkerdepths/recipes/quickrope.json
 4507c5f9d742ae00101336e35780a6af6a1c5a39 data/darkerdepths/recipes/rope.json
 ac04332c8b6c8b427cc45fe4736fcf758a8ba8ad data/darkerdepths/recipes/skull_wall.json
 1440c225a73972c62b5b2dd94171f37673ffc015 data/darkerdepths/recipes/slime_ball_from_glow_grime.json

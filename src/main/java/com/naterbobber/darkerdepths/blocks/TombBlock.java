@@ -236,13 +236,14 @@ public class TombBlock extends BaseEntityBlock implements SimpleWaterloggedBlock
         return parts;
     }
 
-    public static void generateMultiblockForProcessor(BlockPos mainPos, Direction facing, LevelReader level, List<StructureTemplate.StructureBlockInfo> targetList, BlockPos relativePos) {
-        targetList.clear();
+    public static Set<StructureTemplate.StructureBlockInfo> generateMultiblockForProcessor(BlockPos mainPos, Direction facing, LevelReader level, BlockPos relativePos) {
         Map<Part, MultiblockPartData> parts = generateMultiblockPartData(mainPos, facing, level);
+        Set<StructureTemplate.StructureBlockInfo> targets = new HashSet<>();
 
         for (MultiblockPartData partData : parts.values()) {
-            targetList.add(new StructureTemplate.StructureBlockInfo(relativePos.offset(partData.pos.subtract(mainPos)), partData.state, null));
+            targets.add(new StructureTemplate.StructureBlockInfo(relativePos.offset(partData.pos.subtract(mainPos)), partData.state, null));
         }
+        return targets;
     }
 
     private void placeMultiblockParts(Level level, BlockPos mainPos, BlockState mainState) {

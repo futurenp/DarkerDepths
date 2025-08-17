@@ -26,6 +26,7 @@ public class ThrowableQuickrope extends ThrowableItemProjectile {
 
     @Override
     protected Item getDefaultItem() {
-        return DDItems.QUICKROPE.get();
+        //return DDItems.QUICKROPE.get();
+        return DDItems.ROPE.get();
     }
 }

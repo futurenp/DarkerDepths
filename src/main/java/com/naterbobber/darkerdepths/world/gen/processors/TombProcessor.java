@@ -17,12 +17,11 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemp
 import net.minecraft.world.level.material.Fluids;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class TombProcessor extends StructureProcessor {
     public static final Codec<TombProcessor> CODEC = Codec.unit(TombProcessor::new);
-    private final List<StructureTemplate.StructureBlockInfo> tombParts = new ArrayList<>();
+    private final Map<BlockPos, StructureTemplate.StructureBlockInfo> tombPartsMap = new HashMap<>();
 
     @Nullable
     @Override
@@ -38,7 +37,13 @@ public class TombProcessor extends StructureProcessor {
 
         if (blockState.is(Blocks.MAGENTA_GLAZED_TERRACOTTA)) {
             Direction facing = getFacingDirection(blockState, settings);
-            TombBlock.generateMultiblockForProcessor(worldPos, facing, level, tombParts, relativeBlockInfo.pos());
+            Set<StructureTemplate.StructureBlockInfo> currentTombPartsSet = TombBlock.generateMultiblockForProcessor(worldPos, facing, level, relativeBlockInfo.pos());
+
+            Map<BlockPos, StructureTemplate.StructureBlockInfo> currentTombParts = new HashMap<>();
+            for (StructureTemplate.StructureBlockInfo part : currentTombPartsSet) {
+                currentTombParts.put(part.pos(), part);
+            }
+            tombPartsMap.putAll(currentTombParts);
 
             BlockState tombState = DDBlocks.TOMB.get().defaultBlockState()
                     .setValue(TombBlock.PART, TombBlock.Part.FRONT_CENTER)
@@ -53,10 +58,9 @@ public class TombProcessor extends StructureProcessor {
             );
         }
 
-        for (StructureTemplate.StructureBlockInfo tombPart : tombParts) {
-            if (tombPart.pos().equals(relativeBlockInfo.pos())) {
-                return tombPart;
-            }
+        StructureTemplate.StructureBlockInfo tombPart = tombPartsMap.get(relativeBlockInfo.pos());
+        if (tombPart != null) {
+            return tombPart;
         }
 
         return relativeBlockInfo;

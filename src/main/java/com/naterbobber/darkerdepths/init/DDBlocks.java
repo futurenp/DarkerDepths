@@ -141,14 +141,14 @@ public class DDBlocks {
     public static final RegistryObject<Block> VOID_SOUL_JAR = registerBlock("void_soul_jar", () -> new VoidSoulJarBlock(BlockBehaviour.Properties.of().strength(1.0f).sound(SoundType.GLASS).lightLevel(value -> 5)));
     public static final RegistryObject<Block> DEATH_ANCHOR = registerBlock("death_anchor", () -> new DeathAnchorBlock(BlockBehaviour.Properties.of().strength(5F, 12.0F).sound(SoundType.NETHER_BRICKS).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> TOMB = registerBlock("tomb", () -> new TombBlock(BlockBehaviour.Properties.of().sound(SoundType.DEEPSLATE).strength(4F, 10.0F).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> PARANOIA_ALTAR = registerNoTabBlock("paranoia_altar", () -> new ParanoiaAltarBlock(BlockBehaviour.Properties.of().sound(SoundType.DEEPSLATE).strength(4F, 10.0F).lightLevel(level -> 9).requiresCorrectToolForDrops().noOcclusion()));
+
 
     public static <B extends Block> RegistryObject<B> registerBlock(String name, Supplier<? extends B> blocks) {
         RegistryObject<B> block = BLOCKS.register(name, blocks);
         DDItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
         return block;
     }
-
-
 
     public static <B extends Block> RegistryObject<B> registerNoTabBlock(String name, Supplier<? extends B> blocks) {
         return BLOCKS.register(name, blocks);

@@ -171,6 +171,15 @@
         "projection": "rigid"
       },
       "weight": 30
+    },
+    {
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "darkerdepths:catacombs/treasure_room_3",
+        "processors": "darkerdepths:tombs",
+        "projection": "rigid"
+      },
+      "weight": 30
     }
   ],
   "fallback": "minecraft:empty"
