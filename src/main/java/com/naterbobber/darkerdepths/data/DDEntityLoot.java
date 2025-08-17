@@ -36,6 +36,9 @@ public class DDEntityLoot extends VanillaEntityLoot {
                                 )
                         )
         );
+        this.add(DDEntityTypes.BODY_SNATCHER.get(),
+                LootTable.lootTable()
+        );
     }
 
     @Override

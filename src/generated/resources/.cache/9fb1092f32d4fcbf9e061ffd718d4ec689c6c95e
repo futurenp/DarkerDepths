@@ -1,4 +1,4 @@
-// 1.20.1	2025-08-16T20:33:03.4304321	Recipes
+// 1.20.1	2025-08-17T12:10:13.8730969	Recipes
 cbbc30b09689a598589907eeea42fc8338b29e50 data/darkerdepths/advancements/recipes/building_blocks/amber_block.json
 19fa50158a1752fd00dac617b21811860d1f5411 data/darkerdepths/advancements/recipes/building_blocks/aridrock.json
 7a1754e268279efa7175cf7ca16f29b901092ce5 data/darkerdepths/advancements/recipes/building_blocks/aridrock_bricks.json
@@ -337,5 +337,5 @@ ac04332c8b6c8b427cc45fe4736fcf758a8ba8ad data/darkerdepths/recipes/skull_wall.js
 70f1374fca6dab534b19e88d0bc43b66a4cc5d6d data/darkerdepths/recipes/stiletto.json
 bd10b870a075a56a19c0a8d85b13e55f53e4ce56 data/darkerdepths/recipes/stripped_petrified_wood.json
 1d6cc46aeb173b831e20e8bab000ff0e1d4bf92a data/darkerdepths/recipes/tomb.json
-38f2054fdd823b07f71320358c1190b0de96e8b8 data/darkerdepths/recipes/void_soul_requiem.json
+7d2ca328ad499dd29a0a25a46f576c5f4628ce5e data/darkerdepths/recipes/void_soul_requiem.json
 67db2fb402d540a254c44aa005ce06c919777cb7 data/darkerdepths/recipes/void_soul_torch.json

@@ -1,6 +1,7 @@
 package com.naterbobber.darkerdepths.client.models;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
+import com.naterbobber.darkerdepths.blocks.ParanoiaAltarBlock;
 import com.naterbobber.darkerdepths.blocks.blockentities.ParanoiaAltarBlockEntity;
 import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib.model.GeoModel;
@@ -14,7 +15,11 @@ public class ParanoiaAltarModel extends GeoModel<ParanoiaAltarBlockEntity> {
 
 	@Override
 	public ResourceLocation getTextureResource(ParanoiaAltarBlockEntity paranoiaAltarBlockEntity) {
-		return DarkerDepths.id("textures/block/paranoia_altar.png");
+		if(paranoiaAltarBlockEntity.getBlockState().getValue(ParanoiaAltarBlock.LOCKED)){
+			return DarkerDepths.id("textures/block/paranoia_altar_locked.png");
+		} else {
+			return DarkerDepths.id("textures/block/paranoia_altar.png");
+		}
 	}
 
 	@Override

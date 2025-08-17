@@ -388,11 +388,11 @@ public class DDRecipeProvider extends RecipeProvider {
 
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.MISC, DDItems.VOID_SOUL_REQUIEM.get(), 1)
-                .define('A', DDItems.AMBER.get())
+                .define('A', DDBlocks.AMBER_BLOCK.get())
                 .define('B', DDBlocks.VOID_SOUL_JAR.get().asItem())
-                .pattern("AAA")
-                .pattern("ABA")
-                .pattern("AAA")
+                .pattern(" B ")
+                .pattern("BAB")
+                .pattern(" B ")
                 .unlockedBy("has_amber", has(DDItems.AMBER.get())).save(consumer);
 
         ShapedRecipeBuilder

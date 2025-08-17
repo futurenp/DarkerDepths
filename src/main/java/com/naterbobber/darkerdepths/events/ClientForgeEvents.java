@@ -9,6 +9,8 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraftforge.client.event.ViewportEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -60,8 +62,6 @@ public class ClientForgeEvents {
             return;
         }
 
-        Item torch = DDItems.VOID_SOUL_TORCH.get();
-        boolean hasVoidSoulTorch = player.getMainHandItem().is(torch) || player.getOffhandItem().is(torch);
         boolean isParanoid = paranoiaFactor > 0.0f;
 
         if (isParanoid) {
@@ -78,12 +78,38 @@ public class ClientForgeEvents {
             event.setFogShape(FogShape.SPHERE);
         }
 
-        if (player.hasEffect(MobEffects.BLINDNESS) || isParanoid) {
-            if(hasVoidSoulTorch){
-                event.setFarPlaneDistance(event.getFarPlaneDistance() * 1.75F);
+        float farPlaneMultiplier = 1f;
+        ItemStack mainHandItem = player.getMainHandItem();
+        ItemStack offHandItem = player.getOffhandItem();
+
+        Item voidSoulTorch = DDItems.VOID_SOUL_TORCH.get();
+        Item torch = Items.TORCH;
+        Item redstoneTorch = Items.REDSTONE_TORCH;
+        Item soulTorch = Items.SOUL_TORCH;
+
+        if(isParanoid) {
+            if(mainHandItem.is(voidSoulTorch) || offHandItem.is(voidSoulTorch)) {
+                farPlaneMultiplier = 2f;
+            } else if (mainHandItem.is(torch) || offHandItem.is(torch)) {
+                farPlaneMultiplier = 1.4f;
+            } else if (mainHandItem.is(redstoneTorch) || offHandItem.is(redstoneTorch)) {
+                farPlaneMultiplier = 1.25f;
+            } else if (mainHandItem.is(soulTorch) || offHandItem.is(soulTorch)) {
+                farPlaneMultiplier = 0.7f;
             }
-            event.setCanceled(true);
         }
+
+        if(isParanoid){
+            event.setFarPlaneDistance(event.getFarPlaneDistance() * farPlaneMultiplier);
+        }
+
+        if (player.hasEffect(MobEffects.BLINDNESS)) {
+            if(mainHandItem.is(voidSoulTorch) || offHandItem.is(voidSoulTorch)){
+                event.setFarPlaneDistance(event.getFarPlaneDistance() * 2F);
+            }
+        }
+
+        event.setCanceled(true);
     }
 
     @SubscribeEvent
