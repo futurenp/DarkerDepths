@@ -225,7 +225,7 @@ public class DDStructures {
                         Pair.of(StructurePoolElement.single("darkerdepths:catacombs/room_8").apply(RIGID), 10),
                         Pair.of(StructurePoolElement.single("darkerdepths:catacombs/treasure_room_1", processorList.getOrThrow(DDProcessorLists.TOMBS)).apply(RIGID), 30),
                         Pair.of(StructurePoolElement.single("darkerdepths:catacombs/treasure_room_2", processorList.getOrThrow(DDProcessorLists.TOMBS)).apply(RIGID), 30),
-                        Pair.of(StructurePoolElement.single("darkerdepths:catacombs/treasure_room_3", processorList.getOrThrow(DDProcessorLists.TOMBS)).apply(RIGID), 30)
+                        Pair.of(StructurePoolElement.single("darkerdepths:catacombs/treasure_room_3", processorList.getOrThrow(DDProcessorLists.TOMBS)).apply(RIGID), 20)
                 )
         ));
     }

@@ -25,7 +25,7 @@ public class WallVoidSoulTorchBlock extends WallTorchBlock {
         double zOffset = 0.3D * (double)direction.getStepZ();
 
         double particleX = (double)pos.getX() + 0.5D - xOffset;
-        double particleY = (double)pos.getY()+ 0.75D;
+        double particleY = (double)pos.getY() + 0.81D;
         double particleZ = (double)pos.getZ() + 0.5D - zOffset;
 
         level.addParticle(this.customParticleSupplier.get(), particleX, particleY, particleZ, 0.0D, 0.0D, 0.0D);

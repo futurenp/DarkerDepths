@@ -53,9 +53,10 @@ public class ParanoiaAltarBlockEntity extends BlockEntity implements GeoBlockEnt
 
         tickCounter = 0;
 
-        int radius = 72;
+        int radiusHorizontal = 72;
+        int radiusY = 18;
 
-        AABB finalArea = new AABB(pos).inflate(radius);
+        AABB finalArea = new AABB(pos).inflate(radiusHorizontal, radiusY, radiusHorizontal);
         List<Player> players = level.getEntitiesOfClass(Player.class, finalArea);
 
         for (Player player : players) {
