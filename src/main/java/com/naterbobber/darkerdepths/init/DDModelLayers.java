@@ -9,5 +9,6 @@ public class DDModelLayers {
     public static final ModelLayerLocation GLOWSHROOM_MONSTER = new ModelLayerLocation(DarkerDepths.id("glowshroom_monster"), "main");
     public static final ModelLayerLocation GLOWSHROOM_CAP = new ModelLayerLocation(DarkerDepths.id("glowshroom_cap"), "main");
     public static final ModelLayerLocation BODY_SNATCHER = new ModelLayerLocation(DarkerDepths.id("body_snatcher"), "main");
+    public static final ModelLayerLocation VOID_SOUL_KNIGHT = new ModelLayerLocation(DarkerDepths.id("void_soul_knight"), "main");
 
 }

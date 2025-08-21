@@ -36,7 +36,12 @@ public class DDEntityLoot extends VanillaEntityLoot {
                                 )
                         )
         );
+
         this.add(DDEntityTypes.BODY_SNATCHER.get(),
+                LootTable.lootTable()
+        );
+
+        this.add(DDEntityTypes.VOID_SOUL_KNIGHT.get(),
                 LootTable.lootTable()
         );
     }

@@ -1,10 +1,8 @@
 package com.naterbobber.darkerdepths.init;
 
+import ca.weblite.objc.Proxy;
 import com.naterbobber.darkerdepths.DarkerDepths;
-import com.naterbobber.darkerdepths.entities.BodySnatcher;
-import com.naterbobber.darkerdepths.entities.GlowshroomMonsterEntity;
-import com.naterbobber.darkerdepths.entities.PetrifiedBoatEntity;
-import com.naterbobber.darkerdepths.entities.PetrifiedChestBoatEntity;
+import com.naterbobber.darkerdepths.entities.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
@@ -26,5 +24,7 @@ public class DDEntityTypes {
             () -> EntityType.Builder.of(GlowshroomMonsterEntity::new, MobCategory.MONSTER).sized(1.3964844F, 1.4F).clientTrackingRange(8).build(DarkerDepths.id("glowshroom_monster").toString()));
     public static final RegistryObject<EntityType<BodySnatcher>> BODY_SNATCHER = ENTITY_TYPES.register("body_snatcher",
             () -> EntityType.Builder.of(BodySnatcher::new, MobCategory.MONSTER).sized(0.5F, 1.0F).clientTrackingRange(8).updateInterval(2).build(DarkerDepths.id("body_snatcher").toString()));
+    public static final RegistryObject<EntityType<VoidSoulKnight>> VOID_SOUL_KNIGHT = ENTITY_TYPES.register("void_soul_knight",
+            () -> EntityType.Builder.of(VoidSoulKnight::new, MobCategory.MONSTER).sized(0.5F, 1.0F).clientTrackingRange(8).updateInterval(2).build(DarkerDepths.id("void_soul_knight").toString()));
 
 }

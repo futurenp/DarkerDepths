@@ -18,7 +18,6 @@ public class VoidSoulFlameParticle extends TextureSheetParticle {
         double randomRange = 0.025;
         this.x += (Math.random() * randomRange - randomRange/2);
         this.z += (Math.random() * randomRange - randomRange/2);
-        this.y -= .08f;
         this.quadSize *= 2f + (this.random.nextFloat()/2);
         this.lifetime = 20;
         this.gravity = 0.0F;

@@ -48,6 +48,7 @@ public class MobEvents {
         SpawnPlacements.register(DDEntityTypes.GLOWSHROOM_MONSTER.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, GlowshroomMonsterEntity::checkMonsterSpawnRules);
         event.put(DDEntityTypes.GLOWSHROOM_MONSTER.get(), GlowshroomMonsterEntity.createAttributes().build());
         event.put(DDEntityTypes.BODY_SNATCHER.get(), BodySnatcher.createAttributes().build());
+        event.put(DDEntityTypes.VOID_SOUL_KNIGHT.get(), BodySnatcher.createAttributes().build());
     }
 
     @SubscribeEvent

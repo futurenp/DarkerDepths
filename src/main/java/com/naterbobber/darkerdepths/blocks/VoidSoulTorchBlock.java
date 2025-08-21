@@ -32,7 +32,7 @@ public class VoidSoulTorchBlock extends TorchBlock {
     @Override
     public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
         double x = (double)pos.getX() + 0.5D;
-        double y = (double)pos.getY() + 0.7D;
+        double y = (double)pos.getY() + 0.62D;
         double z = (double)pos.getZ() + 0.5D;
         level.addParticle(this.customParticleSupplier.get(), x, y, z, 0.0D, 0.0D, 0.0D);
     }

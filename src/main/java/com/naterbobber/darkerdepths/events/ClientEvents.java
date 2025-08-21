@@ -5,6 +5,7 @@ import com.naterbobber.darkerdepths.client.DynamicLightHandler;
 import com.naterbobber.darkerdepths.client.models.BodySnatcherModel;
 import com.naterbobber.darkerdepths.client.models.GlowshroomCapModel;
 import com.naterbobber.darkerdepths.client.models.GlowshroomMonsterModel;
+import com.naterbobber.darkerdepths.client.models.VoidSoulKnightModel;
 import com.naterbobber.darkerdepths.client.particle.DrippingParticle;
 import com.naterbobber.darkerdepths.client.particle.VoidSoulFlameParticle;
 import com.naterbobber.darkerdepths.client.particle.VoidSoulFlameSmokeParticle;
@@ -43,6 +44,7 @@ public class ClientEvents {
         event.registerEntityRenderer(DDEntityTypes.PETRIFIED_CHEST_BOAT.get(), context -> new PetrifiedBoatRenderer(context, true));
         event.registerEntityRenderer(DDEntityTypes.GLOWSHROOM_MONSTER.get(), GlowshroomMonsterRenderer::new);
         event.registerEntityRenderer(DDEntityTypes.BODY_SNATCHER.get(), BodySnatcherRenderer::new);
+        event.registerEntityRenderer(DDEntityTypes.VOID_SOUL_KNIGHT.get(), VoidSoulKnightRenderer::new);
         event.registerBlockEntityRenderer(DDBlockEntityTypes.TOMB.get(), TombBlockEntityRenderer::new);
         event.registerBlockEntityRenderer(DDBlockEntityTypes.PARANOIA_ALTAR.get(), ParanoiaAltarBlockEntityRenderer::new);
     }
@@ -54,6 +56,7 @@ public class ClientEvents {
         event.registerLayerDefinition(DDModelLayers.GLOWSHROOM_MONSTER, GlowshroomMonsterModel::createBodyLayer);
         event.registerLayerDefinition(DDModelLayers.GLOWSHROOM_CAP, GlowshroomCapModel::createBodyLayer);
         event.registerLayerDefinition(DDModelLayers.BODY_SNATCHER, BodySnatcherModel::createBodyLayer);
+        event.registerLayerDefinition(DDModelLayers.VOID_SOUL_KNIGHT, VoidSoulKnightModel::createBodyLayer);
     }
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
