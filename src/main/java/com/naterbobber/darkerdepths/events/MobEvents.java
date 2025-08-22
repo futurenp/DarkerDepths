@@ -6,12 +6,14 @@ import com.naterbobber.darkerdepths.entities.BodySnatcher;
 import com.naterbobber.darkerdepths.entities.GlowshroomMonsterEntity;
 import com.naterbobber.darkerdepths.init.*;
 import com.naterbobber.darkerdepths.item.StilettoItem;
+import com.naterbobber.darkerdepths.network.SendDeathAnchorPacket;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.GlobalPos;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.damagesource.DamageSource;
@@ -36,6 +38,7 @@ import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
 import net.minecraftforge.event.entity.living.MobEffectEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.network.PacketDistributor;
 
 import java.util.Optional;
 import java.util.Set;
@@ -119,7 +122,11 @@ public class MobEvents {
 
             entity.teleportTo(newServer, teleportPos.getX() + 0.5D, teleportPos.getY(), teleportPos.getZ() + 0.5D, Set.of(), 0, 0);
             entity.addEffect(new MobEffectInstance(DDMobEffects.SOUL_BINDING.get(), 200, 1, true, false));
-            ClientDeathAnchorAnimationOverlay.startOverlay(0);
+
+            if (entity instanceof ServerPlayer serverPlayer) {
+                DDNetwork.INSTANCE.send(PacketDistributor.PLAYER.with(() -> serverPlayer), new SendDeathAnchorPacket());
+            }
+
             entity.setRemainingFireTicks(0);
             //doesnt work
             serverLevel.playLocalSound(entity.getX(), entity.getY(), entity.getZ(), SoundEvents.ANVIL_FALL, entity.getSoundSource(), 1.0F, 1.0F, false);

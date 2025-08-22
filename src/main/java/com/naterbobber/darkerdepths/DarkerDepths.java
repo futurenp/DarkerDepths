@@ -49,7 +49,10 @@ public class DarkerDepths {
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
-        event.enqueueWork(DDVanillaIntegration::init);
+        event.enqueueWork(() -> {
+            DDVanillaIntegration.init();
+            DDNetwork.init();
+        });
     }
 
     public static ResourceLocation id(String name) {

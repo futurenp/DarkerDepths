@@ -28,6 +28,7 @@ import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -72,11 +73,13 @@ public class ClientEvents {
 
     @SubscribeEvent
     public static void onClientSetup(final FMLClientSetupEvent event) {
-        MinecraftForge.EVENT_BUS.addListener((LivingEvent.LivingTickEvent livingEvent) -> {
+        IEventBus eventBus = MinecraftForge.EVENT_BUS;
+        eventBus.addListener((LivingEvent.LivingTickEvent livingEvent) -> {
             DynamicLightHandler.tick(livingEvent.getEntity());
         });
 
-        MinecraftForge.EVENT_BUS.register(new ClientForgeEvents());
+        eventBus.register(new ClientForgeEvents());
+        eventBus.register(new ClientDeathAnchorAnimationOverlay());
 
         event.enqueueWork(() -> {
             DDWoodType.setupWoodTypes();

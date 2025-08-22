@@ -8,6 +8,7 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.DeathScreen;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.RenderGuiOverlayEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -15,6 +16,7 @@ import net.minecraftforge.fml.common.Mod;
 import java.util.ArrayList;
 import java.util.List;
 
+@OnlyIn(Dist.CLIENT)
 @Mod.EventBusSubscriber(modid = DarkerDepths.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
 public class ClientDeathAnchorAnimationOverlay {
 
@@ -94,13 +96,10 @@ public class ClientDeathAnchorAnimationOverlay {
         guiGraphics.blit(currentTexture, 0, 0, 0, 0, screenWidth, screenHeight, screenWidth, screenHeight);
     }
 
+    @OnlyIn(Dist.CLIENT)
     public static void startOverlay() {
-        startOverlay(0);
-    }
-
-    public static void startOverlay(int startingFrame) {
         isOverlayActive = true;
-        startFrame = Math.max(0, Math.min(startingFrame, ANIMATION_FRAMES.size() - 1));
+        startFrame = 0;
         currentFrame = startFrame;
         lastFrameTime = System.currentTimeMillis();
     }
