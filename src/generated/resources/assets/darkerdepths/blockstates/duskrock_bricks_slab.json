@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "darkerdepths:block/duskrock_bricks_slab"
+    },
+    "type=double": {
+      "model": "darkerdepths:block/duskrock_bricks"
+    },
+    "type=top": {
+      "model": "darkerdepths:block/duskrock_bricks_slab_top"
+    }
+  }
+}

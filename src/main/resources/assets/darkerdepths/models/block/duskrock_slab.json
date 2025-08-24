@@ -1,9 +1,0 @@
-{
-  "parent": "minecraft:block/slab",
-  "textures": {
-    "bottom": "darkerdepths:block/duskrock",
-    "top": "darkerdepths:block/duskrock",
-    "side": "darkerdepths:block/duskrock"
-  }
-}
-

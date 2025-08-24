@@ -1,8 +1,8 @@
 {   
 	"parent": "block/thin_block",
     "textures": {
-        "particle": "darkerdepths:block/ash",
-        "texture": "darkerdepths:block/ash"
+        "particle": "darkerdepths:block/ash_block",
+        "texture": "darkerdepths:block/ash_block"
     },
     "elements": [
         {   "from": [ 0, 0, 0 ],

@@ -2,6 +2,7 @@ package com.naterbobber.darkerdepths.init;
 
 import com.mojang.datafixers.util.Pair;
 import com.naterbobber.darkerdepths.DarkerDepths;
+import com.naterbobber.darkerdepths.data.tags.DDBiomeTagsProvider;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;

@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "darkerdepths:block/petrified_slab"
+    },
+    "type=double": {
+      "model": "darkerdepths:block/petrified_planks"
+    },
+    "type=top": {
+      "model": "darkerdepths:block/petrified_slab_top"
+    }
+  }
+}

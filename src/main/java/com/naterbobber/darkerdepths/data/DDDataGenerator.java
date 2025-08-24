@@ -1,6 +1,13 @@
 package com.naterbobber.darkerdepths.data;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
+import com.naterbobber.darkerdepths.data.assets.DDBlockStateProvider;
+import com.naterbobber.darkerdepths.data.assets.DDEnUSLanguageProvider;
+import com.naterbobber.darkerdepths.data.loot.DDLootTableProvider;
+import com.naterbobber.darkerdepths.data.tags.DDBiomeTagsProvider;
+import com.naterbobber.darkerdepths.data.tags.DDBlockTagsProvider;
+import com.naterbobber.darkerdepths.data.tags.DDDamageTypeTagsProvider;
+import com.naterbobber.darkerdepths.data.tags.DDItemTagsProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
@@ -26,6 +33,10 @@ public class DDDataGenerator {
         CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
 
         boolean server = event.includeServer();
+
+        dataGenerator.addProvider(event.includeClient(), new DDBlockStateProvider(packOutput, existingFileHelper));
+        dataGenerator.addProvider(event.includeClient(), new DDEnUSLanguageProvider(packOutput, "en_us"));
+
 
         dataGenerator.addProvider(server, new DDRecipeProvider(packOutput));
         dataGenerator.addProvider(server, new DDLootTableProvider(packOutput));

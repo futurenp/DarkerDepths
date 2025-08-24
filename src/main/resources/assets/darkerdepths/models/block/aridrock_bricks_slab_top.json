@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab_top",
-  "textures": {
-    "bottom": "darkerdepths:block/aridrock_bricks",
-    "top": "darkerdepths:block/aridrock_bricks",
-    "side": "darkerdepths:block/aridrock_bricks"
-  }
-}

@@ -490,6 +490,8 @@ public class DDRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_" + BuiltInRegistries.ITEM.getKey(item).getPath(), has(item)).save(consumer);
     }
 
+    
+
     private void threeXthree(Consumer<FinishedRecipe> consumer, ItemLike result, Item item) {
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.BUILDING_BLOCKS, result)

@@ -1,7 +1,0 @@
-{
-  "render_type": "minecraft:cutout",
-  "parent": "block/cross",
-  "textures": {
-    "cross": "darkerdepths:block/mossy_sprouts"
-  }
-}

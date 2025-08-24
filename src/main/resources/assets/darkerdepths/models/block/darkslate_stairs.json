@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/stairs",
-  "textures": {
-    "bottom": "darkerdepths:block/darkslate",
-    "top": "darkerdepths:block/darkslate",
-    "side": "darkerdepths:block/darkslate"
-  }
-}

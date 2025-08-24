@@ -179,7 +179,7 @@
         "processors": "darkerdepths:tombs",
         "projection": "rigid"
       },
-      "weight": 30
+      "weight": 20
     }
   ],
   "fallback": "minecraft:empty"

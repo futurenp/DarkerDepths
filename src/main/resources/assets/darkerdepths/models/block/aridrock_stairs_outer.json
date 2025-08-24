@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/outer_stairs",
-  "textures": {
-    "bottom": "darkerdepths:block/aridrock",
-    "top": "darkerdepths:block/aridrock",
-    "side": "darkerdepths:block/aridrock"
-  }
-}
