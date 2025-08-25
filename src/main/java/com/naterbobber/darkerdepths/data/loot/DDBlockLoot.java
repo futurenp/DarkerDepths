@@ -14,12 +14,18 @@ public class DDBlockLoot extends VanillaBlockLoot {
 
     @Override
     protected void generate() {
+//        for (RegistryObject<Block> block : DDBlocks.BLOCKS.getEntries()) {
+//            this.dropSelf(block.get());
+//        }
+
         this.dropSelf(DDBlocks.PETRIFIED_PLANKS.get());
         this.dropSelf(DDBlocks.VERTICAL_PETRIFIED_PLANKS.get());
         this.dropSelf(DDBlocks.PETRIFIED_LOG.get());
         this.dropSelf(DDBlocks.STRIPPED_PETRIFIED_LOG.get());
         this.dropSelf(DDBlocks.STRIPPED_PETRIFIED_WOOD.get());
         this.dropSelf(DDBlocks.PETRIFIED_WOOD.get());
+
+//        this.map.remove(DDBlocks.PETRIFIED_SLAB.get());
         this.dropSlab(DDBlocks.PETRIFIED_SLAB);
     }
 

@@ -133,10 +133,10 @@ public class DDBlockStateProvider extends BlockStateProvider {
         simpleBlockItem(block.get(), models().getExistingFile(blockTexture(block.get())));
     }
 
-    private void verticalSlabBlockWithItem(RegistryObject<Block> block, RegistryObject<Block> parentTexture) {
-        slabBlock((SlabBlock) block.get(), blockTexture(parentTexture.get()), blockTexture(parentTexture.get()));
-        simpleBlockItem(block.get(), models().getExistingFile(blockTexture(block.get())));
-    }
+//    private void verticalSlabBlockWithItem(RegistryObject<Block> block, RegistryObject<Block> parentTexture) {
+//        slabBlock((SlabBlock) block.get(), blockTexture(parentTexture.get()), blockTexture(parentTexture.get()));
+//        simpleBlockItem(block.get(), models().getExistingFile(blockTexture(block.get())));
+//    }
 
     private void wallBlockWithItem(RegistryObject<Block> block, RegistryObject<Block> parentTexture) {
         wallBlock((WallBlock) block.get(), blockTexture(parentTexture.get()));
@@ -151,7 +151,6 @@ public class DDBlockStateProvider extends BlockStateProvider {
     private void fenceGateBlockWithItem(RegistryObject<Block> block, RegistryObject<Block> parentTexture) {
         fenceGateBlock((FenceGateBlock) block.get(), blockTexture(parentTexture.get()));
         simpleBlockItem(block.get(), models().getExistingFile(blockTexture(block.get())));
-
     }
 
     private void doorBlockWithItem(RegistryObject<Block> block) {

@@ -3,6 +3,7 @@ package com.naterbobber.darkerdepths.data;
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.data.assets.DDBlockStateProvider;
 import com.naterbobber.darkerdepths.data.assets.DDEnUSLanguageProvider;
+import com.naterbobber.darkerdepths.data.loot.DDChestLoot;
 import com.naterbobber.darkerdepths.data.loot.DDLootTableProvider;
 import com.naterbobber.darkerdepths.data.tags.DDBiomeTagsProvider;
 import com.naterbobber.darkerdepths.data.tags.DDBlockTagsProvider;
@@ -37,16 +38,16 @@ public class DDDataGenerator {
         dataGenerator.addProvider(event.includeClient(), new DDBlockStateProvider(packOutput, existingFileHelper));
         dataGenerator.addProvider(event.includeClient(), new DDEnUSLanguageProvider(packOutput, "en_us"));
 
-
         dataGenerator.addProvider(server, new DDRecipeProvider(packOutput));
+
         dataGenerator.addProvider(server, new DDLootTableProvider(packOutput));
 
         DDBlockTagsProvider blockTagsProvider = new DDBlockTagsProvider(packOutput, lookupProvider, existingFileHelper);
-
         dataGenerator.addProvider(server, blockTagsProvider);
         dataGenerator.addProvider(server, new DDItemTagsProvider(packOutput, lookupProvider, blockTagsProvider.contentsGetter(), existingFileHelper));
         dataGenerator.addProvider(server, new DDBiomeTagsProvider(packOutput, lookupProvider, existingFileHelper));
         dataGenerator.addProvider(event.includeServer(), new DDDamageTypeTagsProvider(packOutput, lookupProvider, existingFileHelper));
+
         dataGenerator.addProvider(server, new DDDatapackBuiltinEntriesProvider(packOutput, lookupProvider));
     }
 }

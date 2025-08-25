@@ -4,6 +4,7 @@ import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.api.DeathAnchorLocation;
 import com.naterbobber.darkerdepths.entities.BodySnatcher;
 import com.naterbobber.darkerdepths.entities.GlowshroomMonsterEntity;
+import com.naterbobber.darkerdepths.entities.VoidSoulKnightEntity;
 import com.naterbobber.darkerdepths.init.*;
 import com.naterbobber.darkerdepths.item.StilettoItem;
 import com.naterbobber.darkerdepths.network.SendDeathAnchorPacket;
@@ -51,7 +52,7 @@ public class MobEvents {
         SpawnPlacements.register(DDEntityTypes.GLOWSHROOM_MONSTER.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, GlowshroomMonsterEntity::checkMonsterSpawnRules);
         event.put(DDEntityTypes.GLOWSHROOM_MONSTER.get(), GlowshroomMonsterEntity.createAttributes().build());
         event.put(DDEntityTypes.BODY_SNATCHER.get(), BodySnatcher.createAttributes().build());
-        event.put(DDEntityTypes.VOID_SOUL_KNIGHT.get(), BodySnatcher.createAttributes().build());
+        event.put(DDEntityTypes.VOID_SOUL_KNIGHT.get(), VoidSoulKnightEntity.createAttributes().build());
     }
 
     @SubscribeEvent

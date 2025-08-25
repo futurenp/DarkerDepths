@@ -8,6 +8,8 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.phys.Vec3;
 
 import java.util.List;
@@ -16,6 +18,7 @@ import java.util.UUID;
 
 public class ParanoiaEffect extends MobEffect {
     private final Map<UUID, Integer> PARANOIA_COOLDOWNS = Maps.newHashMap();
+
     private final double SOUND_CHANCE = 0.0015f;
 
     private static final List<SoundEvent> PARANOIA_SOUNDS = List.of(
