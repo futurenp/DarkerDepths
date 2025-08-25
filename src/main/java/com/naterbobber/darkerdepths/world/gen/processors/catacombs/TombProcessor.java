@@ -1,4 +1,4 @@
-package com.naterbobber.darkerdepths.world.gen.processors;
+package com.naterbobber.darkerdepths.world.gen.processors.catacombs;
 
 import com.mojang.serialization.Codec;
 import com.naterbobber.darkerdepths.blocks.TombBlock;

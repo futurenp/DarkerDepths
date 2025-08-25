@@ -1,0 +1,13 @@
+{
+  "processors": [
+    {
+      "processor_type": "darkerdepths:tomb"
+    },
+    {
+      "processor_type": "darkerdepths:catacombs_barrel"
+    },
+    {
+      "processor_type": "darkerdepths:catacombs_archaeology"
+    }
+  ]
+}

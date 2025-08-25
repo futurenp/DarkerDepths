@@ -4,9 +4,7 @@
       "element": {
         "element_type": "minecraft:single_pool_element",
         "location": "darkerdepths:catacombs/hallway_1",
-        "processors": {
-          "processors": []
-        },
+        "processors": "darkerdepths:catacombs_processor",
         "projection": "rigid"
       },
       "weight": 50
@@ -15,9 +13,7 @@
       "element": {
         "element_type": "minecraft:single_pool_element",
         "location": "darkerdepths:catacombs/hallway_2",
-        "processors": {
-          "processors": []
-        },
+        "processors": "darkerdepths:catacombs_processor",
         "projection": "rigid"
       },
       "weight": 50
@@ -26,9 +22,7 @@
       "element": {
         "element_type": "minecraft:single_pool_element",
         "location": "darkerdepths:catacombs/hallway_3",
-        "processors": {
-          "processors": []
-        },
+        "processors": "darkerdepths:catacombs_processor",
         "projection": "rigid"
       },
       "weight": 50
@@ -37,9 +31,7 @@
       "element": {
         "element_type": "minecraft:single_pool_element",
         "location": "darkerdepths:catacombs/hallway_4",
-        "processors": {
-          "processors": []
-        },
+        "processors": "darkerdepths:catacombs_processor",
         "projection": "rigid"
       },
       "weight": 50
@@ -48,9 +40,7 @@
       "element": {
         "element_type": "minecraft:single_pool_element",
         "location": "darkerdepths:catacombs/hallway_large_1",
-        "processors": {
-          "processors": []
-        },
+        "processors": "darkerdepths:catacombs_processor",
         "projection": "rigid"
       },
       "weight": 50
@@ -59,9 +49,7 @@
       "element": {
         "element_type": "minecraft:single_pool_element",
         "location": "darkerdepths:catacombs/hallway_large_2",
-        "processors": {
-          "processors": []
-        },
+        "processors": "darkerdepths:catacombs_processor",
         "projection": "rigid"
       },
       "weight": 50
@@ -70,9 +58,7 @@
       "element": {
         "element_type": "minecraft:single_pool_element",
         "location": "darkerdepths:catacombs/room_1",
-        "processors": {
-          "processors": []
-        },
+        "processors": "darkerdepths:catacombs_processor",
         "projection": "rigid"
       },
       "weight": 10
@@ -81,9 +67,7 @@
       "element": {
         "element_type": "minecraft:single_pool_element",
         "location": "darkerdepths:catacombs/room_2",
-        "processors": {
-          "processors": []
-        },
+        "processors": "darkerdepths:catacombs_processor",
         "projection": "rigid"
       },
       "weight": 10
@@ -92,9 +76,7 @@
       "element": {
         "element_type": "minecraft:single_pool_element",
         "location": "darkerdepths:catacombs/room_3",
-        "processors": {
-          "processors": []
-        },
+        "processors": "darkerdepths:catacombs_processor",
         "projection": "rigid"
       },
       "weight": 5
@@ -103,9 +85,7 @@
       "element": {
         "element_type": "minecraft:single_pool_element",
         "location": "darkerdepths:catacombs/room_4",
-        "processors": {
-          "processors": []
-        },
+        "processors": "darkerdepths:catacombs_processor",
         "projection": "rigid"
       },
       "weight": 10
@@ -114,9 +94,7 @@
       "element": {
         "element_type": "minecraft:single_pool_element",
         "location": "darkerdepths:catacombs/room_5",
-        "processors": {
-          "processors": []
-        },
+        "processors": "darkerdepths:catacombs_processor",
         "projection": "rigid"
       },
       "weight": 10
@@ -125,9 +103,7 @@
       "element": {
         "element_type": "minecraft:single_pool_element",
         "location": "darkerdepths:catacombs/room_6",
-        "processors": {
-          "processors": []
-        },
+        "processors": "darkerdepths:catacombs_processor",
         "projection": "rigid"
       },
       "weight": 10
@@ -136,9 +112,7 @@
       "element": {
         "element_type": "minecraft:single_pool_element",
         "location": "darkerdepths:catacombs/room_7",
-        "processors": {
-          "processors": []
-        },
+        "processors": "darkerdepths:catacombs_processor",
         "projection": "rigid"
       },
       "weight": 10
@@ -147,9 +121,7 @@
       "element": {
         "element_type": "minecraft:single_pool_element",
         "location": "darkerdepths:catacombs/room_8",
-        "processors": {
-          "processors": []
-        },
+        "processors": "darkerdepths:catacombs_processor",
         "projection": "rigid"
       },
       "weight": 10
@@ -158,7 +130,7 @@
       "element": {
         "element_type": "minecraft:single_pool_element",
         "location": "darkerdepths:catacombs/treasure_room_1",
-        "processors": "darkerdepths:tombs",
+        "processors": "darkerdepths:catacombs_processor",
         "projection": "rigid"
       },
       "weight": 30
@@ -167,7 +139,7 @@
       "element": {
         "element_type": "minecraft:single_pool_element",
         "location": "darkerdepths:catacombs/treasure_room_2",
-        "processors": "darkerdepths:tombs",
+        "processors": "darkerdepths:catacombs_processor",
         "projection": "rigid"
       },
       "weight": 30
@@ -176,7 +148,7 @@
       "element": {
         "element_type": "minecraft:single_pool_element",
         "location": "darkerdepths:catacombs/treasure_room_3",
-        "processors": "darkerdepths:tombs",
+        "processors": "darkerdepths:catacombs_processor",
         "projection": "rigid"
       },
       "weight": 20

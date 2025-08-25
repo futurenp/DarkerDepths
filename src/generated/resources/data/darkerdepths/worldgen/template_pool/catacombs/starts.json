@@ -4,9 +4,7 @@
       "element": {
         "element_type": "minecraft:single_pool_element",
         "location": "darkerdepths:catacombs/center_1",
-        "processors": {
-          "processors": []
-        },
+        "processors": "darkerdepths:catacombs_processor",
         "projection": "rigid"
       },
       "weight": 1
@@ -15,9 +13,7 @@
       "element": {
         "element_type": "minecraft:single_pool_element",
         "location": "darkerdepths:catacombs/center_2",
-        "processors": {
-          "processors": []
-        },
+        "processors": "darkerdepths:catacombs_processor",
         "projection": "rigid"
       },
       "weight": 1

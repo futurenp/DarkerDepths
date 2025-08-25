@@ -2,7 +2,9 @@ package com.naterbobber.darkerdepths.init;
 
 import com.google.common.collect.ImmutableList;
 import com.naterbobber.darkerdepths.DarkerDepths;
-import com.naterbobber.darkerdepths.world.gen.processors.TombProcessor;
+import com.naterbobber.darkerdepths.world.gen.processors.catacombs.CatacombsArchaeologyProcessor;
+import com.naterbobber.darkerdepths.world.gen.processors.catacombs.CatacombsBarrelProcessor;
+import com.naterbobber.darkerdepths.world.gen.processors.catacombs.TombProcessor;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.resources.ResourceKey;
@@ -10,10 +12,10 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProc
 
 public class DDProcessorLists {
 
-    public static final ResourceKey<StructureProcessorList> TOMBS = createKey("tombs");
+    public static final ResourceKey<StructureProcessorList> CATACOMBS_PROCESSOR = createKey("catacombs_processor");
 
     public static void bootstrap(BootstapContext<StructureProcessorList> context) {
-        context.register(TOMBS, new StructureProcessorList(ImmutableList.of(new TombProcessor())));
+        context.register(CATACOMBS_PROCESSOR, new StructureProcessorList(ImmutableList.of(new TombProcessor(), new CatacombsBarrelProcessor(), new CatacombsArchaeologyProcessor())));
     }
 
     private static ResourceKey<StructureProcessorList> createKey(String pName) {

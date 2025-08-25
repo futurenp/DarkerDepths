@@ -13,8 +13,9 @@ public class DDLootTableProvider extends LootTableProvider {
     public DDLootTableProvider(PackOutput packOutput) {
         super(packOutput, Set.of(), List.of(
                 new SubProviderEntry(DDEntityLoot::new, LootContextParamSets.ENTITY),
-                new SubProviderEntry(DDBlockLoot::new, LootContextParamSets.BLOCK),
-                new SubProviderEntry(DDChestLoot::new, LootContextParamSets.CHEST)
+                //new SubProviderEntry(DDBlockLoot::new, LootContextParamSets.BLOCK),
+                new SubProviderEntry(DDChestLoot::new, LootContextParamSets.CHEST),
+                new SubProviderEntry(DDArchaeologyLoot::new, LootContextParamSets.ARCHAEOLOGY)
         ));
     }
 

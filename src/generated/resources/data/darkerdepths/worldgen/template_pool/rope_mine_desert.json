@@ -4,9 +4,7 @@
       "element": {
         "element_type": "minecraft:single_pool_element",
         "location": "darkerdepths:rope_mine_desert",
-        "processors": {
-          "processors": []
-        },
+        "processors": "darkerdepths:catacombs_processor",
         "projection": "rigid"
       },
       "weight": 1
