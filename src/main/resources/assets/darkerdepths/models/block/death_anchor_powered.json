@@ -4,7 +4,7 @@
 		"1": "darkerdepths:block/death_anchor_bottom",
 		"2": "darkerdepths:block/death_anchor_side_powered",
 		"4": "darkerdepths:block/death_anchor_top_powered",
-		"particle": "darkerdepths:block/death_anchor_aura"
+		"particle": "darkerdepths:block/death_anchor_bottom"
 	},
 	"elements": [
 		{

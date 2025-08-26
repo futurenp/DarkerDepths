@@ -19,6 +19,6 @@ public class TombModel extends GeoModel<TombBlockEntity> {
 
 	@Override
 	public ResourceLocation getAnimationResource(TombBlockEntity tombBlockEntity) {
-		return DarkerDepths.id("animations/tomb_block.animation.json");
+		return DarkerDepths.id("animations/block/tomb_block.animation.json");
 	}
 }

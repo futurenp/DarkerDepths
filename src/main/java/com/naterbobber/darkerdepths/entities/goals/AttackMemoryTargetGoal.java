@@ -1,4 +1,4 @@
-package com.naterbobber.darkerdepths.entities.ai;
+package com.naterbobber.darkerdepths.entities.goals;
 
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;

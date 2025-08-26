@@ -1,7 +1,8 @@
 package com.naterbobber.darkerdepths.entities;
 
-import com.naterbobber.darkerdepths.entities.ai.AttackMemoryTargetGoal;
 import com.naterbobber.darkerdepths.entities.control.ConfigurableMoveControl;
+import com.naterbobber.darkerdepths.entities.goals.AttackMemoryTargetGoal;
+import com.naterbobber.darkerdepths.entities.goals.ConfigurableReachMeleeAttackGoal;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.damagesource.DamageSource;
@@ -11,41 +12,50 @@ import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
-import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
-import net.minecraft.world.entity.ambient.Bat;
-import net.minecraft.world.entity.monster.Creeper;
 import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
+import software.bernie.geckolib.animatable.GeoEntity;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.core.animation.AnimatableManager;
+import software.bernie.geckolib.core.animation.AnimationController;
+import software.bernie.geckolib.core.animation.AnimationState;
+import software.bernie.geckolib.core.animation.RawAnimation;
+import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.util.GeckoLibUtil;
 
-public class VoidSoulKnightEntity extends Monster {
+public class VoidSoulKnightEntity extends Monster implements GeoEntity {
 
     private int attackTick;
     private static final double HEALTH = 80;
-    private static final double MOVEMENT_SPEED = .185;
-    private static final double ATTACK_DAMAGE = 14;
+    private static final double MOVEMENT_SPEED = .17;
+    private static final double ATTACK_DAMAGE = 16;
     private static final double ATTACK_KNOCKBACK = 2;
     private static final double KNOCKBACK_RESISTANCE = 0.85;
     private static final double FOLLOW_RANGE = 32;
 
+    protected static final RawAnimation WALK_ANIM = RawAnimation.begin().thenLoop("move.walk");
+
+    private final AnimatableInstanceCache geoCache = GeckoLibUtil.createInstanceCache(this);
+
     public VoidSoulKnightEntity(EntityType<? extends Monster> type, Level world) {
         super(type, world);
-        this.xpReward = 35;
+        this.xpReward = 40;
         this.moveControl = new ConfigurableMoveControl(this, 10.0F);
     }
 
     @Override
     protected void registerGoals() {
-        this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.3D, true));
-        this.goalSelector.addGoal(2, new WaterAvoidingRandomStrollGoal(this, 1.2D));
-        this.goalSelector.addGoal(3, new LookAtPlayerGoal(this, Player.class, 10.0F));
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
-        this.targetSelector.addGoal(2, new AttackMemoryTargetGoal<>(this, Player.class, 640, true));
-        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Mob.class, 10, false, false, (entity) -> !(entity instanceof Creeper) && !(entity instanceof GlowshroomMonsterEntity) && !(entity instanceof Bat)));
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
+        this.goalSelector.addGoal(2, new ConfigurableReachMeleeAttackGoal(this, 1.3D, true, 2.75f));
+        this.targetSelector.addGoal(3, new AttackMemoryTargetGoal<>(this, Player.class, 640, true));
+        this.goalSelector.addGoal(7, new WaterAvoidingRandomStrollGoal(this, 1.2D));
     }
 
     @Override
@@ -104,5 +114,22 @@ public class VoidSoulKnightEntity extends Monster {
                 .add(Attributes.ATTACK_DAMAGE, ATTACK_DAMAGE)
                 .add(Attributes.KNOCKBACK_RESISTANCE, KNOCKBACK_RESISTANCE)
                 .add(Attributes.FOLLOW_RANGE, FOLLOW_RANGE);
+    }
+
+    @Override
+    public void registerControllers(final AnimatableManager.ControllerRegistrar controllers) {
+        controllers.add(new AnimationController<>(this, "Walking", 5, this::walkAnimController));
+    }
+
+    protected <E extends VoidSoulKnightEntity> PlayState walkAnimController(final AnimationState<E> event) {
+        if (event.isMoving())
+            return event.setAndContinue(WALK_ANIM);
+
+        return PlayState.STOP;
+    }
+
+    @Override
+    public AnimatableInstanceCache getAnimatableInstanceCache() {
+        return this.geoCache;
     }
 }

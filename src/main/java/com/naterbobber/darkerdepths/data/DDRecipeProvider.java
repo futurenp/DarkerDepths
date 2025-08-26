@@ -21,6 +21,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraftforge.common.Tags;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.List;
@@ -279,6 +280,19 @@ public class DDRecipeProvider extends RecipeProvider {
                 .requires(Items.CLAY_BALL)
                 .unlockedBy("has_glow_grime", has(DDItems.GLOW_GRIME.get()))
                 .save(consumer, DarkerDepths.id("slime_ball_from_glow_grime"));
+
+        ShapedRecipeBuilder
+                .shaped(RecipeCategory.MISC, DDItems.PETRIFIED_BOAT.get())
+                .define('#', DDBlocks.PETRIFIED_PLANKS.get().asItem())
+                .pattern("# #")
+                .pattern("###")
+                .unlockedBy("has_petrified_planks", has(DDBlocks.PETRIFIED_PLANKS.get())).save(consumer);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, DDItems.PETRIFIED_CHEST_BOAT.get())
+                .requires(DDItems.PETRIFIED_BOAT.get())
+                .requires(Tags.Items.CHESTS)
+                .unlockedBy("has_petrified_planks", has(DDBlocks.PETRIFIED_PLANKS.get()))
+                .save(consumer);
 
         stonecutterResultFromBase(consumer, DDBlocks.CHISELED_DARKSLATE_BRICKS.get(), DDBlocks.DARKSLATE.get());
         stonecutterResultFromBase(consumer, DDBlocks.CHISELED_ARIDROCK_BRICKS.get(), DDBlocks.ARIDROCK.get());

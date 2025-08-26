@@ -24,6 +24,6 @@ public class ParanoiaAltarModel extends GeoModel<ParanoiaAltarBlockEntity> {
 
 	@Override
 	public ResourceLocation getAnimationResource(ParanoiaAltarBlockEntity paranoiaAltarBlockEntity) {
-		return DarkerDepths.id("animations/paranoia_altar.animation.json");
+		return DarkerDepths.id("animations/block/paranoia_altar.animation.json");
 	}
 }
