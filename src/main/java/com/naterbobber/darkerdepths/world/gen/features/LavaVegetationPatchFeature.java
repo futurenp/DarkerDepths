@@ -60,10 +60,10 @@ public class LavaVegetationPatchFeature extends VegetationPatchFeature {
 
     @Override
     protected boolean placeVegetation(WorldGenLevel world, VegetationPatchConfiguration config, ChunkGenerator generator, RandomSource random, BlockPos pos) {
-        if (random.nextFloat() < 0.1F) {
-            world.setBlock(pos.above(), DDBlocks.MAGMA_PAD.get().defaultBlockState().setValue(BlockStateProperties.HORIZONTAL_FACING, Direction.Plane.HORIZONTAL.getRandomDirection(random)), 2);
-            return true;
-        }
+//        if (random.nextFloat() < 0.1F) {
+//            world.setBlock(pos.above(), DDBlocks.MAGMA_PAD.get().defaultBlockState().setValue(BlockStateProperties.HORIZONTAL_FACING, Direction.Plane.HORIZONTAL.getRandomDirection(random)), 2);
+//            return true;
+//        }
         return random.nextFloat() < 0.035F && super.placeVegetation(world, config, generator, random, pos.below(2));
     }
 }

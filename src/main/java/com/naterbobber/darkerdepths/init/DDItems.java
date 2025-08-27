@@ -23,8 +23,8 @@ public class DDItems {
             () -> new RopeItem(DDBlocks.ROPE.get(), new Item.Properties()));
     //public static final RegistryObject<Item> QUICKROPE = ITEMS.register("quickrope",
     // () -> new QuickRopeItem(new Item.Properties().durability(16)));
-    public static final RegistryObject<Item> MAGMA_PAD = ITEMS.register("magma_pad",
-            () -> new PlaceOnWaterBlockItem(DDBlocks.MAGMA_PAD.get(), new Item.Properties()));
+//    public static final RegistryObject<Item> MAGMA_PAD = ITEMS.register("magma_pad",
+//            () -> new PlaceOnWaterBlockItem(DDBlocks.MAGMA_PAD.get(), new Item.Properties()));
     public static final RegistryObject<Item> AMBER = createSimpleItem("amber");
     public static final RegistryObject<Item> VOID_SOUL_REQUIEM = createSimpleItem("void_soul_requiem");
     public static final RegistryObject<Item> FORSAKEN_BRONZE_SCRAP = createSimpleItem("forsaken_bronze_scrap");
