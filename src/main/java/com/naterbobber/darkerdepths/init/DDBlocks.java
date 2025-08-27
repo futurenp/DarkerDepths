@@ -261,6 +261,8 @@ public class DDBlocks {
             () -> new TombBlock(BlockBehaviour.Properties.of().sound(SoundType.DEEPSLATE).strength(4F, 10.0F).requiresCorrectToolForDrops().noOcclusion()));
     public static final RegistryObject<Block> PARANOIA_ALTAR = registerNoTabBlock("paranoia_altar",
             () -> new ParanoiaAltarBlock(BlockBehaviour.Properties.of().sound(SoundType.DEEPSLATE).strength(4F, 10.0F).lightLevel(level -> 9).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> MOB_PLACER = registerNoTabBlock("mob_placer",
+            () -> new MobPlacerBlock(Block.Properties.copy(Blocks.BEDROCK)));
 
 
     public static <B extends Block> RegistryObject<B> registerBlock(String name, Supplier<? extends B> blocks) {

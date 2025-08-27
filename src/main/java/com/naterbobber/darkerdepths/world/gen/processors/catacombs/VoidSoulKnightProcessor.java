@@ -36,24 +36,33 @@ public class VoidSoulKnightProcessor extends StructureProcessor {
         BlockState placeholderState = relativeBlockInfo.state();
 
         if (placeholderState.is(Blocks.BROWN_GLAZED_TERRACOTTA)) {
-            BlockState blockState = Blocks.AIR.defaultBlockState();
 
-            Direction direction = blockInfo.state().getValue(BlockStateProperties.HORIZONTAL_FACING);
+            Direction direction = getFacingDirection(placeholderState, settings);
+            BlockState mobPlacementState = DDBlocks.MOB_PLACER.get().defaultBlockState();
 
-            // Create the entity
-            //custom marker block work better instead?
-            if (level instanceof ServerLevel serverLevel) {
-                VoidSoulKnightEntity knight = new VoidSoulKnightEntity(DDEntityTypes.VOID_SOUL_KNIGHT.get(), serverLevel);
+            CompoundTag nbt = new CompoundTag();
+            nbt.putString("EntityType", "darkerdepths:void_soul_knight");
+            nbt.putFloat("Rotation", direction.toYRot());
+            nbt.putBoolean("HasSpawned", false);
 
-                // Set position and rotation
-                knight.setPos(worldPos.getX() + 0.5, worldPos.getY(), worldPos.getZ() + 0.5);
-                knight.setYRot(direction.toYRot());
-                knight.yRotO = direction.toYRot();
-
-                return new StructureTemplate.StructureBlockInfo(relativeBlockInfo.pos(), blockState, null);
+            CompoundTag entityData = new CompoundTag();
+            if (!entityData.isEmpty()) {
+                nbt.put("EntityData", entityData);
             }
+
+            return new StructureTemplate.StructureBlockInfo(relativeBlockInfo.pos(), mobPlacementState, nbt);
+
         }
         return relativeBlockInfo;
+    }
+
+    private Direction getFacingDirection(BlockState markerBlock, StructurePlaceSettings settings) {
+        if (markerBlock.hasProperty(BlockStateProperties.HORIZONTAL_FACING)) {
+            Direction markerFacing = markerBlock.getValue(BlockStateProperties.HORIZONTAL_FACING);
+            return settings.getRotation().rotate(markerFacing);
+        }
+
+        return settings.getRotation().rotate(Direction.NORTH);
     }
 
     @Override

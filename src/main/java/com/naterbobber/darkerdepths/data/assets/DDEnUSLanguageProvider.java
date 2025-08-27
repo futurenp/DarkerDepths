@@ -148,7 +148,6 @@ public class DDEnUSLanguageProvider extends LanguageProvider {
         add(DDBlocks.PARANOIA_ALTAR.get(), "Paranoia Altar");
         add(DDBlocks.VOID_SOUL_TORCH.get(), "Void Soul Torch");
         add(DDBlocks.GLOWSHROOM_HEART.get(), "Glowshroom Heart");
-
         // Entities
         add(DDEntityTypes.GLOWSHROOM_MONSTER.get(), "Glowshroom Monster");
         add(DDEntityTypes.BODY_SNATCHER.get(), "Body Snatcher");

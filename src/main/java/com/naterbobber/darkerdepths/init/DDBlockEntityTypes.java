@@ -1,10 +1,7 @@
 package com.naterbobber.darkerdepths.init;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
-import com.naterbobber.darkerdepths.blocks.blockentities.DDSignBlockEntity;
-import com.naterbobber.darkerdepths.blocks.blockentities.GeyserBlockEntity;
-import com.naterbobber.darkerdepths.blocks.blockentities.TombBlockEntity;
-import com.naterbobber.darkerdepths.blocks.blockentities.ParanoiaAltarBlockEntity;
+import com.naterbobber.darkerdepths.blocks.blockentities.*;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
@@ -24,6 +21,6 @@ public class DDBlockEntityTypes {
             () -> BlockEntityType.Builder.of(TombBlockEntity::new, DDBlocks.TOMB.get()).build(null));
     public static final RegistryObject<BlockEntityType<ParanoiaAltarBlockEntity>> PARANOIA_ALTAR = BLOCK_ENTITIES.register("paranoia_altar",
             () -> BlockEntityType.Builder.of(ParanoiaAltarBlockEntity::new, DDBlocks.PARANOIA_ALTAR.get()).build(null));
-
-
+    public static final RegistryObject<BlockEntityType<MobPlacerBlockEntity>> MOB_PLACER = BLOCK_ENTITIES.register("mob_placer",
+            () -> BlockEntityType.Builder.of(MobPlacerBlockEntity::new, DDBlocks.MOB_PLACER.get()).build(null));
 }

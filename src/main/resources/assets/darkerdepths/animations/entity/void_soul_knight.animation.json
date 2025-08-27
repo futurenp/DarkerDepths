@@ -209,7 +209,7 @@
 			}
 		},
 		"attack.swing": {
-			"animation_length": 2.125,
+			"animation_length": 2.5,
 			"bones": {
 				"body": {
 					"rotation": {

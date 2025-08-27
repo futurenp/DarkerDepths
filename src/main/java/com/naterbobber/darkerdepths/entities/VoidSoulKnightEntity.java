@@ -9,6 +9,7 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -16,19 +17,13 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
-import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.monster.Monster;
-import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
-import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoEntity;
-import software.bernie.geckolib.constant.DefaultAnimations;
-import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.core.animation.*;
 import software.bernie.geckolib.core.object.PlayState;
@@ -40,6 +35,10 @@ public class VoidSoulKnightEntity extends Monster implements GeoEntity {
     private int secondDamageDelay;
     private boolean firstAttackDone;
     private Entity attackTarget;
+    private int dormantCheckCooldown = 0;
+    private boolean attacking = false;
+    private int animationCooldown;
+
     private static final double HEALTH = 80;
     private static final double MOVEMENT_SPEED = .17;
     private static final double ATTACK_DAMAGE = 10;
@@ -47,14 +46,18 @@ public class VoidSoulKnightEntity extends Monster implements GeoEntity {
     private static final double KNOCKBACK_RESISTANCE = 0.85;
     private static final double FOLLOW_RANGE = 32;
 
-    private static final EntityDataAccessor<Boolean> IS_DORMANT =
-            SynchedEntityData.defineId(VoidSoulKnightEntity.class, EntityDataSerializers.BOOLEAN);
     protected static final RawAnimation WALK_ANIM = RawAnimation.begin().thenLoop("move.walk");
     protected static final RawAnimation ATTACK_ANIM = RawAnimation.begin().then("attack.swing", Animation.LoopType.PLAY_ONCE);
     protected static final RawAnimation IDLE_ANIM = RawAnimation.begin().thenLoop("idle");
     protected static final RawAnimation DORMANT_ANIM = RawAnimation.begin().thenLoop("dormant");
 
     private final AnimatableInstanceCache geoCache = GeckoLibUtil.createInstanceCache(this);
+
+    private static final EntityDataAccessor<Boolean> IS_DORMANT =
+            SynchedEntityData.defineId(VoidSoulKnightEntity.class, EntityDataSerializers.BOOLEAN);
+    private static final EntityDataAccessor<Boolean> IS_ATTACKING =
+            SynchedEntityData.defineId(VoidSoulKnightEntity.class, EntityDataSerializers.BOOLEAN);
+
 
     public VoidSoulKnightEntity(EntityType<? extends Monster> type, Level world) {
         super(type, world);
@@ -79,6 +82,11 @@ public class VoidSoulKnightEntity extends Monster implements GeoEntity {
 
         if (this.attackTick > 0) {
             this.attackTick--;
+
+            // When attack sequence ends, clear the synced attack state
+            if (this.attackTick == 0) {
+                this.setAttacking(false);
+            }
         }
 
         if (this.firstDamageDelay > 0) {
@@ -115,8 +123,21 @@ public class VoidSoulKnightEntity extends Monster implements GeoEntity {
     @Override
     public void tick() {
         super.tick();
-        if (this.isDormant() && !this.level().isClientSide) {
-            Player player = this.level().getNearestPlayer(this, 5);
+
+        if(!this.isDormant()) {
+            return;
+        }
+
+        if(dormantCheckCooldown != 0) {
+            this.dormantCheckCooldown--;
+            return;
+        }
+
+        this.setYBodyRot(this.getYRot());
+        this.setYHeadRot(this.getYRot());
+
+        if (!this.level().isClientSide) {
+            Player player = this.level().getNearestPlayer(this, 8);
 
             if (player != null && !player.isCreative()) {
                 this.setDormant(false);
@@ -124,6 +145,8 @@ public class VoidSoulKnightEntity extends Monster implements GeoEntity {
                 this.setTarget(player);
                 this.playSound(SoundEvents.IRON_GOLEM_REPAIR, 1.0F, 0.4F);
             }
+
+            this.dormantCheckCooldown = 20;
         }
     }
 
@@ -142,7 +165,14 @@ public class VoidSoulKnightEntity extends Monster implements GeoEntity {
 
     @Override
     public boolean doHurtTarget(Entity entity) {
-        if(attackTick <= 0) {
+        System.out.println("Hurt target called");
+        System.out.println("Value of attackTick at moment of call: " + this.getAttackTick());
+
+        if(this.getAttackTick() == 0) {
+            // Set both server-side tick counter AND synced client state
+            this.setAttacking(true); // This syncs to client immediately
+
+            System.out.println("setting attack tick!!!!");
             this.attackTick = 50;
             this.firstDamageDelay = 5;
             this.firstAttackDone = false;
@@ -157,12 +187,6 @@ public class VoidSoulKnightEntity extends Monster implements GeoEntity {
             return true;
         }
         return false;
-    }
-
-    @Nullable
-    @Override
-    protected SoundEvent getAmbientSound() {
-        return SoundEvents.IRON_GOLEM_STEP;
     }
 
     @Override
@@ -196,10 +220,6 @@ public class VoidSoulKnightEntity extends Monster implements GeoEntity {
             return event.setAndContinue(DORMANT_ANIM);
         }
 
-        if (this.getAttackTick() > 0) {
-            return PlayState.STOP;
-        }
-
         if (event.isMoving()) {
             return event.setAndContinue(WALK_ANIM);
         }
@@ -208,12 +228,9 @@ public class VoidSoulKnightEntity extends Monster implements GeoEntity {
     }
 
     protected <E extends VoidSoulKnightEntity> PlayState attackPredicate(final AnimationState<E> event) {
-        if (this.isDormant()) {
-            return PlayState.STOP;
-        }
-
-        if (this.getAttackTick() > 0) {
+        if (this.isAttacking()) {
             if (event.getController().getAnimationState().equals(AnimationController.State.STOPPED)) {
+                event.getController().forceAnimationReset();
                 event.getController().setAnimation(ATTACK_ANIM);
             }
             return PlayState.CONTINUE;
@@ -231,12 +248,22 @@ public class VoidSoulKnightEntity extends Monster implements GeoEntity {
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(IS_DORMANT, true);
+        this.entityData.define(IS_ATTACKING, false); // Add this
+    }
+
+    public boolean isAttacking() {
+        return this.entityData.get(IS_ATTACKING);
+    }
+
+    public void setAttacking(boolean attacking) {
+        this.entityData.set(IS_ATTACKING, attacking);
     }
 
     @Override
     public void addAdditionalSaveData(CompoundTag compound) {
         super.addAdditionalSaveData(compound);
         compound.putBoolean("IsDormant", this.isDormant());
+        compound.putBoolean("IsAttacking", this.isAttacking());
     }
 
     @Override
@@ -244,6 +271,9 @@ public class VoidSoulKnightEntity extends Monster implements GeoEntity {
         super.readAdditionalSaveData(compound);
         if (compound.contains("IsDormant")) {
             this.setDormant(compound.getBoolean("IsDormant"));
+        }
+        if (compound.contains("IsAttacking")) {
+            this.setAttacking(compound.getBoolean("IsAttacking"));
         }
 
         this.registerGoals();
