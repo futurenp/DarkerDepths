@@ -8,6 +8,9 @@
     },
     {
       "processor_type": "darkerdepths:catacombs_archaeology"
+    },
+    {
+      "processor_type": "darkerdepths:void_soul_knight"
     }
   ]
 }

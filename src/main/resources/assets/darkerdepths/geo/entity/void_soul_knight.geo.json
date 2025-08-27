@@ -6,7 +6,7 @@
 				"identifier": "geometry.void_soul_knight",
 				"texture_width": 128,
 				"texture_height": 128,
-				"visible_bounds_width": 3,
+				"visible_bounds_width": 4,
 				"visible_bounds_height": 4.5,
 				"visible_bounds_offset": [0, 1.75, 0]
 			},
@@ -29,14 +29,32 @@
 					]
 				},
 				{
+					"name": "sword",
+					"parent": "left_arm",
+					"pivot": [9.5, 17.49483, -2.55546],
+					"rotation": [114.64445, 34.89321, 14.70516],
+					"cubes": [
+						{"origin": [9.5, 19.49483, -5.05546], "size": [0, 27, 5], "uv": [96, -5]},
+						{"origin": [8.5, 12.49483, -3.55546], "size": [2, 6, 2], "uv": [100, 27]},
+						{"origin": [8.5, 18.49483, -5.55546], "size": [2, 1, 6], "uv": [96, 35]}
+					]
+				},
+				{
 					"name": "head",
 					"parent": "body",
 					"pivot": [0, 34, -1],
 					"cubes": [
 						{"origin": [-4, 34, -5], "size": [8, 10, 8], "uv": [44, 0]},
 						{"origin": [0, 34, -5], "size": [0, 12, 10], "uv": [76, -10]},
-						{"origin": [-3.5, 34, -5.2], "size": [7, 7, 0], "uv": [24, 73]},
 						{"origin": [-4.5, 33, -6], "size": [9, 9, 7], "uv": [44, 18]}
+					]
+				},
+				{
+					"name": "eyes",
+					"parent": "head",
+					"pivot": [-0.5, 11, -1.2],
+					"cubes": [
+						{"origin": [-3.5, 34, -5.2], "size": [7, 7, 0], "uv": [24, 73]}
 					]
 				},
 				{

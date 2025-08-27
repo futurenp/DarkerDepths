@@ -1,4 +1,4 @@
-// 1.20.1	2025-08-25T13:32:02.4152695	Registries
+// 1.20.1	2025-08-27T01:37:35.2527694	Registries
 e4bd8206b28b2c8ed9c6475b102986060f9d1863 data/darkerdepths/forge/biome_modifier/add_glowshroom_forest_spawns.json
 0f0eb5704a1d7960f028ecfdb5dbb9bac032d4ea data/darkerdepths/forge/biome_modifier/add_glowshroom_forest_vegetal_features.json
 f57d7c2ee420a8317a5645fdb38ebd006f149005 data/darkerdepths/forge/biome_modifier/add_molten_caverns_ores.json
@@ -51,7 +51,7 @@ c54468a17082665d38edfb6c5f7ea051082aa803 data/darkerdepths/worldgen/placed_featu
 01b15be240f25be9ac1dd277fa7904baad665891 data/darkerdepths/worldgen/placed_feature/molten_pool.json
 4fab81584ac2c1c50a506a58f31e5a77bad14053 data/darkerdepths/worldgen/placed_feature/molten_spring.json
 d8047e494901c234916bdf2f11c409496bc38417 data/darkerdepths/worldgen/placed_feature/petrified_branch.json
-25f73239cd06d58d8f78e1b8ba4ed68f13f39c22 data/darkerdepths/worldgen/processor_list/catacombs_processor.json
+da095869b7c2ff406779eb355fcf1d4d2f701d87 data/darkerdepths/worldgen/processor_list/catacombs_processor.json
 6f4199942dc334103c8b61a389f5ec9c58472694 data/darkerdepths/worldgen/structure/catacombs.json
 d44301ea52e894b75d6896a24e909825953d1227 data/darkerdepths/worldgen/structure/rope_mine_desert.json
 cfddf8ef8f8fc110c89f1dab8ffcac5a24aac121 data/darkerdepths/worldgen/structure/rope_mine_forest.json
