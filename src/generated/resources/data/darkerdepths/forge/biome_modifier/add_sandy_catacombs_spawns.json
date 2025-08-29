@@ -5,7 +5,7 @@
     {
       "type": "minecraft:spider",
       "maxCount": 4,
-      "minCount": 4,
+      "minCount": 2,
       "weight": 100
     },
     {
@@ -17,8 +17,14 @@
     {
       "type": "minecraft:husk",
       "maxCount": 4,
-      "minCount": 4,
+      "minCount": 2,
       "weight": 95
+    },
+    {
+      "type": "darkerdepths:body_snatcher",
+      "maxCount": 1,
+      "minCount": 1,
+      "weight": 25
     }
   ]
 }

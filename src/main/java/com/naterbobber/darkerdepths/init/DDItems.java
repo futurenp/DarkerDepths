@@ -35,9 +35,9 @@ public class DDItems {
     public static final RegistryObject<Item> GLOWSHROOM_MONSTER_SPAWN_EGG = ITEMS.register("glowshroom_monster_spawn_egg",
             () -> new ForgeSpawnEggItem(DDEntityTypes.GLOWSHROOM_MONSTER, 8290688, 8513702, new Item.Properties()));
     public static final RegistryObject<Item> BODY_SNATCHER_SPAWN_EGG = ITEMS.register("body_snatcher_spawn_egg",
-            () -> new ForgeSpawnEggItem(DDEntityTypes.BODY_SNATCHER, 2496017, 16775339, new Item.Properties()));
+            () -> new ForgeSpawnEggItem(DDEntityTypes.BODY_SNATCHER, 5058592, 16757097, new Item.Properties()));
     public static final RegistryObject<Item> VOID_SOUL_KNIGHT_SPAWN_EGG = ITEMS.register("void_soul_knight_spawn_egg",
-            () -> new ForgeSpawnEggItem(DDEntityTypes.VOID_SOUL_KNIGHT, 12425849, 851969, new Item.Properties()));
+            () -> new ForgeSpawnEggItem(DDEntityTypes.VOID_SOUL_KNIGHT, 3542019, 16757097, new Item.Properties()));
     public static final RegistryObject<Item> PETRIFIED_BOAT = ITEMS.register("petrified_boat",
             () -> new DDBoatItem(false, PetrifiedBoatEntity.BoatType.PETRIFIED, new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> PETRIFIED_CHEST_BOAT = ITEMS.register("petrified_chest_boat",

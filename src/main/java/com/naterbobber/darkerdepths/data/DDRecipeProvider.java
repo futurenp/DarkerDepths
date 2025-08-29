@@ -413,7 +413,9 @@ public class DDRecipeProvider extends RecipeProvider {
                 .shaped(RecipeCategory.MISC, DDItems.VOID_SOUL_TORCH.get(), 4)
                 .define('A', Items.STICK)
                 .define('B', DDBlocks.VOID_SOUL_JAR.get().asItem())
+                .define('C', DDItems.AMBER.get())
                 .pattern("B")
+                .pattern("C")
                 .pattern("A")
                 .unlockedBy("has_void_soul_jar", has(DDItems.AMBER.get())).save(consumer);
 

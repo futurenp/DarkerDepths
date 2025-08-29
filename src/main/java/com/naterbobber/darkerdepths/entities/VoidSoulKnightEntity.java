@@ -9,7 +9,6 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -19,7 +18,6 @@ import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
-import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
@@ -36,15 +34,13 @@ public class VoidSoulKnightEntity extends Monster implements GeoEntity {
     private boolean firstAttackDone;
     private Entity attackTarget;
     private int dormantCheckCooldown = 0;
-    private boolean attacking = false;
-    private int animationCooldown;
-
     private static final double HEALTH = 80;
     private static final double MOVEMENT_SPEED = .17;
     private static final double ATTACK_DAMAGE = 10;
     private static final double ATTACK_KNOCKBACK = 2;
     private static final double KNOCKBACK_RESISTANCE = 0.85;
     private static final double FOLLOW_RANGE = 32;
+    private static final int PERSISTENCE = 20 * 30; // tick * seconds
 
     protected static final RawAnimation WALK_ANIM = RawAnimation.begin().thenLoop("move.walk");
     protected static final RawAnimation ATTACK_ANIM = RawAnimation.begin().then("attack.swing", Animation.LoopType.PLAY_ONCE);
@@ -69,9 +65,8 @@ public class VoidSoulKnightEntity extends Monster implements GeoEntity {
     protected void registerGoals() {
         if (!this.isDormant()) {
             this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
-            this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
             this.goalSelector.addGoal(2, new ConfigurableReachMeleeAttackGoal(this, 1.3D, true, 2.75f));
-            this.targetSelector.addGoal(3, new AttackMemoryTargetGoal<>(this, Player.class, 640, true));
+            this.targetSelector.addGoal(3, new AttackMemoryTargetGoal<>(this, Player.class, PERSISTENCE, true));
             this.goalSelector.addGoal(7, new WaterAvoidingRandomStrollGoal(this, 1.2D));
         }
     }
@@ -83,7 +78,6 @@ public class VoidSoulKnightEntity extends Monster implements GeoEntity {
         if (this.attackTick > 0) {
             this.attackTick--;
 
-            // When attack sequence ends, clear the synced attack state
             if (this.attackTick == 0) {
                 this.setAttacking(false);
             }
@@ -139,7 +133,9 @@ public class VoidSoulKnightEntity extends Monster implements GeoEntity {
         if (!this.level().isClientSide) {
             Player player = this.level().getNearestPlayer(this, 8);
 
-            if (player != null && !player.isCreative()) {
+            boolean hpChanged = this.getHealth() < this.getMaxHealth();
+
+            if ((player != null && !player.isCreative()) || hpChanged) {
                 this.setDormant(false);
                 this.registerGoals();
                 this.setTarget(player);
@@ -165,14 +161,9 @@ public class VoidSoulKnightEntity extends Monster implements GeoEntity {
 
     @Override
     public boolean doHurtTarget(Entity entity) {
-        System.out.println("Hurt target called");
-        System.out.println("Value of attackTick at moment of call: " + this.getAttackTick());
-
         if(this.getAttackTick() == 0) {
-            // Set both server-side tick counter AND synced client state
-            this.setAttacking(true); // This syncs to client immediately
+            this.setAttacking(true);
 
-            System.out.println("setting attack tick!!!!");
             this.attackTick = 50;
             this.firstDamageDelay = 5;
             this.firstAttackDone = false;
@@ -248,7 +239,7 @@ public class VoidSoulKnightEntity extends Monster implements GeoEntity {
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(IS_DORMANT, true);
-        this.entityData.define(IS_ATTACKING, false); // Add this
+        this.entityData.define(IS_ATTACKING, false);
     }
 
     public boolean isAttacking() {

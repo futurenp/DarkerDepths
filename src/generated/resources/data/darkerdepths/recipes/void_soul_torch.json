@@ -7,10 +7,14 @@
     },
     "B": {
       "item": "darkerdepths:void_soul_jar"
+    },
+    "C": {
+      "item": "darkerdepths:amber"
     }
   },
   "pattern": [
     "B",
+    "C",
     "A"
   ],
   "result": {
