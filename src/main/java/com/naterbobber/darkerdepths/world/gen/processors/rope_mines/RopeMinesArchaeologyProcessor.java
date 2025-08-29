@@ -1,4 +1,4 @@
-package com.naterbobber.darkerdepths.world.gen.processors.catacombs;
+package com.naterbobber.darkerdepths.world.gen.processors.rope_mines;
 
 import com.mojang.serialization.Codec;
 import com.naterbobber.darkerdepths.init.DDStructureProcessorTypes;
@@ -14,8 +14,8 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProc
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
 import org.jetbrains.annotations.Nullable;
 
-public class CatacombsArchaeologyProcessor extends StructureProcessor {
-    public static final Codec<CatacombsArchaeologyProcessor> CODEC = Codec.unit(CatacombsArchaeologyProcessor::new);
+public class RopeMinesArchaeologyProcessor extends StructureProcessor {
+    public static final Codec<RopeMinesArchaeologyProcessor> CODEC = Codec.unit(RopeMinesArchaeologyProcessor::new);
 
     @Nullable
     @Override
@@ -30,7 +30,7 @@ public class CatacombsArchaeologyProcessor extends StructureProcessor {
         BlockState placeholderState = relativeBlockInfo.state();
         ResourceLocation lootTableId = null;
 
-        if (placeholderState.is(Blocks.SAND) && Math.random() > .85) {
+        if (placeholderState.is(Blocks.SAND) && Math.random() > .965) {
             lootTableId = ResourceLocation.fromNamespaceAndPath("darkerdepths", "archaeology/catacombs/standard");
         }
 
@@ -47,6 +47,6 @@ public class CatacombsArchaeologyProcessor extends StructureProcessor {
 
     @Override
     protected StructureProcessorType<?> getType() {
-        return DDStructureProcessorTypes.CATACOMBS_ARCHAEOLOGY.get();
+        return DDStructureProcessorTypes.ROPE_MINES_ARCHAEOLOGY.get();
     }
 }

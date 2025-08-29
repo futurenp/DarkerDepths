@@ -111,7 +111,7 @@ public class DDStructures {
                 }, v1 -> {
                     return new StructureSpawnOverride(StructureSpawnOverride.BoundingBoxType.STRUCTURE, WeightedRandomList.create());
                 })),
-                GenerationStep.Decoration.UNDERGROUND_STRUCTURES,
+                GenerationStep.Decoration.VEGETAL_DECORATION,
                 TerrainAdjustment.BURY
         );
 
@@ -156,13 +156,14 @@ public class DDStructures {
         Holder<StructureTemplatePool> emptyPoolHolder = context.lookup(Registries.TEMPLATE_POOL).getOrThrow(Pools.EMPTY);
         HolderGetter<StructureProcessorList> processorList = context.lookup(Registries.PROCESSOR_LIST);
         Holder.Reference<StructureProcessorList> catacombsProcessor = processorList.getOrThrow(DDProcessorLists.CATACOMBS_PROCESSOR);
+        Holder.Reference<StructureProcessorList> ropeMineProcessor = processorList.getOrThrow(DDProcessorLists.ROPE_MINES_PROCESSOR);
 
         context.register(ROPE_MINE_FOREST_POOL, new StructureTemplatePool(
-                emptyPoolHolder, List.of(Pair.of(StructurePoolElement.single("darkerdepths:rope_mine_forest").apply(RIGID), 1))
+                emptyPoolHolder, List.of(Pair.of(StructurePoolElement.single("darkerdepths:rope_mine_forest", ropeMineProcessor).apply(RIGID), 1))
         ));
 
         context.register(ROPE_MINE_DESERT_POOL, new StructureTemplatePool(
-                emptyPoolHolder, List.of(Pair.of(StructurePoolElement.single("darkerdepths:rope_mine_desert", catacombsProcessor).apply(RIGID), 1))
+                emptyPoolHolder, List.of(Pair.of(StructurePoolElement.single("darkerdepths:rope_mine_desert", ropeMineProcessor).apply(RIGID), 1))
         ));
 
         context.register(CATACOMBS_STARTS_POOL, new StructureTemplatePool(

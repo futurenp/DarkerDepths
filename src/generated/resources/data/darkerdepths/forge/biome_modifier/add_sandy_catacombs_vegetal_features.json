@@ -1,9 +1,6 @@
 {
   "type": "forge:add_features",
   "biomes": "darkerdepths:sandy_catacombs",
-  "features": [
-    "darkerdepths:arid_boulder",
-    "darkerdepths:petrified_branch"
-  ],
+  "features": "darkerdepths:petrified_branch",
   "step": "vegetal_decoration"
 }

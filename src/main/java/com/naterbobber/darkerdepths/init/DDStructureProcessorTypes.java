@@ -5,6 +5,7 @@ import com.naterbobber.darkerdepths.world.gen.processors.catacombs.CatacombsArch
 import com.naterbobber.darkerdepths.world.gen.processors.catacombs.CatacombsBarrelProcessor;
 import com.naterbobber.darkerdepths.world.gen.processors.catacombs.TombProcessor;
 import com.naterbobber.darkerdepths.world.gen.processors.catacombs.VoidSoulKnightProcessor;
+import com.naterbobber.darkerdepths.world.gen.processors.rope_mines.RopeMinesArchaeologyProcessor;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProcessorType;
 import net.minecraftforge.fml.common.Mod;
@@ -20,4 +21,6 @@ public class DDStructureProcessorTypes {
     public static final RegistryObject<StructureProcessorType<CatacombsBarrelProcessor>> CATACOMBS_BARREL = STRUCTURE_PROCESSORS.register("catacombs_barrel", () -> () -> CatacombsBarrelProcessor.CODEC);
     public static final RegistryObject<StructureProcessorType<CatacombsArchaeologyProcessor>> CATACOMBS_ARCHAEOLOGY = STRUCTURE_PROCESSORS.register("catacombs_archaeology", () -> () -> CatacombsArchaeologyProcessor.CODEC);
     public static final RegistryObject<StructureProcessorType<VoidSoulKnightProcessor>> VOID_SOUL_KNIGHT = STRUCTURE_PROCESSORS.register("void_soul_knight", () -> () -> VoidSoulKnightProcessor.CODEC);
+    public static final RegistryObject<StructureProcessorType<RopeMinesArchaeologyProcessor>> ROPE_MINES_ARCHAEOLOGY = STRUCTURE_PROCESSORS.register("rope_mines_archaeology", () -> () -> RopeMinesArchaeologyProcessor.CODEC);
+
 }

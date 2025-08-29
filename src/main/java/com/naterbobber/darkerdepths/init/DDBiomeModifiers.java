@@ -68,7 +68,6 @@ public class DDBiomeModifiers {
                 getBiome(context, DDBiomes.SANDY_CATACOMBS),
                 getPlacedFeature(
                         context,
-                        DDPlacedFeatures.ARID_BOULDER,
                         DDPlacedFeatures.PETRIFIED_BRANCH
                 ),
                 GenerationStep.Decoration.VEGETAL_DECORATION)

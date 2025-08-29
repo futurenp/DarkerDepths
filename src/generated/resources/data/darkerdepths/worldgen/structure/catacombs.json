@@ -41,7 +41,7 @@
     "absolute": -10
   },
   "start_pool": "darkerdepths:catacombs/starts",
-  "step": "underground_structures",
+  "step": "vegetal_decoration",
   "terrain_adaptation": "bury",
   "use_expansion_hack": false
 }

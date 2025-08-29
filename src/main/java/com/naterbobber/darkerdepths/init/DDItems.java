@@ -21,8 +21,8 @@ public class DDItems {
     public static final RegistryObject<Item> GLOW_GRIME = createSimpleItem("glow_grime");
     public static final RegistryObject<Item> ROPE = ITEMS.register("rope",
             () -> new RopeItem(DDBlocks.ROPE.get(), new Item.Properties()));
-    //public static final RegistryObject<Item> QUICKROPE = ITEMS.register("quickrope",
-    // () -> new QuickRopeItem(new Item.Properties().durability(16)));
+//    public static final RegistryObject<Item> QUICKROPE = ITEMS.register("quickrope",
+//     () -> new QuickRopeItem(new Item.Properties().durability(16)));
 //    public static final RegistryObject<Item> MAGMA_PAD = ITEMS.register("magma_pad",
 //            () -> new PlaceOnWaterBlockItem(DDBlocks.MAGMA_PAD.get(), new Item.Properties()));
     public static final RegistryObject<Item> AMBER = createSimpleItem("amber");

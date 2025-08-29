@@ -11,14 +11,14 @@
               "add": false,
               "count": {
                 "type": "minecraft:uniform",
-                "max": 8.0,
+                "max": 6.0,
                 "min": 1.0
               },
               "function": "minecraft:set_count"
             }
           ],
           "name": "darkerdepths:rope",
-          "weight": 10
+          "weight": 8
         },
         {
           "type": "minecraft:item",
@@ -82,7 +82,7 @@
             }
           ],
           "name": "minecraft:bone",
-          "weight": 8
+          "weight": 5
         },
         {
           "type": "minecraft:item",
@@ -98,22 +98,22 @@
             }
           ],
           "name": "minecraft:bone_meal",
-          "weight": 6
+          "weight": 5
         },
         {
           "type": "minecraft:item",
           "name": "darkerdepths:void_soul_torch",
-          "weight": 6
+          "weight": 5
         },
         {
           "type": "minecraft:item",
           "name": "minecraft:stick",
-          "weight": 5
+          "weight": 2
         },
         {
           "type": "minecraft:item",
           "name": "minecraft:coal",
-          "weight": 5
+          "weight": 3
         },
         {
           "type": "minecraft:item",
@@ -134,7 +134,7 @@
         {
           "type": "minecraft:item",
           "name": "darkerdepths:void_soul_jar",
-          "weight": 4
+          "weight": 3
         },
         {
           "type": "minecraft:item",
@@ -150,12 +150,12 @@
             }
           ],
           "name": "minecraft:bread",
-          "weight": 3
+          "weight": 4
         },
         {
           "type": "minecraft:item",
           "name": "minecraft:gold_ingot",
-          "weight": 3
+          "weight": 4
         },
         {
           "type": "minecraft:item",
@@ -171,12 +171,12 @@
             }
           ],
           "name": "minecraft:paper",
-          "weight": 3
+          "weight": 2
         },
         {
           "type": "minecraft:item",
           "name": "minecraft:glass_bottle",
-          "weight": 3
+          "weight": 2
         },
         {
           "type": "minecraft:item",
@@ -196,7 +196,7 @@
               "count": {
                 "type": "minecraft:uniform",
                 "max": 8.0,
-                "min": 1.0
+                "min": 2.0
               },
               "function": "minecraft:set_count"
             }
@@ -212,7 +212,7 @@
               "count": {
                 "type": "minecraft:uniform",
                 "max": 8.0,
-                "min": 1.0
+                "min": 2.0
               },
               "function": "minecraft:set_count"
             }
@@ -249,7 +249,7 @@
       ],
       "rolls": {
         "type": "minecraft:uniform",
-        "max": 12.0,
+        "max": 10.0,
         "min": 5.0
       }
     }
