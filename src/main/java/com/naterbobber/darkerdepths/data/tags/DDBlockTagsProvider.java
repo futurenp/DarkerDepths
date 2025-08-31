@@ -46,6 +46,7 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
                 DDBlocks.DUSKROCK_BRICKS_WALL.get(),
                 DDBlocks.GRIMESTONE_BRICKS_WALL.get()
         );
+
         this.tag(BlockTags.WOODEN_FENCES).add(DDBlocks.PETRIFIED_FENCE.get());
         this.tag(BlockTags.FENCE_GATES).add(DDBlocks.PETRIFIED_FENCE_GATE.get());
 
@@ -182,6 +183,9 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
                 .addTag(BlockTags.BUTTONS)
                 .addTag(BlockTags.LEAVES)
                 .addTag(BlockTags.RAILS);
+
         this.tag(DDBlockTags.HUSKS_SPAWNABLE_ON).add(DDBlocks.ARIDROCK.get());
+        this.tag(BlockTags.BEACON_BASE_BLOCKS).add(DDBlocks.FORSAKEN_BRONZE_BLOCK.get());
+
     }
 }

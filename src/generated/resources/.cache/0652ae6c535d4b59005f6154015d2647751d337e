@@ -1,8 +1,9 @@
-// 1.20.1	2025-08-31T01:31:24.5821768	Tags for minecraft:block mod id darkerdepths
+// 1.20.1	2025-08-31T12:45:43.1331533	Tags for minecraft:block mod id darkerdepths
 f0f92c5f0b5c5412980a4ca8436b4cb180919deb data/darkerdepths/tags/blocks/geyser_boosters.json
 acb229a0a11f926d8072d3a6ef8f06a2b9f61b38 data/darkerdepths/tags/blocks/geyser_bypasses.json
 3dfb0ae86440be076ba09273ec3517fb643e005c data/darkerdepths/tags/blocks/husks_spawnable_on.json
 9c0a87766251bf1373112a8db57276e89e917f91 data/minecraft/tags/blocks/base_stone_overworld.json
+9cb44c49895785a868a717fe96a0e3ce7e215187 data/minecraft/tags/blocks/beacon_base_blocks.json
 d46196cd8880069d772cedd2866445ceffda8735 data/minecraft/tags/blocks/fence_gates.json
 5e277297b74dc60b3a92d2fe9b9fc06fe32cf551 data/minecraft/tags/blocks/logs.json
 97e68b293c92fb0079c8055d153d93d2d0d44e54 data/minecraft/tags/blocks/mineable/hoe.json

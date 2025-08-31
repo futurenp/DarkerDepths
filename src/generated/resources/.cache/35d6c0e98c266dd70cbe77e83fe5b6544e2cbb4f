@@ -1,6 +1,7 @@
-// 1.20.1	2025-07-16T19:37:19.7934681	Tags for minecraft:item mod id darkerdepths
+// 1.20.1	2025-08-31T12:45:43.1331533	Tags for minecraft:item mod id darkerdepths
 2540ebbb453039c1d5bb73ab2a126a913addf113 data/darkerdepths/tags/items/petrified_logs.json
 116ee09228695a95ad2997abfb4a0d5492fb61d5 data/forge/tags/items/ropes.json
+77d40b9f5df576ef39fca8a026be11021c8a8225 data/minecraft/tags/items/beacon_payment_items.json
 5e277297b74dc60b3a92d2fe9b9fc06fe32cf551 data/minecraft/tags/items/logs.json
 af16345a95dc5cfb6cba85b5968ec2574833fb60 data/minecraft/tags/items/planks.json
 9c0a87766251bf1373112a8db57276e89e917f91 data/minecraft/tags/items/stone_crafting_materials.json
