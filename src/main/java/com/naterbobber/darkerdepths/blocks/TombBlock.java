@@ -262,7 +262,6 @@ public class TombBlock extends BaseEntityBlock implements SimpleWaterloggedBlock
         for (MultiblockPartData partData : parts.values()) {
             BlockState replace = partData.state.getValue(WATERLOGGED) ? Blocks.WATER.defaultBlockState() : Blocks.AIR.defaultBlockState();
             level.setBlock(partData.pos, replace, 3);
-            //particle effect only works on center state?
             level.addDestroyBlockEffect(partData.pos, partData.state);
         }
     }

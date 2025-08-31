@@ -1,7 +1,7 @@
-// 1.20.1	2025-08-29T11:36:01.2685027	Loot Tables
-cbfc2984bdef11ae850bb3429fb8f557faed8884 data/darkerdepths/loot_tables/archaeology/catacombs/standard.json
+// 1.20.1	2025-08-31T00:57:51.2498206	Loot Tables
+69a68443e41c0ea8610b4ece66b6a6a3bff163d0 data/darkerdepths/loot_tables/archaeology/catacombs/standard.json
 922215f9c8707c8544a64d05b9e51ac9ae1e8dab data/darkerdepths/loot_tables/chests/catacombs/standard.json
-75aabd84099012782eba68512719058eadd8c64d data/darkerdepths/loot_tables/chests/catacombs/treasure.json
+7c365b2b5e5e26dd61366d4be5e2e5f0318577d6 data/darkerdepths/loot_tables/chests/catacombs/treasure.json
 4e843a9fcaa41391d4a1a5a104c73d83da774f2c data/darkerdepths/loot_tables/entities/body_snatcher.json
 918f438ad7aebd4564d48ea56a45ec73736af62c data/darkerdepths/loot_tables/entities/glowshroom_monster.json
 203bd0894ddbd60358e16634b7ad48fbb0f21e1b data/darkerdepths/loot_tables/entities/void_soul_knight.json

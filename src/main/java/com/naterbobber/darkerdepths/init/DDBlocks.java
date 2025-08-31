@@ -256,11 +256,13 @@ public class DDBlocks {
     public static final RegistryObject<Block> VOID_SOUL_JAR = registerBlock("void_soul_jar",
             () -> new VoidSoulJarBlock(BlockBehaviour.Properties.of().strength(1.0f).sound(SoundType.GLASS).lightLevel(value -> 5)));
     public static final RegistryObject<Block> DEATH_ANCHOR = registerBlock("death_anchor",
-            () -> new DeathAnchorBlock(BlockBehaviour.Properties.of().strength(5F, 12.0F).sound(SoundType.NETHER_BRICKS).requiresCorrectToolForDrops()));
+            () -> new DeathAnchorBlock(BlockBehaviour.Properties.of().strength(5.0F, 12.0F).sound(SoundType.NETHERITE_BLOCK).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> TOMB = registerBlock("tomb",
             () -> new TombBlock(BlockBehaviour.Properties.of().sound(SoundType.DEEPSLATE).strength(4F, 10.0F).requiresCorrectToolForDrops().noOcclusion()));
     public static final RegistryObject<Block> PARANOIA_ALTAR = registerNoTabBlock("paranoia_altar",
             () -> new ParanoiaAltarBlock(BlockBehaviour.Properties.of().sound(SoundType.DEEPSLATE).strength(4F, 10.0F).lightLevel(level -> 9).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> FORSAKEN_BRONZE_BLOCK = registerBlock("forsaken_bronze_block",
+            () -> new Block(BlockBehaviour.Properties.of().strength(5.0F, 12.0F).sound(SoundType.NETHERITE_BLOCK).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> MOB_PLACER = registerNoTabBlock("mob_placer",
             () -> new MobPlacerBlock(Block.Properties.copy(Blocks.BEDROCK)));
 

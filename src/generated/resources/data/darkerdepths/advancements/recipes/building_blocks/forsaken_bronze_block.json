@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "darkerdepths:stiletto"
+        "recipe": "darkerdepths:forsaken_bronze_block"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "darkerdepths:stiletto"
+      "darkerdepths:forsaken_bronze_block"
     ]
   },
   "sends_telemetry_event": false

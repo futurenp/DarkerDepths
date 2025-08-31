@@ -74,6 +74,11 @@
         },
         {
           "type": "minecraft:item",
+          "name": "minecraft:copper_ingot",
+          "weight": 3
+        },
+        {
+          "type": "minecraft:item",
           "name": "minecraft:iron_ingot",
           "weight": 4
         },
@@ -99,13 +104,11 @@
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:dune_armor_trim_smithing_template",
-          "weight": 2
+          "name": "minecraft:dune_armor_trim_smithing_template"
         },
         {
           "type": "minecraft:item",
-          "name": "darkerdepths:void_soul_requiem",
-          "weight": 2
+          "name": "darkerdepths:void_soul_requiem"
         },
         {
           "type": "minecraft:item",

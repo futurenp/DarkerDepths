@@ -2,9 +2,11 @@ package com.naterbobber.darkerdepths.blocks.blockentities;
 
 import com.naterbobber.darkerdepths.blocks.GeyserBlock;
 import com.naterbobber.darkerdepths.init.DDBlockEntityTypes;
+import com.naterbobber.darkerdepths.init.DDBlockStateProperties;
 import com.naterbobber.darkerdepths.init.DDBlockTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.nbt.Tag;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -28,7 +30,7 @@ public class GeyserBlockEntity extends BlockEntity {
         for (int i = 1; i < 7; i++) {
             BlockPos relativePosition = pos.relative(direction, i);
             BlockState relativeState = world.getBlockState(relativePosition);
-            if (!(world.isStateAtPosition(relativePosition, DripstoneUtils::isEmptyOrWaterOrLava) || (relativeState.hasProperty(BlockStateProperties.LAYERS) && relativeState.getValue(BlockStateProperties.LAYERS) == 1))) {
+            if (!(world.isStateAtPosition(relativePosition, DripstoneUtils::isEmptyOrWaterOrLava) || relativeState.getTags().anyMatch(DDBlockTags.GEYSER_BYPASSES::equals) || (relativeState.hasProperty(BlockStateProperties.LAYERS) && relativeState.getValue(BlockStateProperties.LAYERS) == 1))) {
                 break;
             }
             List<Entity> nearbyEntities = world.getEntitiesOfClass(Entity.class, new AABB(relativePosition));

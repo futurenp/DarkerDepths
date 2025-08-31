@@ -22,6 +22,10 @@
     "#minecraft:fence_gates",
     "#minecraft:replaceable_by_trees",
     "#minecraft:lush_ground_replaceable",
-    "#minecraft:saplings"
+    "#minecraft:replaceable_by_trees",
+    "#minecraft:replaceable",
+    "#minecraft:buttons",
+    "#minecraft:leaves",
+    "#minecraft:rails"
   ]
 }

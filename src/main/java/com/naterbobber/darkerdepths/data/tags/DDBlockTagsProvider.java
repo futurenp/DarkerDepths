@@ -7,6 +7,7 @@ import com.naterbobber.darkerdepths.init.DDBlocks;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.BlockTagsProvider;
@@ -138,7 +139,8 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
                 DDBlocks.TOMB.get(),
                 DDBlocks.VOID_SOUL_JAR.get(),
                 DDBlocks.PARANOIA_ALTAR.get(),
-                DDBlocks.CRYSTAL_MELON.get()
+                DDBlocks.CRYSTAL_MELON.get(),
+                DDBlocks.FORSAKEN_BRONZE_BLOCK.get()
         );
         this.tag(BlockTags.MINEABLE_WITH_SHOVEL).add(
                 DDBlocks.ASH.get(),
@@ -150,16 +152,18 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
         //only works on snow?
         //Also only works with 1 snow layer
         //fix later ig
-        this.tag(DDBlockTags.GEYSER_BYPASSES).add(
-                Blocks.SNOW,
-                Blocks.MOSS_CARPET,
-                Blocks.GLOW_LICHEN,
-                Blocks.SCULK_VEIN,
-                DDBlocks.GLOWSHROOM.get(),
-                DDBlocks.GLOWSPURS.get(),
-                DDBlocks.GLIMMERING_VINES.get(),
-                DDBlocks.GLIMMERING_VINE_PLANT.get(),
-                DDBlocks.DRY_SPROUTS.get())
+        this.tag(DDBlockTags.GEYSER_BYPASSES)
+                .add(
+                    Blocks.SNOW,
+                    Blocks.MOSS_CARPET,
+                    Blocks.GLOW_LICHEN,
+                    Blocks.SCULK_VEIN,
+                    DDBlocks.GLOWSHROOM.get(),
+                    DDBlocks.GLOWSPURS.get(),
+                    DDBlocks.GLIMMERING_VINES.get(),
+                    DDBlocks.GLIMMERING_VINE_PLANT.get(),
+                    DDBlocks.DRY_SPROUTS.get()
+                )
                 .addTag(BlockTags.WOOL_CARPETS)
                 .addTag(BlockTags.ALL_SIGNS)
                 .addTag(BlockTags.ALL_HANGING_SIGNS)
@@ -173,7 +177,11 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
                 .addTag(BlockTags.FENCE_GATES)
                 .addTag(BlockTags.REPLACEABLE_BY_TREES)
                 .addTag(BlockTags.LUSH_GROUND_REPLACEABLE)
-                .addTag(BlockTags.SAPLINGS);
+                .addTag(BlockTags.REPLACEABLE_BY_TREES)
+                .addTag(BlockTags.REPLACEABLE)
+                .addTag(BlockTags.BUTTONS)
+                .addTag(BlockTags.LEAVES)
+                .addTag(BlockTags.RAILS);
         this.tag(DDBlockTags.HUSKS_SPAWNABLE_ON).add(DDBlocks.ARIDROCK.get());
     }
 }

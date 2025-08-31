@@ -97,37 +97,91 @@ public class GeyserBlock extends BaseEntityBlock {
 
     @Override
     public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, RandomSource rand) {
-        int xPos = pos.getX();
-        int yPos = pos.getY();
-        int zPos = pos.getZ();
-        double x = xPos + 0.5D;
-        double y = yPos + rand.nextDouble() + rand.nextDouble();
-        double z = zPos + 0.5D;
         if (!stateIn.getValue(POWERED)) {
-            this.addParticle(worldIn, rand, x, y, z, pos, worldIn.getBlockState(pos.above()).is(Blocks.WATER));
+            this.addParticle(worldIn, rand, pos, stateIn.getValue(FACING));
         }
     }
 
-    private void addParticle(Level worldIn, RandomSource rand, double x, double y, double z, BlockPos pos, boolean waterlogged) {
+    private void addParticle(Level worldIn, RandomSource rand, BlockPos pos, Direction facing) {
+        BlockPos frontState = null;
+
+        double x = pos.getX(), y = pos.getY(), z = pos.getZ();
+        double xSpeed = 0, ySpeed = 0, zSpeed = 0;
+        double speed = 0.07;
+        float lavaSpeedX = 2, lavaSpeedY = 2, lavaSpeedZ = 2, lavaSpeedFront = 2000;
+
+        switch (facing) {
+            case UP:
+                frontState = pos.above();
+                ySpeed = speed;
+                x += 0.5;
+                z += 0.5;
+                lavaSpeedY = lavaSpeedFront;
+                break;
+            case DOWN:
+                frontState = pos.below();
+                ySpeed = -speed;
+                x += 0.5;
+                z += 0.5;
+                lavaSpeedY = -lavaSpeedFront;
+                break;
+            case NORTH:
+                frontState = pos.north();
+                zSpeed = -speed;
+                y += 0.5;
+                x += 0.5;
+                lavaSpeedZ = lavaSpeedFront;
+                break;
+            case EAST:
+                frontState = pos.east();
+                xSpeed = speed;
+                y += 0.5;
+                x += 0.5;
+                z += 0.5;
+                lavaSpeedX = lavaSpeedFront;
+                break;
+            case SOUTH:
+                frontState = pos.south();
+                zSpeed = speed;
+                y += 0.5;
+                x += 0.5;
+                z += 0.5;
+                lavaSpeedZ = -lavaSpeedFront;
+                break;
+            case WEST:
+                frontState = pos.west();
+                xSpeed = -speed;
+                y += 0.5;
+                z += 0.5;
+                lavaSpeedX = -lavaSpeedFront;
+                break;
+        }
+
+        boolean waterlogged = worldIn.getBlockState(frontState).is(Blocks.WATER);
+
         if (waterlogged) {
             for (int i = 1; i < 7; i++) {
                 if (worldIn.isEmptyBlock(pos.above(i))) {
-                    worldIn.addParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE, x, y, z, 0.0D, 0.07D, 0.0D);
+                    worldIn.addParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE, x, y, z, xSpeed, ySpeed, zSpeed);
                 }
             }
-            worldIn.addAlwaysVisibleParticle(ParticleTypes.BUBBLE_COLUMN_UP, x, y, z, 0.0D, 0.04D, 0.0D);
-            worldIn.addAlwaysVisibleParticle(ParticleTypes.BUBBLE_COLUMN_UP, x + (double)rand.nextFloat(), y + (double)rand.nextFloat(), z + (double)rand.nextFloat(), 0.0D, 0.04D, 0.0D);
+            worldIn.addAlwaysVisibleParticle(ParticleTypes.BUBBLE_COLUMN_UP, x, y, z, xSpeed, ySpeed/2, zSpeed);
+            worldIn.addAlwaysVisibleParticle(ParticleTypes.BUBBLE_COLUMN_UP, x + (double)rand.nextFloat(), y + (double)rand.nextFloat(), z + (double)rand.nextFloat(), xSpeed, ySpeed/2, zSpeed);
             if (rand.nextInt(200) == 0) {
                 worldIn.playLocalSound(x, y, z, SoundEvents.BUBBLE_COLUMN_UPWARDS_AMBIENT, SoundSource.BLOCKS, 0.2F + rand.nextFloat() * 0.2F, 0.9F + rand.nextFloat() * 0.15F, false);
             }
         } else {
-            worldIn.addParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE, x, y, z, 0.0D, 0.07D, 0.0D);
+            worldIn.addParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE, x, y, z, xSpeed, ySpeed, zSpeed);
             if (rand.nextInt(5) == 0) {
                 for (int i = 0; i < rand.nextInt(1) + 1; i++) {
-                    worldIn.addParticle(ParticleTypes.LAVA, (double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D, rand.nextFloat() / 2.0F, 5.0E-5D, rand.nextFloat() / 2.0F);
+                    worldIn.addParticle(ParticleTypes.LAVA, x, y, z, rand.nextFloat() / lavaSpeedX, rand.nextFloat() / lavaSpeedY, rand.nextFloat() / lavaSpeedZ);
                 }
             }
         }
+
+
+
+
     }
 
     @Override

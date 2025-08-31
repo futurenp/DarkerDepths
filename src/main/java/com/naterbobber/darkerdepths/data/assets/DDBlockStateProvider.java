@@ -23,6 +23,7 @@ public class DDBlockStateProvider extends BlockStateProvider {
         simpleItem(DDItems.GLOW_GRIME);
         simpleItem(DDItems.GLOWSHROOM_CAP);
         simpleItem(DDItems.FORSAKEN_BRONZE_SCRAP);
+        simpleItem(DDItems.FORSAKEN_BRONZE_INGOT);
 
         simpleBlockWithItem(DDBlocks.AMBER_BLOCK);
         logBlockWithItem(DDBlocks.ARID_DEEPSLATE);
@@ -31,6 +32,7 @@ public class DDBlockStateProvider extends BlockStateProvider {
         simpleBlockWithItem(DDBlocks.LIVING_CRYSTAL);
         logBlockWithItem(DDBlocks.POROUS_PETRIFIED_LOG);
         simpleBlockWithItem(DDBlocks.ASH_BLOCK);
+        simpleBlockWithItem(DDBlocks.FORSAKEN_BRONZE_BLOCK);
 
         crossBlockWithItem(DDBlocks.MOSSY_SPROUTS);
         crossBlockWithItem(DDBlocks.DRY_SPROUTS);

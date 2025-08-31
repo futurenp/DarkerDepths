@@ -30,7 +30,7 @@ public class CatacombsArchaeologyProcessor extends StructureProcessor {
         BlockState placeholderState = relativeBlockInfo.state();
         ResourceLocation lootTableId = null;
 
-        if (placeholderState.is(Blocks.SAND) && Math.random() > .85) {
+        if (placeholderState.is(Blocks.SAND) && Math.random() > .875) {
             lootTableId = ResourceLocation.fromNamespaceAndPath("darkerdepths", "archaeology/catacombs/standard");
         }
 

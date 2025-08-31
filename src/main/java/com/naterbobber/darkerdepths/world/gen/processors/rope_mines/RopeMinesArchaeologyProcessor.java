@@ -30,7 +30,7 @@ public class RopeMinesArchaeologyProcessor extends StructureProcessor {
         BlockState placeholderState = relativeBlockInfo.state();
         ResourceLocation lootTableId = null;
 
-        if (placeholderState.is(Blocks.SAND) && Math.random() > .965) {
+        if (placeholderState.is(Blocks.SAND) && Math.random() > .95) {
             lootTableId = ResourceLocation.fromNamespaceAndPath("darkerdepths", "archaeology/catacombs/standard");
         }
 

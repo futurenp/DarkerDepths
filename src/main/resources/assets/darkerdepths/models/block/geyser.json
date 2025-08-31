@@ -2,7 +2,7 @@
   "parent": "block/cube_bottom_top",
   "textures": {
     "top": "darkerdepths:block/geyser_top",
-    "bottom": "darkerdepths:block/geyser",
+    "bottom": "darkerdepths:block/darkslate_top",
     "side": "darkerdepths:block/geyser"
   }
 }

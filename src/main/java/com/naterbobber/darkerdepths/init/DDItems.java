@@ -28,6 +28,7 @@ public class DDItems {
     public static final RegistryObject<Item> AMBER = createSimpleItem("amber");
     public static final RegistryObject<Item> VOID_SOUL_REQUIEM = createSimpleItem("void_soul_requiem");
     public static final RegistryObject<Item> FORSAKEN_BRONZE_SCRAP = createSimpleItem("forsaken_bronze_scrap");
+    public static final RegistryObject<Item> FORSAKEN_BRONZE_INGOT = createSimpleItem("forsaken_bronze_ingot");
     public static final RegistryObject<Item> STILETTO = ITEMS.register("stiletto",
             () -> new StilettoItem(2, -1.6F, new Item.Properties()));
     public static final RegistryObject<Item> VOID_SOUL_TORCH = ITEMS.register("void_soul_torch",

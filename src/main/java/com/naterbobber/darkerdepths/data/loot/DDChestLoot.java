@@ -66,7 +66,7 @@ public class DDChestLoot implements LootTableSubProvider {
 
         LootTable.Builder catacombs_chest_treasure = LootTable.lootTable()
                 .withPool(LootPool.lootPool()
-                        .setRolls(UniformGenerator.between(4.0F, 8.0F))
+                        .setRolls(UniformGenerator.between(5.0F, 10.0F))
                         .add(LootItem.lootTableItem(DDItems.AMBER.get()).setWeight(5)
                                 .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 4.0F))))
                         .add(LootItem.lootTableItem(DDItems.ROPE.get()).setWeight(3)

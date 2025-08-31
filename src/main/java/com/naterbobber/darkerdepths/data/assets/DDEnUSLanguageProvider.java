@@ -25,6 +25,7 @@ public class DDEnUSLanguageProvider extends LanguageProvider {
         add(DDItems.PETRIFIED_CHEST_BOAT.get(), "Petrified Boat with Chest");
         add(DDItems.AMBER.get(), "Amber");
         add(DDItems.FORSAKEN_BRONZE_SCRAP.get(), "Forsaken Bronze Scrap");
+        add(DDItems.FORSAKEN_BRONZE_INGOT.get(), "Forsaken Bronze Ingot");
 
         // Blocks
         add(DDBlocks.VOID_SOUL_JAR.get(), "Void Soul Jar");
@@ -145,6 +146,7 @@ public class DDEnUSLanguageProvider extends LanguageProvider {
         add(DDBlocks.LIVING_CRYSTAL.get(), "Living Crystal");
         add(DDBlocks.DEAD_LIVING_CRYSTAL.get(), "Dead Living Crystal");
         add(DDBlocks.TOMB.get(), "Tomb");
+        add(DDBlocks.FORSAKEN_BRONZE_BLOCK.get(), "Block of Forsaken Bronze");
         add(DDBlocks.PARANOIA_ALTAR.get(), "Paranoia Altar");
         add(DDBlocks.VOID_SOUL_TORCH.get(), "Void Soul Torch");
         add(DDBlocks.GLOWSHROOM_HEART.get(), "Glowshroom Heart");

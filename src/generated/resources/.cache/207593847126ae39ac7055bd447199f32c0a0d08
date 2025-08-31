@@ -1,4 +1,4 @@
-// 1.20.1	2025-08-27T11:02:17.9214959	Block States: darkerdepths
+// 1.20.1	2025-08-31T01:25:54.9192214	Block States: darkerdepths
 2a9859a7500ed9a1940849e5db8741eb4e132509 assets/darkerdepths/blockstates/amber_block.json
 c13ff2deecd0684f70c52eb2bf4013ff009056cb assets/darkerdepths/blockstates/aridrock.json
 665632eb3766609df42f994531d5627b486d66f6 assets/darkerdepths/blockstates/aridrock_bricks.json
@@ -35,6 +35,7 @@ f73a6443f6d80aaf7a15d479cb1505534364d98f assets/darkerdepths/blockstates/darksla
 5bf832e4dddb00c4fccbd3c6b04c7816908c146a assets/darkerdepths/blockstates/duskrock_slab.json
 c5fdf0d383832319549bcb49b19b6da966094799 assets/darkerdepths/blockstates/duskrock_stairs.json
 308b24b5cf034959bcd555e8f970e72fe34f2aac assets/darkerdepths/blockstates/duskrock_wall.json
+d0193f87afd792bc787caa1ab4a569831dde8111 assets/darkerdepths/blockstates/forsaken_bronze_block.json
 18056033265dd514e20596c58bca7fd70d0425c7 assets/darkerdepths/blockstates/glowshroom_block.json
 06e676bd12882b22d37080541d67a8d8d3f7e5b3 assets/darkerdepths/blockstates/glowshroom_stem.json
 a20753750692e68cd598c7b6914ecdec99016874 assets/darkerdepths/blockstates/grimestone.json
@@ -142,6 +143,7 @@ a2cb7ef510fd6eeeddadc13590e68d57eaa5eaf0 assets/darkerdepths/models/block/duskro
 86a5537d032757b00dbf20d6ef227665833cc583 assets/darkerdepths/models/block/duskrock_wall_post.json
 ccddc805a27587a9da7578d5c101203fe6acb654 assets/darkerdepths/models/block/duskrock_wall_side.json
 15c7c06d32e7a3272f065f7e8379828102ab724f assets/darkerdepths/models/block/duskrock_wall_side_tall.json
+c80233f5ebb38abdf9e0b11f718c76bd349f398e assets/darkerdepths/models/block/forsaken_bronze_block.json
 77f41a51291c440fd80900332e015d7d311a9e65 assets/darkerdepths/models/block/glowshroom_block.json
 b0be08e9aa19b948c45a2b1a8d66dfa1563ec3e4 assets/darkerdepths/models/block/glowshroom_stem.json
 22075f6421422e42c60712d8c7f513d6c514ca6c assets/darkerdepths/models/block/glowshroom_stem_horizontal.json
@@ -264,6 +266,8 @@ da4c789ea249cb6588c577cf4ebc4c0e7d74c52d assets/darkerdepths/models/item/duskroc
 94b2d8b1b1a77b404bacbdd7e90b7108796253a7 assets/darkerdepths/models/item/duskrock_slab.json
 27f717ab9f446c2b6b4a44596822e0ceac17fd18 assets/darkerdepths/models/item/duskrock_stairs.json
 eedf4ea02dae34734ee30a77f7c708d15fe4305e assets/darkerdepths/models/item/duskrock_wall.json
+1addc244fe526201d9961be26ca5059aa3bcc488 assets/darkerdepths/models/item/forsaken_bronze_block.json
+841f083d3463b4a1933b3e670264df0917aa41d2 assets/darkerdepths/models/item/forsaken_bronze_ingot.json
 3ce857bf3a8831b540ef50bfe529276a5832e1bc assets/darkerdepths/models/item/forsaken_bronze_scrap.json
 dc4fb02e251e030a5bb7e2985876d6b0730682d4 assets/darkerdepths/models/item/glowshroom_block.json
 77e167b247a4bf59d1bc5d882ca004f0fd019b87 assets/darkerdepths/models/item/glowshroom_cap.json

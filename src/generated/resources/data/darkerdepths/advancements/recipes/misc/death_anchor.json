@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_forsaken_bronze_scrap": {
+    "has_forsaken_bronze_ingot": {
       "conditions": {
         "items": [
           {
             "items": [
-              "darkerdepths:forsaken_bronze_scrap"
+              "darkerdepths:forsaken_bronze_ingot"
             ]
           }
         ]
@@ -22,7 +22,7 @@
   },
   "requirements": [
     [
-      "has_forsaken_bronze_scrap",
+      "has_forsaken_bronze_ingot",
       "has_the_recipe"
     ]
   ],

@@ -96,7 +96,10 @@ public class DDRecipeProvider extends RecipeProvider {
         chiseled(consumer, DDBlocks.POLISHED_GRIMESTONE_SLAB.get().asItem(), DDBlocks.CHISELED_GRIMESTONE_BRICKS.get().asItem());
 
         threeXthree(consumer, DDBlocks.AMBER_BLOCK.get(), DDItems.AMBER.get());
+        threeXthree(consumer, DDBlocks.FORSAKEN_BRONZE_BLOCK.get(), DDItems.FORSAKEN_BRONZE_INGOT.get());
+
         shaplessOne(consumer, DDItems.AMBER.get(), DDBlocks.AMBER_BLOCK.get().asItem(), 9);
+        shaplessOne(consumer, DDItems.FORSAKEN_BRONZE_INGOT.get(), DDBlocks.FORSAKEN_BRONZE_BLOCK.get().asItem(), 9);
 
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.BUILDING_BLOCKS, DDBlocks.POROUS_PETRIFIED_LOG.get())
@@ -294,6 +297,15 @@ public class DDRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_petrified_planks", has(DDBlocks.PETRIFIED_PLANKS.get()))
                 .save(consumer);
 
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, DDItems.FORSAKEN_BRONZE_INGOT.get())
+                .requires(DDItems.FORSAKEN_BRONZE_SCRAP.get())
+                .requires(Items.COPPER_INGOT)
+                .requires(Items.COPPER_INGOT)
+                .requires(Items.COPPER_INGOT)
+                .requires(Items.COPPER_INGOT)
+                .unlockedBy("has_forsaken_bronze_scrap", has(DDItems.FORSAKEN_BRONZE_SCRAP.get()))
+                .save(consumer,DarkerDepths.id("forsaken_bronze_ingot_from_scrap"));
+
         stonecutterResultFromBase(consumer, DDBlocks.CHISELED_DARKSLATE_BRICKS.get(), DDBlocks.DARKSLATE.get());
         stonecutterResultFromBase(consumer, DDBlocks.CHISELED_ARIDROCK_BRICKS.get(), DDBlocks.ARIDROCK.get());
         stonecutterResultFromBase(consumer, DDBlocks.CHISELED_DUSKROCK_BRICKS.get(), DDBlocks.DUSKROCK.get());
@@ -421,35 +433,35 @@ public class DDRecipeProvider extends RecipeProvider {
 
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.MISC, DDBlocks.DEATH_ANCHOR.get().asItem())
-                .define('B', DDItems.FORSAKEN_BRONZE_SCRAP.get())
+                .define('B', DDItems.FORSAKEN_BRONZE_INGOT.get())
                 .define('D', DDBlocks.DUSKROCK.get().asItem())
                 .define('O', Blocks.OBSIDIAN.asItem())
                 .define('R', DDItems.VOID_SOUL_REQUIEM.get())
                 .pattern("BBB")
                 .pattern("DRD")
                 .pattern("DOD")
-                .unlockedBy("has_forsaken_bronze_scrap", has(DDItems.FORSAKEN_BRONZE_SCRAP.get()))
+                .unlockedBy("has_forsaken_bronze_ingot", has(DDItems.FORSAKEN_BRONZE_INGOT.get()))
                 .save(consumer);
 
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.MISC, DDBlocks.TOMB.get().asItem())
-                .define('B', DDItems.FORSAKEN_BRONZE_SCRAP.get())
+                .define('B', DDItems.FORSAKEN_BRONZE_INGOT.get())
                 .define('D', DDBlocks.DUSKROCK.get().asItem())
                 .define('S', DDBlocks.DARKSLATE.get().asItem())
                 .pattern(" B ")
                 .pattern("DDD")
                 .pattern("SSS")
-                .unlockedBy("has_forsaken_bronze_scrap", has(DDItems.FORSAKEN_BRONZE_SCRAP.get()))
+                .unlockedBy("has_forsaken_bronze_ingot", has(DDItems.FORSAKEN_BRONZE_INGOT.get()))
                 .save(consumer);
 
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.COMBAT, DDItems.STILETTO.get())
-                .define('B', DDItems.FORSAKEN_BRONZE_SCRAP.get())
+                .define('B', DDItems.FORSAKEN_BRONZE_INGOT.get())
                 .define('S', Items.STICK)
                 .pattern("B")
                 .pattern("B")
                 .pattern("S")
-                .unlockedBy("has_forsaken_bronze_scrap", has(DDItems.FORSAKEN_BRONZE_SCRAP.get()))
+                .unlockedBy("has_forsaken_bronze_ingot", has(DDItems.FORSAKEN_BRONZE_INGOT.get()))
                 .save(consumer);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, DDBlocks.SKULL_WALL.get(), 4)

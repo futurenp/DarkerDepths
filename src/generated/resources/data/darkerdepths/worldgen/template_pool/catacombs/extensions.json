@@ -57,6 +57,15 @@
     {
       "element": {
         "element_type": "minecraft:single_pool_element",
+        "location": "darkerdepths:catacombs/hallway_large_3",
+        "processors": "darkerdepths:catacombs_processor",
+        "projection": "rigid"
+      },
+      "weight": 50
+    },
+    {
+      "element": {
+        "element_type": "minecraft:single_pool_element",
         "location": "darkerdepths:catacombs/room_1",
         "processors": "darkerdepths:catacombs_processor",
         "projection": "rigid"
