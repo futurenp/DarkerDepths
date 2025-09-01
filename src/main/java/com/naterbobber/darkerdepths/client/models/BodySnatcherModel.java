@@ -2,7 +2,7 @@ package com.naterbobber.darkerdepths.client.models;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.naterbobber.darkerdepths.entities.BodySnatcher;
+import com.naterbobber.darkerdepths.entities.BodySnatcherEntity;
 import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
@@ -15,7 +15,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class BodySnatcherModel<T extends BodySnatcher> extends HierarchicalModel<T> {
+public class BodySnatcherModel<T extends BodySnatcherEntity> extends HierarchicalModel<T> {
     private final ModelPart root;
     private final ModelPart body;
     private final ModelPart head;

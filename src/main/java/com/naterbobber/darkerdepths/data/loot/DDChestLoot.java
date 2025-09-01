@@ -66,7 +66,7 @@ public class DDChestLoot implements LootTableSubProvider {
 
         LootTable.Builder catacombs_chest_treasure = LootTable.lootTable()
                 .withPool(LootPool.lootPool()
-                        .setRolls(UniformGenerator.between(5.0F, 10.0F))
+                        .setRolls(UniformGenerator.between(8.0F, 10.0F))
                         .add(LootItem.lootTableItem(DDItems.AMBER.get()).setWeight(5)
                                 .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 4.0F))))
                         .add(LootItem.lootTableItem(DDItems.ROPE.get()).setWeight(3)
@@ -84,9 +84,9 @@ public class DDChestLoot implements LootTableSubProvider {
                         .add(LootItem.lootTableItem(Items.DIAMOND).setWeight(4)
                                 .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 3.0F))))
                         .add(LootItem.lootTableItem(DDItems.FORSAKEN_BRONZE_SCRAP.get()).setWeight(2))
-                        .add(LootItem.lootTableItem(DDItems.VOID_SOUL_REQUIEM.get()).setWeight(4))
+                        .add(LootItem.lootTableItem(DDItems.VOID_SOUL_REQUIEM.get()).setWeight(3))
                         .add(LootItem.lootTableItem(DDBlocks.CRYSTAL_MELON.get().asItem()).setWeight(5))
-                        .add(LootItem.lootTableItem(Items.BOOK).setWeight(8)
+                        .add(LootItem.lootTableItem(Items.BOOK).setWeight(5)
                                 .apply(new EnchantRandomlyFunction.Builder()))
                 );
         consumer.accept(CATACOMBS_CHEST_TREASURE, catacombs_chest_treasure);

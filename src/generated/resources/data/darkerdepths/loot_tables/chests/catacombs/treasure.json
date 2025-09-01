@@ -143,13 +143,13 @@
             }
           ],
           "name": "minecraft:book",
-          "weight": 8
+          "weight": 5
         }
       ],
       "rolls": {
         "type": "minecraft:uniform",
         "max": 10.0,
-        "min": 5.0
+        "min": 8.0
       }
     }
   ],

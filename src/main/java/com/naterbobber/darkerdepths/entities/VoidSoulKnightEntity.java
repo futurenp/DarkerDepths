@@ -9,6 +9,7 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.Difficulty;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -118,17 +119,24 @@ public class VoidSoulKnightEntity extends Monster implements GeoEntity {
     public void tick() {
         super.tick();
 
-        if(!this.isDormant()) {
-            return;
-        }
-
         if(dormantCheckCooldown != 0) {
             this.dormantCheckCooldown--;
             return;
         }
 
+        boolean isPeaceful = level().getDifficulty() == Difficulty.PEACEFUL;
+
+        if(!this.isDormant()) {
+            if(isPeaceful) {
+                setDormant(true);
+            }
+            return;
+        }
+
         this.setYBodyRot(this.getYRot());
         this.setYHeadRot(this.getYRot());
+
+        if(isPeaceful) return;
 
         if (!this.level().isClientSide) {
             Player player = this.level().getNearestPlayer(this, 8);
@@ -177,6 +185,16 @@ public class VoidSoulKnightEntity extends Monster implements GeoEntity {
 
             return true;
         }
+        return false;
+    }
+
+    @Override
+    protected boolean shouldDespawnInPeaceful() {
+        return false;
+    }
+
+    @Override
+    public boolean isPushable() {
         return false;
     }
 
@@ -277,5 +295,9 @@ public class VoidSoulKnightEntity extends Monster implements GeoEntity {
     public void setDormant(boolean dormant) {
         this.entityData.set(IS_DORMANT, dormant);
         this.setNoAi(dormant);
+    }
+
+    public boolean removeWhenFarAway(double pDistanceToClosestPlayer) {
+        return false;
     }
 }

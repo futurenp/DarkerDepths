@@ -4,15 +4,11 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import com.mojang.datafixers.util.Pair;
-import com.naterbobber.darkerdepths.entities.BodySnatcher;
+import com.naterbobber.darkerdepths.entities.BodySnatcherEntity;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.Brain;
-import net.minecraft.world.entity.ai.behavior.AnimalMakeLove;
-import net.minecraft.world.entity.ai.behavior.BabyFollowAdult;
-import net.minecraft.world.entity.ai.behavior.CountDownCooldownTicks;
 import net.minecraft.world.entity.ai.behavior.DoNothing;
-import net.minecraft.world.entity.ai.behavior.FollowTemptation;
 import net.minecraft.world.entity.ai.behavior.LookAtTargetSink;
 import net.minecraft.world.entity.ai.behavior.MoveToTargetSink;
 import net.minecraft.world.entity.ai.behavior.RandomLookAround;
@@ -21,19 +17,14 @@ import net.minecraft.world.entity.ai.behavior.RunOne;
 import net.minecraft.world.entity.ai.behavior.SetEntityLookTargetSometimes;
 import net.minecraft.world.entity.ai.behavior.SetWalkTargetFromLookTarget;
 import net.minecraft.world.entity.ai.behavior.Swim;
-import net.minecraft.world.entity.ai.behavior.declarative.BehaviorBuilder;
 import net.minecraft.world.entity.ai.memory.MemoryModuleType;
 import net.minecraft.world.entity.ai.memory.MemoryStatus;
 import net.minecraft.world.entity.ai.sensing.Sensor;
 import net.minecraft.world.entity.ai.sensing.SensorType;
-import net.minecraft.world.entity.animal.camel.Camel;
-import net.minecraft.world.entity.animal.camel.CamelAi;
 import net.minecraft.world.entity.schedule.Activity;
 
-import java.util.function.Predicate;
-
 public class BodySnatcherAi {
-    private static final ImmutableList<SensorType<? extends Sensor<? super BodySnatcher>>> SENSOR_TYPES = ImmutableList.of(
+    private static final ImmutableList<SensorType<? extends Sensor<? super BodySnatcherEntity>>> SENSOR_TYPES = ImmutableList.of(
             SensorType.NEAREST_LIVING_ENTITIES,
             SensorType.HURT_BY
     );
@@ -52,11 +43,11 @@ public class BodySnatcherAi {
             MemoryModuleType.NEAREST_VISIBLE_ADULT
     );
 
-    public static Brain.Provider<BodySnatcher> brainProvider() {
+    public static Brain.Provider<BodySnatcherEntity> brainProvider() {
         return Brain.provider(MEMORY_TYPES, SENSOR_TYPES);
     }
 
-    public static Brain<?> makeBrain(Brain<BodySnatcher> brain) {
+    public static Brain<?> makeBrain(Brain<BodySnatcherEntity> brain) {
         initCoreActivity(brain);
         initIdleActivity(brain);
         brain.setCoreActivities(ImmutableSet.of(Activity.CORE));
@@ -65,7 +56,7 @@ public class BodySnatcherAi {
         return brain;
     }
 
-    private static void initCoreActivity(Brain<BodySnatcher> brain) {
+    private static void initCoreActivity(Brain<BodySnatcherEntity> brain) {
         brain.addActivity(Activity.CORE, 0, ImmutableList.of(
                 new Swim(0.8F),
                 new LookAtTargetSink(45, 90),
@@ -73,7 +64,7 @@ public class BodySnatcherAi {
         ));
     }
 
-    private static void initIdleActivity(Brain<BodySnatcher> brain) {
+    private static void initIdleActivity(Brain<BodySnatcherEntity> brain) {
         brain.addActivity(Activity.IDLE, ImmutableList.of(
                 Pair.of(0, SetEntityLookTargetSometimes.create(EntityType.PLAYER, 6.0F, UniformInt.of(30, 60))),
                 Pair.of(1, new RandomLookAround(UniformInt.of(150, 250), 30.0F, 0.0F, 0.0F)),
@@ -87,7 +78,7 @@ public class BodySnatcherAi {
         ));
     }
 
-    public static void updateActivity(BodySnatcher entity) {
+    public static void updateActivity(BodySnatcherEntity entity) {
         entity.getBrain().setActiveActivityToFirstValid(ImmutableList.of(Activity.IDLE));
     }
 }

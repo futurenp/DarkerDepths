@@ -33,6 +33,7 @@ public class DDBlockStateProvider extends BlockStateProvider {
         logBlockWithItem(DDBlocks.POROUS_PETRIFIED_LOG);
         simpleBlockWithItem(DDBlocks.ASH_BLOCK);
         simpleBlockWithItem(DDBlocks.FORSAKEN_BRONZE_BLOCK);
+        simpleBlock(DDBlocks.MOB_PLACER.get());
 
         crossBlockWithItem(DDBlocks.MOSSY_SPROUTS);
         crossBlockWithItem(DDBlocks.DRY_SPROUTS);

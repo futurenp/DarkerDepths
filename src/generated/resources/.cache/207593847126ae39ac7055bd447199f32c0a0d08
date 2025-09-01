@@ -1,4 +1,4 @@
-// 1.20.1	2025-08-31T01:25:54.9192214	Block States: darkerdepths
+// 1.20.1	2025-09-01T12:43:15.6001431	Block States: darkerdepths
 2a9859a7500ed9a1940849e5db8741eb4e132509 assets/darkerdepths/blockstates/amber_block.json
 c13ff2deecd0684f70c52eb2bf4013ff009056cb assets/darkerdepths/blockstates/aridrock.json
 665632eb3766609df42f994531d5627b486d66f6 assets/darkerdepths/blockstates/aridrock_bricks.json
@@ -47,6 +47,7 @@ ec4a10774ea2a18898a4947ecd4ef3fe6d3b5101 assets/darkerdepths/blockstates/grimest
 2e265d4f0f2cd95986427f8c9537f418fa69511c assets/darkerdepths/blockstates/grimestone_stairs.json
 57a17382ec83db08c9190548fd9f0b3a4e2d820e assets/darkerdepths/blockstates/grimestone_wall.json
 f26174ea62fab626403bb4a6ebb2d6880228ae59 assets/darkerdepths/blockstates/living_crystal.json
+ea807c53f6367b6381b72669306aa9e554a0f1e8 assets/darkerdepths/blockstates/mob_placer.json
 d5235ece2bda26ba6c4bd4e6ed3e2ebb37458302 assets/darkerdepths/blockstates/mossy_sprouts.json
 f6500ce1501e60da6634c096281e290d4ddb46ae assets/darkerdepths/blockstates/petrified_button.json
 fe1b9cbbc1c8e587b632cdbe99e6fc87d0a0d7da assets/darkerdepths/blockstates/petrified_door.json
@@ -167,6 +168,7 @@ f7cc0ddb41b07e701641e243aa1e2c47b7dd628c assets/darkerdepths/models/block/grimes
 11f72a1d0f4856d6cc34c46b5e379fe60813494e assets/darkerdepths/models/block/grimestone_wall_side.json
 893b600d342948d703733fdc2a68335b6f47da3f assets/darkerdepths/models/block/grimestone_wall_side_tall.json
 4358fd9dadc16a5a52aaeaf6e3f1db6790541b96 assets/darkerdepths/models/block/living_crystal.json
+9f3e3432121ba215f91394fe5a6104f19c17b04c assets/darkerdepths/models/block/mob_placer.json
 75099ba4f96773076dc0284d087ebf26e528df30 assets/darkerdepths/models/block/mossy_sprouts.json
 033f20c08ea4569b5fd30f4356a06b35b5d6150a assets/darkerdepths/models/block/petrified_button.json
 809bc56cbd355184e97a88e3dcfbaa2dbc8b060c assets/darkerdepths/models/block/petrified_button_pressed.json

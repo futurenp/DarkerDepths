@@ -1,13 +1,13 @@
-package com.naterbobber.darkerdepths.data.assets;
+package com.naterbobber.darkerdepths.data.assets.lang;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.init.*;
 import net.minecraft.data.PackOutput;
 import net.minecraftforge.common.data.LanguageProvider;
 
-public class DDEnUSLanguageProvider extends LanguageProvider {
-    public DDEnUSLanguageProvider(PackOutput output, String language) {
-        super(output, DarkerDepths.MODID, language);
+public class DDLanguageProviderENUS extends LanguageProvider {
+    public DDLanguageProviderENUS(PackOutput output) {
+        super(output, DarkerDepths.MODID, "en_us");
     }
 
     @Override
