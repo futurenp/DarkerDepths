@@ -44,6 +44,10 @@ public class DDEntityLoot extends VanillaEntityLoot {
         this.add(DDEntityTypes.VOID_SOUL_KNIGHT.get(),
                 LootTable.lootTable()
         );
+
+        this.add(DDEntityTypes.VOID_SOUL.get(),
+                LootTable.lootTable()
+        );
     }
 
     @Override

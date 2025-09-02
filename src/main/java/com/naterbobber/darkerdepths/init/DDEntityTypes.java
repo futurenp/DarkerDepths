@@ -24,5 +24,6 @@ public class DDEntityTypes {
             () -> EntityType.Builder.of(BodySnatcherEntity::new, MobCategory.MONSTER).sized(0.5F, 1.0F).clientTrackingRange(8).updateInterval(2).build(DarkerDepths.id("body_snatcher").toString()));
     public static final RegistryObject<EntityType<VoidSoulKnightEntity>> VOID_SOUL_KNIGHT = ENTITY_TYPES.register("void_soul_knight",
             () -> EntityType.Builder.of(VoidSoulKnightEntity::new, MobCategory.MONSTER).sized(0.8F, 2.75F).clientTrackingRange(8).updateInterval(2).build(DarkerDepths.id("void_soul_knight").toString()));
-
+    public static final RegistryObject<EntityType<VoidSoulEntity>> VOID_SOUL = ENTITY_TYPES.register("void_soul",
+            () -> EntityType.Builder.of(VoidSoulEntity::new, MobCategory.CREATURE).sized(0.4F, .4F).clientTrackingRange(8).updateInterval(2).build(DarkerDepths.id("void_soul").toString()));
 }

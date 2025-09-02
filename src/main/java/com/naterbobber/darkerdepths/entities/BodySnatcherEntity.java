@@ -9,14 +9,14 @@ import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.Brain;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.animal.IronGolem;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.level.Level;
 
-public class BodySnatcherEntity extends Monster {
+public class BodySnatcherEntity extends VoidSoulMonster {
 
     public BodySnatcherEntity(EntityType<? extends Monster> type, Level level) {
         super(type, level);
+        this.setOrbHeight(0.35);
     }
 
     public static AttributeSupplier.Builder createAttributes() {
@@ -51,11 +51,6 @@ public class BodySnatcherEntity extends Monster {
         this.level().getProfiler().pop();
         super.customServerAiStep();
     }
-
-//    @Override
-//    protected int calculateFallDamage(float pFallDistance, float pDamageMultiplier) {
-//        return 0;
-//    }
 
     @Override
     public boolean causeFallDamage(float pFallDistance, float pMultiplier, DamageSource pSource) {

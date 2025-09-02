@@ -1,0 +1,82 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.void_soul",
+				"texture_width": 32,
+				"texture_height": 32,
+				"visible_bounds_width": 2,
+				"visible_bounds_height": 2.5,
+				"visible_bounds_offset": [0, 0.75, 0]
+			},
+			"bones": [
+				{
+					"name": "orb",
+					"pivot": [0, 3.5, 0]
+				},
+				{
+					"name": "outer",
+					"parent": "orb",
+					"pivot": [0, 3.5, 0]
+				},
+				{
+					"name": "face_west",
+					"parent": "outer",
+					"pivot": [0, 3.5, 0],
+					"cubes": [
+						{"origin": [2.5, 1, -2.5], "size": [0, 5, 5], "uv": [5, 0]}
+					]
+				},
+				{
+					"name": "face_north",
+					"parent": "outer",
+					"pivot": [0, 3.5, 0],
+					"cubes": [
+						{"origin": [-2.5, 1, -2.5], "size": [5, 5, 0], "uv": [5, 5]}
+					]
+				},
+				{
+					"name": "face_south",
+					"parent": "outer",
+					"pivot": [0, 3.5, 0],
+					"cubes": [
+						{"origin": [-2.5, 1, 2.5], "size": [5, 5, 0], "uv": [5, 5]}
+					]
+				},
+				{
+					"name": "face_east",
+					"parent": "outer",
+					"pivot": [0, 3.5, 0],
+					"cubes": [
+						{"origin": [-2.5, 1, -2.5], "size": [0, 5, 5], "uv": [0, 0]}
+					]
+				},
+				{
+					"name": "face_top",
+					"parent": "outer",
+					"pivot": [0, 3.5, 0],
+					"cubes": [
+						{"origin": [-2.5, 6, -2.5], "size": [5, 0, 5], "uv": [0, 0]}
+					]
+				},
+				{
+					"name": "face_bottom",
+					"parent": "outer",
+					"pivot": [0, 3.5, 0],
+					"cubes": [
+						{"origin": [-2.5, 1, -2.5], "size": [5, 0, 5], "uv": [0, 0]}
+					]
+				},
+				{
+					"name": "inner",
+					"parent": "orb",
+					"pivot": [0, 3.5, 0],
+					"cubes": [
+						{"origin": [-1.5, 2, -1.5], "size": [3, 3, 3], "uv": [0, 10]}
+					]
+				}
+			]
+		}
+	]
+}

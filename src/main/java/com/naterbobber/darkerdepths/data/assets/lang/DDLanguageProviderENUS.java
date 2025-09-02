@@ -16,6 +16,7 @@ public class DDLanguageProviderENUS extends LanguageProvider {
         add(DDItems.GLOWSHROOM_MONSTER_SPAWN_EGG.get(), "Glowshroom Monster Spawn Egg");
         add(DDItems.BODY_SNATCHER_SPAWN_EGG.get(), "Body Snatcher Spawn Egg");
         add(DDItems.VOID_SOUL_KNIGHT_SPAWN_EGG.get(), "Void Soul Knight Spawn Egg");
+        add(DDItems.VOID_SOUL_SPAWN_EGG.get(), "Void Soul Spawn Egg");
         add(DDItems.GLOWSHROOM_CAP.get(), "Glowshroom Cap");
         add(DDItems.GLOW_GRIME.get(), "Glow Grime");
         add(DDItems.STILETTO.get(), "Stiletto");

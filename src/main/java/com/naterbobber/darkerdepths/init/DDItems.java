@@ -39,6 +39,8 @@ public class DDItems {
             () -> new ForgeSpawnEggItem(DDEntityTypes.BODY_SNATCHER, 5058592, 16757097, new Item.Properties()));
     public static final RegistryObject<Item> VOID_SOUL_KNIGHT_SPAWN_EGG = ITEMS.register("void_soul_knight_spawn_egg",
             () -> new ForgeSpawnEggItem(DDEntityTypes.VOID_SOUL_KNIGHT, 3542019, 16757097, new Item.Properties()));
+    public static final RegistryObject<Item> VOID_SOUL_SPAWN_EGG = ITEMS.register("void_soul_spawn_egg",
+            () -> new ForgeSpawnEggItem(DDEntityTypes.VOID_SOUL, 0, 16749117, new Item.Properties()));
     public static final RegistryObject<Item> PETRIFIED_BOAT = ITEMS.register("petrified_boat",
             () -> new DDBoatItem(false, PetrifiedBoatEntity.BoatType.PETRIFIED, new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> PETRIFIED_CHEST_BOAT = ITEMS.register("petrified_chest_boat",

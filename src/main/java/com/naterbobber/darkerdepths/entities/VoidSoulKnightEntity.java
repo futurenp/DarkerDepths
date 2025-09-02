@@ -28,7 +28,7 @@ import software.bernie.geckolib.core.animation.*;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
-public class VoidSoulKnightEntity extends Monster implements GeoEntity {
+public class VoidSoulKnightEntity extends VoidSoulMonster implements GeoEntity {
     private int attackTick;
     private int firstDamageDelay;
     private int secondDamageDelay;
@@ -60,6 +60,7 @@ public class VoidSoulKnightEntity extends Monster implements GeoEntity {
         super(type, world);
         this.xpReward = 40;
         this.moveControl = new ConfigurableMoveControl(this, 10.0F);
+        this.setOrbHeight(1.5);
     }
 
     @Override
