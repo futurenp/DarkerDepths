@@ -20,26 +20,26 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
 
 public class DeadLivingCrystalBlock extends Block {
-    private static final IntegerProperty CRACKED = DDBlockStateProperties.CRACKED;
+    private static final IntegerProperty CRYSTAL_GROWTH_LEVEL = DDBlockStateProperties.CRYSTAL_GROWTH_LEVEL;
 
     public DeadLivingCrystalBlock(Properties properties) {
         super(properties);
-        this.registerDefaultState(this.stateDefinition.any().setValue(CRACKED, 0));
+        this.registerDefaultState(this.stateDefinition.any().setValue(CRYSTAL_GROWTH_LEVEL, 0));
     }
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(CRACKED);
+        builder.add(CRYSTAL_GROWTH_LEVEL);
     }
 
     @Override
     public InteractionResult use(BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand hand, BlockHitResult hitResult) {
         ItemStack itemStack = player.getItemInHand(hand);
-        if (itemStack.is(Items.DIAMOND) && blockState.getValue(CRACKED) == 0) {
+        if (itemStack.is(Items.DIAMOND) && blockState.getValue(CRYSTAL_GROWTH_LEVEL) == 0) {
             if (!player.getAbilities().instabuild) {
                 itemStack.shrink(1);
             }
-            level.setBlock(blockPos, blockState.setValue(CRACKED, 3), 2);
+            level.setBlock(blockPos, blockState.setValue(CRYSTAL_GROWTH_LEVEL, 1), 2);
             level.playSound(null, blockPos, SoundEvents.TURTLE_EGG_CRACK, SoundSource.BLOCKS, 1.0F, 1.0F);
             level.scheduleTick(blockPos, this, 1);
             return InteractionResult.SUCCESS;
@@ -49,12 +49,12 @@ public class DeadLivingCrystalBlock extends Block {
 
     @Override
     public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource randomSource) {
-        int cracked = state.getValue(CRACKED);
-        if (cracked > 1) {
-            level.setBlock(pos, state.setValue(CRACKED, cracked - 1), 2);
+        int cracked = state.getValue(CRYSTAL_GROWTH_LEVEL);
+        if (cracked < 3 && cracked != 0) {
+            level.setBlock(pos, state.setValue(CRYSTAL_GROWTH_LEVEL, cracked + 1), 2);
             level.playSound(null, pos, SoundEvents.TURTLE_EGG_CRACK, SoundSource.BLOCKS, 1.0F, 1.0F);
             level.scheduleTick(pos, this, 20);
-        } else if (cracked == 1) {
+        } else if (cracked == 3) {
             level.setBlockAndUpdate(pos, DDBlocks.LIVING_CRYSTAL.get().defaultBlockState());
             level.playSound(null, pos, SoundEvents.DEEPSLATE_PLACE, SoundSource.BLOCKS, 1.0F, 1.0F);
         }

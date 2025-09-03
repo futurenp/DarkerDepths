@@ -76,6 +76,8 @@ public class VoidSoulEntity extends PathfinderMob implements GeoEntity {
             this.isCaptured = true;
             this.kill();
 
+            playSound(SoundEvents.BOTTLE_FILL_DRAGONBREATH);
+
             ItemStack voidSoulJarStack = new ItemStack(DDBlocks.VOID_SOUL_JAR.get());
 
             if (!pPlayer.getAbilities().instabuild) {
@@ -109,6 +111,19 @@ public class VoidSoulEntity extends PathfinderMob implements GeoEntity {
                         this.getBbWidth() / 2.0,
                         this.getBbHeight() / 2.0,
                         this.getBbWidth() / 2.0,
+                        0.05
+                );
+            } else {
+                ParticleOptions particle = ParticleTypes.SMOKE;
+                serverLevel.sendParticles(
+                        particle,
+                        this.getX(),
+                        this.getY(0.5),
+                        this.getZ(),
+                        5,
+                        this.getBbWidth() / 3.0,
+                        this.getBbHeight() / 3.0,
+                        this.getBbWidth() / 3.0,
                         0.05
                 );
             }

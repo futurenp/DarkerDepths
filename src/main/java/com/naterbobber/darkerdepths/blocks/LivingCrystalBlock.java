@@ -23,32 +23,39 @@ public class LivingCrystalBlock extends Block {
 
     @Override
     public void randomTick(BlockState state, ServerLevel level, BlockPos blockPos, RandomSource random) {
-        if (random.nextInt(5) == 0) {
-            Direction direction = Direction.getRandom(random);
-            BlockPos blockpos = blockPos.relative(direction);
-            BlockState blockstate = level.getBlockState(blockpos);
-            BlockState block = null;
-            int relativeCrack;
-            if (blockstate.is(BlockTags.DIAMOND_ORES)) {
-                block = DDBlocks.LIVING_CRYSTAL.get().defaultBlockState();
-                level.playSound(null, blockpos, SoundEvents.AMETHYST_BLOCK_PLACE, SoundSource.BLOCKS, 1.0F, 1.0F);
-                level.levelEvent(2001, blockpos, getId(blockstate));
-            } else if (blockstate.is(Blocks.MELON)) {
-                block = DDBlocks.STONE_MELON.get().defaultBlockState();
-            } else if (blockstate.is(DDBlocks.STONE_MELON.get()) && (relativeCrack = blockstate.getValue(DDBlockStateProperties.CRYSTAL_LEVEL)) <= 2) {
-                if (relativeCrack == 2) {
-                    block = DDBlocks.CRYSTAL_MELON.get().defaultBlockState();
-                    level.setBlock(blockPos, DDBlocks.DEAD_LIVING_CRYSTAL.get().defaultBlockState(), 2);
-                } else {
-                    block = DDBlocks.STONE_MELON.get().defaultBlockState().setValue(DDBlockStateProperties.CRYSTAL_LEVEL, relativeCrack + 1);
-                }
-                level.playSound(null, blockpos, SoundEvents.AMETHYST_BLOCK_PLACE, SoundSource.BLOCKS, 1.0F, 1.0F);
-                level.levelEvent(2001, blockpos, getId(blockstate));
+        if (random.nextInt(5) != 0) {
+            return;
+        }
+
+        BlockPos blockpos = blockPos.relative(Direction.getRandom(random));
+        BlockState blockstate = level.getBlockState(blockpos);
+        BlockState block = null;
+
+        if (blockstate.is(BlockTags.DIAMOND_ORES)) {
+            block = DDBlocks.DEAD_LIVING_CRYSTAL.get().defaultBlockState().setValue(DDBlockStateProperties.CRYSTAL_GROWTH_LEVEL, 1);
+            level.playSound(null, blockpos, SoundEvents.AMETHYST_BLOCK_PLACE, SoundSource.BLOCKS, 1.0F, 1.0F);
+            level.levelEvent(2001, blockpos, getId(blockstate));
+        }
+        else if (blockstate.is(Blocks.MELON)) {
+            block = DDBlocks.STONE_MELON.get().defaultBlockState();
+        }
+        else if (blockstate.is(DDBlocks.STONE_MELON.get())) {
+            int stoneMelonGrowthLevel = blockstate.getValue(DDBlockStateProperties.MELON_GROWTH_LEVEL);
+
+            if (stoneMelonGrowthLevel >= 2) {
+                block = DDBlocks.CRYSTAL_MELON.get().defaultBlockState();
+                level.setBlock(blockPos, DDBlocks.DEAD_LIVING_CRYSTAL.get().defaultBlockState(), 2);
+            }
+            else {
+                block = blockstate.setValue(DDBlockStateProperties.MELON_GROWTH_LEVEL, stoneMelonGrowthLevel + 1);
             }
 
-            if (block != null) {
-                level.setBlockAndUpdate(blockpos, block);
-            }
+            level.playSound(null, blockpos, SoundEvents.AMETHYST_BLOCK_PLACE, SoundSource.BLOCKS, 1.0F, 1.0F);
+            level.levelEvent(2001, blockpos, getId(blockstate));
+        }
+
+        if (block != null) {
+            level.setBlockAndUpdate(blockpos, block);
         }
     }
 

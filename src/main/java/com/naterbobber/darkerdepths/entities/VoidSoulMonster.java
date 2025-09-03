@@ -4,6 +4,8 @@ import com.naterbobber.darkerdepths.init.DDEntityTypes;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -41,7 +43,6 @@ public class VoidSoulMonster extends Monster {
                     this.getBbWidth() / 2.0,
                     0.05
             );
-
             Entity voidSoulEntity = DDEntityTypes.VOID_SOUL.get().create(serverLevel);
             if (voidSoulEntity != null) {
                 voidSoulEntity.moveTo(this.getX(), this.getY() + this.getOrbHeight(), this.getZ(), this.getYRot(), this.getXRot());

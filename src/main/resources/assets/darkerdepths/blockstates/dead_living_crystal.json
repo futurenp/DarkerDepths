@@ -1,15 +1,15 @@
 {
   "variants": {
-    "cracked=3": {
+    "crystal_growth_level=1": {
       "model": "darkerdepths:block/growing_living_crystal_1"
     },
-    "cracked=2": {
+    "crystal_growth_level=2": {
       "model": "darkerdepths:block/growing_living_crystal_2"
     },
-    "cracked=1": {
+    "crystal_growth_level=3": {
       "model": "darkerdepths:block/growing_living_crystal_3"
     },
-    "cracked=0": {
+    "crystal_growth_level=0": {
       "model": "darkerdepths:block/dead_living_crystal"
     }
   }
