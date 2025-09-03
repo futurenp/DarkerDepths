@@ -14,7 +14,7 @@ public class ParanoiaAltarItemModel extends GeoModel<ParanoiaAltarItem> {
 
     @Override
     public ResourceLocation getTextureResource(ParanoiaAltarItem paranoiaAltarItem) {
-        return DarkerDepths.id("textures/block/paranoia_altar.png");
+        return DarkerDepths.id("textures/entity/paranoia_altar/paranoia_altar.png");
     }
 
     @Override

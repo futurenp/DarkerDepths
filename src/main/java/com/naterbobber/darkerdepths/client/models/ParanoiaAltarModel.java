@@ -16,9 +16,9 @@ public class ParanoiaAltarModel extends GeoModel<ParanoiaAltarBlockEntity> {
 	@Override
 	public ResourceLocation getTextureResource(ParanoiaAltarBlockEntity paranoiaAltarBlockEntity) {
 		if(paranoiaAltarBlockEntity.getBlockState().getValue(ParanoiaAltarBlock.LOCKED)){
-			return DarkerDepths.id("textures/block/paranoia_altar_locked.png");
+			return DarkerDepths.id("textures/entity/paranoia_altar/paranoia_altar_locked.png");
 		} else {
-			return DarkerDepths.id("textures/block/paranoia_altar.png");
+			return DarkerDepths.id("textures/entity/paranoia_altar/paranoia_altar.png");
 		}
 	}
 

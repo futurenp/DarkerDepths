@@ -14,7 +14,7 @@ public class TombModel extends GeoModel<TombBlockEntity> {
 
 	@Override
 	public ResourceLocation getTextureResource(TombBlockEntity tombBlockEntity) {
-		return DarkerDepths.id("textures/block/tomb.png");
+		return DarkerDepths.id("textures/entity/tomb/red.png");
 	}
 
 	@Override
