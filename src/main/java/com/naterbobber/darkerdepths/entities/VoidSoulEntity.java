@@ -1,6 +1,7 @@
 package com.naterbobber.darkerdepths.entities;
 
 import com.naterbobber.darkerdepths.init.DDBlocks;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
@@ -24,6 +25,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoEntity;
@@ -53,8 +55,13 @@ public class VoidSoulEntity extends PathfinderMob implements GeoEntity {
 
     @Override
     protected void registerGoals() {
+        //avoid doesnt work rn
         this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Player.class, 8.0F, 1.2D, 1.5D));
         this.goalSelector.addGoal(2, new WaterAvoidingRandomFlyingGoal(this, 1.0D));
+    }
+
+    @Override
+    protected void checkFallDamage(double pY, boolean pOnGround, BlockState pState, BlockPos pPos) {
     }
 
     @Override
@@ -199,10 +206,6 @@ public class VoidSoulEntity extends PathfinderMob implements GeoEntity {
     }
 
     protected <E extends VoidSoulEntity> PlayState predicate(final AnimationState<E> event) {
-//        if (event.isMoving()) {
-//            return event.setAndContinue(WALK_ANIM);
-//        }
-
         return event.setAndContinue(IDLE_ANIM);
     }
 
@@ -212,6 +215,10 @@ public class VoidSoulEntity extends PathfinderMob implements GeoEntity {
     }
 
     public boolean removeWhenFarAway(double pDistanceToClosestPlayer) {
+        return false;
+    }
+
+    public boolean isOnFire() {
         return false;
     }
 }

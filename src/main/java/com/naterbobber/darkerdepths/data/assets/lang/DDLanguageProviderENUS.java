@@ -155,6 +155,7 @@ public class DDLanguageProviderENUS extends LanguageProvider {
         add(DDEntityTypes.GLOWSHROOM_MONSTER.get(), "Glowshroom Monster");
         add(DDEntityTypes.BODY_SNATCHER.get(), "Body Snatcher");
         add(DDEntityTypes.VOID_SOUL_KNIGHT.get(), "Void Soul Knight");
+        add(DDEntityTypes.VOID_SOUL.get(), "Void Soul");
         add(DDEntityTypes.PETRIFIED_BOAT.get(), "Petrified Boat");
         add(DDEntityTypes.PETRIFIED_CHEST_BOAT.get(), "Boat with Chest");
 
