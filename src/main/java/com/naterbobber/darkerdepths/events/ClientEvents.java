@@ -2,15 +2,13 @@ package com.naterbobber.darkerdepths.events;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.client.DynamicLightHandler;
-import com.naterbobber.darkerdepths.client.models.BodySnatcherModel;
 import com.naterbobber.darkerdepths.client.models.GlowshroomCapModel;
 import com.naterbobber.darkerdepths.client.models.GlowshroomMonsterModel;
-import com.naterbobber.darkerdepths.client.models.VoidSoulKnightModel;
 import com.naterbobber.darkerdepths.client.particle.DrippingParticle;
 import com.naterbobber.darkerdepths.client.particle.VoidSoulFlameParticle;
 import com.naterbobber.darkerdepths.client.particle.VoidSoulFlameSmokeParticle;
 import com.naterbobber.darkerdepths.client.particle.VoidSoulParticle;
-import com.naterbobber.darkerdepths.client.renderers.*;
+import com.naterbobber.darkerdepths.client.render.renderers.*;
 import com.naterbobber.darkerdepths.init.*;
 import com.naterbobber.darkerdepths.item.StilettoItem;
 import net.minecraft.client.Minecraft;
@@ -57,7 +55,6 @@ public class ClientEvents {
         event.registerLayerDefinition(new ModelLayerLocation(DarkerDepths.id("chest_boat/petrified"), "main"), ChestBoatModel::createBodyModel);
         event.registerLayerDefinition(DDModelLayers.GLOWSHROOM_MONSTER, GlowshroomMonsterModel::createBodyLayer);
         event.registerLayerDefinition(DDModelLayers.GLOWSHROOM_CAP, GlowshroomCapModel::createBodyLayer);
-        event.registerLayerDefinition(DDModelLayers.BODY_SNATCHER, BodySnatcherModel::createBodyLayer);
     }
 
     @SubscribeEvent(priority = EventPriority.LOWEST)

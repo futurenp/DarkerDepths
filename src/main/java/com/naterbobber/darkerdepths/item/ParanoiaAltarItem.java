@@ -1,6 +1,6 @@
 package com.naterbobber.darkerdepths.item;
 
-import com.naterbobber.darkerdepths.client.renderers.ParanoiaAltarItemRenderer;
+import com.naterbobber.darkerdepths.client.render.renderers.ParanoiaAltarItemRenderer;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.level.block.Block;

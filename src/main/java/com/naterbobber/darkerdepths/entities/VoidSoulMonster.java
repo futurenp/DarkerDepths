@@ -4,8 +4,6 @@ import com.naterbobber.darkerdepths.init.DDEntityTypes;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -13,7 +11,7 @@ import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.gameevent.GameEvent;
 
-public class VoidSoulMonster extends Monster {
+public abstract class VoidSoulMonster extends Monster {
     private double orbHeight = 0;
     protected VoidSoulMonster(EntityType<? extends Monster> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);

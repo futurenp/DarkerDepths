@@ -1,4 +1,4 @@
-package com.naterbobber.darkerdepths.client.renderers;
+package com.naterbobber.darkerdepths.client.render.renderers;
 
 import com.naterbobber.darkerdepths.client.models.ParanoiaAltarItemModel;
 import com.naterbobber.darkerdepths.item.ParanoiaAltarItem;

@@ -18,54 +18,9 @@
 				{
 					"name": "outer",
 					"parent": "orb",
-					"pivot": [0, 3.5, 0]
-				},
-				{
-					"name": "face_west",
-					"parent": "outer",
 					"pivot": [0, 3.5, 0],
 					"cubes": [
-						{"origin": [2.5, 1, -2.5], "size": [0, 5, 5], "uv": [5, 0]}
-					]
-				},
-				{
-					"name": "face_north",
-					"parent": "outer",
-					"pivot": [0, 3.5, 0],
-					"cubes": [
-						{"origin": [-2.5, 1, -2.5], "size": [5, 5, 0], "uv": [5, 5]}
-					]
-				},
-				{
-					"name": "face_south",
-					"parent": "outer",
-					"pivot": [0, 3.5, 0],
-					"cubes": [
-						{"origin": [-2.5, 1, 2.5], "size": [5, 5, 0], "uv": [5, 5]}
-					]
-				},
-				{
-					"name": "face_east",
-					"parent": "outer",
-					"pivot": [0, 3.5, 0],
-					"cubes": [
-						{"origin": [-2.5, 1, -2.5], "size": [0, 5, 5], "uv": [0, 0]}
-					]
-				},
-				{
-					"name": "face_top",
-					"parent": "outer",
-					"pivot": [0, 3.5, 0],
-					"cubes": [
-						{"origin": [-2.5, 6, -2.5], "size": [5, 0, 5], "uv": [0, 0]}
-					]
-				},
-				{
-					"name": "face_bottom",
-					"parent": "outer",
-					"pivot": [0, 3.5, 0],
-					"cubes": [
-						{"origin": [-2.5, 1, -2.5], "size": [5, 0, 5], "uv": [0, 0]}
+						{"origin": [-2.5, 1, -2.5], "size": [5, 5, 5], "inflate": -5, "uv": [0, 0]}
 					]
 				},
 				{

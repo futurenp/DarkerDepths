@@ -1,4 +1,4 @@
-package com.naterbobber.darkerdepths.client.renderers;
+package com.naterbobber.darkerdepths.client.render.renderers;
 
 import com.mojang.datafixers.util.Pair;
 import com.naterbobber.darkerdepths.DarkerDepths;

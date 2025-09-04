@@ -1,4 +1,4 @@
-package com.naterbobber.darkerdepths.client.renderers;
+package com.naterbobber.darkerdepths.client.render.renderers;
 
 import com.naterbobber.darkerdepths.blocks.blockentities.ParanoiaAltarBlockEntity;
 import com.naterbobber.darkerdepths.client.models.ParanoiaAltarModel;

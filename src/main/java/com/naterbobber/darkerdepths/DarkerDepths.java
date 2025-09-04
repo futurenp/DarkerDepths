@@ -1,6 +1,8 @@
 package com.naterbobber.darkerdepths;
 
 import com.naterbobber.darkerdepths.config.DDConfigs;
+import com.naterbobber.darkerdepths.init.DDMemoryModuleTypes;
+import com.naterbobber.darkerdepths.init.DDActivities;
 import com.naterbobber.darkerdepths.events.MiscEvents;
 import com.naterbobber.darkerdepths.events.MobEvents;
 import com.naterbobber.darkerdepths.init.*;
@@ -42,6 +44,8 @@ public class DarkerDepths {
         DDSoundEvents.SOUND_EVENTS.register(modEventBus);
         DDStructures.STRUCTURE_TYPES.register(modEventBus);
         DDStructureProcessorTypes.STRUCTURE_PROCESSORS.register(modEventBus);
+        DDActivities.ACTIVITIES.register(modEventBus);
+        DDMemoryModuleTypes.MEMORY_MODULE_TYPES.register(modEventBus);
 
         eventBus.register(this);
         eventBus.register(new MobEvents());

@@ -1,5 +1,6 @@
 package com.naterbobber.darkerdepths.entities;
 
+import com.naterbobber.darkerdepths.entities.goals.ConfigurableRandomFlyingGoal;
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
@@ -18,7 +19,6 @@ import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.control.FlyingMoveControl;
 import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
-import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomFlyingGoal;
 import net.minecraft.world.entity.ai.navigation.FlyingPathNavigation;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import net.minecraft.world.entity.player.Player;
@@ -53,11 +53,17 @@ public class VoidSoulEntity extends PathfinderMob implements GeoEntity {
         this.setNoGravity(true);
     }
 
+    public static AttributeSupplier.Builder createAttributes() {
+        return Mob.createMobAttributes()
+                .add(Attributes.MOVEMENT_SPEED, MOVEMENT_SPEED)
+                .add(Attributes.FLYING_SPEED, MOVEMENT_SPEED);
+    }
+
     @Override
     protected void registerGoals() {
         //avoid doesnt work rn
         this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Player.class, 8.0F, 1.2D, 1.5D));
-        this.goalSelector.addGoal(2, new WaterAvoidingRandomFlyingGoal(this, 1.0D));
+        this.goalSelector.addGoal(2, new ConfigurableRandomFlyingGoal(this, 1.0D, 10));
     }
 
     @Override
@@ -167,12 +173,6 @@ public class VoidSoulEntity extends PathfinderMob implements GeoEntity {
     @Override
     protected SoundEvent getAmbientSound() {
         return SoundEvents.ALLAY_AMBIENT_WITHOUT_ITEM;
-    }
-
-    public static AttributeSupplier.Builder createAttributes() {
-        return Mob.createMobAttributes()
-                .add(Attributes.MOVEMENT_SPEED, MOVEMENT_SPEED)
-                .add(Attributes.FLYING_SPEED, MOVEMENT_SPEED);
     }
 
     @Override

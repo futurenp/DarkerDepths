@@ -1,9 +1,8 @@
-package com.naterbobber.darkerdepths.client.renderers;
+package com.naterbobber.darkerdepths.client.render.renderers;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.client.models.GlowshroomMonsterModel;
-import com.naterbobber.darkerdepths.client.renderers.layers.BodySnatcherLayer;
-import com.naterbobber.darkerdepths.client.renderers.layers.GlowshroomMonsterLayer;
+import com.naterbobber.darkerdepths.client.render.renderers.layers.GlowshroomMonsterLayer;
 import com.naterbobber.darkerdepths.entities.GlowshroomMonsterEntity;
 import com.naterbobber.darkerdepths.init.DDModelLayers;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
