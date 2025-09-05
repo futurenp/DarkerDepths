@@ -11,6 +11,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
@@ -55,8 +56,11 @@ public class DarkerDepths {
     private void commonSetup(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
             DDVanillaIntegration.init();
-            DDNetwork.init();
         });
+    }
+
+    private void clientSetup(final FMLClientSetupEvent event) {
+        DDNetwork.init();
     }
 
     public static ResourceLocation id(String name) {

@@ -2,8 +2,10 @@ package com.naterbobber.darkerdepths.client.render.renderers;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.client.models.VoidSoulKnightModel;
-import com.naterbobber.darkerdepths.client.render.renderers.layers.DDEmissiveGeckoLayer;
+import com.naterbobber.darkerdepths.client.render.DDRenderTypes;
+import com.naterbobber.darkerdepths.client.render.renderers.layers.DDCustomRenderTypeLayer;
 import com.naterbobber.darkerdepths.entities.VoidSoulKnightEntity;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
@@ -13,6 +15,6 @@ public class VoidSoulKnightRenderer extends GeoEntityRenderer<VoidSoulKnightEnti
 
     public VoidSoulKnightRenderer(EntityRendererProvider.Context context) {
         super(context, new VoidSoulKnightModel());
-        this.addRenderLayer(new DDEmissiveGeckoLayer<>(this, TEXTURE));
+        this.addRenderLayer(new DDCustomRenderTypeLayer<>(this, RenderType.eyes(TEXTURE)));
     }
 }

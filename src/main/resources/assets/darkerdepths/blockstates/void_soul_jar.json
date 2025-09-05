@@ -1,19 +1,5 @@
 {
   "variants": {
-    "facing=east": {
-      "model": "darkerdepths:block/void_soul_jar",
-      "y": 90
-    },
-    "facing=west": {
-      "model": "darkerdepths:block/void_soul_jar",
-      "y": 270
-    },
-    "facing=north": {
-      "model": "darkerdepths:block/void_soul_jar"
-    },
-    "facing=south": {
-      "model": "darkerdepths:block/void_soul_jar",
-      "y": 180
-    }
+    "": { "model": "darkerdepths:block/void_soul_jar" }
   }
 }

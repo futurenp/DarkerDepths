@@ -49,6 +49,8 @@ public class DDItems {
             () -> new SignItem(new Item.Properties().stacksTo(16), DDBlocks.PETRIFIED_SIGN.get(), DDBlocks.PETRIFIED_WALL_SIGN.get()));
     public static final RegistryObject<Item> PARANOIA_ALTAR = ITEMS.register("paranoia_altar",
             () -> new ParanoiaAltarItem(DDBlocks.PARANOIA_ALTAR.get(), new Item.Properties()));
+    public static final RegistryObject<Item> VOID_SOUL_JAR = ITEMS.register("void_soul_jar",
+            () -> new VoidSoulJarItem(DDBlocks.VOID_SOUL_JAR.get(), new Item.Properties()));
 
     private static RegistryObject<Item> createSimpleItem(String name) {
         return ITEMS.register(name, () -> new Item(new Item.Properties()));

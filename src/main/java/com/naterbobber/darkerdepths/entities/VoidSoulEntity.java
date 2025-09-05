@@ -2,6 +2,7 @@ package com.naterbobber.darkerdepths.entities;
 
 import com.naterbobber.darkerdepths.entities.goals.ConfigurableRandomFlyingGoal;
 import com.naterbobber.darkerdepths.init.DDBlocks;
+import com.naterbobber.darkerdepths.init.DDItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
@@ -39,8 +40,8 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 
 public class VoidSoulEntity extends PathfinderMob implements GeoEntity {
     private boolean isCaptured = false;
+    private boolean isPersistent = false;
     private int lifetime = 20 * 60;
-    private static final double MOVEMENT_SPEED = 0.35F;
 
     protected static final RawAnimation IDLE_ANIM = RawAnimation.begin().thenLoop("idle");
 
@@ -55,8 +56,8 @@ public class VoidSoulEntity extends PathfinderMob implements GeoEntity {
 
     public static AttributeSupplier.Builder createAttributes() {
         return Mob.createMobAttributes()
-                .add(Attributes.MOVEMENT_SPEED, MOVEMENT_SPEED)
-                .add(Attributes.FLYING_SPEED, MOVEMENT_SPEED);
+                .add(Attributes.MOVEMENT_SPEED, 0.35F)
+                .add(Attributes.FLYING_SPEED, 0.35F);
     }
 
     @Override
@@ -67,18 +68,31 @@ public class VoidSoulEntity extends PathfinderMob implements GeoEntity {
     }
 
     @Override
-    protected void checkFallDamage(double pY, boolean pOnGround, BlockState pState, BlockPos pPos) {
+    public void tick() {
+        super.tick();
     }
 
     @Override
     public void aiStep() {
         super.aiStep();
 
-        if (this.lifetime > 0) {
-            this.lifetime--;
-        } else {
-            kill();
+        if(!isPersistent) {
+            if (this.lifetime > 0) {
+                this.lifetime--;
+            } else {
+                kill();
+            }
         }
+
+    }
+
+    @Override
+    protected PathNavigation createNavigation(Level pLevel) {
+        FlyingPathNavigation flyingpathnavigation = new FlyingPathNavigation(this, pLevel);
+        flyingpathnavigation.setCanOpenDoors(false);
+        flyingpathnavigation.setCanFloat(true);
+        flyingpathnavigation.setCanPassDoors(true);
+        return flyingpathnavigation;
     }
 
     @Override
@@ -101,6 +115,34 @@ public class VoidSoulEntity extends PathfinderMob implements GeoEntity {
                 pPlayer.setItemInHand(pHand, voidSoulJarStack);
             } else if (!pPlayer.getInventory().add(voidSoulJarStack)) {
                 pPlayer.drop(voidSoulJarStack, false);
+            }
+
+            return InteractionResult.sidedSuccess(this.level().isClientSide());
+        }
+
+        else if(itemStack.is(DDItems.AMBER.get()) && !isPersistent()) {
+            this.setPersistent(true);
+
+            playSound(SoundEvents.AMETHYST_BLOCK_RESONATE);
+
+            if(!this.level().isClientSide()) {
+                ServerLevel serverLevel = (ServerLevel) this.level();
+                ParticleOptions particle = ParticleTypes.WAX_ON;
+                serverLevel.sendParticles(
+                        particle,
+                        this.getX(),
+                        this.getY(0.5),
+                        this.getZ(),
+                        7,
+                        this.getBbWidth() / 2.0,
+                        this.getBbHeight() / 2.0,
+                        this.getBbWidth() / 2.0,
+                        0.05
+                );
+            }
+
+            if (!pPlayer.getAbilities().instabuild) {
+                itemStack.shrink(1);
             }
 
             return InteractionResult.sidedSuccess(this.level().isClientSide());
@@ -146,19 +188,12 @@ public class VoidSoulEntity extends PathfinderMob implements GeoEntity {
     }
 
     @Override
-    public void tick() {
-        super.tick();
+    protected void checkFallDamage(double pY, boolean pOnGround, BlockState pState, BlockPos pPos) {
     }
 
     @Override
     protected boolean shouldDespawnInPeaceful() {
         return false;
-    }
-
-    @Nullable
-    @Override
-    protected SoundEvent getDeathSound() {
-        return null;
     }
 
     @Override
@@ -169,35 +204,28 @@ public class VoidSoulEntity extends PathfinderMob implements GeoEntity {
         return false;
     }
 
-    @Nullable
     @Override
-    protected SoundEvent getAmbientSound() {
-        return SoundEvents.ALLAY_AMBIENT_WITHOUT_ITEM;
+    public void handleDamageEvent(DamageSource pDamageSource) {}
+
+    @Override
+    public void knockback(double pStrength, double pX, double pZ) {}
+
+
+    public boolean removeWhenFarAway(double pDistanceToClosestPlayer) {
+        return false;
     }
 
-    @Override
-    protected PathNavigation createNavigation(Level pLevel) {
-        FlyingPathNavigation flyingpathnavigation = new FlyingPathNavigation(this, pLevel);
-        flyingpathnavigation.setCanOpenDoors(false);
-        flyingpathnavigation.setCanFloat(true);
-        flyingpathnavigation.setCanPassDoors(true);
-        return flyingpathnavigation;
+    public boolean isOnFire() {
+        return false;
     }
 
-    @Override
-    public void handleDamageEvent(DamageSource pDamageSource) {
-
+    public boolean isPersistent() {
+        return isPersistent;
     }
 
-    @Nullable
-    @Override
-    protected SoundEvent getHurtSound(DamageSource pDamageSource) {
-        return SoundEvents.EMPTY;
-    }
-
-    @Override
-    public void knockback(double pStrength, double pX, double pZ) {
-
+    public void setPersistent(boolean persistent) {
+        this.isPersistent = persistent;
+        this.setPersistenceRequired();
     }
 
     @Override
@@ -214,11 +242,21 @@ public class VoidSoulEntity extends PathfinderMob implements GeoEntity {
         return this.geoCache;
     }
 
-    public boolean removeWhenFarAway(double pDistanceToClosestPlayer) {
-        return false;
+    @Nullable
+    @Override
+    protected SoundEvent getDeathSound() {
+        return null;
     }
 
-    public boolean isOnFire() {
-        return false;
+    @Nullable
+    @Override
+    protected SoundEvent getHurtSound(DamageSource pDamageSource) {
+        return SoundEvents.EMPTY;
+    }
+
+    @Nullable
+    @Override
+    protected SoundEvent getAmbientSound() {
+        return SoundEvents.ALLAY_AMBIENT_WITHOUT_ITEM;
     }
 }

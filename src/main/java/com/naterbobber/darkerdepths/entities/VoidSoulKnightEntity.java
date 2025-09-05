@@ -35,12 +35,6 @@ public class VoidSoulKnightEntity extends VoidSoulMonster implements GeoEntity {
     private boolean firstAttackDone;
     private Entity attackTarget;
     private int dormantCheckCooldown = 0;
-    private static final double HEALTH = 80;
-    private static final double MOVEMENT_SPEED = .17;
-    private static final double ATTACK_DAMAGE = 10;
-    private static final double ATTACK_KNOCKBACK = 2;
-    private static final double KNOCKBACK_RESISTANCE = 0.85;
-    private static final double FOLLOW_RANGE = 32;
     private static final int PERSISTENCE = 20 * 30; // tick * seconds
 
     protected static final RawAnimation WALK_ANIM = RawAnimation.begin().thenLoop("move.walk");
@@ -61,6 +55,16 @@ public class VoidSoulKnightEntity extends VoidSoulMonster implements GeoEntity {
         this.xpReward = 40;
         this.moveControl = new ConfigurableMoveControl(this, 10.0F);
         this.setOrbHeight(1.5);
+    }
+
+    public static AttributeSupplier.Builder createAttributes() {
+        return Mob.createMobAttributes()
+                .add(Attributes.MAX_HEALTH, 80)
+                .add(Attributes.MOVEMENT_SPEED, .17)
+                .add(Attributes.ATTACK_DAMAGE, 10)
+                .add(Attributes.ATTACK_KNOCKBACK, 2)
+                .add(Attributes.KNOCKBACK_RESISTANCE, 0.85)
+                .add(Attributes.FOLLOW_RANGE, 32);
     }
 
     @Override
@@ -207,16 +211,6 @@ public class VoidSoulKnightEntity extends VoidSoulMonster implements GeoEntity {
     @Override
     protected SoundEvent getHurtSound(DamageSource source) {
         return SoundEvents.IRON_GOLEM_HURT;
-    }
-
-    public static AttributeSupplier.Builder createAttributes() {
-        return Mob.createMobAttributes()
-                .add(Attributes.MAX_HEALTH, HEALTH)
-                .add(Attributes.MOVEMENT_SPEED, MOVEMENT_SPEED)
-                .add(Attributes.ATTACK_KNOCKBACK, ATTACK_KNOCKBACK)
-                .add(Attributes.ATTACK_DAMAGE, ATTACK_DAMAGE)
-                .add(Attributes.KNOCKBACK_RESISTANCE, KNOCKBACK_RESISTANCE)
-                .add(Attributes.FOLLOW_RANGE, FOLLOW_RANGE);
     }
 
     @Override

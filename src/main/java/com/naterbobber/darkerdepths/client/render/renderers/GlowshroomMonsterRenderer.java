@@ -11,6 +11,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+@Deprecated
 @OnlyIn(Dist.CLIENT)
 public class GlowshroomMonsterRenderer extends MobRenderer<GlowshroomMonsterEntity, GlowshroomMonsterModel<GlowshroomMonsterEntity>> {
     public static final ResourceLocation TEXTURE = DarkerDepths.id("textures/entity/glowshroom_monster/glowshroom_monster.png");

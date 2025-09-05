@@ -16,7 +16,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-
+@Deprecated
 @OnlyIn(Dist.CLIENT)
 public class GlowshroomMonsterModel<T extends GlowshroomMonsterEntity> extends EntityModel<T> {
     private final ModelPart head;

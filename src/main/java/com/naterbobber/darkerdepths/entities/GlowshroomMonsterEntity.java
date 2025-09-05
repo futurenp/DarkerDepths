@@ -13,10 +13,12 @@ import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
 import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
+import net.minecraft.world.entity.ai.goal.MoveTowardsTargetGoal;
 import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ambient.Bat;
+import net.minecraft.world.entity.animal.IronGolem;
 import net.minecraft.world.entity.monster.Creeper;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
@@ -25,12 +27,6 @@ import org.jetbrains.annotations.Nullable;
 
 public class GlowshroomMonsterEntity extends Monster {
     private int attackTick;
-    private static final double HEALTH = 45;
-    private static final double MOVEMENT_SPEED = 0.45;
-    private static final double ATTACK_DAMAGE = 9;
-    private static final double ATTACK_KNOCKBACK = 1.3;
-    private static final double KNOCKBACK_RESISTANCE = 0.75;
-    private static final double FOLLOW_RANGE = 48;
 
     public GlowshroomMonsterEntity(EntityType<? extends Monster> type, Level world) {
         super(type, world);
@@ -38,13 +34,24 @@ public class GlowshroomMonsterEntity extends Monster {
         this.moveControl = new ConfigurableMoveControl(this, 12.0F);
     }
 
+    public static AttributeSupplier.Builder createAttributes() {
+        return Mob.createMobAttributes()
+                .add(Attributes.MAX_HEALTH, 40)
+                .add(Attributes.MOVEMENT_SPEED, 0.25)
+                .add(Attributes.ATTACK_KNOCKBACK, 1.3)
+                .add(Attributes.ATTACK_DAMAGE, 8)
+                .add(Attributes.KNOCKBACK_RESISTANCE, 0.75)
+                .add(Attributes.FOLLOW_RANGE, 48);
+    }
+
     @Override
     protected void registerGoals() {
-        this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 0.7D, true));
-        this.goalSelector.addGoal(7, new WaterAvoidingRandomStrollGoal(this, 0.5D));
-        this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
-        this.targetSelector.addGoal(2, new AttackMemoryTargetGoal<>(this, Player.class, 300, true));
-        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Mob.class, 10, false, false, (entity) -> !(entity instanceof Creeper) && !(entity instanceof GlowshroomMonsterEntity) && !(entity instanceof Bat)));
+        this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.25D, true));
+        this.goalSelector.addGoal(3, new MoveTowardsTargetGoal(this, 0.9, 48.0F));
+        this.goalSelector.addGoal(7, new WaterAvoidingRandomStrollGoal(this, 0.9D));
+        this.targetSelector.addGoal(2, new HurtByTargetGoal(this));
+        this.targetSelector.addGoal(4, new AttackMemoryTargetGoal<>(this, Player.class, 300, true));
+        this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, Mob.class, 10, false, false, (entity) -> !(entity instanceof Creeper) && !(entity instanceof GlowshroomMonsterEntity) && !(entity instanceof Bat)));
     }
 
     @Override
@@ -91,15 +98,5 @@ public class GlowshroomMonsterEntity extends Monster {
     @Override
     protected SoundEvent getHurtSound(DamageSource p_33034_) {
         return DDSoundEvents.ENTITY_GLOWSHROOM_MONSTER_HURT.get();
-    }
-
-    public static AttributeSupplier.Builder createAttributes() {
-        return Mob.createMobAttributes()
-                .add(Attributes.MAX_HEALTH, HEALTH)
-                .add(Attributes.MOVEMENT_SPEED, MOVEMENT_SPEED)
-                .add(Attributes.ATTACK_KNOCKBACK, ATTACK_KNOCKBACK)
-                .add(Attributes.ATTACK_DAMAGE, ATTACK_DAMAGE)
-                .add(Attributes.KNOCKBACK_RESISTANCE, KNOCKBACK_RESISTANCE)
-                .add(Attributes.FOLLOW_RANGE, FOLLOW_RANGE);
     }
 }

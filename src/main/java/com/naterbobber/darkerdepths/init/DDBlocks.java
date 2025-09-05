@@ -253,8 +253,8 @@ public class DDBlocks {
             () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(1.0f).sound(SoundType.AMETHYST).lightLevel(value -> 7)));
     public static final RegistryObject<Block> AMBER_CLUSTER = registerBlock("amber_cluster",
             () -> new AmethystClusterBlock(6, 3, BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(1.0f).sound(SoundType.SMALL_AMETHYST_BUD).lightLevel(value -> 7)));
-    public static final RegistryObject<Block> VOID_SOUL_JAR = registerBlock("void_soul_jar",
-            () -> new VoidSoulJarBlock(BlockBehaviour.Properties.of().strength(1.0f).sound(SoundType.GLASS).lightLevel(value -> 5)));
+    public static final RegistryObject<Block> VOID_SOUL_JAR = registerNoTabBlock("void_soul_jar",
+            () -> new VoidSoulJarBlock(BlockBehaviour.Properties.of().strength(0.8f).sound(SoundType.GLASS).lightLevel(value -> 5)));
     public static final RegistryObject<Block> DEATH_ANCHOR = registerBlock("death_anchor",
             () -> new DeathAnchorBlock(BlockBehaviour.Properties.of().strength(5.0F, 12.0F).sound(SoundType.NETHERITE_BLOCK).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> TOMB = registerBlock("tomb",

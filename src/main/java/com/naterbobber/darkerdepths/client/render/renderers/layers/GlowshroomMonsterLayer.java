@@ -9,6 +9,9 @@ import net.minecraft.client.renderer.entity.layers.EyesLayer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+
+@Deprecated
+//convert to geo model
 @OnlyIn(Dist.CLIENT)
 public class GlowshroomMonsterLayer extends EyesLayer<GlowshroomMonsterEntity, GlowshroomMonsterModel<GlowshroomMonsterEntity>> {
     private static final RenderType GLOWSHROOM_MONSTER = RenderType.eyes(DarkerDepths.id("textures/entity/glowshroom_monster/glowshroom_monster_glowmask.png"));

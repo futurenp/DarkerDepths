@@ -23,4 +23,6 @@ public class DDBlockEntityTypes {
             () -> BlockEntityType.Builder.of(ParanoiaAltarBlockEntity::new, DDBlocks.PARANOIA_ALTAR.get()).build(null));
     public static final RegistryObject<BlockEntityType<MobPlacerBlockEntity>> MOB_PLACER = BLOCK_ENTITIES.register("mob_placer",
             () -> BlockEntityType.Builder.of(MobPlacerBlockEntity::new, DDBlocks.MOB_PLACER.get()).build(null));
+    public static final RegistryObject<BlockEntityType<VoidSoulJarBlockEntity>> VOID_SOUL_JAR = BLOCK_ENTITIES.register("void_soul_jar",
+            () -> BlockEntityType.Builder.of(VoidSoulJarBlockEntity::new, DDBlocks.VOID_SOUL_JAR.get()).build(null));
 }
