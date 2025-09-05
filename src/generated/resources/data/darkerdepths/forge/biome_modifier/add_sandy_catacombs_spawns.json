@@ -3,10 +3,16 @@
   "biomes": "darkerdepths:sandy_catacombs",
   "spawners": [
     {
-      "type": "minecraft:spider",
+      "type": "minecraft:cave_spider",
       "maxCount": 4,
       "minCount": 2,
-      "weight": 100
+      "weight": 80
+    },
+    {
+      "type": "minecraft:skeleton",
+      "maxCount": 4,
+      "minCount": 1,
+      "weight": 50
     },
     {
       "type": "minecraft:enderman",

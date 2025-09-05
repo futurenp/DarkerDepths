@@ -72,6 +72,8 @@ public class DDRecipeProvider extends RecipeProvider {
         slabBlock(consumer, DDBlocks.GRIMESTONE_BRICKS_SLAB.get(), DDBlocks.GRIMESTONE_BRICKS.get().asItem());
         slabBlock(consumer, DDBlocks.PETRIFIED_SLAB.get(), DDBlocks.PETRIFIED_PLANKS.get().asItem());
 
+        pillarBlock(consumer, DDBlocks.ARIDROCK_PILLAR.get(), DDBlocks.POLISHED_ARIDROCK.get().asItem());
+
         wallBlock(consumer, DDBlocks.DARKSLATE_WALL.get(), DDBlocks.DARKSLATE.get().asItem());
         wallBlock(consumer, DDBlocks.ARIDROCK_WALL.get(), DDBlocks.ARIDROCK.get().asItem());
         wallBlock(consumer, DDBlocks.DUSKROCK_WALL.get(), DDBlocks.DUSKROCK.get().asItem());
@@ -367,6 +369,8 @@ public class DDRecipeProvider extends RecipeProvider {
         stonecutterResultFromBase(consumer, DDBlocks.DUSKROCK_BRICKS_WALL.get(), DDBlocks.DUSKROCK.get());
         stonecutterResultFromBase(consumer, DDBlocks.GRIMESTONE_BRICKS_WALL.get(), DDBlocks.GRIMESTONE.get());
 
+        stonecutterResultFromBase(consumer, DDBlocks.ARIDROCK_PILLAR.get(), DDBlocks.ARIDROCK.get());
+
         stonecutterResultFromBase(consumer, DDBlocks.DARKSLATE_BRICKS.get(), DDBlocks.POLISHED_DARKSLATE.get());
         stonecutterResultFromBase(consumer, DDBlocks.ARIDROCK_BRICKS.get(), DDBlocks.POLISHED_ARIDROCK.get());
         stonecutterResultFromBase(consumer, DDBlocks.DUSKROCK_BRICKS.get(), DDBlocks.POLISHED_DUSKROCK.get());
@@ -401,7 +405,7 @@ public class DDRecipeProvider extends RecipeProvider {
         stonecutterResultFromBase(consumer, DDBlocks.DUSKROCK_BRICKS_WALL.get(), DDBlocks.DUSKROCK_BRICKS.get());
         stonecutterResultFromBase(consumer, DDBlocks.GRIMESTONE_BRICKS_WALL.get(), DDBlocks.GRIMESTONE_BRICKS.get());
 
-
+        stonecutterResultFromBase(consumer, DDBlocks.ARIDROCK_PILLAR.get(), DDBlocks.POLISHED_ARIDROCK.get());
 
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.DECORATIONS, DDItems.ROPE.get(), 12)
@@ -555,6 +559,15 @@ public class DDRecipeProvider extends RecipeProvider {
                 .shaped(RecipeCategory.BUILDING_BLOCKS, result, 6)
                 .define('#', item)
                 .pattern("###")
+                .unlockedBy("has_" + BuiltInRegistries.ITEM.getKey(item).getPath(), has(item)).save(consumer);
+    }
+
+    private void pillarBlock(Consumer<FinishedRecipe> consumer, ItemLike result, Item item) {
+        ShapedRecipeBuilder
+                .shaped(RecipeCategory.BUILDING_BLOCKS, result, 2)
+                .define('#', item)
+                .pattern("#")
+                .pattern("#")
                 .unlockedBy("has_" + BuiltInRegistries.ITEM.getKey(item).getPath(), has(item)).save(consumer);
     }
 

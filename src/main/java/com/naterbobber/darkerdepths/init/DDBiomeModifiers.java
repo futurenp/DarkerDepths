@@ -75,7 +75,8 @@ public class DDBiomeModifiers {
         context.register(ADD_SANDY_CATACOMBS_SPAWNS, new ForgeBiomeModifiers.AddSpawnsBiomeModifier(
                 getBiome(context, DDBiomes.SANDY_CATACOMBS),
                 List.of(
-                        new MobSpawnSettings.SpawnerData(EntityType.SPIDER, 100, 2, 4),
+                        new MobSpawnSettings.SpawnerData(EntityType.CAVE_SPIDER, 80, 2, 4),
+                        new MobSpawnSettings.SpawnerData(EntityType.SKELETON, 50, 1, 4),
                         new MobSpawnSettings.SpawnerData(EntityType.ENDERMAN, 10, 1, 4),
                         new MobSpawnSettings.SpawnerData(EntityType.HUSK, 95, 2, 4),
                         new MobSpawnSettings.SpawnerData(DDEntityTypes.BODY_SNATCHER.get(), 30, 1, 3)
