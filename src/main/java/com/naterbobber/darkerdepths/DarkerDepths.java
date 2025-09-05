@@ -31,6 +31,7 @@ public class DarkerDepths {
         IEventBus modEventBus = context.getModEventBus();
         IEventBus eventBus = MinecraftForge.EVENT_BUS;
         modEventBus.addListener(this::commonSetup);
+        modEventBus.addListener(this::clientSetup);
 
         DDBlocks.BLOCKS.register(modEventBus);
         DDBlockEntityTypes.BLOCK_ENTITIES.register(modEventBus);

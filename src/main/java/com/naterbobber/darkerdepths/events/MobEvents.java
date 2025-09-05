@@ -125,7 +125,7 @@ public class MobEvents {
             }
 
             entity.teleportTo(newServer, teleportPos.getX() + 0.5D, teleportPos.getY(), teleportPos.getZ() + 0.5D, Set.of(), 0, 0);
-            entity.addEffect(new MobEffectInstance(DDMobEffects.SOUL_BINDING.get(), 200, 1, true, false));
+            entity.addEffect(new MobEffectInstance(DDMobEffects.SOUL_BINDING.get(), 200, 0, true, false));
 
             if (entity instanceof ServerPlayer serverPlayer) {
                 DDNetwork.INSTANCE.send(PacketDistributor.PLAYER.with(() -> serverPlayer), new SendDeathAnchorPacket());
