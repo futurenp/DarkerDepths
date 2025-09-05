@@ -6,6 +6,10 @@ import com.naterbobber.darkerdepths.init.DDItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -40,18 +44,19 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 
 public class VoidSoulEntity extends PathfinderMob implements GeoEntity {
     private boolean isCaptured = false;
-    private boolean isPersistent = false;
     private int lifetime = 20 * 60;
 
     protected static final RawAnimation IDLE_ANIM = RawAnimation.begin().thenLoop("idle");
-
     private final AnimatableInstanceCache geoCache = GeckoLibUtil.createInstanceCache(this);
+    private static final EntityDataAccessor<Boolean> EXPIRES =
+            SynchedEntityData.defineId(VoidSoulKnightEntity.class, EntityDataSerializers.BOOLEAN);
 
 
     public VoidSoulEntity(EntityType<? extends PathfinderMob> type, Level world) {
         super(type, world);
         this.moveControl = new FlyingMoveControl(this, 20, true);
         this.setNoGravity(true);
+        setPersistenceRequired();
     }
 
     public static AttributeSupplier.Builder createAttributes() {
@@ -76,7 +81,7 @@ public class VoidSoulEntity extends PathfinderMob implements GeoEntity {
     public void aiStep() {
         super.aiStep();
 
-        if(!isPersistent) {
+        if(expires()) {
             if (this.lifetime > 0) {
                 this.lifetime--;
             } else {
@@ -120,8 +125,8 @@ public class VoidSoulEntity extends PathfinderMob implements GeoEntity {
             return InteractionResult.sidedSuccess(this.level().isClientSide());
         }
 
-        else if(itemStack.is(DDItems.AMBER.get()) && !isPersistent()) {
-            this.setPersistent(true);
+        else if(itemStack.is(DDItems.AMBER.get()) && expires()) {
+            setExpires(false);
 
             playSound(SoundEvents.AMETHYST_BLOCK_RESONATE);
 
@@ -219,13 +224,34 @@ public class VoidSoulEntity extends PathfinderMob implements GeoEntity {
         return false;
     }
 
-    public boolean isPersistent() {
-        return isPersistent;
+    @Override
+    public void addAdditionalSaveData(CompoundTag compound) {
+        super.addAdditionalSaveData(compound);
+        compound.putBoolean("expires", this.expires());
     }
 
-    public void setPersistent(boolean persistent) {
-        this.isPersistent = persistent;
-        this.setPersistenceRequired();
+    @Override
+    public void readAdditionalSaveData(CompoundTag compound) {
+        super.readAdditionalSaveData(compound);
+        if (compound.contains("expires")) {
+            this.setExpires(compound.getBoolean("expires"));
+        }
+
+        this.registerGoals();
+    }
+
+    public boolean expires() {
+        return this.entityData.get(EXPIRES);
+    }
+
+    public void setExpires(boolean expires) {
+        this.entityData.set(EXPIRES, expires);
+    }
+
+    @Override
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+        this.entityData.define(EXPIRES, true);
     }
 
     @Override
