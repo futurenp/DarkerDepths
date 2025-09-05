@@ -86,7 +86,8 @@ public class DDBiomeModifiers {
                 getPlacedFeature(
                         context,
                         DDPlacedFeatures.ARID_SURFACE,
-                        DDPlacedFeatures.DUSKROCK_STRIPE
+                        DDPlacedFeatures.DUSKROCK_ORE
+                        //DDPlacedFeatures.DUSKROCK_STRIPE
                 ),
                 GenerationStep.Decoration.RAW_GENERATION)
         );

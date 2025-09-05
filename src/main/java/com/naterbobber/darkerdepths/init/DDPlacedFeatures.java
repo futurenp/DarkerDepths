@@ -36,6 +36,7 @@ public class DDPlacedFeatures {
     public static final ResourceKey<PlacedFeature> DUSKROCK_STRIPE = createKey("duskrock_stripe");
     public static final ResourceKey<PlacedFeature> GLIMMERING_VINES = createKey("glimmering_vines");
     public static final ResourceKey<PlacedFeature> DEAD_LIVING_CRYSTAL_ORE = createKey("dead_living_crystal_ore");
+    public static final ResourceKey<PlacedFeature> DUSKROCK_ORE = createKey("duskrock_ore");
 
     public static void bootstrap(BootstapContext<PlacedFeature> context) {
         HolderGetter<ConfiguredFeature<?, ?>> lookup = context.lookup(Registries.CONFIGURED_FEATURE);
@@ -52,6 +53,7 @@ public class DDPlacedFeatures {
         PlacementUtils.register(context, ARID_SURFACE, lookup.getOrThrow(DDConfiguredFeatures.ARID_SURFACE), CountPlacement.of(UniformInt.of(192, 256)), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT, BiomeFilter.biome());
         PlacementUtils.register(context, DARKSLATE_SURFACE, lookup.getOrThrow(DDConfiguredFeatures.DARKSLATE_SURFACE), CountPlacement.of(UniformInt.of(192, 256)), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT, BiomeFilter.biome());
         PlacementUtils.register(context, ARID_BOULDER, lookup.getOrThrow(DDConfiguredFeatures.ARID_BOULDER), CountPlacement.of(UniformInt.of(192, 256)), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT, BiomeFilter.biome());
+        PlacementUtils.register(context, DUSKROCK_ORE, lookup.getOrThrow(DDConfiguredFeatures.DUSKROCK_ORE), CountPlacement.of(32), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT, BiomeFilter.biome());
         PlacementUtils.register(context, CATACOMBS_LAVA_LINING, lookup.getOrThrow(DDConfiguredFeatures.CATACOMBS_LAVA_LINING), List.of(CountPlacement.of(96), InSquarePlacement.spread(), HeightRangePlacement.uniform(VerticalAnchor.absolute(-63), VerticalAnchor.absolute(-1)), BlockPredicateFilter.forPredicate(BlockPredicate.not(BlockPredicate.matchesBlocks(Blocks.AIR))), BiomeFilter.biome()));
         PlacementUtils.register(context, DUSKROCK_STRIPE, lookup.getOrThrow(DDConfiguredFeatures.DUSKROCK_STRIPE), CountPlacement.of(UniformInt.of(96, 128)), InSquarePlacement.spread(), HeightRangePlacement.uniform(VerticalAnchor.BOTTOM, VerticalAnchor.belowTop(16)), BiomeFilter.biome());
         PlacementUtils.register(context, GLIMMERING_VINES, lookup.getOrThrow(DDConfiguredFeatures.GLIMMERING_VINES), CountPlacement.of(125), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT, EnvironmentScanPlacement.scanningFor(Direction.UP, BlockPredicate.solid(), BlockPredicate.ONLY_IN_AIR_PREDICATE, 12), RandomOffsetPlacement.vertical(ConstantInt.of(-1)), BiomeFilter.biome());

@@ -18,7 +18,7 @@ public class VoidSoulModel extends DefaultedEntityGeoModel<VoidSoulEntity> {
 
 	@Override
 	public ResourceLocation getTextureResource(VoidSoulEntity voidSoulEntity) {
-		return DarkerDepths.id("textures/entity/void_soul_knight/void_soul.png");
+		return DarkerDepths.id("textures/entity/void_soul/void_soul.png");
 	}
 
 	@Override

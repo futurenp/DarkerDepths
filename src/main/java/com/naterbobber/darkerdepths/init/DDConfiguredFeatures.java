@@ -72,7 +72,7 @@ public static final ImmutableList<BlockState> OVERWORLD_REPLACEABLES    = Immuta
     public static final ResourceKey<ConfiguredFeature<?, ?>> DUSKROCK_STRIPE = createKey("duskrock_stripe");
     public static final ResourceKey<ConfiguredFeature<?, ?>> GLIMMERING_VINES = createKey("glimmering_vines");
     public static final ResourceKey<ConfiguredFeature<?, ?>> DEAD_LIVING_CRYSTAL_ORE = createKey("dead_living_crystal_ore");
-
+    public static final ResourceKey<ConfiguredFeature<?, ?>> DUSKROCK_ORE = createKey("duskrock_ore");
 
 
     public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> context) {
@@ -191,6 +191,28 @@ public static final ImmutableList<BlockState> OVERWORLD_REPLACEABLES    = Immuta
                         )
                 ),
                 30)
+        );
+
+        FeatureUtils.register(context, DUSKROCK_ORE, Feature.ORE, new OreConfiguration(
+                List.of(
+                        OreConfiguration.target(
+                                new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES),
+                                DDBlocks.DUSKROCK.get().defaultBlockState()
+                        ),
+                        OreConfiguration.target(
+                                new TagMatchTest(BlockTags.DEEPSLATE_ORE_REPLACEABLES),
+                                DDBlocks.DUSKROCK.get().defaultBlockState()
+                        ),
+                        OreConfiguration.target(
+                                new BlockMatchTest(DDBlocks.ARIDROCK.get()),
+                                DDBlocks.DUSKROCK.get().defaultBlockState()
+                        ),
+                        OreConfiguration.target(
+                                new BlockMatchTest(DDBlocks.ARID_DEEPSLATE.get()),
+                                DDBlocks.DUSKROCK.get().defaultBlockState()
+                        )
+                ),
+                64)
         );
 
         FeatureUtils.register(context, DARKSLATE_SURFACE, DDFeatures.CORRESPONDENT_LAYER.get(), new CorrespondentLayersConfig(
