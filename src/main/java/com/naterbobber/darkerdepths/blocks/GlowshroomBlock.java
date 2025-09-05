@@ -105,9 +105,17 @@ public class GlowshroomBlock extends Block implements BonemealableBlock, SimpleW
 
     @Override
     public void performBonemeal(ServerLevel world, RandomSource random, BlockPos pos, BlockState state) {
-        world.registryAccess().registryOrThrow(Registries.CONFIGURED_FEATURE).getHolder(DDConfiguredFeatures.HUGE_GLOWSHROOM_PLANTED).ifPresent(feature -> {
-            feature.value().place(world, world.getChunkSource().getGenerator(), random, pos);
-        });
+        world.registryAccess().registryOrThrow(Registries.CONFIGURED_FEATURE)
+                .getHolder(DDConfiguredFeatures.HUGE_GLOWSHROOM_PLANTED).ifPresent(featureHolder -> {
+
+                    world.setBlock(pos, Blocks.CAVE_AIR.defaultBlockState(), 4);
+
+                    boolean placedSuccessfully = featureHolder.value().place(world, world.getChunkSource().getGenerator(), random, pos);
+
+                    if (!placedSuccessfully) {
+                        world.setBlock(pos, state, 4);
+                    }
+                });
     }
 
     @Override

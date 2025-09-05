@@ -78,7 +78,7 @@ public class DDBiomeModifiers {
                         new MobSpawnSettings.SpawnerData(EntityType.SPIDER, 100, 2, 4),
                         new MobSpawnSettings.SpawnerData(EntityType.ENDERMAN, 10, 1, 4),
                         new MobSpawnSettings.SpawnerData(EntityType.HUSK, 95, 2, 4),
-                        new MobSpawnSettings.SpawnerData(DDEntityTypes.BODY_SNATCHER.get(), 40, 1, 1)
+                        new MobSpawnSettings.SpawnerData(DDEntityTypes.BODY_SNATCHER.get(), 30, 1, 3)
                 )
         ));
         context.register(ADD_SANDY_CATACOMBS_RAW_GENERATION, new ForgeBiomeModifiers.AddFeaturesBiomeModifier(

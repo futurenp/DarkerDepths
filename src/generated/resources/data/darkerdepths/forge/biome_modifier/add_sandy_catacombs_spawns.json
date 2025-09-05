@@ -22,9 +22,9 @@
     },
     {
       "type": "darkerdepths:body_snatcher",
-      "maxCount": 1,
+      "maxCount": 3,
       "minCount": 1,
-      "weight": 40
+      "weight": 30
     }
   ]
 }
