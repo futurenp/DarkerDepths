@@ -1,6 +1,7 @@
 package com.naterbobber.darkerdepths.events;
 
 import com.mojang.blaze3d.shaders.FogShape;
+import com.naterbobber.darkerdepths.client.DynamicLightHandler;
 import com.naterbobber.darkerdepths.init.DDItems;
 import com.naterbobber.darkerdepths.init.DDMobEffects;
 import net.minecraft.client.Minecraft;
@@ -22,6 +23,8 @@ public class ClientForgeEvents {
 
     @SubscribeEvent
     public void onClientTick(TickEvent.ClientTickEvent event) {
+        DynamicLightHandler.onClientTick(event);
+
         if (event.phase != TickEvent.Phase.END) {
             return;
         }

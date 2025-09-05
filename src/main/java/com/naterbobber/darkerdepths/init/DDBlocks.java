@@ -68,35 +68,35 @@ public class DDBlocks {
     public static final RegistryObject<Block> DARKSLATE = registerBlock("darkslate",
             () -> new RotatedPillarBlock(Block.Properties.of().requiresCorrectToolForDrops().strength(1.5f, 6.0f).sound(SoundType.DEEPSLATE)));
     public static final RegistryObject<Block> DARKSLATE_STAIRS = registerBlock("darkslate_stairs",
-            () -> new StairBlock(() -> DARKSLATE.get().defaultBlockState(), Block.Properties.of().requiresCorrectToolForDrops().strength(1.5f, 6.0f).sound(SoundType.STONE)));
+            () -> new StairBlock(() -> DARKSLATE.get().defaultBlockState(), BlockBehaviour.Properties.copy(DARKSLATE.get())));
     public static final RegistryObject<Block> DARKSLATE_SLAB = registerBlock("darkslate_slab",
-            () -> new SlabBlock(Block.Properties.of().requiresCorrectToolForDrops().strength(1.5f, 6.0f).sound(SoundType.STONE)));
+            () -> new SlabBlock(BlockBehaviour.Properties.copy(DARKSLATE.get())));
     public static final RegistryObject<Block> DARKSLATE_VERTICAL_SLAB = registerCompatBlock("quark", "darkslate_vertical_slab",
-            () -> new VerticalSlabBlock(BlockBehaviour.Properties.copy(DARKSLATE_SLAB.get())));
+            () -> new VerticalSlabBlock(BlockBehaviour.Properties.copy(DARKSLATE.get())));
     public static final RegistryObject<Block> DARKSLATE_WALL = registerBlock("darkslate_wall",
-            () -> new WallBlock(Block.Properties.of().requiresCorrectToolForDrops().strength(1.5f, 6.0f).sound(SoundType.STONE)));
+            () -> new WallBlock(BlockBehaviour.Properties.copy(DARKSLATE.get())));
     public static final RegistryObject<Block> POLISHED_DARKSLATE = registerBlock("polished_darkslate",
-            () -> new Block(Block.Properties.of().requiresCorrectToolForDrops().strength(1.5f, 6.0f).sound(SoundType.STONE)));
+            () -> new Block(Block.Properties.of().requiresCorrectToolForDrops().strength(1.5f, 6.0f).sound(SoundType.DEEPSLATE)));
     public static final RegistryObject<Block> POLISHED_DARKSLATE_STAIRS = registerBlock("polished_darkslate_stairs",
-            () -> new StairBlock(() -> POLISHED_DARKSLATE.get().defaultBlockState(), Block.Properties.of().requiresCorrectToolForDrops().strength(1.5f, 6.0f).sound(SoundType.STONE)));
+            () -> new StairBlock(() -> POLISHED_DARKSLATE.get().defaultBlockState(), BlockBehaviour.Properties.copy(POLISHED_DARKSLATE.get())));
     public static final RegistryObject<Block> POLISHED_DARKSLATE_SLAB = registerBlock("polished_darkslate_slab",
-            () -> new SlabBlock(Block.Properties.of().requiresCorrectToolForDrops().strength(1.5f, 6.0f).sound(SoundType.STONE)));
+            () -> new SlabBlock(BlockBehaviour.Properties.copy(POLISHED_DARKSLATE.get())));
     public static final RegistryObject<Block> POLISHED_DARKSLATE_VERTICAL_SLAB = registerCompatBlock("quark", "polished_darkslate_vertical_slab",
-            () -> new VerticalSlabBlock(BlockBehaviour.Properties.copy(POLISHED_DARKSLATE_SLAB.get())));
+            () -> new VerticalSlabBlock(BlockBehaviour.Properties.copy(POLISHED_DARKSLATE.get())));
     public static final RegistryObject<Block> DARKSLATE_BRICKS = registerBlock("darkslate_bricks",
-            () -> new Block(Block.Properties.of().requiresCorrectToolForDrops().strength(1.5f, 6.0f).sound(SoundType.STONE)));
+            () -> new Block(Block.Properties.of().requiresCorrectToolForDrops().strength(1.5f, 6.0f).sound(SoundType.DEEPSLATE_BRICKS)));
     public static final RegistryObject<Block> DARKSLATE_BRICKS_STAIRS = registerBlock("darkslate_bricks_stairs",
-            () -> new StairBlock(DARKSLATE_BRICKS.get().defaultBlockState(), Block.Properties.of().requiresCorrectToolForDrops().strength(1.5f, 6.0f).sound(SoundType.STONE)));
+            () -> new StairBlock(DARKSLATE_BRICKS.get().defaultBlockState(), BlockBehaviour.Properties.copy(DARKSLATE_BRICKS.get())));
     public static final RegistryObject<Block> DARKSLATE_BRICKS_SLAB = registerBlock("darkslate_bricks_slab",
-            () -> new SlabBlock(Block.Properties.of().requiresCorrectToolForDrops().strength(1.5f, 6.0f).sound(SoundType.STONE)));
+            () -> new SlabBlock(BlockBehaviour.Properties.copy(DARKSLATE_BRICKS.get())));
     public static final RegistryObject<Block> DARKSLATE_BRICKS_VERTICAL_SLAB = registerCompatBlock("quark", "darkslate_bricks_vertical_slab",
-            () -> new VerticalSlabBlock(Block.Properties.of().requiresCorrectToolForDrops().strength(1.5f, 6.0f).sound(SoundType.STONE)));
+            () -> new VerticalSlabBlock(BlockBehaviour.Properties.copy(DARKSLATE_BRICKS.get())));
     public static final RegistryObject<Block> CHISELED_DARKSLATE_BRICKS = registerBlock("chiseled_darkslate_bricks",
-            () -> new Block(Block.Properties.of().requiresCorrectToolForDrops().strength(1.5f, 6.0f).sound(SoundType.STONE)));
+            () -> new Block(BlockBehaviour.Properties.copy(DARKSLATE_BRICKS.get())));
     public static final RegistryObject<Block> CRACKED_DARKSLATE_BRICKS = registerBlock("cracked_darkslate_bricks",
-            () -> new Block(Block.Properties.of().requiresCorrectToolForDrops().strength(1.5f, 6.0f).sound(SoundType.STONE)));
+            () -> new Block(BlockBehaviour.Properties.copy(DARKSLATE_BRICKS.get())));
     public static final RegistryObject<Block> DARKSLATE_BRICKS_WALL = registerBlock("darkslate_bricks_wall",
-            () -> new WallBlock(Block.Properties.of().requiresCorrectToolForDrops().strength(1.5f, 6.0f).sound(SoundType.STONE)));
+            () -> new WallBlock(BlockBehaviour.Properties.copy(DARKSLATE_BRICKS.get())));
     public static final RegistryObject<Block> ASH_BLOCK = registerBlock("ash_block",
             () -> new AshFullBlock(Block.Properties.of().mapColor(MapColor.COLOR_BLACK).requiresCorrectToolForDrops().strength(0.2f).sound(SoundType.SNOW).randomTicks()));
     public static final RegistryObject<Block> GEYSER = registerBlock("geyser",
@@ -142,13 +142,13 @@ public class DDBlocks {
     public static final RegistryObject<Block> DUSKROCK = registerBlock("duskrock",
             () -> new LimestoneBlock(Block.Properties.of().requiresCorrectToolForDrops().strength(1.5f, 6.0f).sound(SoundType.TUFF)));
     public static final RegistryObject<Block> DUSKROCK_STAIRS = registerBlock("duskrock_stairs",
-            () -> new StairBlock(() -> DUSKROCK.get().defaultBlockState(), Block.Properties.of().requiresCorrectToolForDrops().strength(1.5f, 6.0f).sound(SoundType.STONE)));
+            () -> new StairBlock(() -> DUSKROCK.get().defaultBlockState(), BlockBehaviour.Properties.copy(DUSKROCK.get())));
     public static final RegistryObject<Block> DUSKROCK_SLAB = registerBlock("duskrock_slab",
-            () -> new SlabBlock(Block.Properties.of().requiresCorrectToolForDrops().strength(1.5f, 6.0f).sound(SoundType.STONE)));
+            () -> new SlabBlock(BlockBehaviour.Properties.copy(DUSKROCK.get())));
     public static final RegistryObject<Block> DUSKROCK_VERTICAL_SLAB = registerCompatBlock("quark", "duskrock_vertical_slab",
-            () -> new VerticalSlabBlock(BlockBehaviour.Properties.copy(DUSKROCK_SLAB.get())));
+            () -> new VerticalSlabBlock(BlockBehaviour.Properties.copy(DUSKROCK.get())));
     public static final RegistryObject<Block> DUSKROCK_WALL = registerBlock("duskrock_wall",
-            () -> new WallBlock(Block.Properties.of().requiresCorrectToolForDrops().strength(1.5f, 6.0f).sound(SoundType.STONE)));
+            () -> new WallBlock(BlockBehaviour.Properties.copy(DUSKROCK.get())));
     public static final RegistryObject<Block> POLISHED_DUSKROCK = registerBlock("polished_duskrock",
             () -> new Block(Block.Properties.of().requiresCorrectToolForDrops().strength(1.5f, 6.0f).sound(SoundType.STONE)));
     public static final RegistryObject<Block> POLISHED_DUSKROCK_STAIRS = registerBlock("polished_duskrock_stairs",
@@ -186,37 +186,37 @@ public class DDBlocks {
     public static final RegistryObject<Block> GRIMESTONE = registerBlock("grimestone",
             () -> new GrimestoneBlock(BlockBehaviour.Properties.of().strength(1.5F, 6.0F).sound(SoundType.DEEPSLATE).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> GRIMESTONE_STAIRS = registerBlock("grimestone_stairs",
-            () -> new StairBlock(GRIMESTONE.get().defaultBlockState(), BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(DDSoundEvents.GRIMESTONE)));
+            () -> new StairBlock(GRIMESTONE.get().defaultBlockState(), BlockBehaviour.Properties.copy(GRIMESTONE.get())));
     public static final RegistryObject<Block> GRIMESTONE_SLAB = registerBlock("grimestone_slab",
-            () -> new SlabBlock(BlockBehaviour.Properties.of().strength(1.5F, 6.0F).sound(SoundType.DEEPSLATE).requiresCorrectToolForDrops()));
+            () -> new SlabBlock(BlockBehaviour.Properties.copy(GRIMESTONE.get())));
     public static final RegistryObject<Block> GRIMESTONE_VERTICAL_SLAB = registerCompatBlock("quark", "grimestone_vertical_slab",
-            () -> new VerticalSlabBlock(BlockBehaviour.Properties.copy(GRIMESTONE_SLAB.get())));
+            () -> new VerticalSlabBlock(BlockBehaviour.Properties.copy(GRIMESTONE.get())));
     public static final RegistryObject<Block> GRIMESTONE_WALL = registerBlock("grimestone_wall",
-            () -> new WallBlock(BlockBehaviour.Properties.of().sound(SoundType.DEEPSLATE).strength(1.5F, 6.0F).requiresCorrectToolForDrops()));
+            () -> new WallBlock(BlockBehaviour.Properties.copy(GRIMESTONE.get())));
     public static final RegistryObject<Block> MOSSY_GRIMESTONE = registerBlock("mossy_grimestone",
-            () -> new MossyGrimestoneBlock(BlockBehaviour.Properties.of().strength(1.5F, 6.0F).requiresCorrectToolForDrops().randomTicks().sound(SoundType.DEEPSLATE)));
+            () -> new MossyGrimestoneBlock(BlockBehaviour.Properties.copy(GRIMESTONE.get())));
     public static final RegistryObject<Block> POLISHED_GRIMESTONE = registerBlock("polished_grimestone",
-            () -> new Block(BlockBehaviour.Properties.of().strength(1.5F, 6.0F)));
+            () -> new Block(BlockBehaviour.Properties.of().strength(1.5F, 6.0F).sound(SoundType.DEEPSLATE).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> POLISHED_GRIMESTONE_STAIRS = registerBlock("polished_grimestone_stairs",
-            () -> new StairBlock(POLISHED_GRIMESTONE.get().defaultBlockState(), BlockBehaviour.Properties.of().strength(1.5F, 6.0F)));
+            () -> new StairBlock(POLISHED_GRIMESTONE.get().defaultBlockState(), BlockBehaviour.Properties.copy(POLISHED_GRIMESTONE.get())));
     public static final RegistryObject<Block> POLISHED_GRIMESTONE_SLAB = registerBlock("polished_grimestone_slab",
-            () -> new SlabBlock(BlockBehaviour.Properties.of().strength(1.5F, 6.0F)));
+            () -> new SlabBlock(BlockBehaviour.Properties.copy(POLISHED_GRIMESTONE.get())));
     public static final RegistryObject<Block> POLISHED_GRIMESTONE_VERTICAL_SLAB = registerCompatBlock("quark", "polished_grimestone_vertical_slab",
-            () -> new VerticalSlabBlock(Block.Properties.copy(POLISHED_GRIMESTONE_SLAB.get())));
-    public static final RegistryObject<Block> CHISELED_GRIMESTONE_BRICKS = registerBlock("chiseled_grimestone_bricks",
-            () -> new Block(BlockBehaviour.Properties.of().sound(SoundType.STONE).strength(1.5F, 6.0F).requiresCorrectToolForDrops()));
+            () -> new VerticalSlabBlock(BlockBehaviour.Properties.copy(POLISHED_GRIMESTONE.get())));
     public static final RegistryObject<Block> GRIMESTONE_BRICKS = registerBlock("grimestone_bricks",
-            () -> new Block(BlockBehaviour.Properties.of().sound(SoundType.STONE).strength(1.5F, 6.0F).requiresCorrectToolForDrops()));
+            () -> new Block(BlockBehaviour.Properties.of().sound(SoundType.DEEPSLATE_BRICKS).strength(1.5F, 6.0F).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> GRIMESTONE_BRICKS_STAIRS = registerBlock("grimestone_bricks_stairs",
-            () -> new StairBlock(GRIMESTONE_BRICKS.get().defaultBlockState(), BlockBehaviour.Properties.of().sound(SoundType.STONE).strength(1.5F, 6.0F).requiresCorrectToolForDrops()));
+            () -> new StairBlock(GRIMESTONE_BRICKS.get().defaultBlockState(), BlockBehaviour.Properties.copy(GRIMESTONE_BRICKS.get())));
     public static final RegistryObject<Block> GRIMESTONE_BRICKS_SLAB = registerBlock("grimestone_bricks_slab",
-            () -> new SlabBlock(BlockBehaviour.Properties.of().sound(SoundType.STONE).strength(1.5F, 6.0F).requiresCorrectToolForDrops()));
+            () -> new SlabBlock(BlockBehaviour.Properties.copy(GRIMESTONE_BRICKS.get())));
     public static final RegistryObject<Block> GRIMESTONE_BRICKS_VERTICAL_SLAB = registerCompatBlock("quark", "grimestone_bricks_vertical_slab",
-            () -> new VerticalSlabBlock(BlockBehaviour.Properties.copy(GRIMESTONE_BRICKS_SLAB.get())));
-    public static final RegistryObject<Block> CRACKED_GRIMESTONE_BRICKS = registerBlock("cracked_grimestone_bricks",
-            () -> new Block(BlockBehaviour.Properties.of().sound(SoundType.STONE).strength(1.5F, 6.0F).requiresCorrectToolForDrops()));
+            () -> new VerticalSlabBlock(BlockBehaviour.Properties.copy(GRIMESTONE_BRICKS.get())));
     public static final RegistryObject<Block> GRIMESTONE_BRICKS_WALL = registerBlock("grimestone_bricks_wall",
-            () -> new WallBlock(BlockBehaviour.Properties.of().sound(SoundType.STONE).strength(1.5F, 6.0F).requiresCorrectToolForDrops()));
+            () -> new WallBlock(BlockBehaviour.Properties.copy(GRIMESTONE_BRICKS.get())));
+    public static final RegistryObject<Block> CHISELED_GRIMESTONE_BRICKS = registerBlock("chiseled_grimestone_bricks",
+            () -> new Block(BlockBehaviour.Properties.copy(GRIMESTONE_BRICKS.get())));
+    public static final RegistryObject<Block> CRACKED_GRIMESTONE_BRICKS = registerBlock("cracked_grimestone_bricks",
+            () -> new Block(BlockBehaviour.Properties.copy(GRIMESTONE_BRICKS.get())));
     public static final RegistryObject<Block> STONE_MELON = registerBlock("stone_melon",
             () -> new StoneMelonBlock(BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_GRAY).requiresCorrectToolForDrops().strength(1.0f).sound(SoundType.DEEPSLATE)));
     public static final RegistryObject<Block> DEAD_LIVING_CRYSTAL = registerBlock("dead_living_crystal",

@@ -7,12 +7,13 @@ version="${file.jarVersion}"
 displayName="Darker Depths"
 authors="Nate, Blackgear, Toxteer, Orcinus"
 description='''
-A mod all about expanding vanilla caves
+A mod to expand the underground
 
 Author:
 - Nate
 
 Main Developers:
+- Nate
 - Orcinus
 - Blackgear
 
@@ -31,7 +32,7 @@ Artist:
 [[dependencies.darkerdepths]]
    modId="minecraft"
    mandatory=true
-   versionRange="[1.20,1.21)"
+   versionRange="[1.20.1]"
    ordering="NONE"
    side="BOTH"
 

@@ -10,20 +10,29 @@ import net.minecraft.world.level.biome.Climate;
 import java.util.function.Consumer;
 
 public class BiomeReagentHandler {
-    public static final Climate.Parameter FULL_RANGE = Climate.Parameter.span(-1.0F, 1.0F);
-
     public static final ResourceKey<Biome> MOLTEN_CAVERN = register("molten_cavern");
     public static final ResourceKey<Biome> SANDY_CATACOMBS = register("sandy_catacombs");
     public static final ResourceKey<Biome> GLOWSHROOM_FOREST = register("glowshroom_forest");
 
     public static void init(Consumer<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> consumer) {
         consumer.accept(Pair.of(Climate.parameters(
+                        Climate.Parameter.span(0.5F, 2.0F),
+                        Climate.Parameter.span(-1.0F, 0.0F),
+                        Climate.Parameter.span(0.0F, 0.3F),
+                        Climate.Parameter.span(-1.0F, 1.0F),
+                        Climate.Parameter.span(0.0F, 0.8F),
+                        Climate.Parameter.span(-1.0F, 1.0F),
+                        0.0F),
+                SANDY_CATACOMBS)
+        );
+
+        consumer.accept(Pair.of(Climate.parameters(
                         Climate.Parameter.span(-0.5F, 1.0F),
                         Climate.Parameter.span(0.0F, 2.0F),
                         Climate.Parameter.span(-0.2F, 0.2F),
                         Climate.Parameter.span(-1.0F, -0.375F),
                         Climate.Parameter.span(0.2F, 0.5F),
-                        FULL_RANGE,
+                        Climate.Parameter.span(-1.0F, 1.0F),
                         0.0F),
                 GLOWSHROOM_FOREST)
         );
@@ -31,23 +40,12 @@ public class BiomeReagentHandler {
         consumer.accept(Pair.of(Climate.parameters(
                         Climate.Parameter.span(0.0F, 1.0F),
                         Climate.Parameter.span(-1.0F, 0.0F),
-                        Climate.Parameter.span(0.3F, 1.0F),
+                        Climate.Parameter.span(0.4F, 0.9F),
                         Climate.Parameter.span(0.3F, 2.0F),
                         Climate.Parameter.span(0.5F, 2.0F),
-                        FULL_RANGE,
+                        Climate.Parameter.span(-1.0F, 1.0F),
                         0.0F),
                 MOLTEN_CAVERN)
-        );
-
-        consumer.accept(Pair.of(Climate.parameters(
-                        Climate.Parameter.span(0.5F, 2.0F),
-                        Climate.Parameter.span(-1.0F, 0.0F),
-                        Climate.Parameter.span(0.0F, 0.4F),
-                        FULL_RANGE,
-                        Climate.Parameter.span(0.2F, 1.0F),
-                        FULL_RANGE,
-                        0.0F),
-                SANDY_CATACOMBS)
         );
     }
 
@@ -55,4 +53,3 @@ public class BiomeReagentHandler {
         return ResourceKey.create(Registries.BIOME, DarkerDepths.id(name));
     }
 }
-

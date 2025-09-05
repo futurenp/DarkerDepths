@@ -24,6 +24,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -72,9 +73,6 @@ public class ClientEvents {
     @SubscribeEvent
     public static void onClientSetup(final FMLClientSetupEvent event) {
         IEventBus eventBus = MinecraftForge.EVENT_BUS;
-        eventBus.addListener((LivingEvent.LivingTickEvent livingEvent) -> {
-            DynamicLightHandler.tick(livingEvent.getEntity());
-        });
 
         eventBus.register(new ClientForgeEvents());
         eventBus.register(new ClientDeathAnchorAnimationOverlay());

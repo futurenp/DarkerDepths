@@ -5,30 +5,47 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.phys.AABB;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.event.TickEvent;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 @OnlyIn(Dist.CLIENT)
 public class DynamicLightHandler {
-    private static final double REFRESH_RATE = 1.0D;
     private static final Minecraft INSTANCE = Minecraft.getInstance();
     public static final Map<BlockPos, LightValue> LIGHT_SOURCES = new ConcurrentHashMap<>();
+    private static final int LIGHT_SCAN_RADIUS = 64;
 
-    public static void tick(LivingEntity entity) {
-        if (entity != null && INSTANCE.player != null && INSTANCE.player.tickCount % REFRESH_RATE == 0) {
-            if (entity == INSTANCE.player) {
-                LIGHT_SOURCES.forEach((pos, value) -> value.shouldKeep = false);
+    public static void onClientTick(TickEvent.ClientTickEvent event) {
+        if (event.phase != TickEvent.Phase.END) {
+            return;
+        }
 
-                INSTANCE.level.getEntitiesOfClass(LivingEntity.class, INSTANCE.player.getBoundingBox(), DynamicLightHandler::shouldGlow).forEach(entityIn -> LIGHT_SOURCES.put(entityIn.getOnPos(), new LightValue()));
+        if (INSTANCE.player == null || INSTANCE.level == null) {
+            return;
+        }
 
-                if (!LIGHT_SOURCES.isEmpty()) {
-                    LIGHT_SOURCES.forEach((pos, value) -> INSTANCE.level.getChunkSource().getLightEngine().checkBlock(pos));
-                    LIGHT_SOURCES.entrySet().removeIf(entry -> !entry.getValue().shouldKeep);
-                }
-            }
+        LIGHT_SOURCES.forEach((pos, value) -> value.shouldKeep = false);
+
+        AABB searchArea = INSTANCE.player.getBoundingBox().inflate(LIGHT_SCAN_RADIUS);
+
+        INSTANCE.level.getEntitiesOfClass(LivingEntity.class, searchArea, DynamicLightHandler::shouldGlow)
+                .forEach(entity -> {
+                    BlockPos lightPos = entity.getOnPos();
+                    if (!INSTANCE.level.getBlockState(lightPos).isSolid()) {
+                        lightPos = entity.blockPosition();
+                    }
+                    LIGHT_SOURCES.computeIfAbsent(lightPos, k -> new LightValue()).shouldKeep = true;
+                });
+
+        if (!LIGHT_SOURCES.isEmpty()) {
+            LIGHT_SOURCES.forEach((pos, value) -> {
+                INSTANCE.level.getChunkSource().getLightEngine().checkBlock(pos);
+            });
+            LIGHT_SOURCES.entrySet().removeIf(entry -> !entry.getValue().shouldKeep);
         }
     }
 
@@ -40,3 +57,4 @@ public class DynamicLightHandler {
         public boolean shouldKeep = true;
     }
 }
+
