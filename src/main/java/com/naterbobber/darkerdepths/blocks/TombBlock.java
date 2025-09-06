@@ -97,7 +97,7 @@ public class TombBlock extends BaseEntityBlock implements SimpleWaterloggedBlock
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(FACING, Direction.NORTH)
                 .setValue(PART, Part.FRONT_CENTER)
-                .setValue(INHABITED, true)
+                .setValue(INHABITED, false)
                 .setValue(WATERLOGGED, false));
     }
 
@@ -168,6 +168,15 @@ public class TombBlock extends BaseEntityBlock implements SimpleWaterloggedBlock
     @Override
     public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean isMoving) {
         if (!level.isClientSide && !state.is(newState.getBlock())) {
+            // Drop stored item if this is the main block and it contains an item
+            if (state.getValue(PART) == Part.FRONT_CENTER) {
+                BlockEntity blockEntity = level.getBlockEntity(pos);
+                if (blockEntity instanceof TombBlockEntity tombEntity && tombEntity.hasStoredItem()) {
+                    ItemStack storedItem = tombEntity.getStoredItem();
+                    popResource(level, pos, storedItem);
+                }
+            }
+
             this.removeMultiblockParts(level, pos, state);
         }
 
@@ -197,6 +206,35 @@ public class TombBlock extends BaseEntityBlock implements SimpleWaterloggedBlock
             BlockPos mainPos = getMainBlockPos(pos, state);
             BlockEntity blockEntity = level.getBlockEntity(mainPos);
             if (blockEntity instanceof TombBlockEntity tombEntity) {
+
+                // Special case: if sneaking, tomb is open, inhabited and has an item - close it
+                if (player.isSecondaryUseActive() && tombEntity.isOpen() && tombEntity.isInhabited() && tombEntity.hasStoredItem()) {
+                    tombEntity.toggleTomb();
+                    return InteractionResult.SUCCESS;
+                }
+
+                // Don't do anything else if sneaking
+                if (player.isSecondaryUseActive()) {
+                    return InteractionResult.SUCCESS;
+                }
+
+                // If tomb is open and inhabited
+                if (tombEntity.isOpen() && tombEntity.isInhabited()) {
+                    ItemStack heldItem = player.getItemInHand(hand);
+
+                    // Try to take item if tomb has one and player's hand is empty
+                    if (tombEntity.hasStoredItem() && heldItem.isEmpty()) {
+                        ItemStack storedItem = tombEntity.removeItem(0, 64);
+                        if (!storedItem.isEmpty()) {
+                            if (!player.getInventory().add(storedItem)) {
+                                player.drop(storedItem, false);
+                            }
+                            return InteractionResult.SUCCESS;
+                        }
+                    }
+                }
+
+                // If no item interaction occurred, toggle the tomb
                 tombEntity.toggleTomb();
             }
         }

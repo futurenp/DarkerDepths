@@ -3,9 +3,13 @@ package com.naterbobber.darkerdepths.world.gen.processors.catacombs;
 import com.mojang.serialization.Codec;
 import com.naterbobber.darkerdepths.blocks.TombBlock;
 import com.naterbobber.darkerdepths.init.DDBlocks;
+import com.naterbobber.darkerdepths.init.DDItems;
 import com.naterbobber.darkerdepths.init.DDStructureProcessorTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
@@ -40,21 +44,32 @@ public class TombProcessor extends StructureProcessor {
             Set<StructureTemplate.StructureBlockInfo> currentTombPartsSet = TombBlock.generateMultiblockForProcessor(worldPos, facing, level, relativeBlockInfo.pos());
 
             Map<BlockPos, StructureTemplate.StructureBlockInfo> currentTombParts = new HashMap<>();
-            for (StructureTemplate.StructureBlockInfo part : currentTombPartsSet) {
-                currentTombParts.put(part.pos(), part);
-            }
+            currentTombPartsSet.forEach(part -> currentTombParts.put(part.pos(), part));
+
             tombPartsMap.putAll(currentTombParts);
 
             BlockState tombState = DDBlocks.TOMB.get().defaultBlockState()
                     .setValue(TombBlock.PART, TombBlock.Part.FRONT_CENTER)
                     .setValue(TombBlock.FACING, facing)
-                    .setValue(TombBlock.WATERLOGGED,
-                            level.getFluidState(worldPos).getType() == Fluids.WATER);
+                    .setValue(TombBlock.INHABITED, true)
+                    .setValue(TombBlock.WATERLOGGED, level.getFluidState(worldPos).getType() == Fluids.WATER);
+
+            // Create NBT with the forsaken bronze scrap item
+            CompoundTag nbt = new CompoundTag();
+            ListTag itemsNbt = new ListTag();
+
+            ItemStack forsakenBronzeScrap = new ItemStack(DDItems.FORSAKEN_BRONZE_SCRAP.get());
+            CompoundTag itemTag = new CompoundTag();
+            itemTag.putByte("Slot", (byte) 0);
+            forsakenBronzeScrap.save(itemTag);
+            itemsNbt.add(itemTag);
+
+            nbt.put("Items", itemsNbt);
 
             return new StructureTemplate.StructureBlockInfo(
                     relativeBlockInfo.pos(),
                     tombState,
-                    relativeBlockInfo.nbt()
+                    nbt
             );
         }
 

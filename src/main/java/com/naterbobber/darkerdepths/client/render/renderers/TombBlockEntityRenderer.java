@@ -13,9 +13,11 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.monster.Skeleton;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import software.bernie.geckolib.cache.object.BakedGeoModel;
@@ -48,13 +50,19 @@ public class TombBlockEntityRenderer extends GeoBlockRenderer<TombBlockEntity> {
         skeleton.yHeadRot = 0.0f;
         skeleton.yHeadRotO = 0.0f;
 
+        // Set the stored item to the skeleton's main hand
+        ItemStack storedItem = blockEntity.getStoredItem();
+        if (!storedItem.isEmpty()) {
+            skeleton.setItemInHand(InteractionHand.MAIN_HAND, storedItem.copy());
+        }
+
         matrices.pushPose();
         matrices.translate(1.0, 0.335, 0.5);
 
         matrices.mulPose(Axis.XP.rotationDegrees(-90f));
         matrices.mulPose(Axis.ZP.rotationDegrees(90f));
 
-        // Render the skeleton
+        // Render the skeleton with its held item
         this.dispatcher.render(skeleton, 0, 0, 0, 0, partialTick, matrices, bufferSource, packedLight);
 
         matrices.popPose();
