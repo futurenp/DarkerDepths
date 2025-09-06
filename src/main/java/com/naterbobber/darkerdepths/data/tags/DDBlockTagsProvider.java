@@ -163,11 +163,27 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
                 DDBlocks.PETRIFIED_PLANKS.get()
         );
 
+        this.tag(BlockTags.NEEDS_STONE_TOOL).add(
+                DDBlocks.GEYSER.get(),
+                DDBlocks.LIVING_CRYSTAL.get(),
+                DDBlocks.DEAD_LIVING_CRYSTAL.get(),
+                DDBlocks.STONE_MELON.get(),
+                DDBlocks.GLOWSHROOM_LANTERN.get(),
+                DDBlocks.GLOWSHROOM_LAMP.get(),
+                DDBlocks.TOMB.get()
+        );
+
+        this.tag(BlockTags.NEEDS_IRON_TOOL).add(
+                DDBlocks.FORSAKEN_BRONZE_BLOCK.get(),
+                DDBlocks.DEATH_ANCHOR.get(),
+                DDBlocks.CRYSTAL_MELON.get()
+        );
+
+        this.tag(Tags.Blocks.STORAGE_BLOCKS)
+                .add(DDBlocks.FORSAKEN_BRONZE_BLOCK.get());
+
         this.tag(DDBlockTags.GEYSER_BOOSTERS).add(Blocks.MAGMA_BLOCK);
 
-        //only works on snow?
-        //Also only works with 1 snow layer
-        //fix later ig
         this.tag(DDBlockTags.GEYSER_BYPASSES)
                 .add(
                     Blocks.SNOW,

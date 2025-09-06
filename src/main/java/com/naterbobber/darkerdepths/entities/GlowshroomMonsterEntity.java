@@ -51,7 +51,13 @@ public class GlowshroomMonsterEntity extends Monster {
         this.goalSelector.addGoal(7, new WaterAvoidingRandomStrollGoal(this, 0.9D));
         this.targetSelector.addGoal(2, new HurtByTargetGoal(this));
         this.targetSelector.addGoal(4, new AttackMemoryTargetGoal<>(this, Player.class, 300, true));
-        this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, Mob.class, 10, false, false, (entity) -> !(entity instanceof Creeper) && !(entity instanceof GlowshroomMonsterEntity) && !(entity instanceof Bat)));
+        this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(
+                this, Mob.class, 10, false, false, (entity) ->
+                !(entity instanceof Creeper) &&
+                !(entity instanceof GlowshroomMonsterEntity) &&
+                !(entity instanceof Bat) &&
+                !(entity instanceof VoidSoulEntity)
+        ));
     }
 
     @Override

@@ -9,6 +9,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.Tags;
@@ -48,5 +49,13 @@ public class DDItemTagsProvider extends ItemTagsProvider {
         this.tag(ItemTags.PLANKS).add(DDBlocks.PETRIFIED_PLANKS.get().asItem());
         this.tag(ForgeItemTags.ROPES).add(DDItems.ROPE.get());
         this.tag(ItemTags.BEACON_PAYMENT_ITEMS).add(DDItems.FORSAKEN_BRONZE_INGOT.get());
+
+        this.tag(Tags.Items.INGOTS)
+                .add(DDItems.FORSAKEN_BRONZE_INGOT.get());
+
+        this.tag(ItemTags.create(ResourceLocation.fromNamespaceAndPath("forge", "ingots/forsaken_bronze")))
+                .add(DDItems.FORSAKEN_BRONZE_INGOT.get());
+
+        this.copy(Tags.Blocks.STORAGE_BLOCKS, Tags.Items.STORAGE_BLOCKS);
     }
 }

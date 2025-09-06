@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_darkslate_bricks": {
+    "has_aridrock_bricks": {
       "conditions": {
         "items": [
           {
             "items": [
-              "darkerdepths:darkslate_bricks"
+              "darkerdepths:aridrock_bricks"
             ]
           }
         ]
@@ -15,20 +15,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "darkerdepths:darkslate_bricks_from_darkslate_bricks_stonecutting"
+        "recipe": "darkerdepths:chiseled_aridrock_bricks_from_aridrock_bricks_stonecutting"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_darkslate_bricks",
+      "has_aridrock_bricks",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "darkerdepths:darkslate_bricks_from_darkslate_bricks_stonecutting"
+      "darkerdepths:chiseled_aridrock_bricks_from_aridrock_bricks_stonecutting"
     ]
   },
   "sends_telemetry_event": false

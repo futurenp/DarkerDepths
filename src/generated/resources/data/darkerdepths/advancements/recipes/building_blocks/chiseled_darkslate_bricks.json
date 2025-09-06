@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_polished_darkslate_slab": {
+    "has_darkslate_bricks_slab": {
       "conditions": {
         "items": [
           {
             "items": [
-              "darkerdepths:polished_darkslate_slab"
+              "darkerdepths:darkslate_bricks_slab"
             ]
           }
         ]
@@ -22,7 +22,7 @@
   },
   "requirements": [
     [
-      "has_polished_darkslate_slab",
+      "has_darkslate_bricks_slab",
       "has_the_recipe"
     ]
   ],

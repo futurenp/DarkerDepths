@@ -120,7 +120,7 @@ jar {
                 "Specification-Vendor"    : "Naterbobber",
                 "Specification-Version"   : "1",
                 "Implementation-Title"    : "Darker Depths",
-                "Implementation-Version"  : "1.0.0",
+                "Implementation-Version"  : project.version,
                 "Implementation-Vendor"   : "Nate",
                 "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
                 "MixinConfigs"            : "darkerdepths.mixins.json"

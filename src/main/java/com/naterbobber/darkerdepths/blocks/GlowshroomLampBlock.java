@@ -23,10 +23,10 @@ public class GlowshroomLampBlock extends RedstoneLampBlock {
 
             if (isLit != level.hasNeighborSignal(pos)) {
                 if (isLit) {
-                    level.playSound(null, pos, SoundEvents.BEACON_DEACTIVATE, SoundSource.BLOCKS, 1.0F, 1.0F);
+                    level.playSound(null, pos, SoundEvents.BEACON_DEACTIVATE, SoundSource.BLOCKS, 0.3F, 1.0F);
                     level.scheduleTick(pos, this, 4);
                 } else {
-                    level.playSound(null, pos, SoundEvents.BEACON_ACTIVATE, SoundSource.BLOCKS, 1.0F, 1.0F);
+                    level.playSound(null, pos, SoundEvents.BEACON_ACTIVATE, SoundSource.BLOCKS, 0.3F, 1.0F);
                     level.setBlock(pos, state.cycle(LIT), 2);
                 }
             }

@@ -92,10 +92,10 @@ public class DDRecipeProvider extends RecipeProvider {
 
         fenceBlock(consumer, DDBlocks.PETRIFIED_FENCE.get(), DDBlocks.PETRIFIED_PLANKS.get().asItem());
 
-        chiseled(consumer, DDBlocks.POLISHED_DARKSLATE_SLAB.get().asItem(), DDBlocks.CHISELED_DARKSLATE_BRICKS.get().asItem());
-        chiseled(consumer, DDBlocks.POLISHED_ARIDROCK_SLAB.get().asItem(), DDBlocks.CHISELED_ARIDROCK_BRICKS.get().asItem());
-        chiseled(consumer, DDBlocks.POLISHED_DUSKROCK_SLAB.get().asItem(), DDBlocks.CHISELED_DUSKROCK_BRICKS.get().asItem());
-        chiseled(consumer, DDBlocks.POLISHED_GRIMESTONE_SLAB.get().asItem(), DDBlocks.CHISELED_GRIMESTONE_BRICKS.get().asItem());
+        chiseled(consumer, DDBlocks.DARKSLATE_BRICKS_SLAB.get().asItem(), DDBlocks.CHISELED_DARKSLATE_BRICKS.get().asItem());
+        chiseled(consumer, DDBlocks.ARIDROCK_BRICKS_SLAB.get().asItem(), DDBlocks.CHISELED_ARIDROCK_BRICKS.get().asItem());
+        chiseled(consumer, DDBlocks.DUSKROCK_BRICKS_SLAB.get().asItem(), DDBlocks.CHISELED_DUSKROCK_BRICKS.get().asItem());
+        chiseled(consumer, DDBlocks.GRIMESTONE_BRICKS_SLAB.get().asItem(), DDBlocks.CHISELED_GRIMESTONE_BRICKS.get().asItem());
 
         threeXthree(consumer, DDBlocks.AMBER_BLOCK.get(), DDItems.AMBER.get());
         threeXthree(consumer, DDBlocks.FORSAKEN_BRONZE_BLOCK.get(), DDItems.FORSAKEN_BRONZE_INGOT.get());
@@ -308,15 +308,6 @@ public class DDRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_forsaken_bronze_scrap", has(DDItems.FORSAKEN_BRONZE_SCRAP.get()))
                 .save(consumer,DarkerDepths.id("forsaken_bronze_ingot_from_scrap"));
 
-        stonecutterResultFromBase(consumer, DDBlocks.CHISELED_DARKSLATE_BRICKS.get(), DDBlocks.DARKSLATE.get());
-        stonecutterResultFromBase(consumer, DDBlocks.CHISELED_ARIDROCK_BRICKS.get(), DDBlocks.ARIDROCK.get());
-        stonecutterResultFromBase(consumer, DDBlocks.CHISELED_DUSKROCK_BRICKS.get(), DDBlocks.DUSKROCK.get());
-        stonecutterResultFromBase(consumer, DDBlocks.CHISELED_GRIMESTONE_BRICKS.get(), DDBlocks.GRIMESTONE.get());
-        stonecutterResultFromBase(consumer, DDBlocks.CHISELED_DARKSLATE_BRICKS.get(), DDBlocks.POLISHED_DARKSLATE.get());
-        stonecutterResultFromBase(consumer, DDBlocks.CHISELED_ARIDROCK_BRICKS.get(), DDBlocks.POLISHED_ARIDROCK.get());
-        stonecutterResultFromBase(consumer, DDBlocks.CHISELED_DUSKROCK_BRICKS.get(), DDBlocks.POLISHED_DUSKROCK.get());
-        stonecutterResultFromBase(consumer, DDBlocks.CHISELED_GRIMESTONE_BRICKS.get(), DDBlocks.POLISHED_GRIMESTONE.get());
-
         stonecutterResultFromBase(consumer, DDBlocks.DARKSLATE_STAIRS.get(), DDBlocks.DARKSLATE.get());
         stonecutterResultFromBase(consumer, DDBlocks.ARIDROCK_STAIRS.get(), DDBlocks.ARIDROCK.get());
         stonecutterResultFromBase(consumer, DDBlocks.DUSKROCK_STAIRS.get(), DDBlocks.DUSKROCK.get());
@@ -368,6 +359,10 @@ public class DDRecipeProvider extends RecipeProvider {
         stonecutterResultFromBase(consumer, DDBlocks.ARIDROCK_BRICKS_WALL.get(), DDBlocks.ARIDROCK.get());
         stonecutterResultFromBase(consumer, DDBlocks.DUSKROCK_BRICKS_WALL.get(), DDBlocks.DUSKROCK.get());
         stonecutterResultFromBase(consumer, DDBlocks.GRIMESTONE_BRICKS_WALL.get(), DDBlocks.GRIMESTONE.get());
+        stonecutterResultFromBase(consumer, DDBlocks.CHISELED_DARKSLATE_BRICKS.get(), DDBlocks.DARKSLATE.get());
+        stonecutterResultFromBase(consumer, DDBlocks.CHISELED_ARIDROCK_BRICKS.get(), DDBlocks.ARIDROCK.get());
+        stonecutterResultFromBase(consumer, DDBlocks.CHISELED_DUSKROCK_BRICKS.get(), DDBlocks.DUSKROCK.get());
+        stonecutterResultFromBase(consumer, DDBlocks.CHISELED_GRIMESTONE_BRICKS.get(), DDBlocks.GRIMESTONE.get());
 
         stonecutterResultFromBase(consumer, DDBlocks.ARIDROCK_PILLAR.get(), DDBlocks.ARIDROCK.get());
 
@@ -387,11 +382,11 @@ public class DDRecipeProvider extends RecipeProvider {
         stonecutterResultFromBase(consumer, DDBlocks.ARIDROCK_BRICKS_WALL.get(), DDBlocks.POLISHED_ARIDROCK.get());
         stonecutterResultFromBase(consumer, DDBlocks.DUSKROCK_BRICKS_WALL.get(), DDBlocks.POLISHED_DUSKROCK.get());
         stonecutterResultFromBase(consumer, DDBlocks.GRIMESTONE_BRICKS_WALL.get(), DDBlocks.POLISHED_GRIMESTONE.get());
+        stonecutterResultFromBase(consumer, DDBlocks.CHISELED_DARKSLATE_BRICKS.get(), DDBlocks.POLISHED_DARKSLATE.get());
+        stonecutterResultFromBase(consumer, DDBlocks.CHISELED_ARIDROCK_BRICKS.get(), DDBlocks.POLISHED_ARIDROCK.get());
+        stonecutterResultFromBase(consumer, DDBlocks.CHISELED_DUSKROCK_BRICKS.get(), DDBlocks.POLISHED_DUSKROCK.get());
+        stonecutterResultFromBase(consumer, DDBlocks.CHISELED_GRIMESTONE_BRICKS.get(), DDBlocks.POLISHED_GRIMESTONE.get());
 
-        stonecutterResultFromBase(consumer, DDBlocks.DARKSLATE_BRICKS.get(), DDBlocks.DARKSLATE_BRICKS.get());
-        stonecutterResultFromBase(consumer, DDBlocks.ARIDROCK_BRICKS.get(), DDBlocks.ARIDROCK_BRICKS.get());
-        stonecutterResultFromBase(consumer, DDBlocks.DUSKROCK_BRICKS.get(), DDBlocks.DUSKROCK_BRICKS.get());
-        stonecutterResultFromBase(consumer, DDBlocks.GRIMESTONE_BRICKS.get(), DDBlocks.GRIMESTONE_BRICKS.get());
         stonecutterResultFromBase(consumer, DDBlocks.DARKSLATE_BRICKS_STAIRS.get(), DDBlocks.DARKSLATE_BRICKS.get());
         stonecutterResultFromBase(consumer, DDBlocks.ARIDROCK_BRICKS_STAIRS.get(), DDBlocks.ARIDROCK_BRICKS.get());
         stonecutterResultFromBase(consumer, DDBlocks.DUSKROCK_BRICKS_STAIRS.get(), DDBlocks.DUSKROCK_BRICKS.get());
@@ -404,6 +399,10 @@ public class DDRecipeProvider extends RecipeProvider {
         stonecutterResultFromBase(consumer, DDBlocks.ARIDROCK_BRICKS_WALL.get(), DDBlocks.ARIDROCK_BRICKS.get());
         stonecutterResultFromBase(consumer, DDBlocks.DUSKROCK_BRICKS_WALL.get(), DDBlocks.DUSKROCK_BRICKS.get());
         stonecutterResultFromBase(consumer, DDBlocks.GRIMESTONE_BRICKS_WALL.get(), DDBlocks.GRIMESTONE_BRICKS.get());
+        stonecutterResultFromBase(consumer, DDBlocks.CHISELED_DARKSLATE_BRICKS.get(), DDBlocks.DARKSLATE_BRICKS.get());
+        stonecutterResultFromBase(consumer, DDBlocks.CHISELED_ARIDROCK_BRICKS.get(), DDBlocks.ARIDROCK_BRICKS.get());
+        stonecutterResultFromBase(consumer, DDBlocks.CHISELED_DUSKROCK_BRICKS.get(), DDBlocks.DUSKROCK_BRICKS.get());
+        stonecutterResultFromBase(consumer, DDBlocks.CHISELED_GRIMESTONE_BRICKS.get(), DDBlocks.GRIMESTONE_BRICKS.get());
 
         stonecutterResultFromBase(consumer, DDBlocks.ARIDROCK_PILLAR.get(), DDBlocks.POLISHED_ARIDROCK.get());
 
