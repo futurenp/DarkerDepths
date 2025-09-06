@@ -4,7 +4,6 @@ import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.entities.VoidSoulKnightEntity;
 import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib.model.DefaultedEntityGeoModel;
-import software.bernie.geckolib.model.GeoModel;
 
 public class VoidSoulKnightModel extends DefaultedEntityGeoModel<VoidSoulKnightEntity> {
 	public VoidSoulKnightModel() {

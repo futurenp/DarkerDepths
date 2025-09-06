@@ -38,7 +38,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.*;
 
 public class TombBlock extends BaseEntityBlock implements SimpleWaterloggedBlock {
-
+    public static final BooleanProperty INHABITED = BooleanProperty.create("inhabited");
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     private record MultiblockPartData(BlockPos pos, BlockState state) {}
@@ -97,12 +97,13 @@ public class TombBlock extends BaseEntityBlock implements SimpleWaterloggedBlock
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(FACING, Direction.NORTH)
                 .setValue(PART, Part.FRONT_CENTER)
+                .setValue(INHABITED, true)
                 .setValue(WATERLOGGED, false));
     }
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(FACING, PART, WATERLOGGED);
+        builder.add(FACING, PART, WATERLOGGED, INHABITED);
     }
 
     @Override
@@ -220,6 +221,7 @@ public class TombBlock extends BaseEntityBlock implements SimpleWaterloggedBlock
         if (state.getValue(PART) == Part.FRONT_CENTER) {
             return createTickerHelper(type, DDBlockEntityTypes.TOMB.get(), TombBlockEntity::tick);
         }
+
         return null;
     }
 

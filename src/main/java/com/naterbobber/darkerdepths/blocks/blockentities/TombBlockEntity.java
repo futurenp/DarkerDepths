@@ -6,7 +6,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
-import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.level.Level;
@@ -63,9 +62,7 @@ public class TombBlockEntity extends BlockEntity implements GeoBlockEntity {
     }
 
     public static void tick(Level level, BlockPos pos, BlockState state, TombBlockEntity entity) {
-        if (level.isClientSide()) {
-            return;
-        }
+        if (level.isClientSide()) return;
 
         if (entity.isAnimating) {
             entity.animationTimer++;
@@ -92,6 +89,10 @@ public class TombBlockEntity extends BlockEntity implements GeoBlockEntity {
 
     public boolean isAnimating() {
         return this.isAnimating;
+    }
+
+    public boolean isInhabited() {
+        return this.getBlockState().getValue(TombBlock.INHABITED);
     }
 
     private void startAnimation() {
@@ -132,6 +133,9 @@ public class TombBlockEntity extends BlockEntity implements GeoBlockEntity {
         if (this.isAnimating) {
             String animationName = this.isOpen ? "open" : "close";
             state.getController().setAnimation(RawAnimation.begin().then(animationName, Animation.LoopType.HOLD_ON_LAST_FRAME));
+        } else if (this.isOpen) {
+            // Tomb is open but not animating - use the open idle animation
+            state.getController().setAnimation(RawAnimation.begin().then("idle_open", Animation.LoopType.HOLD_ON_LAST_FRAME));
         }
         return PlayState.CONTINUE;
     }
