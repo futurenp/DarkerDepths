@@ -141,11 +141,26 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
                 DDBlocks.VOID_SOUL_JAR.get(),
                 DDBlocks.PARANOIA_ALTAR.get(),
                 DDBlocks.CRYSTAL_MELON.get(),
-                DDBlocks.FORSAKEN_BRONZE_BLOCK.get()
+                DDBlocks.FORSAKEN_BRONZE_BLOCK.get(),
+                DDBlocks.ARIDROCK_PILLAR.get()
         );
         this.tag(BlockTags.MINEABLE_WITH_SHOVEL).add(
                 DDBlocks.ASH.get(),
                 DDBlocks.ASH_BLOCK.get()
+        );
+
+        this.tag(BlockTags.MINEABLE_WITH_AXE).add(
+                DDBlocks.PETRIFIED_PLANKS.get(),
+                DDBlocks.PETRIFIED_STAIRS.get(),
+                DDBlocks.PETRIFIED_SLAB.get(),
+                DDBlocks.PETRIFIED_VERTICAL_SLAB.get(),
+                DDBlocks.PETRIFIED_DOOR.get(),
+                DDBlocks.PETRIFIED_TRAPDOOR.get(),
+                DDBlocks.PETRIFIED_PRESSURE_PLATE.get(),
+                DDBlocks.PETRIFIED_BUTTON.get(),
+                DDBlocks.PETRIFIED_SIGN.get(),
+                DDBlocks.POROUS_PETRIFIED_LOG.get(),
+                DDBlocks.PETRIFIED_PLANKS.get()
         );
 
         this.tag(DDBlockTags.GEYSER_BOOSTERS).add(Blocks.MAGMA_BLOCK);

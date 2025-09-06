@@ -91,12 +91,12 @@ public class DDBlocks {
             () -> new SlabBlock(BlockBehaviour.Properties.copy(DARKSLATE_BRICKS.get())));
     public static final RegistryObject<Block> DARKSLATE_BRICKS_VERTICAL_SLAB = registerCompatBlock("quark", "darkslate_bricks_vertical_slab",
             () -> new VerticalSlabBlock(BlockBehaviour.Properties.copy(DARKSLATE_BRICKS.get())));
+    public static final RegistryObject<Block> DARKSLATE_BRICKS_WALL = registerBlock("darkslate_bricks_wall",
+            () -> new WallBlock(BlockBehaviour.Properties.copy(DARKSLATE_BRICKS.get())));
     public static final RegistryObject<Block> CHISELED_DARKSLATE_BRICKS = registerBlock("chiseled_darkslate_bricks",
             () -> new Block(BlockBehaviour.Properties.copy(DARKSLATE_BRICKS.get())));
     public static final RegistryObject<Block> CRACKED_DARKSLATE_BRICKS = registerBlock("cracked_darkslate_bricks",
             () -> new Block(BlockBehaviour.Properties.copy(DARKSLATE_BRICKS.get())));
-    public static final RegistryObject<Block> DARKSLATE_BRICKS_WALL = registerBlock("darkslate_bricks_wall",
-            () -> new WallBlock(BlockBehaviour.Properties.copy(DARKSLATE_BRICKS.get())));
     public static final RegistryObject<Block> ASH_BLOCK = registerBlock("ash_block",
             () -> new AshFullBlock(Block.Properties.of().mapColor(MapColor.COLOR_BLACK).requiresCorrectToolForDrops().strength(0.2f).sound(SoundType.SNOW).randomTicks()));
     public static final RegistryObject<Block> GEYSER = registerBlock("geyser",
@@ -129,14 +129,14 @@ public class DDBlocks {
             () -> new SlabBlock(BlockBehaviour.Properties.of().sound(SoundType.STONE).strength(1.5F, 6.0F).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> ARIDROCK_BRICKS_VERTICAL_SLAB = registerCompatBlock("quark", "aridrock_bricks_vertical_slab",
             () -> new VerticalSlabBlock(BlockBehaviour.Properties.copy(ARIDROCK_BRICKS_SLAB.get())));
-    public static final RegistryObject<Block> ARIDROCK_PILLAR = registerBlock("aridrock_pillar",
-            () -> new ConnectedPillarBlock(BlockBehaviour.Properties.of().sound(SoundType.STONE).strength(1.5F, 6.0F).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> ARIDROCK_BRICKS_WALL = registerBlock("aridrock_bricks_wall",
+            () -> new WallBlock(Block.Properties.of().mapColor(MapColor.SAND).requiresCorrectToolForDrops().strength(1.5f, 6.0f).sound(SoundType.STONE)));
     public static final RegistryObject<Block> CHISELED_ARIDROCK_BRICKS = registerBlock("chiseled_aridrock_bricks",
             () -> new Block(Block.Properties.of().requiresCorrectToolForDrops().strength(1.5f, 6.0f).sound(SoundType.STONE)));
     public static final RegistryObject<Block> CRACKED_ARIDROCK_BRICKS = registerBlock("cracked_aridrock_bricks",
             () -> new Block(BlockBehaviour.Properties.of().sound(SoundType.STONE).strength(1.5F, 6.0F).requiresCorrectToolForDrops()));
-    public static final RegistryObject<Block> ARIDROCK_BRICKS_WALL = registerBlock("aridrock_bricks_wall",
-            () -> new WallBlock(Block.Properties.of().mapColor(MapColor.SAND).requiresCorrectToolForDrops().strength(1.5f, 6.0f).sound(SoundType.STONE)));
+    public static final RegistryObject<Block> ARIDROCK_PILLAR = registerBlock("aridrock_pillar",
+            () -> new ConnectedPillarBlock(BlockBehaviour.Properties.of().sound(SoundType.STONE).strength(1.5F, 6.0F).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> SKULL_WALL = registerBlock("skull_wall",
             () -> new Block(BlockBehaviour.Properties.of().sound(SoundType.STONE).strength(1.5F, 6.0F).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> DUSKROCK = registerBlock("duskrock",
@@ -157,8 +157,6 @@ public class DDBlocks {
             () -> new SlabBlock(Block.Properties.of().requiresCorrectToolForDrops().strength(1.5f, 6.0f).sound(SoundType.STONE)));
     public static final RegistryObject<Block> POLISHED_DUSKROCK_VERTICAL_SLAB = registerCompatBlock("quark", "polished_duskrock_vertical_slab",
             () -> new VerticalSlabBlock(BlockBehaviour.Properties.copy(POLISHED_DUSKROCK_SLAB.get())));
-    public static final RegistryObject<Block> DUSKROCK_BRICKS_WALL = registerBlock("duskrock_bricks_wall",
-            () -> new WallBlock(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(1.5F, 6.0F).requiresCorrectToolForDrops().sound(SoundType.STONE)));
     public static final RegistryObject<Block> DUSKROCK_BRICKS = registerBlock("duskrock_bricks",
             () -> new Block(Block.Properties.of().requiresCorrectToolForDrops().strength(1.5f, 6.0f).sound(SoundType.STONE)));
     public static final RegistryObject<Block> DUSKROCK_BRICKS_STAIRS = registerBlock("duskrock_bricks_stairs",
@@ -167,6 +165,8 @@ public class DDBlocks {
             () -> new SlabBlock(Block.Properties.of().requiresCorrectToolForDrops().strength(1.5f, 6.0f).sound(SoundType.STONE)));
     public static final RegistryObject<Block> DUSKROCK_BRICKS_VERTICAL_SLAB = registerCompatBlock("quark", "duskrock_bricks_vertical_slab",
             () -> new VerticalSlabBlock(BlockBehaviour.Properties.copy(ARIDROCK_BRICKS_SLAB.get())));
+    public static final RegistryObject<Block> DUSKROCK_BRICKS_WALL = registerBlock("duskrock_bricks_wall",
+            () -> new WallBlock(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(1.5F, 6.0F).requiresCorrectToolForDrops().sound(SoundType.STONE)));
     public static final RegistryObject<Block> CHISELED_DUSKROCK_BRICKS = registerBlock("chiseled_duskrock_bricks",
             () -> new Block(Block.Properties.of().requiresCorrectToolForDrops().strength(1.5f, 6.0f).sound(SoundType.STONE)));
     public static final RegistryObject<Block> CRACKED_DUSKROCK_BRICKS = registerBlock("cracked_duskrock_bricks",

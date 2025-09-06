@@ -3,6 +3,7 @@ package com.naterbobber.darkerdepths.client.models;
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.blocks.ParanoiaAltarBlock;
 import com.naterbobber.darkerdepths.blocks.blockentities.ParanoiaAltarBlockEntity;
+import com.naterbobber.darkerdepths.item.ParanoiaAltarItem;
 import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.model.GeoModel;
@@ -15,7 +16,19 @@ public class ParanoiaAltarModel<T extends GeoAnimatable> extends GeoModel<T> {
 	}
 
 	@Override
-	public ResourceLocation getTextureResource(T paranoiaAltar) {
+	public ResourceLocation getTextureResource(T animatable) {
+		if (animatable instanceof ParanoiaAltarBlockEntity paranoiaAltar) {
+			if (paranoiaAltar.getBlockState().getValue(ParanoiaAltarBlock.LOCKED)) {
+				return DarkerDepths.id("textures/entity/paranoia_altar/paranoia_altar_locked.png");
+			} else {
+				return DarkerDepths.id("textures/entity/paranoia_altar/paranoia_altar.png");
+			}
+		}
+
+		if (animatable instanceof ParanoiaAltarItem) {
+			return DarkerDepths.id("textures/entity/paranoia_altar/paranoia_altar.png");
+		}
+
 		return DarkerDepths.id("textures/entity/paranoia_altar/paranoia_altar.png");
 	}
 
