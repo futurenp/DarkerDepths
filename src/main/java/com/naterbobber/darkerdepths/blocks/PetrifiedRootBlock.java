@@ -1,5 +1,6 @@
 package com.naterbobber.darkerdepths.blocks;
 
+import com.mojang.serialization.MapCodec;
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -19,6 +20,11 @@ public class PetrifiedRootBlock extends GrowingPlantHeadBlock {
 
     public PetrifiedRootBlock(Properties properties) {
         super(properties, Direction.DOWN, SHAPE, false, 0.1D);
+    }
+
+    @Override
+    protected MapCodec<? extends GrowingPlantHeadBlock> codec() {
+        return null;
     }
 
     @Override

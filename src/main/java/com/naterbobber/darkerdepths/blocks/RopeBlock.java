@@ -5,6 +5,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -106,7 +107,7 @@ public class RopeBlock extends Block implements BucketPickup, LiquidBlockContain
     }
 
     @Override
-    public ItemStack pickupBlock(LevelAccessor world, BlockPos pos, BlockState state) {
+    public ItemStack pickupBlock(Player player, LevelAccessor world, BlockPos pos, BlockState state) {
         if (state.getValue(WATERLOGGED)) {
             world.setBlock(pos, state.setValue(WATERLOGGED, false), 3);
             return new ItemStack(Items.WATER_BUCKET);
@@ -125,8 +126,9 @@ public class RopeBlock extends Block implements BucketPickup, LiquidBlockContain
         return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
     }
 
+
     @Override
-    public boolean canPlaceLiquid(BlockGetter p_54766_, BlockPos p_54767_, BlockState p_54768_, Fluid fluid) {
+    public boolean canPlaceLiquid(Player player, BlockGetter blockGetter, BlockPos blockPos, BlockState blockState, Fluid fluid) {
         return fluid == Fluids.WATER;
     }
 

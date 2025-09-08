@@ -8,7 +8,7 @@ import com.naterbobber.darkerdepths.world.gen.processors.catacombs.TombProcessor
 import com.naterbobber.darkerdepths.world.gen.processors.catacombs.VoidSoulKnightProcessor;
 import com.naterbobber.darkerdepths.world.gen.processors.rope_mines.RopeMinesArchaeologyProcessor;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.worldgen.BootstapContext;
+import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProcessorList;
 
@@ -17,7 +17,7 @@ public class DDProcessorLists {
     public static final ResourceKey<StructureProcessorList> CATACOMBS_PROCESSOR = createKey("catacombs_processor");
     public static final ResourceKey<StructureProcessorList> ROPE_MINES_PROCESSOR = createKey("rope_mines_processor");
 
-    public static void bootstrap(BootstapContext<StructureProcessorList> context) {
+    public static void bootstrap(BootstrapContext<StructureProcessorList> context) {
         context.register(CATACOMBS_PROCESSOR, new StructureProcessorList(ImmutableList.of(
                 new TombProcessor(),
                 new CatacombsBarrelProcessor(),

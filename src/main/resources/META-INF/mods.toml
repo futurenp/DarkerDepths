@@ -1,44 +1,55 @@
 modLoader="javafml"
-loaderVersion="[39,)"
-license="All Rights Reserved"
+
+loaderVersion="[1,)"
+
+license="Creative Commons"
+
 [[mods]]
 modId="darkerdepths"
-version="${file.jarVersion}"
+
+version="${mod_version}"
+
 displayName="Darker Depths"
-authors="Nate, Blackgear, Toxteer, Orcinus"
+
+authors="Naterbobber, Blackgear, Toxteer, Orcinus"
+
 description='''
 A mod to expand the underground
 
 Author:
-- Nate
+- Naterbobber
 
 Main Developers:
-- Nate
+- Naterbobber
 - Orcinus
 - Blackgear
 
 Artist:
-- Nate
+- Naterbobber
 - Toxteer
-
 '''
-[[dependencies.darkerdepths]]
-   modId="forge"
-   mandatory=true
-   versionRange="[47.4,)"
-   ordering="NONE"
-   side="BOTH"
+
+[[mixins]]
+config="darkerdepths.mixins.json"
+
 
 [[dependencies.darkerdepths]]
-   modId="minecraft"
-   mandatory=true
-   versionRange="[1.20.1]"
-   ordering="NONE"
-   side="BOTH"
+modId="neoforge"
+mandatory=true
+versionRange="[21.1,)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.darkerdepths]]
+modId="minecraft"
+mandatory=true
+versionRange="[1.21.1]"
+ordering="NONE"
+side="BOTH"
 
 [[dependencies.darkerdepths]]
 modId="geckolib"
 mandatory=true
-versionRange="[4.7,)"
+versionRange="[4.5,)"
 ordering="NONE"
 side="BOTH"

@@ -5,7 +5,7 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import software.bernie.geckolib.cache.object.BakedGeoModel;
-import software.bernie.geckolib.core.animatable.GeoAnimatable;
+import software.bernie.geckolib.animatable.GeoAnimatable;
 import software.bernie.geckolib.renderer.GeoRenderer;
 import software.bernie.geckolib.renderer.layer.GeoRenderLayer;
 
@@ -24,6 +24,6 @@ public class DDCustomRenderTypeLayer<T extends GeoAnimatable> extends GeoRenderL
                        int packedLight, int packedOverlay) {
         VertexConsumer buffer = bufferSource.getBuffer(this.renderType);
         getRenderer().reRender(bakedModel, poseStack, bufferSource, animatable, this.renderType,
-                buffer, partialTick, 15728880, packedOverlay, 1.0f, 1.0f, 1.0f, 1.0f);
+                buffer, partialTick, 15728880, packedOverlay, 1);
     }
 }

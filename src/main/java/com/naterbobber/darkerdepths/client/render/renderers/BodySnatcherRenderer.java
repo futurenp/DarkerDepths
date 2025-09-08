@@ -10,7 +10,7 @@ import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
 
 public class BodySnatcherRenderer extends GeoEntityRenderer<BodySnatcherEntity> {
-    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(DarkerDepths.MODID, "textures/entity/body_snatcher/body_snatcher_glowmask.png");
+    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(DarkerDepths.MOD_ID, "textures/entity/body_snatcher/body_snatcher_glowmask.png");
 
     public BodySnatcherRenderer(EntityRendererProvider.Context context) {
         super(context, new BodySnatcherModel());

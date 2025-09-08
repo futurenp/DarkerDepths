@@ -10,8 +10,8 @@ import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib.renderer.GeoItemRenderer;
 
 public class VoidSoulJarItemRenderer extends GeoItemRenderer<VoidSoulJarItem> {
-    private static final ResourceLocation GLOWING_TEXTURE = ResourceLocation.fromNamespaceAndPath(DarkerDepths.MODID, "textures/entity/void_soul_jar/void_soul_jar_glowmask.png");
-    private static final ResourceLocation INVERTED_TEXTURE = ResourceLocation.fromNamespaceAndPath(DarkerDepths.MODID, "textures/entity/void_soul_jar/void_soul_jar_inverted.png");
+    private static final ResourceLocation GLOWING_TEXTURE = ResourceLocation.fromNamespaceAndPath(DarkerDepths.MOD_ID, "textures/entity/void_soul_jar/void_soul_jar_glowmask.png");
+    private static final ResourceLocation INVERTED_TEXTURE = ResourceLocation.fromNamespaceAndPath(DarkerDepths.MOD_ID, "textures/entity/void_soul_jar/void_soul_jar_inverted.png");
 
 
     public VoidSoulJarItemRenderer() {

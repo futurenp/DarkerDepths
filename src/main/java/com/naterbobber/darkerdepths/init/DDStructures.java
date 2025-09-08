@@ -6,7 +6,7 @@ import com.naterbobber.darkerdepths.data.tags.DDBiomeTagsProvider;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.worldgen.BootstapContext;
+import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.data.worldgen.Pools;
 import net.minecraft.data.worldgen.ProcessorLists;
 import net.minecraft.resources.ResourceKey;
@@ -29,10 +29,10 @@ import net.minecraft.world.level.levelgen.structure.pools.StructurePoolElement;
 import net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool;
 import net.minecraft.world.level.levelgen.structure.structures.JigsawStructure;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProcessorList;
-import net.minecraftforge.common.world.BiomeModifier;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.common.world.BiomeModifier;
+import net.neoforged.neoforge.registries.DeferredRegister;
+
+import net.neoforged.neoforge.registries.DeferredHolder;
 
 import java.util.Arrays;
 import java.util.List;
@@ -44,9 +44,9 @@ import static net.minecraft.world.level.levelgen.structure.pools.StructureTempla
 
 public class DDStructures {
     public static final DeferredRegister<StructureType<?>> STRUCTURE_TYPES =
-            DeferredRegister.create(Registries.STRUCTURE_TYPE, DarkerDepths.MODID);
+            DeferredRegister.create(Registries.STRUCTURE_TYPE, DarkerDepths.MOD_ID);
 
-    public static final RegistryObject<StructureType<JigsawStructure>> DD_JIGSAW_TYPE =
+    public static final DeferredHolder<StructureType<?>, StructureType<JigsawStructure>> DD_JIGSAW_TYPE =
             STRUCTURE_TYPES.register("dd_jigsaw", () -> () -> JigsawStructure.CODEC);
 
     public static final ResourceKey<Structure> ROPE_MINE_FOREST = createStructureKey("rope_mine_forest");
@@ -64,7 +64,7 @@ public class DDStructures {
     public static final ResourceKey<StructureTemplatePool> CATACOMBS_CENTER_EXTENSIONS_POOL = createPoolKey("catacombs/center_extensions");
     public static final ResourceKey<StructureTemplatePool> CATACOMBS_HALLS_EXTENSIONS = createPoolKey("catacombs/extensions");
 
-    public static void bootstrap(BootstapContext<Structure> context) {
+    public static void bootstrap(BootstrapContext<Structure> context) {
         HolderGetter<Biome> biomeGetter = context.lookup(Registries.BIOME);
         HolderGetter<StructureTemplatePool> poolGetter = context.lookup(Registries.TEMPLATE_POOL);
 
@@ -127,7 +127,7 @@ public class DDStructures {
         ));
     }
 
-    public static void bootstrapStructureSet(BootstapContext<StructureSet> context) {
+    public static void bootstrapStructureSet(BootstrapContext<StructureSet> context) {
         HolderGetter<Structure> structureGetter = context.lookup(Registries.STRUCTURE);
 
         context.register(ROPE_MINE_FOREST_SET,
@@ -152,7 +152,7 @@ public class DDStructures {
         );
     }
 
-    public static void bootstrapTemplatePool(BootstapContext<StructureTemplatePool> context) {
+    public static void bootstrapTemplatePool(BootstrapContext<StructureTemplatePool> context) {
         Holder<StructureTemplatePool> emptyPoolHolder = context.lookup(Registries.TEMPLATE_POOL).getOrThrow(Pools.EMPTY);
         HolderGetter<StructureProcessorList> processorList = context.lookup(Registries.PROCESSOR_LIST);
         Holder.Reference<StructureProcessorList> catacombsProcessor = processorList.getOrThrow(DDProcessorLists.CATACOMBS_PROCESSOR);
@@ -238,18 +238,18 @@ public class DDStructures {
     }
 
     private static ResourceKey<Structure> createStructureKey(String name) {
-        return ResourceKey.create(Registries.STRUCTURE, ResourceLocation.fromNamespaceAndPath(DarkerDepths.MODID, name));
+        return ResourceKey.create(Registries.STRUCTURE, ResourceLocation.fromNamespaceAndPath(DarkerDepths.MOD_ID, name));
     }
 
     private static ResourceKey<StructureSet> createStructureSetKey(String name) {
-        return ResourceKey.create(Registries.STRUCTURE_SET, ResourceLocation.fromNamespaceAndPath(DarkerDepths.MODID, name));
+        return ResourceKey.create(Registries.STRUCTURE_SET, ResourceLocation.fromNamespaceAndPath(DarkerDepths.MOD_ID, name));
     }
 
     private static ResourceKey<StructureTemplatePool> createPoolKey(String name) {
-        return ResourceKey.create(Registries.TEMPLATE_POOL, ResourceLocation.fromNamespaceAndPath(DarkerDepths.MODID, name));
+        return ResourceKey.create(Registries.TEMPLATE_POOL, ResourceLocation.fromNamespaceAndPath(DarkerDepths.MOD_ID, name));
     }
 
     public static ResourceKey<BiomeModifier> createKey(String name) {
-        return ResourceKey.create(ForgeRegistries.Keys.BIOME_MODIFIERS, ResourceLocation.fromNamespaceAndPath(DarkerDepths.MODID, name));
+        return ResourceKey.create(Registries.Keys.BIOME_MODIFIERS, ResourceLocation.fromNamespaceAndPath(DarkerDepths.MOD_ID, name));
     }
 }

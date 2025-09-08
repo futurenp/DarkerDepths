@@ -1,88 +1,54 @@
-buildscript {
-    repositories {
-        maven { url = 'https://maven.minecraftforge.net' }
-        maven { url = "https://files.minecraftforge.net/maven" }
-        maven { url = "https://repo.spongepowered.org/repository/maven-public/" }
-        maven { url = 'https://maven.parchmentmc.org' }
-        mavenCentral()
-        gradlePluginPortal()
-    }
-    dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: "${project.forgegradle_version}", changing: true
-        classpath 'org.parchmentmc:librarian:1.+'
-        classpath group: "org.spongepowered", name: "mixingradle", version: "0.7-SNAPSHOT"
-    }
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+    id 'net.neoforged.moddev' version '2.0.107'
+    id 'idea'
 }
 
+version = mod_version
+group = mod_group_id
 
-apply plugin: 'net.minecraftforge.gradle'
-apply plugin: 'eclipse'
-apply plugin: 'maven-publish'
-apply plugin: "org.spongepowered.mixin"
-apply plugin: 'org.parchmentmc.librarian.forgegradle'
-
-mixin {
-    add sourceSets.main, "darkerdepths.refmap.json"
+base {
+    archivesName = mod_id
 }
 
-version = "${project.minecraft_version}-${project.mod_version}"
-group = 'com.natebobber.darkerdepths'
-archivesBaseName = 'Darker Depths'
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+neoForge {
+    version = project.neo_version
 
-println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
-minecraft {
-    mappings channel: "${project.mappings_channel}", version: "${project.mappings_version}"
-
-    accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
+    parchment {
+        mappingsVersion = project.parchment_mappings_version
+        minecraftVersion = project.parchment_minecraft_version
+    }
 
     runs {
         client {
-            workingDirectory project.file('run')
-
-            property 'forge.logging.markers', 'REGISTRIES'
-
-            property 'forge.logging.console.level', 'debug'
-            arg "-mixin.config=darkerdepths.mixins.json"
-            mods {
-                darkerdepths {
-                    source sourceSets.main
-                }
-            }
+            client()
+            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
         }
 
         server {
-            workingDirectory project.file('run')
-
-            property 'forge.logging.markers', 'REGISTRIES'
-
-            property 'forge.logging.console.level', 'debug'
-            arg "-mixin.config=darkerdepths.mixins.json"
-
-            mods {
-                darkerdepths {
-                    source sourceSets.main
-                }
-            }
+            server()
+            programArgument '--nogui'
+            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
         }
 
         data {
-            workingDirectory project.file('run')
+            data()
+            programArguments.addAll '--mod', project.mod_id, '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath()
+        }
 
-            property 'forge.logging.markers', 'REGISTRIES'
+        configureEach {
+            systemProperty 'forge.logging.markers', 'REGISTRIES'
+            logLevel = org.slf4j.event.Level.DEBUG
 
-            property 'forge.logging.console.level', 'debug'
-            property "mixin.env.remapRefMap", "true"
-            property "mixin.env.refMapRemappingFile", "${projectDir}/build/createSrgToMcp/output.srg"
+        }
+    }
 
-            args '--mod', 'darkerdepths', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
-
-            mods {
-                darkerdepths {
-                    source sourceSets.main
-                }
-            }
+    mods {
+        "${mod_id}" {
+            sourceSet(sourceSets.main)
         }
     }
 }
@@ -90,54 +56,60 @@ minecraft {
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
-    maven {
-        url "https://maven.blamejared.com"
-    }
-    maven {
-        url "https://www.cursemaven.com"
-    }
+    maven { url "https://maven.blamejared.com" }
+    maven { url "https://www.cursemaven.com" }
     maven {
         name = 'GeckoLib'
         url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
         content {
-            includeGroupByRegex("software\\.bernie.*")
-            includeGroup("com.eliotlash.mclib")
+            includeGroup("software.bernie.geckolib")
         }
     }
+
+    maven {
+        name = "Forge"
+        url = "https://maven.minecraftforge.net"
+    }
+    maven { url = "https://repo.spongepowered.org/repository/maven-public/" }
 }
 
 dependencies {
-    minecraft "net.minecraftforge:forge:${project.minecraft_version}-${project.forge_version}"
+
     annotationProcessor "org.spongepowered:mixin:0.8.5:processor"
-    implementation fg.deobf('com.github.glitchfiend:TerraBlender-forge:1.20-3.0.0.163')
-    implementation fg.deobf("software.bernie.geckolib:geckolib-forge-1.20.1:4.7.3")
+    implementation "com.github.glitchfiend:TerraBlender-neoforge:1.21.1-4.1.0.8"
+    implementation "software.bernie.geckolib:geckolib-neoforge-1.21.1:4.7.7"
+//    implementation fg.deobf('com.github.glitchfiend:TerraBlender-forge:' + '1.21.1' + '-' + '4.1.0.8')
 }
+
 
 jar {
     manifest {
         attributes([
                 "Specification-Title"     : "Darker Depths",
                 "Specification-Vendor"    : "Naterbobber",
-                "Specification-Version"   : "1",
+                "Specification-Version"   : project.version,
                 "Implementation-Title"    : "Darker Depths",
                 "Implementation-Version"  : project.version,
-                "Implementation-Vendor"   : "Nate",
-                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
-                "MixinConfigs"            : "darkerdepths.mixins.json"
+                "Implementation-Vendor"   : "Naterbobber",
+                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
         ])
     }
-    finalizedBy 'reobfJar'
 }
+
 
 publishing {
     publications {
-        mavenJava(MavenPublication) {
-            artifact jar
+        register('mavenJava', MavenPublication) {
+            from components.java
         }
     }
     repositories {
         maven {
-            url "https://maven.minecraftforge.net"
+            url "file://${project.projectDir}/repo"
         }
     }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
 }

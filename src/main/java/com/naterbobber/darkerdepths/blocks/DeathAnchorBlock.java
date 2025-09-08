@@ -13,6 +13,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.ai.village.poi.PoiType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -50,7 +51,7 @@ public class DeathAnchorBlock extends Block {
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level level, BlockPos blockPos, Player player, InteractionHand hand, BlockHitResult result) {
+    public ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos blockPos, Player player, InteractionHand hand, BlockHitResult result) {
         ItemStack itemStack = player.getItemInHand(hand);
         if (itemStack.is(DDItems.VOID_SOUL_REQUIEM.get()) && !state.getValue(POWERED)) {
             level.setBlock(blockPos, state.setValue(POWERED, true), 2);
@@ -63,9 +64,9 @@ public class DeathAnchorBlock extends Block {
                 deathAnchorLocation.setDeathAnchorLocation(Optional.of(GlobalPos.of(level.dimension(), blockPos)));
             }
 
-            return InteractionResult.SUCCESS;
+            return ItemInteractionResult.SUCCESS;
         }
-        return super.use(state, level, blockPos, player, hand, result);
+        return super.useItemOn(stack, state, level, blockPos, player, hand, result);
     }
 
     private void handleExistingDeathAnchor(Level level, BlockPos current, DeathAnchorLocation deathAnchorLocation) {

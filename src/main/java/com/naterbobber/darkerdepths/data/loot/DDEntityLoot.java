@@ -3,6 +3,7 @@ package com.naterbobber.darkerdepths.data.loot;
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import com.naterbobber.darkerdepths.init.DDEntityTypes;
 import com.naterbobber.darkerdepths.init.DDItems;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.data.loot.packs.VanillaEntityLoot;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.storage.loot.LootPool;
@@ -11,11 +12,15 @@ import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
 import java.util.stream.Stream;
 
 public class DDEntityLoot extends VanillaEntityLoot {
+
+    public DDEntityLoot(HolderLookup.Provider registries) {
+        super(registries);
+    }
 
     @Override
     public void generate() {
@@ -52,7 +57,7 @@ public class DDEntityLoot extends VanillaEntityLoot {
 
     @Override
     protected Stream<EntityType<?>> getKnownEntityTypes() {
-        return DDEntityTypes.ENTITY_TYPES.getEntries().stream().map(RegistryObject::get);
+        return DDEntityTypes.ENTITY_TYPES.getEntries().stream().map(DeferredHolder::get);
     }
 
 }

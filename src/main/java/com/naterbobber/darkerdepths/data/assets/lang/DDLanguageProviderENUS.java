@@ -3,11 +3,11 @@ package com.naterbobber.darkerdepths.data.assets.lang;
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.init.*;
 import net.minecraft.data.PackOutput;
-import net.minecraftforge.common.data.LanguageProvider;
+import net.neoforged.neoforge.common.data.LanguageProvider;
 
 public class DDLanguageProviderENUS extends LanguageProvider {
     public DDLanguageProviderENUS(PackOutput output) {
-        super(output, DarkerDepths.MODID, "en_us");
+        super(output, DarkerDepths.MOD_ID, "en_us");
     }
 
     @Override

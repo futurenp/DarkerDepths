@@ -7,12 +7,11 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraftforge.event.AnvilUpdateEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
 
 import java.util.Map;
 import java.util.stream.Collectors;
 
-@Mod.EventBusSubscriber(modid = DarkerDepths.MODID)
+@Mod.EventBusSubscriber(modid = DarkerDepths.MOD_ID)
 public class RequiemCurseRemovalHandler {
 
     @SubscribeEvent

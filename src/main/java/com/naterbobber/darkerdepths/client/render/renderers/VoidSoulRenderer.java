@@ -14,7 +14,7 @@ import software.bernie.geckolib.renderer.GeoEntityRenderer;
 import javax.annotation.Nullable;
 
 public class VoidSoulRenderer extends GeoEntityRenderer<VoidSoulEntity> {
-    private static final ResourceLocation INNER_TEXTURE = ResourceLocation.fromNamespaceAndPath(DarkerDepths.MODID, "textures/entity/void_soul/void_soul_glowmask.png");
+    private static final ResourceLocation INNER_TEXTURE = ResourceLocation.fromNamespaceAndPath(DarkerDepths.MOD_ID, "textures/entity/void_soul/void_soul_glowmask.png");
 
     public VoidSoulRenderer(EntityRendererProvider.Context context) {
         super(context, new VoidSoulModel());

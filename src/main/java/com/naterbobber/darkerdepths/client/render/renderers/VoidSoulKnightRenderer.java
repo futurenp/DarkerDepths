@@ -11,7 +11,7 @@ import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
 
 public class VoidSoulKnightRenderer extends GeoEntityRenderer<VoidSoulKnightEntity> {
-    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(DarkerDepths.MODID, "textures/entity/void_soul_knight/void_soul_knight_glowmask.png");
+    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(DarkerDepths.MOD_ID, "textures/entity/void_soul_knight/void_soul_knight_glowmask.png");
 
     public VoidSoulKnightRenderer(EntityRendererProvider.Context context) {
         super(context, new VoidSoulKnightModel());

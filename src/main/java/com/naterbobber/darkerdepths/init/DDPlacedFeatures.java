@@ -4,7 +4,7 @@ import com.naterbobber.darkerdepths.DarkerDepths;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.worldgen.BootstapContext;
+import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.valueproviders.ConstantInt;
@@ -38,7 +38,7 @@ public class DDPlacedFeatures {
     public static final ResourceKey<PlacedFeature> DEAD_LIVING_CRYSTAL_ORE = createKey("dead_living_crystal_ore");
     public static final ResourceKey<PlacedFeature> DUSKROCK_ORE = createKey("duskrock_ore");
 
-    public static void bootstrap(BootstapContext<PlacedFeature> context) {
+    public static void bootstrap(BootstrapContext<PlacedFeature> context) {
         HolderGetter<ConfiguredFeature<?, ?>> lookup = context.lookup(Registries.CONFIGURED_FEATURE);
         PlacementUtils.register(context, HUGE_GLOWSHROOM, lookup.getOrThrow(DDConfiguredFeatures.HUGE_GLOWSHROOM), CountPlacement.of(UniformInt.of(140, 180)), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT, BiomeFilter.biome());
         PlacementUtils.register(context, GLOWSHROOM_PATCH, lookup.getOrThrow(DDConfiguredFeatures.GLOWSHROOM_PATCH), CountPlacement.of(UniformInt.of(3, 8)), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT, EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.solid(), BlockPredicate.ONLY_IN_AIR_PREDICATE, 12));

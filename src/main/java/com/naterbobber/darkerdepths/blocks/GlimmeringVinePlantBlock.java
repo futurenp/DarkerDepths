@@ -1,5 +1,6 @@
 package com.naterbobber.darkerdepths.blocks;
 
+import com.mojang.serialization.MapCodec;
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -26,5 +27,10 @@ public class GlimmeringVinePlantBlock extends GrowingPlantBodyBlock {
     @Override
     protected GrowingPlantHeadBlock getHeadBlock() {
         return (GrowingPlantHeadBlock) DDBlocks.GLIMMERING_VINES.get();
+    }
+
+    @Override
+    protected MapCodec<? extends GrowingPlantBodyBlock> codec() {
+        return null;
     }
 }

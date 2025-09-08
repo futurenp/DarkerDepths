@@ -66,8 +66,10 @@ public class HangingDoublePlantBlock extends PetrifiedRootBlock {
         worldIn.setBlock(pos.below(), this.defaultBlockState().setValue(HALF, DoubleBlockHalf.LOWER), 2);
     }
 
+
+    //maybe issues
     @Override
-    public void playerWillDestroy(Level worldIn, BlockPos pos, BlockState state, Player player) {
+    public BlockState playerWillDestroy(Level worldIn, BlockPos pos, BlockState state, Player player) {
         if (!worldIn.isClientSide()) {
             if (player.isCreative()) {
                 harvestConnectedBlocks(worldIn, pos, state, player);
@@ -76,6 +78,7 @@ public class HangingDoublePlantBlock extends PetrifiedRootBlock {
             }
         }
         super.playerWillDestroy(worldIn, pos, state, player);
+        return state;
     }
 
     protected static void harvestConnectedBlocks(Level world, BlockPos pos, BlockState state, Player player) {

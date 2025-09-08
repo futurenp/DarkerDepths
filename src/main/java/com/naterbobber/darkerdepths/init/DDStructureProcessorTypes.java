@@ -8,19 +8,18 @@ import com.naterbobber.darkerdepths.world.gen.processors.catacombs.VoidSoulKnigh
 import com.naterbobber.darkerdepths.world.gen.processors.rope_mines.RopeMinesArchaeologyProcessor;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProcessorType;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.registries.DeferredRegister;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
-@Mod.EventBusSubscriber(modid = DarkerDepths.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+//@Mod.EventBusSubscriber(modid = DarkerDepths.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class DDStructureProcessorTypes {
 
-    public static final DeferredRegister<StructureProcessorType<?>> STRUCTURE_PROCESSORS = DeferredRegister.create(Registries.STRUCTURE_PROCESSOR, DarkerDepths.MODID);
+    public static final DeferredRegister<StructureProcessorType<?>> STRUCTURE_PROCESSORS = DeferredRegister.create(Registries.STRUCTURE_PROCESSOR, DarkerDepths.MOD_ID);
 
-    public static final RegistryObject<StructureProcessorType<TombProcessor>> TOMB = STRUCTURE_PROCESSORS.register("tomb", () -> () -> TombProcessor.CODEC);
-    public static final RegistryObject<StructureProcessorType<CatacombsBarrelProcessor>> CATACOMBS_BARREL = STRUCTURE_PROCESSORS.register("catacombs_barrel", () -> () -> CatacombsBarrelProcessor.CODEC);
-    public static final RegistryObject<StructureProcessorType<CatacombsArchaeologyProcessor>> CATACOMBS_ARCHAEOLOGY = STRUCTURE_PROCESSORS.register("catacombs_archaeology", () -> () -> CatacombsArchaeologyProcessor.CODEC);
-    public static final RegistryObject<StructureProcessorType<VoidSoulKnightProcessor>> VOID_SOUL_KNIGHT = STRUCTURE_PROCESSORS.register("void_soul_knight", () -> () -> VoidSoulKnightProcessor.CODEC);
-    public static final RegistryObject<StructureProcessorType<RopeMinesArchaeologyProcessor>> ROPE_MINES_ARCHAEOLOGY = STRUCTURE_PROCESSORS.register("rope_mines_archaeology", () -> () -> RopeMinesArchaeologyProcessor.CODEC);
+    public static final DeferredHolder<StructureProcessorType<?>, StructureProcessorType<TombProcessor>> TOMB = STRUCTURE_PROCESSORS.register("tomb", () -> () -> TombProcessor.CODEC);
+    public static final DeferredHolder<StructureProcessorType<?>, StructureProcessorType<CatacombsBarrelProcessor>> CATACOMBS_BARREL = STRUCTURE_PROCESSORS.register("catacombs_barrel", () -> () -> CatacombsBarrelProcessor.CODEC);
+    public static final DeferredHolder<StructureProcessorType<?>, StructureProcessorType<CatacombsArchaeologyProcessor>> CATACOMBS_ARCHAEOLOGY = STRUCTURE_PROCESSORS.register("catacombs_archaeology", () -> () -> CatacombsArchaeologyProcessor.CODEC);
+    public static final DeferredHolder<StructureProcessorType<?>, StructureProcessorType<VoidSoulKnightProcessor>> VOID_SOUL_KNIGHT = STRUCTURE_PROCESSORS.register("void_soul_knight", () -> () -> VoidSoulKnightProcessor.CODEC);
+    public static final DeferredHolder<StructureProcessorType<?>, StructureProcessorType<RopeMinesArchaeologyProcessor>> ROPE_MINES_ARCHAEOLOGY = STRUCTURE_PROCESSORS.register("rope_mines_archaeology", () -> () -> RopeMinesArchaeologyProcessor.CODEC);
 
 }

@@ -2,6 +2,7 @@ package com.naterbobber.darkerdepths.blocks;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelAccessor;
@@ -49,7 +50,7 @@ public class CrystalMelonBlock extends Block implements SimpleWaterloggedBlock {
     }
 
     @Override
-    public boolean canPlaceLiquid(BlockGetter world, BlockPos pos, BlockState state, Fluid fluid) {
+    public boolean canPlaceLiquid(Player player, BlockGetter world, BlockPos pos, BlockState state, Fluid fluid) {
         return fluid == Fluids.WATER;
     }
 

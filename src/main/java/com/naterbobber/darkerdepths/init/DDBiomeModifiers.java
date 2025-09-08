@@ -3,16 +3,18 @@ package com.naterbobber.darkerdepths.init;
 import com.naterbobber.darkerdepths.DarkerDepths;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.worldgen.BootstapContext;
+import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.MobSpawnSettings;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
-import net.minecraftforge.common.world.BiomeModifier;
-import net.minecraftforge.common.world.ForgeBiomeModifiers;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.common.world.;
+
+
+import net.neoforged.neoforge.common.world.BiomeModifier;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
@@ -32,11 +34,11 @@ public class DDBiomeModifiers {
     public static final ResourceKey<BiomeModifier> ADD_GLOWSHROOM_FOREST_SPAWNS = createKey("add_glowshroom_forest_spawns");
 
     private static ResourceKey<BiomeModifier> createKey(String name) {
-        return ResourceKey.create(ForgeRegistries.Keys.BIOME_MODIFIERS, DarkerDepths.id(name));
+        return ResourceKey.create(NeoForgeRegistries.Keys.BIOME_MODIFIERS, DarkerDepths.id(name));
     }
 
-    public static void bootstrap(BootstapContext<BiomeModifier> context) {
-        context.register(ADD_MOLTEN_CAVERNS_VEGETAL_FEATURES, new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
+    public static void bootstrap(BootstrapContext<BiomeModifier> context) {
+        context.register(ADD_MOLTEN_CAVERNS_VEGETAL_FEATURES, new BiomeModifiers.AddFeaturesBiomeModifier(
                 getBiome(context, DDBiomes.MOLTEN_CAVERN),
                 getPlacedFeature(
                         context,
@@ -47,7 +49,7 @@ public class DDBiomeModifiers {
                 ),
                 GenerationStep.Decoration.VEGETAL_DECORATION)
         );
-        context.register(ADD_MOLTEN_CAVERNS_ORES, new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
+        context.register(ADD_MOLTEN_CAVERNS_ORES, new BiomeModifiers.AddFeaturesBiomeModifier(
                 getBiome(context, DDBiomes.MOLTEN_CAVERN),
                 getPlacedFeature(
                         context,
@@ -56,7 +58,7 @@ public class DDBiomeModifiers {
                 ),
                 GenerationStep.Decoration.UNDERGROUND_ORES
         ));
-        context.register(ADD_SANDY_CATACOMBS_LOCAL_MODIFICATIONS, new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
+        context.register(ADD_SANDY_CATACOMBS_LOCAL_MODIFICATIONS, new BiomeModifiers.AddFeaturesBiomeModifier(
                 getBiome(context, DDBiomes.SANDY_CATACOMBS),
                 getPlacedFeature(
                         context,
@@ -64,7 +66,7 @@ public class DDBiomeModifiers {
                 ),
                 GenerationStep.Decoration.LOCAL_MODIFICATIONS)
         );
-        context.register(ADD_SANDY_CATACOMBS_VEGETAL_FEATURES, new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
+        context.register(ADD_SANDY_CATACOMBS_VEGETAL_FEATURES, new BiomeModifiers.AddFeaturesBiomeModifier(
                 getBiome(context, DDBiomes.SANDY_CATACOMBS),
                 getPlacedFeature(
                         context,
@@ -72,7 +74,7 @@ public class DDBiomeModifiers {
                 ),
                 GenerationStep.Decoration.VEGETAL_DECORATION)
         );
-        context.register(ADD_SANDY_CATACOMBS_SPAWNS, new ForgeBiomeModifiers.AddSpawnsBiomeModifier(
+        context.register(ADD_SANDY_CATACOMBS_SPAWNS, new BiomeModifiers.AddSpawnsBiomeModifier(
                 getBiome(context, DDBiomes.SANDY_CATACOMBS),
                 List.of(
                         new MobSpawnSettings.SpawnerData(EntityType.CAVE_SPIDER, 80, 2, 4),
@@ -82,7 +84,7 @@ public class DDBiomeModifiers {
                         new MobSpawnSettings.SpawnerData(DDEntityTypes.BODY_SNATCHER.get(), 30, 1, 3)
                 )
         ));
-        context.register(ADD_SANDY_CATACOMBS_RAW_GENERATION, new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
+        context.register(ADD_SANDY_CATACOMBS_RAW_GENERATION, new BiomeModifiers.AddFeaturesBiomeModifier(
                 getBiome(context, DDBiomes.SANDY_CATACOMBS),
                 getPlacedFeature(
                         context,
@@ -92,7 +94,7 @@ public class DDBiomeModifiers {
                 ),
                 GenerationStep.Decoration.RAW_GENERATION)
         );
-        context.register(ADD_SANDY_CATACOMBS_UNDERGROUND_DECORATION, new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
+        context.register(ADD_SANDY_CATACOMBS_UNDERGROUND_DECORATION, new BiomeModifiers.AddFeaturesBiomeModifier(
                 getBiome(context, DDBiomes.SANDY_CATACOMBS),
                 getPlacedFeature(
                         context,
@@ -100,7 +102,7 @@ public class DDBiomeModifiers {
                 ),
                 GenerationStep.Decoration.UNDERGROUND_DECORATION)
         );
-        context.register(ADD_GLOWSHROOM_FOREST_VEGETAL_FEATURES, new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
+        context.register(ADD_GLOWSHROOM_FOREST_VEGETAL_FEATURES, new BiomeModifiers.AddFeaturesBiomeModifier(
                 getBiome(context, DDBiomes.GLOWSHROOM_FOREST),
                 getPlacedFeature(
                         context,
@@ -110,7 +112,7 @@ public class DDBiomeModifiers {
                 ),
                 GenerationStep.Decoration.VEGETAL_DECORATION)
         );
-        context.register(ADD_GLOWSHROOM_FOREST_SPAWNS, new ForgeBiomeModifiers.AddSpawnsBiomeModifier(
+        context.register(ADD_GLOWSHROOM_FOREST_SPAWNS, new BiomeModifiers.AddSpawnsBiomeModifier(
                 getBiome(context, DDBiomes.GLOWSHROOM_FOREST),
                 List.of(
                         new MobSpawnSettings.SpawnerData(DDEntityTypes.GLOWSHROOM_MONSTER.get(), 50, 1, 2)
@@ -121,17 +123,17 @@ public class DDBiomeModifiers {
 
     @SafeVarargs
     @NotNull
-    private static HolderSet.Direct<PlacedFeature> getPlacedFeature(BootstapContext<BiomeModifier> context, ResourceKey<PlacedFeature>... placedFeature) {
+    private static HolderSet.Direct<PlacedFeature> getPlacedFeature(BootstrapContext<BiomeModifier> context, ResourceKey<PlacedFeature>... placedFeature) {
         return HolderSet.direct(Stream.of(placedFeature).map(resourceKey -> context.lookup(Registries.PLACED_FEATURE).getOrThrow(resourceKey)).collect(Collectors.toList()));
     }
 
     @NotNull
-    private static HolderSet.Direct<PlacedFeature> getPlacedFeature(BootstapContext<BiomeModifier> context, ResourceKey<PlacedFeature> placedFeature) {
+    private static HolderSet.Direct<PlacedFeature> getPlacedFeature(BootstrapContext<BiomeModifier> context, ResourceKey<PlacedFeature> placedFeature) {
         return HolderSet.direct(context.lookup(Registries.PLACED_FEATURE).getOrThrow(placedFeature));
     }
 
     @NotNull
-    private static HolderSet.Direct<Biome> getBiome(BootstapContext<BiomeModifier> bootstapContext, ResourceKey<Biome> biome) {
+    private static HolderSet.Direct<Biome> getBiome(BootstrapContext<BiomeModifier> bootstapContext, ResourceKey<Biome> biome) {
         return HolderSet.direct(bootstapContext.lookup(Registries.BIOME).getOrThrow(biome));
     }
 

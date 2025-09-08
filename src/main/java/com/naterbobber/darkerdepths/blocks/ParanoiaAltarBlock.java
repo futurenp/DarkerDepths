@@ -1,6 +1,8 @@
 package com.naterbobber.darkerdepths.blocks;
 
+import com.mojang.serialization.MapCodec;
 import com.naterbobber.darkerdepths.blocks.blockentities.ParanoiaAltarBlockEntity;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import com.naterbobber.darkerdepths.init.DDBlockEntityTypes;
@@ -40,6 +42,11 @@ public class ParanoiaAltarBlock extends BaseEntityBlock  {
                 .setValue(ENABLED, true));
     }
 
+    @Override
+    protected MapCodec<? extends BaseEntityBlock> codec() {
+        return null;
+    }
+
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
@@ -67,7 +74,7 @@ public class ParanoiaAltarBlock extends BaseEntityBlock  {
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level level, BlockPos blockPos, Player player, InteractionHand hand, BlockHitResult result) {
+    public ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos blockPos, Player player, InteractionHand hand, BlockHitResult result) {
         ItemStack itemStack = player.getItemInHand(hand);
         if (itemStack.is(DDItems.VOID_SOUL_REQUIEM.get()) && state.getValue(LOCKED)) {
             level.setBlock(blockPos, state.setValue(LOCKED, false), 2);
@@ -75,9 +82,9 @@ public class ParanoiaAltarBlock extends BaseEntityBlock  {
 
             if (!player.getAbilities().instabuild) itemStack.shrink(1);
 
-            return InteractionResult.SUCCESS;
+            return ItemInteractionResult.SUCCESS;
         }
-        return super.use(state, level, blockPos, player, hand, result);
+        return super.useItemOn(stack, state, level, blockPos, player, hand, result);
     }
 
     @Override

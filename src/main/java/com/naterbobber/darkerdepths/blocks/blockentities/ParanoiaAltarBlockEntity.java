@@ -17,15 +17,15 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import software.bernie.geckolib.animatable.GeoBlockEntity;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.core.animatable.instance.SingletonAnimatableInstanceCache;
-import software.bernie.geckolib.core.animation.*;
-import software.bernie.geckolib.core.object.PlayState;
-import software.bernie.geckolib.util.RenderUtils;
+import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.animatable.instance.SingletonAnimatableInstanceCache;
+import software.bernie.geckolib.animation.*;
+import software.bernie.geckolib.util.RenderUtil;
 
 import java.util.List;
 
 public class ParanoiaAltarBlockEntity extends BlockEntity implements GeoBlockEntity {
+
     private final AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
     private int tickCounter = 0;
 
@@ -50,7 +50,7 @@ public class ParanoiaAltarBlockEntity extends BlockEntity implements GeoBlockEnt
 
     @Override
     public double getTick(Object blockEntity) {
-        return RenderUtils.getCurrentTick();
+        return RenderUtil.getCurrentTick();
     }
 
     public void tick(Level level, BlockPos pos, BlockState state) {

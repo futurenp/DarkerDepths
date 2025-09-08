@@ -5,7 +5,7 @@ import com.naterbobber.darkerdepths.blocks.ParanoiaAltarBlock;
 import com.naterbobber.darkerdepths.blocks.blockentities.ParanoiaAltarBlockEntity;
 import com.naterbobber.darkerdepths.item.ParanoiaAltarItem;
 import net.minecraft.resources.ResourceLocation;
-import software.bernie.geckolib.core.animatable.GeoAnimatable;
+import software.bernie.geckolib.animatable.GeoAnimatable;
 import software.bernie.geckolib.model.GeoModel;
 
 public class ParanoiaAltarModel<T extends GeoAnimatable> extends GeoModel<T> {

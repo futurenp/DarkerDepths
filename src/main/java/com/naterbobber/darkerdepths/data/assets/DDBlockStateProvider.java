@@ -7,13 +7,13 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
-import net.minecraftforge.client.model.generators.BlockStateProvider;
-import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
 public class DDBlockStateProvider extends BlockStateProvider {
     public DDBlockStateProvider(PackOutput output, ExistingFileHelper exFileHelper) {
-        super(output, DarkerDepths.MODID, exFileHelper);
+        super(output, DarkerDepths.MOD_ID, exFileHelper);
     }
 
     @Override
@@ -111,52 +111,47 @@ public class DDBlockStateProvider extends BlockStateProvider {
         );
     }
 
-    private void simpleItem(RegistryObject<Item> item) {
+    private void simpleItem(DeferredHolder<Item, ? extends Item> item) {
         itemModels().withExistingParent(item.getId().getPath(), "item/generated")
                 .texture("layer0", modLoc("item/" + item.getId().getPath()));
     }
 
-    private void simpleBlockWithItem(RegistryObject<Block> block) {
+    private void simpleBlockWithItem(DeferredHolder<Block, ? extends Block> block) {
         simpleBlock(block.get());
         simpleBlockItem(block.get(), models().getExistingFile(blockTexture(block.get())));
     }
 
-    private void logBlockWithItem(RegistryObject<Block> block) {
+    private void logBlockWithItem(DeferredHolder<Block, ? extends Block> block) {
         logBlock((RotatedPillarBlock) block.get());
         simpleBlockItem(block.get(), models().getExistingFile(blockTexture(block.get())));
     }
 
-    private void stairsBlockWithItem(RegistryObject<Block> block, RegistryObject<Block> parentTexture) {
+    private void stairsBlockWithItem(DeferredHolder<Block, ? extends Block> block, DeferredHolder<Block, ? extends Block> parentTexture) {
         stairsBlock((StairBlock) block.get(), blockTexture(parentTexture.get()));
         simpleBlockItem(block.get(), models().getExistingFile(blockTexture(block.get())));
     }
 
-    private void slabBlockWithItem(RegistryObject<Block> block, RegistryObject<Block> parentTexture) {
+    private void slabBlockWithItem(DeferredHolder<Block, ? extends Block> block, DeferredHolder<Block, ? extends Block> parentTexture) {
         slabBlock((SlabBlock) block.get(), blockTexture(parentTexture.get()), blockTexture(parentTexture.get()));
         simpleBlockItem(block.get(), models().getExistingFile(blockTexture(block.get())));
     }
 
-//    private void verticalSlabBlockWithItem(RegistryObject<Block> block, RegistryObject<Block> parentTexture) {
-//        slabBlock((SlabBlock) block.get(), blockTexture(parentTexture.get()), blockTexture(parentTexture.get()));
-//        simpleBlockItem(block.get(), models().getExistingFile(blockTexture(block.get())));
-//    }
-
-    private void wallBlockWithItem(RegistryObject<Block> block, RegistryObject<Block> parentTexture) {
+    private void wallBlockWithItem(DeferredHolder<Block, ? extends Block> block, DeferredHolder<Block, ? extends Block> parentTexture) {
         wallBlock((WallBlock) block.get(), blockTexture(parentTexture.get()));
         itemModels().wallInventory(block.getId().getPath(), blockTexture(parentTexture.get()));
     }
 
-    private void fenceBlockWithItem(RegistryObject<Block> block, RegistryObject<Block> parentTexture) {
+    private void fenceBlockWithItem(DeferredHolder<Block, ? extends Block> block, DeferredHolder<Block, ? extends Block> parentTexture) {
         fenceBlock((FenceBlock) block.get(), blockTexture(parentTexture.get()));
         itemModels().fenceInventory(block.getId().getPath(), blockTexture(parentTexture.get()));
     }
 
-    private void fenceGateBlockWithItem(RegistryObject<Block> block, RegistryObject<Block> parentTexture) {
+    private void fenceGateBlockWithItem(DeferredHolder<Block, ? extends Block> block, DeferredHolder<Block, ? extends Block> parentTexture) {
         fenceGateBlock((FenceGateBlock) block.get(), blockTexture(parentTexture.get()));
         simpleBlockItem(block.get(), models().getExistingFile(blockTexture(block.get())));
     }
 
-    private void doorBlockWithItem(RegistryObject<Block> block) {
+    private void doorBlockWithItem(DeferredHolder<Block, ? extends Block> block) {
         ResourceLocation location = block.getId();
 
         ResourceLocation bottomTexture = location.withPath("block/" + location.getPath() + "_bottom");
@@ -169,30 +164,30 @@ public class DDBlockStateProvider extends BlockStateProvider {
                 .texture("layer0", itemTexture);
     }
 
-    private void trapdoorBlockWithItem(RegistryObject<Block> block) {
+    private void trapdoorBlockWithItem(DeferredHolder<Block, ? extends Block> block) {
         ResourceLocation location = block.getId();
         String path = "block/" + location.getPath();
         trapdoorBlock((TrapDoorBlock) block.get(), modLoc(path), true);
         simpleBlockItem(block.get(), models().getExistingFile(modLoc(path + "_bottom")));
     }
 
-    private void pressurePlateBlockWithItem(RegistryObject<Block> block, RegistryObject<Block> parentTexture) {
+    private void pressurePlateBlockWithItem(DeferredHolder<Block, ? extends Block> block, DeferredHolder<Block, ? extends Block> parentTexture) {
         pressurePlateBlock((PressurePlateBlock) block.get(), blockTexture(parentTexture.get()));
         simpleBlockItem(block.get(), models().getExistingFile(blockTexture(block.get())));
     }
 
-    private void buttonBlockWithItem(RegistryObject<Block> block, RegistryObject<Block> parentTexture) {
+    private void buttonBlockWithItem(DeferredHolder<Block, ? extends Block> block, DeferredHolder<Block, ? extends Block> parentTexture) {
         buttonBlock((ButtonBlock) block.get(), blockTexture(parentTexture.get()));
         itemModels().buttonInventory(block.getId().getPath(), blockTexture(parentTexture.get()));
     }
 
-    private void woodBlockWithItem(RegistryObject<Block> block, RegistryObject<Block> logTextureSource) {
-        ResourceLocation texture = ResourceLocation.fromNamespaceAndPath(DarkerDepths.MODID, "block/" + logTextureSource.getId().getPath());
+    private void woodBlockWithItem(DeferredHolder<Block, ? extends Block> block, DeferredHolder<Block, ? extends Block> logTextureSource) {
+        ResourceLocation texture = ResourceLocation.fromNamespaceAndPath(DarkerDepths.MOD_ID, "block/" + logTextureSource.getId().getPath());
         axisBlock((RotatedPillarBlock) block.get(), texture, texture);
         simpleBlockItem(block.get(), models().getExistingFile(blockTexture(block.get())));
     }
 
-    private void crossBlockWithItem(RegistryObject<Block> block) {
+    private void crossBlockWithItem(DeferredHolder<Block, ? extends Block> block) {
         simpleBlock(block.get(), models().cross(block.getId().getPath(), blockTexture(block.get())).renderType("cutout"));
         itemModels().withExistingParent(block.getId().getPath(), "item/generated")
                 .texture("layer0", blockTexture(block.get()));
@@ -200,10 +195,10 @@ public class DDBlockStateProvider extends BlockStateProvider {
 
 
 
-    private void simpleBlockSet(RegistryObject<Block> baseBlock,
-                                RegistryObject<Block> stairsBlock,
-                                RegistryObject<Block> slabBlock,
-                                RegistryObject<Block> wallBlock)
+    private void simpleBlockSet(DeferredHolder<Block, ? extends Block> baseBlock,
+                                DeferredHolder<Block, ? extends Block> stairsBlock,
+                                DeferredHolder<Block, ? extends Block> slabBlock,
+                                DeferredHolder<Block, ? extends Block> wallBlock)
     {
         simpleBlockWithItem(baseBlock);
         stairsBlockWithItem(stairsBlock, baseBlock);
@@ -211,19 +206,19 @@ public class DDBlockStateProvider extends BlockStateProvider {
         wallBlockWithItem(wallBlock, baseBlock);
     }
 
-    private void simpleBlockSet(RegistryObject<Block> baseBlock,
-                                RegistryObject<Block> stairsBlock,
-                                RegistryObject<Block> slabBlock)
+    private void simpleBlockSet(DeferredHolder<Block, ? extends Block> baseBlock,
+                                DeferredHolder<Block, ? extends Block> stairsBlock,
+                                DeferredHolder<Block, ? extends Block> slabBlock)
     {
         simpleBlockWithItem(baseBlock);
         stairsBlockWithItem(stairsBlock, baseBlock);
         slabBlockWithItem(slabBlock, baseBlock);
     }
 
-    private void logBlockSet(RegistryObject<Block> baseBlock,
-                             RegistryObject<Block> stairsBlock,
-                             RegistryObject<Block> slabBlock,
-                             RegistryObject<Block> wallBlock)
+    private void logBlockSet(DeferredHolder<Block, ? extends Block> baseBlock,
+                             DeferredHolder<Block, ? extends Block> stairsBlock,
+                             DeferredHolder<Block, ? extends Block> slabBlock,
+                             DeferredHolder<Block, ? extends Block> wallBlock)
     {
         logBlockWithItem(baseBlock);
         stairsBlockWithItem(stairsBlock, baseBlock);
@@ -231,19 +226,19 @@ public class DDBlockStateProvider extends BlockStateProvider {
         wallBlockWithItem(wallBlock, baseBlock);
     }
 
-    private void simpleWoodTypeSet(RegistryObject<Block> plankBlock,
-                      RegistryObject<Block> stairsBlock,
-                      RegistryObject<Block> slabBlock,
-                      RegistryObject<Block> fenceBlock,
-                      RegistryObject<Block> fenceGateBlock,
-                      RegistryObject<Block> doorBlock,
-                      RegistryObject<Block> trapdoorBlock,
-                      RegistryObject<Block> pressurePlateBlock,
-                      RegistryObject<Block> buttonBlock,
-                      RegistryObject<Block> logBlock,
-                      RegistryObject<Block> woodBlock,
-                      RegistryObject<Block> strippedLogBlock,
-                      RegistryObject<Block> strippedWoodBlock
+    private void simpleWoodTypeSet(DeferredHolder<Block, ? extends Block> plankBlock,
+                      DeferredHolder<Block, ? extends Block> stairsBlock,
+                      DeferredHolder<Block, ? extends Block> slabBlock,
+                      DeferredHolder<Block, ? extends Block> fenceBlock,
+                      DeferredHolder<Block, ? extends Block> fenceGateBlock,
+                      DeferredHolder<Block, ? extends Block> doorBlock,
+                      DeferredHolder<Block, ? extends Block> trapdoorBlock,
+                      DeferredHolder<Block, ? extends Block> pressurePlateBlock,
+                      DeferredHolder<Block, ? extends Block> buttonBlock,
+                      DeferredHolder<Block, ? extends Block> logBlock,
+                      DeferredHolder<Block, ? extends Block> woodBlock,
+                      DeferredHolder<Block, ? extends Block> strippedLogBlock,
+                      DeferredHolder<Block, ? extends Block> strippedWoodBlock
                       )
     {
         simpleBlockWithItem(plankBlock);

@@ -1,6 +1,7 @@
 package com.naterbobber.darkerdepths.data;
 
-import com.naterbobber.darkerdepths.DarkerDepths;
+import com.naterbobber.darkerdepths.data.DDDatapackBuiltinEntriesProvider;
+import com.naterbobber.darkerdepths.data.DDRecipeProvider;
 import com.naterbobber.darkerdepths.data.assets.DDBlockStateProvider;
 import com.naterbobber.darkerdepths.data.assets.lang.DDLanguageProviderENUS;
 import com.naterbobber.darkerdepths.data.loot.DDLootTableProvider;
@@ -11,42 +12,38 @@ import com.naterbobber.darkerdepths.data.tags.DDItemTagsProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
-import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.data.event.GatherDataEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.data.event.GatherDataEvent;
 
 import java.util.concurrent.CompletableFuture;
 
-@Mod.EventBusSubscriber(modid = DarkerDepths.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class DDDataGenerator {
 
-    private DDDataGenerator() {
-    }
-
-
     @SubscribeEvent
-    public static void onGatherData(GatherDataEvent event) {
+    public static void gatherData(GatherDataEvent event) {
         DataGenerator dataGenerator = event.getGenerator();
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
         PackOutput packOutput = dataGenerator.getPackOutput();
         CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
 
         boolean server = event.includeServer();
+        boolean client = event.includeClient();
 
-        dataGenerator.addProvider(event.includeClient(), new DDBlockStateProvider(packOutput, existingFileHelper));
-        dataGenerator.addProvider(event.includeClient(), new DDLanguageProviderENUS(packOutput));
+        // Pass a lambda or method reference instead of a new instance
+        dataGenerator.addProvider(client, new DDBlockStateProvider(packOutput, existingFileHelper));
+        dataGenerator.addProvider(client, new DDLanguageProviderENUS(packOutput));
 
-        dataGenerator.addProvider(server, new DDRecipeProvider(packOutput));
+        dataGenerator.addProvider(server, new DDRecipeProvider(packOutput, lookupProvider));
+        dataGenerator.addProvider(server, DDLootTableProvider.create(packOutput, lookupProvider));
 
-        dataGenerator.addProvider(server, new DDLootTableProvider(packOutput));
-
-        DDBlockTagsProvider blockTagsProvider = new DDBlockTagsProvider(packOutput, lookupProvider, existingFileHelper);
-        dataGenerator.addProvider(server, blockTagsProvider);
+        DDBlockTagsProvider blockTagsProvider = dataGenerator.addProvider(server, new DDBlockTagsProvider(packOutput, lookupProvider, existingFileHelper));
         dataGenerator.addProvider(server, new DDItemTagsProvider(packOutput, lookupProvider, blockTagsProvider.contentsGetter(), existingFileHelper));
         dataGenerator.addProvider(server, new DDBiomeTagsProvider(packOutput, lookupProvider, existingFileHelper));
-        dataGenerator.addProvider(event.includeServer(), new DDDamageTypeTagsProvider(packOutput, lookupProvider, existingFileHelper));
+        dataGenerator.addProvider(server, new DDDamageTypeTagsProvider(packOutput, lookupProvider, existingFileHelper));
 
         dataGenerator.addProvider(server, new DDDatapackBuiltinEntriesProvider(packOutput, lookupProvider));
     }
 }
+

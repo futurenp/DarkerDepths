@@ -1,5 +1,6 @@
 package com.naterbobber.darkerdepths.blocks;
 
+import com.mojang.serialization.MapCodec;
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -21,6 +22,11 @@ public class GlimmeringVinesBlock extends GrowingPlantHeadBlock {
     @Override
     public boolean isLadder(BlockState state, LevelReader world, BlockPos pos, LivingEntity entity) {
         return true;
+    }
+
+    @Override
+    protected MapCodec<? extends GrowingPlantHeadBlock> codec() {
+        return null;
     }
 
     @Override

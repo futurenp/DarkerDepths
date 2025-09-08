@@ -4,6 +4,7 @@ import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import com.naterbobber.darkerdepths.init.DDItems;
 import net.minecraft.data.loot.LootTableSubProvider;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.storage.loot.LootPool;
@@ -17,10 +18,10 @@ import java.util.function.BiConsumer;
 
 public class DDChestLoot implements LootTableSubProvider {
     public static final ResourceLocation CATACOMBS_CHEST_STANDARD =
-            ResourceLocation.fromNamespaceAndPath(DarkerDepths.MODID, "chests/catacombs/standard");
+            ResourceLocation.fromNamespaceAndPath(DarkerDepths.MOD_ID, "chests/catacombs/standard");
 
     public static final ResourceLocation CATACOMBS_CHEST_TREASURE =
-            ResourceLocation.fromNamespaceAndPath(DarkerDepths.MODID, "chests/catacombs/treasure");
+            ResourceLocation.fromNamespaceAndPath(DarkerDepths.MOD_ID, "chests/catacombs/treasure");
 
     @Override
     public void generate(BiConsumer<ResourceLocation, LootTable.Builder> consumer) {
@@ -92,4 +93,8 @@ public class DDChestLoot implements LootTableSubProvider {
         consumer.accept(CATACOMBS_CHEST_TREASURE, catacombs_chest_treasure);
     }
 
+    @Override
+    public void generate(BiConsumer<ResourceKey<LootTable>, LootTable.Builder> biConsumer) {
+
+    }
 }

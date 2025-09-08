@@ -7,7 +7,7 @@ import software.bernie.geckolib.model.DefaultedEntityGeoModel;
 
 public class BodySnatcherModel extends DefaultedEntityGeoModel<BodySnatcherEntity> {
     public BodySnatcherModel() {
-        super(ResourceLocation.withDefaultNamespace(DarkerDepths.MODID), true);
+        super(ResourceLocation.withDefaultNamespace(DarkerDepths.MOD_ID), true);
     }
 
     @Override

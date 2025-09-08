@@ -8,7 +8,7 @@ import software.bernie.geckolib.model.DefaultedEntityGeoModel;
 
 public class VoidSoulModel extends DefaultedEntityGeoModel<VoidSoulEntity> {
 	public VoidSoulModel() {
-		super(ResourceLocation.withDefaultNamespace(DarkerDepths.MODID), true);
+		super(ResourceLocation.withDefaultNamespace(DarkerDepths.MOD_ID), true);
 	}
 
 	@Override

@@ -3,7 +3,6 @@ package com.naterbobber.darkerdepths.enchantments;
 import com.naterbobber.darkerdepths.item.StilettoItem;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.enchantment.EnchantmentCategory;
 
 public class SwiftStrikeEnchantment extends DDEnchantment {
 

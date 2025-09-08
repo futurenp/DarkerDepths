@@ -17,11 +17,11 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import software.bernie.geckolib.animatable.GeoBlockEntity;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.core.animatable.instance.SingletonAnimatableInstanceCache;
-import software.bernie.geckolib.core.animation.*;
-import software.bernie.geckolib.core.object.PlayState;
-import software.bernie.geckolib.util.RenderUtils;
+import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.animatable.instance.SingletonAnimatableInstanceCache;
+import software.bernie.geckolib.animation.*;
+import software.bernie.geckolib.object.PlayState;
+import software.bernie.geckolib.util.RenderUtil;
 
 import java.util.List;
 
@@ -49,7 +49,7 @@ public class VoidSoulJarBlockEntity extends BlockEntity implements GeoBlockEntit
 
     @Override
     public double getTick(Object blockEntity) {
-        return RenderUtils.getCurrentTick();
+        return RenderUtil.getCurrentTick();
     }
 
 }

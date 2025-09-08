@@ -11,13 +11,12 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.RenderGuiOverlayEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @OnlyIn(Dist.CLIENT)
-@Mod.EventBusSubscriber(modid = DarkerDepths.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
+@Mod.EventBusSubscriber(modid = DarkerDepths.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
 public class ClientDeathAnchorAnimationOverlay {
 
     private static boolean isOverlayActive = false;
@@ -30,7 +29,7 @@ public class ClientDeathAnchorAnimationOverlay {
 
     static {
         for (int i = startFrame; i < FRAME_COUNT; i++) {
-            ResourceLocation frameLocation = ResourceLocation.fromNamespaceAndPath(DarkerDepths.MODID,
+            ResourceLocation frameLocation = ResourceLocation.fromNamespaceAndPath(DarkerDepths.MOD_ID,
                     "textures/gui/death_anchor_overlay/frame_" + i + ".png");
             ANIMATION_FRAMES.add(frameLocation);
         }

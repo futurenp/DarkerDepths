@@ -12,8 +12,8 @@ import net.minecraft.tags.BiomeTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Biomes;
-import net.minecraftforge.common.Tags;
-import net.minecraftforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.common.Tags;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.concurrent.CompletableFuture;
@@ -25,11 +25,11 @@ public class DDBiomeTagsProvider extends BiomeTagsProvider {
     public static final TagKey<Biome> CATACOMBS = createTag("has_structure/catacombs");
 
     private static TagKey<Biome> createTag(String name) {
-        return TagKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath(DarkerDepths.MODID, name));
+        return TagKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath(DarkerDepths.MOD_ID, name));
     }
 
     public DDBiomeTagsProvider(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> completableFuture, @Nullable ExistingFileHelper existingFileHelper) {
-        super(packOutput, completableFuture, DarkerDepths.MODID, existingFileHelper);
+        super(packOutput, completableFuture, DarkerDepths.MOD_ID, existingFileHelper);
     }
 
     @Override

@@ -11,6 +11,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -47,18 +48,17 @@ public class GlowshroomBlock extends Block implements BonemealableBlock, SimpleW
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult p_60508_) {
+    public ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult p_60508_) {
         int i = state.getValue(CLUSTERS_1_3);
-        ItemStack stack = player.getItemInHand(handIn);
         if (stack.getItem() == DDBlocks.GLOWSHROOM.get().asItem() && i < 3) {
             worldIn.playSound(null, pos, SoundEvents.SLIME_BLOCK_PLACE, SoundSource.BLOCKS, 1.0F, 1.0F);
             worldIn.setBlock(pos, state.setValue(CLUSTERS_1_3, i + 1), 2);
             if (!player.getAbilities().instabuild) {
                 stack.shrink(1);
             }
-            return InteractionResult.SUCCESS;
+            return ItemInteractionResult.SUCCESS;
         } else {
-            return InteractionResult.FAIL;
+            return ItemInteractionResult.FAIL;
         }
     }
 
@@ -94,8 +94,8 @@ public class GlowshroomBlock extends Block implements BonemealableBlock, SimpleW
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader worldIn, BlockPos pos, BlockState state, boolean isClient) {
-        return state.getValue(CLUSTERS_1_3) == 1;
+    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState) {
+        return blockState.getValue(CLUSTERS_1_3) == 1;
     }
 
     @Override

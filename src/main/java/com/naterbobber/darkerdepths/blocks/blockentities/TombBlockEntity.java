@@ -19,11 +19,11 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoBlockEntity;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.core.animatable.instance.SingletonAnimatableInstanceCache;
-import software.bernie.geckolib.core.animation.*;
-import software.bernie.geckolib.core.object.PlayState;
-import software.bernie.geckolib.util.RenderUtils;
+import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.animatable.instance.SingletonAnimatableInstanceCache;
+import software.bernie.geckolib.animation.*;
+import software.bernie.geckolib.object.PlayState;
+import software.bernie.geckolib.util.RenderUtil;
 
 public class TombBlockEntity extends BlockEntity implements GeoBlockEntity, Container {
     private static final int OPEN_ANIMATION_DURATION = 53;
@@ -227,7 +227,7 @@ public class TombBlockEntity extends BlockEntity implements GeoBlockEntity, Cont
 
     @Override
     public double getTick(Object blockEntity) {
-        return RenderUtils.getCurrentTick();
+        return RenderUtil.getCurrentTick();
     }
 
     @Override

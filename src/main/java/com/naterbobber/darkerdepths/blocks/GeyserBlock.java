@@ -1,5 +1,6 @@
 package com.naterbobber.darkerdepths.blocks;
 
+import com.mojang.serialization.MapCodec;
 import com.naterbobber.darkerdepths.blocks.blockentities.GeyserBlockEntity;
 import com.naterbobber.darkerdepths.init.DDBlockEntityTypes;
 import net.minecraft.core.BlockPos;
@@ -36,6 +37,12 @@ public class GeyserBlock extends BaseEntityBlock {
     public GeyserBlock(Properties properties) {
         super(properties);
         this.registerDefaultState(this.stateDefinition.any().setValue(POWERED, false).setValue(FACING, Direction.UP));
+    }
+
+    //?
+    @Override
+    protected MapCodec<? extends BaseEntityBlock> codec() {
+        return null;
     }
 
     @Override

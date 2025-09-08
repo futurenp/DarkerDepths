@@ -1,5 +1,6 @@
 package com.naterbobber.darkerdepths.blocks;
 
+import com.mojang.serialization.MapCodec;
 import com.naterbobber.darkerdepths.blocks.blockentities.ParanoiaAltarBlockEntity;
 import com.naterbobber.darkerdepths.blocks.blockentities.VoidSoulJarBlockEntity;
 import com.naterbobber.darkerdepths.init.DDBlockEntityTypes;
@@ -33,6 +34,11 @@ public class VoidSoulJarBlock extends BaseEntityBlock {
     public VoidSoulJarBlock(Properties properties) {
         super(properties);
         this.registerDefaultState(this.stateDefinition.any());
+    }
+
+    @Override
+    protected MapCodec<? extends BaseEntityBlock> codec() {
+        return null;
     }
 
     @Nullable

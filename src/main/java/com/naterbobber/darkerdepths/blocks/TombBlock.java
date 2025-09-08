@@ -1,5 +1,6 @@
 package com.naterbobber.darkerdepths.blocks;
 
+import com.mojang.serialization.MapCodec;
 import com.naterbobber.darkerdepths.blocks.blockentities.TombBlockEntity;
 import com.naterbobber.darkerdepths.init.DDBlockEntityTypes;
 import com.naterbobber.darkerdepths.init.DDBlocks;
@@ -8,6 +9,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -99,6 +101,11 @@ public class TombBlock extends BaseEntityBlock implements SimpleWaterloggedBlock
                 .setValue(PART, Part.FRONT_CENTER)
                 .setValue(INHABITED, false)
                 .setValue(WATERLOGGED, false));
+    }
+
+    @Override
+    protected MapCodec<? extends BaseEntityBlock> codec() {
+        return null;
     }
 
     @Override
@@ -201,7 +208,7 @@ public class TombBlock extends BaseEntityBlock implements SimpleWaterloggedBlock
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    public ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         if (!level.isClientSide) {
             BlockPos mainPos = getMainBlockPos(pos, state);
             BlockEntity blockEntity = level.getBlockEntity(mainPos);
@@ -210,12 +217,12 @@ public class TombBlock extends BaseEntityBlock implements SimpleWaterloggedBlock
                 // Special case: if sneaking, tomb is open, inhabited and has an item - close it
                 if (player.isSecondaryUseActive() && tombEntity.isOpen() && tombEntity.isInhabited() && tombEntity.hasStoredItem()) {
                     tombEntity.toggleTomb();
-                    return InteractionResult.SUCCESS;
+                    return ItemInteractionResult.SUCCESS;
                 }
 
                 // Don't do anything else if sneaking
                 if (player.isSecondaryUseActive()) {
-                    return InteractionResult.SUCCESS;
+                    return ItemInteractionResult.SUCCESS;
                 }
 
                 // If tomb is open and inhabited
@@ -229,7 +236,7 @@ public class TombBlock extends BaseEntityBlock implements SimpleWaterloggedBlock
                             if (!player.getInventory().add(storedItem)) {
                                 player.drop(storedItem, false);
                             }
-                            return InteractionResult.SUCCESS;
+                            return ItemInteractionResult.SUCCESS;
                         }
                     }
                 }
@@ -239,7 +246,7 @@ public class TombBlock extends BaseEntityBlock implements SimpleWaterloggedBlock
             }
         }
 
-        return InteractionResult.SUCCESS;
+        return ItemInteractionResult.SUCCESS;
     }
 
     @Override

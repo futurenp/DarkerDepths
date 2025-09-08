@@ -6,7 +6,7 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.DeadBushBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.common.IPlantable;
+import net.neoforged.neoforge.common.util.TriState;
 
 public class LimestoneBlock extends Block {
 
@@ -14,9 +14,14 @@ public class LimestoneBlock extends Block {
         super(properties);
     }
 
+
     @Override
-    public boolean canSustainPlant(BlockState state, BlockGetter world, BlockPos pos, Direction facing, IPlantable plantable) {
-        return plantable instanceof DeadBushBlock || plantable instanceof SproutsBlock;
+    public TriState canSustainPlant(BlockState state, BlockGetter level, BlockPos soilPosition, Direction facing, BlockState plant) {
+        Block plantBlock = plant.getBlock();
+        if (plantBlock instanceof DeadBushBlock || plantBlock instanceof SproutsBlock) {
+            return TriState.TRUE;
+        }
+        return super.canSustainPlant(state, level, soilPosition, facing, plant);
     }
 
 }

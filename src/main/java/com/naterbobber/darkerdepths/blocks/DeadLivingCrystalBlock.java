@@ -9,6 +9,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -32,19 +33,18 @@ public class DeadLivingCrystalBlock extends Block {
         builder.add(CRYSTAL_GROWTH_LEVEL);
     }
 
-    @Override
-    public InteractionResult use(BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand hand, BlockHitResult hitResult) {
-        ItemStack itemStack = player.getItemInHand(hand);
-        if (itemStack.is(Items.DIAMOND) && blockState.getValue(CRYSTAL_GROWTH_LEVEL) == 0) {
+        @Override
+    public ItemInteractionResult useItemOn(ItemStack stack, BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+        if (stack.is(Items.DIAMOND) && blockState.getValue(CRYSTAL_GROWTH_LEVEL) == 0) {
             if (!player.getAbilities().instabuild) {
-                itemStack.shrink(1);
+                stack.shrink(1);
             }
             level.setBlock(blockPos, blockState.setValue(CRYSTAL_GROWTH_LEVEL, 1), 2);
             level.playSound(null, blockPos, SoundEvents.TURTLE_EGG_CRACK, SoundSource.BLOCKS, 1.0F, 1.0F);
             level.scheduleTick(blockPos, this, 1);
-            return InteractionResult.SUCCESS;
+            return ItemInteractionResult.SUCCESS;
         }
-        return super.use(blockState, level, blockPos, player, hand, hitResult);
+        return super.useItemOn(stack, blockState, level, blockPos, player, hand, hitResult);
     }
 
     @Override
