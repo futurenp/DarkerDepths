@@ -12,7 +12,7 @@
     },
     "replaceable": "#minecraft:base_stone_overworld",
     "surface": "floor",
-    "vegetation_chance": 0.8,
+    "vegetation_chance": 0.4,
     "vegetation_feature": {
       "feature": "darkerdepths:geyser_placement",
       "placement": []

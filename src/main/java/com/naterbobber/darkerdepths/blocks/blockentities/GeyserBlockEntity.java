@@ -2,11 +2,11 @@ package com.naterbobber.darkerdepths.blocks.blockentities;
 
 import com.naterbobber.darkerdepths.blocks.GeyserBlock;
 import com.naterbobber.darkerdepths.init.DDBlockEntityTypes;
-import com.naterbobber.darkerdepths.init.DDBlockStateProperties;
 import com.naterbobber.darkerdepths.init.DDBlockTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.nbt.Tag;
+import net.minecraft.network.protocol.game.ClientboundSetEntityMotionPacket;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -25,23 +25,42 @@ public class GeyserBlockEntity extends BlockEntity {
     }
 
     public static void geyserTick(Level world, BlockPos pos, BlockState state, GeyserBlockEntity geyserBlockEntity) {
+        if (world.isClientSide()) {
+            return;
+        }
+
         Direction direction = state.getValue(GeyserBlock.FACING);
-        double booster = -(world.getBlockState(pos.relative(direction.getOpposite())).is(DDBlockTags.GEYSER_BOOSTERS) ? 0.12 : 0.06) * direction.getAxisDirection().getStep();
+        double boostSpeed = 0.06;
+        double booster = (world.getBlockState(pos.relative(direction.getOpposite())).is(DDBlockTags.GEYSER_BOOSTERS) ? boostSpeed * 2 : boostSpeed) * direction.getAxisDirection().getStep();
+
+        BlockPos relativePosition;
+        BlockState relativeState;
+
         for (int i = 1; i < 7; i++) {
-            BlockPos relativePosition = pos.relative(direction, i);
-            BlockState relativeState = world.getBlockState(relativePosition);
-            if (!(world.isStateAtPosition(relativePosition, DripstoneUtils::isEmptyOrWaterOrLava) || relativeState.getTags().anyMatch(DDBlockTags.GEYSER_BYPASSES::equals) || (relativeState.hasProperty(BlockStateProperties.LAYERS) && relativeState.getValue(BlockStateProperties.LAYERS) == 1))) {
+            relativePosition = pos.relative(direction, i);
+            relativeState = world.getBlockState(relativePosition);
+            if (
+                    !(world.isStateAtPosition(relativePosition, DripstoneUtils::isEmptyOrWaterOrLava) ||
+                            relativeState.getTags().anyMatch(DDBlockTags.GEYSER_BYPASSES::equals) ||
+                            (relativeState.hasProperty(BlockStateProperties.LAYERS) && relativeState.getValue(BlockStateProperties.LAYERS) == 1))
+            ) {
                 break;
             }
+
             List<Entity> nearbyEntities = world.getEntitiesOfClass(Entity.class, new AABB(relativePosition));
+
             for (Entity entity : nearbyEntities) {
                 Vec3 motion = entity.getDeltaMovement();
-                double xBooster = -(direction.getAxis() == Direction.Axis.X ? booster : 0.0D);
-                double yBooster = -(direction.getAxis() == Direction.Axis.Y ? booster : 0.0D);
-                double zBooster = -(direction.getAxis() == Direction.Axis.Z ? booster : 0.0D);
-                Vec3 vec3 = motion.scale(2.0D);
+                double xBooster = direction.getAxis() == Direction.Axis.X ? booster : 0.0D;
+                double yBooster = direction.getAxis() == Direction.Axis.Y ? booster : 0.0D;
+                double zBooster = direction.getAxis() == Direction.Axis.Z ? booster : 0.0D;
+
                 entity.setDeltaMovement(motion.x + xBooster, motion.y + yBooster, motion.z + zBooster);
                 entity.fallDistance = 0.0F;
+
+                if (entity instanceof ServerPlayer serverPlayer) {
+                    serverPlayer.connection.send(new ClientboundSetEntityMotionPacket(entity));
+                }
             }
         }
     }

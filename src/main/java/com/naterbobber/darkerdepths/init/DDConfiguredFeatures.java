@@ -117,7 +117,7 @@ public static final ImmutableList<BlockState> OVERWORLD_REPLACEABLES    = Immuta
                 BlockStateProvider.simple(DDBlocks.ASH_BLOCK.get().defaultBlockState()),
                 PlacementUtils.inlinePlaced(lookup.getOrThrow(GEYSER_PLACEMENT)),
                 CaveSurface.FLOOR,
-                ConstantInt.of(1), 0.0F, 5, 0.8F, UniformInt.of(4, 7), 0.3F)
+                ConstantInt.of(1), 0.0F, 5, 0.4F, UniformInt.of(4, 7), 0.3F)
         );
 
         FeatureUtils.register(context, GRIME_VEGETATION, Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(
