@@ -1,4 +1,4 @@
-package com.naterbobber.darkerdepths.data.assets.lang;
+package com.naterbobber.darkerdepths.data.assets;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.init.*;
@@ -180,6 +180,8 @@ public class DDLanguageProviderENUS extends LanguageProvider {
         add("tooltip.darkerdepths.glowshroom_cap.shift_desc_1", "Provides light and haste when worn.");
         add("tooltip.darkerdepths.glowshroom_cap.shift_desc_2", "Found on the back of the Glowshroom Monster.");
         add("tooltip.darkerdepths.stiletto.shift_desc", "Use [RIGHT CLICK] to dash.");
+        add("tooltip.darkerdepths.crystal_melon.shift_desc_1", "Used to supercharge any tool or weapon.");
+        add("tooltip.darkerdepths.crystal_melon.shift_desc_2", "Right click when holding in the offhand with a tool in mainhand.");
 
         // Creative Tab
         add("itemGroup.darkerdepths.creative_tab", "Darker Depths");

@@ -15,6 +15,6 @@ public class VoidSoulKnightRenderer extends GeoEntityRenderer<VoidSoulKnightEnti
 
     public VoidSoulKnightRenderer(EntityRendererProvider.Context context) {
         super(context, new VoidSoulKnightModel());
-        this.addRenderLayer(new DDCustomRenderTypeLayer<>(this, RenderType.eyes(TEXTURE)));
+        addRenderLayer(new DDCustomRenderTypeLayer<>(this, RenderType.eyes(TEXTURE)));
     }
 }

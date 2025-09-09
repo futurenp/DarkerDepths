@@ -3,6 +3,10 @@ package com.naterbobber.darkerdepths.entities;
 import com.naterbobber.darkerdepths.init.DDEntityTypes;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
@@ -13,6 +17,10 @@ import net.minecraft.world.level.gameevent.GameEvent;
 
 public abstract class VoidSoulMonster extends Monster {
     private double orbHeight = 0;
+    private static final EntityDataAccessor<Boolean> IDLE =
+            SynchedEntityData.defineId(VoidSoulMonster.class, EntityDataSerializers.BOOLEAN);
+    private static final EntityDataAccessor<Boolean> ATTACKING =
+            SynchedEntityData.defineId(VoidSoulMonster.class, EntityDataSerializers.BOOLEAN);
     protected VoidSoulMonster(EntityType<? extends Monster> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
     }
@@ -50,5 +58,46 @@ public abstract class VoidSoulMonster extends Monster {
         }
         this.remove(RemovalReason.KILLED);
         this.gameEvent(GameEvent.ENTITY_DIE);
+    }
+
+    public boolean isIdle() {
+        return this.entityData.get(IDLE);
+    }
+
+    public boolean isAttacking() {
+        return this.entityData.get(ATTACKING);
+    }
+
+    public void setIdle(boolean idle) {
+        this.entityData.set(IDLE, idle);
+    }
+
+    public void setAttacking(boolean attacking) {
+        this.entityData.set(ATTACKING, attacking);
+    }
+
+    @Override
+    public void readAdditionalSaveData(CompoundTag pCompound) {
+        super.readAdditionalSaveData(pCompound);
+        if (pCompound.contains("IsIdle")) {
+            this.setIdle(pCompound.getBoolean("IsIdle"));
+        }
+        if (pCompound.contains("IsAttacking")) {
+            this.setAttacking(pCompound.getBoolean("IsAttacking"));
+        }
+    }
+
+    @Override
+    public void addAdditionalSaveData(CompoundTag compound) {
+        super.addAdditionalSaveData(compound);
+        compound.putBoolean("IsIdle", this.isIdle());
+        compound.putBoolean("IsAttacking", this.isAttacking());
+    }
+
+    @Override
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+        this.entityData.define(IDLE, false);
+        this.entityData.define(ATTACKING, false);
     }
 }

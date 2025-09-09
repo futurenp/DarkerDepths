@@ -252,22 +252,12 @@ public class VoidSoulKnightEntity extends VoidSoulMonster implements GeoEntity {
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(IS_DORMANT, true);
-        this.entityData.define(IS_ATTACKING, false);
-    }
-
-    public boolean isAttacking() {
-        return this.entityData.get(IS_ATTACKING);
-    }
-
-    public void setAttacking(boolean attacking) {
-        this.entityData.set(IS_ATTACKING, attacking);
     }
 
     @Override
     public void addAdditionalSaveData(CompoundTag compound) {
         super.addAdditionalSaveData(compound);
         compound.putBoolean("IsDormant", this.isDormant());
-        compound.putBoolean("IsAttacking", this.isAttacking());
     }
 
     @Override
@@ -275,9 +265,6 @@ public class VoidSoulKnightEntity extends VoidSoulMonster implements GeoEntity {
         super.readAdditionalSaveData(compound);
         if (compound.contains("IsDormant")) {
             this.setDormant(compound.getBoolean("IsDormant"));
-        }
-        if (compound.contains("IsAttacking")) {
-            this.setAttacking(compound.getBoolean("IsAttacking"));
         }
 
         this.registerGoals();

@@ -5,6 +5,10 @@ import com.naterbobber.darkerdepths.entities.goals.ConfigurableReachMeleeAttackG
 import com.naterbobber.darkerdepths.entities.goals.DashGoal;
 import net.minecraft.client.resources.sounds.Sound;
 import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.damagesource.DamageSource;
@@ -81,7 +85,7 @@ public class BodySnatcherEntity extends VoidSoulMonster implements GeoEntity {
     }
 
     protected <E extends BodySnatcherEntity> PlayState attackPredicate(final AnimationState<E> event) {
-        if (this.swinging) {
+        if (this.isAttacking()) {
             if (event.getController().getAnimationState().equals(AnimationController.State.STOPPED)) {
                 event.getController().forceAnimationReset();
                 event.getController().setAnimation(ATTACK_ANIM);
@@ -117,4 +121,6 @@ public class BodySnatcherEntity extends VoidSoulMonster implements GeoEntity {
     @Override
     protected void playStepSound(BlockPos pPos, BlockState pState) {
     }
+
+
 }
