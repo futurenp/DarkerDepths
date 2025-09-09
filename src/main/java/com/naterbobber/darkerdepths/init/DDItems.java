@@ -3,6 +3,8 @@ package com.naterbobber.darkerdepths.init;
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.entities.PetrifiedBoatEntity;
 import com.naterbobber.darkerdepths.item.*;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.PlaceOnWaterBlockItem;
 import net.minecraft.world.item.SignItem;
@@ -11,6 +13,8 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+
+import java.util.List;
 
 @Mod.EventBusSubscriber(modid = DarkerDepths.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class DDItems {
@@ -51,6 +55,12 @@ public class DDItems {
             () -> new ParanoiaAltarItem(DDBlocks.PARANOIA_ALTAR.get(), new Item.Properties()));
     public static final RegistryObject<Item> VOID_SOUL_JAR = ITEMS.register("void_soul_jar",
             () -> new VoidSoulJarItem(DDBlocks.VOID_SOUL_JAR.get(), new Item.Properties()));
+    public static final RegistryObject<Item> CRYSTAL_MELON = ITEMS.register("crystal_melon",
+            () -> new BlockItemWithHoverText(DDBlocks.CRYSTAL_MELON.get(), new Item.Properties(),
+                    List.of(Component.translatable("tooltip.darkerdepths.crystal_melon.shift_desc_1").withStyle(ChatFormatting.AQUA),
+                            Component.translatable("tooltip.darkerdepths.crystal_melon.shift_desc_2").withStyle(ChatFormatting.AQUA)
+                    ))
+    );
 
     private static RegistryObject<Item> createSimpleItem(String name) {
         return ITEMS.register(name, () -> new Item(new Item.Properties()));

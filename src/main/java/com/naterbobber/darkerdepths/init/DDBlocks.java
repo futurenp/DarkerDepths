@@ -223,7 +223,7 @@ public class DDBlocks {
             () -> new DeadLivingCrystalBlock(BlockBehaviour.Properties.of().sound(SoundType.DEEPSLATE).strength(1.5F, 6.0F).requiresCorrectToolForDrops().randomTicks()));
     public static final RegistryObject<Block> LIVING_CRYSTAL = registerBlock("living_crystal",
             () -> new LivingCrystalBlock(BlockBehaviour.Properties.of().sound(SoundType.DEEPSLATE).strength(1.5F, 6.0F).randomTicks().requiresCorrectToolForDrops()));
-    public static final RegistryObject<Block> CRYSTAL_MELON = registerBlock("crystal_melon",
+    public static final RegistryObject<Block> CRYSTAL_MELON = registerNoTabBlock("crystal_melon",
             () -> new CrystalMelonBlock(BlockBehaviour.Properties.of().strength(1.5F, 1F).sound(SoundType.AMETHYST).lightLevel(value -> 10).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> GLOWSHROOM = registerBlock("glowshroom",
             () -> new GlowshroomBlock(BlockBehaviour.Properties.of().strength(0.0F, 1.0F).sound(SoundType.SLIME_BLOCK).lightLevel((state) -> 3 + (2 * state.getValue(GlowshroomBlock.CLUSTERS_1_3))).noCollission()));

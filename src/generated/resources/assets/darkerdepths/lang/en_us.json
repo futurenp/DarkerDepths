@@ -142,6 +142,8 @@
   "item.darkerdepths.void_soul_requiem": "Void Soul Requiem",
   "item.darkerdepths.void_soul_spawn_egg": "Void Soul Spawn Egg",
   "itemGroup.darkerdepths.creative_tab": "Darker Depths",
+  "tooltip.darkerdepths.crystal_melon.shift_desc_1": "Used to supercharge any tool or weapon.",
+  "tooltip.darkerdepths.crystal_melon.shift_desc_2": "Right click when holding in the offhand with a tool in mainhand.",
   "tooltip.darkerdepths.glowshroom_cap.shift_desc_1": "Provides light and haste when worn.",
   "tooltip.darkerdepths.glowshroom_cap.shift_desc_2": "Found on the back of the Glowshroom Monster.",
   "tooltip.darkerdepths.press_shift": "Press [SHIFT]",
