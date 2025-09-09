@@ -18,7 +18,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import software.bernie.geckolib.GeckoLib;
 
-// TODO: Add recipe and loot table for glowshroom lantern and lamp
 @Mod(DarkerDepths.MODID)
 public class DarkerDepths {
 
@@ -55,13 +54,11 @@ public class DarkerDepths {
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
-        event.enqueueWork(() -> {
-            DDVanillaIntegration.init();
-        });
+        DDNetwork.init();
+        event.enqueueWork(DDVanillaIntegration::init);
     }
 
     private void clientSetup(final FMLClientSetupEvent event) {
-        DDNetwork.init();
     }
 
     public static ResourceLocation id(String name) {

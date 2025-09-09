@@ -11,9 +11,50 @@ public class DDConfigs {
     public static final ForgeConfigSpec.ConfigValue<Integer> SUPERCHARGE_ATTACK_SPEED;
     public static final ForgeConfigSpec.ConfigValue<Integer> SUPERCHARGE_ATTACK_DAMAGE;
     public static final ForgeConfigSpec.ConfigValue<Boolean> SUPERCHARGE_UNBREAKABLE;
+    public static final DDBiomeConfig SANDY_CATACOMBS_CLIMATE;
+    public static final DDBiomeConfig GLOWSHROOM_FOREST_CLIMATE;
+    public static final DDBiomeConfig MOLTEN_CAVERN_CLIMATE;
+
 
     static {
-        BUILDER.push("Darker Depths Config");
+        BUILDER.push("Biomes");
+
+        var sandyCatacombsDefaults = new DDBiomeConfig.Defaults(
+                0.5, 2.0,
+                -1.0, -0.4,
+                0.1, 0.3,
+                -0.8, 2.0,
+                -1.0, 1.0,
+                0.3, 2.0,
+                0.0
+        );
+        SANDY_CATACOMBS_CLIMATE = DDBiomeConfig.create(BUILDER, "sandy_catacombs", sandyCatacombsDefaults);
+
+        var glowshroomForestDefaults = new DDBiomeConfig.Defaults(
+                0.5, 1.4,
+                0.5, 2.0,
+                0.35, 0.5,
+                0.275, 1.0,
+                -1.0, 1.0,
+                0.3, 0.9,
+                0.0
+        );
+        GLOWSHROOM_FOREST_CLIMATE = DDBiomeConfig.create(BUILDER, "glowshroom_forest", glowshroomForestDefaults);
+
+        var moltenCavernDefaults = new DDBiomeConfig.Defaults(
+                -2.0, 2.0,
+                -2.0, 2.0,
+                0.85, 1.05,
+                -2.0, 0.0,
+                -1.0, 1.0,
+                0.5, 2.0,
+                0.0
+        );
+        MOLTEN_CAVERN_CLIMATE = DDBiomeConfig.create(BUILDER, "molten_cavern", moltenCavernDefaults);
+
+        BUILDER.pop();
+
+        BUILDER.push("Supercharges");
 
         SUPERCHARGE_MINUTES = BUILDER.comment("Duration of the supercharge buff in minutes")
                 .defineInRange("supercharge_minutes", 5, 1, 3600);

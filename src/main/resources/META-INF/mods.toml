@@ -3,7 +3,7 @@ loaderVersion="[39,)"
 license="All Rights Reserved"
 [[mods]]
 modId="darkerdepths"
-version="${file.jarVersion}"
+version="${mod_version}"
 displayName="Darker Depths"
 authors="Nate, Blackgear, Toxteer, Orcinus"
 description='''
