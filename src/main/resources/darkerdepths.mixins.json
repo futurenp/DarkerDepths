@@ -7,7 +7,8 @@
     "HuskMixin",
     "OverworldBiomeBuilderMixin",
     "PlayerMixin",
-    "RotatedPillarBlockMixin"
+    "RotatedPillarBlockMixin",
+    "ServerGamePacketListenerImplMixin"
   ],
   "client": [
     "BlockLightEngineMixin"

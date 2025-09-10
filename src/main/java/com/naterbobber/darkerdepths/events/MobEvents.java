@@ -13,6 +13,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.GlobalPos;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.protocol.game.ServerboundMovePlayerPacket;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -129,6 +130,7 @@ public class MobEvents {
 
             if (entity instanceof ServerPlayer serverPlayer) {
                 DDNetwork.INSTANCE.send(PacketDistributor.PLAYER.with(() -> serverPlayer), new SendDeathAnchorPacket());
+                DDNetwork.INSTANCE.send(PacketDistributor.PLAYER.with(() -> serverPlayer), new ServerboundMovePlayerPacket.Pos(serverPlayer.getX(), serverPlayer.getY(), serverPlayer.getZ(), serverPlayer.onGround()));
             }
 
             entity.setRemainingFireTicks(0);
