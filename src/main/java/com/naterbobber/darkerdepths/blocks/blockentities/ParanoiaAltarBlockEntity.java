@@ -65,7 +65,7 @@ public class ParanoiaAltarBlockEntity extends BlockEntity implements GeoBlockEnt
         AABB finalArea = new AABB(pos).inflate(radiusHorizontal, radiusY, radiusHorizontal);
 
         List<Player> players = level.getEntitiesOfClass(Player.class, finalArea);
-        int playerMobCap = 8;
+        int playerMobCap = 6;
         int catacombsMobCap = players.size() * playerMobCap;
 
         for (Player player : players) {
@@ -79,8 +79,8 @@ public class ParanoiaAltarBlockEntity extends BlockEntity implements GeoBlockEnt
 
             if(state.getValue(
                     ParanoiaAltarBlock.LOCKED) &&
-                    catacombsBodySnatcherList.size() < catacombsMobCap &&
-                    playerBodySnatcherList.size() < playerMobCap
+                    catacombsBodySnatcherList.size() <= catacombsMobCap &&
+                    playerBodySnatcherList.size() <= playerMobCap
             ) {
                 spawnMobInValidPosition(level, player, new BodySnatcherEntity(DDEntityTypes.BODY_SNATCHER.get(), level));
             }

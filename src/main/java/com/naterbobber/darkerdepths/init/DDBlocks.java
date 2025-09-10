@@ -3,6 +3,8 @@ package com.naterbobber.darkerdepths.init;
 import com.google.common.collect.Maps;
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.blocks.*;
+import com.naterbobber.darkerdepths.item.BlockItemWithHoverText;
+import net.minecraft.ChatFormatting;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
@@ -14,8 +16,10 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+import net.minecraft.network.chat.Component;
 
 import java.util.Map;
+import java.util.List;
 import java.util.function.Supplier;
 
 @Mod.EventBusSubscriber(modid = DarkerDepths.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -223,8 +227,12 @@ public class DDBlocks {
             () -> new DeadLivingCrystalBlock(BlockBehaviour.Properties.of().sound(SoundType.DEEPSLATE).strength(1.5F, 6.0F).requiresCorrectToolForDrops().randomTicks()));
     public static final RegistryObject<Block> LIVING_CRYSTAL = registerBlock("living_crystal",
             () -> new LivingCrystalBlock(BlockBehaviour.Properties.of().sound(SoundType.DEEPSLATE).strength(1.5F, 6.0F).randomTicks().requiresCorrectToolForDrops()));
-    public static final RegistryObject<Block> CRYSTAL_MELON = registerNoTabBlock("crystal_melon",
-            () -> new CrystalMelonBlock(BlockBehaviour.Properties.of().strength(1.5F, 1F).sound(SoundType.AMETHYST).lightLevel(value -> 10).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> CRYSTAL_MELON = registerTooltipBlock("crystal_melon",
+            () -> new CrystalMelonBlock(BlockBehaviour.Properties.of().strength(1.5F, 1F).sound(SoundType.AMETHYST).lightLevel(value -> 10).requiresCorrectToolForDrops()),
+            List.of(Component.translatable("tooltip.darkerdepths.crystal_melon.shift_desc_1").withStyle(ChatFormatting.AQUA),
+                    Component.translatable("tooltip.darkerdepths.crystal_melon.shift_desc_2").withStyle(ChatFormatting.AQUA)
+            )
+        );
     public static final RegistryObject<Block> GLOWSHROOM = registerBlock("glowshroom",
             () -> new GlowshroomBlock(BlockBehaviour.Properties.of().strength(0.0F, 1.0F).sound(SoundType.SLIME_BLOCK).lightLevel((state) -> 3 + (2 * state.getValue(GlowshroomBlock.CLUSTERS_1_3))).noCollission()));
     public static final RegistryObject<Block> GLOWSPURS = registerBlock("glowspurs",
@@ -255,8 +263,10 @@ public class DDBlocks {
             () -> new AmethystClusterBlock(6, 3, BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(1.0f).sound(SoundType.SMALL_AMETHYST_BUD).lightLevel(value -> 7)));
     public static final RegistryObject<Block> VOID_SOUL_JAR = registerNoTabBlock("void_soul_jar",
             () -> new VoidSoulJarBlock(BlockBehaviour.Properties.of().strength(0.8f).sound(SoundType.GLASS).lightLevel(value -> 5)));
-    public static final RegistryObject<Block> DEATH_ANCHOR = registerBlock("death_anchor",
-            () -> new DeathAnchorBlock(BlockBehaviour.Properties.of().strength(5.0F, 12.0F).sound(SoundType.NETHERITE_BLOCK).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> DEATH_ANCHOR = registerTooltipBlock("death_anchor",
+            () -> new DeathAnchorBlock(BlockBehaviour.Properties.of().strength(5.0F, 12.0F).sound(SoundType.NETHERITE_BLOCK).requiresCorrectToolForDrops()),
+            List.of(Component.translatable("tooltip.darkerdepths.death_anchor.shift_desc_1").withStyle(ChatFormatting.GOLD),
+                    Component.translatable("tooltip.darkerdepths.death_anchor.shift_desc_2").withStyle(ChatFormatting.GOLD)));
     public static final RegistryObject<Block> TOMB = registerBlock("tomb",
             () -> new TombBlock(BlockBehaviour.Properties.of().sound(SoundType.DEEPSLATE).strength(4F, 10.0F).requiresCorrectToolForDrops().noOcclusion()));
     public static final RegistryObject<Block> PARANOIA_ALTAR = registerNoTabBlock("paranoia_altar",
@@ -275,6 +285,12 @@ public class DDBlocks {
 
     public static <B extends Block> RegistryObject<B> registerNoTabBlock(String name, Supplier<? extends B> blocks) {
         return BLOCKS.register(name, blocks);
+    }
+
+    public static <B extends Block> RegistryObject<B> registerTooltipBlock(String name, Supplier<? extends B> blocks, List<Component> tooltips) {
+        RegistryObject<B> block = BLOCKS.register(name, blocks);
+        DDItems.ITEMS.register(name, () -> new BlockItemWithHoverText(block.get(), new Item.Properties(), tooltips));
+        return block;
     }
 
     public static <B extends Block> RegistryObject<B> registerCompatBlock(String modId, String key, Supplier<? extends B> block) {

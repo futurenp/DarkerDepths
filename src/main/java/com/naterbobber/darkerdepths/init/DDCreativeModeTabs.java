@@ -4,6 +4,7 @@ import com.naterbobber.darkerdepths.DarkerDepths;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.fml.ModList;
@@ -13,7 +14,6 @@ import net.minecraftforge.registries.RegistryObject;
 
 @Mod.EventBusSubscriber(modid = DarkerDepths.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class DDCreativeModeTabs {
-
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, DarkerDepths.MODID);
 
     public static final RegistryObject<CreativeModeTab> DARKER_DEPTHS = CREATIVE_MODE_TABS.register("darker_depths", () -> {
@@ -26,7 +26,8 @@ public class DDCreativeModeTabs {
                             if (ModList.get().isLoaded(DDBlocks.COMPAT.get(item))) {
                                 output.accept(item.get());
                             }
-                        } else {
+                        }
+                        else {
                             output.accept(item.get());
                         }
                     }

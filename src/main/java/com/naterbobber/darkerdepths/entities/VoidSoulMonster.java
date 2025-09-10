@@ -49,9 +49,10 @@ public abstract class VoidSoulMonster extends Monster {
                     this.getBbWidth() / 2.0,
                     0.05
             );
-            Entity voidSoulEntity = DDEntityTypes.VOID_SOUL.get().create(serverLevel);
+            VoidSoulEntity voidSoulEntity = DDEntityTypes.VOID_SOUL.get().create(serverLevel);
             if (voidSoulEntity != null) {
                 voidSoulEntity.moveTo(this.getX(), this.getY() + this.getOrbHeight(), this.getZ(), this.getYRot(), this.getXRot());
+                voidSoulEntity.setExperienceDrop(this.xpReward);
 
                 serverLevel.addFreshEntity(voidSoulEntity);
             }
@@ -74,24 +75,6 @@ public abstract class VoidSoulMonster extends Monster {
 
     public void setAttacking(boolean attacking) {
         this.entityData.set(ATTACKING, attacking);
-    }
-
-    @Override
-    public void readAdditionalSaveData(CompoundTag pCompound) {
-        super.readAdditionalSaveData(pCompound);
-        if (pCompound.contains("IsIdle")) {
-            this.setIdle(pCompound.getBoolean("IsIdle"));
-        }
-        if (pCompound.contains("IsAttacking")) {
-            this.setAttacking(pCompound.getBoolean("IsAttacking"));
-        }
-    }
-
-    @Override
-    public void addAdditionalSaveData(CompoundTag compound) {
-        super.addAdditionalSaveData(compound);
-        compound.putBoolean("IsIdle", this.isIdle());
-        compound.putBoolean("IsAttacking", this.isAttacking());
     }
 
     @Override

@@ -52,7 +52,7 @@ public class VoidSoulKnightEntity extends VoidSoulMonster implements GeoEntity {
 
     public VoidSoulKnightEntity(EntityType<? extends Monster> type, Level world) {
         super(type, world);
-        this.xpReward = 40;
+        this.xpReward = 30;
         this.moveControl = new ConfigurableMoveControl(this, 10.0F);
         this.setOrbHeight(1.5);
     }
@@ -252,22 +252,6 @@ public class VoidSoulKnightEntity extends VoidSoulMonster implements GeoEntity {
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(IS_DORMANT, true);
-    }
-
-    @Override
-    public void addAdditionalSaveData(CompoundTag compound) {
-        super.addAdditionalSaveData(compound);
-        compound.putBoolean("IsDormant", this.isDormant());
-    }
-
-    @Override
-    public void readAdditionalSaveData(CompoundTag compound) {
-        super.readAdditionalSaveData(compound);
-        if (compound.contains("IsDormant")) {
-            this.setDormant(compound.getBoolean("IsDormant"));
-        }
-
-        this.registerGoals();
     }
 
     public boolean isDormant() {

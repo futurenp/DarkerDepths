@@ -18,6 +18,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -45,6 +46,7 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 public class VoidSoulEntity extends PathfinderMob implements GeoEntity {
     private boolean isCaptured = false;
     private int lifetime = 20 * 60;
+    private int experienceDrop = 12;
 
     protected static final RawAnimation IDLE_ANIM = RawAnimation.begin().thenLoop("idle");
     private final AnimatableInstanceCache geoCache = GeckoLibUtil.createInstanceCache(this);
@@ -173,6 +175,11 @@ public class VoidSoulEntity extends PathfinderMob implements GeoEntity {
                         this.getBbWidth() / 2.0,
                         0.05
                 );
+
+                if(experienceDrop > 0){
+                    dropExperience();
+                }
+
             } else {
                 ParticleOptions particle = ParticleTypes.SMOKE;
                 serverLevel.sendParticles(
@@ -222,6 +229,15 @@ public class VoidSoulEntity extends PathfinderMob implements GeoEntity {
 
     public boolean isOnFire() {
         return false;
+    }
+
+    @Override
+    protected void dropExperience() {
+        ExperienceOrb.award((ServerLevel)this.level(), this.position(), this.experienceDrop);
+    }
+
+    public void setExperienceDrop(int amount) {
+        this.experienceDrop = amount;
     }
 
     @Override
