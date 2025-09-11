@@ -29,7 +29,7 @@ public class ClientDeathAnchorAnimationOverlay {
     public static final List<ResourceLocation> ANIMATION_FRAMES = new ArrayList<>();
 
     static {
-        for (int i = startFrame; i < FRAME_COUNT; i++) {
+        for (int i = startFrame; i <= FRAME_COUNT; i++) {
             ResourceLocation frameLocation = ResourceLocation.fromNamespaceAndPath(DarkerDepths.MODID,
                     "textures/gui/death_anchor_overlay/frame_" + i + ".png");
             ANIMATION_FRAMES.add(frameLocation);
@@ -61,18 +61,20 @@ public class ClientDeathAnchorAnimationOverlay {
             return;
         }
 
-        if (!mc.isWindowActive()) {
-            return;
-        }
-
         long currentTime = System.currentTimeMillis();
 
         if (currentTime - lastFrameTime >= FRAME_DURATION_MS) {
-            currentFrame++;
-            if (currentFrame >= ANIMATION_FRAMES.size()) {
+
+            if (currentFrame < ANIMATION_FRAMES.size() - 1) {
+                currentFrame++;
+                lastFrameTime = currentTime;
+
+            //pause on the last frame for another tick to try to end on DeathScreen in case of desync
+            //there probably is a more robust way to do this, but I'm concerned about the animation being stuck on when it shouldn't
+            } else if(currentTime - lastFrameTime >= FRAME_DURATION_MS * 2)
+            {
                 stopOverlay();
             }
-            lastFrameTime = currentTime;
         }
     }
 
