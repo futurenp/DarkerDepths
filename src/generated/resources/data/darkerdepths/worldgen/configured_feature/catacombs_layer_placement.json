@@ -1,0 +1,136 @@
+{
+  "type": "darkerdepths:replace_list_layered",
+  "config": {
+    "layer_target": [
+      {
+        "Name": "darkerdepths:aridrock",
+        "Properties": {
+          "axis": "y"
+        }
+      },
+      {
+        "Name": "minecraft:packed_mud"
+      },
+      {
+        "Name": "darkerdepths:aridrock",
+        "Properties": {
+          "axis": "y"
+        }
+      },
+      {
+        "Name": "darkerdepths:aridrock",
+        "Properties": {
+          "axis": "y"
+        }
+      },
+      {
+        "Name": "minecraft:packed_mud"
+      },
+      {
+        "Name": "minecraft:packed_mud"
+      },
+      {
+        "Name": "darkerdepths:duskrock"
+      },
+      {
+        "Name": "darkerdepths:duskrock"
+      },
+      {
+        "Name": "minecraft:packed_mud"
+      },
+      {
+        "Name": "minecraft:packed_mud"
+      },
+      {
+        "Name": "darkerdepths:aridrock",
+        "Properties": {
+          "axis": "y"
+        }
+      },
+      {
+        "Name": "minecraft:packed_mud"
+      },
+      {
+        "Name": "minecraft:packed_mud"
+      },
+      {
+        "Name": "darkerdepths:duskrock"
+      },
+      {
+        "Name": "minecraft:packed_mud"
+      },
+      {
+        "Name": "minecraft:packed_mud"
+      },
+      {
+        "Name": "darkerdepths:aridrock",
+        "Properties": {
+          "axis": "y"
+        }
+      },
+      {
+        "Name": "darkerdepths:aridrock",
+        "Properties": {
+          "axis": "y"
+        }
+      }
+    ],
+    "radius": {
+      "type": "minecraft:uniform",
+      "value": {
+        "max_inclusive": 7,
+        "min_inclusive": 6
+      }
+    },
+    "target": [
+      {
+        "Name": "minecraft:stone"
+      },
+      {
+        "Name": "minecraft:andesite"
+      },
+      {
+        "Name": "minecraft:granite"
+      },
+      {
+        "Name": "minecraft:diorite"
+      },
+      {
+        "Name": "minecraft:dirt"
+      },
+      {
+        "Name": "darkerdepths:darkslate",
+        "Properties": {
+          "axis": "y"
+        }
+      },
+      {
+        "Name": "darkerdepths:aridrock",
+        "Properties": {
+          "axis": "y"
+        }
+      },
+      {
+        "Name": "darkerdepths:arid_deepslate",
+        "Properties": {
+          "axis": "y"
+        }
+      },
+      {
+        "Name": "darkerdepths:duskrock"
+      },
+      {
+        "Name": "minecraft:gravel"
+      },
+      {
+        "Name": "minecraft:deepslate",
+        "Properties": {
+          "axis": "y"
+        }
+      },
+      {
+        "Name": "minecraft:tuff"
+      }
+    ]
+  }
+}

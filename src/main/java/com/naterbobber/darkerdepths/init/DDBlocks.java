@@ -144,7 +144,7 @@ public class DDBlocks {
     public static final RegistryObject<Block> SKULL_WALL = registerBlock("skull_wall",
             () -> new Block(BlockBehaviour.Properties.of().sound(SoundType.STONE).strength(1.5F, 6.0F).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> DUSKROCK = registerBlock("duskrock",
-            () -> new LimestoneBlock(Block.Properties.of().requiresCorrectToolForDrops().strength(1.5f, 6.0f).sound(SoundType.TUFF)));
+            () -> new DuskrockBlock(Block.Properties.of().requiresCorrectToolForDrops().strength(1.5f, 6.0f).sound(SoundType.TUFF)));
     public static final RegistryObject<Block> DUSKROCK_STAIRS = registerBlock("duskrock_stairs",
             () -> new StairBlock(() -> DUSKROCK.get().defaultBlockState(), BlockBehaviour.Properties.copy(DUSKROCK.get())));
     public static final RegistryObject<Block> DUSKROCK_SLAB = registerBlock("duskrock_slab",

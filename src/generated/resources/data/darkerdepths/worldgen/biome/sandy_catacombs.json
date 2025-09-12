@@ -9,6 +9,7 @@
   "downfall": 0.5,
   "effects": {
     "fog_color": 12638463,
+    "grass_color": 11976546,
     "mood_sound": {
       "block_search_extent": 8,
       "offset": 2.0,
@@ -22,8 +23,8 @@
       "sound": "minecraft:music.overworld.dripstone_caves"
     },
     "sky_color": 8103167,
-    "water_color": 4159204,
-    "water_fog_color": 329011
+    "water_color": 4169409,
+    "water_fog_color": 341062
   },
   "features": [
     [],

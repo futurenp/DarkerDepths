@@ -8,9 +8,9 @@ import net.minecraft.world.level.block.DeadBushBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.IPlantable;
 
-public class LimestoneBlock extends Block {
+public class DuskrockBlock extends Block {
 
-    public LimestoneBlock(Properties properties) {
+    public DuskrockBlock(Properties properties) {
         super(properties);
     }
 
