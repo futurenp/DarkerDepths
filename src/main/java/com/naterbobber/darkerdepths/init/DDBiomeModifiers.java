@@ -60,7 +60,8 @@ public class DDBiomeModifiers {
                 getBiome(context, DDBiomes.SANDY_CATACOMBS),
                 getPlacedFeature(
                         context,
-                        DDPlacedFeatures.ARID_BOULDER
+//                          Testing out this feature for 2.1
+                        DDPlacedFeatures.CATACOMBS_LAYERED_PLACEMENT
                 ),
                 GenerationStep.Decoration.LOCAL_MODIFICATIONS)
         );
@@ -68,8 +69,9 @@ public class DDBiomeModifiers {
                 getBiome(context, DDBiomes.SANDY_CATACOMBS),
                 getPlacedFeature(
                         context,
-                        DDPlacedFeatures.PETRIFIED_BRANCH
-                ),
+                        DDPlacedFeatures.PETRIFIED_BRANCH,
+                        DDPlacedFeatures.ARID_SURFACE
+                        ),
                 GenerationStep.Decoration.VEGETAL_DECORATION)
         );
         context.register(ADD_SANDY_CATACOMBS_SPAWNS, new ForgeBiomeModifiers.AddSpawnsBiomeModifier(
@@ -86,7 +88,7 @@ public class DDBiomeModifiers {
                 getBiome(context, DDBiomes.SANDY_CATACOMBS),
                 getPlacedFeature(
                         context,
-                        DDPlacedFeatures.ARID_SURFACE,
+                        DDPlacedFeatures.ARID_BOULDER,
                         DDPlacedFeatures.DUSKROCK_ORE
                         //DDPlacedFeatures.DUSKROCK_STRIPE
                 ),

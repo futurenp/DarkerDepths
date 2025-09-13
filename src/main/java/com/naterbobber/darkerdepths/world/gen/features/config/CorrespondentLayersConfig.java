@@ -1,5 +1,6 @@
 package com.naterbobber.darkerdepths.world.gen.features.config;
 
+import com.google.common.collect.ImmutableList;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.Holder;
@@ -8,19 +9,20 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.valueproviders.IntProvider;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.minecraft.world.level.levelgen.placement.CaveSurface;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 
+import java.util.List;
+
 public class CorrespondentLayersConfig implements FeatureConfiguration {
     public static final Codec<CorrespondentLayersConfig> CODEC = RecordCodecBuilder.create((p_161304_) -> {
         return p_161304_.group(TagKey.hashedCodec(Registries.BLOCK).fieldOf("replaceable").forGetter((config) -> {
             return config.replaceable;
-        }), BlockStateProvider.CODEC.fieldOf("ground_state").forGetter((p_161322_) -> {
-            return p_161322_.groundState;
-        }), BlockStateProvider.CODEC.fieldOf("below_state").forGetter((config) -> {
-            return config.belowState;
+        }), BlockStateProvider.CODEC.listOf().fieldOf("layers").forGetter((config) -> {
+                    return ImmutableList.copyOf(config.layers);
         }), PlacedFeature.CODEC.fieldOf("vegetation_feature").forGetter((p_161320_) -> {
             return p_161320_.vegetationFeature;
         }), CaveSurface.CODEC.fieldOf("surface").forGetter((p_161318_) -> {
@@ -41,8 +43,7 @@ public class CorrespondentLayersConfig implements FeatureConfiguration {
                 .apply(p_161304_, CorrespondentLayersConfig::new);
     });
     public final TagKey<Block> replaceable;
-    public final BlockStateProvider groundState;
-    public final BlockStateProvider belowState;
+    public final List<BlockStateProvider> layers;
     public final Holder<PlacedFeature> vegetationFeature;
     public final CaveSurface surface;
     public final IntProvider depth;
@@ -53,10 +54,9 @@ public class CorrespondentLayersConfig implements FeatureConfiguration {
     public final float extraEdgeColumnChance;
     public final boolean xzReplace;
 
-    public CorrespondentLayersConfig(TagKey<Block> replaceableTags, BlockStateProvider groundState, BlockStateProvider belowState, Holder<PlacedFeature> feature, CaveSurface p_161296_, IntProvider p_161297_, float p_161298_, int p_161299_, float p_161300_, IntProvider p_161301_, float p_161302_, boolean xzReplace) {
+    public CorrespondentLayersConfig(TagKey<Block> replaceableTags, List<BlockStateProvider> layers, Holder<PlacedFeature> feature, CaveSurface p_161296_, IntProvider p_161297_, float p_161298_, int p_161299_, float p_161300_, IntProvider p_161301_, float p_161302_, boolean xzReplace) {
         this.replaceable = replaceableTags;
-        this.groundState = groundState;
-        this.belowState = belowState;
+        this.layers = layers;
         this.vegetationFeature = feature;
         this.surface = p_161296_;
         this.depth = p_161297_;

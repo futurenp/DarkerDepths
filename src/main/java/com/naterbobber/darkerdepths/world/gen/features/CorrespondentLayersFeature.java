@@ -100,10 +100,13 @@ public class CorrespondentLayersFeature extends Feature<CorrespondentLayersConfi
         }
     }
 
+
+    //yo this method is ass
+    //redo and implement dynamic array, so the list can be abstractly expanded to place more blocks underneath
     protected boolean placeGround(WorldGenLevel world, CorrespondentLayersConfig config, Predicate<BlockState> predicate, RandomSource random, BlockPos.MutableBlockPos pos, int tries) {
         for (int i = 0; i < tries; ++i) {
-            BlockState blockstate = config.groundState.getState(random, pos);
-            BlockState belowState = config.belowState.getState(random, pos);
+            BlockState blockstate = config.layers.get(0).getState(random, pos);
+            BlockState belowState = config.layers.get(1).getState(random, pos);
             BlockState posBelow = world.getBlockState(pos.below());
 
             //Check whether the config is aridrocks' config. Redo this system in the future

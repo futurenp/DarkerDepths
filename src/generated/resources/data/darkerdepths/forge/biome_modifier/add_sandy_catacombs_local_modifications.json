@@ -1,6 +1,6 @@
 {
   "type": "forge:add_features",
   "biomes": "darkerdepths:sandy_catacombs",
-  "features": "darkerdepths:arid_boulder",
+  "features": "darkerdepths:catacombs_layered_placement",
   "step": "local_modifications"
 }

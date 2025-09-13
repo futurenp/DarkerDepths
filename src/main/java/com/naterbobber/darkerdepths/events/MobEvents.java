@@ -134,8 +134,6 @@ public class MobEvents {
             }
 
             entity.setRemainingFireTicks(0);
-            //doesnt work
-            serverLevel.playLocalSound(entity.getX(), entity.getY(), entity.getZ(), SoundEvents.ANVIL_FALL, entity.getSoundSource(), 1.0F, 1.0F, false);
         }
     }
 

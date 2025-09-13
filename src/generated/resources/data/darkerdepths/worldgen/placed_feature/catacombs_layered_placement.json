@@ -1,9 +1,9 @@
 {
-  "feature": "darkerdepths:darkslate_placement",
+  "feature": "darkerdepths:catacombs_layer_placement",
   "placement": [
     {
       "type": "minecraft:count",
-      "count": 256
+      "count": 150
     },
     {
       "type": "minecraft:in_square"

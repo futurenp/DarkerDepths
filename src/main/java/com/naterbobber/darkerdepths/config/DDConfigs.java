@@ -26,7 +26,7 @@ public class DDConfigs {
                 0.5, 2.0,
                 -1.0, -0.4,
                 0.1, 0.3,
-                -0.8, 2.0,
+                -0.5, 1.0,
                 -1.0, 1.0,
                 0.3, 2.0,
                 0.0
@@ -47,10 +47,10 @@ public class DDConfigs {
         var moltenCavernDefaults = new DDBiomeConfig.Defaults(
                 -2.0, 2.0,
                 -2.0, 2.0,
-                0.85, 1.05,
-                -2.0, 0.0,
+                0.65, 0.8,
+                -0.7, 0.05,
                 -1.0, 1.0,
-                0.5, 2.0,
+                0.8, 2.0,
                 0.0
         );
         MOLTEN_CAVERN_CLIMATE = DDBiomeConfig.create(BUILDER, "molten_cavern", moltenCavernDefaults);
