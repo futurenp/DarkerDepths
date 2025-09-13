@@ -9,6 +9,7 @@ import com.naterbobber.darkerdepths.entities.VoidSoulKnightEntity;
 import com.naterbobber.darkerdepths.init.*;
 import com.naterbobber.darkerdepths.item.StilettoItem;
 import com.naterbobber.darkerdepths.network.SendDeathAnchorPacket;
+import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.GlobalPos;
 import net.minecraft.core.registries.Registries;
@@ -125,12 +126,11 @@ public class MobEvents {
                 }
             }
 
-            entity.teleportTo(newServer, teleportPos.getX() + 0.5D, teleportPos.getY(), teleportPos.getZ() + 0.5D, Set.of(), 0, 0);
             entity.addEffect(new MobEffectInstance(DDMobEffects.SOUL_BINDING.get(), 200, 0, true, false));
+            entity.teleportTo(newServer, teleportPos.getX() + 0.5D, teleportPos.getY(), teleportPos.getZ() + 0.5D, Set.of(), 0, 0);
 
             if (entity instanceof ServerPlayer serverPlayer) {
                 DDNetwork.INSTANCE.send(PacketDistributor.PLAYER.with(() -> serverPlayer), new SendDeathAnchorPacket());
-                DDNetwork.INSTANCE.send(PacketDistributor.PLAYER.with(() -> serverPlayer), new ServerboundMovePlayerPacket.Pos(serverPlayer.getX(), serverPlayer.getY(), serverPlayer.getZ(), serverPlayer.onGround()));
             }
 
             entity.setRemainingFireTicks(0);

@@ -99,7 +99,7 @@ public class ParanoiaAltarBlockEntity extends BlockEntity implements GeoBlockEnt
         do {
             pos = getRandomPositionAroundPlayer(player, 16.0, 24.0, height, level.getRandom());
 
-            if(level.getBlockState(pos).isAir()) {
+            if (level.getBlockState(pos).isAir()) {
                 for(int i = 0; i < height; i++) {
                     BlockPos nextPos = pos.relative(Direction.Axis.Y, -i);
                     if(!level.getBlockState(nextPos).isAir()) {
