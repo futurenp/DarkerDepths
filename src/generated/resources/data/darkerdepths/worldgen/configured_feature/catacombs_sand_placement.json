@@ -1,0 +1,23 @@
+{
+  "type": "darkerdepths:replace_list",
+  "config": {
+    "radius": {
+      "type": "minecraft:uniform",
+      "value": {
+        "max_inclusive": 12,
+        "min_inclusive": 6
+      }
+    },
+    "state": {
+      "Name": "minecraft:sand"
+    },
+    "target": [
+      {
+        "Name": "darkerdepths:aridrock",
+        "Properties": {
+          "axis": "y"
+        }
+      }
+    ]
+  }
+}

@@ -104,6 +104,7 @@ public class DDLanguageProviderENUS extends LanguageProvider {
         add(DDBlocks.GEYSER.get(), "Geyser");
         add(DDBlocks.PETRIFIED_VERTICAL_SLAB.get(), "Petrified Vertical Slab");
         add(DDBlocks.PETRIFIED_SIGN.get(), "Petrified Sign");
+        add(DDBlocks.PETRIFIED_HANGING_SIGN.get(), "Petrified Hanging Sign");
         add(DDBlocks.DARKSLATE_VERTICAL_SLAB.get(), "Darkslate Vertical Slab");
         add(DDBlocks.POLISHED_DARKSLATE_VERTICAL_SLAB.get(), "Polished Darkslate Vertical Slab");
         add(DDBlocks.DUSKROCK_VERTICAL_SLAB.get(), "Duskrock Vertical Slab");

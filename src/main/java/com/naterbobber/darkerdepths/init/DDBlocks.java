@@ -61,6 +61,10 @@ public class DDBlocks {
             () -> new DDStandingSignBlock(BlockBehaviour.Properties.of().noCollission().strength(1.0F).requiresCorrectToolForDrops().sound(SoundType.WOOD), DDWoodType.PETRIFIED));
     public static final RegistryObject<Block> PETRIFIED_WALL_SIGN = registerNoTabBlock("petrified_wall_sign",
             () -> new DDWallSignBlock(BlockBehaviour.Properties.of().noCollission().strength(1.0F).requiresCorrectToolForDrops().sound(SoundType.WOOD), DDWoodType.PETRIFIED));
+    public static final RegistryObject<Block> PETRIFIED_HANGING_SIGN = registerNoTabBlock("petrified_hanging_sign",
+            () -> new DDCeilingHangingSignBlock(BlockBehaviour.Properties.of().noCollission().strength(1.0F).requiresCorrectToolForDrops().sound(SoundType.WOOD), DDWoodType.PETRIFIED));
+    public static final RegistryObject<Block> PETRIFIED_WALL_HANGING_SIGN = registerNoTabBlock("petrified_wall_hanging_sign",
+            () -> new DDWallHangingSignBlock(BlockBehaviour.Properties.copy(PETRIFIED_HANGING_SIGN.get()), DDWoodType.PETRIFIED));
     public static final RegistryObject<Block> PETRIFIED_POST = registerCompatBlock("quark", "petrified_post",
             () -> new WoodPostBlock(Block.Properties.of().requiresCorrectToolForDrops().noOcclusion().strength(2.5f, 3.0f).sound(SoundType.STEM)));
     public static final RegistryObject<Block> STRIPPED_PETRIFIED_POST = registerCompatBlock("quark", "stripped_petrified_post",

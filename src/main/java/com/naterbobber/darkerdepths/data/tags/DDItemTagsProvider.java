@@ -41,7 +41,8 @@ public class DDItemTagsProvider extends ItemTagsProvider {
                 DDBlocks.DUSKROCK.get().asItem(),
                 DDBlocks.GRIMESTONE.get().asItem()
         );
-        this.tag(DDItemTags.PETRIFIED_LOGS).add(DDBlocks.PETRIFIED_LOG.get().asItem(),
+        this.tag(DDItemTags.PETRIFIED_LOGS).add(
+                DDBlocks.PETRIFIED_LOG.get().asItem(),
                 DDBlocks.PETRIFIED_WOOD.get().asItem(),
                 DDBlocks.STRIPPED_PETRIFIED_LOG.get().asItem(),
                 DDBlocks.STRIPPED_PETRIFIED_WOOD.get().asItem()

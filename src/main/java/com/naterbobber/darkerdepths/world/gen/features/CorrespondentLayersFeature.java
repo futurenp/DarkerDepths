@@ -93,7 +93,7 @@ public class CorrespondentLayersFeature extends Feature<CorrespondentLayersConfi
     }
 
     protected boolean placeVegetation(WorldGenLevel world, CorrespondentLayersConfig config, ChunkGenerator generator, RandomSource random, BlockPos pos) {
-        if (world.isStateAtPosition(pos.relative(config.surface.getDirection().getOpposite()), BlockBehaviour.BlockStateBase::isAir) && world.getBlockState(pos).is(config.groundState.getState(random, pos).getBlock())) {
+        if (world.isStateAtPosition(pos.relative(config.surface.getDirection().getOpposite()), BlockBehaviour.BlockStateBase::isAir) && world.getBlockState(pos).is(config.layers.get(0).getState(random, pos).getBlock())) {
             return config.vegetationFeature.get().place(world, generator, random, pos.relative(config.surface.getDirection().getOpposite()));
         } else {
             return false;

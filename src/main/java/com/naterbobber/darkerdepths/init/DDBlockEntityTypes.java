@@ -15,6 +15,8 @@ public class DDBlockEntityTypes {
 
     public static final RegistryObject<BlockEntityType<DDSignBlockEntity>> DD_SIGN = BLOCK_ENTITIES.register("dd_sign",
             () -> BlockEntityType.Builder.of(DDSignBlockEntity::new, DDBlocks.PETRIFIED_SIGN.get(), DDBlocks.PETRIFIED_WALL_SIGN.get()).build(null));
+    public static final RegistryObject<BlockEntityType<DDHangingSignBlockEntity>> DD_HANGING_SIGN = BLOCK_ENTITIES.register("dd_hanging_sign",
+            () -> BlockEntityType.Builder.of(DDHangingSignBlockEntity::new, DDBlocks.PETRIFIED_HANGING_SIGN.get(), DDBlocks.PETRIFIED_WALL_HANGING_SIGN.get()).build(null));
     public static final RegistryObject<BlockEntityType<GeyserBlockEntity>> GEYSER = BLOCK_ENTITIES.register("geyser",
             () -> BlockEntityType.Builder.of(GeyserBlockEntity::new, DDBlocks.GEYSER.get()).build(null));
     public static final RegistryObject<BlockEntityType<TombBlockEntity>> TOMB = BLOCK_ENTITIES.register("tomb",

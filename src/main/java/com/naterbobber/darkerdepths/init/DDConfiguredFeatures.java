@@ -74,6 +74,7 @@ public static final ImmutableList<BlockState> OVERWORLD_REPLACEABLES    = Immuta
     public static final ResourceKey<ConfiguredFeature<?, ?>> ARID_VEGETATION = createKey("arid_vegetation");
     public static final ResourceKey<ConfiguredFeature<?, ?>> DARKSLATE_VEGETATION = createKey("darkslate_vegetation");
     public static final ResourceKey<ConfiguredFeature<?, ?>> DARKSLATE_PLACEMENT = createKey("darkslate_placement");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> CATACOMBS_SAND_PLACEMENT = createKey("catacombs_sand_placement");
     public static final ResourceKey<ConfiguredFeature<?, ?>> CATACOMBS_LAYERED_PLACEMENT = createKey("catacombs_layer_placement");
     public static final ResourceKey<ConfiguredFeature<?, ?>> SHORT_PETRIFIED_BRANCH = createKey("short_petrified_branch");
     public static final ResourceKey<ConfiguredFeature<?, ?>> LONG_PETRIFIED_BRANCH = createKey("long_petrified_branch");
@@ -168,6 +169,13 @@ public static final ImmutableList<BlockState> OVERWORLD_REPLACEABLES    = Immuta
         FeatureUtils.register(context, DARKSLATE_PLACEMENT, DDFeatures.REPLACE_LIST.get(), new ReplaceListConfig(
                 OVERWORLD_REPLACEABLES,
                 DDBlocks.DARKSLATE.get().defaultBlockState(),
+                UniformInt.of(3, 7)
+
+        ));
+
+        FeatureUtils.register(context, CATACOMBS_SAND_PLACEMENT, DDFeatures.REPLACE_LIST.get(), new ReplaceListConfig(
+                List.of(DDBlocks.ARIDROCK.get().defaultBlockState()),
+                Blocks.SAND.defaultBlockState(),
                 UniformInt.of(6, 12)
 
         ));

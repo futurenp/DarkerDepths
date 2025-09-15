@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "!": {
+      "item": "minecraft:chain"
+    },
+    "#": {
+      "item": "darkerdepths:stripped_petrified_log"
+    }
+  },
+  "pattern": [
+    "! !",
+    "###",
+    "###"
+  ],
+  "result": {
+    "count": 6,
+    "item": "darkerdepths:petrified_hanging_sign"
+  },
+  "show_notification": true
+}

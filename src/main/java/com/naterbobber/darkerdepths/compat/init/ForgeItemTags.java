@@ -10,7 +10,6 @@ public class ForgeItemTags {
 
     public static final TagKey<Item> PETRIFIED_LOGS = bind("petrified_logs");
     public static final TagKey<Item> ROPES = forge("ropes");
-
     private static TagKey<Item> bind(String path) {
         return TagKey.create(Registries.ITEM, DarkerDepths.id(path));
     }

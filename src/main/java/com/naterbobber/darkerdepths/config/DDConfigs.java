@@ -23,10 +23,10 @@ public class DDConfigs {
     static {
         BUILDER.push("Biomes");
         var sandyCatacombsDefaults = new DDBiomeConfig.Defaults(
-                0.5, 2.0,
+                0.5, 1.2,
                 -1.0, -0.4,
                 0.1, 0.3,
-                -0.5, 1.0,
+                -0.25, 1.0,
                 -1.0, 1.0,
                 0.3, 2.0,
                 0.0
@@ -34,10 +34,10 @@ public class DDConfigs {
         SANDY_CATACOMBS_CLIMATE = DDBiomeConfig.create(BUILDER, "sandy_catacombs", sandyCatacombsDefaults);
 
         var glowshroomForestDefaults = new DDBiomeConfig.Defaults(
-                0.5, 1.4,
-                0.5, 2.0,
-                0.35, 0.5,
-                0.275, 1.0,
+                0.4, 1,
+                0.6, 1.2,
+                -0.5, 0.5,
+                0.1, 0.5,
                 -1.0, 1.0,
                 0.3, 0.9,
                 0.0
@@ -45,10 +45,10 @@ public class DDConfigs {
         GLOWSHROOM_FOREST_CLIMATE = DDBiomeConfig.create(BUILDER, "glowshroom_forest", glowshroomForestDefaults);
 
         var moltenCavernDefaults = new DDBiomeConfig.Defaults(
-                -2.0, 2.0,
-                -2.0, 2.0,
+                -0.75, 0.75,
+                -1.0, 1.0,
                 0.65, 0.8,
-                -0.7, 0.05,
+                -0.325, 0,
                 -1.0, 1.0,
                 0.8, 2.0,
                 0.0

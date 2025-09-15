@@ -5,6 +5,7 @@ import com.naterbobber.darkerdepths.entities.PetrifiedBoatEntity;
 import com.naterbobber.darkerdepths.item.*;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.HangingSignItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.PlaceOnWaterBlockItem;
 import net.minecraft.world.item.SignItem;
@@ -51,6 +52,8 @@ public class DDItems {
             () -> new DDBoatItem(true, PetrifiedBoatEntity.BoatType.PETRIFIED, new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> PETRIFIED_SIGN = ITEMS.register("petrified_sign",
             () -> new SignItem(new Item.Properties().stacksTo(16), DDBlocks.PETRIFIED_SIGN.get(), DDBlocks.PETRIFIED_WALL_SIGN.get()));
+    public static final RegistryObject<Item> PETRIFIED_HANGING_SIGN = ITEMS.register("petrified_hanging_sign",
+            () -> new HangingSignItem(DDBlocks.PETRIFIED_HANGING_SIGN.get(), DDBlocks.PETRIFIED_WALL_HANGING_SIGN.get(), new Item.Properties().stacksTo(16)));
     public static final RegistryObject<Item> PARANOIA_ALTAR = ITEMS.register("paranoia_altar",
             () -> new ParanoiaAltarItem(DDBlocks.PARANOIA_ALTAR.get(), new Item.Properties()));
     public static final RegistryObject<Item> VOID_SOUL_JAR = ITEMS.register("void_soul_jar",

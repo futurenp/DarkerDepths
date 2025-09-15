@@ -178,9 +178,9 @@ public class VoidSoulKnightEntity extends VoidSoulMonster implements GeoEntity {
             this.setAttacking(true);
 
             this.attackTick = 50;
-            this.firstDamageDelay = 5;
+            this.firstDamageDelay = 10;
             this.firstAttackDone = false;
-            this.secondDamageDelay = 25;
+            this.secondDamageDelay = 38;
 
             if (entity instanceof LivingEntity) {
                 this.attackTarget = (LivingEntity)entity;

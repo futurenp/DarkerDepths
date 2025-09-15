@@ -42,6 +42,6 @@ Artist:
 [[dependencies.darkerdepths]]
 modId="geckolib"
 mandatory=true
-versionRange="[4.7,)"
+versionRange="[4.7.4,)"
 ordering="NONE"
 side="BOTH"

@@ -59,9 +59,9 @@ public class DDBiomeModifiers {
         context.register(ADD_SANDY_CATACOMBS_LOCAL_MODIFICATIONS, new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
                 getBiome(context, DDBiomes.SANDY_CATACOMBS),
                 getPlacedFeature(
-                        context,
+                        context
 //                          Testing out this feature for 2.1
-                        DDPlacedFeatures.CATACOMBS_LAYERED_PLACEMENT
+//                        DDPlacedFeatures.CATACOMBS_LAYERED_PLACEMENT
                 ),
                 GenerationStep.Decoration.LOCAL_MODIFICATIONS)
         );
@@ -99,6 +99,7 @@ public class DDBiomeModifiers {
                 getPlacedFeature(
                         context,
                         DDPlacedFeatures.CATACOMBS_LAVA_LINING
+//                        DDPlacedFeatures.CATACOMBS_SAND_PLACEMENT
                 ),
                 GenerationStep.Decoration.UNDERGROUND_DECORATION)
         );

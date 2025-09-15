@@ -264,6 +264,8 @@ public class DDRecipeProvider extends RecipeProvider {
                 .pattern("##")
                 .unlockedBy("has_log", has(DDBlocks.STRIPPED_PETRIFIED_LOG.get())).save(consumer);
 
+        hangingSignBlock(consumer, DDItems.PETRIFIED_HANGING_SIGN.get(), DDBlocks.STRIPPED_PETRIFIED_LOG.get().asItem(), Items.CHAIN);
+
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, DDItems.GLOW_GRIME.get())
                 .requires(DDBlocks.GLOWSHROOM.get())
                 .unlockedBy("has_glowshroom", has(DDBlocks.GLOWSHROOM.get()))
@@ -295,7 +297,7 @@ public class DDRecipeProvider extends RecipeProvider {
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, DDItems.PETRIFIED_CHEST_BOAT.get())
                 .requires(DDItems.PETRIFIED_BOAT.get())
-                .requires(Tags.Items.CHESTS)
+                .requires(Tags.Items.CHESTS_WOODEN)
                 .unlockedBy("has_petrified_planks", has(DDBlocks.PETRIFIED_PLANKS.get()))
                 .save(consumer);
 
@@ -568,6 +570,17 @@ public class DDRecipeProvider extends RecipeProvider {
                 .pattern("#")
                 .pattern("#")
                 .unlockedBy("has_" + BuiltInRegistries.ITEM.getKey(item).getPath(), has(item)).save(consumer);
+    }
+
+    private void hangingSignBlock(Consumer<FinishedRecipe> consumer, ItemLike result, Item strippedLog, Item chain) {
+        ShapedRecipeBuilder
+                .shaped(RecipeCategory.BUILDING_BLOCKS, result, 6)
+                .define('#', strippedLog)
+                .define('!', chain)
+                .pattern("! !")
+                .pattern("###")
+                .pattern("###")
+                .unlockedBy("has_" + BuiltInRegistries.ITEM.getKey(strippedLog).getPath(), has(strippedLog)).save(consumer);
     }
 
     protected static void oreSmelting(Consumer<FinishedRecipe> consumer, List<ItemLike> items, RecipeCategory recipeCategory, ItemLike p_176594_, float p_176595_, int p_176596_, String p_176597_) {
