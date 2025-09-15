@@ -57,7 +57,6 @@ public class ClientEvents {
     public static void registerEntityModelLayers(EntityRenderersEvent.RegisterLayerDefinitions event) {
         event.registerLayerDefinition(new ModelLayerLocation(DarkerDepths.id("boat/petrified"), "main"), BoatModel::createBodyModel);
         event.registerLayerDefinition(new ModelLayerLocation(DarkerDepths.id("chest_boat/petrified"), "main"), ChestBoatModel::createBodyModel);
-        event.registerLayerDefinition(DDModelLayers.GLOWSHROOM_MONSTER, GlowshroomMonsterModel::createBodyLayer);
         event.registerLayerDefinition(DDModelLayers.GLOWSHROOM_CAP, GlowshroomCapModel::createBodyLayer);
     }
 

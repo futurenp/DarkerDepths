@@ -3,19 +3,16 @@ package com.naterbobber.darkerdepths.client.render.renderers;
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.blocks.blockentities.VoidSoulJarBlockEntity;
 import com.naterbobber.darkerdepths.client.models.VoidSoulJarModel;
-import com.naterbobber.darkerdepths.client.models.VoidSoulModel;
 import com.naterbobber.darkerdepths.client.render.DDRenderTypes;
-import com.naterbobber.darkerdepths.client.render.renderers.layers.*;
-import com.naterbobber.darkerdepths.entities.VoidSoulEntity;
-import net.minecraft.client.renderer.MultiBufferSource;
+import com.naterbobber.darkerdepths.client.render.renderers.layers.DDCustomRenderTypeLayer;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
-import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import software.bernie.geckolib.renderer.GeoBlockRenderer;
 
-import javax.annotation.Nullable;
-
+@OnlyIn(Dist.CLIENT)
 public class VoidSoulJarBlockEntityRenderer extends GeoBlockRenderer<VoidSoulJarBlockEntity> {
     private static final ResourceLocation GLOWING_TEXTURE = ResourceLocation.fromNamespaceAndPath(DarkerDepths.MODID, "textures/entity/void_soul_jar/void_soul_jar_glowmask.png");
     private static final ResourceLocation INVERTED_TEXTURE = ResourceLocation.fromNamespaceAndPath(DarkerDepths.MODID, "textures/entity/void_soul_jar/void_soul_jar_inverted.png");

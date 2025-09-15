@@ -46,8 +46,6 @@ public class VoidSoulKnightEntity extends VoidSoulMonster implements GeoEntity {
 
     private static final EntityDataAccessor<Boolean> IS_DORMANT =
             SynchedEntityData.defineId(VoidSoulKnightEntity.class, EntityDataSerializers.BOOLEAN);
-    private static final EntityDataAccessor<Boolean> IS_ATTACKING =
-            SynchedEntityData.defineId(VoidSoulKnightEntity.class, EntityDataSerializers.BOOLEAN);
 
 
     public VoidSoulKnightEntity(EntityType<? extends Monster> type, Level world) {
@@ -71,7 +69,7 @@ public class VoidSoulKnightEntity extends VoidSoulMonster implements GeoEntity {
     protected void registerGoals() {
         if (!this.isDormant()) {
             this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
-            this.goalSelector.addGoal(2, new ConfigurableReachMeleeAttackGoal(this, 1.3D, true, 2.75f));
+            this.goalSelector.addGoal(2, new ConfigurableReachMeleeAttackGoal(this, 1.3D, true, 2.75F));
             this.targetSelector.addGoal(3, new AttackMemoryTargetGoal<>(this, Player.class, PERSISTENCE, true));
             this.goalSelector.addGoal(7, new WaterAvoidingRandomStrollGoal(this, 1.2D));
         }

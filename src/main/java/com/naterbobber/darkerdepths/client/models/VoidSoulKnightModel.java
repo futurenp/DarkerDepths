@@ -4,6 +4,8 @@ import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.entities.BodySnatcherEntity;
 import com.naterbobber.darkerdepths.entities.VoidSoulKnightEntity;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import software.bernie.geckolib.cache.object.GeoBone;
 import software.bernie.geckolib.constant.DataTickets;
 import software.bernie.geckolib.core.animatable.model.CoreGeoBone;
@@ -11,6 +13,7 @@ import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.model.DefaultedEntityGeoModel;
 import software.bernie.geckolib.model.data.EntityModelData;
 
+@OnlyIn(Dist.CLIENT)
 public class VoidSoulKnightModel extends DefaultedEntityGeoModel<VoidSoulKnightEntity> {
 	public VoidSoulKnightModel() {
 		super(ResourceLocation.withDefaultNamespace(DarkerDepths.MODID), true);
