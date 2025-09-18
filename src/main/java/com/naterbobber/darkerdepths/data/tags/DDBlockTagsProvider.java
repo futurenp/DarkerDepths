@@ -173,7 +173,6 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
                 DDBlocks.LIVING_CRYSTAL.get(),
                 DDBlocks.DEAD_LIVING_CRYSTAL.get(),
                 DDBlocks.STONE_MELON.get(),
-                DDBlocks.GLOWSHROOM_LANTERN.get(),
                 DDBlocks.GLOWSHROOM_LAMP.get(),
                 DDBlocks.TOMB.get()
         );
