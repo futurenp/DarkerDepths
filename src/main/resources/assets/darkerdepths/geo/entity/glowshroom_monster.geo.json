@@ -7,8 +7,8 @@
 				"texture_width": 128,
 				"texture_height": 128,
 				"visible_bounds_width": 4,
-				"visible_bounds_height": 3.5,
-				"visible_bounds_offset": [0, 1.25, 0]
+				"visible_bounds_height": 5,
+				"visible_bounds_offset": [0, 0.5, 0]
 			},
 			"bones": [
 				{
@@ -18,6 +18,11 @@
 				{
 					"name": "body",
 					"parent": "root",
+					"pivot": [0, 18, -1]
+				},
+				{
+					"name": "torso",
+					"parent": "body",
 					"pivot": [0, 18, -1],
 					"rotation": [-30, 0, 0],
 					"cubes": [
@@ -26,7 +31,7 @@
 				},
 				{
 					"name": "large_glowshroom",
-					"parent": "body",
+					"parent": "torso",
 					"pivot": [4, 25.5, -3],
 					"rotation": [0, 0, 5],
 					"cubes": [
@@ -44,7 +49,7 @@
 				},
 				{
 					"name": "body_glowshroom_left",
-					"parent": "body",
+					"parent": "torso",
 					"pivot": [10, 20, 2],
 					"rotation": [-12.5, 0, 57.5],
 					"cubes": [
@@ -62,7 +67,7 @@
 				},
 				{
 					"name": "body_glowshroom_top_1",
-					"parent": "body",
+					"parent": "torso",
 					"pivot": [-6, 26, -9],
 					"rotation": [9.85108, 1.72794, -9.85108],
 					"cubes": [
@@ -80,7 +85,7 @@
 				},
 				{
 					"name": "body_glowshroom_top_2",
-					"parent": "body",
+					"parent": "torso",
 					"pivot": [-2, 26, 8],
 					"rotation": [-12.5, 0, -5],
 					"cubes": [
@@ -97,7 +102,7 @@
 				},
 				{
 					"name": "body_glowshroom_right",
-					"parent": "body",
+					"parent": "torso",
 					"pivot": [-9.5, 20, 2],
 					"rotation": [22.01816, 4.75113, -44.07518],
 					"cubes": [
@@ -117,7 +122,6 @@
 					"name": "head",
 					"parent": "body",
 					"pivot": [0, 19.33333, -12],
-					"rotation": [30, 0, 0],
 					"cubes": [
 						{"origin": [-6, 18, -24], "size": [12, 10, 12], "uv": [0, 0]}
 					]
@@ -180,6 +184,14 @@
 					"pivot": [14, 30.5, -12],
 					"cubes": [
 						{"origin": [11, 28, -15], "size": [6, 5, 6], "uv": [64, 61]}
+					]
+				},
+				{
+					"name": "particle",
+					"parent": "left_arm",
+					"pivot": [14, -13, -12],
+					"cubes": [
+						{"origin": [12, -15, -12], "size": [2, 2, 2], "uv": [0, 0]}
 					]
 				},
 				{

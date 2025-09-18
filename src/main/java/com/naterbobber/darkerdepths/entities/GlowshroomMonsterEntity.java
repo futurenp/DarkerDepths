@@ -34,7 +34,6 @@ import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 public class GlowshroomMonsterEntity extends Monster implements GeoEntity {
-    private int attackTick;
     private int damageDelay;
     private Entity attackTarget;
     private final AnimatableInstanceCache geoCache = GeckoLibUtil.createInstanceCache(this);
@@ -44,7 +43,9 @@ public class GlowshroomMonsterEntity extends Monster implements GeoEntity {
     protected static final RawAnimation WALK = RawAnimation.begin().thenLoop("move.walk");
 
     private static final EntityDataAccessor<Boolean> ATTACKING =
-            SynchedEntityData.defineId(VoidSoulMonster.class, EntityDataSerializers.BOOLEAN);
+            SynchedEntityData.defineId(GlowshroomMonsterEntity.class, EntityDataSerializers.BOOLEAN);
+    private static final EntityDataAccessor<Integer> ATTACK_TICK =
+            SynchedEntityData.defineId(GlowshroomMonsterEntity.class, EntityDataSerializers.INT);
 
 
     public GlowshroomMonsterEntity(EntityType<? extends Monster> type, Level world) {
@@ -57,16 +58,16 @@ public class GlowshroomMonsterEntity extends Monster implements GeoEntity {
         return Mob.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 40)
                 .add(Attributes.MOVEMENT_SPEED, 0.15)
-                .add(Attributes.ATTACK_KNOCKBACK, 1.3)
-                .add(Attributes.ATTACK_DAMAGE, 8)
+                .add(Attributes.ATTACK_KNOCKBACK, 2.0)
+                .add(Attributes.ATTACK_DAMAGE, 12)
                 .add(Attributes.KNOCKBACK_RESISTANCE, 0.75)
-                .add(Attributes.FOLLOW_RANGE, 48);
+                .add(Attributes.FOLLOW_RANGE, 32);
     }
 
     @Override
     protected void registerGoals() {
-        this.goalSelector.addGoal(1, new ConfigurableReachMeleeAttackGoal(this, 2.0, true, 3F));
-        this.goalSelector.addGoal(3, new MoveTowardsTargetGoal(this, 2.0, 48.0F));
+        this.goalSelector.addGoal(1, new ConfigurableReachMeleeAttackGoal(this, 2.0, true, 4.0F));
+        this.goalSelector.addGoal(3, new MoveTowardsTargetGoal(this, 2.0, 32.0F));
         this.goalSelector.addGoal(7, new WaterAvoidingRandomStrollGoal(this, 1));
         this.targetSelector.addGoal(2, new HurtByTargetGoal(this));
         this.targetSelector.addGoal(4, new AttackMemoryTargetGoal<>(this, Player.class, 300, true));
@@ -83,10 +84,10 @@ public class GlowshroomMonsterEntity extends Monster implements GeoEntity {
     public void aiStep() {
         super.aiStep();
 
-        if (this.attackTick > 0) {
-            this.attackTick--;
+        if (this.getAttackTick() > 0) {
+            this.setAttackTick(this.getAttackTick() - 1);
 
-            if (this.attackTick == 0) {
+            if (this.getAttackTick() == 0) {
                 this.setAttacking(false);
             }
         }
@@ -103,10 +104,9 @@ public class GlowshroomMonsterEntity extends Monster implements GeoEntity {
         }
 
         if(this.damageDelay == 0) {
-            if (this.distanceToSqr(this.attackTarget) < 12) {
-                this.attackTarget.hurt(this.level().damageSources().mobAttack(this),
-                        (float) this.getAttributeValue(Attributes.ATTACK_DAMAGE)
-                );
+            if (this.distanceToSqr(this.attackTarget) < 16) {
+                this.attackTarget.hurt(this.level().damageSources().mobAttack(this), (float) this.getAttributeValue(Attributes.ATTACK_DAMAGE));
+                this.playSound(SoundEvents.GENERIC_EXPLODE, 1.0f, 1.5f);
             }
 
             this.attackTarget = null;
@@ -124,10 +124,10 @@ public class GlowshroomMonsterEntity extends Monster implements GeoEntity {
 
     @Override
     public boolean doHurtTarget(Entity entity) {
-        if(this.attackTick == 0) {
+        if(this.getAttackTick() == 0) {
             this.setAttacking(true);
 
-            this.attackTick = 50;
+            this.setAttackTick(50);
             this.damageDelay = 24;
 
             if (entity instanceof LivingEntity) {
@@ -192,6 +192,12 @@ public class GlowshroomMonsterEntity extends Monster implements GeoEntity {
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(ATTACKING, false);
+        this.entityData.define(ATTACK_TICK, 0);
+    }
+
+    public int getAttackTick() { return this.entityData.get(ATTACK_TICK); }
+    public void setAttackTick(int attackTick) {
+        this.entityData.set(ATTACK_TICK, attackTick);
     }
 
     public boolean isAttacking() {

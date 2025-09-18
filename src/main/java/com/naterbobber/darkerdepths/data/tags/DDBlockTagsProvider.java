@@ -136,6 +136,7 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
                 DDBlocks.CRYSTAL_MELON.get(),
                 DDBlocks.ARID_DEEPSLATE.get(),
                 DDBlocks.GLOWSHROOM_LAMP.get(),
+                DDBlocks.GLOWSHROOM_LANTERN.get(),
                 DDBlocks.SKULL_WALL.get(),
                 DDBlocks.DEATH_ANCHOR.get(),
                 DDBlocks.TOMB.get(),

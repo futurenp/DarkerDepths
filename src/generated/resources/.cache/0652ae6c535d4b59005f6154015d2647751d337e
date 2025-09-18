@@ -1,4 +1,4 @@
-// 1.20.1	2025-09-14T17:15:39.7650201	Tags for minecraft:block mod id darkerdepths
+// 1.20.1	2025-09-18T16:13:12.1813932	Tags for minecraft:block mod id darkerdepths
 f0f92c5f0b5c5412980a4ca8436b4cb180919deb data/darkerdepths/tags/blocks/geyser_boosters.json
 acb229a0a11f926d8072d3a6ef8f06a2b9f61b38 data/darkerdepths/tags/blocks/geyser_bypasses.json
 3dfb0ae86440be076ba09273ec3517fb643e005c data/darkerdepths/tags/blocks/husks_spawnable_on.json
@@ -14,10 +14,10 @@ d46196cd8880069d772cedd2866445ceffda8735 data/minecraft/tags/blocks/fence_gates.
 5e277297b74dc60b3a92d2fe9b9fc06fe32cf551 data/minecraft/tags/blocks/logs.json
 f3475f73f52c2635468b45ad6936024ad92e86a6 data/minecraft/tags/blocks/mineable/axe.json
 97e68b293c92fb0079c8055d153d93d2d0d44e54 data/minecraft/tags/blocks/mineable/hoe.json
-cad8df26a7c86589971fd1d3967b0d5d132b567f data/minecraft/tags/blocks/mineable/pickaxe.json
+adc43ee579f3ec918ee14541acb9baa71c45cef8 data/minecraft/tags/blocks/mineable/pickaxe.json
 7a0301efb3765b21b4d17f79d065044da8501821 data/minecraft/tags/blocks/mineable/shovel.json
 2a533a2c364bc2276b484e6a6d192ec1ec26908a data/minecraft/tags/blocks/needs_iron_tool.json
-ca32a9f096b0fd2337186d60dc176e3ecfa37e8d data/minecraft/tags/blocks/needs_stone_tool.json
+4a106d74771bd71781ad1f13f3a26fc4a8eef1c6 data/minecraft/tags/blocks/needs_stone_tool.json
 af16345a95dc5cfb6cba85b5968ec2574833fb60 data/minecraft/tags/blocks/planks.json
 8faf61b13091699957a2e9ec22ef080406d6efd7 data/minecraft/tags/blocks/pressure_plates.json
 441c96a4d313f42230262f8f486dac685da9c3e3 data/minecraft/tags/blocks/signs.json
