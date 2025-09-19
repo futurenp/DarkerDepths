@@ -7,16 +7,17 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.DeathScreen;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.client.event.RenderGuiOverlayEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.client.event.RenderGuiLayerEvent;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @OnlyIn(Dist.CLIENT)
-@Mod.EventBusSubscriber(modid = DarkerDepths.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
+@EventBusSubscriber(modid = DarkerDepths.MOD_ID)
 public class ClientDeathAnchorAnimationOverlay {
 
     private static boolean isOverlayActive = false;
@@ -28,7 +29,7 @@ public class ClientDeathAnchorAnimationOverlay {
     public static final List<ResourceLocation> ANIMATION_FRAMES = new ArrayList<>();
 
     static {
-        for (int i = startFrame; i < FRAME_COUNT; i++) {
+        for (int i = startFrame; i <= FRAME_COUNT; i++) {
             ResourceLocation frameLocation = ResourceLocation.fromNamespaceAndPath(DarkerDepths.MOD_ID,
                     "textures/gui/death_anchor_overlay/frame_" + i + ".png");
             ANIMATION_FRAMES.add(frameLocation);
@@ -36,7 +37,7 @@ public class ClientDeathAnchorAnimationOverlay {
     }
 
     @SubscribeEvent
-    public static void onRenderGuiOverlay(RenderGuiOverlayEvent.Post event) {
+    public static void onRenderGuiOverlay(RenderGuiLayerEvent.Post event) {
         if (!isOverlayActive) return;
 
         Minecraft mc = Minecraft.getInstance();
@@ -60,18 +61,20 @@ public class ClientDeathAnchorAnimationOverlay {
             return;
         }
 
-        if (!mc.isWindowActive()) {
-            return;
-        }
-
         long currentTime = System.currentTimeMillis();
 
         if (currentTime - lastFrameTime >= FRAME_DURATION_MS) {
-            currentFrame++;
-            if (currentFrame >= ANIMATION_FRAMES.size()) {
+
+            if (currentFrame < ANIMATION_FRAMES.size() - 1) {
+                currentFrame++;
+                lastFrameTime = currentTime;
+
+                //pause on the last frame for another tick to try to end on DeathScreen in case of desync
+                //there probably is a more robust way to do this, but I'm concerned about the animation being stuck on when it shouldn't
+            } else if(currentTime - lastFrameTime >= FRAME_DURATION_MS * 2)
+            {
                 stopOverlay();
             }
-            lastFrameTime = currentTime;
         }
     }
 

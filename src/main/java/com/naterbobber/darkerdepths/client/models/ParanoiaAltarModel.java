@@ -5,9 +5,12 @@ import com.naterbobber.darkerdepths.blocks.ParanoiaAltarBlock;
 import com.naterbobber.darkerdepths.blocks.blockentities.ParanoiaAltarBlockEntity;
 import com.naterbobber.darkerdepths.item.ParanoiaAltarItem;
 import net.minecraft.resources.ResourceLocation;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import software.bernie.geckolib.animatable.GeoAnimatable;
 import software.bernie.geckolib.model.GeoModel;
 
+@OnlyIn(Dist.CLIENT)
 public class ParanoiaAltarModel<T extends GeoAnimatable> extends GeoModel<T> {
 
 	@Override

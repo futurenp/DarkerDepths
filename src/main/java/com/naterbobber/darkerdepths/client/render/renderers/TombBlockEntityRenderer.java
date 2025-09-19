@@ -3,28 +3,23 @@ package com.naterbobber.darkerdepths.client.render.renderers;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
-import com.naterbobber.darkerdepths.blocks.TombBlock;
 import com.naterbobber.darkerdepths.blocks.blockentities.TombBlockEntity;
 import com.naterbobber.darkerdepths.client.models.TombModel;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
-import net.minecraft.core.Direction;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.monster.Skeleton;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.entity.BlockEntity;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import software.bernie.geckolib.cache.object.BakedGeoModel;
 import software.bernie.geckolib.renderer.GeoBlockRenderer;
 
-import java.util.function.Function;
-
+@OnlyIn(Dist.CLIENT)
 public class TombBlockEntityRenderer extends GeoBlockRenderer<TombBlockEntity> {
     public final EntityRenderDispatcher dispatcher;
 

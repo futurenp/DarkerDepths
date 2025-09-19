@@ -3,6 +3,7 @@ package com.naterbobber.darkerdepths.data.loot;
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.init.DDItems;
 import net.minecraft.data.loot.LootTableSubProvider;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.storage.loot.LootPool;
@@ -14,13 +15,16 @@ import java.util.function.BiConsumer;
 
 public class DDArchaeologyLoot implements LootTableSubProvider {
 
-    public static final ResourceLocation CATACOMBS_STANDARD =
+    public static final ResourceKey<LootTable> CATACOMBS_STANDARD =
+            ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(DarkerDepths.MOD_ID, "archaeology/catacombs/standard"));
+
+    public static final ResourceLocation CATACOMBSd_STANDARD =
             ResourceLocation.fromNamespaceAndPath(DarkerDepths.MOD_ID, "archaeology/catacombs/standard");
 
     public static final ResourceLocation ROPE_MINE_STANDARD =
             ResourceLocation.fromNamespaceAndPath(DarkerDepths.MOD_ID, "archaeology/rope_mine/standard");
     @Override
-    public void generate(BiConsumer<ResourceLocation, LootTable.Builder> consumer) {
+    public void generate(BiConsumer<ResourceKey<LootTable>, LootTable.Builder> consumer) {
 
         LootTable.Builder catacombs_standard_loot = LootTable.lootTable()
                 .withPool(LootPool.lootPool()

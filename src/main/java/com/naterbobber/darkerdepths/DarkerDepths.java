@@ -24,11 +24,9 @@ public class DarkerDepths {
     public DarkerDepths(IEventBus modEventBus, ModContainer container) {
         container.registerConfig(ModConfig.Type.COMMON, DDConfigs.SPEC);
 
-        // Set up event listeners
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::clientSetup);
 
-        // Register all deferred registers to the mod event bus
         DDCreativeModeTabs.CREATIVE_MODE_TABS.register(modEventBus);
         DDBlocks.BLOCKS.register(modEventBus);
         DDItems.ITEMS.register(modEventBus);
@@ -45,17 +43,16 @@ public class DarkerDepths {
         DDActivities.ACTIVITIES.register(modEventBus);
         DDMemoryModuleTypes.MEMORY_MODULE_TYPES.register(modEventBus);
 
-        // Register Forge event bus listeners
         NeoForge.EVENT_BUS.register(new MobEvents());
         NeoForge.EVENT_BUS.register(new MiscEvents());
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
+        DDNetwork.init();
         event.enqueueWork(DDVanillaIntegration::init);
     }
 
     private void clientSetup(final FMLClientSetupEvent event) {
-         DDNetwork.init(); // Uncomment if needed
     }
 
     public static ResourceLocation id(String name) {

@@ -10,9 +10,7 @@ import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.MobSpawnSettings;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
-import net.neoforged.neoforge.common.world.;
-
-
+import net.neoforged.neoforge.common.world.BiomeModifiers;
 import net.neoforged.neoforge.common.world.BiomeModifier;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
 import org.jetbrains.annotations.NotNull;
@@ -59,18 +57,20 @@ public class DDBiomeModifiers {
                 GenerationStep.Decoration.UNDERGROUND_ORES
         ));
         context.register(ADD_SANDY_CATACOMBS_LOCAL_MODIFICATIONS, new BiomeModifiers.AddFeaturesBiomeModifier(
-                getBiome(context, DDBiomes.SANDY_CATACOMBS),
-                getPlacedFeature(
-                        context,
-                        DDPlacedFeatures.ARID_BOULDER
-                ),
-                GenerationStep.Decoration.LOCAL_MODIFICATIONS)
+                        getBiome(context, DDBiomes.SANDY_CATACOMBS),
+                        getPlacedFeature(
+                                context
+//                          Testing out this feature for 2.1
+//                        DDPlacedFeatures.CATACOMBS_LAYERED_PLACEMENT
+                        ),
+                        GenerationStep.Decoration.LOCAL_MODIFICATIONS)
         );
         context.register(ADD_SANDY_CATACOMBS_VEGETAL_FEATURES, new BiomeModifiers.AddFeaturesBiomeModifier(
                 getBiome(context, DDBiomes.SANDY_CATACOMBS),
                 getPlacedFeature(
                         context,
-                        DDPlacedFeatures.PETRIFIED_BRANCH
+                        DDPlacedFeatures.PETRIFIED_BRANCH,
+                        DDPlacedFeatures.ARID_SURFACE
                 ),
                 GenerationStep.Decoration.VEGETAL_DECORATION)
         );
@@ -88,19 +88,20 @@ public class DDBiomeModifiers {
                 getBiome(context, DDBiomes.SANDY_CATACOMBS),
                 getPlacedFeature(
                         context,
-                        DDPlacedFeatures.ARID_SURFACE,
+                        DDPlacedFeatures.ARID_BOULDER,
                         DDPlacedFeatures.DUSKROCK_ORE
                         //DDPlacedFeatures.DUSKROCK_STRIPE
                 ),
                 GenerationStep.Decoration.RAW_GENERATION)
         );
         context.register(ADD_SANDY_CATACOMBS_UNDERGROUND_DECORATION, new BiomeModifiers.AddFeaturesBiomeModifier(
-                getBiome(context, DDBiomes.SANDY_CATACOMBS),
-                getPlacedFeature(
-                        context,
-                        DDPlacedFeatures.CATACOMBS_LAVA_LINING
-                ),
-                GenerationStep.Decoration.UNDERGROUND_DECORATION)
+                        getBiome(context, DDBiomes.SANDY_CATACOMBS),
+                        getPlacedFeature(
+                                context,
+                                DDPlacedFeatures.CATACOMBS_LAVA_LINING
+//                        DDPlacedFeatures.CATACOMBS_SAND_PLACEMENT
+                        ),
+                        GenerationStep.Decoration.UNDERGROUND_DECORATION)
         );
         context.register(ADD_GLOWSHROOM_FOREST_VEGETAL_FEATURES, new BiomeModifiers.AddFeaturesBiomeModifier(
                 getBiome(context, DDBiomes.GLOWSHROOM_FOREST),
@@ -132,8 +133,7 @@ public class DDBiomeModifiers {
         return HolderSet.direct(context.lookup(Registries.PLACED_FEATURE).getOrThrow(placedFeature));
     }
 
-    @NotNull
-    private static HolderSet.Direct<Biome> getBiome(BootstrapContext<BiomeModifier> bootstapContext, ResourceKey<Biome> biome) {
+    private static HolderSet.@NotNull Direct<Biome> getBiome(BootstrapContext<BiomeModifier> bootstapContext, ResourceKey<Biome> biome) {
         return HolderSet.direct(bootstapContext.lookup(Registries.BIOME).getOrThrow(biome));
     }
 

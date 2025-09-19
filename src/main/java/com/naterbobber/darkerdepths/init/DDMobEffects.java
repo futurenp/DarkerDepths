@@ -10,7 +10,6 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 
 import net.neoforged.neoforge.registries.DeferredHolder;
 
-//@Mod.EventBusSubscriber(modid = DarkerDepths.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class DDMobEffects {
 
     public static final DeferredRegister<MobEffect> MOB_EFFECTS = DeferredRegister.create(Registries.MOB_EFFECT, DarkerDepths.MOD_ID);

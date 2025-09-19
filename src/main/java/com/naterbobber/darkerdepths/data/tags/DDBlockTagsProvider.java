@@ -111,6 +111,8 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
                 DDBlocks.PETRIFIED_TRAPDOOR.get(),
                 DDBlocks.PETRIFIED_SIGN.get(),
                 DDBlocks.PETRIFIED_WALL_SIGN.get(),
+                DDBlocks.PETRIFIED_WALL_HANGING_SIGN.get(),
+                DDBlocks.PETRIFIED_HANGING_SIGN.get(),
                 DDBlocks.PETRIFIED_DOOR.get(),
                 DDBlocks.PETRIFIED_BUTTON.get(),
                 DDBlocks.PETRIFIED_PRESSURE_PLATE.get(),
@@ -142,6 +144,7 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
                 DDBlocks.FORSAKEN_BRONZE_BLOCK.get(),
                 DDBlocks.ARIDROCK_PILLAR.get()
         );
+
         this.tag(BlockTags.MINEABLE_WITH_SHOVEL).add(
                 DDBlocks.ASH.get(),
                 DDBlocks.ASH_BLOCK.get()
@@ -157,6 +160,9 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
                 DDBlocks.PETRIFIED_PRESSURE_PLATE.get(),
                 DDBlocks.PETRIFIED_BUTTON.get(),
                 DDBlocks.PETRIFIED_SIGN.get(),
+                DDBlocks.PETRIFIED_WALL_SIGN.get(),
+                DDBlocks.PETRIFIED_HANGING_SIGN.get(),
+                DDBlocks.PETRIFIED_WALL_HANGING_SIGN.get(),
                 DDBlocks.POROUS_PETRIFIED_LOG.get(),
                 DDBlocks.PETRIFIED_PLANKS.get()
         );
@@ -166,7 +172,6 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
                 DDBlocks.LIVING_CRYSTAL.get(),
                 DDBlocks.DEAD_LIVING_CRYSTAL.get(),
                 DDBlocks.STONE_MELON.get(),
-                DDBlocks.GLOWSHROOM_LANTERN.get(),
                 DDBlocks.GLOWSHROOM_LAMP.get(),
                 DDBlocks.TOMB.get()
         );
@@ -184,15 +189,15 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
 
         this.tag(DDBlockTags.GEYSER_BYPASSES)
                 .add(
-                    Blocks.SNOW,
-                    Blocks.MOSS_CARPET,
-                    Blocks.GLOW_LICHEN,
-                    Blocks.SCULK_VEIN,
-                    DDBlocks.GLOWSHROOM.get(),
-                    DDBlocks.GLOWSPURS.get(),
-                    DDBlocks.GLIMMERING_VINES.get(),
-                    DDBlocks.GLIMMERING_VINE_PLANT.get(),
-                    DDBlocks.DRY_SPROUTS.get()
+                        Blocks.SNOW,
+                        Blocks.MOSS_CARPET,
+                        Blocks.GLOW_LICHEN,
+                        Blocks.SCULK_VEIN,
+                        DDBlocks.GLOWSHROOM.get(),
+                        DDBlocks.GLOWSPURS.get(),
+                        DDBlocks.GLIMMERING_VINES.get(),
+                        DDBlocks.GLIMMERING_VINE_PLANT.get(),
+                        DDBlocks.DRY_SPROUTS.get()
                 )
                 .addTag(BlockTags.WOOL_CARPETS)
                 .addTag(BlockTags.ALL_SIGNS)
@@ -215,6 +220,127 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
 
         this.tag(DDBlockTags.HUSKS_SPAWNABLE_ON).add(DDBlocks.ARIDROCK.get());
         this.tag(BlockTags.BEACON_BASE_BLOCKS).add(DDBlocks.FORSAKEN_BRONZE_BLOCK.get());
+
+        this.tag(BlockTags.SIGNS).add(
+                DDBlocks.PETRIFIED_SIGN.get(),
+                DDBlocks.PETRIFIED_WALL_SIGN.get()
+        );
+
+        this.tag(BlockTags.ALL_HANGING_SIGNS).add(
+                DDBlocks.PETRIFIED_HANGING_SIGN.get(),
+                DDBlocks.PETRIFIED_WALL_HANGING_SIGN.get()
+        );
+
+        this.tag(BlockTags.ALL_SIGNS).add(
+                DDBlocks.PETRIFIED_SIGN.get(),
+                DDBlocks.PETRIFIED_WALL_SIGN.get(),
+                DDBlocks.PETRIFIED_HANGING_SIGN.get(),
+                DDBlocks.PETRIFIED_WALL_HANGING_SIGN.get()
+        );
+
+        this.tag(BlockTags.STANDING_SIGNS).add(
+                DDBlocks.PETRIFIED_SIGN.get()
+        );
+
+        this.tag(BlockTags.WALL_SIGNS).add(
+                DDBlocks.PETRIFIED_WALL_SIGN.get()
+        );
+
+        this.tag(BlockTags.CEILING_HANGING_SIGNS).add(
+                DDBlocks.PETRIFIED_HANGING_SIGN.get()
+        );
+
+        this.tag(BlockTags.WALL_HANGING_SIGNS).add(
+                DDBlocks.PETRIFIED_WALL_HANGING_SIGN.get()
+        );
+
+        this.tag(BlockTags.WALL_POST_OVERRIDE).add(
+                DDBlocks.PETRIFIED_SIGN.get(),
+                DDBlocks.PETRIFIED_WALL_SIGN.get(),
+                DDBlocks.VOID_SOUL_TORCH.get(),
+                DDBlocks.PETRIFIED_PRESSURE_PLATE.get()
+        );
+
+        this.tag(BlockTags.DOORS).add(
+                DDBlocks.PETRIFIED_DOOR.get()
+        );
+
+        this.tag(BlockTags.WOODEN_DOORS).add(
+                DDBlocks.PETRIFIED_DOOR.get()
+        );
+
+        this.tag(BlockTags.TRAPDOORS).add(
+                DDBlocks.PETRIFIED_TRAPDOOR.get()
+        );
+
+        this.tag(BlockTags.WOODEN_TRAPDOORS).add(
+                DDBlocks.PETRIFIED_TRAPDOOR.get()
+        );
+
+        this.tag(BlockTags.WOODEN_SLABS).add(
+                DDBlocks.PETRIFIED_SLAB.get()
+        );
+
+        this.tag(BlockTags.WOODEN_STAIRS).add(
+                DDBlocks.PETRIFIED_STAIRS.get()
+        );
+
+        this.tag(BlockTags.WOODEN_BUTTONS).add(
+                DDBlocks.PETRIFIED_BUTTON.get()
+        );
+
+        this.tag(BlockTags.WOODEN_PRESSURE_PLATES).add(
+                DDBlocks.PETRIFIED_PRESSURE_PLATE.get()
+        );
+
+        this.tag(BlockTags.SNAPS_GOAT_HORN).add(
+                DDBlocks.PETRIFIED_LOG.get(),
+                DDBlocks.POROUS_PETRIFIED_LOG.get()
+        );
+
+        this.tag(BlockTags.PLANKS).add(
+                DDBlocks.PETRIFIED_PLANKS.get()
+        );
+
+        this.tag(BlockTags.SLABS).add(
+                DDBlocks.PETRIFIED_SLAB.get(),
+                DDBlocks.ARIDROCK_SLAB.get(),
+                DDBlocks.POLISHED_ARIDROCK_SLAB.get(),
+                DDBlocks.ARIDROCK_BRICKS_SLAB.get(),
+                DDBlocks.DUSKROCK_SLAB.get(),
+                DDBlocks.POLISHED_DUSKROCK_SLAB.get(),
+                DDBlocks.DUSKROCK_BRICKS_SLAB.get(),
+                DDBlocks.DARKSLATE_SLAB.get(),
+                DDBlocks.DARKSLATE_BRICKS_SLAB.get(),
+                DDBlocks.POLISHED_DARKSLATE_SLAB.get(),
+                DDBlocks.GRIMESTONE_SLAB.get(),
+                DDBlocks.POLISHED_GRIMESTONE_SLAB.get(),
+                DDBlocks.GRIMESTONE_BRICKS_SLAB.get()
+        );
+
+        this.tag(BlockTags.STAIRS).add(
+                DDBlocks.PETRIFIED_STAIRS.get(),
+                DDBlocks.ARIDROCK_STAIRS.get(),
+                DDBlocks.POLISHED_ARIDROCK_STAIRS.get(),
+                DDBlocks.ARIDROCK_BRICKS_STAIRS.get(),
+                DDBlocks.DUSKROCK_STAIRS.get(),
+                DDBlocks.POLISHED_DUSKROCK_STAIRS.get(),
+                DDBlocks.DUSKROCK_BRICKS_STAIRS.get(),
+                DDBlocks.DARKSLATE_STAIRS.get(),
+                DDBlocks.DARKSLATE_BRICKS_STAIRS.get(),
+                DDBlocks.POLISHED_DARKSLATE_STAIRS.get(),
+                DDBlocks.GRIMESTONE_STAIRS.get(),
+                DDBlocks.POLISHED_GRIMESTONE_STAIRS.get(),
+                DDBlocks.GRIMESTONE_BRICKS_STAIRS.get()
+        );
+
+        this.tag(BlockTags.BUTTONS).add(
+                DDBlocks.PETRIFIED_BUTTON.get()
+        );
+
+        this.tag(BlockTags.PRESSURE_PLATES).add(
+                DDBlocks.PETRIFIED_PRESSURE_PLATE.get()
+        );
 
     }
 }

@@ -2,29 +2,20 @@ package com.naterbobber.darkerdepths.init;
 
 import com.google.common.collect.Lists;
 import com.naterbobber.darkerdepths.DarkerDepths;
-import net.minecraft.client.resources.model.AtlasSet;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BiomeDefaultFeatures;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.data.worldgen.placement.CavePlacements;
-import net.minecraft.data.worldgen.placement.OrePlacements;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.Music;
 import net.minecraft.sounds.Musics;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
-import net.minecraft.world.level.biome.AmbientMoodSettings;
-import net.minecraft.world.level.biome.Biome;
-import net.minecraft.world.level.biome.BiomeGenerationSettings;
-import net.minecraft.world.level.biome.BiomeSpecialEffects;
-import net.minecraft.world.level.biome.MobSpawnSettings;
+import net.minecraft.world.level.biome.*;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.carver.ConfiguredWorldCarver;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
-import net.neoforged.neoforge.registries.DeferredRegister;
-
-import net.neoforged.neoforge.registries.DeferredHolder;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -57,7 +48,6 @@ public class DDBiomes {
         BiomeDefaultFeatures.addDefaultCarversAndLakes(biomeBuilder);
         BiomeDefaultFeatures.addDefaultCrystalFormations(biomeBuilder);
         BiomeDefaultFeatures.addDefaultMonsterRoom(biomeBuilder);
-        BiomeDefaultFeatures.addDefaultUndergroundVariety(biomeBuilder);
         BiomeDefaultFeatures.addDefaultSprings(biomeBuilder);
         BiomeDefaultFeatures.addSurfaceFreezing(biomeBuilder);
         BiomeDefaultFeatures.addPlainGrass(biomeBuilder);
@@ -73,7 +63,6 @@ public class DDBiomes {
         BiomeDefaultFeatures.addDefaultCarversAndLakes(biomeBuilder);
         BiomeDefaultFeatures.addDefaultCrystalFormations(biomeBuilder);
         BiomeDefaultFeatures.addDefaultMonsterRoom(biomeBuilder);
-        BiomeDefaultFeatures.addDefaultUndergroundVariety(biomeBuilder);
         BiomeDefaultFeatures.addSurfaceFreezing(biomeBuilder);
         BiomeDefaultFeatures.addPlainGrass(biomeBuilder);
         BiomeDefaultFeatures.addDefaultOres(biomeBuilder);
@@ -93,14 +82,14 @@ public class DDBiomes {
         BiomeDefaultFeatures.addPlainGrass(biomeBuilder);
         BiomeDefaultFeatures.addDefaultOres(biomeBuilder);
         Music music = Musics.createGameMusic(SoundEvents.MUSIC_BIOME_DRIPSTONE_CAVES);
-        return biome(true, 0.5F, 0.5F, mobBuilder, biomeBuilder, music);
+        return biome(true, 0.5F, 0.5F, 4169409, 341062, 11976546, mobBuilder, biomeBuilder, music);
     }
 
     private static Biome biome(boolean precipitation, float temperature, float downfall, MobSpawnSettings.Builder mobBuilder, BiomeGenerationSettings.Builder biomeBuilder, @Nullable Music music) {
-        return biome(precipitation, temperature, downfall, 4159204, 329011, mobBuilder, biomeBuilder, music);
+        return biome(precipitation, temperature, downfall, 4159204, 329011, 5478752, mobBuilder, biomeBuilder, music);
     }
 
-    private static Biome biome(boolean precipitation, float temperature, float downfall, int waterColor, int waterFogColor, MobSpawnSettings.Builder builder, BiomeGenerationSettings.Builder biomeBuilder, @Nullable Music music) {
+    private static Biome biome(boolean precipitation, float temperature, float downfall, int waterColor, int waterFogColor, int grassColor, MobSpawnSettings.Builder builder, BiomeGenerationSettings.Builder biomeBuilder, @Nullable Music music) {
         return (new Biome.BiomeBuilder())
                 .hasPrecipitation(precipitation)
                 .temperature(temperature)
@@ -109,6 +98,7 @@ public class DDBiomes {
                         .waterColor(waterColor)
                         .waterFogColor(waterFogColor)
                         .fogColor(12638463)
+                        .grassColorOverride(grassColor)
                         .skyColor(calculateSkyColor(temperature))
                         .ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS)
                         .backgroundMusic(music).build()).mobSpawnSettings(builder.build())

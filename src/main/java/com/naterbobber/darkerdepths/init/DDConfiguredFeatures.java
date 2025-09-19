@@ -46,7 +46,20 @@ import java.util.List;
 
 public class DDConfiguredFeatures {
 
-public static final ImmutableList<BlockState> OVERWORLD_REPLACEABLES    = ImmutableList.of(Blocks.STONE.defaultBlockState(), Blocks.ANDESITE.defaultBlockState(), Blocks.GRANITE.defaultBlockState(), Blocks.DIORITE.defaultBlockState(), Blocks.DIRT.defaultBlockState(), DDBlocks.DARKSLATE.get().defaultBlockState(), DDBlocks.ARIDROCK.get().defaultBlockState(), DDBlocks.DUSKROCK.get().defaultBlockState(), Blocks.GRAVEL.defaultBlockState(), Blocks.DEEPSLATE.defaultBlockState(), Blocks.TUFF.defaultBlockState());
+    public static final ImmutableList<BlockState> OVERWORLD_REPLACEABLES    = ImmutableList.of(
+            Blocks.STONE.defaultBlockState(),
+            Blocks.ANDESITE.defaultBlockState(),
+            Blocks.GRANITE.defaultBlockState(),
+            Blocks.DIORITE.defaultBlockState(),
+            Blocks.DIRT.defaultBlockState(),
+            DDBlocks.DARKSLATE.get().defaultBlockState(),
+            DDBlocks.ARIDROCK.get().defaultBlockState(),
+            DDBlocks.ARID_DEEPSLATE.get().defaultBlockState(),
+            DDBlocks.DUSKROCK.get().defaultBlockState(),
+            Blocks.GRAVEL.defaultBlockState(),
+            Blocks.DEEPSLATE.defaultBlockState(),
+            Blocks.TUFF.defaultBlockState()
+    );
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> GLOWSHROOM_PATCH = createKey("glowshroom_patch");
     public static final ResourceKey<ConfiguredFeature<?, ?>> HUGE_GLOWSHROOM = createKey("huge_glowshroom");
@@ -60,6 +73,8 @@ public static final ImmutableList<BlockState> OVERWORLD_REPLACEABLES    = Immuta
     public static final ResourceKey<ConfiguredFeature<?, ?>> ARID_VEGETATION = createKey("arid_vegetation");
     public static final ResourceKey<ConfiguredFeature<?, ?>> DARKSLATE_VEGETATION = createKey("darkslate_vegetation");
     public static final ResourceKey<ConfiguredFeature<?, ?>> DARKSLATE_PLACEMENT = createKey("darkslate_placement");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> CATACOMBS_SAND_PLACEMENT = createKey("catacombs_sand_placement");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> CATACOMBS_LAYERED_PLACEMENT = createKey("catacombs_layer_placement");
     public static final ResourceKey<ConfiguredFeature<?, ?>> SHORT_PETRIFIED_BRANCH = createKey("short_petrified_branch");
     public static final ResourceKey<ConfiguredFeature<?, ?>> LONG_PETRIFIED_BRANCH = createKey("long_petrified_branch");
     public static final ResourceKey<ConfiguredFeature<?, ?>> PETRIFIED_BRANCH = createKey("petrified_branch");
@@ -152,7 +167,41 @@ public static final ImmutableList<BlockState> OVERWORLD_REPLACEABLES    = Immuta
 
         FeatureUtils.register(context, DARKSLATE_PLACEMENT, DDFeatures.REPLACE_LIST.get(), new ReplaceListConfig(
                 OVERWORLD_REPLACEABLES,
-                DDBlocks.DARKSLATE.get().defaultBlockState(), UniformInt.of(6, 7)
+                DDBlocks.DARKSLATE.get().defaultBlockState(),
+                UniformInt.of(3, 7)
+
+        ));
+
+        FeatureUtils.register(context, CATACOMBS_SAND_PLACEMENT, DDFeatures.REPLACE_LIST.get(), new ReplaceListConfig(
+                List.of(DDBlocks.ARIDROCK.get().defaultBlockState()),
+                Blocks.SAND.defaultBlockState(),
+                UniformInt.of(6, 12)
+
+        ));
+
+        FeatureUtils.register(context, CATACOMBS_LAYERED_PLACEMENT, DDFeatures.REPLACE_LIST_LAYERED.get(), new ReplaceListLayeredConfig(
+                OVERWORLD_REPLACEABLES,
+                UniformInt.of(6, 7),
+                ImmutableList.of(
+                        DDBlocks.ARIDROCK.get().defaultBlockState(),
+                        Blocks.PACKED_MUD.defaultBlockState(),
+                        DDBlocks.ARIDROCK.get().defaultBlockState(),
+                        DDBlocks.ARIDROCK.get().defaultBlockState(),
+                        Blocks.PACKED_MUD.defaultBlockState(),
+                        Blocks.PACKED_MUD.defaultBlockState(),
+                        DDBlocks.DUSKROCK.get().defaultBlockState(),
+                        DDBlocks.DUSKROCK.get().defaultBlockState(),
+                        Blocks.PACKED_MUD.defaultBlockState(),
+                        Blocks.PACKED_MUD.defaultBlockState(),
+                        DDBlocks.ARIDROCK.get().defaultBlockState(),
+                        Blocks.PACKED_MUD.defaultBlockState(),
+                        Blocks.PACKED_MUD.defaultBlockState(),
+                        DDBlocks.DUSKROCK.get().defaultBlockState(),
+                        Blocks.PACKED_MUD.defaultBlockState(),
+                        Blocks.PACKED_MUD.defaultBlockState(),
+                        DDBlocks.ARIDROCK.get().defaultBlockState(),
+                        DDBlocks.ARIDROCK.get().defaultBlockState()
+                )
 
         ));
 
@@ -217,8 +266,10 @@ public static final ImmutableList<BlockState> OVERWORLD_REPLACEABLES    = Immuta
 
         FeatureUtils.register(context, DARKSLATE_SURFACE, DDFeatures.CORRESPONDENT_LAYER.get(), new CorrespondentLayersConfig(
                 BlockTags.LUSH_GROUND_REPLACEABLE,
-                BlockStateProvider.simple(DDBlocks.DARKSLATE.get()),
-                BlockStateProvider.simple(DDBlocks.DARKSLATE.get()),
+                List.of(
+                        BlockStateProvider.simple(DDBlocks.DARKSLATE.get()),
+                        BlockStateProvider.simple(DDBlocks.DARKSLATE.get())
+                ),
                 PlacementUtils.inlinePlaced(lookup.getOrThrow(DARKSLATE_VEGETATION)),
                 CaveSurface.FLOOR,
                 ConstantInt.of(1), 0.0F, 5, 0.8F,
@@ -227,8 +278,10 @@ public static final ImmutableList<BlockState> OVERWORLD_REPLACEABLES    = Immuta
 
         FeatureUtils.register(context, ARID_SURFACE, DDFeatures.CORRESPONDENT_LAYER.get(), new CorrespondentLayersConfig(
                 BlockTags.LUSH_GROUND_REPLACEABLE,
-                BlockStateProvider.simple(DDBlocks.ARIDROCK.get()),
-                BlockStateProvider.simple(DDBlocks.ARID_DEEPSLATE.get()),
+                List.of(
+                        BlockStateProvider.simple(DDBlocks.ARIDROCK.get()),
+                        BlockStateProvider.simple(DDBlocks.ARID_DEEPSLATE.get())
+                ),
                 PlacementUtils.inlinePlaced(lookup.getOrThrow(ARID_VEGETATION)),
                 CaveSurface.FLOOR, ConstantInt.of(1), 0.0F, 5, 0.8F,
                 UniformInt.of(4, 7), 0.3F, true)
@@ -236,8 +289,11 @@ public static final ImmutableList<BlockState> OVERWORLD_REPLACEABLES    = Immuta
 
         FeatureUtils.register(context, GRIME_SURFACE, DDFeatures.CORRESPONDENT_LAYER.get(), new CorrespondentLayersConfig(
                 BlockTags.LUSH_GROUND_REPLACEABLE,
-                BlockStateProvider.simple(DDBlocks.MOSSY_GRIMESTONE.get()),
-                BlockStateProvider.simple(DDBlocks.GRIMESTONE.get()),
+                List.of(
+                        BlockStateProvider.simple(DDBlocks.MOSSY_GRIMESTONE.get()),
+                        BlockStateProvider.simple(DDBlocks.GRIMESTONE.get()),
+                        BlockStateProvider.simple(Blocks.TUFF)
+                ),
                 PlacementUtils.inlinePlaced(lookup.getOrThrow(GRIME_VEGETATION)),
                 CaveSurface.FLOOR, ConstantInt.of(1), 0.0F, 5, 0.8F,
                 UniformInt.of(4, 7), 0.3F, false)
@@ -245,15 +301,15 @@ public static final ImmutableList<BlockState> OVERWORLD_REPLACEABLES    = Immuta
 
         FeatureUtils.register(context, GLIMMERING_VINES, Feature.BLOCK_COLUMN, new BlockColumnConfiguration(
                 List.of(BlockColumnConfiguration.layer(
-                new WeightedListInt(SimpleWeightedRandomList.<IntProvider>builder()
-                        .add(UniformInt.of(0, 19), 2)
-                        .add(UniformInt.of(0, 2), 3)
-                        .add(UniformInt.of(0, 6), 10)
-                        .build()),
-                        BlockStateProvider.simple(DDBlocks.GLIMMERING_VINE_PLANT.get().defaultBlockState())
-                ),
+                                new WeightedListInt(SimpleWeightedRandomList.<IntProvider>builder()
+                                        .add(UniformInt.of(0, 19), 2)
+                                        .add(UniformInt.of(0, 2), 3)
+                                        .add(UniformInt.of(0, 6), 10)
+                                        .build()),
+                                BlockStateProvider.simple(DDBlocks.GLIMMERING_VINE_PLANT.get().defaultBlockState())
+                        ),
                         BlockColumnConfiguration.layer(ConstantInt.of(1),
-                        BlockStateProvider.simple(DDBlocks.GLIMMERING_VINES.get().defaultBlockState()))
+                                BlockStateProvider.simple(DDBlocks.GLIMMERING_VINES.get().defaultBlockState()))
                 ),
                 Direction.DOWN,
                 BlockPredicate.ONLY_IN_AIR_PREDICATE,

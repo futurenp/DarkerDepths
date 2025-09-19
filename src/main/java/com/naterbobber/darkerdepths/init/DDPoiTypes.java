@@ -13,7 +13,6 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.Set;
 
-//@Mod.EventBusSubscriber(modid = DarkerDepths.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class DDPoiTypes {
 
     public static final DeferredRegister<PoiType> POI_TYPES = DeferredRegister.create(Registries.POINT_OF_INTEREST_TYPE, DarkerDepths.MOD_ID);

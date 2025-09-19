@@ -5,6 +5,7 @@ import com.naterbobber.darkerdepths.world.gen.features.*;
 import com.naterbobber.darkerdepths.world.gen.features.config.CorrespondentLayersConfig;
 import com.naterbobber.darkerdepths.world.gen.features.config.PetrifiedBranchConfig;
 import com.naterbobber.darkerdepths.world.gen.features.config.ReplaceListConfig;
+import com.naterbobber.darkerdepths.world.gen.features.config.ReplaceListLayeredConfig;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
@@ -13,12 +14,12 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-//@Mod.EventBusSubscriber(modid = DarkerDepths.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class DDFeatures {
 
     public static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(Registries.FEATURE, DarkerDepths.MOD_ID);
 
     public static final DeferredHolder<Feature<?>, ReplaceListFeature> REPLACE_LIST = FEATURES.register("replace_list", () -> new ReplaceListFeature(ReplaceListConfig.CODEC));
+    public static final DeferredHolder<Feature<?>, ReplaceListLayeredFeature> REPLACE_LIST_LAYERED = FEATURES.register("replace_list_layered", () -> new ReplaceListLayeredFeature(ReplaceListLayeredConfig.CODEC));
     public static final DeferredHolder<Feature<?>, RandomSpreadFeature> RANDOM_GLOWSHROOM_PATCHES = FEATURES.register("random_glowshroom_patches", () -> new RandomSpreadFeature(NoneFeatureConfiguration.CODEC));
     public static final DeferredHolder<Feature<?>, GemstoneFeature> GEMSTONE = FEATURES.register("gemstone", () -> new GemstoneFeature(NoneFeatureConfiguration.CODEC));
     public static final DeferredHolder<Feature<?>, HugeGlowshroomFeature> HUGE_GLOWSHROOM = FEATURES.register("huge_glowshroom", () -> new HugeGlowshroomFeature(NoneFeatureConfiguration.CODEC));

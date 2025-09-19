@@ -11,8 +11,8 @@ import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class GlowshroomCapModel<T extends LivingEntity> extends HumanoidModel<T> {
@@ -35,7 +35,7 @@ public class GlowshroomCapModel<T extends LivingEntity> extends HumanoidModel<T>
 	}
 
 	@Override
-	public void renderToBuffer(PoseStack poseStack, VertexConsumer buffer, int packedLight, int packedOverlay, float p_102038_, float p_102039_, float p_102040_, float p_102041_) {
+	public void renderToBuffer(PoseStack poseStack, VertexConsumer buffer, int packedLight, int packedOverlay, int color) {
 		poseStack.pushPose();
 		this.Head.copyFrom(this.head);
 		if (this.young) {

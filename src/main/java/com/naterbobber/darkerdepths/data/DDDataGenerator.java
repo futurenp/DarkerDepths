@@ -1,9 +1,7 @@
 package com.naterbobber.darkerdepths.data;
 
-import com.naterbobber.darkerdepths.data.DDDatapackBuiltinEntriesProvider;
-import com.naterbobber.darkerdepths.data.DDRecipeProvider;
 import com.naterbobber.darkerdepths.data.assets.DDBlockStateProvider;
-import com.naterbobber.darkerdepths.data.assets.lang.DDLanguageProviderENUS;
+import com.naterbobber.darkerdepths.data.assets.DDLanguageProviderENUS;
 import com.naterbobber.darkerdepths.data.loot.DDLootTableProvider;
 import com.naterbobber.darkerdepths.data.tags.DDBiomeTagsProvider;
 import com.naterbobber.darkerdepths.data.tags.DDBlockTagsProvider;
@@ -13,7 +11,6 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 

@@ -9,7 +9,6 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 
 import net.neoforged.neoforge.registries.DeferredHolder;
 
-//@Mod.EventBusSubscriber(modid = DarkerDepths.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class DDSoundEvents {
     public static final DeferredRegister<SoundEvent> SOUND_EVENTS = DeferredRegister.create(Registries.SOUND_EVENT, DarkerDepths.MOD_ID);
 

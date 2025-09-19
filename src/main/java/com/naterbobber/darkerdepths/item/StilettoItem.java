@@ -80,14 +80,14 @@ public class StilettoItem extends SwordItem {
     }
 
     @Override
-    public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
+    public void appendHoverText(ItemStack pStack, TooltipContext context, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
         pTooltipComponents.add(Component.translatable("tooltip.darkerdepths.press_shift").withStyle(ChatFormatting.GRAY));
 
         if (Screen.hasShiftDown()) {
             pTooltipComponents.add(Component.translatable("tooltip.darkerdepths.stiletto.shift_desc").withStyle(ChatFormatting.YELLOW));
         }
 
-        super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
+        super.appendHoverText(pStack, context, pTooltipComponents, pIsAdvanced);
     }
 
     @Override

@@ -1,8 +1,11 @@
 package com.naterbobber.darkerdepths.data.loot;
 
+import com.naterbobber.darkerdepths.blocks.VerticalSlabBlock;
 import com.naterbobber.darkerdepths.init.DDBlocks;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.data.loot.packs.VanillaBlockLoot;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
@@ -11,6 +14,10 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 import java.util.stream.Collectors;
 
 public class DDBlockLoot extends VanillaBlockLoot {
+
+    public DDBlockLoot(HolderLookup.Provider registries) {
+        super(registries);
+    }
 
     @Override
     protected void generate() {
@@ -29,18 +36,18 @@ public class DDBlockLoot extends VanillaBlockLoot {
         this.dropSlab(DDBlocks.PETRIFIED_SLAB);
     }
 
-    private void verticalSlab(RegistryObject<Block> verticalSlab) {
+    private void verticalSlab(DeferredHolder<Block, VerticalSlabBlock> verticalSlab) {
         this.add(verticalSlab.get(), block -> {
             return LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)));
         });
     }
 
-    private void dropSlab(RegistryObject<Block> slab) {
+    private void dropSlab(DeferredHolder<Block, SlabBlock> slab) {
         this.add(slab.get(), this::createSlabItemTable);
     }
 
     @Override
     protected Iterable<Block> getKnownBlocks() {
-        return DDBlocks.BLOCKS.getEntries().stream().map(RegistryObject::get).collect(Collectors.toList());
+        return DDBlocks.BLOCKS.getEntries().stream().map(DeferredHolder::get).collect(Collectors.toList());
     }
 }

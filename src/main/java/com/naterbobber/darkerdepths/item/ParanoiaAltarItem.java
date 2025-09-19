@@ -4,11 +4,10 @@ import com.naterbobber.darkerdepths.client.render.renderers.ParanoiaAltarItemRen
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.level.block.Block;
-import net.minecraftforge.client.extensions.common.IClientItemExtensions;
+import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
 import software.bernie.geckolib.animatable.GeoItem;
 import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.animation.*;
-import software.bernie.geckolib.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.function.Consumer;

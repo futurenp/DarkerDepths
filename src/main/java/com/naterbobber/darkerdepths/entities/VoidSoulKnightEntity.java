@@ -23,9 +23,9 @@ import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import software.bernie.geckolib.animatable.GeoEntity;
+import software.bernie.geckolib.animation.AnimationController;
 import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.animation.*;
-import software.bernie.geckolib.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 public class VoidSoulKnightEntity extends VoidSoulMonster implements GeoEntity {
@@ -46,13 +46,11 @@ public class VoidSoulKnightEntity extends VoidSoulMonster implements GeoEntity {
 
     private static final EntityDataAccessor<Boolean> IS_DORMANT =
             SynchedEntityData.defineId(VoidSoulKnightEntity.class, EntityDataSerializers.BOOLEAN);
-    private static final EntityDataAccessor<Boolean> IS_ATTACKING =
-            SynchedEntityData.defineId(VoidSoulKnightEntity.class, EntityDataSerializers.BOOLEAN);
 
 
     public VoidSoulKnightEntity(EntityType<? extends Monster> type, Level world) {
         super(type, world);
-        this.xpReward = 40;
+        this.xpReward = 30;
         this.moveControl = new ConfigurableMoveControl(this, 10.0F);
         this.setOrbHeight(1.5);
     }
@@ -71,7 +69,7 @@ public class VoidSoulKnightEntity extends VoidSoulMonster implements GeoEntity {
     protected void registerGoals() {
         if (!this.isDormant()) {
             this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
-            this.goalSelector.addGoal(2, new ConfigurableReachMeleeAttackGoal(this, 1.3D, true, 2.75f));
+            this.goalSelector.addGoal(2, new ConfigurableReachMeleeAttackGoal(this, 1.3D, true, 2.75F));
             this.targetSelector.addGoal(3, new AttackMemoryTargetGoal<>(this, Player.class, PERSISTENCE, true));
             this.goalSelector.addGoal(7, new WaterAvoidingRandomStrollGoal(this, 1.2D));
         }
@@ -178,9 +176,9 @@ public class VoidSoulKnightEntity extends VoidSoulMonster implements GeoEntity {
             this.setAttacking(true);
 
             this.attackTick = 50;
-            this.firstDamageDelay = 5;
+            this.firstDamageDelay = 10;
             this.firstAttackDone = false;
-            this.secondDamageDelay = 25;
+            this.secondDamageDelay = 38;
 
             if (entity instanceof LivingEntity) {
                 this.attackTarget = (LivingEntity)entity;
@@ -249,38 +247,9 @@ public class VoidSoulKnightEntity extends VoidSoulMonster implements GeoEntity {
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(IS_DORMANT, true);
-        this.entityData.define(IS_ATTACKING, false);
-    }
-
-    public boolean isAttacking() {
-        return this.entityData.get(IS_ATTACKING);
-    }
-
-    public void setAttacking(boolean attacking) {
-        this.entityData.set(IS_ATTACKING, attacking);
-    }
-
-    @Override
-    public void addAdditionalSaveData(CompoundTag compound) {
-        super.addAdditionalSaveData(compound);
-        compound.putBoolean("IsDormant", this.isDormant());
-        compound.putBoolean("IsAttacking", this.isAttacking());
-    }
-
-    @Override
-    public void readAdditionalSaveData(CompoundTag compound) {
-        super.readAdditionalSaveData(compound);
-        if (compound.contains("IsDormant")) {
-            this.setDormant(compound.getBoolean("IsDormant"));
-        }
-        if (compound.contains("IsAttacking")) {
-            this.setAttacking(compound.getBoolean("IsAttacking"));
-        }
-
-        this.registerGoals();
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(IS_DORMANT, true);
     }
 
     public boolean isDormant() {

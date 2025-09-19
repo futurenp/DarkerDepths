@@ -4,6 +4,7 @@ import com.naterbobber.darkerdepths.init.DDEntityTypes;
 import com.naterbobber.darkerdepths.init.DDItems;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
@@ -25,13 +26,14 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.world.level.storage.loot.LootTable;
 
 import javax.annotation.Nullable;
 
 public class PetrifiedChestBoatEntity extends PetrifiedBoatEntity implements HasCustomInventoryScreen, ContainerEntity {
     private NonNullList<ItemStack> itemStacks = NonNullList.withSize(27, ItemStack.EMPTY);
     @Nullable
-    private ResourceLocation lootTable;
+    private ResourceKey<LootTable> lootTable;
     private long lootTableSeed;
 
     public PetrifiedChestBoatEntity(EntityType<? extends Boat> p_219869_, Level p_219870_) {
@@ -57,15 +59,15 @@ public class PetrifiedChestBoatEntity extends PetrifiedBoatEntity implements Has
     }
 
     @Override
-    protected void addAdditionalSaveData(CompoundTag p_219908_) {
-        super.addAdditionalSaveData(p_219908_);
-        this.addChestVehicleSaveData(p_219908_);
+    protected void addAdditionalSaveData(CompoundTag tag) {
+        super.addAdditionalSaveData(tag);
+        this.addChestVehicleSaveData(tag);
     }
 
     @Override
-    protected void readAdditionalSaveData(CompoundTag p_219901_) {
-        super.readAdditionalSaveData(p_219901_);
-        this.readChestVehicleSaveData(p_219901_);
+    protected void readAdditionalSaveData(CompoundTag tag) {
+        super.readAdditionalSaveData(tag);
+        this.readChestVehicleSaveData(tag);
     }
 
     @Override
@@ -173,13 +175,13 @@ public class PetrifiedChestBoatEntity extends PetrifiedBoatEntity implements Has
 
     @Nullable
     @Override
-    public ResourceLocation getLootTable() {
-        return this.lootTable;
+    public ResourceKey<LootTable> getLootTable() {
+        return lootTable;
     }
 
     @Override
-    public void setLootTable(@Nullable ResourceLocation p_219890_) {
-        this.lootTable = p_219890_;
+    public void setLootTable(@Nullable ResourceKey<LootTable> resourceKey) {
+        this.lootTable = resourceKey;
     }
 
     @Override

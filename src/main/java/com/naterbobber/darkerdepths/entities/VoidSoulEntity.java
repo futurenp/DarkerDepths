@@ -17,9 +17,7 @@ import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.PathfinderMob;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.control.FlyingMoveControl;
@@ -35,16 +33,14 @@ import net.minecraft.world.level.gameevent.GameEvent;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.animation.AnimatableManager;
-import software.bernie.geckolib.animation.AnimationController;
+import software.bernie.geckolib.animation.*;
 import software.bernie.geckolib.animation.AnimationState;
-import software.bernie.geckolib.animation.RawAnimation;
-import software.bernie.geckolib.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 public class VoidSoulEntity extends PathfinderMob implements GeoEntity {
     private boolean isCaptured = false;
     private int lifetime = 20 * 60;
+    private int experienceDrop = 12;
 
     protected static final RawAnimation IDLE_ANIM = RawAnimation.begin().thenLoop("idle");
     private final AnimatableInstanceCache geoCache = GeckoLibUtil.createInstanceCache(this);
@@ -173,6 +169,12 @@ public class VoidSoulEntity extends PathfinderMob implements GeoEntity {
                         this.getBbWidth() / 2.0,
                         0.05
                 );
+
+                if(experienceDrop > 0){
+                    //might have issues, idk what specifying the entity does
+                    dropExperience(this);
+                }
+
             } else {
                 ParticleOptions particle = ParticleTypes.SMOKE;
                 serverLevel.sendParticles(
@@ -224,6 +226,16 @@ public class VoidSoulEntity extends PathfinderMob implements GeoEntity {
         return false;
     }
 
+
+    @Override
+    protected void dropExperience(@Nullable Entity entity) {
+        ExperienceOrb.award((ServerLevel)this.level(), this.position(), this.experienceDrop);
+    }
+
+    public void setExperienceDrop(int amount) {
+        this.experienceDrop = amount;
+    }
+
     @Override
     public void addAdditionalSaveData(CompoundTag compound) {
         super.addAdditionalSaveData(compound);
@@ -248,11 +260,13 @@ public class VoidSoulEntity extends PathfinderMob implements GeoEntity {
         this.entityData.set(EXPIRES, expires);
     }
 
+
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(EXPIRES, true);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(EXPIRES, true);
     }
+
 
     @Override
     public void registerControllers(final AnimatableManager.ControllerRegistrar controllers) {

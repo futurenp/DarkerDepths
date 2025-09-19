@@ -6,9 +6,9 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.phys.AABB;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.event.TickEvent;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.client.event.ClientTickEvent;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -19,7 +19,7 @@ public class DynamicLightHandler {
     public static final Map<BlockPos, LightValue> LIGHT_SOURCES = new ConcurrentHashMap<>();
     private static final int LIGHT_SCAN_RADIUS = 64;
 
-    public static void onClientTick(TickEvent.ClientTickEvent event) {
+    public static void onClientTick(ClientTickEvent event) {
         if (event.phase != TickEvent.Phase.END) {
             return;
         }

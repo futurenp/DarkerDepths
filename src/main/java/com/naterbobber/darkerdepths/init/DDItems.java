@@ -43,6 +43,9 @@ public class DDItems {
             () -> new DDBoatItem(true, PetrifiedBoatEntity.BoatType.PETRIFIED, new Item.Properties().stacksTo(1)));
     public static final DeferredHolder<Item, SignItem> PETRIFIED_SIGN = ITEMS.register("petrified_sign",
             () -> new SignItem(new Item.Properties().stacksTo(16), DDBlocks.PETRIFIED_SIGN.get(), DDBlocks.PETRIFIED_WALL_SIGN.get()));
+    public static final DeferredHolder<Item, HangingSignItem> PETRIFIED_HANGING_SIGN = ITEMS.register("petrified_hanging_sign",
+            () -> new HangingSignItem(DDBlocks.PETRIFIED_HANGING_SIGN.get(), DDBlocks.PETRIFIED_WALL_HANGING_SIGN.get(), new Item.Properties().stacksTo(16)));
+
     public static final DeferredHolder<Item, ParanoiaAltarItem> PARANOIA_ALTAR = ITEMS.register("paranoia_altar",
             () -> new ParanoiaAltarItem(DDBlocks.PARANOIA_ALTAR.get(), new Item.Properties()));
     public static final DeferredHolder<Item, VoidSoulJarItem> VOID_SOUL_JAR = ITEMS.register("void_soul_jar",

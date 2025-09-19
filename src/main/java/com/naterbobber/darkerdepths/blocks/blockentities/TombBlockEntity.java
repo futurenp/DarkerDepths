@@ -22,7 +22,6 @@ import software.bernie.geckolib.animatable.GeoBlockEntity;
 import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.animatable.instance.SingletonAnimatableInstanceCache;
 import software.bernie.geckolib.animation.*;
-import software.bernie.geckolib.object.PlayState;
 import software.bernie.geckolib.util.RenderUtil;
 
 public class TombBlockEntity extends BlockEntity implements GeoBlockEntity, Container {

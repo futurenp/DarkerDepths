@@ -2,6 +2,7 @@ package com.naterbobber.darkerdepths.blocks.blockentities;
 
 import com.naterbobber.darkerdepths.init.DDBlockEntityTypes;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
@@ -51,10 +52,6 @@ public class MobPlacerBlockEntity extends BlockEntity {
             ResourceLocation entityId = ResourceLocation.parse(entityTypeId);
             EntityType<?> entityType = BuiltInRegistries.ENTITY_TYPE.get(entityId);
 
-            if (entityType == null) {
-                return;
-            }
-
             Entity entity = entityType.create(level);
             if (entity == null) {
                 return;
@@ -79,7 +76,7 @@ public class MobPlacerBlockEntity extends BlockEntity {
             entity.setPos(spawnPos);
 
             if (entity instanceof net.minecraft.world.entity.Mob mob) {
-                mob.finalizeSpawn(level, level.getCurrentDifficultyAt(worldPosition), MobSpawnType.STRUCTURE, null, null);
+                mob.finalizeSpawn(level, level.getCurrentDifficultyAt(worldPosition), MobSpawnType.STRUCTURE, null);
                 mob.setPersistenceRequired();
 
                 mob.setYRot(rotation);
@@ -109,8 +106,8 @@ public class MobPlacerBlockEntity extends BlockEntity {
     }
 
     @Override
-    protected void saveAdditional(CompoundTag nbt) {
-        super.saveAdditional(nbt);
+    protected void saveAdditional(CompoundTag nbt, HolderLookup.Provider registries) {
+        super.saveAdditional(nbt, registries);
         nbt.putString("EntityType", this.entityTypeId);
         nbt.putFloat("Rotation", this.rotation);
         nbt.putBoolean("HasSpawned", this.hasSpawned);

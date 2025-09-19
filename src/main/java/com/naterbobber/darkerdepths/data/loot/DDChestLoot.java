@@ -23,8 +23,9 @@ public class DDChestLoot implements LootTableSubProvider {
     public static final ResourceLocation CATACOMBS_CHEST_TREASURE =
             ResourceLocation.fromNamespaceAndPath(DarkerDepths.MOD_ID, "chests/catacombs/treasure");
 
+
     @Override
-    public void generate(BiConsumer<ResourceLocation, LootTable.Builder> consumer) {
+    public void generate(BiConsumer<ResourceKey<LootTable>, LootTable.Builder> consumer) {
         LootTable.Builder catacombs_chest_standard = LootTable.lootTable()
                 .withPool(LootPool.lootPool()
                         .setRolls(UniformGenerator.between(5.0F, 10.0F))
@@ -91,10 +92,5 @@ public class DDChestLoot implements LootTableSubProvider {
                                 .apply(new EnchantRandomlyFunction.Builder()))
                 );
         consumer.accept(CATACOMBS_CHEST_TREASURE, catacombs_chest_treasure);
-    }
-
-    @Override
-    public void generate(BiConsumer<ResourceKey<LootTable>, LootTable.Builder> biConsumer) {
-
     }
 }

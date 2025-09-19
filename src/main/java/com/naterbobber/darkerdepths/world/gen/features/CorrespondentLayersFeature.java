@@ -93,17 +93,20 @@ public class CorrespondentLayersFeature extends Feature<CorrespondentLayersConfi
     }
 
     protected boolean placeVegetation(WorldGenLevel world, CorrespondentLayersConfig config, ChunkGenerator generator, RandomSource random, BlockPos pos) {
-        if (world.isStateAtPosition(pos.relative(config.surface.getDirection().getOpposite()), BlockBehaviour.BlockStateBase::isAir) && world.getBlockState(pos).is(config.groundState.getState(random, pos).getBlock())) {
-            return config.vegetationFeature.get().place(world, generator, random, pos.relative(config.surface.getDirection().getOpposite()));
+        if (world.isStateAtPosition(pos.relative(config.surface.getDirection().getOpposite()), BlockBehaviour.BlockStateBase::isAir) && world.getBlockState(pos).is(config.layers.get(0).getState(random, pos).getBlock())) {
+            return config.vegetationFeature.value().place(world, generator, random, pos.relative(config.surface.getDirection().getOpposite()));
         } else {
             return false;
         }
     }
 
+
+    //yo this method is ass
+    //redo and implement dynamic array, so the list can be abstractly expanded to place more blocks underneath
     protected boolean placeGround(WorldGenLevel world, CorrespondentLayersConfig config, Predicate<BlockState> predicate, RandomSource random, BlockPos.MutableBlockPos pos, int tries) {
         for (int i = 0; i < tries; ++i) {
-            BlockState blockstate = config.groundState.getState(random, pos);
-            BlockState belowState = config.belowState.getState(random, pos);
+            BlockState blockstate = config.layers.get(0).getState(random, pos);
+            BlockState belowState = config.layers.get(1).getState(random, pos);
             BlockState posBelow = world.getBlockState(pos.below());
 
             //Check whether the config is aridrocks' config. Redo this system in the future

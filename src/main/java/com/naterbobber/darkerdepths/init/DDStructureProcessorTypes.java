@@ -11,7 +11,6 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProc
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
-//@Mod.EventBusSubscriber(modid = DarkerDepths.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class DDStructureProcessorTypes {
 
     public static final DeferredRegister<StructureProcessorType<?>> STRUCTURE_PROCESSORS = DeferredRegister.create(Registries.STRUCTURE_PROCESSOR, DarkerDepths.MOD_ID);

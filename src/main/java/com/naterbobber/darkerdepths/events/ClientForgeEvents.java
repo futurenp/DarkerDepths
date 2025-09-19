@@ -12,9 +12,9 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraftforge.client.event.ViewportEvent;
-import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.neoforge.client.event.ClientTickEvent;
+import net.neoforged.neoforge.client.event.ViewportEvent;
 
 public class ClientForgeEvents {
 
@@ -22,7 +22,7 @@ public class ClientForgeEvents {
     private static final float TRANSITION_SECONDS = 1.5f;
 
     @SubscribeEvent
-    public void onClientTick(TickEvent.ClientTickEvent event) {
+    public void onClientTick(ClientTickEvent event) {
         DynamicLightHandler.onClientTick(event);
 
         if (event.phase != TickEvent.Phase.END) {

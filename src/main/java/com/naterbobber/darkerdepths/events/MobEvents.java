@@ -1,5 +1,6 @@
 package com.naterbobber.darkerdepths.events;
 
+import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.api.DeathAnchorLocation;
 import com.naterbobber.darkerdepths.entities.BodySnatcherEntity;
 import com.naterbobber.darkerdepths.entities.GlowshroomMonsterEntity;
@@ -33,16 +34,18 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 import net.neoforged.neoforge.event.entity.living.LivingEquipmentChangeEvent;
 import net.neoforged.neoforge.event.entity.living.MobEffectEvent;
+import net.neoforged.neoforge.network.PacketDistributor;
 
 import java.util.Optional;
 import java.util.Set;
 
-//@Mod.EventBusSubscriber(modid = DarkerDepths.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = DarkerDepths.MOD_ID)
 public class MobEvents {
 
     @SubscribeEvent
@@ -121,16 +124,14 @@ public class MobEvents {
                 }
             }
 
-            entity.teleportTo(newServer, teleportPos.getX() + 0.5D, teleportPos.getY(), teleportPos.getZ() + 0.5D, Set.of(), 0, 0);
             entity.addEffect(new MobEffectInstance(DDMobEffects.SOUL_BINDING.get(), 200, 0, true, false));
+            entity.teleportTo(newServer, teleportPos.getX() + 0.5D, teleportPos.getY(), teleportPos.getZ() + 0.5D, Set.of(), 0, 0);
 
             if (entity instanceof ServerPlayer serverPlayer) {
                 DDNetwork.INSTANCE.send(PacketDistributor.PLAYER.with(() -> serverPlayer), new SendDeathAnchorPacket());
             }
 
             entity.setRemainingFireTicks(0);
-            //doesnt work
-            serverLevel.playLocalSound(entity.getX(), entity.getY(), entity.getZ(), SoundEvents.ANVIL_FALL, entity.getSoundSource(), 1.0F, 1.0F, false);
         }
     }
 

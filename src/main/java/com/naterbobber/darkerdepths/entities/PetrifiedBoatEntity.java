@@ -15,7 +15,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.network.NetworkHooks;
 
 public class PetrifiedBoatEntity extends Boat {
     private static final EntityDataAccessor<Integer> BOAT_TYPE = SynchedEntityData.defineId(PetrifiedBoatEntity.class, EntityDataSerializers.INT);
@@ -35,9 +34,9 @@ public class PetrifiedBoatEntity extends Boat {
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(BOAT_TYPE, BoatType.PETRIFIED.ordinal());
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(BOAT_TYPE, BoatType.PETRIFIED.ordinal());
     }
 
     @Override

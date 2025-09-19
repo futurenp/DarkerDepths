@@ -20,27 +20,26 @@ public class DashGoal extends Goal {
     private final double triggerDistanceSquare;
     private final int dashDurationTicks;
     private final int cooldownTicks;
-
-    private int currentDashTicks;
+    private final int prepareTicks;
+    private int actionTicks;
     private int currentCooldown;
 
-    public DashGoal(Mob mob, double dashSpeed, double yBoost, double triggerDistance, int dashDurationTicks, int cooldownTicks) {
+    // Updated constructor
+    public DashGoal(Mob mob, double dashSpeed, double yBoost, double triggerDistance, int dashDurationTicks, int cooldownTicks, int prepareTicks) {
         this.mob = mob;
         this.dashSpeed = dashSpeed;
         this.yBoost = yBoost;
         this.triggerDistanceSquare = triggerDistance * triggerDistance;
         this.dashDurationTicks = dashDurationTicks;
         this.cooldownTicks = cooldownTicks;
-        this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.JUMP));
+        this.prepareTicks = prepareTicks;
+        this.setFlags(EnumSet.of(Flag.MOVE, Flag.JUMP));
     }
 
     @Override
     public boolean canUse() {
         if (this.currentCooldown > 0) {
             this.currentCooldown--;
-        }
-
-        if (this.currentCooldown > 0 || this.currentDashTicks > 0) {
             return false;
         }
 
@@ -54,43 +53,42 @@ public class DashGoal extends Goal {
 
     @Override
     public void start() {
-        this.currentDashTicks = this.dashDurationTicks;
+        this.actionTicks = this.prepareTicks + this.dashDurationTicks;
 
-        Vec3 initialVelocity = this.mob.position().vectorTo(this.target.position()).normalize().scale(this.dashSpeed);
-        Vec3 finalVelocity = new Vec3(initialVelocity.x(), this.yBoost, initialVelocity.z());
-
-        this.mob.setDeltaMovement(finalVelocity);
-        this.mob.getJumpControl().jump();
-        this.mob.position();
-        this.mob.playSound(SoundEvents.PLAYER_ATTACK_SWEEP, 1.0F, 1.2F);
-
-        if (this.mob.level() instanceof ServerLevel serverLevel) {
-            serverLevel.sendParticles(
-                    ParticleTypes.POOF,
-                    this.mob.getX(),
-                    this.mob.getY(0.5),
-                    this.mob.getZ(),
-                    15,
-                    0.3D,
-                    0.2D,
-                    0.3D,
-                    0.05D
-            );
+        if (this.mob instanceof IDashable dashable) {
+            dashable.setPreparingToDash(true);
         }
     }
 
     @Override
     public void stop() {
-        this.currentDashTicks = 0;
+        if (this.mob instanceof IDashable dashable) {
+            dashable.setPreparingToDash(false);
+            dashable.setDashing(false);
+        }
         this.currentCooldown = this.cooldownTicks;
         this.mob.getNavigation().stop();
     }
 
     @Override
     public void tick() {
+        this.actionTicks--;
 
-        if (this.currentDashTicks > 0) {
-            this.currentDashTicks--;
+        if (this.actionTicks == this.dashDurationTicks) {
+            Vec3 initialVelocity = this.mob.position().vectorTo(this.target.position()).normalize().scale(this.dashSpeed);
+            Vec3 finalVelocity = new Vec3(initialVelocity.x(), this.yBoost, initialVelocity.z());
+
+            this.mob.setDeltaMovement(finalVelocity);
+            this.mob.playSound(SoundEvents.PLAYER_ATTACK_SWEEP, 1.0F, 1.2F);
+
+            if (this.mob.level() instanceof ServerLevel serverLevel) {
+                serverLevel.sendParticles(ParticleTypes.POOF, this.mob.getX(), this.mob.getY(0.5), this.mob.getZ(), 15, 0.3D, 0.2D, 0.3D, 0.05D);
+            }
+
+            if (this.mob instanceof IDashable dashable) {
+                dashable.setPreparingToDash(false);
+                dashable.setDashing(true);
+            }
         }
 
         if (this.target != null) {
@@ -100,6 +98,6 @@ public class DashGoal extends Goal {
 
     @Override
     public boolean canContinueToUse() {
-        return this.currentDashTicks > 0 && this.target != null && this.target.isAlive();
+        return this.actionTicks > 0 && this.target != null && this.target.isAlive();
     }
 }

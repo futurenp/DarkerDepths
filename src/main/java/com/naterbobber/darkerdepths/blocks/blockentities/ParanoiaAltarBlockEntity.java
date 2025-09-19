@@ -1,6 +1,7 @@
 package com.naterbobber.darkerdepths.blocks.blockentities;
 
 import com.naterbobber.darkerdepths.blocks.ParanoiaAltarBlock;
+import com.naterbobber.darkerdepths.config.DDConfigs;
 import com.naterbobber.darkerdepths.entities.BodySnatcherEntity;
 import com.naterbobber.darkerdepths.init.DDBlockEntityTypes;
 import com.naterbobber.darkerdepths.init.DDEntityTypes;
@@ -59,17 +60,19 @@ public class ParanoiaAltarBlockEntity extends BlockEntity implements GeoBlockEnt
 
         tickCounter = 0;
 
-        int radiusHorizontal = 72;
-        int radiusY = 8;
+        int radiusHorizontal = DDConfigs.PARANOIA_ALTAR_RADIUS_HORIZONTAL.get();
+        int radiusY = DDConfigs.PARANOIA_ALTAR_RADIUS_VERTICAL.get();
 
         AABB finalArea = new AABB(pos).inflate(radiusHorizontal, radiusY, radiusHorizontal);
 
         List<Player> players = level.getEntitiesOfClass(Player.class, finalArea);
-        int playerMobCap = 8;
+        int playerMobCap = 6;
         int catacombsMobCap = players.size() * playerMobCap;
 
         for (Player player : players) {
             if(player.isSpectator()) continue;
+            if(player.isCreative() && !DDConfigs.PARANOIA_ALTAR_EFFECTS_CREATIVE.get()) continue;
+
             player.addEffect(new MobEffectInstance(DDMobEffects.PARANOIA.get(), 320, 0, false, false, true));
 
             if(level.getRandom().nextDouble() > .33) continue;
@@ -79,8 +82,8 @@ public class ParanoiaAltarBlockEntity extends BlockEntity implements GeoBlockEnt
 
             if(state.getValue(
                     ParanoiaAltarBlock.LOCKED) &&
-                    catacombsBodySnatcherList.size() < catacombsMobCap &&
-                    playerBodySnatcherList.size() < playerMobCap
+                    catacombsBodySnatcherList.size() <= catacombsMobCap &&
+                    playerBodySnatcherList.size() <= playerMobCap
             ) {
                 spawnMobInValidPosition(level, player, new BodySnatcherEntity(DDEntityTypes.BODY_SNATCHER.get(), level));
             }

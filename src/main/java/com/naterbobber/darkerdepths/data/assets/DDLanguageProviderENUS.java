@@ -1,4 +1,4 @@
-package com.naterbobber.darkerdepths.data.assets.lang;
+package com.naterbobber.darkerdepths.data.assets;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.init.*;
@@ -104,6 +104,7 @@ public class DDLanguageProviderENUS extends LanguageProvider {
         add(DDBlocks.GEYSER.get(), "Geyser");
         add(DDBlocks.PETRIFIED_VERTICAL_SLAB.get(), "Petrified Vertical Slab");
         add(DDBlocks.PETRIFIED_SIGN.get(), "Petrified Sign");
+        add(DDBlocks.PETRIFIED_HANGING_SIGN.get(), "Petrified Hanging Sign");
         add(DDBlocks.DARKSLATE_VERTICAL_SLAB.get(), "Darkslate Vertical Slab");
         add(DDBlocks.POLISHED_DARKSLATE_VERTICAL_SLAB.get(), "Polished Darkslate Vertical Slab");
         add(DDBlocks.DUSKROCK_VERTICAL_SLAB.get(), "Duskrock Vertical Slab");
@@ -180,6 +181,10 @@ public class DDLanguageProviderENUS extends LanguageProvider {
         add("tooltip.darkerdepths.glowshroom_cap.shift_desc_1", "Provides light and haste when worn.");
         add("tooltip.darkerdepths.glowshroom_cap.shift_desc_2", "Found on the back of the Glowshroom Monster.");
         add("tooltip.darkerdepths.stiletto.shift_desc", "Use [RIGHT CLICK] to dash.");
+        add("tooltip.darkerdepths.crystal_melon.shift_desc_1", "Used to supercharge any tool or weapon.");
+        add("tooltip.darkerdepths.crystal_melon.shift_desc_2", "Right click when holding in the offhand to supercharge.");
+        add("tooltip.darkerdepths.death_anchor.shift_desc_1", "Used to set a death location.");
+        add("tooltip.darkerdepths.death_anchor.shift_desc_2", "Charge with a Void Soul Requiem.");
 
         // Creative Tab
         add("itemGroup.darkerdepths.creative_tab", "Darker Depths");
