@@ -31,18 +31,18 @@ public class ParanoiaEffect extends MobEffect {
     }
 
     @Override
-    public void applyEffectTick(LivingEntity entity, int amplifier) {
+    public boolean applyEffectTick(LivingEntity entity, int amplifier) {
         int currentCooldown = this.PARANOIA_COOLDOWNS.getOrDefault(entity.getUUID(), 0);
 
         super.applyEffectTick(entity, amplifier);
 
         if (currentCooldown > 0) {
             this.PARANOIA_COOLDOWNS.put(entity.getUUID(), currentCooldown - 1);
-            return;
+            return false;
         }
 
         RandomSource random = entity.getRandom();
-        if (random.nextDouble() > SOUND_CHANCE || entity.level().isClientSide()) return;
+        if (random.nextDouble() > SOUND_CHANCE || entity.level().isClientSide()) return false;
 
         double minRadius = 4.0, maxRadius = 16.0;
         double radius = minRadius + random.nextDouble() * (maxRadius - minRadius);
@@ -57,7 +57,7 @@ public class ParanoiaEffect extends MobEffect {
         double dotProduct = lookDirection.dot(soundDirection);
 
         if (dotProduct > 0) {
-            return;
+            return false;
         }
 
         SoundEvent randomSound = PARANOIA_SOUNDS.get(random.nextInt(PARANOIA_SOUNDS.size()));
@@ -70,10 +70,12 @@ public class ParanoiaEffect extends MobEffect {
         entity.level().playSound(null, soundX, soundY, soundZ, randomSound, SoundSource.AMBIENT, 1.0F, 0.8F + random.nextFloat() * 0.4F);
 
         this.PARANOIA_COOLDOWNS.put(entity.getUUID(), currentCooldown + 360 - (amplifier * 60));
+
+        return true;
     }
 
     @Override
-    public boolean isDurationEffectTick(int duration, int amplifier) {
+    public boolean shouldApplyEffectTickThisTick(int duration, int amplifier) {
         return true;
     }
 }

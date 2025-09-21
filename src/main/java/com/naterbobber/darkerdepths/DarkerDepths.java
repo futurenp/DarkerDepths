@@ -28,6 +28,7 @@ public class DarkerDepths {
         modEventBus.addListener(this::clientSetup);
 
         DDCreativeModeTabs.CREATIVE_MODE_TABS.register(modEventBus);
+        DDArmorMaterials.ARMOR_MATERIALS.register(modEventBus);
         DDBlocks.BLOCKS.register(modEventBus);
         DDItems.ITEMS.register(modEventBus);
         DDBlockEntityTypes.BLOCK_ENTITIES.register(modEventBus);

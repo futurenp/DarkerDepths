@@ -4,22 +4,24 @@ import com.naterbobber.darkerdepths.init.DDEnchantments;
 import com.naterbobber.darkerdepths.init.DDItems;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.SwordItem;
-import net.minecraft.world.item.Tier;
-import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.neoforged.neoforge.common.ItemAbilities;
+import net.neoforged.neoforge.common.ItemAbility;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -29,8 +31,8 @@ public class StilettoItem extends SwordItem {
     public static final String TIME_FRAME = "TimeFrame";
     public static final String READY_TICKS = "ReadyTicks";
 
-    public StilettoItem(int damage, float speed, Properties properties) {
-        super(STILETTO, damage, speed, properties);
+    public StilettoItem(Item.Properties properties) {
+        super(STILETTO, properties.component(DataComponents.TOOL, createToolProperties()));
     }
 
     @Override
@@ -91,21 +93,23 @@ public class StilettoItem extends SwordItem {
     }
 
     @Override
-    public boolean canPerformAction(ItemStack stack, ToolAction toolAction) {
-        if (toolAction == ToolActions.SWORD_SWEEP) {
+    public boolean canPerformAction(ItemStack stack, ItemAbility itemAbility) {
+        if (itemAbility == ItemAbilities.SWORD_SWEEP) {
             return false;
         }
 
-        return super.canPerformAction(stack, toolAction);
+        return super.canPerformAction(stack, itemAbility);
     }
 
-    @Override
-    public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
-        if (enchantment == Enchantments.SWEEPING_EDGE) {
-            return false;
-        }
-        return super.canApplyAtEnchantingTable(stack, enchantment);
-    }
+
+
+//    @Override
+//    public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
+//        if (enchantment == Enchantments.SWEEPING_EDGE) {
+//            return false;
+//        }
+//        return super.canApplyAtEnchantingTable(stack, enchantment);
+//    }
 
     public static class StilettoTier implements Tier {
         @Override
@@ -124,8 +128,8 @@ public class StilettoItem extends SwordItem {
         }
 
         @Override
-        public int getLevel() {
-            return 2;
+        public TagKey<Block> getIncorrectBlocksForDrops() {
+            return null;
         }
 
         @Override

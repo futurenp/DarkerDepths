@@ -2,6 +2,7 @@ package com.naterbobber.darkerdepths.blocks;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.BlockGetter;
@@ -20,6 +21,7 @@ import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.neoforged.neoforge.common.ItemAbility;
 import org.jetbrains.annotations.Nullable;
 
 public class WoodPostBlock extends Block implements SimpleWaterloggedBlock {
@@ -52,9 +54,9 @@ public class WoodPostBlock extends Block implements SimpleWaterloggedBlock {
     }
 
     @Override
-    public @Nullable BlockState getToolModifiedState(BlockState state, UseOnContext context, ToolAction toolAction, boolean simulate) {
-        if (strippedBlock == null || toolAction != ToolAction.get("axe"))
-            return super.getToolModifiedState(state, context, toolAction, simulate);
+    public @Nullable BlockState getToolModifiedState(BlockState state, UseOnContext context, ItemAbility itemAbility, boolean simulate) {
+        if (strippedBlock == null || itemAbility != ItemAbility.get("axe"))
+            return super.getToolModifiedState(state, context, itemAbility, simulate);
 
         BlockState newState = strippedBlock.defaultBlockState();
         for (Property property : state.getProperties())
