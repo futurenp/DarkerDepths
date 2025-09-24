@@ -8,6 +8,7 @@ import com.naterbobber.darkerdepths.blocks.GlowspursBlock;
 import com.naterbobber.darkerdepths.world.gen.features.config.CorrespondentLayersConfig;
 import com.naterbobber.darkerdepths.world.gen.features.config.PetrifiedBranchConfig;
 import com.naterbobber.darkerdepths.world.gen.features.config.ReplaceListConfig;
+import com.naterbobber.darkerdepths.world.gen.features.config.ReplaceListLayeredConfig;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderSet;

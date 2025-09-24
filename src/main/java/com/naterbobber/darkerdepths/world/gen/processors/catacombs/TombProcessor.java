@@ -61,7 +61,7 @@ public class TombProcessor extends StructureProcessor {
             ItemStack forsakenBronzeScrap = new ItemStack(DDItems.FORSAKEN_BRONZE_SCRAP.get());
             CompoundTag itemTag = new CompoundTag();
             itemTag.putByte("Slot", (byte) 0);
-            forsakenBronzeScrap.save(itemTag);
+            forsakenBronzeScrap.save(level.registryAccess());
             itemsNbt.add(itemTag);
 
             nbt.put("Items", itemsNbt);
