@@ -6,9 +6,21 @@ import com.naterbobber.darkerdepths.client.particle.DrippingParticle;
 import com.naterbobber.darkerdepths.client.particle.VoidSoulFlameParticle;
 import com.naterbobber.darkerdepths.client.particle.VoidSoulFlameSmokeParticle;
 import com.naterbobber.darkerdepths.client.particle.VoidSoulParticle;
-import com.naterbobber.darkerdepths.client.render.renderers.*;
-import com.naterbobber.darkerdepths.init.*;
-import com.naterbobber.darkerdepths.item.StilettoItem;
+import com.naterbobber.darkerdepths.client.render.renderers.BodySnatcherRenderer;
+import com.naterbobber.darkerdepths.client.render.renderers.GlowshroomMonsterRenderer;
+import com.naterbobber.darkerdepths.client.render.renderers.ParanoiaAltarBlockEntityRenderer;
+import com.naterbobber.darkerdepths.client.render.renderers.PetrifiedBoatRenderer;
+import com.naterbobber.darkerdepths.client.render.renderers.TombBlockEntityRenderer;
+import com.naterbobber.darkerdepths.client.render.renderers.VoidSoulJarBlockEntityRenderer;
+import com.naterbobber.darkerdepths.client.render.renderers.VoidSoulKnightRenderer;
+import com.naterbobber.darkerdepths.client.render.renderers.VoidSoulRenderer;
+import com.naterbobber.darkerdepths.init.DDBlockEntityTypes;
+import com.naterbobber.darkerdepths.init.DDDataComponents;
+import com.naterbobber.darkerdepths.init.DDEntityTypes;
+import com.naterbobber.darkerdepths.init.DDItems;
+import com.naterbobber.darkerdepths.init.DDModelLayers;
+import com.naterbobber.darkerdepths.init.DDParticleTypes;
+import com.naterbobber.darkerdepths.init.DDWoodType;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.BoatModel;
 import net.minecraft.client.model.ChestBoatModel;
@@ -17,7 +29,6 @@ import net.minecraft.client.particle.ParticleEngine;
 import net.minecraft.client.renderer.blockentity.HangingSignRenderer;
 import net.minecraft.client.renderer.blockentity.SignRenderer;
 import net.minecraft.client.renderer.item.ItemProperties;
-import net.minecraft.nbt.CompoundTag;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.EventPriority;
@@ -78,14 +89,14 @@ public class ClientEvents {
             DDWoodType.setupWoodTypes();
 
             ItemProperties.register(DDItems.STILETTO.get(), DarkerDepths.id("charge"), (itemStack, clientLevel, livingEntity, i) -> {
-                CompoundTag tag = itemStack.getTag();
-                if (tag != null) {
-                    if (tag.getInt(StilettoItem.TIME_FRAME) > 0) {
-                        return 1.0F;
-                    }
-                    if (tag.getInt(StilettoItem.READY_TICKS) > 0) {
-                        return 0.5F;
-                    }
+                int time = itemStack.getOrDefault(DDDataComponents.STILETTO_TIME, 0);
+                int readyTime = itemStack.getOrDefault(DDDataComponents.STILETTO_READY_TIME, 0);
+
+                if (time > 0) {
+                    return 1.0F;
+                }
+                if (readyTime > 0) {
+                    return 0.5F;
                 }
 
                 return 0.0F;
