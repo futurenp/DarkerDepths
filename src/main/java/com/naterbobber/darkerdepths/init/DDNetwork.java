@@ -2,29 +2,19 @@ package com.naterbobber.darkerdepths.init;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.network.SendDeathAnchorPacket;
-import net.neoforged.neoforge.network.registration.NetworkRegistry;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
+import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 
-import java.util.Optional;
-
+@EventBusSubscriber(modid = DarkerDepths.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
 public class DDNetwork {
     private static final String PROTOCOL_VERSION = "1";
-    public static final SimpleChannel INSTANCE = NetworkRegistry.ChannelBuilder.named(
-                    DarkerDepths.id("network"))
-            .clientAcceptedVersions(PROTOCOL_VERSION::equals)
-            .serverAcceptedVersions(PROTOCOL_VERSION::equals)
-            .networkProtocolVersion(() -> PROTOCOL_VERSION)
-            .simpleChannel();
 
-    protected static int packetID = 0;
-
-    public DDNetwork() {
+    @SubscribeEvent
+    public static void registerPayloadHandlers(RegisterPayloadHandlersEvent event) {
+        PayloadRegistrar payloadRegistrar = event.registrar(PROTOCOL_VERSION);
+        payloadRegistrar.playToClient(SendDeathAnchorPacket.TYPE, SendDeathAnchorPacket.CODEC, SendDeathAnchorPacket::handle);
     }
 
-    public static void init() {
-        INSTANCE.registerMessage(getPacketID(), SendDeathAnchorPacket.class, SendDeathAnchorPacket::write, SendDeathAnchorPacket::read, SendDeathAnchorPacket::handle, Optional.of(NetworkDirection.PLAY_TO_CLIENT));
-    }
-
-    public static int getPacketID() {
-        return packetID++;
-    }
 }

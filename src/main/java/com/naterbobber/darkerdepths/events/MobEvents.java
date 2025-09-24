@@ -143,7 +143,7 @@ public class MobEvents {
             entity.teleportTo(newServer, teleportPos.getX() + 0.5D, teleportPos.getY(), teleportPos.getZ() + 0.5D, Set.of(), 0, 0);
 
             if (entity instanceof ServerPlayer serverPlayer) {
-//                DDNetwork.INSTANCE.send(PacketDistributor.PLAYER.with(() -> serverPlayer), new SendDeathAnchorPacket());
+                PacketDistributor.sendToPlayer(serverPlayer, new SendDeathAnchorPacket());
             }
 
             entity.setRemainingFireTicks(0);
