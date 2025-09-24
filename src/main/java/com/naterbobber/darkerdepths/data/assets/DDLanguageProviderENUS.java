@@ -161,8 +161,8 @@ public class DDLanguageProviderENUS extends LanguageProvider {
         add(DDEntityTypes.PETRIFIED_CHEST_BOAT.get(), "Boat with Chest");
 
         // Enchantments
-        add(DDEnchantments.SWIFT_STRIKE.get(), "Swift Strike");
-        add(DDEnchantments.QUICK_DASH.get(), "Quick Dash");
+        add("enchantment.darkerdepths.swift_strike", "Swift Strike");
+        add("enchantment.darkerdepths.quick_dash", "Quick Dash");
 
         // Effects
         add(DDMobEffects.SOUL_BINDING.get(), "Soul Binding");

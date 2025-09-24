@@ -5,25 +5,34 @@ import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import com.naterbobber.darkerdepths.init.DDItemTags;
 import com.naterbobber.darkerdepths.init.DDItems;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
-import net.minecraft.data.recipes.*;
+import net.minecraft.data.recipes.RecipeCategory;
+import net.minecraft.data.recipes.RecipeOutput;
+import net.minecraft.data.recipes.RecipeProvider;
+import net.minecraft.data.recipes.ShapedRecipeBuilder;
+import net.minecraft.data.recipes.ShapelessRecipeBuilder;
+import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
+import net.minecraft.data.recipes.SingleItemRecipeBuilder;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.AbstractCookingRecipe;
+import net.minecraft.world.item.crafting.BlastingRecipe;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.SmeltingRecipe;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.Tags;
 
 import java.util.List;
-import java.util.function.Consumer;
+import java.util.concurrent.CompletableFuture;
 
 public class DDRecipeProvider extends RecipeProvider {
 
-    public DDRecipeProvider(PackOutput packOutput) {
-        super(packOutput);
+    public DDRecipeProvider(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> registries) {
+        super(packOutput, registries);
     }
 
     @Override
@@ -486,7 +495,7 @@ public class DDRecipeProvider extends RecipeProvider {
     }
 
     protected static String getItemName(ItemLike item) {
-        return ForgeRegistries.ITEMS.getKey(item.asItem()).getPath();
+        return BuiltInRegistries.ITEM.getKey(item.asItem()).getPath();
     }
 
     private void chiseled(RecipeOutput recipeOutput, Item slab, Item result) {
@@ -577,18 +586,17 @@ public class DDRecipeProvider extends RecipeProvider {
     }
 
     protected static void oreSmelting(RecipeOutput recipeOutput, List<ItemLike> items, RecipeCategory recipeCategory, ItemLike p_176594_, float p_176595_, int p_176596_, String p_176597_) {
-        oreCooking(recipeOutput, recipeCategory, RecipeSerializer.SMELTING_RECIPE, items, p_176594_, p_176595_, p_176596_, p_176597_, "_from_smelting");
+        oreCooking(recipeOutput, recipeCategory, RecipeSerializer.SMELTING_RECIPE, SmeltingRecipe::new, items, p_176594_, p_176595_, p_176596_, p_176597_, "_from_smelting");
     }
 
     protected static void oreBlasting(RecipeOutput recipeOutput, List<ItemLike> items, RecipeCategory recipeCategory, ItemLike p_176628_, float p_176629_, int p_176630_, String p_176631_) {
-        oreCooking(recipeOutput, recipeCategory, RecipeSerializer.BLASTING_RECIPE, items, p_176628_, p_176629_, p_176630_, p_176631_, "_from_blasting");
+        oreCooking(recipeOutput, recipeCategory, RecipeSerializer.BLASTING_RECIPE, BlastingRecipe::new, items, p_176628_, p_176629_, p_176630_, p_176631_, "_from_blasting");
     }
 
-    protected static void oreCooking(RecipeOutput recipeOutput, RecipeCategory recipeCategory, RecipeSerializer<? extends AbstractCookingRecipe> serializer, List<ItemLike> itemLike, ItemLike item, float experience, int time, String group, String name) {
+    protected static <T extends AbstractCookingRecipe> void oreCooking(RecipeOutput recipeOutput, RecipeCategory recipeCategory, RecipeSerializer<T> serializer, AbstractCookingRecipe.Factory<T> recipeFactory, List<ItemLike> itemLike, ItemLike item, float experience, int time, String group, String name) {
         for (ItemLike itemlike : itemLike) {
             SimpleCookingRecipeBuilder
-                    .generic()
-                    .generic(Ingredient.of(itemlike), recipeCategory, item, experience, time, serializer)
+                    .generic(Ingredient.of(itemlike), recipeCategory, item, experience, time, serializer, recipeFactory)
                     .group(group)
                     .unlockedBy(getHasName(itemlike), has(itemlike))
                     .save(recipeOutput, DarkerDepths.id(getItemName(item) + name + "_" + getItemName(itemlike)));

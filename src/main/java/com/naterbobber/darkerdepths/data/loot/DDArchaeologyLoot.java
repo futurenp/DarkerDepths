@@ -1,7 +1,9 @@
 package com.naterbobber.darkerdepths.data.loot;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
+import com.naterbobber.darkerdepths.init.DDBuiltinLootTables;
 import com.naterbobber.darkerdepths.init.DDItems;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.data.loot.LootTableSubProvider;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -13,19 +15,10 @@ import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 
 import java.util.function.BiConsumer;
 
-public class DDArchaeologyLoot implements LootTableSubProvider {
+public record DDArchaeologyLoot(HolderLookup.Provider provider) implements LootTableSubProvider {
 
-    public static final ResourceKey<LootTable> CATACOMBS_STANDARD =
-            ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(DarkerDepths.MOD_ID, "archaeology/catacombs/standard"));
-
-    public static final ResourceLocation CATACOMBSd_STANDARD =
-            ResourceLocation.fromNamespaceAndPath(DarkerDepths.MOD_ID, "archaeology/catacombs/standard");
-
-    public static final ResourceLocation ROPE_MINE_STANDARD =
-            ResourceLocation.fromNamespaceAndPath(DarkerDepths.MOD_ID, "archaeology/rope_mine/standard");
     @Override
     public void generate(BiConsumer<ResourceKey<LootTable>, LootTable.Builder> consumer) {
-
         LootTable.Builder catacombs_standard_loot = LootTable.lootTable()
                 .withPool(LootPool.lootPool()
                         //junk
@@ -59,6 +52,7 @@ public class DDArchaeologyLoot implements LootTableSubProvider {
                         .add(LootItem.lootTableItem(Items.DIAMOND).setWeight(3))
                         .add(LootItem.lootTableItem(DDItems.FORSAKEN_BRONZE_SCRAP.get()).setWeight(2))
                 );
-        consumer.accept(CATACOMBS_STANDARD, catacombs_standard_loot);
+        consumer.accept(DDBuiltinLootTables.CATACOMBS_ARCHAEOLOGY_STANDARD, catacombs_standard_loot);
     }
+
 }

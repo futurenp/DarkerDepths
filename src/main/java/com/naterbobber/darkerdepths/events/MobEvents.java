@@ -41,6 +41,7 @@ import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 import net.neoforged.neoforge.event.entity.living.LivingEquipmentChangeEvent;
 import net.neoforged.neoforge.event.entity.living.MobEffectEvent;
 import net.neoforged.neoforge.network.PacketDistributor;
+import org.apache.commons.lang3.mutable.MutableFloat;
 
 import java.util.Optional;
 import java.util.Set;
@@ -67,11 +68,14 @@ public class MobEvents {
             event.setAmount(0.0F);
             event.setCanceled(true);
         }
-        if (damageSourceEntity instanceof Player player) {
+        if (damageSourceEntity instanceof Player player && player.level() instanceof ServerLevel serverLevel) {
             ItemStack itemStack = player.getItemInHand(player.getUsedItemHand());
             if (itemStack.is(DDItems.STILETTO.get())) {
-                CompoundTag tag = itemStack.getTag();
-                if (EnchantmentHelper.getTagEnchantmentLevel(DDEnchantments.SWIFT_STRIKE.get(), itemStack) > 0 && tag != null && tag.getInt(StilettoItem.TIME_FRAME) > 0) {
+                MutableFloat mutableFloat = new MutableFloat(0.0F);
+                EnchantmentHelper.runIterationOnItem(itemStack, (holder, i) -> holder.value().modifyItemFilteredCount(DDEnchantmentEffects.SWIFT_STRIKE_HIT, serverLevel, i, itemStack, mutableFloat));
+                int swiftStrike = Math.max(0, mutableFloat.intValue());
+
+                if (swiftStrike > 0 && itemStack.getOrDefault(DDDataComponents.STILETTO_TIME, 0) > 0) {
                     player.getCooldowns().removeCooldown(itemStack.getItem());
                     entity.playSound(SoundEvents.EXPERIENCE_ORB_PICKUP);
                 }

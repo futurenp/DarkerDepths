@@ -33,7 +33,7 @@ public class DDDataGenerator {
         dataGenerator.addProvider(client, new DDLanguageProviderENUS(packOutput));
 
         dataGenerator.addProvider(server, new DDRecipeProvider(packOutput, lookupProvider));
-        dataGenerator.addProvider(server, DDLootTableProvider.create(packOutput, lookupProvider));
+        dataGenerator.addProvider(server, new DDLootTableProvider(packOutput, lookupProvider));
 
         DDBlockTagsProvider blockTagsProvider = dataGenerator.addProvider(server, new DDBlockTagsProvider(packOutput, lookupProvider, existingFileHelper));
         dataGenerator.addProvider(server, new DDItemTagsProvider(packOutput, lookupProvider, blockTagsProvider.contentsGetter(), existingFileHelper));

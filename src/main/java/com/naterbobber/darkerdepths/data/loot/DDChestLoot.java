@@ -2,7 +2,9 @@ package com.naterbobber.darkerdepths.data.loot;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.init.DDBlocks;
+import com.naterbobber.darkerdepths.init.DDBuiltinLootTables;
 import com.naterbobber.darkerdepths.init.DDItems;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.data.loot.LootTableSubProvider;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -16,13 +18,7 @@ import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 
 import java.util.function.BiConsumer;
 
-public class DDChestLoot implements LootTableSubProvider {
-    public static final ResourceLocation CATACOMBS_CHEST_STANDARD =
-            ResourceLocation.fromNamespaceAndPath(DarkerDepths.MOD_ID, "chests/catacombs/standard");
-
-    public static final ResourceLocation CATACOMBS_CHEST_TREASURE =
-            ResourceLocation.fromNamespaceAndPath(DarkerDepths.MOD_ID, "chests/catacombs/treasure");
-
+public record DDChestLoot(HolderLookup.Provider provider) implements LootTableSubProvider {
 
     @Override
     public void generate(BiConsumer<ResourceKey<LootTable>, LootTable.Builder> consumer) {
@@ -64,7 +60,7 @@ public class DDChestLoot implements LootTableSubProvider {
                         .add(LootItem.lootTableItem(Items.BOOK).setWeight(5)
                                 .apply(new EnchantRandomlyFunction.Builder()))
                 );
-        consumer.accept(CATACOMBS_CHEST_STANDARD, catacombs_chest_standard);
+        consumer.accept(DDBuiltinLootTables.CATACOMBS_CHEST_STANDARD, catacombs_chest_standard);
 
         LootTable.Builder catacombs_chest_treasure = LootTable.lootTable()
                 .withPool(LootPool.lootPool()
@@ -91,6 +87,6 @@ public class DDChestLoot implements LootTableSubProvider {
                         .add(LootItem.lootTableItem(Items.BOOK).setWeight(5)
                                 .apply(new EnchantRandomlyFunction.Builder()))
                 );
-        consumer.accept(CATACOMBS_CHEST_TREASURE, catacombs_chest_treasure);
+        consumer.accept(DDBuiltinLootTables.CATACOMBS_CHEST_TREASURE, catacombs_chest_treasure);
     }
 }

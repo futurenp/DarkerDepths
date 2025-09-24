@@ -3,8 +3,9 @@ package com.naterbobber.darkerdepths.enchantments;
 import com.naterbobber.darkerdepths.item.StilettoItem;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.Enchantment;
 
-public class SwiftStrikeEnchantment extends DDEnchantment {
+public class SwiftStrikeEnchantment extends Enchantment {
 
     public SwiftStrikeEnchantment() {
         super(Rarity.VERY_RARE, EnchantmentCategory.WEAPON, new EquipmentSlot[]{EquipmentSlot.MAINHAND});

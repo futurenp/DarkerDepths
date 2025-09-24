@@ -1,17 +1,22 @@
 package com.naterbobber.darkerdepths.item;
 
+import com.naterbobber.darkerdepths.init.DDDataComponents;
+import com.naterbobber.darkerdepths.init.DDEnchantmentEffects;
 import com.naterbobber.darkerdepths.init.DDEnchantments;
 import com.naterbobber.darkerdepths.init.DDItems;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -22,6 +27,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.ItemAbilities;
 import net.neoforged.neoforge.common.ItemAbility;
+import org.apache.commons.lang3.mutable.MutableFloat;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -40,44 +46,48 @@ public class StilettoItem extends SwordItem {
 
         ItemStack itemStack = player.getItemInHand(hand);
 
-        //Check for flying with elytra
+        // Check for flying with elytra
         if (player.isFallFlying() || player.isCrouching()) {
             return InteractionResultHolder.pass(itemStack);
         }
 
-        itemStack.hurtAndBreak(2, player, e -> e.broadcastBreakEvent(hand));
+        itemStack.hurtAndBreak(2, player, LivingEntity.getSlotForHand(hand));
 
         double dash = 1.85D;
         player.addDeltaMovement(player.getLookAngle().multiply(1.0D, 1.5D, 1.0D).normalize().multiply(dash, dash / 2.0D, dash));
 
         player.playSound(SoundEvents.PLAYER_ATTACK_SWEEP, 1.0F, 1.0F);
-        int quickDash = EnchantmentHelper.getTagEnchantmentLevel(DDEnchantments.QUICK_DASH.get(), itemStack);
-        int cooldown = 200;
-        int reducedCooldown = (int) (cooldown * (1 - (0.25F * quickDash)));
+        if (level instanceof ServerLevel serverLevel) {
+            MutableFloat mutableFloat = new MutableFloat(0.0F);
+            EnchantmentHelper.runIterationOnItem(itemStack, (holder, i) -> holder.value().modifyItemFilteredCount(DDEnchantmentEffects.QUICK_DASH_DURATION, serverLevel, i, itemStack, mutableFloat));
+            int quickDash = Math.max(0, mutableFloat.intValue());
 
-        if (!player.getCooldowns().isOnCooldown(itemStack.getItem())) {
-            player.getCooldowns().addCooldown(itemStack.getItem(), reducedCooldown);
+            int cooldown = 200;
+
+            int reducedCooldown = (int) (cooldown * (1 - (0.25F * quickDash)));
+
+            if (!player.getCooldowns().isOnCooldown(itemStack.getItem())) {
+                player.getCooldowns().addCooldown(itemStack.getItem(), reducedCooldown);
+            }
+
+            itemStack.set(DDDataComponents.STILETTO_TIME, 20);
         }
-        itemStack.getOrCreateTag().putInt(TIME_FRAME, 20);
 
         return InteractionResultHolder.success(itemStack);
     }
 
     @Override
     public void inventoryTick(ItemStack itemStack, Level level, Entity entity, int index, boolean selected) {
-        CompoundTag tag = itemStack.getTag();
-        if (tag != null) {
-            int timeframe = tag.getInt(TIME_FRAME);
-            if (timeframe > 0) {
-                tag.putInt(TIME_FRAME, timeframe - 1);
-            }
-            int readyTicks = tag.getInt(READY_TICKS);
-            if (readyTicks > 0) {
-                tag.putInt(READY_TICKS, readyTicks - 1);
-            }
+        int timeframe = itemStack.getOrDefault(DDDataComponents.STILETTO_TIME, 0);
+        if (timeframe > 0) {
+            itemStack.set(DDDataComponents.STILETTO_TIME, timeframe - 1);
         }
+        int readyTicks = itemStack.getOrDefault(DDDataComponents.STILETTO_READY_TIME, 0);
+        if (readyTicks > 0) {
+            itemStack.set(DDDataComponents.STILETTO_READY_TIME, readyTicks - 1);
+         }
         if (entity instanceof Player player && player.getCooldowns().getCooldownPercent(this, 0.0F) == 0.1F) {
-            itemStack.getOrCreateTag().putInt(READY_TICKS, 10);
+            itemStack.set(DDDataComponents.STILETTO_READY_TIME, 10);
         }
     }
 

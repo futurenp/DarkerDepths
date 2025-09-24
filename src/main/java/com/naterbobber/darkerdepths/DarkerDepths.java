@@ -33,7 +33,6 @@ public class DarkerDepths {
         DDItems.ITEMS.register(modEventBus);
         DDBlockEntityTypes.BLOCK_ENTITIES.register(modEventBus);
         DDEntityTypes.ENTITY_TYPES.register(modEventBus);
-        DDEnchantments.ENCHANTMENTS.register(modEventBus);
         DDFeatures.FEATURES.register(modEventBus);
         DDPoiTypes.POI_TYPES.register(modEventBus);
         DDParticleTypes.PARTICLE_TYPES.register(modEventBus);

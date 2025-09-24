@@ -1,18 +1,69 @@
 package com.naterbobber.darkerdepths.init;
 
+import com.google.common.collect.Lists;
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.enchantments.QuickDashEnchantment;
 import com.naterbobber.darkerdepths.enchantments.SwiftStrikeEnchantment;
+import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.world.entity.EquipmentSlotGroup;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentEffectComponents;
+import net.minecraft.world.item.enchantment.LevelBasedValue;
+import net.minecraft.world.item.enchantment.effects.AddValue;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
+import java.util.List;
+import java.util.Map;
+
 public class DDEnchantments {
 
-    // Corrected the DeferredRegister to use the correct registry and MODID
-    public static final DeferredRegister<Enchantment> ENCHANTMENTS = DeferredRegister.create(Registries.ENCHANTMENT, DarkerDepths.MOD_ID);
+    public static final List<ResourceKey<Enchantment>> ENCHANTMENTS = Lists.newArrayList();
 
-    public static final DeferredHolder<Enchantment, SwiftStrikeEnchantment> SWIFT_STRIKE = ENCHANTMENTS.register("swift_strike", SwiftStrikeEnchantment::new);
-    public static final DeferredHolder<Enchantment, QuickDashEnchantment> QUICK_DASH = ENCHANTMENTS.register("quick_dash", QuickDashEnchantment::new);
+    public static final ResourceKey<Enchantment> SWIFT_STRIKE = key("swift_strike");
+    public static final ResourceKey<Enchantment> QUICK_DASH = key("quick_dash");
+
+    public static void bootstrap(BootstrapContext<Enchantment> context) {
+        HolderGetter<Item> itemLookup = context.lookup(Registries.ITEM);
+
+        register(context, SWIFT_STRIKE, Enchantment.enchantment(
+                Enchantment.definition(
+                        itemLookup.getOrThrow(DDItemTags.STILETTO_ENCHANTABLE),
+                        2,
+                        1,
+                        Enchantment.dynamicCost(15, 9),
+                        Enchantment.dynamicCost(65, 9),
+                        4,
+                        EquipmentSlotGroup.MAINHAND
+                )
+        ).withEffect(DDEnchantmentEffects.SWIFT_STRIKE_HIT, new AddValue(LevelBasedValue.perLevel(1.0F))));
+
+        register(context, QUICK_DASH, Enchantment.enchantment(
+                Enchantment.definition(
+                        itemLookup.getOrThrow(DDItemTags.STILETTO_ENCHANTABLE),
+                        2,
+                        3,
+                        Enchantment.dynamicCost(15, 9),
+                        Enchantment.dynamicCost(65, 9),
+                        4,
+                        EquipmentSlotGroup.MAINHAND
+                )
+        ).withEffect(DDEnchantmentEffects.QUICK_DASH_DURATION, new AddValue(LevelBasedValue.perLevel(1.0F))));
+    }
+
+    private static void register(BootstrapContext<Enchantment> context, ResourceKey<Enchantment> key, Enchantment.Builder builder) {
+        context.register(key, builder.build(key.location()));
+    }
+
+    private static ResourceKey<Enchantment> key(String name) {
+        ResourceKey<Enchantment> key = ResourceKey.create(Registries.ENCHANTMENT, DarkerDepths.id(name));
+        ENCHANTMENTS.add(key);
+        return key;
+    }
+
 }
