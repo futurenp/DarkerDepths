@@ -7,7 +7,6 @@ import com.naterbobber.darkerdepths.init.DDMobEffects;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -22,12 +21,8 @@ public class ClientForgeEvents {
     private static final float TRANSITION_SECONDS = 1.5f;
 
     @SubscribeEvent
-    public void onClientTick(ClientTickEvent event) {
+    public void onClientTick(ClientTickEvent.Pre event) {
         DynamicLightHandler.onClientTick(event);
-
-        if (event.phase != TickEvent.Phase.END) {
-            return;
-        }
 
         LocalPlayer player = Minecraft.getInstance().player;
         if (player == null) return;
@@ -35,7 +30,7 @@ public class ClientForgeEvents {
         float ticks = 20.0f;
         float step = 1.0f / (TRANSITION_SECONDS * ticks);
 
-        if (player.hasEffect(DDMobEffects.PARANOIA.get())) {
+        if (player.hasEffect(DDMobEffects.PARANOIA)) {
             paranoiaFactor += step;
         } else {
             paranoiaFactor -= step;
@@ -129,8 +124,8 @@ public class ClientForgeEvents {
 
     private int getEffectAmplifier() {
         Player player = Minecraft.getInstance().player;
-        if (player != null && player.hasEffect(DDMobEffects.PARANOIA.get())) {
-            return player.getEffect(DDMobEffects.PARANOIA.get()).getAmplifier();
+        if (player != null && player.hasEffect(DDMobEffects.PARANOIA)) {
+            return player.getEffect(DDMobEffects.PARANOIA).getAmplifier();
         }
         return 0;
     }
