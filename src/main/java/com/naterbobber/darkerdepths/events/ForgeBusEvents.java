@@ -21,8 +21,9 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
+import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 
-@Mod.EventBusSubscriber(modid = DarkerDepths.MOD_ID)
+@EventBusSubscriber(modid = DarkerDepths.MOD_ID)
 public class ForgeBusEvents {
 
     @SubscribeEvent
@@ -89,10 +90,10 @@ public class ForgeBusEvents {
     }
 
     @SubscribeEvent
-    public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
-        if (event.phase == TickEvent.Phase.END && !event.player.level().isClientSide) {
-            Player player = event.player;
-            Level level = player.level();
+    public static void onPlayerTick(PlayerTickEvent.Post event) {
+        Player player = event.getEntity();
+        Level level = player.level();
+        if (!level.isClientSide) {
 
             isSuperchargedAndNotExpired(player.getMainHandItem(), level);
             isSuperchargedAndNotExpired(player.getOffhandItem(), level);
