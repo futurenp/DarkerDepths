@@ -33,6 +33,7 @@ import net.neoforged.neoforge.common.world.BiomeModifier;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
 
 import java.util.Arrays;
 import java.util.List;
@@ -83,7 +84,10 @@ public class DDStructures {
                 ConstantHeight.of(VerticalAnchor.absolute(-10)),
                 true,
                 Optional.of(Heightmap.Types.WORLD_SURFACE_WG),
-                80
+                80,
+                List.of(),
+                JigsawStructure.DEFAULT_DIMENSION_PADDING,
+                JigsawStructure.DEFAULT_LIQUID_SETTINGS
         ));
 
         Structure.StructureSettings desertSettings = new Structure.StructureSettings(
@@ -101,7 +105,10 @@ public class DDStructures {
                 ConstantHeight.of(VerticalAnchor.absolute(-18)),
                 true,
                 Optional.of(Heightmap.Types.WORLD_SURFACE_WG),
-                80
+                80,
+                List.of(),
+                JigsawStructure.DEFAULT_DIMENSION_PADDING,
+                JigsawStructure.DEFAULT_LIQUID_SETTINGS
         ));
 
         Structure.StructureSettings catacombs = new Structure.StructureSettings(
@@ -123,7 +130,10 @@ public class DDStructures {
                 ConstantHeight.of(VerticalAnchor.absolute(-10)),
                 false,
                 Optional.empty(),
-                116
+                116,
+                List.of(),
+                JigsawStructure.DEFAULT_DIMENSION_PADDING,
+                JigsawStructure.DEFAULT_LIQUID_SETTINGS
         ));
     }
 
@@ -250,6 +260,6 @@ public class DDStructures {
     }
 
     public static ResourceKey<BiomeModifier> createKey(String name) {
-        return ResourceKey.create(Registries.Keys.BIOME_MODIFIERS, ResourceLocation.fromNamespaceAndPath(DarkerDepths.MOD_ID, name));
+        return ResourceKey.create(NeoForgeRegistries.Keys.BIOME_MODIFIERS, ResourceLocation.fromNamespaceAndPath(DarkerDepths.MOD_ID, name));
     }
 }

@@ -22,7 +22,7 @@ public class DDStructureProcessorTypes {
     public static final DeferredHolder<StructureProcessorType<?>, StructureProcessorType<CatacombsArchaeologyProcessor>> CATACOMBS_ARCHAEOLOGY = registerProcessor("catacombs_archaeology", CatacombsArchaeologyProcessor.CODEC);
     public static final DeferredHolder<StructureProcessorType<?>, StructureProcessorType<VoidSoulKnightProcessor>> VOID_SOUL_KNIGHT = registerProcessor("void_soul_knight", VoidSoulKnightProcessor.CODEC);
     public static final DeferredHolder<StructureProcessorType<?>, StructureProcessorType<RopeMinesArchaeologyProcessor>> ROPE_MINES_ARCHAEOLOGY = registerProcessor("rope_mines_archaeology", RopeMinesArchaeologyProcessor.CODEC);
-    
+
     public static <P extends StructureProcessor> DeferredHolder<StructureProcessorType<?>, StructureProcessorType<P>> registerProcessor(String name, MapCodec<P> codec) {
         return STRUCTURE_PROCESSORS.register(name, () -> () -> codec);
     }
