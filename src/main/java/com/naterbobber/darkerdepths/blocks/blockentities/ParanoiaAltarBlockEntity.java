@@ -73,7 +73,7 @@ public class ParanoiaAltarBlockEntity extends BlockEntity implements GeoBlockEnt
             if(player.isSpectator()) continue;
             if(player.isCreative() && !DDConfigs.PARANOIA_ALTAR_EFFECTS_CREATIVE.get()) continue;
 
-            player.addEffect(new MobEffectInstance(DDMobEffects.PARANOIA.get(), 320, 0, false, false, true));
+            player.addEffect(new MobEffectInstance(DDMobEffects.PARANOIA, 320, 0, false, false, true));
 
             if(level.getRandom().nextDouble() > .33) continue;
 

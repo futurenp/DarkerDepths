@@ -2,24 +2,17 @@ package com.naterbobber.darkerdepths.init;
 
 import com.google.common.collect.Lists;
 import com.naterbobber.darkerdepths.DarkerDepths;
-import com.naterbobber.darkerdepths.enchantments.QuickDashEnchantment;
-import com.naterbobber.darkerdepths.enchantments.SwiftStrikeEnchantment;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.item.enchantment.EnchantmentEffectComponents;
 import net.minecraft.world.item.enchantment.LevelBasedValue;
 import net.minecraft.world.item.enchantment.effects.AddValue;
-import net.neoforged.neoforge.registries.DeferredHolder;
-import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.List;
-import java.util.Map;
 
 public class DDEnchantments {
 
