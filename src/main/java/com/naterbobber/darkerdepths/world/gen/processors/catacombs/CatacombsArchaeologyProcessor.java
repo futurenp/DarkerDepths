@@ -1,6 +1,6 @@
 package com.naterbobber.darkerdepths.world.gen.processors.catacombs;
 
-import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.naterbobber.darkerdepths.init.DDStructureProcessorTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -15,7 +15,7 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemp
 import org.jetbrains.annotations.Nullable;
 
 public class CatacombsArchaeologyProcessor extends StructureProcessor {
-    public static final Codec<CatacombsArchaeologyProcessor> CODEC = Codec.unit(CatacombsArchaeologyProcessor::new);
+    public static final MapCodec<CatacombsArchaeologyProcessor> CODEC = MapCodec.unit(CatacombsArchaeologyProcessor::new);
 
     @Nullable
     @Override

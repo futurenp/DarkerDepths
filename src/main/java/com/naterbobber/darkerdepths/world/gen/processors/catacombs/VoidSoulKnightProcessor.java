@@ -1,6 +1,6 @@
 package com.naterbobber.darkerdepths.world.gen.processors.catacombs;
 
-import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.naterbobber.darkerdepths.entities.VoidSoulKnightEntity;
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import com.naterbobber.darkerdepths.init.DDEntityTypes;
@@ -21,7 +21,7 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemp
 import org.jetbrains.annotations.Nullable;
 
 public class VoidSoulKnightProcessor extends StructureProcessor {
-    public static final Codec<VoidSoulKnightProcessor> CODEC = Codec.unit(VoidSoulKnightProcessor::new);
+    public static final MapCodec<VoidSoulKnightProcessor> CODEC = MapCodec.unit(VoidSoulKnightProcessor::new);
 
     @Nullable
     @Override

@@ -1,6 +1,7 @@
 package com.naterbobber.darkerdepths.world.gen.processors.catacombs;
 
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.naterbobber.darkerdepths.blocks.TombBlock;
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import com.naterbobber.darkerdepths.init.DDItems;
@@ -24,7 +25,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.*;
 
 public class TombProcessor extends StructureProcessor {
-    public static final Codec<TombProcessor> CODEC = Codec.unit(TombProcessor::new);
+    public static final MapCodec<TombProcessor> CODEC = MapCodec.unit(TombProcessor::new);
     private final Map<BlockPos, StructureTemplate.StructureBlockInfo> tombPartsMap = new HashMap<>();
 
     @Nullable
