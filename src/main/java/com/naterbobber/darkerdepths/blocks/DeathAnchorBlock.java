@@ -93,6 +93,6 @@ public class DeathAnchorBlock extends Block {
     @Override
     public void tick(BlockState blockState, ServerLevel serverLevel, BlockPos blockPos, RandomSource randomSource) {
         serverLevel.setBlock(blockPos, blockState.setValue(POWERED, false), 2);
-        serverLevel.playSound(null, blockPos, SoundEvents.RESPAWN_ANCHOR_DEPLETE.get(), SoundSource.BLOCKS, 1.0F, 1.0F);
+        serverLevel.playSound(null, blockPos, SoundEvents.RESPAWN_ANCHOR_DEPLETE.value(), SoundSource.BLOCKS, 1.0F, 1.0F);
     }
 }
