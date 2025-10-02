@@ -19,8 +19,8 @@ public class VoidSoulTorchBlock extends TorchBlock {
     private static final VoxelShape SHAPE = Block.box(6.0, 0.0, 6.0, 10.0, 11.0, 10.0);
 
 
-    public VoidSoulTorchBlock(Properties properties, Supplier<ParticleOptions> particleSupplier) {
-        super(properties, ParticleTypes.FLAME);
+    public VoidSoulTorchBlock(Supplier<ParticleOptions> particleSupplier, Properties properties) {
+        super(ParticleTypes.FLAME, properties);
         this.customParticleSupplier = particleSupplier;
     }
 

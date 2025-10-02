@@ -13,8 +13,8 @@ import java.util.function.Supplier;
 public class WallVoidSoulTorchBlock extends WallTorchBlock {
     protected final Supplier<ParticleOptions> customParticleSupplier;
 
-    public WallVoidSoulTorchBlock(Properties properties, Supplier<ParticleOptions> particleSupplier) {
-        super(properties, ParticleTypes.FLAME);
+    public WallVoidSoulTorchBlock(Supplier<ParticleOptions> particleSupplier, Properties properties) {
+        super(ParticleTypes.FLAME, properties);
         this.customParticleSupplier = particleSupplier;
     }
 
