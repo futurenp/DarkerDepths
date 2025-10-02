@@ -1,5 +1,6 @@
 package com.naterbobber.darkerdepths.item;
 
+import com.naterbobber.darkerdepths.client.render.renderers.ParanoiaAltarItemRenderer;
 import com.naterbobber.darkerdepths.client.render.renderers.VoidSoulJarItemRenderer;
 import com.naterbobber.darkerdepths.entities.VoidSoulEntity;
 import com.naterbobber.darkerdepths.init.DDEntityTypes;
@@ -18,6 +19,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
 import software.bernie.geckolib.animatable.GeoItem;
+import software.bernie.geckolib.animatable.client.GeoRenderProvider;
 import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.animation.*;
 import software.bernie.geckolib.util.GeckoLibUtil;
@@ -67,12 +69,12 @@ public class VoidSoulJarItem extends BlockItem implements GeoItem {
     }
 
     @Override
-    public void initializeClient(Consumer<IClientItemExtensions> consumer) {
-        consumer.accept(new IClientItemExtensions() {
+    public void createGeoRenderer(Consumer<GeoRenderProvider> consumer) {
+        consumer.accept(new GeoRenderProvider() {
             private VoidSoulJarItemRenderer renderer;
 
             @Override
-            public BlockEntityWithoutLevelRenderer getCustomRenderer() {
+            public BlockEntityWithoutLevelRenderer getGeoItemRenderer() {
                 if (this.renderer == null)
                     this.renderer = new VoidSoulJarItemRenderer();
 
