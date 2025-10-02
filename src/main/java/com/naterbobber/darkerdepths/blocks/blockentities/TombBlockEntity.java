@@ -4,6 +4,7 @@ import com.naterbobber.darkerdepths.blocks.TombBlock;
 import com.naterbobber.darkerdepths.init.DDBlockEntityTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
@@ -40,22 +41,22 @@ public class TombBlockEntity extends BlockEntity implements GeoBlockEntity, Cont
     }
 
     @Override
-    public void load(CompoundTag nbt) {
-        super.load(nbt);
+    protected void loadAdditional(CompoundTag nbt, HolderLookup.Provider registries) {
+        super.loadAdditional(nbt, registries);
         this.isOpen = nbt.getBoolean("IsOpen");
         this.isAnimating = nbt.getBoolean("IsAnimating");
         this.animationTimer = nbt.getInt("AnimationTimer");
         this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
-        ContainerHelper.loadAllItems(nbt, this.items);
+        ContainerHelper.loadAllItems(nbt, this.items, registries);
     }
 
     @Override
-    protected void saveAdditional(CompoundTag nbt) {
-        super.saveAdditional(nbt);
+    protected void saveAdditional(CompoundTag nbt, HolderLookup.Provider registries) {
+        super.saveAdditional(nbt, registries);
         nbt.putBoolean("IsOpen", this.isOpen);
         nbt.putBoolean("IsAnimating", this.isAnimating);
         nbt.putInt("AnimationTimer", this.animationTimer);
-        ContainerHelper.saveAllItems(nbt, this.items);
+        ContainerHelper.saveAllItems(nbt, this.items, registries);
     }
 
     // Container implementation
@@ -142,8 +143,8 @@ public class TombBlockEntity extends BlockEntity implements GeoBlockEntity, Cont
     }
 
     @Override
-    public CompoundTag getUpdateTag() {
-        return saveWithoutMetadata();
+    public CompoundTag getUpdateTag(HolderLookup.Provider registries) {
+        return saveWithoutMetadata(registries);
     }
 
     public static void tick(Level level, BlockPos pos, BlockState state, TombBlockEntity entity) {
@@ -232,24 +233,5 @@ public class TombBlockEntity extends BlockEntity implements GeoBlockEntity, Cont
     @Override
     public AnimatableInstanceCache getAnimatableInstanceCache() {
         return this.cache;
-    }
-
-    @Override
-    public AABB getRenderBoundingBox() {
-        BlockPos pos = this.getBlockPos();
-        BlockState state = this.getBlockState();
-
-        if (state.getBlock() instanceof TombBlock) {
-            Direction facing = state.getValue(TombBlock.FACING);
-
-            return switch (facing) {
-                case SOUTH -> new AABB(pos.offset(-2, -8, -1), pos.offset(3, 3, 8));
-                case EAST -> new AABB(pos.offset(-1, -8, -2), pos.offset(8, 3, 3));
-                case WEST -> new AABB(pos.offset(-7, -8, -2), pos.offset(2, 3, 3));
-                default -> new AABB(pos.offset(-2, -8, -7), pos.offset(3, 3, 2));
-            };
-        }
-
-        return super.getRenderBoundingBox();
     }
 }
