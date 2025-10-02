@@ -19,10 +19,7 @@ public class DynamicLightHandler {
     public static final Map<BlockPos, LightValue> LIGHT_SOURCES = new ConcurrentHashMap<>();
     private static final int LIGHT_SCAN_RADIUS = 64;
 
-    public static void onClientTick(ClientTickEvent event) {
-        if (event.phase != TickEvent.Phase.END) {
-            return;
-        }
+    public static void onClientTick() {
 
         if (INSTANCE.player == null || INSTANCE.level == null) {
             return;

@@ -22,7 +22,7 @@ public class ClientForgeEvents {
 
     @SubscribeEvent
     public void onClientTick(ClientTickEvent.Pre event) {
-        DynamicLightHandler.onClientTick(event);
+        DynamicLightHandler.onClientTick();
 
         LocalPlayer player = Minecraft.getInstance().player;
         if (player == null) return;
