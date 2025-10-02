@@ -94,8 +94,8 @@ public class MobPlacerBlockEntity extends BlockEntity {
     }
 
     @Override
-    public void load(CompoundTag nbt) {
-        super.load(nbt);
+    protected void loadAdditional(CompoundTag nbt, HolderLookup.Provider registries) {
+        super.loadAdditional(nbt, registries);
         this.entityTypeId = nbt.getString("EntityType");
         this.rotation = nbt.getFloat("Rotation");
         this.hasSpawned = nbt.getBoolean("HasSpawned");
