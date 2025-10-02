@@ -2,17 +2,14 @@ package com.naterbobber.darkerdepths.events;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.init.DDItems;
+import net.minecraft.core.Holder;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraftforge.event.AnvilUpdateEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraft.world.item.enchantment.ItemEnchantments;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.AnvilUpdateEvent;
-
-import java.util.Map;
-import java.util.stream.Collectors;
 
 @EventBusSubscriber(modid = DarkerDepths.MOD_ID)
 public class RequiemCurseRemovalHandler {
@@ -26,7 +23,7 @@ public class RequiemCurseRemovalHandler {
             return;
         }
 
-        if (!hasCurse(leftStack)) {
+        if (hasCurse(leftStack)) {
             return;
         }
 
@@ -42,18 +39,32 @@ public class RequiemCurseRemovalHandler {
     private static void removeCurses(ItemStack stack) {
         if (!hasCurse(stack)) return;
 
-        Map<Enchantment, Integer> enchantments = EnchantmentHelper.getEnchantments(stack);
-        Map<Enchantment, Integer> nonCursedEnchantments = enchantments.entrySet().stream()
-                .filter(entry -> !entry.getKey().isCurse())
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+        ItemEnchantments enchantments = stack.getOrDefault(DataComponents.ENCHANTMENTS, ItemEnchantments.EMPTY);
+        ItemEnchantments.Mutable builder = new ItemEnchantments.Mutable(ItemEnchantments.EMPTY);
 
-        EnchantmentHelper.setEnchantments(nonCursedEnchantments, stack);
+        enchantments.entrySet().forEach(entry -> {
+            Holder<Enchantment> enchantmentHolder = entry.getKey();
+            int level = entry.getIntValue();
+            if (!enchantmentHolder.is(net.minecraft.tags.EnchantmentTags.CURSE)) {
+                builder.set(enchantmentHolder, level);
+            }
+        });
+
+        stack.set(DataComponents.ENCHANTMENTS, builder.toImmutable());
     }
 
     private static boolean hasCurse(ItemStack stack) {
-        if (stack.isEmpty() || !stack.isEnchanted()) {
+        if (stack.isEmpty()) {
             return false;
         }
-        return EnchantmentHelper.getEnchantments(stack).keySet().stream().anyMatch(Enchantment::isCurse);
+
+        ItemEnchantments enchantments = stack.getOrDefault(DataComponents.ENCHANTMENTS, ItemEnchantments.EMPTY);
+
+        if (enchantments.isEmpty()) {
+            return false;
+        }
+
+        return enchantments.entrySet().stream()
+                .anyMatch(entry -> entry.getKey().is(net.minecraft.tags.EnchantmentTags.CURSE));
     }
 }
