@@ -1,7 +1,7 @@
 {
   "required": true,
   "package": "com.naterbobber.darkerdepths.mixin",
-  "compatibilityLevel": "JAVA_8",
+  "compatibilityLevel": "JAVA_21",
   "refmap": "darkerdepths.refmap.json",
   "mixins": [
     "HuskMixin",
