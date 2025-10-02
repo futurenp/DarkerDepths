@@ -2,7 +2,6 @@ package com.naterbobber.darkerdepths.entities;
 
 import com.naterbobber.darkerdepths.entities.goals.AttackMemoryTargetGoal;
 import com.naterbobber.darkerdepths.entities.control.ConfigurableMoveControl;
-import com.naterbobber.darkerdepths.entities.goals.ConfigurableReachMeleeAttackGoal;
 import com.naterbobber.darkerdepths.init.DDSoundEvents;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -16,6 +15,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.ai.goal.MoveTowardsTargetGoal;
 import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
@@ -25,6 +25,7 @@ import net.minecraft.world.entity.monster.Creeper;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.AABB;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
@@ -34,6 +35,8 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 public class GlowshroomMonsterEntity extends Monster implements GeoEntity {
     private int damageDelay;
     private Entity attackTarget;
+    private static final float REACH = 4.0F;
+
     private final AnimatableInstanceCache geoCache = GeckoLibUtil.createInstanceCache(this);
     protected static final RawAnimation ATTACK_SLAM = RawAnimation.begin().then("attack.slam", Animation.LoopType.PLAY_ONCE);
     protected static final RawAnimation IDLE = RawAnimation.begin().thenLoop("idle");
@@ -64,7 +67,7 @@ public class GlowshroomMonsterEntity extends Monster implements GeoEntity {
 
     @Override
     protected void registerGoals() {
-        this.goalSelector.addGoal(1, new ConfigurableReachMeleeAttackGoal(this, 2.0, true, 4.0F));
+        this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 2.0, true));
         this.goalSelector.addGoal(3, new MoveTowardsTargetGoal(this, 2.0, 32.0F));
         this.goalSelector.addGoal(7, new WaterAvoidingRandomStrollGoal(this, 1));
         this.targetSelector.addGoal(2, new HurtByTargetGoal(this));
@@ -137,6 +140,20 @@ public class GlowshroomMonsterEntity extends Monster implements GeoEntity {
             return true;
         }
         return false;
+    }
+
+    protected AABB getAttackBoundingBox() {
+        Entity entity = this.getVehicle();
+        AABB aabb;
+        if (entity != null) {
+            AABB aabb1 = entity.getBoundingBox();
+            AABB aabb2 = this.getBoundingBox();
+            aabb = new AABB(Math.min(aabb2.minX, aabb1.minX), aabb2.minY, Math.min(aabb2.minZ, aabb1.minZ), Math.max(aabb2.maxX, aabb1.maxX), aabb2.maxY, Math.max(aabb2.maxZ, aabb1.maxZ));
+        } else {
+            aabb = this.getBoundingBox();
+        }
+
+        return aabb.inflate(REACH, 0.0, REACH);
     }
 
     @Nullable

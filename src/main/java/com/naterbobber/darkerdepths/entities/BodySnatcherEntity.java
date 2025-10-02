@@ -1,7 +1,6 @@
 package com.naterbobber.darkerdepths.entities;
 
 import com.naterbobber.darkerdepths.entities.goals.AttackMemoryTargetGoal;
-import com.naterbobber.darkerdepths.entities.goals.ConfigurableReachMeleeAttackGoal;
 import com.naterbobber.darkerdepths.entities.goals.DashGoal;
 import com.naterbobber.darkerdepths.entities.goals.IDashable;
 import net.minecraft.core.BlockPos;
@@ -17,11 +16,13 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.AABB;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
@@ -32,11 +33,15 @@ public class BodySnatcherEntity extends VoidSoulMonster implements GeoEntity, ID
     private int attackTick;
     private int damageDelay;
     private Entity attackTarget;
+    private static final float REACH = 1.68F;
+
     private final AnimatableInstanceCache geoCache = GeckoLibUtil.createInstanceCache(this);
     protected static final RawAnimation ATTACK_ANIM = RawAnimation.begin().then("attack.swing", Animation.LoopType.PLAY_ONCE);
     protected static final RawAnimation IDLE_ANIM = RawAnimation.begin().thenLoop("idle");
     protected static final RawAnimation PRE_DASH = RawAnimation.begin().thenLoop("pre_dash");
     protected static final RawAnimation HURT = RawAnimation.begin().thenLoop("hurt");
+
+
 
 
 
@@ -64,7 +69,7 @@ public class BodySnatcherEntity extends VoidSoulMonster implements GeoEntity, ID
     @Override
     protected void registerGoals() {
         this.targetSelector.addGoal(3, new HurtByTargetGoal(this));
-        this.goalSelector.addGoal(2, new ConfigurableReachMeleeAttackGoal(this, 1.2D, true, 1.68f));
+        this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.2D, true));
         this.targetSelector.addGoal(4, new AttackMemoryTargetGoal<>(this, Player.class, 100, true));
         this.goalSelector.addGoal(1, new DashGoal(
                 this,
@@ -129,6 +134,20 @@ public class BodySnatcherEntity extends VoidSoulMonster implements GeoEntity, ID
             return true;
         }
         return false;
+    }
+
+    protected AABB getAttackBoundingBox() {
+        Entity entity = this.getVehicle();
+        AABB aabb;
+        if (entity != null) {
+            AABB aabb1 = entity.getBoundingBox();
+            AABB aabb2 = this.getBoundingBox();
+            aabb = new AABB(Math.min(aabb2.minX, aabb1.minX), aabb2.minY, Math.min(aabb2.minZ, aabb1.minZ), Math.max(aabb2.maxX, aabb1.maxX), aabb2.maxY, Math.max(aabb2.maxZ, aabb1.maxZ));
+        } else {
+            aabb = this.getBoundingBox();
+        }
+
+        return aabb.inflate(REACH, 0.0, REACH);
     }
 
     @Override

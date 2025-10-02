@@ -2,8 +2,6 @@ package com.naterbobber.darkerdepths.entities;
 
 import com.naterbobber.darkerdepths.entities.control.ConfigurableMoveControl;
 import com.naterbobber.darkerdepths.entities.goals.AttackMemoryTargetGoal;
-import com.naterbobber.darkerdepths.entities.goals.ConfigurableReachMeleeAttackGoal;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -17,11 +15,13 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.AABB;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.animation.AnimationController;
 import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
@@ -36,6 +36,7 @@ public class VoidSoulKnightEntity extends VoidSoulMonster implements GeoEntity {
     private Entity attackTarget;
     private int dormantCheckCooldown = 0;
     private static final int PERSISTENCE = 20 * 30; // tick * seconds
+    private static final float REACH = 2.75F;
 
     protected static final RawAnimation WALK_ANIM = RawAnimation.begin().thenLoop("move.walk");
     protected static final RawAnimation ATTACK_ANIM = RawAnimation.begin().then("attack.swing", Animation.LoopType.PLAY_ONCE);
@@ -69,7 +70,7 @@ public class VoidSoulKnightEntity extends VoidSoulMonster implements GeoEntity {
     protected void registerGoals() {
         if (!this.isDormant()) {
             this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
-            this.goalSelector.addGoal(2, new ConfigurableReachMeleeAttackGoal(this, 1.3D, true, 2.75F));
+            this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.3D, true));
             this.targetSelector.addGoal(3, new AttackMemoryTargetGoal<>(this, Player.class, PERSISTENCE, true));
             this.goalSelector.addGoal(7, new WaterAvoidingRandomStrollGoal(this, 1.2D));
         }
@@ -189,6 +190,20 @@ public class VoidSoulKnightEntity extends VoidSoulMonster implements GeoEntity {
             return true;
         }
         return false;
+    }
+
+    protected AABB getAttackBoundingBox() {
+        Entity entity = this.getVehicle();
+        AABB aabb;
+        if (entity != null) {
+            AABB aabb1 = entity.getBoundingBox();
+            AABB aabb2 = this.getBoundingBox();
+            aabb = new AABB(Math.min(aabb2.minX, aabb1.minX), aabb2.minY, Math.min(aabb2.minZ, aabb1.minZ), Math.max(aabb2.maxX, aabb1.maxX), aabb2.maxY, Math.max(aabb2.maxZ, aabb1.maxZ));
+        } else {
+            aabb = this.getBoundingBox();
+        }
+
+        return aabb.inflate(REACH, 0.0, REACH);
     }
 
     @Override
