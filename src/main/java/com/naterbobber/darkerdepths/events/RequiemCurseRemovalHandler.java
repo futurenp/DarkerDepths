@@ -23,7 +23,7 @@ public class RequiemCurseRemovalHandler {
             return;
         }
 
-        if (hasCurse(leftStack)) {
+        if (!hasCurse(leftStack)) {
             return;
         }
 
