@@ -61,11 +61,23 @@ public class ClientForgeEvents {
     public void onRenderFog(ViewportEvent.RenderFog event) {
         LocalPlayer player = Minecraft.getInstance().player;
 
-        if (player == null || player.isSpectator()) {
+        if (player == null
+                || player.isSpectator()
+                || !(player.hasEffect(MobEffects.BLINDNESS) || player.hasEffect(DDMobEffects.PARANOIA.get()))
+        ) {
             return;
         }
 
         boolean isParanoid = paranoiaFactor > 0.0f;
+
+        float farPlaneMultiplier = 1f;
+        ItemStack mainHandItem = player.getMainHandItem();
+        ItemStack offHandItem = player.getOffhandItem();
+
+        Item voidSoulTorch = DDItems.VOID_SOUL_TORCH.get();
+        Item torch = Items.TORCH;
+        Item redstoneTorch = Items.REDSTONE_TORCH;
+        Item soulTorch = Items.SOUL_TORCH;
 
         if (isParanoid) {
             int amplifier = getEffectAmplifier();
@@ -79,18 +91,7 @@ public class ClientForgeEvents {
             event.setNearPlaneDistance(newNear);
             event.setFarPlaneDistance(newFar);
             event.setFogShape(FogShape.SPHERE);
-        }
 
-        float farPlaneMultiplier = 1f;
-        ItemStack mainHandItem = player.getMainHandItem();
-        ItemStack offHandItem = player.getOffhandItem();
-
-        Item voidSoulTorch = DDItems.VOID_SOUL_TORCH.get();
-        Item torch = Items.TORCH;
-        Item redstoneTorch = Items.REDSTONE_TORCH;
-        Item soulTorch = Items.SOUL_TORCH;
-
-        if(isParanoid) {
             if(mainHandItem.is(voidSoulTorch) || offHandItem.is(voidSoulTorch)) {
                 farPlaneMultiplier = 2f;
             } else if (mainHandItem.is(torch) || offHandItem.is(torch)) {
@@ -100,19 +101,20 @@ public class ClientForgeEvents {
             } else if (mainHandItem.is(soulTorch) || offHandItem.is(soulTorch)) {
                 farPlaneMultiplier = 0.7f;
             }
-        }
 
-        if(isParanoid){
             event.setFarPlaneDistance(event.getFarPlaneDistance() * farPlaneMultiplier);
+
+            event.setCanceled(true);
         }
 
         if (player.hasEffect(MobEffects.BLINDNESS)) {
             if(mainHandItem.is(voidSoulTorch) || offHandItem.is(voidSoulTorch)){
                 event.setFarPlaneDistance(event.getFarPlaneDistance() * 2F);
             }
+
+            event.setCanceled(true);
         }
 
-        event.setCanceled(true);
     }
 
     @SubscribeEvent

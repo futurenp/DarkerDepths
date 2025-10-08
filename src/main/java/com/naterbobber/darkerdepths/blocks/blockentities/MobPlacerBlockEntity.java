@@ -48,7 +48,7 @@ public class MobPlacerBlockEntity extends BlockEntity {
 
     private void spawnEntity(ServerLevel level) {
         try {
-            ResourceLocation entityId = ResourceLocation.parse(entityTypeId);
+            ResourceLocation entityId = ResourceLocation.tryParse(entityTypeId);
             EntityType<?> entityType = BuiltInRegistries.ENTITY_TYPE.get(entityId);
 
             if (entityType == null) {

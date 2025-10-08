@@ -11,7 +11,7 @@ import software.bernie.geckolib.model.DefaultedEntityGeoModel;
 @OnlyIn(Dist.CLIENT)
 public class VoidSoulModel extends DefaultedEntityGeoModel<VoidSoulEntity> {
 	public VoidSoulModel() {
-		super(ResourceLocation.withDefaultNamespace(DarkerDepths.MODID), true);
+		super(new ResourceLocation(DarkerDepths.MODID), true);
 	}
 
 	@Override

@@ -187,7 +187,7 @@ public class DDBlockStateProvider extends BlockStateProvider {
     }
 
     private void woodBlockWithItem(RegistryObject<Block> block, RegistryObject<Block> logTextureSource) {
-        ResourceLocation texture = ResourceLocation.fromNamespaceAndPath(DarkerDepths.MODID, "block/" + logTextureSource.getId().getPath());
+        ResourceLocation texture = new ResourceLocation(DarkerDepths.MODID, "block/" + logTextureSource.getId().getPath());
         axisBlock((RotatedPillarBlock) block.get(), texture, texture);
         simpleBlockItem(block.get(), models().getExistingFile(blockTexture(block.get())));
     }

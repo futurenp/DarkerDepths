@@ -9,6 +9,7 @@ import com.naterbobber.darkerdepths.init.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -24,10 +25,10 @@ public class DarkerDepths {
     public static final Logger LOGGER = LogManager.getLogger();
     public static final String MODID = "darkerdepths";
 
-    public DarkerDepths(FMLJavaModLoadingContext context) {
-        context.registerConfig(ModConfig.Type.COMMON, DDConfigs.SPEC, "darkerdepths-common.toml");
+    public DarkerDepths() {
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, DDConfigs.SPEC, "darkerdepths-common.toml");
         GeckoLib.initialize();
-        IEventBus modEventBus = context.getModEventBus();
+        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         IEventBus eventBus = MinecraftForge.EVENT_BUS;
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::clientSetup);
@@ -62,7 +63,7 @@ public class DarkerDepths {
     }
 
     public static ResourceLocation id(String name) {
-        return ResourceLocation.fromNamespaceAndPath(MODID, name);
+        return new ResourceLocation(MODID, name);
     }
 
 }

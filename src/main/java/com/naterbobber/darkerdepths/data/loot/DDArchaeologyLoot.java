@@ -15,10 +15,10 @@ import java.util.function.BiConsumer;
 public class DDArchaeologyLoot implements LootTableSubProvider {
 
     public static final ResourceLocation CATACOMBS_STANDARD =
-            ResourceLocation.fromNamespaceAndPath(DarkerDepths.MODID, "archaeology/catacombs/standard");
+            new ResourceLocation(DarkerDepths.MODID, "archaeology/catacombs/standard");
 
     public static final ResourceLocation ROPE_MINE_STANDARD =
-            ResourceLocation.fromNamespaceAndPath(DarkerDepths.MODID, "archaeology/rope_mine/standard");
+            new ResourceLocation(DarkerDepths.MODID, "archaeology/rope_mine/standard");
     @Override
     public void generate(BiConsumer<ResourceLocation, LootTable.Builder> consumer) {
 

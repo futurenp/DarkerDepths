@@ -28,7 +28,7 @@ Artist:
 [[dependencies.darkerdepths]]
    modId="forge"
    mandatory=true
-   versionRange="[47.4,)"
+   versionRange="[47.1,)"
    ordering="NONE"
    side="BOTH"
 

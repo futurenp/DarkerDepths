@@ -238,18 +238,18 @@ public class DDStructures {
     }
 
     private static ResourceKey<Structure> createStructureKey(String name) {
-        return ResourceKey.create(Registries.STRUCTURE, ResourceLocation.fromNamespaceAndPath(DarkerDepths.MODID, name));
+        return ResourceKey.create(Registries.STRUCTURE, new ResourceLocation(DarkerDepths.MODID, name));
     }
 
     private static ResourceKey<StructureSet> createStructureSetKey(String name) {
-        return ResourceKey.create(Registries.STRUCTURE_SET, ResourceLocation.fromNamespaceAndPath(DarkerDepths.MODID, name));
+        return ResourceKey.create(Registries.STRUCTURE_SET, new ResourceLocation(DarkerDepths.MODID, name));
     }
 
     private static ResourceKey<StructureTemplatePool> createPoolKey(String name) {
-        return ResourceKey.create(Registries.TEMPLATE_POOL, ResourceLocation.fromNamespaceAndPath(DarkerDepths.MODID, name));
+        return ResourceKey.create(Registries.TEMPLATE_POOL, new ResourceLocation(DarkerDepths.MODID, name));
     }
 
     public static ResourceKey<BiomeModifier> createKey(String name) {
-        return ResourceKey.create(ForgeRegistries.Keys.BIOME_MODIFIERS, ResourceLocation.fromNamespaceAndPath(DarkerDepths.MODID, name));
+        return ResourceKey.create(ForgeRegistries.Keys.BIOME_MODIFIERS, new ResourceLocation(DarkerDepths.MODID, name));
     }
 }

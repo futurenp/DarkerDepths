@@ -54,7 +54,7 @@ public class DDItemTagsProvider extends ItemTagsProvider {
         this.tag(Tags.Items.INGOTS)
                 .add(DDItems.FORSAKEN_BRONZE_INGOT.get());
 
-        this.tag(ItemTags.create(ResourceLocation.fromNamespaceAndPath("forge", "ingots/forsaken_bronze")))
+        this.tag(ItemTags.create(new ResourceLocation("forge", "ingots/forsaken_bronze")))
                 .add(DDItems.FORSAKEN_BRONZE_INGOT.get());
 
         this.copy(Tags.Blocks.STORAGE_BLOCKS, Tags.Items.STORAGE_BLOCKS);

@@ -30,7 +30,7 @@ public class ClientDeathAnchorAnimationOverlay {
 
     static {
         for (int i = startFrame; i <= FRAME_COUNT; i++) {
-            ResourceLocation frameLocation = ResourceLocation.fromNamespaceAndPath(DarkerDepths.MODID,
+            ResourceLocation frameLocation = new ResourceLocation(DarkerDepths.MODID,
                     "textures/gui/death_anchor_overlay/frame_" + i + ".png");
             ANIMATION_FRAMES.add(frameLocation);
         }

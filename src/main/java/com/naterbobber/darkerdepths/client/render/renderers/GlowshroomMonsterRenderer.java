@@ -22,7 +22,7 @@ import software.bernie.geckolib.renderer.GeoEntityRenderer;
 
 @OnlyIn(Dist.CLIENT)
 public class GlowshroomMonsterRenderer extends GeoEntityRenderer<GlowshroomMonsterEntity> {
-    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(DarkerDepths.MODID, "textures/entity/glowshroom_monster/glowshroom_monster_glowmask.png");
+    private static final ResourceLocation TEXTURE = new ResourceLocation(DarkerDepths.MODID, "textures/entity/glowshroom_monster/glowshroom_monster_glowmask.png");
     private int currentTick = -1;
 
     public GlowshroomMonsterRenderer(EntityRendererProvider.Context context) {

@@ -34,9 +34,9 @@ public class CatacombsBarrelProcessor extends StructureProcessor {
         ResourceLocation lootTableId = null;
 
         if (placeholderState.is(Blocks.PISTON)) {
-            lootTableId = ResourceLocation.fromNamespaceAndPath("darkerdepths", "chests/catacombs/standard");
+            lootTableId = new ResourceLocation("darkerdepths", "chests/catacombs/standard");
         } else if (placeholderState.is(Blocks.STICKY_PISTON)) {
-            lootTableId = ResourceLocation.fromNamespaceAndPath("darkerdepths", "chests/catacombs/treasure");
+            lootTableId = new ResourceLocation("darkerdepths", "chests/catacombs/treasure");
         }
 
         if (lootTableId != null) {

@@ -25,7 +25,7 @@ public class DDBiomeTagsProvider extends BiomeTagsProvider {
     public static final TagKey<Biome> CATACOMBS = createTag("has_structure/catacombs");
 
     private static TagKey<Biome> createTag(String name) {
-        return TagKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath(DarkerDepths.MODID, name));
+        return TagKey.create(Registries.BIOME, new ResourceLocation(DarkerDepths.MODID, name));
     }
 
     public DDBiomeTagsProvider(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> completableFuture, @Nullable ExistingFileHelper existingFileHelper) {
