@@ -1,6 +1,6 @@
 modLoader="javafml"
 
-loaderVersion="[1,)"
+loaderVersion="${loader_version_range}"
 
 license="Creative Commons"
 
@@ -34,26 +34,28 @@ Artist:
 '''
 
 [[mixins]]
-config="darkerdepths.mixins.json"
+    config="darkerdepths.mixins.json"
 
-
-[[dependencies.darkerdepths]]
-modId="neoforge"
-mandatory=true
-versionRange="[21.1,)"
-ordering="NONE"
-side="BOTH"
+#[[accessTransformers]]
+#    file="META-INF/accesstransformer.cfg"
 
 [[dependencies.darkerdepths]]
-modId="minecraft"
-mandatory=true
-versionRange="[1.21.1]"
-ordering="NONE"
-side="BOTH"
+    modId="neoforge"
+    type="required"
+    versionRange="${neo_version_range}"
+    ordering="NONE"
+    side="BOTH"
 
 [[dependencies.darkerdepths]]
-modId="geckolib"
-mandatory=true
-versionRange="[4.5,)"
-ordering="NONE"
-side="BOTH"
+    modId="minecraft"
+    type="required"
+    versionRange="${minecraft_version_range}"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.darkerdepths]]
+    modId="geckolib"
+    type="required"
+    versionRange="${geckolib_version}"
+    ordering="NONE"
+    side="BOTH"
