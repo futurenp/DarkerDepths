@@ -1,6 +1,5 @@
 package com.naterbobber.darkerdepths.init;
 
-import com.google.common.collect.Maps;
 import com.naterbobber.darkerdepths.entities.VoidSoulEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -8,8 +7,6 @@ import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.item.AxeItem;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.*;
@@ -18,44 +15,33 @@ import net.minecraft.world.level.block.entity.DispenserBlockEntity;
 public class DDVanillaIntegration {
 
     public static void init() {
-        registerStrippable(DDBlocks.PETRIFIED_LOG.get(), DDBlocks.STRIPPED_PETRIFIED_LOG.get());
-        registerStrippable(DDBlocks.PETRIFIED_WOOD.get(), DDBlocks.STRIPPED_PETRIFIED_WOOD.get());
-        registerStrippable(DDBlocks.PETRIFIED_POST.get(), DDBlocks.STRIPPED_PETRIFIED_POST.get());
-
-        registerFlammables(DDBlocks.ROPE.get(), 60, 100);
-        registerFlammables(DDBlocks.PETRIFIED_ROOTS.get(), 60, 100);
-        registerFlammables(DDBlocks.DRY_SPROUTS.get(), 60, 100);
-        registerFlammables(DDBlocks.MOSSY_SPROUTS.get(), 60, 100);
-
-        registerCompostable(0.5F, DDBlocks.GLOWSHROOM.get().asItem());
-        registerCompostable(0.85F, DDBlocks.GLOWSHROOM_BLOCK.get().asItem());
-        registerCompostable(0.5F, DDBlocks.GLOWSPURS.get().asItem());
-        registerCompostable(0.3F,  DDBlocks.GLIMMERING_VINES.get().asItem());
-        registerCompostable(0.3F, DDBlocks.MOSSY_SPROUTS.get().asItem());
-        registerCompostable(0.2F,  DDBlocks.PETRIFIED_ROOTS.get().asItem());
+        registerFlammables();
+        registerCompostables();
         registerDispenserBehaviors();
     }
 
-    private static void registerStrippable(Block unstrippedBlock, Block strippedBlock) {
-        AxeItem.STRIPPABLES = Maps.newHashMap(AxeItem.STRIPPABLES);
-        AxeItem.STRIPPABLES.put(unstrippedBlock, strippedBlock);
-    }
-
-    private static void registerFlammables(Block block, int encouragement, int flammability) {
+    private static void registerFlammables() {
         FireBlock fireBlock = (FireBlock) Blocks.FIRE;
-        fireBlock.setFlammable(block, encouragement, flammability);
+        fireBlock.setFlammable(DDBlocks.ROPE.get(), 60, 100);
+        fireBlock.setFlammable(DDBlocks.PETRIFIED_ROOTS.get(), 60, 100);
+        fireBlock.setFlammable(DDBlocks.DRY_SPROUTS.get(), 60, 100);
+        fireBlock.setFlammable(DDBlocks.MOSSY_SPROUTS.get(), 60, 100);
     }
 
-    private static void registerCompostable(float chance, Item item) {
-        ComposterBlock.add(chance, item);
+    private static void registerCompostables() {
+//        ComposterBlock.add(0.5F, DDBlocks.GLOWSHROOM.get().asItem());
+//        ComposterBlock.add(0.85F, DDBlocks.GLOWSHROOM_BLOCK.get().asItem());
+//        ComposterBlock.add(0.5F, DDBlocks.GLOWSPURS.get().asItem());
+//        ComposterBlock.add(0.3F,  DDBlocks.GLIMMERING_VINES.get().asItem());
+//        ComposterBlock.add(0.3F, DDBlocks.MOSSY_SPROUTS.get().asItem());
+//        ComposterBlock.add(0.2F,  DDBlocks.PETRIFIED_ROOTS.get().asItem());
     }
 
-
-    public static void registerDispenserBehaviors() {
+    private static void registerDispenserBehaviors() {
         DispenserBlock.registerBehavior(DDItems.VOID_SOUL_JAR.get(), (source, stack) -> {
-            ServerLevel level = source.getLevel();
-            Direction direction = source.getBlockState().getValue(DispenserBlock.FACING);
-            BlockPos pos = source.getPos();
+            ServerLevel level = source.level();
+            Direction direction = source.state().getValue(DispenserBlock.FACING);
+            BlockPos pos = source.pos();
 
             VoidSoulEntity entity = new VoidSoulEntity(DDEntityTypes.VOID_SOUL.get(), level);
 
@@ -68,10 +54,9 @@ public class DDVanillaIntegration {
 
             stack.shrink(1);
 
-            if (source.getEntity() instanceof DispenserBlockEntity dispenser) {
+            if (source.blockEntity() instanceof DispenserBlockEntity dispenser) {
                 ItemStack bottleStack = new ItemStack(Items.GLASS_BOTTLE);
                 boolean wasBottlePlaced = false;
-
 
                 for (int i = 0; i < dispenser.getContainerSize(); ++i) {
                     ItemStack slotStack = dispenser.getItem(i);
@@ -102,3 +87,4 @@ public class DDVanillaIntegration {
         });
     }
 }
+

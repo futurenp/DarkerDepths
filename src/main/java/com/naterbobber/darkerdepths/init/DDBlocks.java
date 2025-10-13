@@ -54,14 +54,14 @@ public class DDBlocks {
             blockProperties(8.0f, 15.0f, SoundType.NETHERITE_BLOCK, true);
 
 
-    public static final DeferredBlock<RotatedPillarBlock> PETRIFIED_LOG = registerBlock("petrified_log",
-            () -> new RotatedPillarBlock(PETRIFIED_LOG_PROPERTIES));
-    public static final DeferredBlock<RotatedPillarBlock> PETRIFIED_WOOD = registerBlock("petrified_wood",
-            () -> new RotatedPillarBlock(PETRIFIED_LOG_PROPERTIES));
     public static final DeferredBlock<RotatedPillarBlock> STRIPPED_PETRIFIED_LOG = registerBlock("stripped_petrified_log",
             () -> new RotatedPillarBlock(PETRIFIED_LOG_PROPERTIES));
     public static final DeferredBlock<RotatedPillarBlock> STRIPPED_PETRIFIED_WOOD = registerBlock("stripped_petrified_wood",
             () -> new RotatedPillarBlock(PETRIFIED_LOG_PROPERTIES));
+    public static final DeferredBlock<RotatedPillarBlock> PETRIFIED_LOG = registerBlock("petrified_log",
+            () -> new DDLogBlock(PETRIFIED_LOG_PROPERTIES, STRIPPED_PETRIFIED_LOG.get()));
+    public static final DeferredBlock<RotatedPillarBlock> PETRIFIED_WOOD = registerBlock("petrified_wood",
+            () -> new DDLogBlock(PETRIFIED_LOG_PROPERTIES, STRIPPED_PETRIFIED_WOOD.get()));
     public static final DeferredBlock<Block> PETRIFIED_PLANKS = registerBlock("petrified_planks",
             () -> new Block(PETRIFIED_PLANKS_PROPERTIES));
     public static final DeferredBlock<Block> VERTICAL_PETRIFIED_PLANKS = registerCompatBlock("quark", "vertical_petrified_planks",
@@ -89,9 +89,9 @@ public class DDBlocks {
     public static final DeferredBlock<DDWallSignBlock> PETRIFIED_WALL_SIGN = registerNoTabBlock("petrified_wall_sign",
             () -> new DDWallSignBlock(PETRIFIED_SIGN_PROPERTIES, DDWoodType.PETRIFIED));
     public static final DeferredBlock<DDCeilingHangingSignBlock> PETRIFIED_HANGING_SIGN = registerNoTabBlock("petrified_hanging_sign",
-            () -> new DDCeilingHangingSignBlock(PETRIFIED_SIGN_PROPERTIES, DDWoodType.PETRIFIED));
+            () -> new DDCeilingHangingSignBlock(DDWoodType.PETRIFIED, PETRIFIED_SIGN_PROPERTIES));
     public static final DeferredBlock<DDWallHangingSignBlock> PETRIFIED_WALL_HANGING_SIGN = registerNoTabBlock("petrified_wall_hanging_sign",
-            () -> new DDWallHangingSignBlock(PETRIFIED_SIGN_PROPERTIES, DDWoodType.PETRIFIED));
+            () -> new DDWallHangingSignBlock(DDWoodType.PETRIFIED, PETRIFIED_SIGN_PROPERTIES));
     public static final DeferredBlock<WoodPostBlock> PETRIFIED_POST = registerCompatBlock("quark", "petrified_post",
             () -> new WoodPostBlock(PETRIFIED_LOG_PROPERTIES.noOcclusion()));
     public static final DeferredBlock<WoodPostBlock> STRIPPED_PETRIFIED_POST = registerCompatBlock("quark", "stripped_petrified_post",
@@ -181,9 +181,9 @@ public class DDBlocks {
     public static final DeferredBlock<LayeredDeepslateBlock> ARID_DEEPSLATE = registerBlock("arid_deepslate",
             () -> new LayeredDeepslateBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE).randomTicks()));
     public static final DeferredBlock<VoidSoulTorchBlock> VOID_SOUL_TORCH = registerNoTabBlock("void_soul_torch",
-            () -> new VoidSoulTorchBlock(BlockBehaviour.Properties.of().strength(0.0F, 1.0F).noCollission().sound(SoundType.WOOD).lightLevel(state -> 10), DDParticleTypes.VOID_SOUL_FLAME::get));
+            () -> new VoidSoulTorchBlock(DDParticleTypes.VOID_SOUL_FLAME::get, BlockBehaviour.Properties.of().strength(0.0F, 1.0F).noCollission().sound(SoundType.WOOD).lightLevel(state -> 10)));
     public static final DeferredBlock<WallVoidSoulTorchBlock> WALL_VOID_SOUL_TORCH = registerNoTabBlock("wall_void_soul_torch",
-            () -> new WallVoidSoulTorchBlock(BlockBehaviour.Properties.of().strength(0.0F, 1.0F).noCollission().sound(SoundType.WOOD).lootFrom(VOID_SOUL_TORCH).lightLevel(state -> 12), DDParticleTypes.VOID_SOUL_FLAME::get));
+            () -> new WallVoidSoulTorchBlock(DDParticleTypes.VOID_SOUL_FLAME::get, BlockBehaviour.Properties.of().strength(0.0F, 1.0F).noCollission().sound(SoundType.WOOD).lootFrom(VOID_SOUL_TORCH).lightLevel(state -> 12)));
     public static final DeferredBlock<PetrifiedRootBlock> PETRIFIED_ROOTS = registerBlock("petrified_roots",
             () -> new PetrifiedRootBlock(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).offsetType(BlockBehaviour.OffsetType.XZ).noCollission().instabreak().sound(SoundType.HANGING_ROOTS)));
     public static final DeferredBlock<PetrifiedRootPlantBlock> PETRIFIED_ROOTS_PLANT = registerNoTabBlock("petrified_roots_plant",
