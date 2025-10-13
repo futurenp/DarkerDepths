@@ -1,7 +1,6 @@
 package com.naterbobber.darkerdepths;
 
 import com.naterbobber.darkerdepths.config.DDConfigs;
-import com.naterbobber.darkerdepths.events.MiscEvents;
 import com.naterbobber.darkerdepths.events.MobEvents;
 import com.naterbobber.darkerdepths.init.*;
 import net.minecraft.resources.ResourceLocation;
@@ -43,9 +42,7 @@ public class DarkerDepths {
         DDActivities.ACTIVITIES.register(modEventBus);
         DDMemoryModuleTypes.MEMORY_MODULE_TYPES.register(modEventBus);
 
-        NeoForge.EVENT_BUS.register(new MobEvents());
-        NeoForge.EVENT_BUS.register(new MiscEvents());
-    }
+        NeoForge.EVENT_BUS.register(new MobEvents());}
 
     private void commonSetup(final FMLCommonSetupEvent event) {
         event.enqueueWork(DDVanillaIntegration::init);

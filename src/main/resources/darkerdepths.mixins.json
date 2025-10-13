@@ -8,7 +8,8 @@
     "OverworldBiomeBuilderMixin",
     "PlayerMixin",
     "RotatedPillarBlockMixin",
-    "ServerGamePacketListenerImplMixin"
+    "ServerGamePacketListenerImplMixin",
+    "BoatTypeMixin"
   ],
   "client": [
     "BlockLightEngineMixin"
