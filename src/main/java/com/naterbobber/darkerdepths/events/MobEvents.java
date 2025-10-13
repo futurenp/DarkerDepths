@@ -56,21 +56,7 @@ import java.util.Set;
 public class MobEvents {
 
     @SubscribeEvent
-    public static void registerSpawnPlacements(RegisterSpawnPlacementsEvent event) {
-        event.register(DDEntityTypes.GLOWSHROOM_MONSTER.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, GlowshroomMonsterEntity::checkMonsterSpawnRules, RegisterSpawnPlacementsEvent.Operation.OR);
-        event.register(DDEntityTypes.BODY_SNATCHER.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, BodySnatcherEntity::checkMonsterSpawnRules, RegisterSpawnPlacementsEvent.Operation.OR);
-    }
-
-    @SubscribeEvent
-    public static void registerAttributes(EntityAttributeCreationEvent event) {
-        event.put(DDEntityTypes.GLOWSHROOM_MONSTER.get(), GlowshroomMonsterEntity.createAttributes().build());
-        event.put(DDEntityTypes.BODY_SNATCHER.get(), BodySnatcherEntity.createAttributes().build());
-        event.put(DDEntityTypes.VOID_SOUL_KNIGHT.get(), VoidSoulKnightEntity.createAttributes().build());
-        event.put(DDEntityTypes.VOID_SOUL.get(), VoidSoulEntity.createAttributes().build());
-    }
-
-    @SubscribeEvent
-    public void onLivingDamage(LivingDamageEvent.Pre event) {
+    public static void onLivingDamage(LivingDamageEvent.Pre event) {
         LivingEntity entity = event.getEntity();
         DamageSource damageSource = event.getSource();
         Entity damageSourceEntity = damageSource.getEntity();
@@ -93,7 +79,7 @@ public class MobEvents {
     }
 
     @SubscribeEvent
-    public void onLivingDeathEvent(LivingDeathEvent event) {
+    public static void onLivingDeathEvent(LivingDeathEvent event) {
         LivingEntity entity = event.getEntity();
         if (entity.level() instanceof ServerLevel serverLevel && entity instanceof DeathAnchorLocation deathAnchorLocation && deathAnchorLocation.getDeathAnchorLocation().isPresent()) {
             GlobalPos globalPos = deathAnchorLocation.getDeathAnchorLocation().get();
@@ -149,14 +135,14 @@ public class MobEvents {
     }
 
     @SubscribeEvent
-    public void onMobEffectRemove(MobEffectEvent.Remove event) {
+    public static void onMobEffectRemove(MobEffectEvent.Remove event) {
         if (event.getEffect() == DDMobEffects.SOUL_BINDING.get()) {
             event.setCanceled(true);
         }
     }
 
     @SubscribeEvent
-    public void onMobEffectExpired(MobEffectEvent.Expired event) {
+    public static void onMobEffectExpired(MobEffectEvent.Expired event) {
         LivingEntity entity = event.getEntity();
         MobEffectInstance effectInstance = event.getEffectInstance();
         if (effectInstance != null && effectInstance.getEffect() == DDMobEffects.SOUL_BINDING.get()) {
@@ -186,7 +172,7 @@ public class MobEvents {
     }
 
     @SubscribeEvent
-    public void onEquipmentChange(LivingEquipmentChangeEvent event) {
+    public static void onEquipmentChange(LivingEquipmentChangeEvent event) {
         if (!(event.getEntity() instanceof Player player) || player.level().isClientSide()) {
             return;
         }

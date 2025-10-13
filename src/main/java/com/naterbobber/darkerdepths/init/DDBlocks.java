@@ -22,7 +22,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
 
-@EventBusSubscriber(modid = DarkerDepths.MOD_ID)
 public class DDBlocks {
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(DarkerDepths.MOD_ID);
     public static final Map<DeferredItem<? extends Item>, String> COMPAT = Maps.newLinkedHashMap();
@@ -241,7 +240,7 @@ public class DDBlocks {
             )
     );
     public static final DeferredBlock<MagmaPadBlock> MAGMA_PAD = registerNoTabBlock("magma_pad",
-            () -> new MagmaPadBlock(BlockBehaviour.Properties.of().strength(0.1F).lightLevel(state -> 3).sound(DDSoundEvents.GRIMESTONE).noOcclusion().pushReaction(PushReaction.DESTROY)));
+            () -> new MagmaPadBlock(BlockBehaviour.Properties.of().strength(0.1F).lightLevel(state -> 3).sound(DDSoundTypes.GRIMESTONE.get()).noOcclusion().pushReaction(PushReaction.DESTROY)));
     public static final DeferredBlock<AshFullBlock> ASH_BLOCK = registerBlock("ash_block",
             () -> new AshFullBlock(blockProperties(0.2f, SoundType.SNOW, false).mapColor(MapColor.COLOR_BLACK).randomTicks()));
     public static final DeferredBlock<AshBlock> ASH = registerBlock("ash",

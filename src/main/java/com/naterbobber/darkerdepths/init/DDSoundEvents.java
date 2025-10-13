@@ -27,9 +27,6 @@ public class DDSoundEvents {
     public static final DeferredHolder<SoundEvent, SoundEvent> BLOCK_DEATH_ANCHOR_SOUL_BINDING          = registerSoundEvent("block.death_anchor.soul_binding");
 
 
-    public static final SoundType GRIMESTONE = new SoundType(1.0F, 1.0F, BLOCK_GRIMESTONE_BREAK.get(), BLOCK_GRIMESTONE_STEP.get(), BLOCK_GRIMESTONE_PLACE.get(), BLOCK_GRIMESTONE_HIT.get(), BLOCK_GRIMESTONE_FALL.get());
-    public static final SoundType ROPE = new SoundType(1.0F, 1.0F, BLOCK_ROPE_BREAK.get(), BLOCK_ROPE_STEP.get(), BLOCK_ROPE_PLACE.get(), null, null);
-
     public static DeferredHolder<SoundEvent, SoundEvent> registerSoundEvent(String name) {
         return SOUND_EVENTS.register(name, () -> SoundEvent.createVariableRangeEvent(DarkerDepths.id(name)));
     }

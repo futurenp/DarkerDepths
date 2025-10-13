@@ -1,7 +1,9 @@
 package com.naterbobber.darkerdepths;
 
 import com.naterbobber.darkerdepths.config.DDConfigs;
+import com.naterbobber.darkerdepths.events.ClientDeathAnchorAnimationOverlay;
 import com.naterbobber.darkerdepths.events.MobEvents;
+import com.naterbobber.darkerdepths.events.RegisterEvents;
 import com.naterbobber.darkerdepths.init.*;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.bus.api.IEventBus;
@@ -42,7 +44,9 @@ public class DarkerDepths {
         DDActivities.ACTIVITIES.register(modEventBus);
         DDMemoryModuleTypes.MEMORY_MODULE_TYPES.register(modEventBus);
 
-        NeoForge.EVENT_BUS.register(new MobEvents());}
+        //should be registered client only
+        NeoForge.EVENT_BUS.register(new ClientDeathAnchorAnimationOverlay());
+    }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
         event.enqueueWork(DDVanillaIntegration::init);

@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @OnlyIn(Dist.CLIENT)
-@EventBusSubscriber(modid = DarkerDepths.MOD_ID)
 public class ClientDeathAnchorAnimationOverlay {
 
     private static boolean isOverlayActive = false;
@@ -37,7 +36,7 @@ public class ClientDeathAnchorAnimationOverlay {
     }
 
     @SubscribeEvent
-    public static void onRenderGuiOverlay(RenderGuiLayerEvent.Post event) {
+    public void onRenderGuiOverlay(RenderGuiLayerEvent.Post event) {
         if (!isOverlayActive) return;
 
         Minecraft mc = Minecraft.getInstance();

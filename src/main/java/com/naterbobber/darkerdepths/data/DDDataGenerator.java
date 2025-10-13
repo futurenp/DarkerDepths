@@ -37,6 +37,7 @@ public class DDDataGenerator {
 
         DDBlockTagsProvider blockTagsProvider = dataGenerator.addProvider(server, new DDBlockTagsProvider(packOutput, lookupProvider, existingFileHelper));
         dataGenerator.addProvider(server, new DDItemTagsProvider(packOutput, lookupProvider, blockTagsProvider.contentsGetter(), existingFileHelper));
+
         dataGenerator.addProvider(server, new DDBiomeTagsProvider(packOutput, lookupProvider, existingFileHelper));
         dataGenerator.addProvider(server, new DDDamageTypeTagsProvider(packOutput, lookupProvider, existingFileHelper));
 

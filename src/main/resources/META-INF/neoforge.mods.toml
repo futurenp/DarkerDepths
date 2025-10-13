@@ -1,8 +1,6 @@
 modLoader="javafml"
-
 loaderVersion="${loader_version_range}"
-
-license="Creative Commons"
+license="${mod_license}"
 
 [[mods]]
 modId="darkerdepths"
@@ -33,8 +31,8 @@ Artist:
 
 '''
 
-[[mixins]]
-    config="darkerdepths.mixins.json"
+#[[mixins]]
+#    config="darkerdepths.mixins.json"
 
 #[[accessTransformers]]
 #    file="META-INF/accesstransformer.cfg"
