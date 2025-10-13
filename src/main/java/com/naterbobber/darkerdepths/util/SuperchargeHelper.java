@@ -1,136 +1,88 @@
 package com.naterbobber.darkerdepths.util;
 
-import com.google.common.collect.Multimap;
+import com.naterbobber.darkerdepths.DarkerDepths;
+import com.naterbobber.darkerdepths.component.SuperchargeInfo;
 import com.naterbobber.darkerdepths.config.DDConfigs;
+import com.naterbobber.darkerdepths.init.DDDataComponents;
 import net.minecraft.ChatFormatting;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.ListTag;
-import net.minecraft.nbt.Tag;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.ItemAttributeModifiers;
+import net.minecraft.world.item.component.Unbreakable;
 import net.minecraft.world.level.Level;
 
-import java.util.Map;
-import java.util.UUID;
+import java.util.Optional;
 
 public class SuperchargeHelper {
-    public static final String TAG_UPGRADE_MAIN = "darkerdepths_upgrades";
-    public static final String TAG_WAS_UNBREAKABLE = "was_unbreakable";
-    public static final String TAG_HAD_MODIFIERS = "had_modifiers";
-    public static final String TAG_EXPIRATION = "expiration_tick";
-    public static final String TAG_MINING_BOOST = "mining_boost";
-    public static final String TAG_SPEED_BOOST_LEVEL = "speed_boost_level";
-    public static final String TAG_DAMAGE_BOOST_LEVEL = "damage_boost_level";
-    public static final String TAG_ATTACK_SPEED_BOOST_LEVEL = "attack_speed_boost_level";
-    private static final UUID ATTACK_DAMAGE_MODIFIER_UUID = UUID.fromString("f8b8e0a8-f8a0-449e-917b-88a3a2dff83e");
-    private static final UUID ATTACK_SPEED_MODIFIER_UUID = UUID.fromString("a7a7a3b8-1b0f-4859-866c-844a49e5e79f");
 
+    private static final ResourceLocation ATTACK_DAMAGE_MODIFIER_ID = ResourceLocation.fromNamespaceAndPath(DarkerDepths.MOD_ID, "supercharge_attack_damage");
+    private static final ResourceLocation ATTACK_SPEED_MODIFIER_ID = ResourceLocation.fromNamespaceAndPath(DarkerDepths.MOD_ID, "supercharge_attack_speed");
 
-    public static void applyUpgrades(ItemStack tool, Level level) {
-        int superchargeMinutes = DDConfigs.SUPERCHARGE_MINUTES.get();
-        int digSpeedBuff = DDConfigs.SUPERCHARGE_DIG_SPEED.get();
-        int attackSpeedBuff = DDConfigs.SUPERCHARGE_ATTACK_SPEED.get();
-        int attackDamageBuff = DDConfigs.SUPERCHARGE_ATTACK_DAMAGE.get();
-
-        if (tool.isEmpty() || level.isClientSide) {
+    public static void applyUpgrades(ItemStack stack, Level level) {
+        if (stack.isEmpty() || level.isClientSide) {
             return;
         }
 
-        boolean wasAlreadyUnbreakable = tool.hasTag() && tool.getTag().getBoolean("Unbreakable");
-        boolean hadExistingModifiers = tool.hasTag() && tool.getTag().contains("AttributeModifiers", Tag.TAG_LIST);
+        ItemAttributeModifiers originalModifiers = stack.getOrDefault(DataComponents.ATTRIBUTE_MODIFIERS, ItemAttributeModifiers.EMPTY);
+        Optional<Unbreakable> originalUnbreakable = Optional.ofNullable(stack.get(DataComponents.UNBREAKABLE));
 
-        if (!hadExistingModifiers) {
-            Multimap<Attribute, AttributeModifier> defaultModifiers = tool.getItem().getDefaultAttributeModifiers(EquipmentSlot.MAINHAND);
-            for (Map.Entry<Attribute, AttributeModifier> entry : defaultModifiers.entries()) {
-                tool.addAttributeModifier(entry.getKey(), entry.getValue(), EquipmentSlot.MAINHAND);
-            }
-        }
-
-        long expirationTick = level.getGameTime() + (superchargeMinutes * 60 * 20);
+        long expirationTick = level.getGameTime() + (DDConfigs.SUPERCHARGE_DURATION.get() * 60 * 20L);
+        SuperchargeInfo info = new SuperchargeInfo(expirationTick, originalUnbreakable, originalModifiers);
+        stack.set(DDDataComponents.SUPERCHARGE_INFO.get(), info);
 
         MutableComponent prefix = Component.literal("Supercharged ").withStyle(ChatFormatting.AQUA).withStyle(style -> style.withItalic(false));
-        MutableComponent originalName = tool.getHoverName().copy().withStyle(ChatFormatting.WHITE).withStyle(style -> style.withItalic(false));
+        Component originalName = stack.getHoverName().copy();
+        stack.set(DataComponents.CUSTOM_NAME, prefix.append(originalName));
 
-        tool.setHoverName(prefix.append(originalName));
+        float damageMultiplier = DDConfigs.SUPERCHARGE_ATTACK_DAMAGE.get() / 100.0F;
+        float speedMultiplier = DDConfigs.SUPERCHARGE_ATTACK_SPEED.get() / 100.0F;
 
-        CompoundTag mainTag = tool.getOrCreateTag();
-        CompoundTag upgradeTag = new CompoundTag();
+        ItemAttributeModifiers newModifiers = originalModifiers
+                .withModifierAdded(
+                        Attributes.ATTACK_DAMAGE,
+                        new AttributeModifier(ATTACK_DAMAGE_MODIFIER_ID, damageMultiplier, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
+                        null
+                ).withModifierAdded(
+                        Attributes.ATTACK_SPEED,
+                        new AttributeModifier(ATTACK_SPEED_MODIFIER_ID, speedMultiplier, AttributeModifier.Operation.ADD_MULTIPLIED_BASE),
+                        null
+                );
+        stack.set(DataComponents.ATTRIBUTE_MODIFIERS, newModifiers);
 
-        upgradeTag.putBoolean(TAG_MINING_BOOST, true);
-        upgradeTag.putInt(TAG_SPEED_BOOST_LEVEL, digSpeedBuff);
-        upgradeTag.putInt(TAG_DAMAGE_BOOST_LEVEL, attackDamageBuff);
-        upgradeTag.putInt(TAG_ATTACK_SPEED_BOOST_LEVEL, attackSpeedBuff);
-        upgradeTag.putLong(TAG_EXPIRATION, expirationTick);
-        upgradeTag.putBoolean(TAG_WAS_UNBREAKABLE, wasAlreadyUnbreakable);
-        upgradeTag.putBoolean(TAG_HAD_MODIFIERS, hadExistingModifiers);
-        mainTag.put(TAG_UPGRADE_MAIN, upgradeTag);
-
-        if(DDConfigs.SUPERCHARGE_UNBREAKABLE.get()){
-            mainTag.putBoolean("Unbreakable", true);
+        if (DDConfigs.SUPERCHARGE_UNBREAKABLE.get()) {
+            stack.set(DataComponents.UNBREAKABLE, new Unbreakable(false));
         }
-
-        float damageMultiplier = attackDamageBuff / 100F;
-        float speedMultiplier = attackSpeedBuff / 100F;
-        AttributeModifier damageModifier = new AttributeModifier(ATTACK_DAMAGE_MODIFIER_UUID, "DarkerDepths Supercharge Damage", damageMultiplier, AttributeModifier.Operation.MULTIPLY_TOTAL);
-        AttributeModifier speedModifier = new AttributeModifier(ATTACK_SPEED_MODIFIER_UUID, "DarkerDepths Supercharge Speed", speedMultiplier, AttributeModifier.Operation.MULTIPLY_BASE);
-
-        tool.addAttributeModifier(Attributes.ATTACK_DAMAGE, damageModifier, EquipmentSlot.MAINHAND);
-        tool.addAttributeModifier(Attributes.ATTACK_SPEED, speedModifier, EquipmentSlot.MAINHAND);
-
-        tool.hideTooltipPart(ItemStack.TooltipPart.MODIFIERS);
-        tool.hideTooltipPart(ItemStack.TooltipPart.UNBREAKABLE);
     }
 
-    public static void revertUpgrades(ItemStack tool) {
-        if (tool.isEmpty() || !tool.hasTag()) {
+    public static void revertUpgrades(ItemStack stack) {
+        if (stack.isEmpty()) {
             return;
         }
 
-        CompoundTag mainTag = tool.getTag();
-        if (mainTag == null || !mainTag.contains(TAG_UPGRADE_MAIN)) {
+        SuperchargeInfo info = stack.get(DDDataComponents.SUPERCHARGE_INFO.get());
+        if (info == null) {
             return;
         }
 
-        CompoundTag upgradeTag = mainTag.getCompound(TAG_UPGRADE_MAIN);
-        boolean wasOriginallyUnbreakable = upgradeTag.getBoolean(TAG_WAS_UNBREAKABLE);
-        boolean hadOriginalModifiers = upgradeTag.getBoolean(TAG_HAD_MODIFIERS);
+        stack.remove(DDDataComponents.SUPERCHARGE_INFO.get());
+        stack.remove(DataComponents.CUSTOM_NAME);
 
-        tool.resetHoverName();
-
-        mainTag.remove("HideFlags");
-        mainTag.remove(TAG_UPGRADE_MAIN);
-
-        if (!wasOriginallyUnbreakable) {
-            mainTag.remove("Unbreakable");
-        }
-
-        if (hadOriginalModifiers) {
-            if (mainTag.contains("AttributeModifiers", Tag.TAG_LIST)) {
-                ListTag modifiersList = mainTag.getList("AttributeModifiers", Tag.TAG_COMPOUND);
-                for (int i = modifiersList.size() - 1; i >= 0; i--) {
-                    CompoundTag modifierTag = modifiersList.getCompound(i);
-                    if (modifierTag.hasUUID("UUID")) {
-                        UUID uuid = modifierTag.getUUID("UUID");
-                        if (uuid.equals(ATTACK_DAMAGE_MODIFIER_UUID) || uuid.equals(ATTACK_SPEED_MODIFIER_UUID)) {
-                            modifiersList.remove(i);
-                        }
-                    }
-                }
-                if (modifiersList.isEmpty()) {
-                    mainTag.remove("AttributeModifiers");
-                }
-            }
+        if (info.originalModifiers().modifiers().isEmpty()) {
+            stack.remove(DataComponents.ATTRIBUTE_MODIFIERS);
         } else {
-            mainTag.remove("AttributeModifiers");
+            stack.set(DataComponents.ATTRIBUTE_MODIFIERS, info.originalModifiers());
         }
 
-        if (mainTag.isEmpty()) {
-            tool.setTag(null);
+        if (info.originalUnbreakable().isPresent()) {
+            stack.set(DataComponents.UNBREAKABLE, info.originalUnbreakable().get());
+        } else {
+            stack.remove(DataComponents.UNBREAKABLE);
         }
     }
 }
+

@@ -6,7 +6,7 @@ public class DDConfigs {
     public static final ModConfigSpec.Builder BUILDER = new ModConfigSpec.Builder();
     public static final ModConfigSpec SPEC;
 
-    public static final ModConfigSpec.ConfigValue<Integer> SUPERCHARGE_MINUTES;
+    public static final ModConfigSpec.ConfigValue<Integer> SUPERCHARGE_DURATION;
     public static final ModConfigSpec.ConfigValue<Integer> SUPERCHARGE_DIG_SPEED;
     public static final ModConfigSpec.ConfigValue<Integer> SUPERCHARGE_ATTACK_SPEED;
     public static final ModConfigSpec.ConfigValue<Integer> SUPERCHARGE_ATTACK_DAMAGE;
@@ -58,7 +58,7 @@ public class DDConfigs {
 
 
         BUILDER.push("Supercharges");
-        SUPERCHARGE_MINUTES = BUILDER.comment("Duration of the supercharge buff in minutes")
+        SUPERCHARGE_DURATION = BUILDER.comment("Duration of the supercharge buff in minutes")
                 .defineInRange("supercharge_minutes", 5, 1, 3600);
 
         BUILDER.comment("Supercharge Multipliers - Increases in percentage:");

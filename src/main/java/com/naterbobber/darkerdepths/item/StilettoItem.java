@@ -1,14 +1,11 @@
 package com.naterbobber.darkerdepths.item;
 
 import com.naterbobber.darkerdepths.init.DDDataComponents;
-import com.naterbobber.darkerdepths.init.DDEnchantmentEffects;
-import com.naterbobber.darkerdepths.init.DDEnchantments;
+import com.naterbobber.darkerdepths.component.EnchantmentEffects;
 import com.naterbobber.darkerdepths.init.DDItems;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.component.DataComponents;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
@@ -20,15 +17,12 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.ItemAbilities;
 import net.neoforged.neoforge.common.ItemAbility;
 import org.apache.commons.lang3.mutable.MutableFloat;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
@@ -59,7 +53,7 @@ public class StilettoItem extends SwordItem {
         player.playSound(SoundEvents.PLAYER_ATTACK_SWEEP, 1.0F, 1.0F);
         if (level instanceof ServerLevel serverLevel) {
             MutableFloat mutableFloat = new MutableFloat(0.0F);
-            EnchantmentHelper.runIterationOnItem(itemStack, (holder, i) -> holder.value().modifyItemFilteredCount(DDEnchantmentEffects.QUICK_DASH_DURATION, serverLevel, i, itemStack, mutableFloat));
+            EnchantmentHelper.runIterationOnItem(itemStack, (holder, i) -> holder.value().modifyItemFilteredCount(EnchantmentEffects.QUICK_DASH_DURATION, serverLevel, i, itemStack, mutableFloat));
             int quickDash = Math.max(0, mutableFloat.intValue());
 
             int cooldown = 200;

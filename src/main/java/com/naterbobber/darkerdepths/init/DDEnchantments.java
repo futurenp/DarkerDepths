@@ -2,6 +2,7 @@ package com.naterbobber.darkerdepths.init;
 
 import com.google.common.collect.Lists;
 import com.naterbobber.darkerdepths.DarkerDepths;
+import com.naterbobber.darkerdepths.component.EnchantmentEffects;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
@@ -34,7 +35,7 @@ public class DDEnchantments {
                         4,
                         EquipmentSlotGroup.MAINHAND
                 )
-        ).withEffect(DDEnchantmentEffects.SWIFT_STRIKE_HIT, new AddValue(LevelBasedValue.perLevel(1.0F))));
+        ).withEffect(EnchantmentEffects.SWIFT_STRIKE_HIT, new AddValue(LevelBasedValue.perLevel(1.0F))));
 
         register(context, QUICK_DASH, Enchantment.enchantment(
                 Enchantment.definition(
@@ -46,7 +47,7 @@ public class DDEnchantments {
                         4,
                         EquipmentSlotGroup.MAINHAND
                 )
-        ).withEffect(DDEnchantmentEffects.QUICK_DASH_DURATION, new AddValue(LevelBasedValue.perLevel(1.0F))));
+        ).withEffect(EnchantmentEffects.QUICK_DASH_DURATION, new AddValue(LevelBasedValue.perLevel(1.0F))));
     }
 
     private static void register(BootstrapContext<Enchantment> context, ResourceKey<Enchantment> key, Enchantment.Builder builder) {

@@ -3,10 +3,13 @@ package com.naterbobber.darkerdepths.events;
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.config.DDConfigs;
 import com.naterbobber.darkerdepths.init.DDBlocks;
+import com.naterbobber.darkerdepths.init.DDDataComponents;
 import com.naterbobber.darkerdepths.util.SuperchargeHelper;
+import com.naterbobber.darkerdepths.component.SuperchargeInfo;
 import net.minecraft.ChatFormatting;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
@@ -17,7 +20,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
@@ -40,7 +42,8 @@ public class ForgeBusEvents {
 
         ItemStack mainHandStack = player.getMainHandItem();
         ItemStack offHandStack = player.getOffhandItem();
-        boolean isEligible = mainHandStack.isDamageableItem() || (mainHandStack.hasTag() && mainHandStack.getTag().getBoolean("Unbreakable"));
+
+        boolean isEligible = mainHandStack.isDamageableItem() || mainHandStack.has(DataComponents.UNBREAKABLE);
 
         if (offHandStack.is(DDBlocks.CRYSTAL_MELON.get().asItem()) &&
                 isEligible &&
@@ -58,9 +61,6 @@ public class ForgeBusEvents {
 
     @SubscribeEvent
     public static void onItemTooltip(ItemTooltipEvent event) {
-        int digSpeedBuff = DDConfigs.SUPERCHARGE_DIG_SPEED.get();
-        int attackSpeedBuff = DDConfigs.SUPERCHARGE_ATTACK_SPEED.get();
-        int attackDamageBuff = DDConfigs.SUPERCHARGE_ATTACK_DAMAGE.get();
         ItemStack stack = event.getItemStack();
         Player player = event.getEntity();
 
@@ -68,17 +68,23 @@ public class ForgeBusEvents {
             return;
         }
 
-        event.getToolTip().add(Component.empty()); // Adds a blank line for spacing
+        int digSpeedBuff = DDConfigs.SUPERCHARGE_DIG_SPEED.get();
+        int attackSpeedBuff = DDConfigs.SUPERCHARGE_ATTACK_SPEED.get();
+        int attackDamageBuff = DDConfigs.SUPERCHARGE_ATTACK_DAMAGE.get();
+
+        event.getToolTip().add(Component.empty());
         event.getToolTip().add(Component.literal("Supercharged:").withStyle(ChatFormatting.AQUA));
         event.getToolTip().add(Component.literal(" +"+ digSpeedBuff +"% Dig Speed").withStyle(ChatFormatting.GRAY));
-        event.getToolTip().add(Component.literal(" +"+ attackSpeedBuff +"% Attack Damage").withStyle(ChatFormatting.GRAY));
-        event.getToolTip().add(Component.literal(" +"+ attackDamageBuff +"% Attack Speed").withStyle(ChatFormatting.GRAY));
+        event.getToolTip().add(Component.literal(" +"+ attackDamageBuff +"% Attack Damage").withStyle(ChatFormatting.GRAY));
+        event.getToolTip().add(Component.literal(" +"+ attackSpeedBuff +"% Attack Speed").withStyle(ChatFormatting.GRAY));
         if(DDConfigs.SUPERCHARGE_UNBREAKABLE.get()){
             event.getToolTip().add(Component.literal("Unbreakable").withStyle(ChatFormatting.BLUE));
         }
 
-        CompoundTag upgradeTag = stack.getTag().getCompound(SuperchargeHelper.TAG_UPGRADE_MAIN);
-        long expirationTick = upgradeTag.getLong(SuperchargeHelper.TAG_EXPIRATION);
+        SuperchargeInfo info = stack.get(DDDataComponents.SUPERCHARGE_INFO.get());
+        if (info == null) return; // Should not happen if the first check passed, but good practice
+
+        long expirationTick = info.expirationTick();
         long currentTime = player.level().getGameTime();
 
         long remainingTicks = expirationTick - currentTime;
@@ -91,12 +97,11 @@ public class ForgeBusEvents {
 
     @SubscribeEvent
     public static void onPlayerTick(PlayerTickEvent.Post event) {
-        Player player = event.getEntity();
-        Level level = player.level();
-        if (!level.isClientSide) {
-
-            isSuperchargedAndNotExpired(player.getMainHandItem(), level);
-            isSuperchargedAndNotExpired(player.getOffhandItem(), level);
+        if (event.getEntity() instanceof Player player && player.level() instanceof ServerLevel level) {
+            if (!level.isClientSide) {
+                isSuperchargedAndNotExpired(player.getMainHandItem(), level);
+                isSuperchargedAndNotExpired(player.getOffhandItem(), level);
+            }
         }
     }
     @SubscribeEvent
@@ -105,24 +110,27 @@ public class ForgeBusEvents {
         Level level = event.getEntity().level();
 
         if (isSuperchargedAndNotExpired(heldItem, level)) {
-
             float currentSpeed = event.getNewSpeed();
             event.setNewSpeed(currentSpeed * (1F + (DDConfigs.SUPERCHARGE_DIG_SPEED.get()) / 100F));
         }
     }
 
     private static boolean isSuperchargedAndNotExpired(ItemStack stack, Level level) {
-        if (stack.isEmpty() || !stack.hasTag() || !stack.getTag().contains(SuperchargeHelper.TAG_UPGRADE_MAIN)) {
+        if (stack.isEmpty()) {
             return false;
         }
 
-        CompoundTag upgradeTag = stack.getTag().getCompound(SuperchargeHelper.TAG_UPGRADE_MAIN);
-        long expirationTick = upgradeTag.getLong(SuperchargeHelper.TAG_EXPIRATION);
+        // Check for our custom component instead of NBT
+        SuperchargeInfo info = stack.get(DDDataComponents.SUPERCHARGE_INFO.get());
+        if (info == null) {
+            return false;
+        }
 
-        if (level.getGameTime() >= expirationTick) {
+        if (level.getGameTime() >= info.expirationTick()) {
             SuperchargeHelper.revertUpgrades(stack);
             return false;
         }
         return true;
     }
 }
+

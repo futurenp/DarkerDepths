@@ -1,4 +1,4 @@
-package com.naterbobber.darkerdepths.init;
+package com.naterbobber.darkerdepths.component;
 
 import net.minecraft.core.Registry;
 import net.minecraft.core.component.DataComponentType;
@@ -10,7 +10,7 @@ import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import java.util.List;
 import java.util.function.UnaryOperator;
 
-public interface DDEnchantmentEffects {
+public interface EnchantmentEffects {
 
     DataComponentType<List<ConditionalEffect<EnchantmentValueEffect>>> SWIFT_STRIKE_HIT = register("swift_strike_hit", (bulider) -> {
         return bulider.persistent(ConditionalEffect.codec(EnchantmentValueEffect.CODEC, LootContextParamSets.ENCHANTED_ENTITY).listOf());
