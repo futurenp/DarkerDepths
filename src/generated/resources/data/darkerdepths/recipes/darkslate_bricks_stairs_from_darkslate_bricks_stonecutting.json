@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "count": 1,
-  "ingredient": {
-    "item": "darkerdepths:darkslate_bricks"
-  },
-  "result": "darkerdepths:darkslate_bricks_stairs"
-}

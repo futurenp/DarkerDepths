@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_darkslate": {
+      "conditions": {
+        "items": [
+          {
+            "items": "darkerdepths:darkslate"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "darkerdepths:darkslate_wall_from_darkslate_stonecutting"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_darkslate"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "darkerdepths:darkslate_wall_from_darkslate_stonecutting"
+    ]
+  }
+}

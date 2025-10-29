@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "darkerdepths:forsaken_bronze_ingot"
+    },
+    "D": {
+      "item": "darkerdepths:duskrock"
+    },
+    "O": {
+      "item": "minecraft:obsidian"
+    },
+    "R": {
+      "item": "darkerdepths:void_soul_requiem"
+    }
+  },
+  "pattern": [
+    "BBB",
+    "DRD",
+    "DOD"
+  ],
+  "result": {
+    "count": 1,
+    "id": "darkerdepths:death_anchor"
+  }
+}

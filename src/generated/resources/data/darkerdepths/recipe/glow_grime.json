@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "darkerdepths:glowshroom"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "darkerdepths:glow_grime"
+  }
+}

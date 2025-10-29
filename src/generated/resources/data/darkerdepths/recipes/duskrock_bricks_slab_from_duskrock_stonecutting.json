@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "count": 2,
-  "ingredient": {
-    "item": "darkerdepths:duskrock"
-  },
-  "result": "darkerdepths:duskrock_bricks_slab"
-}

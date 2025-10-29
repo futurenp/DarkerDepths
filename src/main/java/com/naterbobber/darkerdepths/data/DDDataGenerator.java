@@ -1,5 +1,6 @@
 package com.naterbobber.darkerdepths.data;
 
+import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.data.assets.DDBlockStateProvider;
 import com.naterbobber.darkerdepths.data.assets.DDLanguageProviderENUS;
 import com.naterbobber.darkerdepths.data.loot.DDLootTableProvider;
@@ -11,11 +12,13 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 
 import java.util.concurrent.CompletableFuture;
 
+@EventBusSubscriber(modid = DarkerDepths.MOD_ID)
 public class DDDataGenerator {
 
     @SubscribeEvent
@@ -28,7 +31,6 @@ public class DDDataGenerator {
         boolean server = event.includeServer();
         boolean client = event.includeClient();
 
-        // Pass a lambda or method reference instead of a new instance
         dataGenerator.addProvider(client, new DDBlockStateProvider(packOutput, existingFileHelper));
         dataGenerator.addProvider(client, new DDLanguageProviderENUS(packOutput));
 

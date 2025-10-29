@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "darkerdepths:grimestone"
+  },
+  "result": {
+    "count": 1,
+    "id": "darkerdepths:grimestone_stairs"
+  }
+}

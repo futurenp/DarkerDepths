@@ -1,0 +1,9 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "darkerdepths:molten_cavern",
+  "features": [
+    "darkerdepths:magma_ore",
+    "darkerdepths:dead_living_crystal_ore"
+  ],
+  "step": "underground_ores"
+}

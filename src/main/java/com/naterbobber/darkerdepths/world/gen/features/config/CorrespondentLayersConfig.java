@@ -33,7 +33,7 @@ public class CorrespondentLayersConfig implements FeatureConfiguration {
                     return p_161312_.verticalRange;
                 }), Codec.floatRange(0.0F, 1.0F).fieldOf("vegetation_chance").forGetter((p_161310_) -> {
                     return p_161310_.vegetationChance;
-                }), IntProvider.CODEC.fieldOf("xz_radius").forGetter((p_161308_) -> {
+                }), IntProvider.codec(1, 256).fieldOf("xz_radius").forGetter((p_161308_) -> {
                     return p_161308_.xzRadius;
                 }), Codec.floatRange(0.0F, 1.0F).fieldOf("extra_edge_column_chance").forGetter((p_161306_) -> {
                     return p_161306_.extraEdgeColumnChance;

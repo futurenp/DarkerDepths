@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_aridrock_bricks": {
+      "conditions": {
+        "items": [
+          {
+            "items": "darkerdepths:aridrock_bricks"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "darkerdepths:aridrock_bricks_wall_from_aridrock_bricks_stonecutting"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_aridrock_bricks"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "darkerdepths:aridrock_bricks_wall_from_aridrock_bricks_stonecutting"
+    ]
+  }
+}

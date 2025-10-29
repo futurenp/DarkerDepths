@@ -1,0 +1,36 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": "darkerdepths:sandy_catacombs",
+  "spawners": [
+    {
+      "type": "minecraft:cave_spider",
+      "maxCount": 4,
+      "minCount": 2,
+      "weight": 80
+    },
+    {
+      "type": "minecraft:skeleton",
+      "maxCount": 4,
+      "minCount": 1,
+      "weight": 50
+    },
+    {
+      "type": "minecraft:enderman",
+      "maxCount": 4,
+      "minCount": 1,
+      "weight": 10
+    },
+    {
+      "type": "minecraft:husk",
+      "maxCount": 4,
+      "minCount": 2,
+      "weight": 95
+    },
+    {
+      "type": "darkerdepths:body_snatcher",
+      "maxCount": 3,
+      "minCount": 1,
+      "weight": 30
+    }
+  ]
+}

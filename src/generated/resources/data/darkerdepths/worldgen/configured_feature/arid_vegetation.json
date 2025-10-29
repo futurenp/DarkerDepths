@@ -8,13 +8,13 @@
           "data": {
             "Name": "darkerdepths:dry_sprouts"
           },
-          "weight": 1
+          "weight": 3
         },
         {
           "data": {
             "Name": "minecraft:air"
           },
-          "weight": 50
+          "weight": 60
         }
       ]
     }

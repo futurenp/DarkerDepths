@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_grimestone": {
+      "conditions": {
+        "items": [
+          {
+            "items": "darkerdepths:grimestone"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "darkerdepths:grimestone_wall_from_grimestone_stonecutting"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_grimestone"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "darkerdepths:grimestone_wall_from_grimestone_stonecutting"
+    ]
+  }
+}

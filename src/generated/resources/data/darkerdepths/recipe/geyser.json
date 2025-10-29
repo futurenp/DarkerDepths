@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "#": {
+      "item": "darkerdepths:ash_block"
+    },
+    "A": {
+      "item": "minecraft:lava_bucket"
+    },
+    "S": {
+      "item": "darkerdepths:darkslate"
+    }
+  },
+  "pattern": [
+    "###",
+    "SAS",
+    "SSS"
+  ],
+  "result": {
+    "count": 1,
+    "id": "darkerdepths:geyser"
+  }
+}

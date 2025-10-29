@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "minecraft:iron_ingot"
+    },
+    "G": {
+      "item": "darkerdepths:glow_grime"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    }
+  },
+  "pattern": [
+    "#R#",
+    "RGR",
+    "#R#"
+  ],
+  "result": {
+    "count": 1,
+    "id": "darkerdepths:glowshroom_lamp"
+  }
+}

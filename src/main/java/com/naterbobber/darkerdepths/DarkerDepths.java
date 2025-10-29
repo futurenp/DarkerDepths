@@ -43,6 +43,7 @@ public class DarkerDepths {
         DDStructureProcessorTypes.STRUCTURE_PROCESSORS.register(modEventBus);
         DDActivities.ACTIVITIES.register(modEventBus);
         DDMemoryModuleTypes.MEMORY_MODULE_TYPES.register(modEventBus);
+        DDDataComponents.DATA_COMPONENTS.register(modEventBus);
 
         //should be registered client only
         NeoForge.EVENT_BUS.register(new ClientDeathAnchorAnimationOverlay());

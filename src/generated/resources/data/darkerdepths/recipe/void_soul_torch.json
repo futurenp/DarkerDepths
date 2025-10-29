@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:stick"
+    },
+    "B": {
+      "item": "darkerdepths:void_soul_jar"
+    },
+    "C": {
+      "item": "darkerdepths:amber"
+    }
+  },
+  "pattern": [
+    "B",
+    "C",
+    "A"
+  ],
+  "result": {
+    "count": 4,
+    "id": "darkerdepths:void_soul_torch"
+  }
+}

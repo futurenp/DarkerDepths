@@ -15,8 +15,8 @@ public class DDDataComponents {
 
     public static final DeferredRegister<DataComponentType<?>> DATA_COMPONENTS = DeferredRegister.createDataComponents(Registries.DATA_COMPONENT_TYPE, DarkerDepths.MOD_ID);
 
-    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> STILETTO_TIME = register("stiletto_time", builder -> builder.persistent(ExtraCodecs.POSITIVE_INT).networkSynchronized(ByteBufCodecs.VAR_INT));
-    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> STILETTO_READY_TIME = register("stiletto_ready_time", builder -> builder.persistent(ExtraCodecs.POSITIVE_INT).networkSynchronized(ByteBufCodecs.VAR_INT));
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> STILETTO_TIME = register("stiletto_time", builder -> builder.persistent(ExtraCodecs.NON_NEGATIVE_INT).networkSynchronized(ByteBufCodecs.VAR_INT));
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> STILETTO_READY_TIME = register("stiletto_ready_time", builder -> builder.persistent(ExtraCodecs.NON_NEGATIVE_INT).networkSynchronized(ByteBufCodecs.VAR_INT));
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<SuperchargeInfo>> SUPERCHARGE_INFO = register("supercharge_info", builder -> builder.persistent(SuperchargeInfo.CODEC).networkSynchronized(SuperchargeInfo.STREAM_CODEC));
 
 

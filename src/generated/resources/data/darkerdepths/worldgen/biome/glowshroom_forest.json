@@ -9,6 +9,7 @@
   "downfall": 0.5,
   "effects": {
     "fog_color": 12638463,
+    "grass_color": 5478752,
     "mood_sound": {
       "block_search_extent": 8,
       "offset": 2.0,
@@ -41,15 +42,6 @@
     [],
     [],
     [
-      "minecraft:ore_dirt",
-      "minecraft:ore_gravel",
-      "minecraft:ore_granite_upper",
-      "minecraft:ore_granite_lower",
-      "minecraft:ore_diorite_upper",
-      "minecraft:ore_diorite_lower",
-      "minecraft:ore_andesite_upper",
-      "minecraft:ore_andesite_lower",
-      "minecraft:ore_tuff",
       "minecraft:ore_coal_upper",
       "minecraft:ore_coal_lower",
       "minecraft:ore_iron_upper",
@@ -60,6 +52,7 @@
       "minecraft:ore_redstone",
       "minecraft:ore_redstone_lower",
       "minecraft:ore_diamond",
+      "minecraft:ore_diamond_medium",
       "minecraft:ore_diamond_large",
       "minecraft:ore_diamond_buried",
       "minecraft:ore_lapis",
@@ -73,7 +66,6 @@
       "minecraft:spring_lava"
     ],
     [
-      "minecraft:glow_lichen",
       "minecraft:patch_tall_grass_2"
     ],
     [

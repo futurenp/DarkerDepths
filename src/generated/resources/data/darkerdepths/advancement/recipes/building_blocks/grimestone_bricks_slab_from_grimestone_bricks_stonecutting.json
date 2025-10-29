@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_grimestone_bricks": {
+      "conditions": {
+        "items": [
+          {
+            "items": "darkerdepths:grimestone_bricks"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "darkerdepths:grimestone_bricks_slab_from_grimestone_bricks_stonecutting"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_grimestone_bricks"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "darkerdepths:grimestone_bricks_slab_from_grimestone_bricks_stonecutting"
+    ]
+  }
+}

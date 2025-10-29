@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "darkerdepths:aridrock_bricks"
+  },
+  "result": {
+    "count": 1,
+    "id": "darkerdepths:aridrock_bricks_wall"
+  }
+}
