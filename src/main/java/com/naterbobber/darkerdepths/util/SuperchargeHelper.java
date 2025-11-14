@@ -9,6 +9,7 @@ import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.ItemStack;
@@ -16,6 +17,7 @@ import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.item.component.Unbreakable;
 import net.minecraft.world.level.Level;
 
+import java.util.Objects;
 import java.util.Optional;
 
 public class SuperchargeHelper {
@@ -42,15 +44,16 @@ public class SuperchargeHelper {
         float damageMultiplier = DDConfigs.SUPERCHARGE_ATTACK_DAMAGE.get() / 100.0F;
         float speedMultiplier = DDConfigs.SUPERCHARGE_ATTACK_SPEED.get() / 100.0F;
 
+
         ItemAttributeModifiers newModifiers = originalModifiers
                 .withModifierAdded(
                         Attributes.ATTACK_DAMAGE,
                         new AttributeModifier(ATTACK_DAMAGE_MODIFIER_ID, damageMultiplier, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
-                        null
+                        EquipmentSlotGroup.bySlot(Objects.requireNonNull(stack.getEquipmentSlot()))
                 ).withModifierAdded(
                         Attributes.ATTACK_SPEED,
                         new AttributeModifier(ATTACK_SPEED_MODIFIER_ID, speedMultiplier, AttributeModifier.Operation.ADD_MULTIPLIED_BASE),
-                        null
+                        EquipmentSlotGroup.bySlot(Objects.requireNonNull(stack.getEquipmentSlot()))
                 );
         stack.set(DataComponents.ATTRIBUTE_MODIFIERS, newModifiers);
 

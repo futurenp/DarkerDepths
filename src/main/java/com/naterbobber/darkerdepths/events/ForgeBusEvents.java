@@ -48,11 +48,12 @@ public class ForgeBusEvents {
         if (offHandStack.is(DDBlocks.CRYSTAL_MELON.get().asItem()) &&
                 isEligible &&
                 !(mainHandStack.getItem() instanceof ArmorItem) &&
-                !isSuperchargedAndNotExpired(mainHandStack, level)) {
+                !isSupercharged(mainHandStack, level)) {
 
             SuperchargeHelper.applyUpgrades(mainHandStack, level);
             offHandStack.shrink(1);
-            level.playSound(null, player.blockPosition(), SoundEvents.BEACON_ACTIVATE, SoundSource.PLAYERS, 0.75f, 1.6f);
+//            level.playSound(null, player.blockPosition(), SoundEvents.BEACON_ACTIVATE, SoundSource.PLAYERS, 0.75f, 1.6f);
+            player.playSound(SoundEvents.BEACON_ACTIVATE, 0.75f, 1.6f);
 
             event.setCancellationResult(InteractionResult.SUCCESS);
             event.setCanceled(true);
@@ -64,7 +65,7 @@ public class ForgeBusEvents {
         ItemStack stack = event.getItemStack();
         Player player = event.getEntity();
 
-        if (player == null || !isSuperchargedAndNotExpired(stack, player.level())) {
+        if (player == null || !isSupercharged(stack, player.level())) {
             return;
         }
 
@@ -82,7 +83,7 @@ public class ForgeBusEvents {
         }
 
         SuperchargeInfo info = stack.get(DDDataComponents.SUPERCHARGE_INFO.get());
-        if (info == null) return; // Should not happen if the first check passed, but good practice
+        if (info == null) return;
 
         long expirationTick = info.expirationTick();
         long currentTime = player.level().getGameTime();
@@ -99,8 +100,8 @@ public class ForgeBusEvents {
     public static void onPlayerTick(PlayerTickEvent.Post event) {
         if (event.getEntity() instanceof Player player && player.level() instanceof ServerLevel level) {
             if (!level.isClientSide) {
-                isSuperchargedAndNotExpired(player.getMainHandItem(), level);
-                isSuperchargedAndNotExpired(player.getOffhandItem(), level);
+                isSupercharged(player.getMainHandItem(), level);
+                isSupercharged(player.getOffhandItem(), level);
             }
         }
     }
@@ -109,18 +110,17 @@ public class ForgeBusEvents {
         ItemStack heldItem = event.getEntity().getMainHandItem();
         Level level = event.getEntity().level();
 
-        if (isSuperchargedAndNotExpired(heldItem, level)) {
+        if (isSupercharged(heldItem, level)) {
             float currentSpeed = event.getNewSpeed();
             event.setNewSpeed(currentSpeed * (1F + (DDConfigs.SUPERCHARGE_DIG_SPEED.get()) / 100F));
         }
     }
 
-    private static boolean isSuperchargedAndNotExpired(ItemStack stack, Level level) {
+    private static boolean isSupercharged(ItemStack stack, Level level) {
         if (stack.isEmpty()) {
             return false;
         }
 
-        // Check for our custom component instead of NBT
         SuperchargeInfo info = stack.get(DDDataComponents.SUPERCHARGE_INFO.get());
         if (info == null) {
             return false;

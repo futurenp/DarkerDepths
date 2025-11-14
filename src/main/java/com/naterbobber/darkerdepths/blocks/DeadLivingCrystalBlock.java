@@ -33,7 +33,7 @@ public class DeadLivingCrystalBlock extends Block {
         builder.add(CRYSTAL_GROWTH_LEVEL);
     }
 
-        @Override
+    @Override
     public ItemInteractionResult useItemOn(ItemStack stack, BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand hand, BlockHitResult hitResult) {
         if (stack.is(Items.DIAMOND) && blockState.getValue(CRYSTAL_GROWTH_LEVEL) == 0) {
             if (!player.getAbilities().instabuild) {
