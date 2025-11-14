@@ -1,7 +1,7 @@
 package com.naterbobber.darkerdepths.blocks.blockentities;
 
 import com.naterbobber.darkerdepths.blocks.ParanoiaAltarBlock;
-import com.naterbobber.darkerdepths.config.DDConfigs;
+import com.naterbobber.darkerdepths.config.DDConfig;
 import com.naterbobber.darkerdepths.entities.BodySnatcherEntity;
 import com.naterbobber.darkerdepths.init.DDBlockEntityTypes;
 import com.naterbobber.darkerdepths.init.DDEntityTypes;
@@ -60,8 +60,8 @@ public class ParanoiaAltarBlockEntity extends BlockEntity implements GeoBlockEnt
 
         tickCounter = 0;
 
-        int radiusHorizontal = DDConfigs.PARANOIA_ALTAR_RADIUS_HORIZONTAL.get();
-        int radiusY = DDConfigs.PARANOIA_ALTAR_RADIUS_VERTICAL.get();
+        int radiusHorizontal = DDConfig.CONFIG.PARANOIA_ALTAR_RADIUS_HORIZONTAL.get();
+        int radiusY = DDConfig.CONFIG.PARANOIA_ALTAR_RADIUS_VERTICAL.get();
 
         AABB finalArea = new AABB(pos).inflate(radiusHorizontal, radiusY, radiusHorizontal);
 
@@ -71,7 +71,7 @@ public class ParanoiaAltarBlockEntity extends BlockEntity implements GeoBlockEnt
 
         for (Player player : players) {
             if(player.isSpectator()) continue;
-            if(player.isCreative() && !DDConfigs.PARANOIA_ALTAR_EFFECTS_CREATIVE.get()) continue;
+            if(player.isCreative() && !DDConfig.CONFIG.PARANOIA_ALTAR_EFFECTS_CREATIVE.get()) continue;
 
             player.addEffect(new MobEffectInstance(DDMobEffects.PARANOIA, 320, 0, false, false, true));
 

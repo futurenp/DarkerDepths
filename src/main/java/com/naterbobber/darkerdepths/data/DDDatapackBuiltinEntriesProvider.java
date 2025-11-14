@@ -16,9 +16,9 @@ import java.util.concurrent.CompletableFuture;
 public class DDDatapackBuiltinEntriesProvider extends DatapackBuiltinEntriesProvider {
 
     public static final RegistrySetBuilder BUILDER = new RegistrySetBuilder()
+            .add(Registries.BIOME, DDBiomes::bootstrap)
             .add(Registries.CONFIGURED_FEATURE, DDConfiguredFeatures::bootstrap)
             .add(Registries.PLACED_FEATURE, DDPlacedFeatures::bootstrap)
-            .add(Registries.BIOME, DDBiomes::bootstrap)
             .add(NeoForgeRegistries.Keys.BIOME_MODIFIERS, DDBiomeModifiers::bootstrap)
             .add(Registries.TEMPLATE_POOL, DDStructures::bootstrapTemplatePool)
             .add(Registries.STRUCTURE, DDStructures::bootstrap)

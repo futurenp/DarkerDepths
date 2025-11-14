@@ -3,6 +3,7 @@ package com.naterbobber.darkerdepths.mixin;
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import net.minecraft.world.entity.vehicle.Boat;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Mutable;
@@ -31,7 +32,7 @@ public class BoatTypeMixin {
     @Inject(method = "<clinit>", at = @At(value = "FIELD", target = "Lnet/minecraft/world/entity/vehicle/Boat$Type;$VALUES:[Lnet/minecraft/world/entity/vehicle/Boat$Type;", shift = At.Shift.AFTER))
     private static void addCustomBoatType(CallbackInfo ci) {
         var types = new ArrayList<>(Arrays.asList($VALUES));
-        var petrified = newBoatType("PETRIFIED", types.size(), DDBlocks.PETRIFIED_PLANKS.get(), "petrified");
+        var petrified = newBoatType("PETRIFIED", types.size(), Blocks.OAK_PLANKS, "petrified");
         types.add(petrified);
         $VALUES = types.toArray(new Boat.Type[0]);
     }

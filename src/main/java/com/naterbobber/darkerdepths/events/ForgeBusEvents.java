@@ -1,7 +1,7 @@
 package com.naterbobber.darkerdepths.events;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
-import com.naterbobber.darkerdepths.config.DDConfigs;
+import com.naterbobber.darkerdepths.config.DDConfig;
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import com.naterbobber.darkerdepths.init.DDDataComponents;
 import com.naterbobber.darkerdepths.util.SuperchargeHelper;
@@ -69,16 +69,16 @@ public class ForgeBusEvents {
             return;
         }
 
-        int digSpeedBuff = DDConfigs.SUPERCHARGE_DIG_SPEED.get();
-        int attackSpeedBuff = DDConfigs.SUPERCHARGE_ATTACK_SPEED.get();
-        int attackDamageBuff = DDConfigs.SUPERCHARGE_ATTACK_DAMAGE.get();
+        int digSpeedBuff = DDConfig.CONFIG.SUPERCHARGE_DIG_SPEED.get();
+        int attackSpeedBuff = DDConfig.CONFIG.SUPERCHARGE_ATTACK_SPEED.get();
+        int attackDamageBuff = DDConfig.CONFIG.SUPERCHARGE_ATTACK_DAMAGE.get();
 
         event.getToolTip().add(Component.empty());
         event.getToolTip().add(Component.literal("Supercharged:").withStyle(ChatFormatting.AQUA));
         event.getToolTip().add(Component.literal(" +"+ digSpeedBuff +"% Dig Speed").withStyle(ChatFormatting.GRAY));
         event.getToolTip().add(Component.literal(" +"+ attackDamageBuff +"% Attack Damage").withStyle(ChatFormatting.GRAY));
         event.getToolTip().add(Component.literal(" +"+ attackSpeedBuff +"% Attack Speed").withStyle(ChatFormatting.GRAY));
-        if(DDConfigs.SUPERCHARGE_UNBREAKABLE.get()){
+        if(DDConfig.CONFIG.SUPERCHARGE_UNBREAKABLE.get()){
             event.getToolTip().add(Component.literal("Unbreakable").withStyle(ChatFormatting.BLUE));
         }
 
@@ -112,7 +112,7 @@ public class ForgeBusEvents {
 
         if (isSupercharged(heldItem, level)) {
             float currentSpeed = event.getNewSpeed();
-            event.setNewSpeed(currentSpeed * (1F + (DDConfigs.SUPERCHARGE_DIG_SPEED.get()) / 100F));
+            event.setNewSpeed(currentSpeed * (1F + (DDConfig.CONFIG.SUPERCHARGE_DIG_SPEED.get()) / 100F));
         }
     }
 

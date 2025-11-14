@@ -17,7 +17,7 @@ import java.util.List;
 public class DDItems {
 
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(DarkerDepths.MOD_ID);
-    private static final Boat.Type PETRIFIED_BOAT_TYPE = Boat.Type.byName("petrified");
+//    private static final Boat.Type PETRIFIED_BOAT_TYPE = Boat.Type.byName("PETRIFIED");
 
     public static final DeferredItem<GlowshroomCapItem> GLOWSHROOM_CAP = ITEMS.register("glowshroom_cap",
             () -> new GlowshroomCapItem(new Item.Properties().stacksTo(1).durability(ArmorItem.Type.HELMET.getDurability(156))));
@@ -64,9 +64,9 @@ public class DDItems {
     public static final DeferredItem<SpawnEggItem> VOID_SOUL_SPAWN_EGG = ITEMS.register("void_soul_spawn_egg",
             () -> new SpawnEggItem(DDEntityTypes.VOID_SOUL.get(), 0, 16749117, new Item.Properties()));
     public static final DeferredItem<BoatItem> PETRIFIED_BOAT = ITEMS.register("petrified_boat",
-            () -> new BoatItem(false, PETRIFIED_BOAT_TYPE, new Item.Properties().stacksTo(1)));
+            () -> new BoatItem(false, Boat.Type.byName("PETRIFIED"), new Item.Properties().stacksTo(1)));
     public static final DeferredItem<BoatItem> PETRIFIED_CHEST_BOAT = ITEMS.register("petrified_chest_boat",
-            () -> new BoatItem(true, PETRIFIED_BOAT_TYPE, new Item.Properties().stacksTo(1)));
+            () -> new BoatItem(true, Boat.Type.byName("PETRIFIED"), new Item.Properties().stacksTo(1)));
     public static final DeferredItem<SignItem> PETRIFIED_SIGN = ITEMS.register("petrified_sign",
             () -> new SignItem(new Item.Properties().stacksTo(16), DDBlocks.PETRIFIED_SIGN.get(), DDBlocks.PETRIFIED_WALL_SIGN.get()));
     public static final DeferredItem<HangingSignItem> PETRIFIED_HANGING_SIGN = ITEMS.register("petrified_hanging_sign",

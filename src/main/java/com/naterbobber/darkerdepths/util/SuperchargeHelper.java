@@ -2,7 +2,7 @@ package com.naterbobber.darkerdepths.util;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.component.SuperchargeInfo;
-import com.naterbobber.darkerdepths.config.DDConfigs;
+import com.naterbobber.darkerdepths.config.DDConfig;
 import com.naterbobber.darkerdepths.init.DDDataComponents;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.component.DataComponents;
@@ -33,7 +33,7 @@ public class SuperchargeHelper {
         ItemAttributeModifiers originalModifiers = stack.getOrDefault(DataComponents.ATTRIBUTE_MODIFIERS, ItemAttributeModifiers.EMPTY);
         Optional<Unbreakable> originalUnbreakable = Optional.ofNullable(stack.get(DataComponents.UNBREAKABLE));
 
-        long expirationTick = level.getGameTime() + (DDConfigs.SUPERCHARGE_DURATION.get() * 60 * 20L);
+        long expirationTick = level.getGameTime() + (DDConfig.CONFIG.SUPERCHARGE_DURATION.get() * 60 * 20L);
         SuperchargeInfo info = new SuperchargeInfo(expirationTick, originalUnbreakable, originalModifiers);
         stack.set(DDDataComponents.SUPERCHARGE_INFO.get(), info);
 
@@ -41,8 +41,8 @@ public class SuperchargeHelper {
         Component originalName = stack.getHoverName().copy();
         stack.set(DataComponents.CUSTOM_NAME, prefix.append(originalName));
 
-        float damageMultiplier = DDConfigs.SUPERCHARGE_ATTACK_DAMAGE.get() / 100.0F;
-        float speedMultiplier = DDConfigs.SUPERCHARGE_ATTACK_SPEED.get() / 100.0F;
+        float damageMultiplier = DDConfig.CONFIG.SUPERCHARGE_ATTACK_DAMAGE.get() / 100.0F;
+        float speedMultiplier = DDConfig.CONFIG.SUPERCHARGE_ATTACK_SPEED.get() / 100.0F;
 
 
         ItemAttributeModifiers newModifiers = originalModifiers
@@ -57,7 +57,7 @@ public class SuperchargeHelper {
                 );
         stack.set(DataComponents.ATTRIBUTE_MODIFIERS, newModifiers);
 
-        if (DDConfigs.SUPERCHARGE_UNBREAKABLE.get()) {
+        if (DDConfig.CONFIG.SUPERCHARGE_UNBREAKABLE.get()) {
             stack.set(DataComponents.UNBREAKABLE, new Unbreakable(false));
         }
     }

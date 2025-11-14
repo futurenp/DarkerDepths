@@ -1,9 +1,7 @@
 package com.naterbobber.darkerdepths;
 
-import com.naterbobber.darkerdepths.config.DDConfigs;
+import com.naterbobber.darkerdepths.config.DDConfig;
 import com.naterbobber.darkerdepths.events.ClientDeathAnchorAnimationOverlay;
-import com.naterbobber.darkerdepths.events.MobEvents;
-import com.naterbobber.darkerdepths.events.RegisterEvents;
 import com.naterbobber.darkerdepths.init.*;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.bus.api.IEventBus;
@@ -23,7 +21,7 @@ public class DarkerDepths {
     public static final String MOD_ID = "darkerdepths";
 
     public DarkerDepths(IEventBus modEventBus, ModContainer container) {
-        container.registerConfig(ModConfig.Type.COMMON, DDConfigs.SPEC);
+        container.registerConfig(ModConfig.Type.COMMON, DDConfig.CONFIG_SPEC);
 
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::clientSetup);

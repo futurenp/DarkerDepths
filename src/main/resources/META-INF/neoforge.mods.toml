@@ -31,8 +31,8 @@ Artist:
 
 '''
 
-#[[mixins]]
-#    config="darkerdepths.mixins.json"
+[[mixins]]
+    config="darkerdepths.mixins.json"
 
 #[[accessTransformers]]
 #    file="META-INF/accesstransformer.cfg"
