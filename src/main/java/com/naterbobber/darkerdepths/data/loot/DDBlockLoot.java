@@ -58,12 +58,6 @@ public class DDBlockLoot extends BlockLootSubProvider {
         add(DDBlocks.AMBER_CLUSTER.get(), block -> createSingleItemTableWithSilkTouch(DDBlocks.AMBER_CLUSTER.get(), DDItems.AMBER.get()));
         add(DDBlocks.GLIMMERING_VINES.get(), block -> createGlimmeringVinesLoot(DDBlocks.GLIMMERING_VINES.get(), DDItems.GLOW_GRIME.get()));
         add(DDBlocks.GLIMMERING_VINE_PLANT.get(), block -> createGlimmeringVinesLoot(DDBlocks.GLIMMERING_VINES.get(), DDItems.GLOW_GRIME.get()));
-
-
-
-        //TODO
-        //ash layers
-        //glowshroom stages
         add(DDBlocks.GLOWSHROOM.get(), block -> createStageBasedLoot(DDBlocks.GLOWSHROOM.get(), GlowshroomBlock.CLUSTERS_1_3, 3));
         add(DDBlocks.ASH.get(), block -> createStageBasedLoot(DDBlocks.ASH.get(), AshBlock.LAYERS, 8));
 
