@@ -92,15 +92,14 @@ public class DDBlockLoot extends BlockLootSubProvider {
                 .map(Holder::value)
                 .filter(item -> !blockIgnores.contains(item)).collect(Collectors.toSet());
 
-        for (Block block : defaultDropBlocks) {
-//            System.out.println(block.getName().toString());
+        defaultDropBlocks.forEach(block -> {
             switch (block) {
                 case SlabBlock b -> add(b, createSlabItemTable(b));
                 case VerticalSlabBlock b -> add(b, createSlabItemTable(b));
                 case DoorBlock b -> add(b, createDoorTable(b));
                 default -> dropSelf(block);
             }
-        }
+        });
     }
 
     //finish this later
