@@ -1,5 +1,6 @@
 package com.naterbobber.darkerdepths.data.loot;
 
+import com.naterbobber.darkerdepths.blocks.AshBlock;
 import com.naterbobber.darkerdepths.blocks.GlowshroomBlock;
 import com.naterbobber.darkerdepths.blocks.VerticalSlabBlock;
 import com.naterbobber.darkerdepths.init.DDBlocks;
@@ -17,6 +18,7 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
 import net.minecraft.world.level.storage.loot.functions.LootItemFunction;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
@@ -26,9 +28,11 @@ import net.minecraft.world.level.storage.loot.providers.number.NumberProvider;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class DDBlockLoot extends BlockLootSubProvider {
 
@@ -55,9 +59,13 @@ public class DDBlockLoot extends BlockLootSubProvider {
         add(DDBlocks.GLIMMERING_VINES.get(), block -> createGlimmeringVinesLoot(DDBlocks.GLIMMERING_VINES.get(), DDItems.GLOW_GRIME.get()));
         add(DDBlocks.GLIMMERING_VINE_PLANT.get(), block -> createGlimmeringVinesLoot(DDBlocks.GLIMMERING_VINES.get(), DDItems.GLOW_GRIME.get()));
 
+
+
         //TODO
         //ash layers
         //glowshroom stages
+        add(DDBlocks.GLOWSHROOM.get(), block -> createStageBasedLoot(DDBlocks.GLOWSHROOM.get(), GlowshroomBlock.CLUSTERS_1_3, 3));
+        add(DDBlocks.ASH.get(), block -> createStageBasedLoot(DDBlocks.ASH.get(), AshBlock.LAYERS, 8));
 
 
 
@@ -102,9 +110,34 @@ public class DDBlockLoot extends BlockLootSubProvider {
         });
     }
 
-    //finish this later
-    private LootTable.Builder createCountBasedLoot(Block block, IntegerProperty countProperty, int maxAmount) {
-        return new LootTable.Builder();
+
+    private LootTable.Builder createStageBasedLoot(Block block, IntegerProperty stageProperty, int maxAmount) {
+        List<Integer> stages = IntStream.rangeClosed(2, maxAmount)
+                .boxed()
+                .toList();
+
+        return LootTable.lootTable()
+                .withPool(
+                        LootPool.lootPool()
+                                .setRolls(ConstantValue.exactly(1.0F))
+                                .add(
+                                        this.applyExplosionDecay(
+                                                block,
+                                                LootItem.lootTableItem(block)
+                                                        .apply(
+                                                                stages,
+                                                                stage -> SetItemCountFunction.setCount(ConstantValue.exactly((float)stage))
+                                                                        .when(
+                                                                                LootItemBlockStatePropertyCondition.hasBlockStateProperties(block)
+                                                                                        .setProperties(
+                                                                                                StatePropertiesPredicate.Builder.properties()
+                                                                                                        .hasProperty(stageProperty, stage)
+                                                                                        )
+                                                                        )
+                                                        )
+                                        )
+                                )
+                );
     }
 
     private LootTable.Builder createGlimmeringVinesLoot(Block block, Item item) {

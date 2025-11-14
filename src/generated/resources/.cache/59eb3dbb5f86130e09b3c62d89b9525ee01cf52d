@@ -1,4 +1,4 @@
-// 1.21.1	2025-11-14T03:16:42.8453207	Loot Tables
+// 1.21.1	2025-11-14T15:04:02.654105	Loot Tables
 69a68443e41c0ea8610b4ece66b6a6a3bff163d0 data/darkerdepths/loot_table/archaeology/catacombs/standard.json
 b26089f15d136d6d0b9b7870fd170249ec0473de data/darkerdepths/loot_table/blocks/amber_block.json
 7b8aa851d67ec8c45ab85ef504b99c843fe25237 data/darkerdepths/loot_table/blocks/amber_cluster.json
@@ -14,7 +14,7 @@ eb687ae260549b7408d2442cfcff598fa5f8cd93 data/darkerdepths/loot_table/blocks/ari
 5bb0a1bd5c0b1aac19497adb36142ab1468467ca data/darkerdepths/loot_table/blocks/aridrock_vertical_slab.json
 00d343a8eda5ecf381b0864fbf6020c1d6816d60 data/darkerdepths/loot_table/blocks/aridrock_wall.json
 30a512fc2fd074ff974e50e554cbad6458e2c0cf data/darkerdepths/loot_table/blocks/arid_deepslate.json
-995d3543cd5586fd8875481eace0836d2b9facdf data/darkerdepths/loot_table/blocks/ash.json
+2e8c618bfdf19b67ab78d3825575071ce68de407 data/darkerdepths/loot_table/blocks/ash.json
 a4818c29487edb69b0edcf009ab34bba657d4e73 data/darkerdepths/loot_table/blocks/ash_block.json
 730751e7e8581c9c058abe7d7516a5e6e7e2154c data/darkerdepths/loot_table/blocks/chiseled_aridrock_bricks.json
 789074ac815e47bfa99229ca12e299b33ac9dcca data/darkerdepths/loot_table/blocks/chiseled_darkslate_bricks.json
@@ -52,7 +52,7 @@ c9534ed242836a6f8aab02e225c3e2f046eaae14 data/darkerdepths/loot_table/blocks/dus
 5ffc4e1c1a8d7c17b4bd60d8f204d5158acc7bac data/darkerdepths/loot_table/blocks/geyser.json
 282071302a5a0cbe2a8ede0c96d4ec6ecc6fb1ca data/darkerdepths/loot_table/blocks/glimmering_vines.json
 9e2d793e058632bccef32ef0d357a502664cce13 data/darkerdepths/loot_table/blocks/glimmering_vine_plant.json
-87cfa7c8c13871f03e0df30eb5724f686b1a345e data/darkerdepths/loot_table/blocks/glowshroom.json
+b9f74842c633a2718c6f9971033511ca66e96370 data/darkerdepths/loot_table/blocks/glowshroom.json
 ecfb3117007cf0c8c49815ccbf0ae3f3ac3ef162 data/darkerdepths/loot_table/blocks/glowshroom_block.json
 171618302e0b65405c0ce97a15fae37fe07e422a data/darkerdepths/loot_table/blocks/glowshroom_heart.json
 a5fbd8e2568a07407ad0973cb0817907ff051b18 data/darkerdepths/loot_table/blocks/glowshroom_lamp.json
