@@ -45,7 +45,7 @@ public class VoidSoulEntity extends PathfinderMob implements GeoEntity {
     protected static final RawAnimation IDLE_ANIM = RawAnimation.begin().thenLoop("idle");
     private final AnimatableInstanceCache geoCache = GeckoLibUtil.createInstanceCache(this);
     private static final EntityDataAccessor<Boolean> EXPIRES =
-            SynchedEntityData.defineId(VoidSoulKnightEntity.class, EntityDataSerializers.BOOLEAN);
+            SynchedEntityData.defineId(VoidSoulEntity.class, EntityDataSerializers.BOOLEAN);
 
 
     public VoidSoulEntity(EntityType<? extends PathfinderMob> type, Level world) {
