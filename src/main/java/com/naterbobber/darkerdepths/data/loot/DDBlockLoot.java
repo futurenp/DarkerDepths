@@ -41,19 +41,19 @@ public class DDBlockLoot extends BlockLootSubProvider {
 
     @Override
     protected void generate() {
-        addBlockLoot(DDBlocks.PETRIFIED_SIGN.get(), block -> createSingleItemTable(DDItems.PETRIFIED_SIGN.get()));
-        addBlockLoot(DDBlocks.PETRIFIED_WALL_SIGN.get(), block -> createSingleItemTable(DDItems.PETRIFIED_SIGN.get()));
-        addBlockLoot(DDBlocks.PETRIFIED_HANGING_SIGN.get(), block -> createSingleItemTable(DDItems.PETRIFIED_HANGING_SIGN.get()));
-        addBlockLoot(DDBlocks.PETRIFIED_WALL_HANGING_SIGN.get(), block -> createSingleItemTable(DDItems.PETRIFIED_HANGING_SIGN.get()));
-        addBlockLoot(DDBlocks.POTTED_GLOWSHROOM.get(), block -> createPotFlowerItemTable(DDBlocks.GLOWSHROOM.get()));
+        add(DDBlocks.PETRIFIED_SIGN.get(), block -> createSingleItemTable(DDItems.PETRIFIED_SIGN.get()));
+        add(DDBlocks.PETRIFIED_WALL_SIGN.get(), block -> createSingleItemTable(DDItems.PETRIFIED_SIGN.get()));
+        add(DDBlocks.PETRIFIED_HANGING_SIGN.get(), block -> createSingleItemTable(DDItems.PETRIFIED_HANGING_SIGN.get()));
+        add(DDBlocks.PETRIFIED_WALL_HANGING_SIGN.get(), block -> createSingleItemTable(DDItems.PETRIFIED_HANGING_SIGN.get()));
+        add(DDBlocks.POTTED_GLOWSHROOM.get(), block -> createPotFlowerItemTable(DDBlocks.GLOWSHROOM.get()));
         skipBlock(DDBlocks.MOB_PLACER.get());
-        addBlockLoot(DDBlocks.DRY_SPROUTS.get(), block -> createGrassDrops(DDBlocks.DRY_SPROUTS.get()));
-        addBlockLoot(DDBlocks.MOSSY_SPROUTS.get(), block -> createGrassDrops(DDBlocks.MOSSY_SPROUTS.get()));
-        addBlockLoot(DDBlocks.MOSSY_GRIMESTONE.get(), block -> createSingleItemTableWithSilkTouch(DDBlocks.MOSSY_GRIMESTONE.get(), DDBlocks.GRIMESTONE.asItem()));
-        addBlockLoot(DDBlocks.ARID_DEEPSLATE.get(), block -> createSingleItemTableWithSilkTouch(DDBlocks.ARID_DEEPSLATE.get(), Blocks.DEEPSLATE.asItem()));
-        addBlockLoot(DDBlocks.AMBER_CLUSTER.get(), block -> createSingleItemTableWithSilkTouch(DDBlocks.AMBER_CLUSTER.get(), DDItems.AMBER.get()));
-        addBlockLoot(DDBlocks.GLIMMERING_VINES.get(), block -> createGlimmeringVinesLoot(DDBlocks.GLIMMERING_VINES.get(), DDItems.GLOW_GRIME.get()));
-        addBlockLoot(DDBlocks.GLIMMERING_VINE_PLANT.get(), block -> createGlimmeringVinesLoot(DDBlocks.GLIMMERING_VINES.get(), DDItems.GLOW_GRIME.get()));
+        add(DDBlocks.DRY_SPROUTS.get(), block -> createGrassDrops(DDBlocks.DRY_SPROUTS.get()));
+        add(DDBlocks.MOSSY_SPROUTS.get(), block -> createGrassDrops(DDBlocks.MOSSY_SPROUTS.get()));
+        add(DDBlocks.MOSSY_GRIMESTONE.get(), block -> createSingleItemTableWithSilkTouch(DDBlocks.MOSSY_GRIMESTONE.get(), DDBlocks.GRIMESTONE.asItem()));
+        add(DDBlocks.ARID_DEEPSLATE.get(), block -> createSingleItemTableWithSilkTouch(DDBlocks.ARID_DEEPSLATE.get(), Blocks.DEEPSLATE.asItem()));
+        add(DDBlocks.AMBER_CLUSTER.get(), block -> createSingleItemTableWithSilkTouch(DDBlocks.AMBER_CLUSTER.get(), DDItems.AMBER.get()));
+        add(DDBlocks.GLIMMERING_VINES.get(), block -> createGlimmeringVinesLoot(DDBlocks.GLIMMERING_VINES.get(), DDItems.GLOW_GRIME.get()));
+        add(DDBlocks.GLIMMERING_VINE_PLANT.get(), block -> createGlimmeringVinesLoot(DDBlocks.GLIMMERING_VINES.get(), DDItems.GLOW_GRIME.get()));
 
         //TODO
         //ash layers
@@ -73,8 +73,15 @@ public class DDBlockLoot extends BlockLootSubProvider {
         blockIgnores.add(block);
     }
 
-    private void addBlockLoot(Block block, Function<Block, LootTable.Builder> factory){
-        add(block, factory);
+    @Override
+    protected void add(Block block, LootTable.Builder builder) {
+        super.add(block, builder);
+        blockIgnores.add(block);
+    }
+
+    @Override
+    protected void add(Block block, Function<Block, LootTable.Builder> factory) {
+        super.add(block, factory);
         blockIgnores.add(block);
     }
 
