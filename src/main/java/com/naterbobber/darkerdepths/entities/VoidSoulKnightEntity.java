@@ -123,6 +123,8 @@ public class VoidSoulKnightEntity extends VoidSoulMonster implements GeoEntity {
     public void tick() {
         super.tick();
 
+        if (this.level().isClientSide) return;
+
         if(dormantCheckCooldown != 0) {
             this.dormantCheckCooldown--;
             return;
@@ -142,20 +144,26 @@ public class VoidSoulKnightEntity extends VoidSoulMonster implements GeoEntity {
 
         if(isPeaceful) return;
 
-        if (!this.level().isClientSide) {
-            Player player = this.level().getNearestPlayer(this, 8);
+        Player player = this.level().getNearestPlayer(this, 8);
 
-            boolean hpChanged = this.getHealth() < this.getMaxHealth();
+        boolean hpChanged = this.getHealth() < this.getMaxHealth();
 
-            if ((player != null && !player.isCreative()) || hpChanged) {
-                this.setDormant(false);
-                this.registerGoals();
-                this.setTarget(player);
-                this.playSound(SoundEvents.IRON_GOLEM_REPAIR, 1.0F, 0.4F);
-            }
-
-            this.dormantCheckCooldown = 20;
+        if ((player != null && !player.isCreative())) {
+            this.awakeFromDormant();
+            this.setTarget(player);
+            return;
         }
+
+        if (hpChanged) {
+            this.awakeFromDormant();
+        }
+    }
+
+    private void awakeFromDormant() {
+        this.setDormant(false);
+        this.registerGoals();
+        this.playSound(SoundEvents.IRON_GOLEM_REPAIR, 1.0F, 0.4F);
+        this.dormantCheckCooldown = 20;
     }
 
     @Override
