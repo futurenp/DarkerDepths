@@ -1,6 +1,7 @@
 package com.naterbobber.darkerdepths.effects;
 
 import com.google.common.collect.Maps;
+import net.minecraft.core.Holder;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -19,15 +20,13 @@ import java.util.UUID;
 public class ParanoiaEffect extends MobEffect {
     private final Map<UUID, Integer> PARANOIA_COOLDOWNS = Maps.newHashMap();
 
-    private final double SOUND_CHANCE = 0.0015f;
-
     private static final List<SoundEvent> PARANOIA_SOUNDS = List.of(
             SoundEvents.STONE_STEP,
             SoundEvents.WOOD_STEP
     );
 
-    public ParanoiaEffect() {
-        super(MobEffectCategory.HARMFUL, 0x1a1a1a);
+    public ParanoiaEffect(MobEffectCategory category, int color) {
+        super(category, color);
     }
 
     @Override
@@ -38,11 +37,12 @@ public class ParanoiaEffect extends MobEffect {
 
         if (currentCooldown > 0) {
             this.PARANOIA_COOLDOWNS.put(entity.getUUID(), currentCooldown - 1);
-            return false;
+            return true;
         }
 
         RandomSource random = entity.getRandom();
-        if (random.nextDouble() > SOUND_CHANCE || entity.level().isClientSide()) return false;
+        double soundChance = 0.0015f;
+        if (random.nextDouble() > soundChance) return true;
 
         double minRadius = 4.0, maxRadius = 16.0;
         double radius = minRadius + random.nextDouble() * (maxRadius - minRadius);
@@ -57,7 +57,7 @@ public class ParanoiaEffect extends MobEffect {
         double dotProduct = lookDirection.dot(soundDirection);
 
         if (dotProduct > 0) {
-            return false;
+            return true;
         }
 
         SoundEvent randomSound = PARANOIA_SOUNDS.get(random.nextInt(PARANOIA_SOUNDS.size()));
@@ -71,7 +71,7 @@ public class ParanoiaEffect extends MobEffect {
 
         this.PARANOIA_COOLDOWNS.put(entity.getUUID(), currentCooldown + 360 - (amplifier * 60));
 
-        return true;
+        return super.applyEffectTick(entity, amplifier);
     }
 
     @Override
