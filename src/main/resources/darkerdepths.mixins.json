@@ -4,11 +4,13 @@
   "compatibilityLevel": "JAVA_21",
   "refmap": "darkerdepths.refmap.json",
   "mixins": [
+    "BoatTypeMixin",
+    "BuildStateMixin",
     "HuskMixin",
+    "OverworldBiomeBuilderMixin",
     "PlayerMixin",
     "RotatedPillarBlockMixin",
-    "ServerGamePacketListenerImplMixin",
-    "BoatTypeMixin"
+    "ServerGamePacketListenerImplMixin"
   ],
   "client": [
     "BlockLightEngineMixin"
