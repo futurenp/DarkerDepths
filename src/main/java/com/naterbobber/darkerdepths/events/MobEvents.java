@@ -145,7 +145,7 @@ public class MobEvents {
     public static void onMobEffectExpired(MobEffectEvent.Expired event) {
         LivingEntity entity = event.getEntity();
         MobEffectInstance effectInstance = event.getEffectInstance();
-        if (effectInstance != null && effectInstance.getEffect() == DDMobEffects.SOUL_BINDING.get()) {
+        if (effectInstance != null && effectInstance.getEffect().value() == DDMobEffects.SOUL_BINDING.get()) {
             if (entity instanceof DeathAnchorLocation deathAnchorLocation && deathAnchorLocation.getDeathAnchorLocation().isPresent()) {
                 GlobalPos globalPos = deathAnchorLocation.getDeathAnchorLocation().get();
                 ResourceKey<Level> resourcekey = globalPos.dimension();
