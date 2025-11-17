@@ -24,6 +24,7 @@ public class SuperchargeHelper {
 
     private static final ResourceLocation ATTACK_DAMAGE_MODIFIER_ID = ResourceLocation.fromNamespaceAndPath(DarkerDepths.MOD_ID, "supercharge_attack_damage");
     private static final ResourceLocation ATTACK_SPEED_MODIFIER_ID = ResourceLocation.fromNamespaceAndPath(DarkerDepths.MOD_ID, "supercharge_attack_speed");
+    private static final ResourceLocation MINING_EFFICIENCY_MODIFIER_ID = ResourceLocation.fromNamespaceAndPath(DarkerDepths.MOD_ID, "supercharge_mining_speed");
 
     public static void applyUpgrades(ItemStack stack, Level level) {
         if (stack.isEmpty() || level.isClientSide) {
@@ -42,18 +43,22 @@ public class SuperchargeHelper {
         stack.set(DataComponents.CUSTOM_NAME, prefix.append(originalName));
 
         float damageMultiplier = DDConfig.CONFIG.SUPERCHARGE_ATTACK_DAMAGE.get() / 100.0F;
-        float speedMultiplier = DDConfig.CONFIG.SUPERCHARGE_ATTACK_SPEED.get() / 100.0F;
-
+        float attackSpeedMultiplier = DDConfig.CONFIG.SUPERCHARGE_ATTACK_SPEED.get() / 100.0F;
+        float miningSpeedMultiplier = DDConfig.CONFIG.SUPERCHARGE_DIG_SPEED.get() / 100.0F;
 
         ItemAttributeModifiers newModifiers = originalModifiers
                 .withModifierAdded(
                         Attributes.ATTACK_DAMAGE,
                         new AttributeModifier(ATTACK_DAMAGE_MODIFIER_ID, damageMultiplier, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
-                        EquipmentSlotGroup.bySlot(Objects.requireNonNull(stack.getEquipmentSlot()))
+                        EquipmentSlotGroup.ANY
                 ).withModifierAdded(
                         Attributes.ATTACK_SPEED,
-                        new AttributeModifier(ATTACK_SPEED_MODIFIER_ID, speedMultiplier, AttributeModifier.Operation.ADD_MULTIPLIED_BASE),
-                        EquipmentSlotGroup.bySlot(Objects.requireNonNull(stack.getEquipmentSlot()))
+                        new AttributeModifier(ATTACK_SPEED_MODIFIER_ID, attackSpeedMultiplier, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
+                        EquipmentSlotGroup.ANY
+                ).withModifierAdded(
+                        Attributes.MINING_EFFICIENCY,
+                        new AttributeModifier(ATTACK_DAMAGE_MODIFIER_ID, miningSpeedMultiplier, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
+                        EquipmentSlotGroup.ANY
                 );
         stack.set(DataComponents.ATTRIBUTE_MODIFIERS, newModifiers);
 

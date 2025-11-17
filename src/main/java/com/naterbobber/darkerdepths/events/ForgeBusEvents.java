@@ -52,8 +52,7 @@ public class ForgeBusEvents {
 
             SuperchargeHelper.applyUpgrades(mainHandStack, level);
             offHandStack.shrink(1);
-//            level.playSound(null, player.blockPosition(), SoundEvents.BEACON_ACTIVATE, SoundSource.PLAYERS, 0.75f, 1.6f);
-            player.playSound(SoundEvents.BEACON_ACTIVATE, 0.75f, 1.6f);
+            level.playSound(null, player.blockPosition(), SoundEvents.BEACON_ACTIVATE, SoundSource.PLAYERS, 0.75f, 1.6f);
 
             event.setCancellationResult(InteractionResult.SUCCESS);
             event.setCanceled(true);
