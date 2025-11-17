@@ -2,6 +2,7 @@ package com.naterbobber.darkerdepths.config;
 
 import net.neoforged.neoforge.common.ModConfigSpec;
 
+@Deprecated
 public record DDBiomeConfig(
         ModConfigSpec.DoubleValue tempMin, ModConfigSpec.DoubleValue tempMax,
         ModConfigSpec.DoubleValue humidityMin, ModConfigSpec.DoubleValue humidityMax,

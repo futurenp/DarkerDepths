@@ -37,7 +37,13 @@ public class BiomeReagentHandler {
         consumer.accept(Pair.of(climateParamsFromConfig(GLOWSHROOM_FOREST_DEFAULTS), GLOWSHROOM_FOREST));
         consumer.accept(Pair.of(climateParamsFromConfig(MOLTEN_CAVERN_DEFAULTS), MOLTEN_CAVERN));
     }
-//does not work
+
+//    public static void init(Consumer<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> consumer) {
+//        consumer.accept(Pair.of(climateParamsFromConfig(DDConfig.CONFIG.SANDY_CATACOMBS_CLIMATE), SANDY_CATACOMBS));
+//        consumer.accept(Pair.of(climateParamsFromConfig(DDConfig.CONFIG.GLOWSHROOM_FOREST_CLIMATE), GLOWSHROOM_FOREST));
+//        consumer.accept(Pair.of(climateParamsFromConfig(DDConfig.CONFIG.MOLTEN_CAVERN_CLIMATE), MOLTEN_CAVERN));
+//    }
+
     private static Climate.ParameterPoint climateParamsFromConfig(DDBiomeConfig config) {
         return Climate.parameters(
                 Climate.Parameter.span(config.tempMin().get().floatValue(), config.tempMax().get().floatValue()),
