@@ -42,9 +42,6 @@ public class DarkerDepths {
         DDActivities.ACTIVITIES.register(modEventBus);
         DDMemoryModuleTypes.MEMORY_MODULE_TYPES.register(modEventBus);
         DDDataComponents.DATA_COMPONENTS.register(modEventBus);
-
-        //should be registered client only
-        NeoForge.EVENT_BUS.register(new ClientDeathAnchorAnimationOverlay());
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
@@ -52,6 +49,7 @@ public class DarkerDepths {
     }
 
     private void clientSetup(final FMLClientSetupEvent event) {
+        NeoForge.EVENT_BUS.register(new ClientDeathAnchorAnimationOverlay());
     }
 
     public static ResourceLocation id(String name) {
