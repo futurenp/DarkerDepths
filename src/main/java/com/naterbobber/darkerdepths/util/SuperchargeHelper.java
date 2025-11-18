@@ -60,7 +60,7 @@ public class SuperchargeHelper {
                         new AttributeModifier(ATTACK_DAMAGE_MODIFIER_ID, miningSpeedMultiplier, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
                         EquipmentSlotGroup.ANY
                 );
-        stack.set(DataComponents.ATTRIBUTE_MODIFIERS, newModifiers);
+        stack.set(DataComponents.ATTRIBUTE_MODIFIERS, newModifiers.withTooltip(false));
 
         if (DDConfig.CONFIG.SUPERCHARGE_UNBREAKABLE.get()) {
             stack.set(DataComponents.UNBREAKABLE, new Unbreakable(false));
