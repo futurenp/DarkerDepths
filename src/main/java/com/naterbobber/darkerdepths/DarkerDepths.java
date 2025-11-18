@@ -1,7 +1,7 @@
 package com.naterbobber.darkerdepths;
 
 import com.naterbobber.darkerdepths.config.DDConfig;
-import com.naterbobber.darkerdepths.events.ClientDeathAnchorAnimationOverlay;
+import com.naterbobber.darkerdepths.client.ClientDeathAnchorAnimationOverlay;
 import com.naterbobber.darkerdepths.init.*;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.bus.api.IEventBus;

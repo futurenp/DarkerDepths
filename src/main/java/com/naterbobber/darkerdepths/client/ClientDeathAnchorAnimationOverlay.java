@@ -1,4 +1,4 @@
-package com.naterbobber.darkerdepths.events;
+package com.naterbobber.darkerdepths.client;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;

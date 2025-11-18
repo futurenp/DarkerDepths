@@ -5,6 +5,7 @@ import com.naterbobber.darkerdepths.client.particle.DrippingParticle;
 import com.naterbobber.darkerdepths.client.particle.VoidSoulFlameParticle;
 import com.naterbobber.darkerdepths.client.particle.VoidSoulFlameSmokeParticle;
 import com.naterbobber.darkerdepths.client.particle.VoidSoulParticle;
+import com.naterbobber.darkerdepths.client.ClientDeathAnchorAnimationOverlay;
 import com.naterbobber.darkerdepths.client.render.renderers.BodySnatcherRenderer;
 import com.naterbobber.darkerdepths.client.render.renderers.GlowshroomMonsterRenderer;
 import com.naterbobber.darkerdepths.client.render.renderers.ParanoiaAltarBlockEntityRenderer;
@@ -17,7 +18,6 @@ import com.naterbobber.darkerdepths.init.DDBlockEntityTypes;
 import com.naterbobber.darkerdepths.init.DDDataComponents;
 import com.naterbobber.darkerdepths.init.DDEntityTypes;
 import com.naterbobber.darkerdepths.init.DDItems;
-import com.naterbobber.darkerdepths.init.DDModelLayers;
 import com.naterbobber.darkerdepths.init.DDParticleTypes;
 import com.naterbobber.darkerdepths.init.DDWoodType;
 import net.minecraft.client.Minecraft;
@@ -40,7 +40,7 @@ import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
 import net.neoforged.neoforge.common.NeoForge;
 
 @OnlyIn(Dist.CLIENT)
-@EventBusSubscriber(modid = DarkerDepths.MOD_ID)
+@EventBusSubscriber(modid = DarkerDepths.MOD_ID, value = Dist.CLIENT)
 public class ClientEvents {
 
 
