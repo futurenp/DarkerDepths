@@ -144,16 +144,13 @@ public class GlowshroomMonsterEntity extends Monster implements GeoEntity {
 
     protected AABB getAttackBoundingBox() {
         Entity entity = this.getVehicle();
-        AABB aabb;
         if (entity != null) {
             AABB aabb1 = entity.getBoundingBox();
             AABB aabb2 = this.getBoundingBox();
-            aabb = new AABB(Math.min(aabb2.minX, aabb1.minX), aabb2.minY, Math.min(aabb2.minZ, aabb1.minZ), Math.max(aabb2.maxX, aabb1.maxX), aabb2.maxY, Math.max(aabb2.maxZ, aabb1.maxZ));
+            return new AABB(Math.min(aabb2.minX, aabb1.minX), aabb2.minY, Math.min(aabb2.minZ, aabb1.minZ), Math.max(aabb2.maxX, aabb1.maxX), aabb2.maxY, Math.max(aabb2.maxZ, aabb1.maxZ));
         } else {
-            aabb = this.getBoundingBox();
+            return this.getBoundingBox().inflate(REACH, 0.0, REACH);
         }
-
-        return aabb.inflate(REACH, 0.0, REACH);
     }
 
     @Nullable

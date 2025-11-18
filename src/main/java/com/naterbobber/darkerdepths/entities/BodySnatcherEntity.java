@@ -33,17 +33,13 @@ public class BodySnatcherEntity extends VoidSoulMonster implements GeoEntity, ID
     private int attackTick;
     private int damageDelay;
     private Entity attackTarget;
-    private static final float REACH = 1.68F;
+    private static final float REACH = 1.65F;
 
     private final AnimatableInstanceCache geoCache = GeckoLibUtil.createInstanceCache(this);
     protected static final RawAnimation ATTACK_ANIM = RawAnimation.begin().then("attack.swing", Animation.LoopType.PLAY_ONCE);
     protected static final RawAnimation IDLE_ANIM = RawAnimation.begin().thenLoop("idle");
     protected static final RawAnimation PRE_DASH = RawAnimation.begin().thenLoop("pre_dash");
     protected static final RawAnimation HURT = RawAnimation.begin().thenLoop("hurt");
-
-
-
-
 
     private static final EntityDataAccessor<Boolean> PREPARING_TO_DASH =
             SynchedEntityData.defineId(BodySnatcherEntity.class, EntityDataSerializers.BOOLEAN);
@@ -107,7 +103,7 @@ public class BodySnatcherEntity extends VoidSoulMonster implements GeoEntity, ID
         }
 
         if(this.damageDelay == 0) {
-            if (this.distanceToSqr(this.attackTarget) < 6) {
+            if (this.distanceToSqr(this.attackTarget) < 4) {
                 this.attackTarget.hurt(this.level().damageSources().mobAttack(this),
                         (float) this.getAttributeValue(Attributes.ATTACK_DAMAGE)
                 );
@@ -138,16 +134,13 @@ public class BodySnatcherEntity extends VoidSoulMonster implements GeoEntity, ID
 
     protected AABB getAttackBoundingBox() {
         Entity entity = this.getVehicle();
-        AABB aabb;
         if (entity != null) {
             AABB aabb1 = entity.getBoundingBox();
             AABB aabb2 = this.getBoundingBox();
-            aabb = new AABB(Math.min(aabb2.minX, aabb1.minX), aabb2.minY, Math.min(aabb2.minZ, aabb1.minZ), Math.max(aabb2.maxX, aabb1.maxX), aabb2.maxY, Math.max(aabb2.maxZ, aabb1.maxZ));
+            return new AABB(Math.min(aabb2.minX, aabb1.minX), aabb2.minY, Math.min(aabb2.minZ, aabb1.minZ), Math.max(aabb2.maxX, aabb1.maxX), aabb2.maxY, Math.max(aabb2.maxZ, aabb1.maxZ));
         } else {
-            aabb = this.getBoundingBox();
+            return this.getBoundingBox().inflate(REACH, 0.0, REACH);
         }
-
-        return aabb.inflate(REACH, 0.0, REACH);
     }
 
     @Override
@@ -212,7 +205,6 @@ public class BodySnatcherEntity extends VoidSoulMonster implements GeoEntity, ID
     @Override
     protected void playStepSound(BlockPos pPos, BlockState pState) {
     }
-
 
     @Override
     public void setPreparingToDash(boolean isPreparing) {

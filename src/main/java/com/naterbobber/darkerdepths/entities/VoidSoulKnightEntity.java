@@ -36,7 +36,7 @@ public class VoidSoulKnightEntity extends VoidSoulMonster implements GeoEntity {
     private Entity attackTarget;
     private int dormantCheckCooldown = 0;
     private static final int PERSISTENCE = 20 * 30; // tick * seconds
-    private static final float REACH = 2.75F;
+    private static final float REACH = 2.25F;
 
     protected static final RawAnimation WALK_ANIM = RawAnimation.begin().thenLoop("move.walk");
     protected static final RawAnimation ATTACK_ANIM = RawAnimation.begin().then("attack.swing", Animation.LoopType.PLAY_ONCE);
@@ -202,16 +202,13 @@ public class VoidSoulKnightEntity extends VoidSoulMonster implements GeoEntity {
 
     protected AABB getAttackBoundingBox() {
         Entity entity = this.getVehicle();
-        AABB aabb;
         if (entity != null) {
             AABB aabb1 = entity.getBoundingBox();
             AABB aabb2 = this.getBoundingBox();
-            aabb = new AABB(Math.min(aabb2.minX, aabb1.minX), aabb2.minY, Math.min(aabb2.minZ, aabb1.minZ), Math.max(aabb2.maxX, aabb1.maxX), aabb2.maxY, Math.max(aabb2.maxZ, aabb1.maxZ));
+            return new AABB(Math.min(aabb2.minX, aabb1.minX), aabb2.minY, Math.min(aabb2.minZ, aabb1.minZ), Math.max(aabb2.maxX, aabb1.maxX), aabb2.maxY, Math.max(aabb2.maxZ, aabb1.maxZ));
         } else {
-            aabb = this.getBoundingBox();
+            return this.getBoundingBox().inflate(REACH, 0.0, REACH);
         }
-
-        return aabb.inflate(REACH, 0.0, REACH);
     }
 
     @Override
