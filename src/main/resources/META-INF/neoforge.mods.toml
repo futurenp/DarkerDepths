@@ -34,9 +34,6 @@ Artist:
 [[mixins]]
     config="darkerdepths.mixins.json"
 
-#[[accessTransformers]]
-#    file="META-INF/accesstransformer.cfg"
-
 [[dependencies.darkerdepths]]
     modId="neoforge"
     type="required"
