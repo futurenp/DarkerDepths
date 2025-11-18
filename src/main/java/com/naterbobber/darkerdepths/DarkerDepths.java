@@ -2,6 +2,7 @@ package com.naterbobber.darkerdepths;
 
 import com.naterbobber.darkerdepths.config.DDConfig;
 import com.naterbobber.darkerdepths.client.ClientDeathAnchorAnimationOverlay;
+import com.naterbobber.darkerdepths.events.RegisterEvents;
 import com.naterbobber.darkerdepths.init.*;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.bus.api.IEventBus;
@@ -26,6 +27,9 @@ public class DarkerDepths {
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::clientSetup);
 
+        modEventBus.register(DDNetwork.class);
+        modEventBus.register(RegisterEvents.class);
+
         DDCreativeModeTabs.CREATIVE_MODE_TABS.register(modEventBus);
         DDArmorMaterials.ARMOR_MATERIALS.register(modEventBus);
         DDBlocks.BLOCKS.register(modEventBus);
@@ -49,7 +53,6 @@ public class DarkerDepths {
     }
 
     private void clientSetup(final FMLClientSetupEvent event) {
-        NeoForge.EVENT_BUS.register(new ClientDeathAnchorAnimationOverlay());
     }
 
     public static ResourceLocation id(String name) {

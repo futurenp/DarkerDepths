@@ -1,11 +1,10 @@
-package com.naterbobber.darkerdepths.events;
+package com.naterbobber.darkerdepths.events.client;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.client.particle.DrippingParticle;
 import com.naterbobber.darkerdepths.client.particle.VoidSoulFlameParticle;
 import com.naterbobber.darkerdepths.client.particle.VoidSoulFlameSmokeParticle;
 import com.naterbobber.darkerdepths.client.particle.VoidSoulParticle;
-import com.naterbobber.darkerdepths.client.ClientDeathAnchorAnimationOverlay;
 import com.naterbobber.darkerdepths.client.render.renderers.BodySnatcherRenderer;
 import com.naterbobber.darkerdepths.client.render.renderers.GlowshroomMonsterRenderer;
 import com.naterbobber.darkerdepths.client.render.renderers.ParanoiaAltarBlockEntityRenderer;
@@ -15,11 +14,8 @@ import com.naterbobber.darkerdepths.client.render.renderers.VoidSoulJarBlockEnti
 import com.naterbobber.darkerdepths.client.render.renderers.VoidSoulKnightRenderer;
 import com.naterbobber.darkerdepths.client.render.renderers.VoidSoulRenderer;
 import com.naterbobber.darkerdepths.init.DDBlockEntityTypes;
-import com.naterbobber.darkerdepths.init.DDDataComponents;
 import com.naterbobber.darkerdepths.init.DDEntityTypes;
-import com.naterbobber.darkerdepths.init.DDItems;
 import com.naterbobber.darkerdepths.init.DDParticleTypes;
-import com.naterbobber.darkerdepths.init.DDWoodType;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.BoatModel;
 import net.minecraft.client.model.ChestBoatModel;
@@ -27,21 +23,17 @@ import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.particle.ParticleEngine;
 import net.minecraft.client.renderer.blockentity.HangingSignRenderer;
 import net.minecraft.client.renderer.blockentity.SignRenderer;
-import net.minecraft.client.renderer.item.ItemProperties;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.EventPriority;
-import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
-import net.neoforged.neoforge.common.NeoForge;
 
 @OnlyIn(Dist.CLIENT)
 @EventBusSubscriber(modid = DarkerDepths.MOD_ID, value = Dist.CLIENT)
-public class ClientEvents {
+public class ClientRegisterEvents {
 
 
     @SubscribeEvent
@@ -74,31 +66,5 @@ public class ClientEvents {
         engine.register(DDParticleTypes.VOID_SOUL.get(), VoidSoulParticle.VoidSoulFactory::new);
         engine.register(DDParticleTypes.VOID_SOUL_FLAME.get(), VoidSoulFlameParticle.VoidSoulFlameFactory::new);
         engine.register(DDParticleTypes.VOID_SOUL_FLAME_SMOKE.get(), VoidSoulFlameSmokeParticle.VoidSoulFlameSmokeFactory::new);
-    }
-
-    @SubscribeEvent
-    public static void onClientSetup(final FMLClientSetupEvent event) {
-        IEventBus eventBus = NeoForge.EVENT_BUS;
-
-        eventBus.register(new ClientForgeEvents());
-        eventBus.register(new ClientDeathAnchorAnimationOverlay());
-
-        event.enqueueWork(() -> {
-            DDWoodType.setupWoodTypes();
-
-            ItemProperties.register(DDItems.STILETTO.get(), DarkerDepths.id("charge"), (itemStack, clientLevel, livingEntity, i) -> {
-                int time = itemStack.getOrDefault(DDDataComponents.STILETTO_TIME, 0);
-                int readyTime = itemStack.getOrDefault(DDDataComponents.STILETTO_READY_TIME, 0);
-
-                if (time > 0) {
-                    return 1.0F;
-                }
-                if (readyTime > 0) {
-                    return 0.5F;
-                }
-
-                return 0.0F;
-            });
-        });
     }
 }

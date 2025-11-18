@@ -1,4 +1,4 @@
-package com.naterbobber.darkerdepths.events;
+package com.naterbobber.darkerdepths.events.client;
 
 import com.mojang.blaze3d.shaders.FogShape;
 import com.naterbobber.darkerdepths.client.DynamicLightHandler;
@@ -15,7 +15,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.client.event.ClientTickEvent;
 import net.neoforged.neoforge.client.event.ViewportEvent;
 
-public class ClientForgeEvents {
+public class ClientEvents {
 
     private static float paranoiaFactor = 0.0f;
     private static final float TRANSITION_SECONDS = 1.5f;

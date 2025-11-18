@@ -14,7 +14,6 @@ import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
 import net.neoforged.neoforge.event.entity.RegisterSpawnPlacementsEvent;
 
 
-@EventBusSubscriber(modid = DarkerDepths.MOD_ID)
 public class RegisterEvents {
 
     @SubscribeEvent

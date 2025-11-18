@@ -26,7 +26,7 @@ import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 
 @EventBusSubscriber(modid = DarkerDepths.MOD_ID)
-public class ForgeBusEvents {
+public class PlayerEvents {
 
     @SubscribeEvent
     public static void onApplySupercharge(PlayerInteractEvent.RightClickItem event) {

@@ -12,7 +12,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.AnvilUpdateEvent;
 
 @EventBusSubscriber(modid = DarkerDepths.MOD_ID)
-public class RequiemCurseRemovalHandler {
+public class CommonEvents {
 
     @SubscribeEvent
     public static void onAnvilUpdate(AnvilUpdateEvent event) {
