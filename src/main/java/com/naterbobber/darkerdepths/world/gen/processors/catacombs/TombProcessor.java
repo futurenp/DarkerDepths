@@ -55,14 +55,12 @@ public class TombProcessor extends StructureProcessor {
                     .setValue(TombBlock.INHABITED, true)
                     .setValue(TombBlock.WATERLOGGED, level.getFluidState(worldPos).getType() == Fluids.WATER);
 
-            // Create NBT with the forsaken bronze scrap item
             CompoundTag nbt = new CompoundTag();
             ListTag itemsNbt = new ListTag();
 
             ItemStack forsakenBronzeScrap = new ItemStack(DDItems.FORSAKEN_BRONZE_SCRAP.get());
-            CompoundTag itemTag = new CompoundTag();
+            CompoundTag itemTag = (CompoundTag) forsakenBronzeScrap.save(level.registryAccess());
             itemTag.putByte("Slot", (byte) 0);
-            forsakenBronzeScrap.save(level.registryAccess());
             itemsNbt.add(itemTag);
 
             nbt.put("Items", itemsNbt);
