@@ -2,9 +2,11 @@ package com.naterbobber.darkerdepths.item;
 
 import com.naterbobber.darkerdepths.init.DDDataComponents;
 import com.naterbobber.darkerdepths.component.DDEnchantmentEffects;
+import com.naterbobber.darkerdepths.init.DDEnchantments;
 import com.naterbobber.darkerdepths.init.DDItems;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
@@ -17,7 +19,9 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.ItemAbilities;
@@ -105,15 +109,14 @@ public class StilettoItem extends SwordItem {
         return super.canPerformAction(stack, itemAbility);
     }
 
+    @Override
+    public boolean supportsEnchantment(ItemStack stack, Holder<Enchantment> enchantment) {
+        if(stack.is(DDItems.STILETTO.asItem())) {
+            return !enchantment.is(Enchantments.SWEEPING_EDGE);
+        }
 
-
-//    @Override
-//    public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
-//        if (enchantment == Enchantments.SWEEPING_EDGE) {
-//            return false;
-//        }
-//        return super.canApplyAtEnchantingTable(stack, enchantment);
-//    }
+        return super.supportsEnchantment(stack, enchantment);
+    }
 
     public static class StilettoTier implements Tier {
         @Override

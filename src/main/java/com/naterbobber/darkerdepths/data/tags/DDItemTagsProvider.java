@@ -47,6 +47,8 @@ public class DDItemTagsProvider extends ItemTagsProvider {
                 DDBlocks.STRIPPED_PETRIFIED_WOOD.get().asItem()
         );
         this.tag(DDItemTags.STILETTO_ENCHANTABLE).add(DDItems.STILETTO.get());
+        this.tag(ItemTags.SWORD_ENCHANTABLE).add(DDItems.STILETTO.get());
+        this.tag(ItemTags.SHARP_WEAPON_ENCHANTABLE).add(DDItems.STILETTO.get());
         this.tag(ItemTags.PLANKS).add(DDBlocks.PETRIFIED_PLANKS.get().asItem());
         this.tag(NeoForgeItemTags.ROPES).add(DDItems.ROPE.get());
         this.tag(ItemTags.BEACON_PAYMENT_ITEMS).add(DDItems.FORSAKEN_BRONZE_INGOT.get());

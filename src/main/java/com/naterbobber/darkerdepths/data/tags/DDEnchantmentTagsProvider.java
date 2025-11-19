@@ -16,6 +16,6 @@ public class DDEnchantmentTagsProvider extends VanillaEnchantmentTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider provider) {
-        this.tag(DDEnchantmentTags.STILETTO_EXCLUSIVE).add(Enchantments.SWEEPING_EDGE);
+//        this.tag(DDEnchantmentTags.STILETTO_EXCLUSIVE).add(Enchantments.SWEEPING_EDGE);
     }
 }
