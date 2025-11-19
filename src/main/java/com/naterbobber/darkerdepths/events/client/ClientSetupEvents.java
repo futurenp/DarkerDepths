@@ -27,20 +27,24 @@ public class ClientSetupEvents {
 
         event.enqueueWork(() -> {
             DDWoodType.setupWoodTypes();
+            registerStilettoProperties();
 
-            ItemProperties.register(DDItems.STILETTO.get(), DarkerDepths.id("charge"), (itemStack, clientLevel, livingEntity, i) -> {
-                int time = itemStack.getOrDefault(DDDataComponents.STILETTO_TIME, 0);
-                int readyTime = itemStack.getOrDefault(DDDataComponents.STILETTO_READY_TIME, 0);
+        });
+    }
 
-                if (time > 0) {
-                    return 1.0F;
-                }
-                if (readyTime > 0) {
-                    return 0.5F;
-                }
+    private static void registerStilettoProperties() {
+        ItemProperties.register(DDItems.STILETTO.get(), DarkerDepths.id("charge"), (itemStack, clientLevel, livingEntity, i) -> {
+            int time = itemStack.getOrDefault(DDDataComponents.STILETTO_TIME, 0);
+            int readyTime = itemStack.getOrDefault(DDDataComponents.STILETTO_READY_TIME, 0);
 
-                return 0.0F;
-            });
+            if (time > 0) {
+                return 1.0F;
+            }
+            if (readyTime > 0) {
+                return 0.5F;
+            }
+
+            return 0.0F;
         });
     }
 }
