@@ -59,5 +59,6 @@ public class DDBiomeTagsProvider extends BiomeTagsProvider {
         this.tag(BiomeTags.STRONGHOLD_BIASED_TO).addOptional(biome.location());
         this.tag(BiomeTags.IS_OVERWORLD).addOptional(biome.location());
         this.tag(Tags.Biomes.IS_UNDERGROUND).addOptional(biome.location());
+        this.tag(Tags.Biomes.IS_CAVE).addOptional(biome.location());
     }
 }
