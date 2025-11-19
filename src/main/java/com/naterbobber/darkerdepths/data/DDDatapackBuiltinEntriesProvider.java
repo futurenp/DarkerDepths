@@ -23,7 +23,8 @@ public class DDDatapackBuiltinEntriesProvider extends DatapackBuiltinEntriesProv
             .add(Registries.TEMPLATE_POOL, DDStructures::bootstrapTemplatePool)
             .add(Registries.STRUCTURE, DDStructures::bootstrap)
             .add(Registries.STRUCTURE_SET, DDStructures::bootstrapStructureSet)
-            .add(Registries.PROCESSOR_LIST, DDProcessorLists::bootstrap);
+            .add(Registries.PROCESSOR_LIST, DDProcessorLists::bootstrap)
+            .add(Registries.ENCHANTMENT, DDEnchantments::bootstrap);
 
 
     public DDDatapackBuiltinEntriesProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {

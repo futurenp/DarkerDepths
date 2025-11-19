@@ -5,7 +5,7 @@ import com.naterbobber.darkerdepths.api.DeathAnchorLocation;
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import com.naterbobber.darkerdepths.init.DDDamageTypes;
 import com.naterbobber.darkerdepths.init.DDDataComponents;
-import com.naterbobber.darkerdepths.component.EnchantmentEffects;
+import com.naterbobber.darkerdepths.component.DDEnchantmentEffects;
 import com.naterbobber.darkerdepths.init.DDItems;
 import com.naterbobber.darkerdepths.init.DDMobEffects;
 import com.naterbobber.darkerdepths.init.DDPoiTypes;
@@ -58,7 +58,7 @@ public class LivingEvents {
             ItemStack itemStack = player.getItemInHand(player.getUsedItemHand());
             if (itemStack.is(DDItems.STILETTO.get())) {
                 MutableFloat mutableFloat = new MutableFloat(0.0F);
-                EnchantmentHelper.runIterationOnItem(itemStack, (holder, i) -> holder.value().modifyItemFilteredCount(EnchantmentEffects.SWIFT_STRIKE_HIT, serverLevel, i, itemStack, mutableFloat));
+                EnchantmentHelper.runIterationOnItem(itemStack, (holder, i) -> holder.value().modifyItemFilteredCount(DDEnchantmentEffects.SWIFT_STRIKE_HIT.get(), serverLevel, i, itemStack, mutableFloat));
                 int swiftStrike = Math.max(0, mutableFloat.intValue());
 
                 if (swiftStrike > 0 && itemStack.getOrDefault(DDDataComponents.STILETTO_TIME, 0) > 0) {

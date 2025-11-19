@@ -1,5 +1,6 @@
 package com.naterbobber.darkerdepths;
 
+import com.naterbobber.darkerdepths.component.DDEnchantmentEffects;
 import com.naterbobber.darkerdepths.config.DDConfig;
 import com.naterbobber.darkerdepths.client.ClientDeathAnchorAnimationOverlay;
 import com.naterbobber.darkerdepths.events.RegisterEvents;
@@ -36,6 +37,7 @@ public class DarkerDepths {
         DDItems.ITEMS.register(modEventBus);
         DDBlockEntityTypes.BLOCK_ENTITIES.register(modEventBus);
         DDEntityTypes.ENTITY_TYPES.register(modEventBus);
+        DDEnchantmentEffects.DATA_COMPONENTS.register(modEventBus);
         DDFeatures.FEATURES.register(modEventBus);
         DDPoiTypes.POI_TYPES.register(modEventBus);
         DDParticleTypes.PARTICLE_TYPES.register(modEventBus);
