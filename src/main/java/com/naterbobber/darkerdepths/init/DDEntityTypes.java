@@ -16,10 +16,10 @@ public class DDEntityTypes {
 
     public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(Registries.ENTITY_TYPE, DarkerDepths.MOD_ID);
 
-    public static final DeferredHolder<EntityType<?>, EntityType<Boat>> PETRIFIED_BOAT = ENTITY_TYPES.register("petrified_boat",
-            () -> EntityType.Builder.<Boat>of(Boat::new, MobCategory.MISC).sized(1.375F, 0.5625F).build(DarkerDepths.id("petrified_boat").toString()));
-    public static final DeferredHolder<EntityType<?>, EntityType<ChestBoat>> PETRIFIED_CHEST_BOAT = ENTITY_TYPES.register("petrified_chest_boat",
-            () -> EntityType.Builder.<ChestBoat>of(ChestBoat::new, MobCategory.MISC).sized(1.375F, 0.5625F).build(DarkerDepths.id("petrified_chest_boat").toString()));
+    public static final DeferredHolder<EntityType<?>, EntityType<PetrifiedBoatEntity>> PETRIFIED_BOAT = ENTITY_TYPES.register("petrified_boat",
+            () -> EntityType.Builder.<PetrifiedBoatEntity>of(PetrifiedBoatEntity::new, MobCategory.MISC).sized(1.375F, 0.5625F).build(DarkerDepths.id("petrified_boat").toString()));
+    public static final DeferredHolder<EntityType<?>, EntityType<PetrifiedChestBoatEntity>> PETRIFIED_CHEST_BOAT = ENTITY_TYPES.register("petrified_chest_boat",
+            () -> EntityType.Builder.<PetrifiedChestBoatEntity>of(PetrifiedChestBoatEntity::new, MobCategory.MISC).sized(1.375F, 0.5625F).build(DarkerDepths.id("petrified_chest_boat").toString()));
     public static final DeferredHolder<EntityType<?>, EntityType<GlowshroomMonsterEntity>> GLOWSHROOM_MONSTER = ENTITY_TYPES.register("glowshroom_monster",
             () -> EntityType.Builder.of(GlowshroomMonsterEntity::new, MobCategory.MONSTER).sized(1.6F, 2.0F).clientTrackingRange(8).build(DarkerDepths.id("glowshroom_monster").toString()));
     public static final DeferredHolder<EntityType<?>, EntityType<BodySnatcherEntity>> BODY_SNATCHER = ENTITY_TYPES.register("body_snatcher",
