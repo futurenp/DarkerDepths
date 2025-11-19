@@ -1,7 +1,7 @@
 package com.naterbobber.darkerdepths.item;
 
 import com.naterbobber.darkerdepths.init.DDDataComponents;
-import com.naterbobber.darkerdepths.component.EnchantmentEffects;
+import com.naterbobber.darkerdepths.component.DDEnchantmentEffects;
 import com.naterbobber.darkerdepths.init.DDItems;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
@@ -53,7 +53,7 @@ public class StilettoItem extends SwordItem {
         player.playSound(SoundEvents.PLAYER_ATTACK_SWEEP, 1.0F, 1.0F);
         if (level instanceof ServerLevel serverLevel) {
             MutableFloat mutableFloat = new MutableFloat(0.0F);
-            EnchantmentHelper.runIterationOnItem(itemStack, (holder, i) -> holder.value().modifyItemFilteredCount(EnchantmentEffects.QUICK_DASH_DURATION, serverLevel, i, itemStack, mutableFloat));
+            EnchantmentHelper.runIterationOnItem(itemStack, (holder, i) -> holder.value().modifyItemFilteredCount(DDEnchantmentEffects.QUICK_DASH_DURATION.get(), serverLevel, i, itemStack, mutableFloat));
             int quickDash = Math.max(0, mutableFloat.intValue());
 
             int cooldown = 200;
