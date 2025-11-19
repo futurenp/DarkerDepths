@@ -17,7 +17,6 @@
       }
     ]
   },
-  "exclusive_set": "#darkerdepths:stiletto_exclusive",
   "max_cost": {
     "base": 65,
     "per_level_above_first": 9

@@ -36,7 +36,7 @@ public class DDEnchantments {
                         4,
                         EquipmentSlotGroup.MAINHAND
                 )
-        ).exclusiveWith(enchantmentLookup.getOrThrow(DDEnchantmentTags.STILETTO_EXCLUSIVE)).withEffect(DDEnchantmentEffects.SWIFT_STRIKE_HIT.get(), new AddValue(LevelBasedValue.perLevel(1.0F))));
+        ).withEffect(DDEnchantmentEffects.SWIFT_STRIKE_HIT.get(), new AddValue(LevelBasedValue.perLevel(1.0F))));
 
         register(context, QUICK_DASH, Enchantment.enchantment(
                 Enchantment.definition(
@@ -48,7 +48,7 @@ public class DDEnchantments {
                         4,
                         EquipmentSlotGroup.MAINHAND
                 )
-        ).exclusiveWith(enchantmentLookup.getOrThrow(DDEnchantmentTags.STILETTO_EXCLUSIVE)).withEffect(DDEnchantmentEffects.QUICK_DASH_DURATION.get(), new AddValue(LevelBasedValue.perLevel(1.0F))));
+        ).withEffect(DDEnchantmentEffects.QUICK_DASH_DURATION.get(), new AddValue(LevelBasedValue.perLevel(1.0F))));
     }
 
     private static void register(BootstrapContext<Enchantment> context, ResourceKey<Enchantment> key, Enchantment.Builder builder) {
