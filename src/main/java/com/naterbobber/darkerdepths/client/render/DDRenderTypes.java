@@ -35,7 +35,7 @@ public class DDRenderTypes extends RenderType {
         CompositeState state = CompositeState.builder()
                 .setShaderState(RenderStateShard.RENDERTYPE_EYES_SHADER)
                 .setTextureState(new TextureStateShard(textureLocation, false, false))
-                .setTransparencyState(TRANSLUCENT_TRANSPARENCY)
+                .setTransparencyState(NO_TRANSPARENCY)
                 .setCullState(CULL)
                 .setWriteMaskState(COLOR_DEPTH_WRITE)
                 .setDepthTestState(LEQUAL_DEPTH_TEST)
