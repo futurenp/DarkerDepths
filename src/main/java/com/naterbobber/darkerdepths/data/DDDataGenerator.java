@@ -7,6 +7,7 @@ import com.naterbobber.darkerdepths.data.loot.DDLootTableProvider;
 import com.naterbobber.darkerdepths.data.tags.DDBiomeTagsProvider;
 import com.naterbobber.darkerdepths.data.tags.DDBlockTagsProvider;
 import com.naterbobber.darkerdepths.data.tags.DDDamageTypeTagsProvider;
+import com.naterbobber.darkerdepths.data.tags.DDEnchantmentTagsProvider;
 import com.naterbobber.darkerdepths.data.tags.DDItemTagsProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
@@ -42,6 +43,7 @@ public class DDDataGenerator {
 
         dataGenerator.addProvider(server, new DDBiomeTagsProvider(packOutput, lookupProvider, existingFileHelper));
         dataGenerator.addProvider(server, new DDDamageTypeTagsProvider(packOutput, lookupProvider, existingFileHelper));
+        dataGenerator.addProvider(server, new DDEnchantmentTagsProvider(packOutput, lookupProvider));
 
         dataGenerator.addProvider(server, new DDDatapackBuiltinEntriesProvider(packOutput, lookupProvider));
     }

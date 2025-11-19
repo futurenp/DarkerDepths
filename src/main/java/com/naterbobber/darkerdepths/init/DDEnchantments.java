@@ -24,6 +24,7 @@ public class DDEnchantments {
 
     public static void bootstrap(BootstrapContext<Enchantment> context) {
         HolderGetter<Item> itemLookup = context.lookup(Registries.ITEM);
+        HolderGetter<Enchantment> enchantmentLookup = context.lookup(Registries.ENCHANTMENT);
 
         register(context, SWIFT_STRIKE, Enchantment.enchantment(
                 Enchantment.definition(
@@ -35,7 +36,7 @@ public class DDEnchantments {
                         4,
                         EquipmentSlotGroup.MAINHAND
                 )
-        ).withEffect(DDEnchantmentEffects.SWIFT_STRIKE_HIT.get(), new AddValue(LevelBasedValue.perLevel(1.0F))));
+        ).exclusiveWith(enchantmentLookup.getOrThrow(DDEnchantmentTags.STILETTO_EXCLUSIVE)).withEffect(DDEnchantmentEffects.SWIFT_STRIKE_HIT.get(), new AddValue(LevelBasedValue.perLevel(1.0F))));
 
         register(context, QUICK_DASH, Enchantment.enchantment(
                 Enchantment.definition(
@@ -47,7 +48,7 @@ public class DDEnchantments {
                         4,
                         EquipmentSlotGroup.MAINHAND
                 )
-        ).withEffect(DDEnchantmentEffects.QUICK_DASH_DURATION.get(), new AddValue(LevelBasedValue.perLevel(1.0F))));
+        ).exclusiveWith(enchantmentLookup.getOrThrow(DDEnchantmentTags.STILETTO_EXCLUSIVE)).withEffect(DDEnchantmentEffects.QUICK_DASH_DURATION.get(), new AddValue(LevelBasedValue.perLevel(1.0F))));
     }
 
     private static void register(BootstrapContext<Enchantment> context, ResourceKey<Enchantment> key, Enchantment.Builder builder) {
