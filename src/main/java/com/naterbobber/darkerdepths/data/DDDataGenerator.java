@@ -4,11 +4,7 @@ import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.data.assets.DDBlockStateProvider;
 import com.naterbobber.darkerdepths.data.assets.DDLanguageProviderENUS;
 import com.naterbobber.darkerdepths.data.loot.DDLootTableProvider;
-import com.naterbobber.darkerdepths.data.tags.DDBiomeTagsProvider;
-import com.naterbobber.darkerdepths.data.tags.DDBlockTagsProvider;
-import com.naterbobber.darkerdepths.data.tags.DDDamageTypeTagsProvider;
-import com.naterbobber.darkerdepths.data.tags.DDEnchantmentTagsProvider;
-import com.naterbobber.darkerdepths.data.tags.DDItemTagsProvider;
+import com.naterbobber.darkerdepths.data.tags.*;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
@@ -32,20 +28,22 @@ public class DDDataGenerator {
         boolean server = event.includeServer();
         boolean client = event.includeClient();
 
+        DDDatapackBuiltinEntriesProvider datapackProvider = new DDDatapackBuiltinEntriesProvider(packOutput, lookupProvider);
+        dataGenerator.addProvider(server, datapackProvider);
+
+        CompletableFuture<HolderLookup.Provider> registryLookup = datapackProvider.getRegistryProvider();
+
         dataGenerator.addProvider(client, new DDBlockStateProvider(packOutput, existingFileHelper));
         dataGenerator.addProvider(client, new DDLanguageProviderENUS(packOutput));
 
-        dataGenerator.addProvider(server, new DDRecipeProvider(packOutput, lookupProvider));
-        dataGenerator.addProvider(server, new DDLootTableProvider(packOutput, lookupProvider));
+        dataGenerator.addProvider(server, new DDRecipeProvider(packOutput, registryLookup));
+        dataGenerator.addProvider(server, new DDLootTableProvider(packOutput, registryLookup));
 
-        DDBlockTagsProvider blockTagsProvider = dataGenerator.addProvider(server, new DDBlockTagsProvider(packOutput, lookupProvider, existingFileHelper));
-        dataGenerator.addProvider(server, new DDItemTagsProvider(packOutput, lookupProvider, blockTagsProvider.contentsGetter(), existingFileHelper));
+        DDBlockTagsProvider blockTagsProvider = dataGenerator.addProvider(server, new DDBlockTagsProvider(packOutput, registryLookup, existingFileHelper));
+        dataGenerator.addProvider(server, new DDItemTagsProvider(packOutput, registryLookup, blockTagsProvider.contentsGetter(), existingFileHelper));
 
-        dataGenerator.addProvider(server, new DDBiomeTagsProvider(packOutput, lookupProvider, existingFileHelper));
-        dataGenerator.addProvider(server, new DDDamageTypeTagsProvider(packOutput, lookupProvider, existingFileHelper));
-        dataGenerator.addProvider(server, new DDEnchantmentTagsProvider(packOutput, lookupProvider));
-
-        dataGenerator.addProvider(server, new DDDatapackBuiltinEntriesProvider(packOutput, lookupProvider));
+        dataGenerator.addProvider(server, new DDBiomeTagsProvider(packOutput, registryLookup, existingFileHelper));
+        dataGenerator.addProvider(server, new DDDamageTypeTagsProvider(packOutput, registryLookup, existingFileHelper));
+        dataGenerator.addProvider(server, new DDEnchantmentTagsProvider(packOutput, registryLookup));
     }
 }
-

@@ -1,6 +1,7 @@
 package com.naterbobber.darkerdepths.data;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
+import com.naterbobber.darkerdepths.damage.DDDamageTypes;
 import com.naterbobber.darkerdepths.enchantment.DDEnchantments;
 import com.naterbobber.darkerdepths.init.DDStructures;
 import com.naterbobber.darkerdepths.worldgen.*;
@@ -26,8 +27,8 @@ public class DDDatapackBuiltinEntriesProvider extends DatapackBuiltinEntriesProv
             .add(Registries.STRUCTURE, DDStructures::bootstrap)
             .add(Registries.STRUCTURE_SET, DDStructures::bootstrapStructureSet)
             .add(Registries.PROCESSOR_LIST, DDProcessorLists::bootstrap)
-            .add(Registries.ENCHANTMENT, DDEnchantments::bootstrap);
-
+            .add(Registries.ENCHANTMENT, DDEnchantments::bootstrap)
+            .add(Registries.DAMAGE_TYPE, DDDamageTypes::bootstrap);
 
     public DDDatapackBuiltinEntriesProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
         super(output, registries, BUILDER, Set.of(DarkerDepths.MOD_ID));

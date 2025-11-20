@@ -1,5 +1,5 @@
 {
-  "message_id": "soul_binding_damage",
   "exhaustion": 0.0,
+  "message_id": "soul_binding_damage",
   "scaling": "never"
 }
