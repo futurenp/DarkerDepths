@@ -1,6 +1,6 @@
 package com.naterbobber.darkerdepths.mixin;
 
-import com.naterbobber.darkerdepths.init.DDTags;
+import com.naterbobber.darkerdepths.util.DDTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.EntityType;

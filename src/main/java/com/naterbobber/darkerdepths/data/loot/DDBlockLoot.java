@@ -1,16 +1,14 @@
 package com.naterbobber.darkerdepths.data.loot;
 
-import com.naterbobber.darkerdepths.blocks.AshBlock;
-import com.naterbobber.darkerdepths.blocks.GlowshroomBlock;
-import com.naterbobber.darkerdepths.blocks.VerticalSlabBlock;
+import com.naterbobber.darkerdepths.block.AshBlock;
+import com.naterbobber.darkerdepths.block.GlowshroomBlock;
+import com.naterbobber.darkerdepths.block.VerticalSlabBlock;
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import com.naterbobber.darkerdepths.init.DDItems;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.loot.BlockLootSubProvider;
-import net.minecraft.data.loot.packs.VanillaBlockLoot;
-import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
@@ -18,14 +16,10 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
-import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
-import net.minecraft.world.level.storage.loot.functions.LootItemFunction;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
-import net.minecraft.world.level.storage.loot.providers.number.NumberProvider;
-import net.neoforged.neoforge.registries.DeferredHolder;
 
 import java.util.HashSet;
 import java.util.List;

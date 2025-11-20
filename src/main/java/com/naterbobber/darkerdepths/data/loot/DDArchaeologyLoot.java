@@ -1,7 +1,7 @@
 package com.naterbobber.darkerdepths.data.loot;
 
 import com.naterbobber.darkerdepths.init.DDItems;
-import com.naterbobber.darkerdepths.init.DDResourceKeys;
+import com.naterbobber.darkerdepths.util.DDResourceKeys;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.loot.LootTableSubProvider;
 import net.minecraft.resources.ResourceKey;

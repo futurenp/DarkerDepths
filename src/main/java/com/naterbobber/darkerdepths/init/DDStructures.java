@@ -2,15 +2,13 @@ package com.naterbobber.darkerdepths.init;
 
 import com.mojang.datafixers.util.Pair;
 import com.naterbobber.darkerdepths.DarkerDepths;
-import com.naterbobber.darkerdepths.data.tags.DDBiomeTagsProvider;
+import com.naterbobber.darkerdepths.util.DDResourceKeys;
+import com.naterbobber.darkerdepths.util.DDTags;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.data.worldgen.Pools;
-import net.minecraft.data.worldgen.ProcessorLists;
-import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.random.WeightedRandomList;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.biome.Biome;
@@ -29,11 +27,7 @@ import net.minecraft.world.level.levelgen.structure.pools.StructurePoolElement;
 import net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool;
 import net.minecraft.world.level.levelgen.structure.structures.JigsawStructure;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProcessorList;
-import net.neoforged.neoforge.common.world.BiomeModifier;
 import net.neoforged.neoforge.registries.DeferredRegister;
-
-import net.neoforged.neoforge.registries.DeferredHolder;
-import net.neoforged.neoforge.registries.NeoForgeRegistries;
 
 import java.util.Arrays;
 import java.util.List;

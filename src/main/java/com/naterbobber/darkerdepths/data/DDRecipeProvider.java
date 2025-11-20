@@ -4,7 +4,7 @@ import com.google.common.collect.ImmutableList;
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import com.naterbobber.darkerdepths.init.DDItems;
-import com.naterbobber.darkerdepths.init.DDTags;
+import com.naterbobber.darkerdepths.util.DDTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;

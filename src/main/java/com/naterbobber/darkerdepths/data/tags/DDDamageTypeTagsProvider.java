@@ -1,7 +1,7 @@
 package com.naterbobber.darkerdepths.data.tags;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
-import com.naterbobber.darkerdepths.init.DDResourceKeys;
+import com.naterbobber.darkerdepths.util.DDResourceKeys;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;

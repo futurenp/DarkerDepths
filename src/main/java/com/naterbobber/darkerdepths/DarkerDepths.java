@@ -1,10 +1,13 @@
 package com.naterbobber.darkerdepths;
 
-import com.naterbobber.darkerdepths.component.DDEnchantmentEffects;
+import com.naterbobber.darkerdepths.init.DDEnchantmentEffects;
 import com.naterbobber.darkerdepths.config.DDConfig;
-import com.naterbobber.darkerdepths.client.ClientDeathAnchorAnimationOverlay;
 import com.naterbobber.darkerdepths.events.RegisterEvents;
 import com.naterbobber.darkerdepths.init.*;
+import com.naterbobber.darkerdepths.network.DDNetwork;
+import com.naterbobber.darkerdepths.init.DDFeatures;
+import com.naterbobber.darkerdepths.init.DDStructureProcessorTypes;
+import com.naterbobber.darkerdepths.init.DDStructures;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
@@ -12,7 +15,6 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.neoforged.neoforge.common.NeoForge;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

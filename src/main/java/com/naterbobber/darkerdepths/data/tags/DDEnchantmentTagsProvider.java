@@ -1,10 +1,8 @@
 package com.naterbobber.darkerdepths.data.tags;
 
-import com.naterbobber.darkerdepths.init.DDEnchantmentTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.VanillaEnchantmentTagsProvider;
-import net.minecraft.world.item.enchantment.Enchantments;
 
 import java.util.concurrent.CompletableFuture;
 

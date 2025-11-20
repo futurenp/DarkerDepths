@@ -1,8 +1,7 @@
 package com.naterbobber.darkerdepths.item;
 
 import com.naterbobber.darkerdepths.init.DDDataComponents;
-import com.naterbobber.darkerdepths.component.DDEnchantmentEffects;
-import com.naterbobber.darkerdepths.init.DDEnchantments;
+import com.naterbobber.darkerdepths.init.DDEnchantmentEffects;
 import com.naterbobber.darkerdepths.init.DDItems;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;

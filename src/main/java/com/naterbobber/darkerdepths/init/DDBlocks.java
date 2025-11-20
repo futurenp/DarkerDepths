@@ -2,7 +2,7 @@ package com.naterbobber.darkerdepths.init;
 
 import com.google.common.collect.Maps;
 import com.naterbobber.darkerdepths.DarkerDepths;
-import com.naterbobber.darkerdepths.blocks.*;
+import com.naterbobber.darkerdepths.block.*;
 import com.naterbobber.darkerdepths.item.BlockItemWithHoverText;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -13,7 +13,6 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
-import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;

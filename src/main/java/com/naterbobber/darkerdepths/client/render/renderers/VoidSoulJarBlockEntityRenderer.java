@@ -1,7 +1,7 @@
 package com.naterbobber.darkerdepths.client.render.renderers;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
-import com.naterbobber.darkerdepths.blocks.blockentities.VoidSoulJarBlockEntity;
+import com.naterbobber.darkerdepths.block.blockentities.VoidSoulJarBlockEntity;
 import com.naterbobber.darkerdepths.client.models.VoidSoulJarModel;
 import com.naterbobber.darkerdepths.client.render.DDRenderTypes;
 import com.naterbobber.darkerdepths.client.render.renderers.layers.DDCustomRenderTypeLayer;

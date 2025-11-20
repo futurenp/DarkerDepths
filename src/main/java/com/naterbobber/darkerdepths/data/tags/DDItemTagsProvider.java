@@ -3,7 +3,7 @@ package com.naterbobber.darkerdepths.data.tags;
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import com.naterbobber.darkerdepths.init.DDItems;
-import com.naterbobber.darkerdepths.init.DDTags;
+import com.naterbobber.darkerdepths.util.DDTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;

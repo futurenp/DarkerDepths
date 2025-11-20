@@ -57,7 +57,7 @@ public class SuperchargeHelper {
                         EquipmentSlotGroup.ANY
                 ).withModifierAdded(
                         Attributes.MINING_EFFICIENCY,
-                        new AttributeModifier(ATTACK_DAMAGE_MODIFIER_ID, miningSpeedMultiplier, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
+                        new AttributeModifier(MINING_EFFICIENCY_MODIFIER_ID, miningSpeedMultiplier, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
                         EquipmentSlotGroup.ANY
                 );
         stack.set(DataComponents.ATTRIBUTE_MODIFIERS, newModifiers.withTooltip(false));

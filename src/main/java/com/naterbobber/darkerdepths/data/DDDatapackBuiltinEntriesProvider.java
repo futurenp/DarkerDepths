@@ -1,7 +1,9 @@
 package com.naterbobber.darkerdepths.data;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
-import com.naterbobber.darkerdepths.init.*;
+import com.naterbobber.darkerdepths.enchantment.DDEnchantments;
+import com.naterbobber.darkerdepths.init.DDStructures;
+import com.naterbobber.darkerdepths.worldgen.*;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.registries.Registries;
