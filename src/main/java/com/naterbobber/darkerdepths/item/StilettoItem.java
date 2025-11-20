@@ -31,8 +31,6 @@ import java.util.List;
 
 public class StilettoItem extends SwordItem {
     public static final StilettoTier STILETTO = new StilettoTier();
-    public static final String TIME_FRAME = "TimeFrame";
-    public static final String READY_TICKS = "ReadyTicks";
 
     public StilettoItem(Item.Properties properties) {
         super(STILETTO, properties.component(DataComponents.TOOL, createToolProperties()));
@@ -43,7 +41,6 @@ public class StilettoItem extends SwordItem {
 
         ItemStack itemStack = player.getItemInHand(hand);
 
-        // Check for flying with elytra
         if (player.isFallFlying() || player.isCrouching()) {
             return InteractionResultHolder.pass(itemStack);
         }
