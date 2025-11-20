@@ -47,38 +47,20 @@ public class DDStructures {
     public static final DeferredRegister<StructureType<?>> STRUCTURE_TYPES =
             DeferredRegister.create(Registries.STRUCTURE_TYPE, DarkerDepths.MOD_ID);
 
-    public static final DeferredHolder<StructureType<?>, StructureType<JigsawStructure>> DD_JIGSAW_TYPE =
-            STRUCTURE_TYPES.register("dd_jigsaw", () -> () -> JigsawStructure.CODEC);
-
-    public static final ResourceKey<Structure> ROPE_MINE_FOREST = createStructureKey("rope_mine_forest");
-    public static final ResourceKey<StructureSet> ROPE_MINE_FOREST_SET = createStructureSetKey("rope_mine_forest");
-    public static final ResourceKey<StructureTemplatePool> ROPE_MINE_FOREST_POOL = createPoolKey("rope_mine_forest");
-
-    public static final ResourceKey<Structure> ROPE_MINE_DESERT = createStructureKey("rope_mine_desert");
-    public static final ResourceKey<StructureSet> ROPE_MINE_DESERT_SET = createStructureSetKey("rope_mine_desert");
-    public static final ResourceKey<StructureTemplatePool> ROPE_MINE_DESERT_POOL = createPoolKey("rope_mine_desert");
-
-    public static final ResourceKey<Structure> CATACOMBS = createStructureKey("catacombs");
-    public static final ResourceKey<StructureSet> CATACOMBS_SET = createStructureSetKey("catacombs_set");
-    public static final ResourceKey<StructureTemplatePool> CATACOMBS_STARTS_POOL = createPoolKey("catacombs/starts");
-    public static final ResourceKey<StructureTemplatePool> CATACOMBS_HALLS_POOL = createPoolKey("catacombs/halls");
-    public static final ResourceKey<StructureTemplatePool> CATACOMBS_CENTER_EXTENSIONS_POOL = createPoolKey("catacombs/center_extensions");
-    public static final ResourceKey<StructureTemplatePool> CATACOMBS_HALLS_EXTENSIONS = createPoolKey("catacombs/extensions");
-
     public static void bootstrap(BootstrapContext<Structure> context) {
         HolderGetter<Biome> biomeGetter = context.lookup(Registries.BIOME);
         HolderGetter<StructureTemplatePool> poolGetter = context.lookup(Registries.TEMPLATE_POOL);
 
         Structure.StructureSettings forestSettings = new Structure.StructureSettings(
-                biomeGetter.getOrThrow(DDBiomeTagsProvider.HAS_ROPE_MINE_FOREST),
+                biomeGetter.getOrThrow(DDTags.Biomes.HAS_ROPE_MINE_FOREST),
                 Map.of(),
                 GenerationStep.Decoration.SURFACE_STRUCTURES,
                 TerrainAdjustment.NONE
         );
 
-        context.register(ROPE_MINE_FOREST, new JigsawStructure(
+        context.register(DDResourceKeys.Structures.ROPE_MINE_FOREST, new JigsawStructure(
                 forestSettings,
-                poolGetter.getOrThrow(ROPE_MINE_FOREST_POOL),
+                poolGetter.getOrThrow(DDResourceKeys.StructureTemplatePools.ROPE_MINE_FOREST_POOL),
                 Optional.empty(),
                 1,
                 ConstantHeight.of(VerticalAnchor.absolute(-10)),
@@ -91,15 +73,15 @@ public class DDStructures {
         ));
 
         Structure.StructureSettings desertSettings = new Structure.StructureSettings(
-                biomeGetter.getOrThrow(DDBiomeTagsProvider.HAS_ROPE_MINE_DESERT),
+                biomeGetter.getOrThrow(DDTags.Biomes.HAS_ROPE_MINE_DESERT),
                 Map.of(),
                 GenerationStep.Decoration.SURFACE_STRUCTURES,
                 TerrainAdjustment.NONE
         );
 
-        context.register(ROPE_MINE_DESERT, new JigsawStructure(
+        context.register(DDResourceKeys.Structures.ROPE_MINE_DESERT, new JigsawStructure(
                 desertSettings,
-                poolGetter.getOrThrow(ROPE_MINE_DESERT_POOL),
+                poolGetter.getOrThrow(DDResourceKeys.StructureTemplatePools.ROPE_MINE_DESERT_POOL),
                 Optional.empty(),
                 1,
                 ConstantHeight.of(VerticalAnchor.absolute(-18)),
@@ -112,7 +94,7 @@ public class DDStructures {
         ));
 
         Structure.StructureSettings catacombs = new Structure.StructureSettings(
-                biomeGetter.getOrThrow(DDBiomeTagsProvider.CATACOMBS),
+                biomeGetter.getOrThrow(DDTags.Biomes.CATACOMBS),
                 Arrays.stream(MobCategory.values()).collect(Collectors.toMap(v -> {
                     return v;
                 }, v1 -> {
@@ -122,9 +104,9 @@ public class DDStructures {
                 TerrainAdjustment.BURY
         );
 
-        context.register(CATACOMBS, new JigsawStructure(
+        context.register(DDResourceKeys.Structures.CATACOMBS, new JigsawStructure(
                 catacombs,
-                poolGetter.getOrThrow(CATACOMBS_STARTS_POOL),
+                poolGetter.getOrThrow(DDResourceKeys.StructureTemplatePools.CATACOMBS_STARTS_POOL),
                 Optional.empty(),
                 7,
                 ConstantHeight.of(VerticalAnchor.absolute(-10)),
@@ -140,23 +122,23 @@ public class DDStructures {
     public static void bootstrapStructureSet(BootstrapContext<StructureSet> context) {
         HolderGetter<Structure> structureGetter = context.lookup(Registries.STRUCTURE);
 
-        context.register(ROPE_MINE_FOREST_SET,
+        context.register(DDResourceKeys.StructureSets.ROPE_MINE_FOREST_SET,
                 new StructureSet(
-                        structureGetter.getOrThrow(ROPE_MINE_FOREST),
+                        structureGetter.getOrThrow(DDResourceKeys.Structures.ROPE_MINE_FOREST),
                         new RandomSpreadStructurePlacement(24, 8, RandomSpreadType.LINEAR, 1234567890)
                 )
         );
 
-        context.register(ROPE_MINE_DESERT_SET,
+        context.register(DDResourceKeys.StructureSets.ROPE_MINE_DESERT_SET,
                 new StructureSet(
-                        structureGetter.getOrThrow(ROPE_MINE_DESERT),
+                        structureGetter.getOrThrow(DDResourceKeys.Structures.ROPE_MINE_DESERT),
                         new RandomSpreadStructurePlacement(28, 10, RandomSpreadType.LINEAR, 1234567891)
                 )
         );
 
-        context.register(CATACOMBS_SET,
+        context.register(DDResourceKeys.StructureSets.CATACOMBS_SET,
                 new StructureSet(
-                        structureGetter.getOrThrow(CATACOMBS),
+                        structureGetter.getOrThrow(DDResourceKeys.Structures.CATACOMBS),
                         new RandomSpreadStructurePlacement(24, 8, RandomSpreadType.LINEAR, 20083232)
                 )
         );
@@ -165,18 +147,18 @@ public class DDStructures {
     public static void bootstrapTemplatePool(BootstrapContext<StructureTemplatePool> context) {
         Holder<StructureTemplatePool> emptyPoolHolder = context.lookup(Registries.TEMPLATE_POOL).getOrThrow(Pools.EMPTY);
         HolderGetter<StructureProcessorList> processorList = context.lookup(Registries.PROCESSOR_LIST);
-        Holder.Reference<StructureProcessorList> catacombsProcessor = processorList.getOrThrow(DDProcessorLists.CATACOMBS_PROCESSOR);
-        Holder.Reference<StructureProcessorList> ropeMineProcessor = processorList.getOrThrow(DDProcessorLists.ROPE_MINES_PROCESSOR);
+        Holder.Reference<StructureProcessorList> catacombsProcessor = processorList.getOrThrow(DDResourceKeys.StructureProcessorLists.CATACOMBS_PROCESSOR);
+        Holder.Reference<StructureProcessorList> ropeMineProcessor = processorList.getOrThrow(DDResourceKeys.StructureProcessorLists.ROPE_MINES_PROCESSOR);
 
-        context.register(ROPE_MINE_FOREST_POOL, new StructureTemplatePool(
+        context.register(DDResourceKeys.StructureTemplatePools.ROPE_MINE_FOREST_POOL, new StructureTemplatePool(
                 emptyPoolHolder, List.of(Pair.of(StructurePoolElement.single("darkerdepths:rope_mine_forest", ropeMineProcessor).apply(RIGID), 1))
         ));
 
-        context.register(ROPE_MINE_DESERT_POOL, new StructureTemplatePool(
+        context.register(DDResourceKeys.StructureTemplatePools.ROPE_MINE_DESERT_POOL, new StructureTemplatePool(
                 emptyPoolHolder, List.of(Pair.of(StructurePoolElement.single("darkerdepths:rope_mine_desert", ropeMineProcessor).apply(RIGID), 1))
         ));
 
-        context.register(CATACOMBS_STARTS_POOL, new StructureTemplatePool(
+        context.register(DDResourceKeys.StructureTemplatePools.CATACOMBS_STARTS_POOL, new StructureTemplatePool(
                 emptyPoolHolder,
                 List.of(
                         Pair.of(StructurePoolElement.single("darkerdepths:catacombs/center_1", catacombsProcessor).apply(RIGID), 1),
@@ -184,7 +166,7 @@ public class DDStructures {
                 )
         ));
 
-        context.register(CATACOMBS_CENTER_EXTENSIONS_POOL, new StructureTemplatePool(
+        context.register(DDResourceKeys.StructureTemplatePools.CATACOMBS_CENTER_EXTENSIONS_POOL, new StructureTemplatePool(
                 emptyPoolHolder,
                 List.of(
                         Pair.of(StructurePoolElement.single("darkerdepths:catacombs/cross_section_1", catacombsProcessor).apply(RIGID), 5),
@@ -203,7 +185,7 @@ public class DDStructures {
                 )
         ));
 
-        context.register(CATACOMBS_HALLS_POOL, new StructureTemplatePool(
+        context.register(DDResourceKeys.StructureTemplatePools.CATACOMBS_HALLS_POOL, new StructureTemplatePool(
                 emptyPoolHolder,
                 List.of(
                         Pair.of(StructurePoolElement.single("darkerdepths:catacombs/cross_section_1", catacombsProcessor).apply(RIGID), 30),
@@ -222,7 +204,7 @@ public class DDStructures {
                 )
         ));
 
-        context.register(CATACOMBS_HALLS_EXTENSIONS, new StructureTemplatePool(
+        context.register(DDResourceKeys.StructureTemplatePools.CATACOMBS_HALLS_EXTENSIONS, new StructureTemplatePool(
                 emptyPoolHolder,
                 List.of(
                         Pair.of(StructurePoolElement.single("darkerdepths:catacombs/hallway_1", catacombsProcessor).apply(RIGID), 50),
@@ -247,19 +229,7 @@ public class DDStructures {
         ));
     }
 
-    private static ResourceKey<Structure> createStructureKey(String name) {
-        return ResourceKey.create(Registries.STRUCTURE, ResourceLocation.fromNamespaceAndPath(DarkerDepths.MOD_ID, name));
-    }
 
-    private static ResourceKey<StructureSet> createStructureSetKey(String name) {
-        return ResourceKey.create(Registries.STRUCTURE_SET, ResourceLocation.fromNamespaceAndPath(DarkerDepths.MOD_ID, name));
-    }
 
-    private static ResourceKey<StructureTemplatePool> createPoolKey(String name) {
-        return ResourceKey.create(Registries.TEMPLATE_POOL, ResourceLocation.fromNamespaceAndPath(DarkerDepths.MOD_ID, name));
-    }
 
-    public static ResourceKey<BiomeModifier> createKey(String name) {
-        return ResourceKey.create(NeoForgeRegistries.Keys.BIOME_MODIFIERS, ResourceLocation.fromNamespaceAndPath(DarkerDepths.MOD_ID, name));
-    }
 }

@@ -1,12 +1,10 @@
 package com.naterbobber.darkerdepths.data.loot;
 
-import com.naterbobber.darkerdepths.DarkerDepths;
-import com.naterbobber.darkerdepths.init.DDBuiltinLootTables;
 import com.naterbobber.darkerdepths.init.DDItems;
+import com.naterbobber.darkerdepths.init.DDResourceKeys;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.loot.LootTableSubProvider;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
@@ -52,7 +50,7 @@ public record DDArchaeologyLoot(HolderLookup.Provider provider) implements LootT
                         .add(LootItem.lootTableItem(Items.DIAMOND).setWeight(3))
                         .add(LootItem.lootTableItem(DDItems.FORSAKEN_BRONZE_SCRAP.get()).setWeight(2))
                 );
-        consumer.accept(DDBuiltinLootTables.CATACOMBS_ARCHAEOLOGY_STANDARD, catacombs_standard_loot);
+        consumer.accept(DDResourceKeys.LootTables.CATACOMBS_ARCHAEOLOGY_STANDARD, catacombs_standard_loot);
     }
 
 }

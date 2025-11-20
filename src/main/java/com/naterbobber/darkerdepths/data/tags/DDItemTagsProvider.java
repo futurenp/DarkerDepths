@@ -1,14 +1,12 @@
 package com.naterbobber.darkerdepths.data.tags;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
-import com.naterbobber.darkerdepths.compat.init.NeoForgeItemTags;
 import com.naterbobber.darkerdepths.init.DDBlocks;
-import com.naterbobber.darkerdepths.init.DDItemTags;
 import com.naterbobber.darkerdepths.init.DDItems;
+import com.naterbobber.darkerdepths.init.DDTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.Tags;
@@ -40,24 +38,20 @@ public class DDItemTagsProvider extends ItemTagsProvider {
                 DDBlocks.DUSKROCK.get().asItem(),
                 DDBlocks.GRIMESTONE.get().asItem()
         );
-        this.tag(DDItemTags.PETRIFIED_LOGS).add(
+        this.tag(DDTags.Items.PETRIFIED_LOGS).add(
                 DDBlocks.PETRIFIED_LOG.get().asItem(),
                 DDBlocks.PETRIFIED_WOOD.get().asItem(),
                 DDBlocks.STRIPPED_PETRIFIED_LOG.get().asItem(),
                 DDBlocks.STRIPPED_PETRIFIED_WOOD.get().asItem()
         );
-        this.tag(DDItemTags.STILETTO_ENCHANTABLE).add(DDItems.STILETTO.get());
+        this.tag(DDTags.Items.STILETTO_ENCHANTABLE).add(DDItems.STILETTO.get());
         this.tag(ItemTags.SWORD_ENCHANTABLE).add(DDItems.STILETTO.get());
         this.tag(ItemTags.SHARP_WEAPON_ENCHANTABLE).add(DDItems.STILETTO.get());
         this.tag(ItemTags.PLANKS).add(DDBlocks.PETRIFIED_PLANKS.get().asItem());
-        this.tag(NeoForgeItemTags.ROPES).add(DDItems.ROPE.get());
         this.tag(ItemTags.BEACON_PAYMENT_ITEMS).add(DDItems.FORSAKEN_BRONZE_INGOT.get());
 
-        this.tag(Tags.Items.INGOTS)
-                .add(DDItems.FORSAKEN_BRONZE_INGOT.get());
-
-        this.tag(ItemTags.create(ResourceLocation.fromNamespaceAndPath("forge", "ingots/forsaken_bronze")))
-                .add(DDItems.FORSAKEN_BRONZE_INGOT.get());
+        this.tag(Tags.Items.ROPES).add(DDItems.ROPE.get());
+        this.tag(Tags.Items.INGOTS).add(DDItems.FORSAKEN_BRONZE_INGOT.get());
 
         this.copy(Tags.Blocks.STORAGE_BLOCKS, Tags.Items.STORAGE_BLOCKS);
     }

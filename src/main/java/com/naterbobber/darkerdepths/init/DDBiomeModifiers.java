@@ -20,62 +20,47 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class DDBiomeModifiers {
-
-    public static final ResourceKey<BiomeModifier> ADD_MOLTEN_CAVERNS_VEGETAL_FEATURES = createKey("add_molten_caverns_vegetal_features");
-    public static final ResourceKey<BiomeModifier> ADD_MOLTEN_CAVERNS_ORES = createKey("add_molten_caverns_ores");
-    public static final ResourceKey<BiomeModifier> ADD_SANDY_CATACOMBS_LOCAL_MODIFICATIONS = createKey("add_sandy_catacombs_local_modifications");
-    public static final ResourceKey<BiomeModifier> ADD_SANDY_CATACOMBS_VEGETAL_FEATURES = createKey("add_sandy_catacombs_vegetal_features");
-    public static final ResourceKey<BiomeModifier> ADD_SANDY_CATACOMBS_SPAWNS = createKey("add_sandy_catacombs_spawns");
-    public static final ResourceKey<BiomeModifier> ADD_SANDY_CATACOMBS_RAW_GENERATION = createKey("add_sandy_catacombs_raw_generation");
-    public static final ResourceKey<BiomeModifier> ADD_SANDY_CATACOMBS_UNDERGROUND_DECORATION = createKey("add_sandy_catacombs_underground_decoration");
-    public static final ResourceKey<BiomeModifier> ADD_GLOWSHROOM_FOREST_VEGETAL_FEATURES = createKey("add_glowshroom_forest_vegetal_features");
-    public static final ResourceKey<BiomeModifier> ADD_GLOWSHROOM_FOREST_SPAWNS = createKey("add_glowshroom_forest_spawns");
-
-    private static ResourceKey<BiomeModifier> createKey(String name) {
-        return ResourceKey.create(NeoForgeRegistries.Keys.BIOME_MODIFIERS, DarkerDepths.id(name));
-    }
-
     public static void bootstrap(BootstrapContext<BiomeModifier> context) {
-        context.register(ADD_MOLTEN_CAVERNS_VEGETAL_FEATURES, new BiomeModifiers.AddFeaturesBiomeModifier(
-                getBiome(context, DDBiomes.MOLTEN_CAVERN),
+        context.register(DDResourceKeys.BiomeModifiers.ADD_MOLTEN_CAVERNS_VEGETAL_FEATURES, new BiomeModifiers.AddFeaturesBiomeModifier(
+                getBiome(context, DDResourceKeys.Biomes.MOLTEN_CAVERN),
                 getPlacedFeature(
                         context,
-                        DDPlacedFeatures.DARKSLATE_PLACEMENT,
-                        DDPlacedFeatures.AMBER,
-                        DDPlacedFeatures.MOLTEN_POOL,
-                        DDPlacedFeatures.MOLTEN_SPRING
+                        DDResourceKeys.PlacedFeatures.DARKSLATE_PLACEMENT,
+                        DDResourceKeys.PlacedFeatures.AMBER,
+                        DDResourceKeys.PlacedFeatures.MOLTEN_POOL,
+                        DDResourceKeys.PlacedFeatures.MOLTEN_SPRING
                 ),
                 GenerationStep.Decoration.VEGETAL_DECORATION)
         );
-        context.register(ADD_MOLTEN_CAVERNS_ORES, new BiomeModifiers.AddFeaturesBiomeModifier(
-                getBiome(context, DDBiomes.MOLTEN_CAVERN),
+        context.register(DDResourceKeys.BiomeModifiers.ADD_MOLTEN_CAVERNS_ORES, new BiomeModifiers.AddFeaturesBiomeModifier(
+                getBiome(context, DDResourceKeys.Biomes.MOLTEN_CAVERN),
                 getPlacedFeature(
                         context,
-                        DDPlacedFeatures.MAGMA_ORE,
-                        DDPlacedFeatures.DEAD_LIVING_CRYSTAL_ORE
+                        DDResourceKeys.PlacedFeatures.MAGMA_ORE,
+                        DDResourceKeys.PlacedFeatures.DEAD_LIVING_CRYSTAL_ORE
                 ),
                 GenerationStep.Decoration.UNDERGROUND_ORES
         ));
-        context.register(ADD_SANDY_CATACOMBS_LOCAL_MODIFICATIONS, new BiomeModifiers.AddFeaturesBiomeModifier(
-                        getBiome(context, DDBiomes.SANDY_CATACOMBS),
+        context.register(DDResourceKeys.BiomeModifiers.ADD_SANDY_CATACOMBS_LOCAL_MODIFICATIONS, new BiomeModifiers.AddFeaturesBiomeModifier(
+                        getBiome(context, DDResourceKeys.Biomes.SANDY_CATACOMBS),
                         getPlacedFeature(
                                 context
 //                          Testing out this feature for 2.1
-//                        DDPlacedFeatures.CATACOMBS_LAYERED_PLACEMENT
+//                        DDResourceKeys.PlacedFeatures.CATACOMBS_LAYERED_PLACEMENT
                         ),
                         GenerationStep.Decoration.LOCAL_MODIFICATIONS)
         );
-        context.register(ADD_SANDY_CATACOMBS_VEGETAL_FEATURES, new BiomeModifiers.AddFeaturesBiomeModifier(
-                getBiome(context, DDBiomes.SANDY_CATACOMBS),
+        context.register(DDResourceKeys.BiomeModifiers.ADD_SANDY_CATACOMBS_VEGETAL_FEATURES, new BiomeModifiers.AddFeaturesBiomeModifier(
+                getBiome(context, DDResourceKeys.Biomes.SANDY_CATACOMBS),
                 getPlacedFeature(
                         context,
-                        DDPlacedFeatures.PETRIFIED_BRANCH,
-                        DDPlacedFeatures.ARID_SURFACE
+                        DDResourceKeys.PlacedFeatures.PETRIFIED_BRANCH,
+                        DDResourceKeys.PlacedFeatures.ARID_SURFACE
                 ),
                 GenerationStep.Decoration.VEGETAL_DECORATION)
         );
-        context.register(ADD_SANDY_CATACOMBS_SPAWNS, new BiomeModifiers.AddSpawnsBiomeModifier(
-                getBiome(context, DDBiomes.SANDY_CATACOMBS),
+        context.register(DDResourceKeys.BiomeModifiers.ADD_SANDY_CATACOMBS_SPAWNS, new BiomeModifiers.AddSpawnsBiomeModifier(
+                getBiome(context, DDResourceKeys.Biomes.SANDY_CATACOMBS),
                 List.of(
                         new MobSpawnSettings.SpawnerData(EntityType.CAVE_SPIDER, 80, 2, 4),
                         new MobSpawnSettings.SpawnerData(EntityType.SKELETON, 50, 1, 4),
@@ -84,37 +69,37 @@ public class DDBiomeModifiers {
                         new MobSpawnSettings.SpawnerData(DDEntityTypes.BODY_SNATCHER.get(), 30, 1, 3)
                 )
         ));
-        context.register(ADD_SANDY_CATACOMBS_RAW_GENERATION, new BiomeModifiers.AddFeaturesBiomeModifier(
-                getBiome(context, DDBiomes.SANDY_CATACOMBS),
+        context.register(DDResourceKeys.BiomeModifiers.ADD_SANDY_CATACOMBS_RAW_GENERATION, new BiomeModifiers.AddFeaturesBiomeModifier(
+                getBiome(context, DDResourceKeys.Biomes.SANDY_CATACOMBS),
                 getPlacedFeature(
                         context,
-                        DDPlacedFeatures.ARID_BOULDER,
-                        DDPlacedFeatures.DUSKROCK_ORE
-                        //DDPlacedFeatures.DUSKROCK_STRIPE
+                        DDResourceKeys.PlacedFeatures.ARID_BOULDER,
+                        DDResourceKeys.PlacedFeatures.DUSKROCK_ORE
+                        //DDResourceKeys.PlacedFeatures.DUSKROCK_STRIPE
                 ),
                 GenerationStep.Decoration.RAW_GENERATION)
         );
-        context.register(ADD_SANDY_CATACOMBS_UNDERGROUND_DECORATION, new BiomeModifiers.AddFeaturesBiomeModifier(
-                        getBiome(context, DDBiomes.SANDY_CATACOMBS),
+        context.register(DDResourceKeys.BiomeModifiers.ADD_SANDY_CATACOMBS_UNDERGROUND_DECORATION, new BiomeModifiers.AddFeaturesBiomeModifier(
+                        getBiome(context, DDResourceKeys.Biomes.SANDY_CATACOMBS),
                         getPlacedFeature(
                                 context,
-                                DDPlacedFeatures.CATACOMBS_LAVA_LINING
-//                        DDPlacedFeatures.CATACOMBS_SAND_PLACEMENT
+                                DDResourceKeys.PlacedFeatures.CATACOMBS_LAVA_LINING
+//                        DDResourceKeys.PlacedFeatures.CATACOMBS_SAND_PLACEMENT
                         ),
                         GenerationStep.Decoration.UNDERGROUND_DECORATION)
         );
-        context.register(ADD_GLOWSHROOM_FOREST_VEGETAL_FEATURES, new BiomeModifiers.AddFeaturesBiomeModifier(
-                getBiome(context, DDBiomes.GLOWSHROOM_FOREST),
+        context.register(DDResourceKeys.BiomeModifiers.ADD_GLOWSHROOM_FOREST_VEGETAL_FEATURES, new BiomeModifiers.AddFeaturesBiomeModifier(
+                getBiome(context, DDResourceKeys.Biomes.GLOWSHROOM_FOREST),
                 getPlacedFeature(
                         context,
-                        DDPlacedFeatures.GLIMMERING_VINES,
-                        DDPlacedFeatures.HUGE_GLOWSHROOM,
-                        DDPlacedFeatures.GRIME_SURFACE
+                        DDResourceKeys.PlacedFeatures.GLIMMERING_VINES,
+                        DDResourceKeys.PlacedFeatures.HUGE_GLOWSHROOM,
+                        DDResourceKeys.PlacedFeatures.GRIME_SURFACE
                 ),
                 GenerationStep.Decoration.VEGETAL_DECORATION)
         );
-        context.register(ADD_GLOWSHROOM_FOREST_SPAWNS, new BiomeModifiers.AddSpawnsBiomeModifier(
-                getBiome(context, DDBiomes.GLOWSHROOM_FOREST),
+        context.register(DDResourceKeys.BiomeModifiers.ADD_GLOWSHROOM_FOREST_SPAWNS, new BiomeModifiers.AddSpawnsBiomeModifier(
+                getBiome(context, DDResourceKeys.Biomes.GLOWSHROOM_FOREST),
                 List.of(
                         new MobSpawnSettings.SpawnerData(DDEntityTypes.GLOWSHROOM_MONSTER.get(), 50, 1, 2)
                 )

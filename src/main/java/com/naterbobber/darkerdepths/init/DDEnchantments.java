@@ -17,18 +17,13 @@ import java.util.List;
 
 public class DDEnchantments {
 
-    public static final List<ResourceKey<Enchantment>> ENCHANTMENTS = Lists.newArrayList();
-
-    public static final ResourceKey<Enchantment> SWIFT_STRIKE = key("swift_strike");
-    public static final ResourceKey<Enchantment> QUICK_DASH = key("quick_dash");
-
     public static void bootstrap(BootstrapContext<Enchantment> context) {
         HolderGetter<Item> itemLookup = context.lookup(Registries.ITEM);
         HolderGetter<Enchantment> enchantmentLookup = context.lookup(Registries.ENCHANTMENT);
 
-        register(context, SWIFT_STRIKE, Enchantment.enchantment(
+        register(context, DDResourceKeys.Enchantments.SWIFT_STRIKE, Enchantment.enchantment(
                 Enchantment.definition(
-                        itemLookup.getOrThrow(DDItemTags.STILETTO_ENCHANTABLE),
+                        itemLookup.getOrThrow(DDTags.Items.STILETTO_ENCHANTABLE),
                         2,
                         1,
                         Enchantment.dynamicCost(15, 9),
@@ -38,9 +33,9 @@ public class DDEnchantments {
                 )
         ).withEffect(DDEnchantmentEffects.SWIFT_STRIKE_HIT.get(), new AddValue(LevelBasedValue.perLevel(1.0F))));
 
-        register(context, QUICK_DASH, Enchantment.enchantment(
+        register(context, DDResourceKeys.Enchantments.QUICK_DASH, Enchantment.enchantment(
                 Enchantment.definition(
-                        itemLookup.getOrThrow(DDItemTags.STILETTO_ENCHANTABLE),
+                        itemLookup.getOrThrow(DDTags.Items.STILETTO_ENCHANTABLE),
                         2,
                         3,
                         Enchantment.dynamicCost(15, 9),
@@ -54,11 +49,4 @@ public class DDEnchantments {
     private static void register(BootstrapContext<Enchantment> context, ResourceKey<Enchantment> key, Enchantment.Builder builder) {
         context.register(key, builder.build(key.location()));
     }
-
-    private static ResourceKey<Enchantment> key(String name) {
-        ResourceKey<Enchantment> key = ResourceKey.create(Registries.ENCHANTMENT, DarkerDepths.id(name));
-        ENCHANTMENTS.add(key);
-        return key;
-    }
-
 }

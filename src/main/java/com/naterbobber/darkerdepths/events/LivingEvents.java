@@ -2,13 +2,8 @@ package com.naterbobber.darkerdepths.events;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.api.DeathAnchorLocation;
-import com.naterbobber.darkerdepths.init.DDBlocks;
-import com.naterbobber.darkerdepths.init.DDDamageTypes;
-import com.naterbobber.darkerdepths.init.DDDataComponents;
+import com.naterbobber.darkerdepths.init.*;
 import com.naterbobber.darkerdepths.component.DDEnchantmentEffects;
-import com.naterbobber.darkerdepths.init.DDItems;
-import com.naterbobber.darkerdepths.init.DDMobEffects;
-import com.naterbobber.darkerdepths.init.DDPoiTypes;
 import com.naterbobber.darkerdepths.network.SendDeathAnchorPacket;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.GlobalPos;
@@ -155,7 +150,7 @@ public class LivingEvents {
             if (entity instanceof Player player && !player.getAbilities().instabuild) {
                 DamageSource damageSource = new DamageSource(
                         entity.level().registryAccess().registryOrThrow(Registries.DAMAGE_TYPE)
-                                .getHolderOrThrow(DDDamageTypes.SOUL_BINDING_DAMAGE)
+                                .getHolderOrThrow(DDResourceKeys.DamageTypes.SOUL_BINDING_DAMAGE)
                 );
                 entity.hurt(damageSource, Float.MAX_VALUE);
             }

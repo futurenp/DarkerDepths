@@ -2,6 +2,8 @@ package com.naterbobber.darkerdepths.data.tags;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.init.DDBiomes;
+import com.naterbobber.darkerdepths.init.DDResourceKeys;
+import com.naterbobber.darkerdepths.init.DDTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
@@ -19,30 +21,21 @@ import org.jetbrains.annotations.Nullable;
 import java.util.concurrent.CompletableFuture;
 
 public class DDBiomeTagsProvider extends BiomeTagsProvider {
-
-    public static final TagKey<Biome> HAS_ROPE_MINE_FOREST = createTag("has_structure/rope_mine_forest");
-    public static final TagKey<Biome> HAS_ROPE_MINE_DESERT = createTag("has_structure/rope_mine_desert");
-    public static final TagKey<Biome> CATACOMBS = createTag("has_structure/catacombs");
-
-    private static TagKey<Biome> createTag(String name) {
-        return TagKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath(DarkerDepths.MOD_ID, name));
-    }
-
     public DDBiomeTagsProvider(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> completableFuture, @Nullable ExistingFileHelper existingFileHelper) {
         super(packOutput, completableFuture, DarkerDepths.MOD_ID, existingFileHelper);
     }
 
     @Override
     protected void addTags(HolderLookup.Provider provider) {
-        DDBiomes.BIOMES.stream().forEach(this::addDefaultOverworldBiomeTags);
+        DDResourceKeys.Biomes.BIOMES.stream().forEach(this::addDefaultOverworldBiomeTags);
 
-        this.tag(Tags.Biomes.IS_HOT_OVERWORLD).addOptional(DDBiomes.MOLTEN_CAVERN.location());
-        this.tag(Tags.Biomes.IS_DRY_OVERWORLD).addOptional(DDBiomes.SANDY_CATACOMBS.location());
-        this.tag(Tags.Biomes.IS_COLD_OVERWORLD).addOptional(DDBiomes.GLOWSHROOM_FOREST.location());
+        this.tag(Tags.Biomes.IS_HOT_OVERWORLD).addOptional(DDResourceKeys.Biomes.MOLTEN_CAVERN.location());
+        this.tag(Tags.Biomes.IS_DRY_OVERWORLD).addOptional(DDResourceKeys.Biomes.SANDY_CATACOMBS.location());
+        this.tag(Tags.Biomes.IS_COLD_OVERWORLD).addOptional(DDResourceKeys.Biomes.GLOWSHROOM_FOREST.location());
 
-        this.tag(CATACOMBS).addOptional(DDBiomes.SANDY_CATACOMBS.location());
+        this.tag(DDTags.Biomes.CATACOMBS).addOptional(DDResourceKeys.Biomes.SANDY_CATACOMBS.location());
 
-        this.tag(HAS_ROPE_MINE_FOREST).add(
+        this.tag(DDTags.Biomes.HAS_ROPE_MINE_FOREST).add(
                 Biomes.PLAINS,
                 Biomes.FOREST,
                 Biomes.DARK_FOREST,
@@ -50,7 +43,7 @@ public class DDBiomeTagsProvider extends BiomeTagsProvider {
                 Biomes.JUNGLE,
                 Biomes.MANGROVE_SWAMP);
 
-        this.tag(HAS_ROPE_MINE_DESERT).add(Biomes.DESERT);
+        this.tag(DDTags.Biomes.HAS_ROPE_MINE_DESERT).add(Biomes.DESERT);
     }
 
     private void addDefaultOverworldBiomeTags(ResourceKey<Biome> biome) {

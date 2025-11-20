@@ -1,7 +1,7 @@
 package com.naterbobber.darkerdepths.data.tags;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
-import com.naterbobber.darkerdepths.init.DDDamageTypes;
+import com.naterbobber.darkerdepths.init.DDResourceKeys;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
@@ -20,10 +20,10 @@ public class DDDamageTypeTagsProvider extends TagsProvider<DamageType> {
 
     @Override
     protected void addTags(HolderLookup.Provider pProvider) {
-        this.tag(DamageTypeTags.BYPASSES_INVULNERABILITY).add(DDDamageTypes.SOUL_BINDING_DAMAGE);
-        this.tag(DamageTypeTags.BYPASSES_ARMOR).add(DDDamageTypes.SOUL_BINDING_DAMAGE);
-        this.tag(DamageTypeTags.BYPASSES_ENCHANTMENTS).add(DDDamageTypes.SOUL_BINDING_DAMAGE);
-        this.tag(DamageTypeTags.BYPASSES_RESISTANCE).add(DDDamageTypes.SOUL_BINDING_DAMAGE);
-        this.tag(DamageTypeTags.BYPASSES_EFFECTS).add(DDDamageTypes.SOUL_BINDING_DAMAGE);
+        this.tag(DamageTypeTags.BYPASSES_INVULNERABILITY).add(DDResourceKeys.DamageTypes.SOUL_BINDING_DAMAGE);
+        this.tag(DamageTypeTags.BYPASSES_ARMOR).add(DDResourceKeys.DamageTypes.SOUL_BINDING_DAMAGE);
+        this.tag(DamageTypeTags.BYPASSES_ENCHANTMENTS).add(DDResourceKeys.DamageTypes.SOUL_BINDING_DAMAGE);
+        this.tag(DamageTypeTags.BYPASSES_RESISTANCE).add(DDResourceKeys.DamageTypes.SOUL_BINDING_DAMAGE);
+        this.tag(DamageTypeTags.BYPASSES_EFFECTS).add(DDResourceKeys.DamageTypes.SOUL_BINDING_DAMAGE);
     }
 }

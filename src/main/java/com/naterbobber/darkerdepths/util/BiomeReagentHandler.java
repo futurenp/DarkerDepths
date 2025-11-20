@@ -4,6 +4,8 @@ import com.mojang.datafixers.util.Pair;
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.config.DDBiomeConfig;
 import com.naterbobber.darkerdepths.config.DDConfig;
+import com.naterbobber.darkerdepths.init.DDResourceKeys;
+import com.naterbobber.darkerdepths.init.DDTags;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.biome.Biome;
@@ -16,7 +18,6 @@ import static com.naterbobber.darkerdepths.init.DDBiomes.*;
 
 //this is a complete mess
 public class BiomeReagentHandler {
-
     private static final DDBiomeConfig.Defaults SANDY_CATACOMBS_DEFAULTS = new DDBiomeConfig.Defaults(
             0.5, 1.2, -1.0, -0.4, 0.1, 0.3,
             -0.25, 1.0, -1.0, 1.0, 0.3, 2.0, 0.0
@@ -33,9 +34,9 @@ public class BiomeReagentHandler {
     );
 
     public static void init(Consumer<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> consumer) {
-        consumer.accept(Pair.of(climateParamsFromConfig(SANDY_CATACOMBS_DEFAULTS), SANDY_CATACOMBS));
-        consumer.accept(Pair.of(climateParamsFromConfig(GLOWSHROOM_FOREST_DEFAULTS), GLOWSHROOM_FOREST));
-        consumer.accept(Pair.of(climateParamsFromConfig(MOLTEN_CAVERN_DEFAULTS), MOLTEN_CAVERN));
+        consumer.accept(Pair.of(climateParamsFromConfig(SANDY_CATACOMBS_DEFAULTS), DDResourceKeys.Biomes.SANDY_CATACOMBS));
+        consumer.accept(Pair.of(climateParamsFromConfig(GLOWSHROOM_FOREST_DEFAULTS), DDResourceKeys.Biomes.GLOWSHROOM_FOREST));
+        consumer.accept(Pair.of(climateParamsFromConfig(MOLTEN_CAVERN_DEFAULTS), DDResourceKeys.Biomes.MOLTEN_CAVERN));
     }
 
 //    public static void init(Consumer<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> consumer) {
@@ -63,10 +64,5 @@ public class BiomeReagentHandler {
                 Climate.Parameter.span((float) config.depthMin(), (float) config.depthMax()),
                 Climate.Parameter.span((float) config.weirdnessMin(), (float) config.weirdnessMax()),
                 (float) config.offset());
-    }
-
-
-    private static ResourceKey<Biome> register(String name) {
-        return ResourceKey.create(Registries.BIOME, DarkerDepths.id(name));
     }
 }

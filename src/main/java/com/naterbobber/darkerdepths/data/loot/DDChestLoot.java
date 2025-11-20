@@ -1,13 +1,11 @@
 package com.naterbobber.darkerdepths.data.loot;
 
-import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.init.DDBlocks;
-import com.naterbobber.darkerdepths.init.DDBuiltinLootTables;
 import com.naterbobber.darkerdepths.init.DDItems;
+import com.naterbobber.darkerdepths.init.DDResourceKeys;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.loot.LootTableSubProvider;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
@@ -60,7 +58,7 @@ public record DDChestLoot(HolderLookup.Provider provider) implements LootTableSu
                         .add(LootItem.lootTableItem(Items.BOOK).setWeight(5)
                                 .apply(new EnchantRandomlyFunction.Builder()))
                 );
-        consumer.accept(DDBuiltinLootTables.CATACOMBS_CHEST_STANDARD, catacombs_chest_standard);
+        consumer.accept(DDResourceKeys.LootTables.CATACOMBS_CHEST_STANDARD, catacombs_chest_standard);
 
         LootTable.Builder catacombs_chest_treasure = LootTable.lootTable()
                 .withPool(LootPool.lootPool()
@@ -87,6 +85,6 @@ public record DDChestLoot(HolderLookup.Provider provider) implements LootTableSu
                         .add(LootItem.lootTableItem(Items.BOOK).setWeight(5)
                                 .apply(new EnchantRandomlyFunction.Builder()))
                 );
-        consumer.accept(DDBuiltinLootTables.CATACOMBS_CHEST_TREASURE, catacombs_chest_treasure);
+        consumer.accept(DDResourceKeys.LootTables.CATACOMBS_CHEST_TREASURE, catacombs_chest_treasure);
     }
 }

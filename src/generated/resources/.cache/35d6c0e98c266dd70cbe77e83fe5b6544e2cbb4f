@@ -1,10 +1,9 @@
-// 1.21.1	2025-11-18T23:50:15.9643823	Tags for minecraft:item mod id darkerdepths
+// 1.21.1	2025-11-19T18:09:17.3391628	Tags for minecraft:item mod id darkerdepths
 77d40b9f5df576ef39fca8a026be11021c8a8225 data/c/tags/item/ingots.json
 116ee09228695a95ad2997abfb4a0d5492fb61d5 data/c/tags/item/ropes.json
 9cb44c49895785a868a717fe96a0e3ce7e215187 data/c/tags/item/storage_blocks.json
 2540ebbb453039c1d5bb73ab2a126a913addf113 data/darkerdepths/tags/item/petrified_logs.json
 09e798cfd3f75ba3b2df8f4463521554024780e4 data/darkerdepths/tags/item/stiletto_enchantable.json
-77d40b9f5df576ef39fca8a026be11021c8a8225 data/forge/tags/item/ingots/forsaken_bronze.json
 77d40b9f5df576ef39fca8a026be11021c8a8225 data/minecraft/tags/item/beacon_payment_items.json
 09e798cfd3f75ba3b2df8f4463521554024780e4 data/minecraft/tags/item/enchantable/sharp_weapon.json
 09e798cfd3f75ba3b2df8f4463521554024780e4 data/minecraft/tags/item/enchantable/sword.json

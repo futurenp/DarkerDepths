@@ -1,6 +1,6 @@
 package com.naterbobber.darkerdepths.mixin;
 
-import com.naterbobber.darkerdepths.init.DDBlockTags;
+import com.naterbobber.darkerdepths.init.DDTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.EntityType;
@@ -17,7 +17,7 @@ public class HuskMixin {
 
     @Inject(at = @At("HEAD"), method = "checkHuskSpawnRules", cancellable = true)
     private static void DD$checkHuskSpawnRules(EntityType<Husk> entityType, ServerLevelAccessor world, MobSpawnType mobSpawnType, BlockPos pos, RandomSource randomSource, CallbackInfoReturnable<Boolean> cir) {
-        if (world.getBlockState(pos.below()).is(DDBlockTags.HUSKS_SPAWNABLE_ON)) {
+        if (world.getBlockState(pos.below()).is(DDTags.Blocks.HUSKS_SPAWNABLE_ON)) {
             cir.setReturnValue(true);
         }
     }

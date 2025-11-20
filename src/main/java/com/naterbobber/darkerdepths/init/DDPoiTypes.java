@@ -16,7 +16,6 @@ import java.util.Set;
 public class DDPoiTypes {
 
     public static final DeferredRegister<PoiType> POI_TYPES = DeferredRegister.create(Registries.POINT_OF_INTEREST_TYPE, DarkerDepths.MOD_ID);
-
     public static final DeferredHolder<PoiType, PoiType> DEATH_ANCHOR = POI_TYPES.register("death_anchor", () -> new PoiType(getBlockStates(DDBlocks.DEATH_ANCHOR.get()), 1, 1));
 
     private static Set<BlockState> getBlockStates(Block block) {

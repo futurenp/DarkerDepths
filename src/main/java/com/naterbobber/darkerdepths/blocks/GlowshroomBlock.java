@@ -2,6 +2,7 @@ package com.naterbobber.darkerdepths.blocks;
 
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import com.naterbobber.darkerdepths.init.DDConfiguredFeatures;
+import com.naterbobber.darkerdepths.init.DDResourceKeys;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.Registries;
@@ -106,7 +107,7 @@ public class GlowshroomBlock extends Block implements BonemealableBlock, SimpleW
     @Override
     public void performBonemeal(ServerLevel world, RandomSource random, BlockPos pos, BlockState state) {
         world.registryAccess().registryOrThrow(Registries.CONFIGURED_FEATURE)
-                .getHolder(DDConfiguredFeatures.HUGE_GLOWSHROOM_PLANTED).ifPresent(featureHolder -> {
+                .getHolder(DDResourceKeys.ConfiguredFeatures.HUGE_GLOWSHROOM_PLANTED).ifPresent(featureHolder -> {
 
                     world.setBlock(pos, Blocks.CAVE_AIR.defaultBlockState(), 4);
 

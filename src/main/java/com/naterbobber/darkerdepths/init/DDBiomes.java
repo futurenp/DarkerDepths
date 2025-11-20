@@ -21,24 +21,12 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 public class DDBiomes {
-    public static final List<ResourceKey<Biome>> BIOMES = Lists.newArrayList();
-
-    public static final ResourceKey<Biome> MOLTEN_CAVERN = createKey("molten_cavern");
-    public static final ResourceKey<Biome> SANDY_CATACOMBS = createKey("sandy_catacombs");
-    public static final ResourceKey<Biome> GLOWSHROOM_FOREST = createKey("glowshroom_forest");
-
     public static void bootstrap(BootstrapContext<Biome> context) {
         HolderGetter<PlacedFeature> holdergetter = context.lookup(Registries.PLACED_FEATURE);
         HolderGetter<ConfiguredWorldCarver<?>> holdergetter1 = context.lookup(Registries.CONFIGURED_CARVER);
-        context.register(MOLTEN_CAVERN, createMoltenCavern(holdergetter, holdergetter1));
-        context.register(SANDY_CATACOMBS, createSandyCatacombs(holdergetter, holdergetter1));
-        context.register(GLOWSHROOM_FOREST, createGlowshroomForest(holdergetter, holdergetter1));
-    }
-
-    public static ResourceKey<Biome> createKey(String name) {
-        ResourceKey<Biome> key = ResourceKey.create(Registries.BIOME, DarkerDepths.id(name));
-        BIOMES.add(key);
-        return key;
+        context.register(DDResourceKeys.Biomes.MOLTEN_CAVERN, createMoltenCavern(holdergetter, holdergetter1));
+        context.register(DDResourceKeys.Biomes.SANDY_CATACOMBS, createSandyCatacombs(holdergetter, holdergetter1));
+        context.register(DDResourceKeys.Biomes.GLOWSHROOM_FOREST, createGlowshroomForest(holdergetter, holdergetter1));
     }
 
     public static Biome createGlowshroomForest(HolderGetter<PlacedFeature> holderGetter, HolderGetter<ConfiguredWorldCarver<?>> holderGetter1) {

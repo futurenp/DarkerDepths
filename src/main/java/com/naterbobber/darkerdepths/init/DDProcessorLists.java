@@ -13,27 +13,18 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProcessorList;
 
 public class DDProcessorLists {
-
-    public static final ResourceKey<StructureProcessorList> CATACOMBS_PROCESSOR = createKey("catacombs_processor");
-    public static final ResourceKey<StructureProcessorList> ROPE_MINES_PROCESSOR = createKey("rope_mines_processor");
-
     public static void bootstrap(BootstrapContext<StructureProcessorList> context) {
-        context.register(CATACOMBS_PROCESSOR, new StructureProcessorList(ImmutableList.of(
+        context.register(DDResourceKeys.StructureProcessorLists.CATACOMBS_PROCESSOR, new StructureProcessorList(ImmutableList.of(
                 new TombProcessor(),
                 new CatacombsBarrelProcessor(),
                 new CatacombsArchaeologyProcessor(),
                 new VoidSoulKnightProcessor()
         )));
 
-        context.register(ROPE_MINES_PROCESSOR, new StructureProcessorList(ImmutableList.of(
+        context.register(DDResourceKeys.StructureProcessorLists.ROPE_MINES_PROCESSOR, new StructureProcessorList(ImmutableList.of(
                 new RopeMinesArchaeologyProcessor()
         )));
     }
-
-    private static ResourceKey<StructureProcessorList> createKey(String pName) {
-        return ResourceKey.create(Registries.PROCESSOR_LIST, DarkerDepths.id(pName));
-    }
-
 }
 
 

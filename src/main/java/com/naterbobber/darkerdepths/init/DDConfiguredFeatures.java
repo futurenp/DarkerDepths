@@ -1,7 +1,6 @@
 package com.naterbobber.darkerdepths.init;
 
 import com.google.common.collect.ImmutableList;
-import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.blocks.AshBlock;
 import com.naterbobber.darkerdepths.blocks.GlowshroomBlock;
 import com.naterbobber.darkerdepths.blocks.GlowspursBlock;
@@ -16,7 +15,6 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.data.worldgen.features.FeatureUtils;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.random.SimpleWeightedRandomList;
 import net.minecraft.util.valueproviders.ConstantInt;
@@ -29,13 +27,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.configurations.BlockColumnConfiguration;
-import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
-import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
-import net.minecraft.world.level.levelgen.feature.configurations.RandomBooleanFeatureConfiguration;
-import net.minecraft.world.level.levelgen.feature.configurations.SimpleBlockConfiguration;
-import net.minecraft.world.level.levelgen.feature.configurations.SpringConfiguration;
-import net.minecraft.world.level.levelgen.feature.configurations.VegetationPatchConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.*;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
 import net.minecraft.world.level.levelgen.placement.CaveSurface;
@@ -44,6 +36,8 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
 import net.minecraft.world.level.material.Fluids;
 
 import java.util.List;
+
+import static com.naterbobber.darkerdepths.init.DDResourceKeys.ConfiguredFeatures.*;
 
 public class DDConfiguredFeatures {
 
@@ -61,34 +55,6 @@ public class DDConfiguredFeatures {
             Blocks.DEEPSLATE.defaultBlockState(),
             Blocks.TUFF.defaultBlockState()
     );
-
-    public static final ResourceKey<ConfiguredFeature<?, ?>> GLOWSHROOM_PATCH = createKey("glowshroom_patch");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> HUGE_GLOWSHROOM = createKey("huge_glowshroom");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> HUGE_GLOWSHROOM_PLANTED = createKey("huge_glowshroom_planted");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> AMBERS_PLACEMENT = createKey("amber_placement");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> MOLTEN_SPRING = createKey("molten_spring");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> ASH_PLACEMENTS = createKey("ash_placement");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> GEYSER_PLACEMENT = createKey("geyser_placement");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> MOLTEN_POOL = createKey("molten_pool");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> GRIME_VEGETATION = createKey("grime_vegetation");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> ARID_VEGETATION = createKey("arid_vegetation");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> DARKSLATE_VEGETATION = createKey("darkslate_vegetation");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> DARKSLATE_PLACEMENT = createKey("darkslate_placement");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> CATACOMBS_SAND_PLACEMENT = createKey("catacombs_sand_placement");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> CATACOMBS_LAYERED_PLACEMENT = createKey("catacombs_layer_placement");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> SHORT_PETRIFIED_BRANCH = createKey("short_petrified_branch");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> LONG_PETRIFIED_BRANCH = createKey("long_petrified_branch");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> PETRIFIED_BRANCH = createKey("petrified_branch");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> MAGMA_ORE = createKey("magma_ore");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> DARKSLATE_SURFACE = createKey("darkslate_surface");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> ARID_SURFACE = createKey("arid_surface");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> GRIME_SURFACE = createKey("grime_surface");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> ARID_BOULDER = createKey("arid_boulder");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> CATACOMBS_LAVA_LINING = createKey("catacombs_lava_lining");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> DUSKROCK_STRIPE = createKey("duskrock_stripe");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> GLIMMERING_VINES = createKey("glimmering_vines");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> DEAD_LIVING_CRYSTAL_ORE = createKey("dead_living_crystal_ore");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> DUSKROCK_ORE = createKey("duskrock_ore");
 
 
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
@@ -317,10 +283,4 @@ public class DDConfiguredFeatures {
                 true)
         );
     }
-
-
-    public static ResourceKey<ConfiguredFeature<?, ?>> createKey(String name) {
-        return ResourceKey.create(Registries.CONFIGURED_FEATURE, DarkerDepths.id(name));
-    }
-
 }
