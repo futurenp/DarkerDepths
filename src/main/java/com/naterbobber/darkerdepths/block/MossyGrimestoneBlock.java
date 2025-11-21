@@ -69,7 +69,7 @@ public class MossyGrimestoneBlock extends Block implements BonemealableBlock {
             if (blockstate2.isAir()) {
                 BlockState blockstate1;
                 if (rand.nextInt(10) == 0) {
-                    blockstate1 = DDBlocks.GLOWSHROOM.get().defaultBlockState().setValue(GlowshroomBlock.CLUSTERS_1_3, Mth.nextInt(rand, 1, 3));
+                    blockstate1 = DDBlocks.GLOWSHROOM.get().defaultBlockState().setValue(GlowshroomBlock.GLOWSHROOM_CLUSTERS, Mth.nextInt(rand, 1, 3));
                 } else {
                     blockstate1 = DDBlocks.MOSSY_SPROUTS.get().defaultBlockState();
                 }

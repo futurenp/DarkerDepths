@@ -35,7 +35,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
 public class GlowshroomBlock extends Block implements BonemealableBlock, SimpleWaterloggedBlock {
-    public static final IntegerProperty CLUSTERS_1_3 = IntegerProperty.create("clusters", 1, 3);
+    public static final IntegerProperty GLOWSHROOM_CLUSTERS = IntegerProperty.create("clusters", 1, 3);
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     protected static final VoxelShape SHAPE_1 = Block.box(5.0D, 0.0D, 5.0D, 11.0D, 9.0D, 11.0D);
     protected static final VoxelShape SHAPE_2 = Block.box(3.0D, 0.0D, 3.0D, 13.0D, 9.0D, 13.0D);
@@ -43,15 +43,15 @@ public class GlowshroomBlock extends Block implements BonemealableBlock, SimpleW
 
     public GlowshroomBlock(Properties properties) {
         super(properties);
-        this.registerDefaultState(this.stateDefinition.any().setValue(WATERLOGGED, false).setValue(CLUSTERS_1_3, 1));
+        this.registerDefaultState(this.stateDefinition.any().setValue(WATERLOGGED, false).setValue(GLOWSHROOM_CLUSTERS, 1));
     }
 
     @Override
     public ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult p_60508_) {
-        int i = state.getValue(CLUSTERS_1_3);
+        int i = state.getValue(GLOWSHROOM_CLUSTERS);
         if (stack.getItem() == DDBlocks.GLOWSHROOM.get().asItem() && i < 3) {
             worldIn.playSound(null, pos, SoundEvents.SLIME_BLOCK_PLACE, SoundSource.BLOCKS, 1.0F, 1.0F);
-            worldIn.setBlock(pos, state.setValue(CLUSTERS_1_3, i + 1), 2);
+            worldIn.setBlock(pos, state.setValue(GLOWSHROOM_CLUSTERS, i + 1), 2);
             if (!player.getAbilities().instabuild) {
                 stack.shrink(1);
             }
@@ -75,7 +75,7 @@ public class GlowshroomBlock extends Block implements BonemealableBlock, SimpleW
 
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter p_60556_, BlockPos p_60557_, CollisionContext p_60558_) {
-        return switch (state.getValue(CLUSTERS_1_3)) {
+        return switch (state.getValue(GLOWSHROOM_CLUSTERS)) {
             case 2 -> SHAPE_2;
             case 3 -> SHAPE_3;
             default -> SHAPE_1;
@@ -94,12 +94,12 @@ public class GlowshroomBlock extends Block implements BonemealableBlock, SimpleW
 
     @Override
     public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState) {
-        return blockState.getValue(CLUSTERS_1_3) == 1;
+        return blockState.getValue(GLOWSHROOM_CLUSTERS) == 1;
     }
 
     @Override
     public boolean isBonemealSuccess(Level p_50901_, RandomSource random, BlockPos p_50903_, BlockState state) {
-        return random.nextFloat() < 0.4D && state.getValue(CLUSTERS_1_3) == 1;
+        return random.nextFloat() < 0.4D && state.getValue(GLOWSHROOM_CLUSTERS) == 1;
     }
 
     @Override
@@ -120,6 +120,6 @@ public class GlowshroomBlock extends Block implements BonemealableBlock, SimpleW
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         super.createBlockStateDefinition(builder);
-        builder.add(CLUSTERS_1_3, WATERLOGGED);
+        builder.add(GLOWSHROOM_CLUSTERS, WATERLOGGED);
     }
 }

@@ -119,9 +119,9 @@ public class HugeGlowshroomFeature extends Feature<NoneFeatureConfiguration> {
                                 int blockStateRandom = (int) (Math.random() * 3 + 1);
                                 if (glowshroomRandom == 0) {
                                     if(world.getBlockState(capPos).is(Blocks.WATER)){
-                                        this.setBlock(world, capPos, DDBlocks.GLOWSHROOM.get().defaultBlockState().setValue(GlowshroomBlock.CLUSTERS_1_3, blockStateRandom).setValue(GlowshroomBlock.WATERLOGGED, true));
+                                        this.setBlock(world, capPos, DDBlocks.GLOWSHROOM.get().defaultBlockState().setValue(GlowshroomBlock.GLOWSHROOM_CLUSTERS, blockStateRandom).setValue(GlowshroomBlock.WATERLOGGED, true));
                                     } else {
-                                        this.setBlock(world, capPos, DDBlocks.GLOWSHROOM.get().defaultBlockState().setValue(GlowshroomBlock.CLUSTERS_1_3, blockStateRandom));
+                                        this.setBlock(world, capPos, DDBlocks.GLOWSHROOM.get().defaultBlockState().setValue(GlowshroomBlock.GLOWSHROOM_CLUSTERS, blockStateRandom));
                                     }
                                 }
                                 break;
@@ -225,9 +225,9 @@ public class HugeGlowshroomFeature extends Feature<NoneFeatureConfiguration> {
                                 int blockStateRandom = (int) (Math.random() * 3 + 1);
                                 if (glowshroomRandom == 0) {
                                     if(world.getBlockState(capPos).is(Blocks.WATER)){
-                                        this.setBlock(world, capPos, DDBlocks.GLOWSHROOM.get().defaultBlockState().setValue(GlowshroomBlock.CLUSTERS_1_3, blockStateRandom).setValue(GlowshroomBlock.WATERLOGGED, true));
+                                        this.setBlock(world, capPos, DDBlocks.GLOWSHROOM.get().defaultBlockState().setValue(GlowshroomBlock.GLOWSHROOM_CLUSTERS, blockStateRandom).setValue(GlowshroomBlock.WATERLOGGED, true));
                                     } else {
-                                        this.setBlock(world, capPos, DDBlocks.GLOWSHROOM.get().defaultBlockState().setValue(GlowshroomBlock.CLUSTERS_1_3, blockStateRandom));
+                                        this.setBlock(world, capPos, DDBlocks.GLOWSHROOM.get().defaultBlockState().setValue(GlowshroomBlock.GLOWSHROOM_CLUSTERS, blockStateRandom));
                                     }
                                 }
                                 break;

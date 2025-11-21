@@ -30,7 +30,7 @@ public class RandomSpreadFeature extends Feature<NoneFeatureConfiguration> {
         for (int i = 0; i < tries; i++) {
             mutableBlockPos.setWithOffset(blockPos, random.nextInt(7) - random.nextInt(7), random.nextInt(3) - random.nextInt(3), random.nextInt(7) - random.nextInt(7));
             if (world.getBlockState(mutableBlockPos).is(BlockTags.BASE_STONE_OVERWORLD) && world.isStateAtPosition(mutableBlockPos, DripstoneUtils::isEmptyOrWater)) {
-                world.setBlock(mutableBlockPos, DDBlocks.GLOWSHROOM.get().defaultBlockState().setValue(GlowshroomBlock.WATERLOGGED, world.getFluidState(mutableBlockPos).getType() == Fluids.WATER).setValue(GlowshroomBlock.CLUSTERS_1_3, 1), 2);
+                world.setBlock(mutableBlockPos, DDBlocks.GLOWSHROOM.get().defaultBlockState().setValue(GlowshroomBlock.WATERLOGGED, world.getFluidState(mutableBlockPos).getType() == Fluids.WATER).setValue(GlowshroomBlock.GLOWSHROOM_CLUSTERS, 1), 2);
             } else {
                 break;
             }
