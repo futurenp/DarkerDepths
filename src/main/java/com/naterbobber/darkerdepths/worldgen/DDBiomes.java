@@ -17,13 +17,14 @@ import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 
 import javax.annotation.Nullable;
 
+import static com.naterbobber.darkerdepths.util.DDResourceKeys.Biomes.*;
 public class DDBiomes {
     public static void bootstrap(BootstrapContext<Biome> context) {
         HolderGetter<PlacedFeature> holdergetter = context.lookup(Registries.PLACED_FEATURE);
         HolderGetter<ConfiguredWorldCarver<?>> holdergetter1 = context.lookup(Registries.CONFIGURED_CARVER);
-        context.register(DDResourceKeys.Biomes.MOLTEN_CAVERN, createMoltenCavern(holdergetter, holdergetter1));
-        context.register(DDResourceKeys.Biomes.SANDY_CATACOMBS, createSandyCatacombs(holdergetter, holdergetter1));
-        context.register(DDResourceKeys.Biomes.GLOWSHROOM_FOREST, createGlowshroomForest(holdergetter, holdergetter1));
+        context.register(MOLTEN_CAVERN, createMoltenCavern(holdergetter, holdergetter1));
+        context.register(SANDY_CATACOMBS, createSandyCatacombs(holdergetter, holdergetter1));
+        context.register(GLOWSHROOM_FOREST, createGlowshroomForest(holdergetter, holdergetter1));
     }
 
     public static Biome createGlowshroomForest(HolderGetter<PlacedFeature> holderGetter, HolderGetter<ConfiguredWorldCarver<?>> holderGetter1) {

@@ -17,6 +17,7 @@ public class DDTags {
         private static final ResourceKey<Registry<Item>> RK = Registries.ITEM;
         public static final TagKey<Item> PETRIFIED_LOGS = createTag(RK, "petrified_logs");
         public static final TagKey<Item> STILETTO_ENCHANTABLE = createTag(RK, "stiletto_enchantable");
+
     }
 
     public static class Blocks {
