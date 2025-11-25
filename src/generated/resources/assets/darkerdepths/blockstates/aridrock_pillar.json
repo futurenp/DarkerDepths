@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "pillar_state=default": {
+      "model": "darkerdepths:block/aridrock_pillar_default"
+    },
+    "pillar_state=lower": {
+      "model": "darkerdepths:block/aridrock_pillar_lower"
+    },
+    "pillar_state=middle": {
+      "model": "darkerdepths:block/aridrock_pillar_middle"
+    },
+    "pillar_state=upper": {
+      "model": "darkerdepths:block/aridrock_pillar_upper"
+    }
+  }
+}

@@ -81,7 +81,7 @@ public class DDBlockLoot extends BlockLootSubProvider {
 
         defaultDropBlocks.forEach(block -> {
             switch (block) {
-                case SlabBlock b -> add(b, createSlabItemTable(b));
+                case SlabBlock b -> add (b, createSlabItemTable(b));
                 case VerticalSlabBlock b -> add(b, createSlabItemTable(b));
                 case DoorBlock b -> add(b, createDoorTable(b));
                 case BushBlock b -> add(b, createGrassDrops(b));

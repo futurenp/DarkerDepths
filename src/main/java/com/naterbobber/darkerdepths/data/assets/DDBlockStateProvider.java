@@ -1,6 +1,7 @@
 package com.naterbobber.darkerdepths.data.assets;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
+import com.naterbobber.darkerdepths.block.ConnectedPillarBlock;
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import com.naterbobber.darkerdepths.init.DDItems;
 import net.minecraft.data.PackOutput;
@@ -8,7 +9,10 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
+import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
+import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
 public class DDBlockStateProvider extends BlockStateProvider {
@@ -109,6 +113,8 @@ public class DDBlockStateProvider extends BlockStateProvider {
                 DDBlocks.STRIPPED_PETRIFIED_LOG,
                 DDBlocks.STRIPPED_PETRIFIED_WOOD
         );
+
+        connectedPillarBlockWithItem(DDBlocks.ARIDROCK_PILLAR);
     }
 
     private void simpleItem(DeferredHolder<Item, ? extends Item> item) {
@@ -162,6 +168,38 @@ public class DDBlockStateProvider extends BlockStateProvider {
         ResourceLocation itemTexture = location.withPath("item/" + location.getPath());
         itemModels().withExistingParent(block.getId().getPath(), "item/generated")
                 .texture("layer0", itemTexture);
+    }
+
+    private void connectedPillarBlockWithItem(DeferredHolder<Block, ? extends Block> block) {
+        ResourceLocation location = block.getId();
+        String blockName = location.getPath();
+        ResourceLocation topTexture = location.withPath("block/" + blockName + "_top");
+        ResourceLocation sideTexture = location.withPath("block/" + blockName + "_side");
+        ResourceLocation sideLowerTexture = location.withPath("block/" + blockName + "_side_lower");
+        ResourceLocation sideMiddleTexture = location.withPath("block/" + blockName + "_side_middle");
+        ResourceLocation sideUpperTexture = location.withPath("block/" + blockName + "_side_upper");
+
+        ModelFile defaultModel = models().cubeColumn(blockName + "_default", sideTexture, topTexture);
+        ModelFile lowerModel = models().cubeColumn(blockName + "_lower", sideLowerTexture, topTexture);
+        ModelFile middleModel = models().cubeColumn(blockName + "_middle", sideMiddleTexture, topTexture);
+        ModelFile upperModel = models().cubeColumn(blockName + "_upper", sideUpperTexture, topTexture);
+
+        getVariantBuilder(block.get()).forAllStates(state -> {
+            ConnectedPillarBlock.PillarState type = state.getValue(ConnectedPillarBlock.PILLAR_STATE);
+
+            ModelFile modelToUse = switch (type) {
+                case LOWER -> lowerModel;
+                case MIDDLE -> middleModel;
+                case UPPER -> upperModel;
+                default -> defaultModel;
+            };
+
+            return ConfiguredModel.builder()
+                    .modelFile(modelToUse)
+                    .build();
+        });
+
+        simpleBlockItem(block.get(), defaultModel);
     }
 
     private void trapdoorBlockWithItem(DeferredHolder<Block, ? extends Block> block) {
