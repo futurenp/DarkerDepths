@@ -52,8 +52,7 @@ public class DDCreativeModeTabs {
                 .icon(() -> new ItemStack(DDItems.GLOWSHROOM_CAP.get()))
                 .displayItems((itemDisplayParameters, output) -> {
                     for (DeferredHolder<Item, ? extends Item> item : DDItems.ITEMS.getEntries()) {
-
-                        if (DDBlocks.COMPAT.containsKey(item) && !ModList.get().isLoaded(DDBlocks.COMPAT.get(item))) {
+                        if (DDBlocks.COMPAT.containsKey(item) && DDBlocks.COMPAT.get(item).stream().noneMatch(modID -> ModList.get().isLoaded(modID))) {
                             continue;
                         }
 

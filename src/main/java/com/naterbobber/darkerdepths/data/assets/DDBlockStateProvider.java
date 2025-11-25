@@ -1,7 +1,7 @@
 package com.naterbobber.darkerdepths.data.assets;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
-import com.naterbobber.darkerdepths.block.ConnectedPillarBlock;
+import com.naterbobber.darkerdepths.block.generic.*;
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import com.naterbobber.darkerdepths.init.DDItems;
 import net.minecraft.data.PackOutput;
@@ -12,10 +12,17 @@ import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
-import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
+
 public class DDBlockStateProvider extends BlockStateProvider {
+    private final Set<Block> blockIgnores = new HashSet<>();
+
     public DDBlockStateProvider(PackOutput output, ExistingFileHelper exFileHelper) {
         super(output, DarkerDepths.MOD_ID, exFileHelper);
     }
@@ -29,92 +36,83 @@ public class DDBlockStateProvider extends BlockStateProvider {
         simpleItem(DDItems.FORSAKEN_BRONZE_SCRAP);
         simpleItem(DDItems.FORSAKEN_BRONZE_INGOT);
 
-        simpleBlockWithItem(DDBlocks.AMBER_BLOCK);
-        logBlockWithItem(DDBlocks.ARID_DEEPSLATE);
-        simpleBlockWithItem(DDBlocks.GLOWSHROOM_BLOCK);
-        logBlockWithItem(DDBlocks.GLOWSHROOM_STEM);
-        simpleBlockWithItem(DDBlocks.LIVING_CRYSTAL);
-        logBlockWithItem(DDBlocks.POROUS_PETRIFIED_LOG);
-        simpleBlockWithItem(DDBlocks.ASH_BLOCK);
-        simpleBlockWithItem(DDBlocks.FORSAKEN_BRONZE_BLOCK);
-        simpleBlock(DDBlocks.MOB_PLACER.get());
+        add(this::woodBlockWithItem, DDBlocks.PETRIFIED_WOOD, DDBlocks.PETRIFIED_LOG);
+        add(this::woodBlockWithItem, DDBlocks.STRIPPED_PETRIFIED_WOOD, DDBlocks.STRIPPED_PETRIFIED_LOG);
 
-        crossBlockWithItem(DDBlocks.MOSSY_SPROUTS);
-        crossBlockWithItem(DDBlocks.DRY_SPROUTS);
+        add(this::connectedPillarBlockWithItem, DDBlocks.ARIDROCK_PILLAR);
 
-        logBlockSet(DDBlocks.ARIDROCK,
-                DDBlocks.ARIDROCK_STAIRS,
-                DDBlocks.ARIDROCK_SLAB,
-                DDBlocks.ARIDROCK_WALL);
-        simpleBlockSet(DDBlocks.POLISHED_ARIDROCK,
-                DDBlocks.POLISHED_ARIDROCK_STAIRS,
-                DDBlocks.POLISHED_ARIDROCK_SLAB);
-        simpleBlockSet(DDBlocks.ARIDROCK_BRICKS,
-                DDBlocks.ARIDROCK_BRICKS_STAIRS,
-                DDBlocks.ARIDROCK_BRICKS_SLAB,
-                DDBlocks.ARIDROCK_BRICKS_WALL);
-        simpleBlockWithItem(DDBlocks.CHISELED_ARIDROCK_BRICKS);
-        simpleBlockWithItem(DDBlocks.CRACKED_ARIDROCK_BRICKS);
-
-        simpleBlockSet(DDBlocks.DUSKROCK,
-                DDBlocks.DUSKROCK_STAIRS,
-                DDBlocks.DUSKROCK_SLAB,
-                DDBlocks.DUSKROCK_WALL);
-        simpleBlockSet(DDBlocks.POLISHED_DUSKROCK,
-                DDBlocks.POLISHED_DUSKROCK_STAIRS,
-                DDBlocks.POLISHED_DUSKROCK_SLAB);
-        simpleBlockSet(DDBlocks.DUSKROCK_BRICKS,
-                DDBlocks.DUSKROCK_BRICKS_STAIRS,
-                DDBlocks.DUSKROCK_BRICKS_SLAB,
-                DDBlocks.DUSKROCK_BRICKS_WALL);
-        simpleBlockWithItem(DDBlocks.CHISELED_DUSKROCK_BRICKS);
-        simpleBlockWithItem(DDBlocks.CRACKED_DUSKROCK_BRICKS);
-
-        logBlockSet(DDBlocks.GRIMESTONE,
-                DDBlocks.GRIMESTONE_STAIRS,
-                DDBlocks.GRIMESTONE_SLAB,
-                DDBlocks.GRIMESTONE_WALL);
-        simpleBlockSet(DDBlocks.POLISHED_GRIMESTONE,
-                DDBlocks.POLISHED_GRIMESTONE_STAIRS,
-                DDBlocks.POLISHED_GRIMESTONE_SLAB);
-        simpleBlockSet(DDBlocks.GRIMESTONE_BRICKS,
-                DDBlocks.GRIMESTONE_BRICKS_STAIRS,
-                DDBlocks.GRIMESTONE_BRICKS_SLAB,
-                DDBlocks.GRIMESTONE_BRICKS_WALL);
-        simpleBlockWithItem(DDBlocks.CHISELED_GRIMESTONE_BRICKS);
-        simpleBlockWithItem(DDBlocks.CRACKED_GRIMESTONE_BRICKS);
-
-        logBlockSet(DDBlocks.DARKSLATE,
-                DDBlocks.DARKSLATE_STAIRS,
-                DDBlocks.DARKSLATE_SLAB,
-                DDBlocks.DARKSLATE_WALL);
-        simpleBlockSet(DDBlocks.POLISHED_DARKSLATE,
-                DDBlocks.POLISHED_DARKSLATE_STAIRS,
-                DDBlocks.POLISHED_DARKSLATE_SLAB);
-        simpleBlockSet(DDBlocks.DARKSLATE_BRICKS,
-                DDBlocks.DARKSLATE_BRICKS_STAIRS,
-                DDBlocks.DARKSLATE_BRICKS_SLAB,
-                DDBlocks.DARKSLATE_BRICKS_WALL);
-        simpleBlockWithItem(DDBlocks.CHISELED_DARKSLATE_BRICKS);
-        simpleBlockWithItem(DDBlocks.CRACKED_DARKSLATE_BRICKS);
-
-        simpleWoodTypeSet(
-                DDBlocks.PETRIFIED_PLANKS,
-                DDBlocks.PETRIFIED_STAIRS,
-                DDBlocks.PETRIFIED_SLAB,
-                DDBlocks.PETRIFIED_FENCE,
-                DDBlocks.PETRIFIED_FENCE_GATE,
-                DDBlocks.PETRIFIED_DOOR,
-                DDBlocks.PETRIFIED_TRAPDOOR,
-                DDBlocks.PETRIFIED_PRESSURE_PLATE,
-                DDBlocks.PETRIFIED_BUTTON,
-                DDBlocks.PETRIFIED_LOG,
-                DDBlocks.PETRIFIED_WOOD,
-                DDBlocks.STRIPPED_PETRIFIED_LOG,
-                DDBlocks.STRIPPED_PETRIFIED_WOOD
+        skip(
+                DDBlocks.VOID_SOUL_JAR,
+                DDBlocks.DEATH_ANCHOR,
+                DDBlocks.AMBER_CLUSTER,
+                DDBlocks.DEATH_ANCHOR,
+                DDBlocks.AMBER_CLUSTER,
+                DDBlocks.ASH,
+                DDBlocks.CRYSTAL_MELON,
+                DDBlocks.DEAD_LIVING_CRYSTAL,
+                DDBlocks.GEYSER,
+                DDBlocks.GLOWSHROOM,
+                DDBlocks.GLIMMERING_VINE_PLANT,
+                DDBlocks.GLIMMERING_VINES,
+                DDBlocks.GLOWSHROOM_HEART,
+                DDBlocks.GLOWSPURS,
+                DDBlocks.MAGMA_PAD,
+                DDBlocks.PARANOIA_ALTAR,
+                DDBlocks.PETRIFIED_ROOTS,
+                DDBlocks.PETRIFIED_ROOTS_PLANT,
+                DDBlocks.STONE_MELON,
+                DDBlocks.TOMB,
+                DDBlocks.SKULL_WALL,
+                DDBlocks.POTTED_GLOWSHROOM,
+                DDBlocks.ROPE,
+                DDBlocks.VOID_SOUL_TORCH,
+                DDBlocks.WALL_VOID_SOUL_TORCH,
+                DDBlocks.GLOWSHROOM_LANTERN,
+                DDBlocks.MOB_PLACER,
+                DDBlocks.MOSSY_GRIMESTONE,
+                DDBlocks.GLOWSHROOM_LAMP
         );
 
-        connectedPillarBlockWithItem(DDBlocks.ARIDROCK_PILLAR);
+
+        autoGenerateBlockAssets();
+    }
+
+    @SafeVarargs
+    private void skip(DeferredHolder<Block, ? extends Block>... blockHolders) {
+        Arrays.stream(blockHolders).forEach(blockHolder -> blockIgnores.add(blockHolder.get()));
+    }
+
+    private void add(Consumer<DeferredHolder<Block, ? extends Block>> function, DeferredHolder<Block, ? extends Block> block) {
+        blockIgnores.add(block.get());
+        function.accept(block);
+    }
+
+    private void add(BiConsumer<DeferredHolder<Block, ? extends Block>, DeferredHolder<Block, ? extends Block>> function, DeferredHolder<Block, ? extends Block> block, DeferredHolder<Block, ? extends Block> parentBlock) {
+        blockIgnores.add(block.get());
+        function.accept(block, parentBlock);
+    }
+
+    private void autoGenerateBlockAssets() {
+        DDBlocks.BLOCKS.getEntries()
+                .stream()
+                .filter(holder -> !blockIgnores.contains(holder.get()))
+                .forEach(holder -> {
+                    Block block = holder.get();
+
+                    switch (block) {
+                        case IRelationalBlock b -> relationalBlockWithItem(holder);
+                        case DoorBlock b -> doorBlockWithItem(holder);
+                        case TrapDoorBlock b -> trapdoorBlockWithItem(holder);
+                        case BushBlock b -> crossBlockWithItem(holder);
+                        case RotatedPillarBlock b -> rotatablePillarBlockWithItem(holder);
+//                        case ConnectedPillarBlock b -> connectedPillarBlockWithItem(holder);
+                        case SignBlock b -> skip(holder);
+                        case VerticalSlabBlock b -> skip(holder);
+                        case WoodPostBlock b -> skip(holder);
+                        default -> simpleBlockWithItem(holder);
+                }
+            });
+
     }
 
     private void simpleItem(DeferredHolder<Item, ? extends Item> item) {
@@ -132,29 +130,57 @@ public class DDBlockStateProvider extends BlockStateProvider {
         simpleBlockItem(block.get(), models().getExistingFile(blockTexture(block.get())));
     }
 
-    private void stairsBlockWithItem(DeferredHolder<Block, ? extends Block> block, DeferredHolder<Block, ? extends Block> parentTexture) {
-        stairsBlock((StairBlock) block.get(), blockTexture(parentTexture.get()));
+    private void stairsBlockWithItem(DeferredHolder<Block, ? extends Block> block, Block parentTexture) {
+        stairsBlock((StairBlock) block.get(), blockTexture(parentTexture));
         simpleBlockItem(block.get(), models().getExistingFile(blockTexture(block.get())));
     }
 
-    private void slabBlockWithItem(DeferredHolder<Block, ? extends Block> block, DeferredHolder<Block, ? extends Block> parentTexture) {
-        slabBlock((SlabBlock) block.get(), blockTexture(parentTexture.get()), blockTexture(parentTexture.get()));
+    private void slabBlockWithItem(DeferredHolder<Block, ? extends Block> block, Block parentTexture) {
+        slabBlock((SlabBlock) block.get(), blockTexture(parentTexture), blockTexture(parentTexture));
         simpleBlockItem(block.get(), models().getExistingFile(blockTexture(block.get())));
     }
 
-    private void wallBlockWithItem(DeferredHolder<Block, ? extends Block> block, DeferredHolder<Block, ? extends Block> parentTexture) {
-        wallBlock((WallBlock) block.get(), blockTexture(parentTexture.get()));
-        itemModels().wallInventory(block.getId().getPath(), blockTexture(parentTexture.get()));
+    private void wallBlockWithItem(DeferredHolder<Block, ? extends Block> block, Block parentTexture) {
+        wallBlock((WallBlock) block.get(), blockTexture(parentTexture));
+        itemModels().wallInventory(block.getId().getPath(), blockTexture(parentTexture));
     }
 
-    private void fenceBlockWithItem(DeferredHolder<Block, ? extends Block> block, DeferredHolder<Block, ? extends Block> parentTexture) {
-        fenceBlock((FenceBlock) block.get(), blockTexture(parentTexture.get()));
-        itemModels().fenceInventory(block.getId().getPath(), blockTexture(parentTexture.get()));
+    private void fenceBlockWithItem(DeferredHolder<Block, ? extends Block> block, Block parentTexture) {
+        fenceBlock((FenceBlock) block.get(), blockTexture(parentTexture));
+        itemModels().fenceInventory(block.getId().getPath(), blockTexture(parentTexture));
     }
 
-    private void fenceGateBlockWithItem(DeferredHolder<Block, ? extends Block> block, DeferredHolder<Block, ? extends Block> parentTexture) {
-        fenceGateBlock((FenceGateBlock) block.get(), blockTexture(parentTexture.get()));
+    private void fenceGateBlockWithItem(DeferredHolder<Block, ? extends Block> block, Block parentTexture) {
+        fenceGateBlock((FenceGateBlock) block.get(), blockTexture(parentTexture));
         simpleBlockItem(block.get(), models().getExistingFile(blockTexture(block.get())));
+    }
+
+    private void relationalBlockWithItem(DeferredHolder<Block, ? extends Block> blockHolder) {
+        IRelationalBlock block = (IRelationalBlock) blockHolder.get();
+        Block parentBlock = block.getBaseBlock();
+
+        switch (block) {
+            case RelationalSlabBlock b -> slabBlockWithItem(blockHolder, parentBlock);
+            case RelationalStairBlock b -> stairsBlockWithItem(blockHolder, parentBlock);
+            case RelationalPressurePlateBlock b -> pressurePlateBlockWithItem(blockHolder, parentBlock);
+            case RelationalButtonBlock b -> buttonBlockWithItem(blockHolder, parentBlock);
+            case RelationalFenceBlock b -> fenceBlockWithItem(blockHolder, parentBlock);
+            case RelationalFenceGateBlock b -> fenceGateBlockWithItem(blockHolder, parentBlock);
+            case RelationalWallBlock b -> wallBlockWithItem(blockHolder, parentBlock);
+            default -> throw new IllegalStateException("Unexpected value: " + block);
+        }
+
+    }
+
+    private void rotatablePillarBlockWithItem(DeferredHolder<Block, ? extends Block> blockHolder) {
+        RotatedPillarBlock block = (RotatedPillarBlock) blockHolder.get();
+        String blockName = block.getName().getString();
+
+        if(blockName.contains("wood")) {
+            return;
+        } else {
+            logBlockWithItem(blockHolder);
+        }
     }
 
     private void doorBlockWithItem(DeferredHolder<Block, ? extends Block> block) {
@@ -209,14 +235,14 @@ public class DDBlockStateProvider extends BlockStateProvider {
         simpleBlockItem(block.get(), models().getExistingFile(modLoc(path + "_bottom")));
     }
 
-    private void pressurePlateBlockWithItem(DeferredHolder<Block, ? extends Block> block, DeferredHolder<Block, ? extends Block> parentTexture) {
-        pressurePlateBlock((PressurePlateBlock) block.get(), blockTexture(parentTexture.get()));
+    private void pressurePlateBlockWithItem(DeferredHolder<Block, ? extends Block> block, Block parentTexture) {
+        pressurePlateBlock((PressurePlateBlock) block.get(), blockTexture(parentTexture));
         simpleBlockItem(block.get(), models().getExistingFile(blockTexture(block.get())));
     }
 
-    private void buttonBlockWithItem(DeferredHolder<Block, ? extends Block> block, DeferredHolder<Block, ? extends Block> parentTexture) {
-        buttonBlock((ButtonBlock) block.get(), blockTexture(parentTexture.get()));
-        itemModels().buttonInventory(block.getId().getPath(), blockTexture(parentTexture.get()));
+    private void buttonBlockWithItem(DeferredHolder<Block, ? extends Block> block, Block parentTexture) {
+        buttonBlock((ButtonBlock) block.get(), blockTexture(parentTexture));
+        itemModels().buttonInventory(block.getId().getPath(), blockTexture(parentTexture));
     }
 
     private void woodBlockWithItem(DeferredHolder<Block, ? extends Block> block, DeferredHolder<Block, ? extends Block> logTextureSource) {
@@ -229,68 +255,5 @@ public class DDBlockStateProvider extends BlockStateProvider {
         simpleBlock(block.get(), models().cross(block.getId().getPath(), blockTexture(block.get())).renderType("cutout"));
         itemModels().withExistingParent(block.getId().getPath(), "item/generated")
                 .texture("layer0", blockTexture(block.get()));
-    }
-
-
-
-    private void simpleBlockSet(DeferredHolder<Block, ? extends Block> baseBlock,
-                                DeferredHolder<Block, ? extends Block> stairsBlock,
-                                DeferredHolder<Block, ? extends Block> slabBlock,
-                                DeferredHolder<Block, ? extends Block> wallBlock)
-    {
-        simpleBlockWithItem(baseBlock);
-        stairsBlockWithItem(stairsBlock, baseBlock);
-        slabBlockWithItem(slabBlock, baseBlock);
-        wallBlockWithItem(wallBlock, baseBlock);
-    }
-
-    private void simpleBlockSet(DeferredHolder<Block, ? extends Block> baseBlock,
-                                DeferredHolder<Block, ? extends Block> stairsBlock,
-                                DeferredHolder<Block, ? extends Block> slabBlock)
-    {
-        simpleBlockWithItem(baseBlock);
-        stairsBlockWithItem(stairsBlock, baseBlock);
-        slabBlockWithItem(slabBlock, baseBlock);
-    }
-
-    private void logBlockSet(DeferredHolder<Block, ? extends Block> baseBlock,
-                             DeferredHolder<Block, ? extends Block> stairsBlock,
-                             DeferredHolder<Block, ? extends Block> slabBlock,
-                             DeferredHolder<Block, ? extends Block> wallBlock)
-    {
-        logBlockWithItem(baseBlock);
-        stairsBlockWithItem(stairsBlock, baseBlock);
-        slabBlockWithItem(slabBlock, baseBlock);
-        wallBlockWithItem(wallBlock, baseBlock);
-    }
-
-    private void simpleWoodTypeSet(DeferredHolder<Block, ? extends Block> plankBlock,
-                      DeferredHolder<Block, ? extends Block> stairsBlock,
-                      DeferredHolder<Block, ? extends Block> slabBlock,
-                      DeferredHolder<Block, ? extends Block> fenceBlock,
-                      DeferredHolder<Block, ? extends Block> fenceGateBlock,
-                      DeferredHolder<Block, ? extends Block> doorBlock,
-                      DeferredHolder<Block, ? extends Block> trapdoorBlock,
-                      DeferredHolder<Block, ? extends Block> pressurePlateBlock,
-                      DeferredHolder<Block, ? extends Block> buttonBlock,
-                      DeferredHolder<Block, ? extends Block> logBlock,
-                      DeferredHolder<Block, ? extends Block> woodBlock,
-                      DeferredHolder<Block, ? extends Block> strippedLogBlock,
-                      DeferredHolder<Block, ? extends Block> strippedWoodBlock
-                      )
-    {
-        simpleBlockWithItem(plankBlock);
-        stairsBlockWithItem(stairsBlock, plankBlock);
-        slabBlockWithItem(slabBlock, plankBlock);
-        fenceBlockWithItem(fenceBlock, plankBlock);
-        fenceGateBlockWithItem(fenceGateBlock, plankBlock);
-        doorBlockWithItem(doorBlock);
-        trapdoorBlockWithItem(trapdoorBlock);
-        pressurePlateBlockWithItem(pressurePlateBlock, plankBlock);
-        buttonBlockWithItem(buttonBlock, plankBlock);
-        logBlockWithItem(logBlock);
-        woodBlockWithItem(woodBlock, logBlock);
-        logBlockWithItem(strippedLogBlock);
-        woodBlockWithItem(strippedWoodBlock, strippedLogBlock);
     }
 }

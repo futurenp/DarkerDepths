@@ -1,4 +1,4 @@
-// 1.21.1	2025-11-25T02:17:00.8588884	Loot Tables
+// 1.21.1	2025-11-25T16:38:15.8723794	Loot Tables
 69a68443e41c0ea8610b4ece66b6a6a3bff163d0 data/darkerdepths/loot_table/archaeology/catacombs/standard.json
 b26089f15d136d6d0b9b7870fd170249ec0473de data/darkerdepths/loot_table/blocks/amber_block.json
 7b8aa851d67ec8c45ab85ef504b99c843fe25237 data/darkerdepths/loot_table/blocks/amber_cluster.json
@@ -118,7 +118,6 @@ e3845cce2b0c03ba18d1e00f79bba44932d94a06 data/darkerdepths/loot_table/blocks/str
 7f1b5c7f15bfb50a3dcdae3361c6f75c71373e7b data/darkerdepths/loot_table/blocks/stripped_petrified_post.json
 c8ab1a1d08b4cf5a687e5cdd0588d2d6583250cc data/darkerdepths/loot_table/blocks/stripped_petrified_wood.json
 88d80c5a345eb8dee7babe06a1c67734d191c191 data/darkerdepths/loot_table/blocks/tomb.json
-9ddc910d70ac38d8f64c0f9087ea9073a21eee14 data/darkerdepths/loot_table/blocks/trimmed_petrified_planks.json
 4e374b4b4c2af8beda4eae1edec198264d679a7f data/darkerdepths/loot_table/blocks/vertical_petrified_planks.json
 ee1dd3c3196e5fc8b810c14aca398d0e65544ee9 data/darkerdepths/loot_table/blocks/void_soul_jar.json
 d830b6d68273d586a749701e795650fb22662af5 data/darkerdepths/loot_table/blocks/void_soul_torch.json

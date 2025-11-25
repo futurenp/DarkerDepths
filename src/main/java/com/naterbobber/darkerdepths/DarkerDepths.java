@@ -9,12 +9,14 @@ import com.naterbobber.darkerdepths.init.DDFeatures;
 import com.naterbobber.darkerdepths.init.DDStructureProcessorTypes;
 import com.naterbobber.darkerdepths.init.DDStructures;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.Block;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -33,10 +35,11 @@ public class DarkerDepths {
         modEventBus.register(DDNetwork.class);
         modEventBus.register(RegisterEvents.class);
 
-        DDCreativeModeTabs.CREATIVE_MODE_TABS.register(modEventBus);
+
         DDArmorMaterials.ARMOR_MATERIALS.register(modEventBus);
         DDBlocks.BLOCKS.register(modEventBus);
         DDItems.ITEMS.register(modEventBus);
+        DDCreativeModeTabs.CREATIVE_MODE_TABS.register(modEventBus);
         DDBlockEntityTypes.BLOCK_ENTITIES.register(modEventBus);
         DDEntityTypes.ENTITY_TYPES.register(modEventBus);
         DDEnchantmentEffects.DATA_COMPONENTS.register(modEventBus);

@@ -54,3 +54,10 @@ Artist:
     versionRange="${geckolib_version}"
     ordering="NONE"
     side="BOTH"
+
+[[dependencies.darkerdepths]]
+    modId = "nomansland"
+    type="optional"
+    ordering="AFTER"
+    side="BOTH"
+
