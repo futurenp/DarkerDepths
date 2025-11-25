@@ -1,8 +1,8 @@
 package com.naterbobber.darkerdepths.data.loot;
 
-import com.naterbobber.darkerdepths.block.AshBlock;
+import com.naterbobber.darkerdepths.block.custom.AshBlock;
 import com.naterbobber.darkerdepths.block.GlowshroomBlock;
-import com.naterbobber.darkerdepths.block.VerticalSlabBlock;
+import com.naterbobber.darkerdepths.block.generic.VerticalSlabBlock;
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import com.naterbobber.darkerdepths.init.DDItems;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
