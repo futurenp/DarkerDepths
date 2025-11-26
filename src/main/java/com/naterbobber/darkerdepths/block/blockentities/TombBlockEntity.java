@@ -1,6 +1,6 @@
 package com.naterbobber.darkerdepths.block.blockentities;
 
-import com.naterbobber.darkerdepths.block.TombBlock;
+import com.naterbobber.darkerdepths.block.custom.TombBlock;
 import com.naterbobber.darkerdepths.init.DDBlockEntityTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;

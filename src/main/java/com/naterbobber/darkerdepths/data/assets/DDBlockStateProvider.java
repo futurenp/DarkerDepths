@@ -39,8 +39,6 @@ public class DDBlockStateProvider extends BlockStateProvider {
         add(this::woodBlockWithItem, DDBlocks.PETRIFIED_WOOD, DDBlocks.PETRIFIED_LOG);
         add(this::woodBlockWithItem, DDBlocks.STRIPPED_PETRIFIED_WOOD, DDBlocks.STRIPPED_PETRIFIED_LOG);
 
-        add(this::connectedPillarBlockWithItem, DDBlocks.ARIDROCK_PILLAR);
-
         skip(
                 DDBlocks.VOID_SOUL_JAR,
                 DDBlocks.DEATH_ANCHOR,
@@ -73,7 +71,6 @@ public class DDBlockStateProvider extends BlockStateProvider {
                 DDBlocks.GLOWSHROOM_LAMP
         );
 
-
         autoGenerateBlockAssets();
     }
 
@@ -105,7 +102,7 @@ public class DDBlockStateProvider extends BlockStateProvider {
                         case TrapDoorBlock b -> trapdoorBlockWithItem(holder);
                         case BushBlock b -> crossBlockWithItem(holder);
                         case RotatedPillarBlock b -> rotatablePillarBlockWithItem(holder);
-//                        case ConnectedPillarBlock b -> connectedPillarBlockWithItem(holder);
+                        case ConnectedPillarBlock b -> connectedPillarBlockWithItem(holder);
                         case SignBlock b -> skip(holder);
                         case VerticalSlabBlock b -> skip(holder);
                         case WoodPostBlock b -> skip(holder);
@@ -199,16 +196,16 @@ public class DDBlockStateProvider extends BlockStateProvider {
     private void connectedPillarBlockWithItem(DeferredHolder<Block, ? extends Block> block) {
         ResourceLocation location = block.getId();
         String blockName = location.getPath();
-        ResourceLocation topTexture = location.withPath("block/" + blockName + "_top");
+        ResourceLocation endTexture = location.withPath("block/" + blockName + "_end");
         ResourceLocation sideTexture = location.withPath("block/" + blockName + "_side");
         ResourceLocation sideLowerTexture = location.withPath("block/" + blockName + "_side_lower");
         ResourceLocation sideMiddleTexture = location.withPath("block/" + blockName + "_side_middle");
         ResourceLocation sideUpperTexture = location.withPath("block/" + blockName + "_side_upper");
 
-        ModelFile defaultModel = models().cubeColumn(blockName + "_default", sideTexture, topTexture);
-        ModelFile lowerModel = models().cubeColumn(blockName + "_lower", sideLowerTexture, topTexture);
-        ModelFile middleModel = models().cubeColumn(blockName + "_middle", sideMiddleTexture, topTexture);
-        ModelFile upperModel = models().cubeColumn(blockName + "_upper", sideUpperTexture, topTexture);
+        ModelFile defaultModel = models().cubeColumn(blockName + "_default", sideTexture, endTexture);
+        ModelFile lowerModel = models().cubeColumn(blockName + "_lower", sideLowerTexture, endTexture);
+        ModelFile middleModel = models().cubeColumn(blockName + "_middle", sideMiddleTexture, endTexture);
+        ModelFile upperModel = models().cubeColumn(blockName + "_upper", sideUpperTexture, endTexture);
 
         getVariantBuilder(block.get()).forAllStates(state -> {
             ConnectedPillarBlock.PillarState type = state.getValue(ConnectedPillarBlock.PILLAR_STATE);

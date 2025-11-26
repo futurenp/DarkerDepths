@@ -2,8 +2,8 @@ package com.naterbobber.darkerdepths.worldgen;
 
 import com.google.common.collect.ImmutableList;
 import com.naterbobber.darkerdepths.block.custom.AshBlock;
-import com.naterbobber.darkerdepths.block.GlowshroomBlock;
-import com.naterbobber.darkerdepths.block.GlowspursBlock;
+import com.naterbobber.darkerdepths.block.custom.GlowshroomBlock;
+import com.naterbobber.darkerdepths.block.custom.GlowspursBlock;
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import com.naterbobber.darkerdepths.init.DDFeatures;
 import com.naterbobber.darkerdepths.worldgen.features.config.CorrespondentLayersConfig;

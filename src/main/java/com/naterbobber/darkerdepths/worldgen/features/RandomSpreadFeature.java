@@ -1,7 +1,7 @@
 package com.naterbobber.darkerdepths.worldgen.features;
 
 import com.mojang.serialization.Codec;
-import com.naterbobber.darkerdepths.block.GlowshroomBlock;
+import com.naterbobber.darkerdepths.block.custom.GlowshroomBlock;
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.tags.BlockTags;

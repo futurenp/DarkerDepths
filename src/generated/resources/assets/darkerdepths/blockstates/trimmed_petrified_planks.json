@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "pillar_state=default": {
+      "model": "darkerdepths:block/trimmed_petrified_planks_default"
+    },
+    "pillar_state=lower": {
+      "model": "darkerdepths:block/trimmed_petrified_planks_lower"
+    },
+    "pillar_state=middle": {
+      "model": "darkerdepths:block/trimmed_petrified_planks_middle"
+    },
+    "pillar_state=upper": {
+      "model": "darkerdepths:block/trimmed_petrified_planks_upper"
+    }
+  }
+}

@@ -1,6 +1,7 @@
 package com.naterbobber.darkerdepths.worldgen.features;
 
 import com.mojang.serialization.Codec;
+import com.naterbobber.darkerdepths.block.custom.GlowshroomBlock;
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.tags.BlockTags;
@@ -14,7 +15,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
-import com.naterbobber.darkerdepths.block.GlowshroomBlock;
 
 public class HugeGlowshroomFeature extends Feature<NoneFeatureConfiguration> {
 

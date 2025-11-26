@@ -1,7 +1,7 @@
 package com.naterbobber.darkerdepths.worldgen.processors.catacombs;
 
 import com.mojang.serialization.MapCodec;
-import com.naterbobber.darkerdepths.block.TombBlock;
+import com.naterbobber.darkerdepths.block.custom.TombBlock;
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import com.naterbobber.darkerdepths.init.DDItems;
 import com.naterbobber.darkerdepths.init.DDStructureProcessorTypes;

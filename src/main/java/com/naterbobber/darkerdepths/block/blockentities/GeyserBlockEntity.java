@@ -1,6 +1,6 @@
 package com.naterbobber.darkerdepths.block.blockentities;
 
-import com.naterbobber.darkerdepths.block.GeyserBlock;
+import com.naterbobber.darkerdepths.block.custom.GeyserBlock;
 import com.naterbobber.darkerdepths.init.DDBlockEntityTypes;
 import com.naterbobber.darkerdepths.util.DDTags;
 import net.minecraft.core.BlockPos;

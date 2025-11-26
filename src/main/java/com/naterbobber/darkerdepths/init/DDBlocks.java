@@ -5,6 +5,7 @@ import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.block.DDBlockSetTypes;
 import com.naterbobber.darkerdepths.block.custom.*;
 import com.naterbobber.darkerdepths.block.generic.*;
+import com.naterbobber.darkerdepths.compat.CompatBlocks;
 import com.naterbobber.darkerdepths.item.BlockItemWithHoverText;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -69,8 +70,10 @@ public class DDBlocks {
             () -> new RelationalStairBlock(PETRIFIED_PLANKS.get()));
     public static final DeferredBlock<RelationalSlabBlock> PETRIFIED_SLAB = registerBlock("petrified_slab",
             () -> new RelationalSlabBlock(PETRIFIED_PLANKS.get()));
+
     public static final DeferredBlock<VerticalSlabBlock> PETRIFIED_VERTICAL_SLAB = registerCompatBlock(List.of("quark"), "petrified_vertical_slab",
             () -> new VerticalSlabBlock(PETRIFIED_PLANKS_PROPERTIES));
+    public static final DeferredBlock<Block> TRIMMED_PETRIFIED_PLANKS = registerCompatBlock(List.of("nomansland"), "trimmed_petrified_planks", CompatBlocks::createTrimmedPlanks);
     public static final DeferredBlock<RelationalFenceBlock> PETRIFIED_FENCE = registerBlock("petrified_fence",
             () -> new RelationalFenceBlock(PETRIFIED_PLANKS.get()));
     public static final DeferredBlock<RelationalFenceGateBlock> PETRIFIED_FENCE_GATE = registerBlock("petrified_fence_gate",
@@ -95,7 +98,6 @@ public class DDBlocks {
             () -> new WoodPostBlock(PETRIFIED_LOG_PROPERTIES.noOcclusion()));
     public static final DeferredBlock<WoodPostBlock> STRIPPED_PETRIFIED_POST = registerCompatBlock(List.of("quark"), "stripped_petrified_post",
             () -> new WoodPostBlock(PETRIFIED_LOG_PROPERTIES.noOcclusion()));
-//    public static final DeferredBlock<Block> TRIMMED_PETRIFIED_PLANKS = registerCompatBlock(List.of("nomansland"), "trimmed_petrified_planks", CompatBlocks::createTrimmedPlanks);
     public static final DeferredBlock<PorousBlock> POROUS_PETRIFIED_LOG = registerBlock("porous_petrified_log",
             () -> new PorousBlock(PETRIFIED_LOG_PROPERTIES.randomTicks().lightLevel(value -> 6)));
     public static final DeferredBlock<RotatedPillarBlock> ARIDROCK = registerBlock("aridrock",
