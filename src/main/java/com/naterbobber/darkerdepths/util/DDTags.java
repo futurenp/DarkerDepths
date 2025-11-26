@@ -4,6 +4,7 @@ import com.naterbobber.darkerdepths.DarkerDepths;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.biome.Biome;
@@ -13,6 +14,10 @@ public class DDTags {
     private static <T> TagKey<T> createTag(ResourceKey<Registry<T>> registry, String id) {
         return TagKey.create(registry, DarkerDepths.id(id));
     }
+    private static <T> TagKey<T> createCompatTag(ResourceKey<Registry<T>> registry, String id, String compatID) {
+        return TagKey.create(registry, ResourceLocation.fromNamespaceAndPath(compatID, id));
+    }
+
     public static class Items {
         private static final ResourceKey<Registry<Item>> RK = Registries.ITEM;
         public static final TagKey<Item> PETRIFIED_LOGS = createTag(RK, "petrified_logs");
@@ -25,6 +30,8 @@ public class DDTags {
         public static final TagKey<Block> GEYSER_BOOSTERS = createTag(RK, "geyser_boosters");
         public static final TagKey<Block> GEYSER_BYPASSES = createTag(RK, "geyser_bypasses");
         public static final TagKey<Block> HUSKS_SPAWNABLE_ON = createTag(RK, "husks_spawnable_on");
+        public static final TagKey<Block> TRIMMED_PLANKS = createCompatTag(RK, "trimmed_planks", "nomansland");
+        public static final TagKey<Block> WOODEN_BOOKSHELVES = createCompatTag(RK, "wooden_bookshelves", "blueprint");
     }
 
     public static class Biomes {

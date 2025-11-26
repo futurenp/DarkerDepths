@@ -1,4 +1,4 @@
-// 1.21.1	2025-11-25T18:02:15.6703724	Loot Tables
+// 1.21.1	2025-11-25T19:50:46.9986513	Loot Tables
 69a68443e41c0ea8610b4ece66b6a6a3bff163d0 data/darkerdepths/loot_table/archaeology/catacombs/standard.json
 b26089f15d136d6d0b9b7870fd170249ec0473de data/darkerdepths/loot_table/blocks/amber_block.json
 7b8aa851d67ec8c45ab85ef504b99c843fe25237 data/darkerdepths/loot_table/blocks/amber_cluster.json
@@ -74,6 +74,7 @@ cd5bb5ff580c46d3110dc984f037a2d7df560f67 data/darkerdepths/loot_table/blocks/gri
 ce75075c970e39ec0de082b2245a13f04fb3835d data/darkerdepths/loot_table/blocks/mossy_grimestone.json
 64ebcb549e9a211e2b53db3b3f89290e9a46b2bc data/darkerdepths/loot_table/blocks/mossy_sprouts.json
 51faf3407ceb035928e56999d644ca0bf2b8974f data/darkerdepths/loot_table/blocks/paranoia_altar.json
+71bb83a51e641133f67de70f15230294fd22d669 data/darkerdepths/loot_table/blocks/petrified_bookshelf.json
 2a2c238aa5820996616f3781694335085952e7ce data/darkerdepths/loot_table/blocks/petrified_button.json
 991649cec74103ced1e76ccfd8602d975c656560 data/darkerdepths/loot_table/blocks/petrified_door.json
 7115b4cfba97aea3ffe819f7ba41eb55dc929baa data/darkerdepths/loot_table/blocks/petrified_fence.json

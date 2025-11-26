@@ -1,4 +1,4 @@
-// 1.21.1	2025-11-25T18:02:15.6734121	Block States: darkerdepths
+// 1.21.1	2025-11-25T19:53:31.3266285	Block States: darkerdepths
 2a9859a7500ed9a1940849e5db8741eb4e132509 assets/darkerdepths/blockstates/amber_block.json
 c13ff2deecd0684f70c52eb2bf4013ff009056cb assets/darkerdepths/blockstates/aridrock.json
 665632eb3766609df42f994531d5627b486d66f6 assets/darkerdepths/blockstates/aridrock_bricks.json
@@ -49,6 +49,7 @@ ec4a10774ea2a18898a4947ecd4ef3fe6d3b5101 assets/darkerdepths/blockstates/grimest
 57a17382ec83db08c9190548fd9f0b3a4e2d820e assets/darkerdepths/blockstates/grimestone_wall.json
 f26174ea62fab626403bb4a6ebb2d6880228ae59 assets/darkerdepths/blockstates/living_crystal.json
 d5235ece2bda26ba6c4bd4e6ed3e2ebb37458302 assets/darkerdepths/blockstates/mossy_sprouts.json
+b825f64c18fecfa6c74b3672ba0d9fd48d911510 assets/darkerdepths/blockstates/petrified_bookshelf.json
 f6500ce1501e60da6634c096281e290d4ddb46ae assets/darkerdepths/blockstates/petrified_button.json
 fe1b9cbbc1c8e587b632cdbe99e6fc87d0a0d7da assets/darkerdepths/blockstates/petrified_door.json
 bdc27e1b6c8d7edc8bee2d4f0406114d624f6742 assets/darkerdepths/blockstates/petrified_fence.json
@@ -175,6 +176,7 @@ f7cc0ddb41b07e701641e243aa1e2c47b7dd628c assets/darkerdepths/models/block/grimes
 893b600d342948d703733fdc2a68335b6f47da3f assets/darkerdepths/models/block/grimestone_wall_side_tall.json
 4358fd9dadc16a5a52aaeaf6e3f1db6790541b96 assets/darkerdepths/models/block/living_crystal.json
 75099ba4f96773076dc0284d087ebf26e528df30 assets/darkerdepths/models/block/mossy_sprouts.json
+1fe48785f42406a5f511a9a3f6b9f3abb090085c assets/darkerdepths/models/block/petrified_bookshelf.json
 033f20c08ea4569b5fd30f4356a06b35b5d6150a assets/darkerdepths/models/block/petrified_button.json
 809bc56cbd355184e97a88e3dcfbaa2dbc8b060c assets/darkerdepths/models/block/petrified_button_pressed.json
 3ef0d63b2e010f0645126930b393b7bc34219934 assets/darkerdepths/models/block/petrified_door_bottom_left.json
@@ -296,6 +298,7 @@ ae0e9d4a54a6a0b03b135c79761c6fbac36cb716 assets/darkerdepths/models/item/grimest
 d7564232a2c65b2e1a0c4c362bb3e631b65f861c assets/darkerdepths/models/item/grimestone_wall.json
 e25b1e91defd97e22605c19a1a94727e8b121f9c assets/darkerdepths/models/item/living_crystal.json
 20fd89f358e5ce37cd064f716debca14291e7867 assets/darkerdepths/models/item/mossy_sprouts.json
+613d36d649548e492707f0acf7e8d077cb4b29a2 assets/darkerdepths/models/item/petrified_bookshelf.json
 e113be0791a11a2f24f41fb570768f595f34facf assets/darkerdepths/models/item/petrified_button.json
 ebd0af38d38584392fb288a3ab6ee168c5b536ea assets/darkerdepths/models/item/petrified_door.json
 bc0303d781b91e0c817ce80770d9619973760c36 assets/darkerdepths/models/item/petrified_fence.json

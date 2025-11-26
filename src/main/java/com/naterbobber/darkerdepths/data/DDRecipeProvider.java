@@ -267,6 +267,8 @@ public class DDRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_log", has(DDBlocks.STRIPPED_PETRIFIED_LOG.get())).save(recipeOutput);
 
         hangingSignBlock(recipeOutput, DDItems.PETRIFIED_HANGING_SIGN.get(), DDBlocks.STRIPPED_PETRIFIED_LOG.get().asItem(), Items.CHAIN);
+        trimmedPlanksBlock(recipeOutput, DDBlocks.TRIMMED_PETRIFIED_PLANKS.asItem(), DDBlocks.PETRIFIED_PLANKS.asItem());
+        bookshelfBlock(recipeOutput, DDBlocks.PETRIFIED_BOOKSHELF.asItem(), DDBlocks.PETRIFIED_PLANKS.asItem());
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, DDItems.GLOW_GRIME.get())
                 .requires(DDBlocks.GLOWSHROOM.get())
@@ -572,6 +574,27 @@ public class DDRecipeProvider extends RecipeProvider {
                 .pattern("#")
                 .pattern("#")
                 .unlockedBy("has_" + BuiltInRegistries.ITEM.getKey(item).getPath(), has(item)).save(recipeOutput);
+    }
+
+    private void trimmedPlanksBlock(RecipeOutput recipeOutput, ItemLike result, Item planks) {
+        ShapedRecipeBuilder
+                .shaped(RecipeCategory.BUILDING_BLOCKS, result, 3)
+                .define('#', planks)
+                .pattern("#")
+                .pattern("#")
+                .pattern("#")
+                .unlockedBy("has_" + BuiltInRegistries.ITEM.getKey(planks).getPath(), has(planks)).save(recipeOutput);
+    }
+
+    private void bookshelfBlock(RecipeOutput recipeOutput, ItemLike result, Item planks) {
+        ShapedRecipeBuilder
+                .shaped(RecipeCategory.BUILDING_BLOCKS, result, 1)
+                .define('#', planks)
+                .define('b', Items.BOOK)
+                .pattern("###")
+                .pattern("bbb")
+                .pattern("###")
+                .unlockedBy("has_" + BuiltInRegistries.ITEM.getKey(planks).getPath(), has(planks)).save(recipeOutput);
     }
 
     private void hangingSignBlock(RecipeOutput recipeOutput, ItemLike result, Item strippedLog, Item chain) {

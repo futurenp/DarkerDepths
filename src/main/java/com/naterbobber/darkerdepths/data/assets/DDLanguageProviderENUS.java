@@ -57,6 +57,7 @@ public class DDLanguageProviderENUS extends LanguageProvider {
         add(DDBlocks.PETRIFIED_STAIRS.get(), "Petrified Stairs");
         add(DDBlocks.PETRIFIED_DOOR.get(), "Petrified Door");
         add(DDBlocks.TRIMMED_PETRIFIED_PLANKS.get(), "Trimmed Petrified Planks");
+        add(DDBlocks.PETRIFIED_BOOKSHELF.get(), "Petrified Bookshelf");
         add(DDBlocks.GLOWSHROOM.get(), "Glowshroom");
         add(DDBlocks.DARKSLATE.get(), "Darkslate");
         add(DDBlocks.POLISHED_DARKSLATE.get(), "Polished Darkslate");

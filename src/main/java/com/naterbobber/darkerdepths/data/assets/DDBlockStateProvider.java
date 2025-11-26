@@ -38,6 +38,8 @@ public class DDBlockStateProvider extends BlockStateProvider {
 
         add(this::woodBlockWithItem, DDBlocks.PETRIFIED_WOOD, DDBlocks.PETRIFIED_LOG);
         add(this::woodBlockWithItem, DDBlocks.STRIPPED_PETRIFIED_WOOD, DDBlocks.STRIPPED_PETRIFIED_LOG);
+        add(this::columnBlockWithItem, DDBlocks.PETRIFIED_BOOKSHELF, DDBlocks.PETRIFIED_PLANKS);
+
 
         skip(
                 DDBlocks.VOID_SOUL_JAR,
@@ -252,5 +254,19 @@ public class DDBlockStateProvider extends BlockStateProvider {
         simpleBlock(block.get(), models().cross(block.getId().getPath(), blockTexture(block.get())).renderType("cutout"));
         itemModels().withExistingParent(block.getId().getPath(), "item/generated")
                 .texture("layer0", blockTexture(block.get()));
+    }
+
+    private void columnBlockWithItem(DeferredHolder<Block, ? extends Block> block, DeferredHolder<Block, ? extends Block> topBlock) {
+        ResourceLocation location = block.getId();
+        String blockName = location.getPath();
+        ResourceLocation topLocation = topBlock.getId();
+        String parentBlockName = topLocation.getPath();
+
+        ResourceLocation sideTexture = location.withPath("block/" + blockName);
+        ResourceLocation topTexture = location.withPath("block/" + parentBlockName);
+        ModelFile cubeColumn = models().cubeColumn(blockName, sideTexture, topTexture);
+
+        getVariantBuilder(block.get()).partialState().setModels(new ConfiguredModel(cubeColumn));
+        simpleBlockItem(block.get(), cubeColumn);
     }
 }
