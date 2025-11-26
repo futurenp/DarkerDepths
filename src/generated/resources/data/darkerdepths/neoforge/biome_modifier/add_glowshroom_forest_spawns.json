@@ -5,6 +5,6 @@
     "type": "darkerdepths:glowshroom_monster",
     "maxCount": 2,
     "minCount": 1,
-    "weight": 50
+    "weight": 200
   }
 }

@@ -116,6 +116,23 @@ public class DDBlockStateProvider extends BlockStateProvider {
 
     }
 
+    private void relationalBlockWithItem(DeferredHolder<Block, ? extends Block> blockHolder) {
+        IRelationalBlock block = (IRelationalBlock) blockHolder.get();
+        Block parentBlock = block.getBaseBlock();
+
+        switch (block) {
+            case RelationalSlabBlock b -> slabBlockWithItem(blockHolder, parentBlock);
+            case RelationalStairBlock b -> stairsBlockWithItem(blockHolder, parentBlock);
+            case RelationalPressurePlateBlock b -> pressurePlateBlockWithItem(blockHolder, parentBlock);
+            case RelationalButtonBlock b -> buttonBlockWithItem(blockHolder, parentBlock);
+            case RelationalFenceBlock b -> fenceBlockWithItem(blockHolder, parentBlock);
+            case RelationalFenceGateBlock b -> fenceGateBlockWithItem(blockHolder, parentBlock);
+            case RelationalWallBlock b -> wallBlockWithItem(blockHolder, parentBlock);
+            default -> throw new IllegalStateException("Unexpected value: " + block);
+        }
+
+    }
+
     private void simpleItem(DeferredHolder<Item, ? extends Item> item) {
         itemModels().withExistingParent(item.getId().getPath(), "item/generated")
                 .texture("layer0", modLoc("item/" + item.getId().getPath()));
@@ -154,23 +171,6 @@ public class DDBlockStateProvider extends BlockStateProvider {
     private void fenceGateBlockWithItem(DeferredHolder<Block, ? extends Block> block, Block parentTexture) {
         fenceGateBlock((FenceGateBlock) block.get(), blockTexture(parentTexture));
         simpleBlockItem(block.get(), models().getExistingFile(blockTexture(block.get())));
-    }
-
-    private void relationalBlockWithItem(DeferredHolder<Block, ? extends Block> blockHolder) {
-        IRelationalBlock block = (IRelationalBlock) blockHolder.get();
-        Block parentBlock = block.getBaseBlock();
-
-        switch (block) {
-            case RelationalSlabBlock b -> slabBlockWithItem(blockHolder, parentBlock);
-            case RelationalStairBlock b -> stairsBlockWithItem(blockHolder, parentBlock);
-            case RelationalPressurePlateBlock b -> pressurePlateBlockWithItem(blockHolder, parentBlock);
-            case RelationalButtonBlock b -> buttonBlockWithItem(blockHolder, parentBlock);
-            case RelationalFenceBlock b -> fenceBlockWithItem(blockHolder, parentBlock);
-            case RelationalFenceGateBlock b -> fenceGateBlockWithItem(blockHolder, parentBlock);
-            case RelationalWallBlock b -> wallBlockWithItem(blockHolder, parentBlock);
-            default -> throw new IllegalStateException("Unexpected value: " + block);
-        }
-
     }
 
     private void rotatablePillarBlockWithItem(DeferredHolder<Block, ? extends Block> blockHolder) {

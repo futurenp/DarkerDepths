@@ -91,10 +91,10 @@ repositories {
 dependencies {
     implementation "software.bernie.geckolib:geckolib-neoforge-1.21.1:4.7.7"
 
-    compileOnly "maven.modrinth:no-mans-land:h56TqJQD"
-    compileOnly "maven.modrinth:biolith:byVGeYWw"
-    runtimeOnly "maven.modrinth:no-mans-land:h56TqJQD"
-    runtimeOnly "maven.modrinth:biolith:byVGeYWw"
+//    compileOnly "maven.modrinth:no-mans-land:h56TqJQD"
+//    compileOnly "maven.modrinth:biolith:byVGeYWw"
+//    runtimeOnly "maven.modrinth:no-mans-land:h56TqJQD"
+//    runtimeOnly "maven.modrinth:biolith:byVGeYWw"
 }
 
 

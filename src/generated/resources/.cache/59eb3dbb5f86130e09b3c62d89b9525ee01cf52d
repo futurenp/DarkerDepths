@@ -1,4 +1,4 @@
-// 1.21.1	2025-11-25T20:52:48.9931236	Loot Tables
+// 1.21.1	2025-11-26T01:57:02.1652413	Loot Tables
 69a68443e41c0ea8610b4ece66b6a6a3bff163d0 data/darkerdepths/loot_table/archaeology/catacombs/standard.json
 b26089f15d136d6d0b9b7870fd170249ec0473de data/darkerdepths/loot_table/blocks/amber_block.json
 7b8aa851d67ec8c45ab85ef504b99c843fe25237 data/darkerdepths/loot_table/blocks/amber_cluster.json
@@ -111,7 +111,7 @@ df8bc6c542e748b189d8b7a64d3d8e46b20bf6c1 data/darkerdepths/loot_table/blocks/pol
 fe059856640a25089c636995846ea437470fb7aa data/darkerdepths/loot_table/blocks/polished_grimestone_slab.json
 081d92003810b8de025a460d80d6bf5ef297cf86 data/darkerdepths/loot_table/blocks/polished_grimestone_stairs.json
 793fdb9c828b86ed488dba06e02aa072ecfa9d1b data/darkerdepths/loot_table/blocks/polished_grimestone_vertical_slab.json
-899d00efff8718cb5262a7fefd465490f8675704 data/darkerdepths/loot_table/blocks/porous_petrified_log.json
+8922d9f85b23a010d622ef18ca952fee281ba77c data/darkerdepths/loot_table/blocks/porous_petrified_log.json
 ef5a93dd3fc952fa55133f527a66924c6f3442b2 data/darkerdepths/loot_table/blocks/potted_glowshroom.json
 1096585c0434e9226c2073650caa0e4a6d6b1a00 data/darkerdepths/loot_table/blocks/rope.json
 8aea018e4a575143f2621a8289c0ccbe970f3245 data/darkerdepths/loot_table/blocks/skull_wall.json

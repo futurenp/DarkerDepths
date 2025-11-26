@@ -104,7 +104,7 @@ public class DDBiomeModifiers {
         context.register(ADD_GLOWSHROOM_FOREST_SPAWNS, new BiomeModifiers.AddSpawnsBiomeModifier(
                 getBiome(context, GLOWSHROOM_FOREST),
                 List.of(
-                        new MobSpawnSettings.SpawnerData(DDEntityTypes.GLOWSHROOM_MONSTER.get(), 50, 1, 2)
+                        new MobSpawnSettings.SpawnerData(DDEntityTypes.GLOWSHROOM_MONSTER.get(), 200, 1, 2)
                 )
         ));
 

@@ -1,8 +1,8 @@
-// 1.21.1	2025-11-20T10:15:05.2024493	Registries
+// 1.21.1	2025-11-26T02:46:55.5283033	Registries
 c4ee168e7bc25f3368a39009dc20c9876da3354f data/darkerdepths/damage_type/soul_binding_damage.json
 67449d45b04557a6ff85e2e4fb14a19e83a15a27 data/darkerdepths/enchantment/quick_dash.json
 efd3542a868f364e528e55ec4c13c3d5e8a423f0 data/darkerdepths/enchantment/swift_strike.json
-d60741eb3d7c1097d5b934ed2549343018a99260 data/darkerdepths/neoforge/biome_modifier/add_glowshroom_forest_spawns.json
+857533c67f857f1d29f96d841353b369d4731c44 data/darkerdepths/neoforge/biome_modifier/add_glowshroom_forest_spawns.json
 9f5e32ff863b28a7fb645a7ec9c1c7a3838a97b0 data/darkerdepths/neoforge/biome_modifier/add_glowshroom_forest_vegetal_features.json
 edd7cc4c254211c98e92ce5d411722b8603c10ee data/darkerdepths/neoforge/biome_modifier/add_molten_caverns_ores.json
 22af32d9547bb6839a8b276e25cb69b19bdfab80 data/darkerdepths/neoforge/biome_modifier/add_molten_caverns_vegetal_features.json

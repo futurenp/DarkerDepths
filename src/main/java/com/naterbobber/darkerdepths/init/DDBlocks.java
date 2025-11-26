@@ -64,7 +64,7 @@ public class DDBlocks {
             () -> new DDLogBlock(PETRIFIED_LOG_PROPERTIES, STRIPPED_PETRIFIED_WOOD.get()));
     public static final DeferredBlock<Block> PETRIFIED_PLANKS = registerBlock("petrified_planks",
             () -> new Block(PETRIFIED_PLANKS_PROPERTIES));
-    public static final DeferredBlock<RotatedPillarBlock> PETRIFIED_BOARDS = registerCompatBlock(List.of("woodworks", "nomansland"), "petrified_boards",
+    public static final DeferredBlock<RotatedPillarBlock> PETRIFIED_BOARDS = registerCompatBlock(List.of(), "petrified_boards",
             () -> new RotatedPillarBlock(PETRIFIED_PLANKS_PROPERTIES));
     public static final DeferredBlock<Block> VERTICAL_PETRIFIED_PLANKS = registerCompatBlock(List.of("quark"), "vertical_petrified_planks",
             () -> new Block(PETRIFIED_PLANKS_PROPERTIES));
@@ -84,7 +84,7 @@ public class DDBlocks {
             () -> new DoorBlock(DDBlockSetTypes.PETRIFIED, PETRIFIED_PLANKS_PROPERTIES));
     public static final DeferredBlock<TrapDoorBlock> PETRIFIED_TRAPDOOR = registerBlock("petrified_trapdoor",
             () -> new TrapDoorBlock(DDBlockSetTypes.PETRIFIED, PETRIFIED_PLANKS_PROPERTIES));
-    public static final DeferredBlock<Block> PETRIFIED_BOOKSHELF = registerCompatBlock(List.of("nomansland", "quark"),"petrified_bookshelf",
+    public static final DeferredBlock<Block> PETRIFIED_BOOKSHELF = registerCompatBlock(List.of("nomansland", "quark", "woodworks"),"petrified_bookshelf",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.BOOKSHELF)));
     public static final DeferredBlock<RelationalPressurePlateBlock> PETRIFIED_PRESSURE_PLATE = registerBlock("petrified_pressure_plate",
             () -> new RelationalPressurePlateBlock(PETRIFIED_PLANKS.get(), DDBlockSetTypes.PETRIFIED));
