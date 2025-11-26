@@ -32,6 +32,7 @@ public class DDTags {
         public static final TagKey<Block> HUSKS_SPAWNABLE_ON = createTag(RK, "husks_spawnable_on");
         public static final TagKey<Block> TRIMMED_PLANKS = createCompatTag(RK, "trimmed_planks", "nomansland");
         public static final TagKey<Block> WOODEN_BOOKSHELVES = createCompatTag(RK, "wooden_bookshelves", "blueprint");
+        public static final TagKey<Block> WOODEN_BOARDS = createCompatTag(RK, "wooden_boards", "woodworks");
     }
 
     public static class Biomes {

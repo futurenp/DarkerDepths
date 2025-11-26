@@ -64,6 +64,8 @@ public class DDBlocks {
             () -> new DDLogBlock(PETRIFIED_LOG_PROPERTIES, STRIPPED_PETRIFIED_WOOD.get()));
     public static final DeferredBlock<Block> PETRIFIED_PLANKS = registerBlock("petrified_planks",
             () -> new Block(PETRIFIED_PLANKS_PROPERTIES));
+    public static final DeferredBlock<RotatedPillarBlock> PETRIFIED_BOARDS = registerCompatBlock(List.of("woodworks", "nomansland"), "petrified_boards",
+            () -> new RotatedPillarBlock(PETRIFIED_PLANKS_PROPERTIES));
     public static final DeferredBlock<Block> VERTICAL_PETRIFIED_PLANKS = registerCompatBlock(List.of("quark"), "vertical_petrified_planks",
             () -> new Block(PETRIFIED_PLANKS_PROPERTIES));
     public static final DeferredBlock<RelationalStairBlock> PETRIFIED_STAIRS = registerBlock("petrified_stairs",

@@ -144,7 +144,8 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
                 DDBlocks.FORSAKEN_BRONZE_BLOCK.get(),
                 DDBlocks.ARIDROCK_PILLAR.get(),
                 DDBlocks.TRIMMED_PETRIFIED_PLANKS.get(),
-                DDBlocks.PETRIFIED_BOOKSHELF.get()
+                DDBlocks.PETRIFIED_BOOKSHELF.get(),
+                DDBlocks.PETRIFIED_BOARDS.get()
         );
 
         this.tag(BlockTags.MINEABLE_WITH_SHOVEL).add(
@@ -166,9 +167,9 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
                 DDBlocks.PETRIFIED_HANGING_SIGN.get(),
                 DDBlocks.PETRIFIED_WALL_HANGING_SIGN.get(),
                 DDBlocks.POROUS_PETRIFIED_LOG.get(),
-                DDBlocks.PETRIFIED_PLANKS.get(),
                 DDBlocks.TRIMMED_PETRIFIED_PLANKS.get(),
-                DDBlocks.PETRIFIED_BOOKSHELF.get()
+                DDBlocks.PETRIFIED_BOOKSHELF.get(),
+                DDBlocks.PETRIFIED_BOARDS.get()
         );
 
         this.tag(BlockTags.NEEDS_STONE_TOOL).add(
@@ -204,6 +205,10 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
 
         this.tag(DDTags.Blocks.TRIMMED_PLANKS).add(
                 DDBlocks.TRIMMED_PETRIFIED_PLANKS.get()
+        );
+
+        this.tag(DDTags.Blocks.WOODEN_BOARDS).add(
+                DDBlocks.PETRIFIED_BOARDS.get()
         );
 
         this.tag(DDTags.Blocks.GEYSER_BOOSTERS).add(Blocks.MAGMA_BLOCK);
