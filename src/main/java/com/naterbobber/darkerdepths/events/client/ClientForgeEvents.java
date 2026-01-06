@@ -1,4 +1,4 @@
-package com.naterbobber.darkerdepths.events;
+package com.naterbobber.darkerdepths.events.client;
 
 import com.mojang.blaze3d.shaders.FogShape;
 import com.naterbobber.darkerdepths.client.DynamicLightHandler;
@@ -7,7 +7,6 @@ import com.naterbobber.darkerdepths.init.DDMobEffects;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;

@@ -1,6 +1,6 @@
 package com.naterbobber.darkerdepths.network;
 
-import com.naterbobber.darkerdepths.events.ClientDeathAnchorAnimationOverlay;
+import com.naterbobber.darkerdepths.client.ClientDeathAnchorAnimationOverlay;
 import com.naterbobber.darkerdepths.init.DDSoundEvents;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;

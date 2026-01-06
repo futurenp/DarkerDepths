@@ -1,16 +1,13 @@
-package com.naterbobber.darkerdepths.events;
+package com.naterbobber.darkerdepths.events.client;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
-import com.naterbobber.darkerdepths.client.DynamicLightHandler;
 import com.naterbobber.darkerdepths.client.models.GlowshroomCapModel;
-import com.naterbobber.darkerdepths.client.models.GlowshroomMonsterModel;
 import com.naterbobber.darkerdepths.client.particle.DrippingParticle;
 import com.naterbobber.darkerdepths.client.particle.VoidSoulFlameParticle;
 import com.naterbobber.darkerdepths.client.particle.VoidSoulFlameSmokeParticle;
 import com.naterbobber.darkerdepths.client.particle.VoidSoulParticle;
 import com.naterbobber.darkerdepths.client.render.renderers.*;
 import com.naterbobber.darkerdepths.init.*;
-import com.naterbobber.darkerdepths.item.StilettoItem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.BoatModel;
 import net.minecraft.client.model.ChestBoatModel;
@@ -18,24 +15,17 @@ import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.particle.ParticleEngine;
 import net.minecraft.client.renderer.blockentity.HangingSignRenderer;
 import net.minecraft.client.renderer.blockentity.SignRenderer;
-import net.minecraft.client.renderer.item.ItemProperties;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
-import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
 @OnlyIn(Dist.CLIENT)
 @Mod.EventBusSubscriber(modid = DarkerDepths.MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
-public class ClientEvents {
+public class ClientRegisterEvents {
 
 
     @SubscribeEvent
@@ -71,29 +61,5 @@ public class ClientEvents {
         engine.register(DDParticleTypes.VOID_SOUL_FLAME_SMOKE.get(), VoidSoulFlameSmokeParticle.VoidSoulFlameSmokeFactory::new);
     }
 
-    @SubscribeEvent
-    public static void onClientSetup(final FMLClientSetupEvent event) {
-        IEventBus eventBus = MinecraftForge.EVENT_BUS;
 
-        eventBus.register(new ClientForgeEvents());
-        eventBus.register(new ClientDeathAnchorAnimationOverlay());
-
-        event.enqueueWork(() -> {
-            DDWoodType.setupWoodTypes();
-
-            ItemProperties.register(DDItems.STILETTO.get(), DarkerDepths.id("charge"), (itemStack, clientLevel, livingEntity, i) -> {
-                CompoundTag tag = itemStack.getTag();
-                if (tag != null) {
-                    if (tag.getInt(StilettoItem.TIME_FRAME) > 0) {
-                        return 1.0F;
-                    }
-                    if (tag.getInt(StilettoItem.READY_TICKS) > 0) {
-                        return 0.5F;
-                    }
-                }
-
-                return 0.0F;
-            });
-        });
-    }
 }

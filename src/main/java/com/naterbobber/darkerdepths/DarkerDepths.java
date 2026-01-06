@@ -4,7 +4,7 @@ import com.naterbobber.darkerdepths.config.DDConfigs;
 import com.naterbobber.darkerdepths.init.DDMemoryModuleTypes;
 import com.naterbobber.darkerdepths.init.DDActivities;
 import com.naterbobber.darkerdepths.events.MiscEvents;
-import com.naterbobber.darkerdepths.events.MobEvents;
+import com.naterbobber.darkerdepths.events.LivingEvents;
 import com.naterbobber.darkerdepths.init.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
@@ -50,7 +50,7 @@ public class DarkerDepths {
         DDMemoryModuleTypes.MEMORY_MODULE_TYPES.register(modEventBus);
 
         eventBus.register(this);
-        eventBus.register(new MobEvents());
+        eventBus.register(new LivingEvents());
         eventBus.register(new MiscEvents());
     }
 

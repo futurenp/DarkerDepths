@@ -13,7 +13,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @Mod.EventBusSubscriber(modid = DarkerDepths.MODID)
-public class RequiemCurseRemovalHandler {
+public class CommonEvents {
 
     @SubscribeEvent
     public static void onAnvilUpdate(AnvilUpdateEvent event) {

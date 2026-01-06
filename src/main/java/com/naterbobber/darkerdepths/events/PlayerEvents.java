@@ -24,7 +24,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = DarkerDepths.MODID)
-public class ForgeBusEvents {
+public class PlayerEvents {
 
     @SubscribeEvent
     public static void onApplySupercharge(PlayerInteractEvent.RightClickItem event) {
