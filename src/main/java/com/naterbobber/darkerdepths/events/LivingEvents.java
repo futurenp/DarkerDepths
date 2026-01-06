@@ -24,20 +24,19 @@ import net.minecraft.world.entity.ai.village.poi.PoiType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.vehicle.DismountHelper;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
-import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
-import net.neoforged.neoforge.event.entity.living.LivingEquipmentChangeEvent;
-import net.neoforged.neoforge.event.entity.living.MobEffectEvent;
+import net.neoforged.neoforge.event.entity.living.*;
 import net.neoforged.neoforge.network.PacketDistributor;
 import org.apache.commons.lang3.mutable.MutableFloat;
 
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.StreamSupport;
 
 @EventBusSubscriber(modid = DarkerDepths.MOD_ID)
 public class LivingEvents {
@@ -172,13 +171,45 @@ public class LivingEvents {
         ItemStack previouslyEquipped = event.getFrom();
 
         if (newlyEquipped.is(DDItems.GLOWSHROOM_CAP.get())) {
-            player.addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, MobEffectInstance.INFINITE_DURATION, 0, false, false, true));
+            player.addEffect(new MobEffectInstance(
+                            MobEffects.DIG_SPEED,
+                            MobEffectInstance.INFINITE_DURATION,
+                            0,
+                            false,
+                            false,
+                            true
+                    )
+            );
         }
 
         if (previouslyEquipped.is(DDItems.GLOWSHROOM_CAP.get())) {
             if (!newlyEquipped.is(DDItems.GLOWSHROOM_CAP.get())) {
                 player.removeEffect(MobEffects.DIG_SPEED);
             }
+        }
+    }
+
+    @SubscribeEvent
+    public static void onLivingEntityUseItem(LivingEntityUseItemEvent.Finish event) {
+        if(!(event.getEntity() instanceof Player player)) {
+            return;
+        }
+
+        if(!event.getItem().is(Items.MILK_BUCKET)) {
+            return;
+        }
+
+        if(StreamSupport.stream(player.getArmorSlots().spliterator(), false)
+                .anyMatch(armor -> armor.is(DDItems.GLOWSHROOM_CAP.get()))) {
+            player.addEffect(new MobEffectInstance(
+                            MobEffects.DIG_SPEED,
+                            MobEffectInstance.INFINITE_DURATION,
+                            0,
+                            false,
+                            false,
+                            true
+                    )
+            );
         }
     }
 
