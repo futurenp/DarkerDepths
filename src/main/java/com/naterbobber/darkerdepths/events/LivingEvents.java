@@ -4,6 +4,7 @@ import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.api.DeathAnchorLocation;
 import com.naterbobber.darkerdepths.init.*;
 import com.naterbobber.darkerdepths.item.StilettoItem;
+import com.naterbobber.darkerdepths.network.DDNetwork;
 import com.naterbobber.darkerdepths.network.SendDeathAnchorPacket;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.GlobalPos;
@@ -23,20 +24,20 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.village.poi.PoiType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.vehicle.DismountHelper;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.event.entity.living.LivingDamageEvent;
-import net.minecraftforge.event.entity.living.LivingDeathEvent;
-import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
-import net.minecraftforge.event.entity.living.MobEffectEvent;
+import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.network.PacketDistributor;
 
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.StreamSupport;
 
 @Mod.EventBusSubscriber(modid = DarkerDepths.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class LivingEvents {
@@ -169,13 +170,45 @@ public class LivingEvents {
         ItemStack previouslyEquipped = event.getFrom();
 
         if (newlyEquipped.is(DDItems.GLOWSHROOM_CAP.get())) {
-            player.addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, MobEffectInstance.INFINITE_DURATION, 0, false, false, true));
+            player.addEffect(new MobEffectInstance(
+                            MobEffects.DIG_SPEED,
+                            MobEffectInstance.INFINITE_DURATION,
+                            0,
+                            false,
+                            false,
+                            true
+                    )
+            );
         }
 
         if (previouslyEquipped.is(DDItems.GLOWSHROOM_CAP.get())) {
             if (!newlyEquipped.is(DDItems.GLOWSHROOM_CAP.get())) {
                 player.removeEffect(MobEffects.DIG_SPEED);
             }
+        }
+    }
+
+    @SubscribeEvent
+    public void onLivingEntityUseItem(LivingEntityUseItemEvent.Finish event) {
+        if(!(event.getEntity() instanceof Player player)) {
+            return;
+        }
+
+        if(!event.getItem().is(Items.MILK_BUCKET)) {
+            return;
+        }
+
+        if(StreamSupport.stream(player.getArmorSlots().spliterator(), false)
+                .anyMatch(armor -> armor.is(DDItems.GLOWSHROOM_CAP.get()))) {
+            player.addEffect(new MobEffectInstance(
+                    MobEffects.DIG_SPEED,
+                    MobEffectInstance.INFINITE_DURATION,
+                    0,
+                    false,
+                    false,
+                    true
+                    )
+            );
         }
     }
 
