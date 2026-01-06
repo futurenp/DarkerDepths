@@ -1,11 +1,11 @@
 package com.naterbobber.darkerdepths.init;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
-import com.naterbobber.darkerdepths.world.gen.features.*;
-import com.naterbobber.darkerdepths.world.gen.features.config.CorrespondentLayersConfig;
-import com.naterbobber.darkerdepths.world.gen.features.config.PetrifiedBranchConfig;
-import com.naterbobber.darkerdepths.world.gen.features.config.ReplaceListConfig;
-import com.naterbobber.darkerdepths.world.gen.features.config.ReplaceListLayeredConfig;
+import com.naterbobber.darkerdepths.worldgen.features.*;
+import com.naterbobber.darkerdepths.worldgen.features.config.CorrespondentLayersConfig;
+import com.naterbobber.darkerdepths.worldgen.features.config.PetrifiedBranchConfig;
+import com.naterbobber.darkerdepths.worldgen.features.config.ReplaceListConfig;
+import com.naterbobber.darkerdepths.worldgen.features.config.ReplaceListLayeredConfig;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.VegetationPatchConfiguration;

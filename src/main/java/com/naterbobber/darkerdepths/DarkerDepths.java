@@ -6,6 +6,8 @@ import com.naterbobber.darkerdepths.init.DDActivities;
 import com.naterbobber.darkerdepths.events.MiscEvents;
 import com.naterbobber.darkerdepths.events.LivingEvents;
 import com.naterbobber.darkerdepths.init.*;
+import com.naterbobber.darkerdepths.network.DDNetwork;
+import com.naterbobber.darkerdepths.init.DDStructures;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;

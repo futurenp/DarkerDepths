@@ -1,7 +1,7 @@
 package com.naterbobber.darkerdepths.data.tags;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
-import com.naterbobber.darkerdepths.init.DDBiomes;
+import com.naterbobber.darkerdepths.worldgen.DDBiomes;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;

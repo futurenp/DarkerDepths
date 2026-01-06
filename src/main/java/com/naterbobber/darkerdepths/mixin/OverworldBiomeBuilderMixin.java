@@ -1,7 +1,7 @@
 package com.naterbobber.darkerdepths.mixin;
 
 import com.mojang.datafixers.util.Pair;
-import com.naterbobber.darkerdepths.util.BiomeReagentHandler;
+import com.naterbobber.darkerdepths.worldgen.BiomeReagentHandler;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Climate;
