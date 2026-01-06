@@ -2,9 +2,9 @@ package com.naterbobber.darkerdepths.init;
 
 import com.google.common.collect.ImmutableList;
 import com.naterbobber.darkerdepths.DarkerDepths;
-import com.naterbobber.darkerdepths.blocks.AshBlock;
-import com.naterbobber.darkerdepths.blocks.GlowshroomBlock;
-import com.naterbobber.darkerdepths.blocks.GlowspursBlock;
+import com.naterbobber.darkerdepths.block.custom.AshBlock;
+import com.naterbobber.darkerdepths.block.custom.GlowshroomBlock;
+import com.naterbobber.darkerdepths.block.custom.GlowspursBlock;
 import com.naterbobber.darkerdepths.world.gen.features.config.CorrespondentLayersConfig;
 import com.naterbobber.darkerdepths.world.gen.features.config.PetrifiedBranchConfig;
 import com.naterbobber.darkerdepths.world.gen.features.config.ReplaceListConfig;
@@ -139,9 +139,9 @@ public static final ImmutableList<BlockState> OVERWORLD_REPLACEABLES    = Immuta
         FeatureUtils.register(context, GRIME_VEGETATION, Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(
                 new WeightedStateProvider(
                         SimpleWeightedRandomList.<BlockState>builder()
-                                .add(DDBlocks.GLOWSHROOM.get().defaultBlockState().setValue(GlowshroomBlock.CLUSTERS_1_3, 1), 4)
-                                .add(DDBlocks.GLOWSHROOM.get().defaultBlockState().setValue(GlowshroomBlock.CLUSTERS_1_3, 2), 2)
-                                .add(DDBlocks.GLOWSHROOM.get().defaultBlockState().setValue(GlowshroomBlock.CLUSTERS_1_3, 3), 1)
+                                .add(DDBlocks.GLOWSHROOM.get().defaultBlockState().setValue(GlowshroomBlock.GLOWSHROOM_CLUSTERS, 1), 4)
+                                .add(DDBlocks.GLOWSHROOM.get().defaultBlockState().setValue(GlowshroomBlock.GLOWSHROOM_CLUSTERS, 2), 2)
+                                .add(DDBlocks.GLOWSHROOM.get().defaultBlockState().setValue(GlowshroomBlock.GLOWSHROOM_CLUSTERS, 3), 1)
                                 .add(DDBlocks.GLOWSPURS.get().defaultBlockState().setValue(GlowspursBlock.FACING, Direction.NORTH), 1)
                                 .add(DDBlocks.GLOWSPURS.get().defaultBlockState().setValue(GlowspursBlock.FACING, Direction.EAST), 1)
                                 .add(DDBlocks.GLOWSPURS.get().defaultBlockState().setValue(GlowspursBlock.FACING, Direction.SOUTH), 1)

@@ -14,9 +14,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
-import com.naterbobber.darkerdepths.blocks.GlowshroomBlock;
-import net.minecraft.world.level.material.Fluids;
-import net.minecraft.world.level.material.WaterFluid;
+import com.naterbobber.darkerdepths.block.custom.GlowshroomBlock;
 
 public class HugeGlowshroomFeature extends Feature<NoneFeatureConfiguration> {
 
@@ -121,9 +119,9 @@ public class HugeGlowshroomFeature extends Feature<NoneFeatureConfiguration> {
                                 int blockStateRandom = (int) (Math.random() * 3 + 1);
                                 if (glowshroomRandom == 0) {
                                     if(world.getBlockState(capPos).is(Blocks.WATER)){
-                                        this.setBlock(world, capPos, DDBlocks.GLOWSHROOM.get().defaultBlockState().setValue(GlowshroomBlock.CLUSTERS_1_3, blockStateRandom).setValue(GlowshroomBlock.WATERLOGGED, true));
+                                        this.setBlock(world, capPos, DDBlocks.GLOWSHROOM.get().defaultBlockState().setValue(GlowshroomBlock.GLOWSHROOM_CLUSTERS, blockStateRandom).setValue(GlowshroomBlock.WATERLOGGED, true));
                                     } else {
-                                        this.setBlock(world, capPos, DDBlocks.GLOWSHROOM.get().defaultBlockState().setValue(GlowshroomBlock.CLUSTERS_1_3, blockStateRandom));
+                                        this.setBlock(world, capPos, DDBlocks.GLOWSHROOM.get().defaultBlockState().setValue(GlowshroomBlock.GLOWSHROOM_CLUSTERS, blockStateRandom));
                                     }
                                 }
                                 break;
@@ -227,9 +225,9 @@ public class HugeGlowshroomFeature extends Feature<NoneFeatureConfiguration> {
                                 int blockStateRandom = (int) (Math.random() * 3 + 1);
                                 if (glowshroomRandom == 0) {
                                     if(world.getBlockState(capPos).is(Blocks.WATER)){
-                                        this.setBlock(world, capPos, DDBlocks.GLOWSHROOM.get().defaultBlockState().setValue(GlowshroomBlock.CLUSTERS_1_3, blockStateRandom).setValue(GlowshroomBlock.WATERLOGGED, true));
+                                        this.setBlock(world, capPos, DDBlocks.GLOWSHROOM.get().defaultBlockState().setValue(GlowshroomBlock.GLOWSHROOM_CLUSTERS, blockStateRandom).setValue(GlowshroomBlock.WATERLOGGED, true));
                                     } else {
-                                        this.setBlock(world, capPos, DDBlocks.GLOWSHROOM.get().defaultBlockState().setValue(GlowshroomBlock.CLUSTERS_1_3, blockStateRandom));
+                                        this.setBlock(world, capPos, DDBlocks.GLOWSHROOM.get().defaultBlockState().setValue(GlowshroomBlock.GLOWSHROOM_CLUSTERS, blockStateRandom));
                                     }
                                 }
                                 break;

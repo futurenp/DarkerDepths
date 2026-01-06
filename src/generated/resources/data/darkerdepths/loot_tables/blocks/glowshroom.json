@@ -1,0 +1,49 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "conditions": [
+                {
+                  "block": "darkerdepths:glowshroom",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "clusters": "2"
+                  }
+                }
+              ],
+              "count": 2.0,
+              "function": "minecraft:set_count"
+            },
+            {
+              "add": false,
+              "conditions": [
+                {
+                  "block": "darkerdepths:glowshroom",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "clusters": "3"
+                  }
+                }
+              ],
+              "count": 3.0,
+              "function": "minecraft:set_count"
+            },
+            {
+              "function": "minecraft:explosion_decay"
+            }
+          ],
+          "name": "darkerdepths:glowshroom"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "darkerdepths:blocks/glowshroom"
+}

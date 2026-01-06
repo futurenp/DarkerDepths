@@ -3,7 +3,7 @@ package com.naterbobber.darkerdepths.client.render.renderers;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
-import com.naterbobber.darkerdepths.blocks.blockentities.TombBlockEntity;
+import com.naterbobber.darkerdepths.block.blockentities.TombBlockEntity;
 import com.naterbobber.darkerdepths.client.models.TombModel;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
