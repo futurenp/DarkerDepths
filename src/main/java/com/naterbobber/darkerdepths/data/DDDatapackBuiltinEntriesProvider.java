@@ -1,6 +1,7 @@
 package com.naterbobber.darkerdepths.data;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
+import com.naterbobber.darkerdepths.init.DDDamageTypes;
 import com.naterbobber.darkerdepths.init.DDStructures;
 import com.naterbobber.darkerdepths.worldgen.*;
 import net.minecraft.core.HolderLookup;
@@ -23,7 +24,8 @@ public class DDDatapackBuiltinEntriesProvider extends DatapackBuiltinEntriesProv
             .add(Registries.TEMPLATE_POOL, DDStructures::bootstrapTemplatePool)
             .add(Registries.STRUCTURE, DDStructures::bootstrap)
             .add(Registries.STRUCTURE_SET, DDStructures::bootstrapStructureSet)
-            .add(Registries.PROCESSOR_LIST, DDProcessorLists::bootstrap);
+            .add(Registries.PROCESSOR_LIST, DDProcessorLists::bootstrap)
+            .add(Registries.DAMAGE_TYPE, DDDamageTypes::bootstrap);
 
 
     public DDDatapackBuiltinEntriesProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {

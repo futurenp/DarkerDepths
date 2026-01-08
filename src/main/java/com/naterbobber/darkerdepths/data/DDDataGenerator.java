@@ -22,32 +22,30 @@ import java.util.concurrent.CompletableFuture;
 @Mod.EventBusSubscriber(modid = DarkerDepths.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class DDDataGenerator {
 
-    private DDDataGenerator() {
-    }
-
-
     @SubscribeEvent
-    public static void onGatherData(GatherDataEvent event) {
+    public static void gatherData(GatherDataEvent event) {
         DataGenerator dataGenerator = event.getGenerator();
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
         PackOutput packOutput = dataGenerator.getPackOutput();
         CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
 
         boolean server = event.includeServer();
+        boolean client = event.includeClient();
 
-        dataGenerator.addProvider(event.includeClient(), new DDBlockStateProvider(packOutput, existingFileHelper));
-        dataGenerator.addProvider(event.includeClient(), new DDLanguageProviderENUS(packOutput));
+        DDDatapackBuiltinEntriesProvider datapackProvider = new DDDatapackBuiltinEntriesProvider(packOutput, lookupProvider);
+        dataGenerator.addProvider(server, datapackProvider);
+
+        CompletableFuture<HolderLookup.Provider> registryLookup = datapackProvider.getRegistryProvider();
+
+        dataGenerator.addProvider(client, new DDBlockStateProvider(packOutput, existingFileHelper));
+        dataGenerator.addProvider(client, new DDLanguageProviderENUS(packOutput));
 
         dataGenerator.addProvider(server, new DDRecipeProvider(packOutput));
-
         dataGenerator.addProvider(server, new DDLootTableProvider(packOutput));
 
-        DDBlockTagsProvider blockTagsProvider = new DDBlockTagsProvider(packOutput, lookupProvider, existingFileHelper);
-        dataGenerator.addProvider(server, blockTagsProvider);
-        dataGenerator.addProvider(server, new DDItemTagsProvider(packOutput, lookupProvider, blockTagsProvider.contentsGetter(), existingFileHelper));
-        dataGenerator.addProvider(server, new DDBiomeTagsProvider(packOutput, lookupProvider, existingFileHelper));
-        dataGenerator.addProvider(event.includeServer(), new DDDamageTypeTagsProvider(packOutput, lookupProvider, existingFileHelper));
+        DDBlockTagsProvider blockTagsProvider = dataGenerator.addProvider(server, new DDBlockTagsProvider(packOutput, registryLookup, existingFileHelper));
+        dataGenerator.addProvider(server, new DDItemTagsProvider(packOutput, registryLookup, blockTagsProvider.contentsGetter(), existingFileHelper));
 
-        dataGenerator.addProvider(server, new DDDatapackBuiltinEntriesProvider(packOutput, lookupProvider));
-    }
+        dataGenerator.addProvider(server, new DDBiomeTagsProvider(packOutput, registryLookup, existingFileHelper));
+        dataGenerator.addProvider(server, new DDDamageTypeTagsProvider(packOutput, registryLookup, existingFileHelper));}
 }
