@@ -3,10 +3,9 @@ package com.naterbobber.darkerdepths.data.tags;
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.compat.init.ForgeItemTags;
 import com.naterbobber.darkerdepths.init.DDBlocks;
-import com.naterbobber.darkerdepths.init.DDItemTags;
 import com.naterbobber.darkerdepths.init.DDItems;
+import com.naterbobber.darkerdepths.util.DDTags;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.resources.ResourceLocation;
@@ -41,7 +40,7 @@ public class DDItemTagsProvider extends ItemTagsProvider {
                 DDBlocks.DUSKROCK.get().asItem(),
                 DDBlocks.GRIMESTONE.get().asItem()
         );
-        this.tag(DDItemTags.PETRIFIED_LOGS).add(
+        this.tag(DDTags.Items.PETRIFIED_LOGS).add(
                 DDBlocks.PETRIFIED_LOG.get().asItem(),
                 DDBlocks.PETRIFIED_WOOD.get().asItem(),
                 DDBlocks.STRIPPED_PETRIFIED_LOG.get().asItem(),

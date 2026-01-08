@@ -3,8 +3,8 @@ package com.naterbobber.darkerdepths.data;
 import com.google.common.collect.ImmutableList;
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.init.DDBlocks;
-import com.naterbobber.darkerdepths.init.DDItemTags;
 import com.naterbobber.darkerdepths.init.DDItems;
+import com.naterbobber.darkerdepths.util.DDTags;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.FinishedRecipe;
@@ -244,9 +244,9 @@ public class DDRecipeProvider extends RecipeProvider {
 
         ShapelessRecipeBuilder
                 .shapeless(RecipeCategory.BUILDING_BLOCKS, DDBlocks.PETRIFIED_PLANKS.get(), 4)
-                .requires(DDItemTags.PETRIFIED_LOGS)
+                .requires(DDTags.Items.PETRIFIED_LOGS)
                 .group("planks")
-                .unlockedBy("has_logs", has(DDItemTags.PETRIFIED_LOGS)).save(consumer);
+                .unlockedBy("has_logs", has(DDTags.Items.PETRIFIED_LOGS)).save(consumer);
 
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.BUILDING_BLOCKS, DDBlocks.PETRIFIED_WOOD.get(), 3)

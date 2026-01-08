@@ -2,7 +2,7 @@ package com.naterbobber.darkerdepths.block.blockentities;
 
 import com.naterbobber.darkerdepths.block.custom.GeyserBlock;
 import com.naterbobber.darkerdepths.init.DDBlockEntityTypes;
-import com.naterbobber.darkerdepths.init.DDBlockTags;
+import com.naterbobber.darkerdepths.util.DDTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.protocol.game.ClientboundSetEntityMotionPacket;
@@ -31,7 +31,7 @@ public class GeyserBlockEntity extends BlockEntity {
 
         Direction direction = state.getValue(GeyserBlock.FACING);
         double boostSpeed = 0.06;
-        double booster = (world.getBlockState(pos.relative(direction.getOpposite())).is(DDBlockTags.GEYSER_BOOSTERS) ? boostSpeed * 2 : boostSpeed) * direction.getAxisDirection().getStep();
+        double booster = (world.getBlockState(pos.relative(direction.getOpposite())).is(DDTags.Blocks.GEYSER_BOOSTERS) ? boostSpeed * 2 : boostSpeed) * direction.getAxisDirection().getStep();
 
         BlockPos relativePosition;
         BlockState relativeState;
@@ -41,7 +41,7 @@ public class GeyserBlockEntity extends BlockEntity {
             relativeState = world.getBlockState(relativePosition);
             if (
                     !(world.isStateAtPosition(relativePosition, DripstoneUtils::isEmptyOrWaterOrLava) ||
-                            relativeState.getTags().anyMatch(DDBlockTags.GEYSER_BYPASSES::equals) ||
+                            relativeState.getTags().anyMatch(DDTags.Blocks.GEYSER_BYPASSES::equals) ||
                             (relativeState.hasProperty(BlockStateProperties.LAYERS) && relativeState.getValue(BlockStateProperties.LAYERS) == 1))
             ) {
                 break;

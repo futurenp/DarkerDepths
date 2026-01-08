@@ -1,13 +1,11 @@
 package com.naterbobber.darkerdepths.data.tags;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
-import com.naterbobber.darkerdepths.compat.init.ForgeBlockTags;
-import com.naterbobber.darkerdepths.init.DDBlockTags;
 import com.naterbobber.darkerdepths.init.DDBlocks;
+import com.naterbobber.darkerdepths.util.DDTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.BlockTagsProvider;
@@ -187,9 +185,9 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
         this.tag(Tags.Blocks.STORAGE_BLOCKS)
                 .add(DDBlocks.FORSAKEN_BRONZE_BLOCK.get());
 
-        this.tag(DDBlockTags.GEYSER_BOOSTERS).add(Blocks.MAGMA_BLOCK);
+        this.tag(DDTags.Blocks.GEYSER_BOOSTERS).add(Blocks.MAGMA_BLOCK);
 
-        this.tag(DDBlockTags.GEYSER_BYPASSES)
+        this.tag(DDTags.Blocks.GEYSER_BYPASSES)
                 .add(
                     Blocks.SNOW,
                     Blocks.MOSS_CARPET,
@@ -220,7 +218,7 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
                 .addTag(BlockTags.LEAVES)
                 .addTag(BlockTags.RAILS);
 
-        this.tag(DDBlockTags.HUSKS_SPAWNABLE_ON).add(DDBlocks.ARIDROCK.get());
+        this.tag(DDTags.Blocks.HUSKS_SPAWNABLE_ON).add(DDBlocks.ARIDROCK.get());
         this.tag(BlockTags.BEACON_BASE_BLOCKS).add(DDBlocks.FORSAKEN_BRONZE_BLOCK.get());
 
         this.tag(BlockTags.SIGNS).add(

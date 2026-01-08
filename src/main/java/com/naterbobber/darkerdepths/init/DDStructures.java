@@ -3,6 +3,7 @@ package com.naterbobber.darkerdepths.init;
 import com.mojang.datafixers.util.Pair;
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.data.tags.DDBiomeTagsProvider;
+import com.naterbobber.darkerdepths.util.DDTags;
 import com.naterbobber.darkerdepths.worldgen.DDProcessorLists;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
@@ -69,7 +70,7 @@ public class DDStructures {
         HolderGetter<StructureTemplatePool> poolGetter = context.lookup(Registries.TEMPLATE_POOL);
 
         Structure.StructureSettings forestSettings = new Structure.StructureSettings(
-                biomeGetter.getOrThrow(DDBiomeTagsProvider.HAS_ROPE_MINE_FOREST),
+                biomeGetter.getOrThrow(DDTags.Biomes.HAS_ROPE_MINE_FOREST),
                 Map.of(),
                 GenerationStep.Decoration.SURFACE_STRUCTURES,
                 TerrainAdjustment.NONE
@@ -87,7 +88,7 @@ public class DDStructures {
         ));
 
         Structure.StructureSettings desertSettings = new Structure.StructureSettings(
-                biomeGetter.getOrThrow(DDBiomeTagsProvider.HAS_ROPE_MINE_DESERT),
+                biomeGetter.getOrThrow(DDTags.Biomes.HAS_ROPE_MINE_DESERT),
                 Map.of(),
                 GenerationStep.Decoration.SURFACE_STRUCTURES,
                 TerrainAdjustment.NONE
@@ -105,7 +106,7 @@ public class DDStructures {
         ));
 
         Structure.StructureSettings catacombs = new Structure.StructureSettings(
-                biomeGetter.getOrThrow(DDBiomeTagsProvider.CATACOMBS),
+                biomeGetter.getOrThrow(DDTags.Biomes.CATACOMBS),
                 Arrays.stream(MobCategory.values()).collect(Collectors.toMap(v -> {
                     return v;
                 }, v1 -> {
