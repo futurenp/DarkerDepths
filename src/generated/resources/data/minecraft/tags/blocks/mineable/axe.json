@@ -1,18 +1,24 @@
 {
   "values": [
     "darkerdepths:petrified_planks",
-    "darkerdepths:petrified_stairs",
     "darkerdepths:petrified_slab",
     "darkerdepths:petrified_vertical_slab",
-    "darkerdepths:petrified_door",
-    "darkerdepths:petrified_trapdoor",
+    "darkerdepths:petrified_stairs",
     "darkerdepths:petrified_pressure_plate",
     "darkerdepths:petrified_button",
+    "darkerdepths:petrified_post",
+    "darkerdepths:petrified_fence",
+    "darkerdepths:petrified_fence_gate",
+    "darkerdepths:petrified_door",
+    "darkerdepths:petrified_trapdoor",
     "darkerdepths:petrified_sign",
-    "darkerdepths:petrified_wall_sign",
     "darkerdepths:petrified_hanging_sign",
+    "darkerdepths:petrified_wall_sign",
     "darkerdepths:petrified_wall_hanging_sign",
-    "darkerdepths:porous_petrified_log",
-    "darkerdepths:petrified_planks"
+    "darkerdepths:petrified_log",
+    "darkerdepths:stripped_petrified_log",
+    "darkerdepths:petrified_wood",
+    "darkerdepths:stripped_petrified_wood",
+    "darkerdepths:porous_petrified_log"
   ]
 }
