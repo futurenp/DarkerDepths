@@ -1,12 +1,12 @@
 {
   "values": [
-    "darkerdepths:darkslate_wall",
     "darkerdepths:aridrock_wall",
-    "darkerdepths:duskrock_wall",
-    "darkerdepths:grimestone_wall",
-    "darkerdepths:darkslate_bricks_wall",
     "darkerdepths:aridrock_bricks_wall",
+    "darkerdepths:duskrock_wall",
     "darkerdepths:duskrock_bricks_wall",
+    "darkerdepths:darkslate_wall",
+    "darkerdepths:darkslate_bricks_wall",
+    "darkerdepths:grimestone_wall",
     "darkerdepths:grimestone_bricks_wall"
   ]
 }
