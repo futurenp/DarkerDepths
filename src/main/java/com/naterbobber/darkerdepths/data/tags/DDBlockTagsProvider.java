@@ -15,6 +15,7 @@ import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
@@ -33,10 +34,10 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
         addType(TrapDoorBlock.class, BlockTags.TRAPDOORS);
         addType(ButtonBlock.class, BlockTags.BUTTONS);
         addType(PressurePlateBlock.class, BlockTags.PRESSURE_PLATES);
-        addType(StandingSignBlock.class, List.of(BlockTags.STANDING_SIGNS, BlockTags.SIGNS));
-        addType(WallSignBlock.class, List.of(BlockTags.WALL_SIGNS, BlockTags.SIGNS));
-        addType(WallHangingSignBlock.class, List.of(BlockTags.WALL_HANGING_SIGNS, BlockTags.ALL_HANGING_SIGNS));
-        addType(CeilingHangingSignBlock.class, List.of(BlockTags.CEILING_HANGING_SIGNS, BlockTags.ALL_HANGING_SIGNS));
+        addType(StandingSignBlock.class, BlockTags.STANDING_SIGNS, BlockTags.SIGNS);
+        addType(WallSignBlock.class, BlockTags.WALL_SIGNS, BlockTags.SIGNS);
+        addType(WallHangingSignBlock.class, BlockTags.WALL_HANGING_SIGNS, BlockTags.ALL_HANGING_SIGNS);
+        addType(CeilingHangingSignBlock.class, BlockTags.CEILING_HANGING_SIGNS, BlockTags.ALL_HANGING_SIGNS);
         addType(SignBlock.class, BlockTags.ALL_SIGNS);
 
         List<Block> PETRIFIED = List.of(
@@ -285,19 +286,11 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
         );
     }
 
-    private void addType(Class blockType, TagKey tag) {
+    private void addType(Class blockType, TagKey... tags) {
         DDBlocks.BLOCKS.getEntries()
                 .stream()
                 .map(DeferredHolder::get)
                 .filter(blockType::isInstance)
-                .forEach(block -> this.tag(tag).add(block));
-    }
-
-    private void addType(Class blockType, List<TagKey> tags) {
-        DDBlocks.BLOCKS.getEntries()
-                .stream()
-                .map(DeferredHolder::get)
-                .filter(blockType::isInstance)
-                .forEach(block -> tags.forEach(tag -> this.tag(tag).add(block)));
+                .forEach(block -> Arrays.stream(tags).forEach(tag -> this.tag(tag).add(block)));
     }
 }
