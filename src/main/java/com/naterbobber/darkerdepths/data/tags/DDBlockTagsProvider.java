@@ -1,7 +1,6 @@
 package com.naterbobber.darkerdepths.data.tags;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
-import com.naterbobber.darkerdepths.block.blockentities.DDHangingSignBlockEntity;
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import com.naterbobber.darkerdepths.util.DDTags;
 import net.minecraft.core.HolderLookup;
@@ -9,7 +8,6 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.*;
-import net.minecraft.world.level.block.entity.HangingSignBlockEntity;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -19,7 +17,6 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
-import java.util.function.Predicate;
 
 public class DDBlockTagsProvider extends BlockTagsProvider {
 
@@ -36,10 +33,10 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
         addType(TrapDoorBlock.class, BlockTags.TRAPDOORS);
         addType(ButtonBlock.class, BlockTags.BUTTONS);
         addType(PressurePlateBlock.class, BlockTags.PRESSURE_PLATES);
-        addType(StandingSignBlock.class, List.of(BlockTags.STANDING_SIGNS, BlockTags.SIGNS));
-        addType(WallSignBlock.class, List.of(BlockTags.WALL_SIGNS, BlockTags.SIGNS));
-        addType(WallHangingSignBlock.class, List.of(BlockTags.WALL_HANGING_SIGNS, BlockTags.ALL_HANGING_SIGNS));
-        addType(CeilingHangingSignBlock.class, List.of(BlockTags.CEILING_HANGING_SIGNS, BlockTags.ALL_HANGING_SIGNS));
+        addType(StandingSignBlock.class, BlockTags.STANDING_SIGNS, BlockTags.SIGNS);
+        addType(WallSignBlock.class, BlockTags.WALL_SIGNS, BlockTags.SIGNS);
+        addType(WallHangingSignBlock.class, BlockTags.WALL_HANGING_SIGNS, BlockTags.ALL_HANGING_SIGNS);
+        addType(CeilingHangingSignBlock.class, BlockTags.CEILING_HANGING_SIGNS, BlockTags.ALL_HANGING_SIGNS);
         addType(SignBlock.class, BlockTags.ALL_SIGNS);
 
         List<Block> PETRIFIED = List.of(
@@ -265,19 +262,11 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
         );
     }
 
-    private void addType(Class blockType, TagKey tag) {
+    private void addType(Class blockType, TagKey... tags) {
         DDBlocks.BLOCKS.getEntries()
                 .stream()
                 .map(RegistryObject::get)
                 .filter(blockType::isInstance)
-                .forEach(block -> this.tag(tag).add(block));
-    }
-
-    private void addType(Class blockType, List<TagKey> tags) {
-        DDBlocks.BLOCKS.getEntries()
-                .stream()
-                .map(RegistryObject::get)
-                .filter(blockType::isInstance)
-                .forEach(block -> tags.forEach(tag -> this.tag(tag).add(block)));
+                .forEach(block -> Arrays.stream(tags).forEach(tag -> this.tag(tag).add(block)));
     }
 }
