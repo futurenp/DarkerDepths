@@ -17,7 +17,7 @@ import javax.annotation.Nullable;
 
 @OnlyIn(Dist.CLIENT)
 public class VoidSoulRenderer extends GeoEntityRenderer<VoidSoulEntity> {
-    private static final ResourceLocation INNER_TEXTURE = new ResourceLocation(DarkerDepths.MODID, "textures/entity/void_soul/void_soul_glowmask.png");
+    private static final ResourceLocation INNER_TEXTURE = DarkerDepths.id("textures/entity/void_soul/void_soul_glowmask.png");
 
     public VoidSoulRenderer(EntityRendererProvider.Context context) {
         super(context, new VoidSoulModel());

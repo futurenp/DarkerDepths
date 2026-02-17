@@ -17,10 +17,10 @@ import java.util.function.BiConsumer;
 
 public class DDChestLoot implements LootTableSubProvider {
     public static final ResourceLocation CATACOMBS_CHEST_STANDARD =
-            new ResourceLocation(DarkerDepths.MODID, "chests/catacombs/standard");
+            DarkerDepths.id("chests/catacombs/standard");
 
     public static final ResourceLocation CATACOMBS_CHEST_TREASURE =
-            new ResourceLocation(DarkerDepths.MODID, "chests/catacombs/treasure");
+            DarkerDepths.id("chests/catacombs/treasure");
 
     @Override
     public void generate(BiConsumer<ResourceLocation, LootTable.Builder> consumer) {

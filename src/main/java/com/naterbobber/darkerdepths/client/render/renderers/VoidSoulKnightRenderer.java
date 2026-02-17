@@ -13,7 +13,7 @@ import software.bernie.geckolib.renderer.GeoEntityRenderer;
 
 @OnlyIn(Dist.CLIENT)
 public class VoidSoulKnightRenderer extends GeoEntityRenderer<VoidSoulKnightEntity> {
-    private static final ResourceLocation TEXTURE = new ResourceLocation(DarkerDepths.MODID, "textures/entity/void_soul_knight/void_soul_knight_glowmask.png");
+    private static final ResourceLocation TEXTURE = DarkerDepths.id("textures/entity/void_soul_knight/void_soul_knight_glowmask.png");
 
     public VoidSoulKnightRenderer(EntityRendererProvider.Context context) {
         super(context, new VoidSoulKnightModel());

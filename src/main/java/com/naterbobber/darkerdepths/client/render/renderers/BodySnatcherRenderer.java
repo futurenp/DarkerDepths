@@ -13,7 +13,7 @@ import software.bernie.geckolib.renderer.GeoEntityRenderer;
 
 @OnlyIn(Dist.CLIENT)
 public class BodySnatcherRenderer extends GeoEntityRenderer<BodySnatcherEntity> {
-    private static final ResourceLocation TEXTURE = new ResourceLocation(DarkerDepths.MODID, "textures/entity/body_snatcher/body_snatcher_glowmask.png");
+    private static final ResourceLocation TEXTURE = DarkerDepths.id("textures/entity/body_snatcher/body_snatcher_glowmask.png");
 
     public BodySnatcherRenderer(EntityRendererProvider.Context context) {
         super(context, new BodySnatcherModel());

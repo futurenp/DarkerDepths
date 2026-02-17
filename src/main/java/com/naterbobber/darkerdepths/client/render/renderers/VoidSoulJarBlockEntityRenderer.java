@@ -14,8 +14,8 @@ import software.bernie.geckolib.renderer.GeoBlockRenderer;
 
 @OnlyIn(Dist.CLIENT)
 public class VoidSoulJarBlockEntityRenderer extends GeoBlockRenderer<VoidSoulJarBlockEntity> {
-    private static final ResourceLocation GLOWING_TEXTURE = new ResourceLocation(DarkerDepths.MODID, "textures/entity/void_soul_jar/void_soul_jar_glowmask.png");
-    private static final ResourceLocation INVERTED_TEXTURE = new ResourceLocation(DarkerDepths.MODID, "textures/entity/void_soul_jar/void_soul_jar_inverted.png");
+    private static final ResourceLocation GLOWING_TEXTURE = DarkerDepths.id("textures/entity/void_soul_jar/void_soul_jar_glowmask.png");
+    private static final ResourceLocation INVERTED_TEXTURE = DarkerDepths.id("textures/entity/void_soul_jar/void_soul_jar_inverted.png");
 
     public VoidSoulJarBlockEntityRenderer(BlockEntityRendererProvider.Context context) {
         super(new VoidSoulJarModel<>());
