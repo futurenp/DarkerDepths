@@ -32,4 +32,23 @@ public class DDRenderTypes extends RenderType {
                 true,
                 state);
     }
+
+    public static RenderType EMISSIVE_SOLID (ResourceLocation textureLocation) {
+        CompositeState state = CompositeState.builder()
+                .setShaderState(RENDERTYPE_EYES_SHADER)
+                .setTextureState(new TextureStateShard(textureLocation, false, false))
+                .setTransparencyState(NO_TRANSPARENCY)
+                .setCullState(CULL)
+                .setWriteMaskState(COLOR_DEPTH_WRITE)
+                .setDepthTestState(LEQUAL_DEPTH_TEST)
+                .createCompositeState(false);
+
+        return create("emissive_solid",
+                DefaultVertexFormat.NEW_ENTITY,
+                VertexFormat.Mode.QUADS,
+                256,
+                false,
+                true,
+                state);
+    }
 }
