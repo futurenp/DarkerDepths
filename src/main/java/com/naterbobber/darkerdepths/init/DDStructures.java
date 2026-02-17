@@ -45,7 +45,7 @@ import static net.minecraft.world.level.levelgen.structure.pools.StructureTempla
 
 public class DDStructures {
     public static final DeferredRegister<StructureType<?>> STRUCTURE_TYPES =
-            DeferredRegister.create(Registries.STRUCTURE_TYPE, DarkerDepths.MODID);
+            DeferredRegister.create(Registries.STRUCTURE_TYPE, DarkerDepths.MOD_ID);
 
     public static final RegistryObject<StructureType<JigsawStructure>> DD_JIGSAW_TYPE =
             STRUCTURE_TYPES.register("dd_jigsaw", () -> () -> JigsawStructure.CODEC);

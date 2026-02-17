@@ -12,7 +12,7 @@ import net.minecraftforge.fml.common.Mod;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-@Mod.EventBusSubscriber(modid = DarkerDepths.MODID)
+@Mod.EventBusSubscriber(modid = DarkerDepths.MOD_ID)
 public class CommonEvents {
 
     @SubscribeEvent

@@ -13,7 +13,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class DDBlockStateProvider extends BlockStateProvider {
     public DDBlockStateProvider(PackOutput output, ExistingFileHelper exFileHelper) {
-        super(output, DarkerDepths.MODID, exFileHelper);
+        super(output, DarkerDepths.MOD_ID, exFileHelper);
     }
 
     @Override

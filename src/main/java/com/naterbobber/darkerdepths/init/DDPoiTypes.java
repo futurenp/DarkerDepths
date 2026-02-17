@@ -12,10 +12,10 @@ import net.minecraftforge.registries.RegistryObject;
 
 import java.util.Set;
 
-@Mod.EventBusSubscriber(modid = DarkerDepths.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@Mod.EventBusSubscriber(modid = DarkerDepths.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class DDPoiTypes {
 
-    public static final DeferredRegister<PoiType> POI_TYPES = DeferredRegister.create(ForgeRegistries.POI_TYPES, DarkerDepths.MODID);
+    public static final DeferredRegister<PoiType> POI_TYPES = DeferredRegister.create(ForgeRegistries.POI_TYPES, DarkerDepths.MOD_ID);
 
     public static final RegistryObject<PoiType> DEATH_ANCHOR = POI_TYPES.register("death_anchor", () -> new PoiType(getBlockStates(DDBlocks.DEATH_ANCHOR.get()), 1, 1));
 

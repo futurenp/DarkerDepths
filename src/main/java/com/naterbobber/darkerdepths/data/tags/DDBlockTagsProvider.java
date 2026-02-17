@@ -21,7 +21,7 @@ import java.util.concurrent.CompletableFuture;
 public class DDBlockTagsProvider extends BlockTagsProvider {
 
     public DDBlockTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, @Nullable ExistingFileHelper existingFileHelper) {
-        super(output, lookupProvider, DarkerDepths.MODID, existingFileHelper);
+        super(output, lookupProvider, DarkerDepths.MOD_ID, existingFileHelper);
     }
 
     @Override

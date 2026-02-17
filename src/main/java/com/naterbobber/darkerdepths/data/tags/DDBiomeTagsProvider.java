@@ -22,7 +22,7 @@ import java.util.concurrent.CompletableFuture;
 public class DDBiomeTagsProvider extends BiomeTagsProvider {
 
     public DDBiomeTagsProvider(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> completableFuture, @Nullable ExistingFileHelper existingFileHelper) {
-        super(packOutput, completableFuture, DarkerDepths.MODID, existingFileHelper);
+        super(packOutput, completableFuture, DarkerDepths.MOD_ID, existingFileHelper);
     }
 
     @Override

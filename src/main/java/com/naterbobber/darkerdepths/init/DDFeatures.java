@@ -14,10 +14,10 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
-@Mod.EventBusSubscriber(modid = DarkerDepths.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@Mod.EventBusSubscriber(modid = DarkerDepths.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class DDFeatures {
 
-    public static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(ForgeRegistries.FEATURES, DarkerDepths.MODID);
+    public static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(ForgeRegistries.FEATURES, DarkerDepths.MOD_ID);
 
     public static final RegistryObject<Feature<ReplaceListConfig>> REPLACE_LIST = FEATURES.register("replace_list", () -> new ReplaceListFeature(ReplaceListConfig.CODEC));
     public static final RegistryObject<Feature<ReplaceListLayeredConfig>> REPLACE_LIST_LAYERED = FEATURES.register("replace_list_layered", () -> new ReplaceListLayeredFeature(ReplaceListLayeredConfig.CODEC));

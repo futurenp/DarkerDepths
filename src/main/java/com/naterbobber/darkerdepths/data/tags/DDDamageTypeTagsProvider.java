@@ -15,7 +15,7 @@ import java.util.concurrent.CompletableFuture;
 
 public class DDDamageTypeTagsProvider extends TagsProvider<DamageType> {
     public DDDamageTypeTagsProvider(PackOutput pOutput, CompletableFuture<HolderLookup.Provider> pProvider, @Nullable ExistingFileHelper existingFileHelper) {
-        super(pOutput, Registries.DAMAGE_TYPE, pProvider, DarkerDepths.MODID, existingFileHelper);
+        super(pOutput, Registries.DAMAGE_TYPE, pProvider, DarkerDepths.MOD_ID, existingFileHelper);
     }
 
     @Override

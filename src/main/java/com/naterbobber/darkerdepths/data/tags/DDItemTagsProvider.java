@@ -20,7 +20,7 @@ import java.util.concurrent.CompletableFuture;
 public class DDItemTagsProvider extends ItemTagsProvider {
 
     public DDItemTagsProvider(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> provider, CompletableFuture<TagLookup<Block>> blockTagsProvider, @Nullable ExistingFileHelper existingFileHelper) {
-        super(packOutput, provider, blockTagsProvider, DarkerDepths.MODID, existingFileHelper);
+        super(packOutput, provider, blockTagsProvider, DarkerDepths.MOD_ID, existingFileHelper);
     }
 
     @Override

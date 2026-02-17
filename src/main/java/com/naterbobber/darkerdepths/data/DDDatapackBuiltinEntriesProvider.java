@@ -29,7 +29,7 @@ public class DDDatapackBuiltinEntriesProvider extends DatapackBuiltinEntriesProv
 
 
     public DDDatapackBuiltinEntriesProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
-        super(output, registries, BUILDER, Set.of(DarkerDepths.MODID));
+        super(output, registries, BUILDER, Set.of(DarkerDepths.MOD_ID));
     }
 
 }

@@ -24,7 +24,7 @@ import software.bernie.geckolib.model.data.EntityModelData;
 @OnlyIn(Dist.CLIENT)
 public class GlowshroomMonsterModel extends DefaultedEntityGeoModel<GlowshroomMonsterEntity> {
     public GlowshroomMonsterModel() {
-        super(new ResourceLocation(DarkerDepths.MODID), true);
+        super(new ResourceLocation(DarkerDepths.MOD_ID), true);
     }
 
     @Override

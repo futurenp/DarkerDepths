@@ -8,7 +8,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class DDActivities {
     public static final DeferredRegister<Activity> ACTIVITIES =
-            DeferredRegister.create(Registries.ACTIVITY, DarkerDepths.MODID);
+            DeferredRegister.create(Registries.ACTIVITY, DarkerDepths.MOD_ID);
 
     public static final RegistryObject<Activity> DASH = register("dash");
     public static final RegistryObject<Activity> DORMANT = register("dormant");

@@ -7,7 +7,7 @@ import net.minecraftforge.common.data.LanguageProvider;
 
 public class DDLanguageProviderENUS extends LanguageProvider {
     public DDLanguageProviderENUS(PackOutput output) {
-        super(output, DarkerDepths.MODID, "en_us");
+        super(output, DarkerDepths.MOD_ID, "en_us");
     }
 
     @Override

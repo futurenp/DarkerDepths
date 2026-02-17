@@ -16,9 +16,9 @@ import net.minecraftforge.registries.RegistryObject;
 import java.util.List;
 import java.util.Map;
 
-@Mod.EventBusSubscriber(modid = DarkerDepths.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@Mod.EventBusSubscriber(modid = DarkerDepths.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class DDCreativeModeTabs {
-    public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, DarkerDepths.MODID);
+    public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, DarkerDepths.MOD_ID);
     private static final Map<String, List<RegistryObject<Item>>> itemPlacementModifierMap = Map.of(
             "petrified_button", List.of(
                     DDItems.PETRIFIED_SIGN,

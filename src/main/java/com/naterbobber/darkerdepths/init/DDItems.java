@@ -17,10 +17,10 @@ import net.minecraftforge.registries.RegistryObject;
 
 import java.util.List;
 
-@Mod.EventBusSubscriber(modid = DarkerDepths.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@Mod.EventBusSubscriber(modid = DarkerDepths.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class DDItems {
 
-    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, DarkerDepths.MODID);
+    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, DarkerDepths.MOD_ID);
     public static final RegistryObject<Item> GLOWSHROOM_CAP = ITEMS.register("glowshroom_cap",
             () -> new GlowshroomCapItem(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> GLOW_GRIME = createSimpleItem("glow_grime");

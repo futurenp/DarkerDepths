@@ -9,7 +9,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class DDWoodType {
 
-    public static final WoodType PETRIFIED = WoodType.register(new WoodType(DarkerDepths.MODID + ":petrified", DDBlockSetTypes.PETRIFIED));
+    public static final WoodType PETRIFIED = WoodType.register(new WoodType(DarkerDepths.MOD_ID + ":petrified", DDBlockSetTypes.PETRIFIED));
 
     @OnlyIn(Dist.CLIENT)
     public static void setupWoodTypes() {

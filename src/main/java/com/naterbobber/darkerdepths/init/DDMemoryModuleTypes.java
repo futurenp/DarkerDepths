@@ -11,7 +11,7 @@ import java.util.Optional;
 
 public class DDMemoryModuleTypes {
     public static final DeferredRegister<MemoryModuleType<?>> MEMORY_MODULE_TYPES =
-            DeferredRegister.create(Registries.MEMORY_MODULE_TYPE, DarkerDepths.MODID);
+            DeferredRegister.create(Registries.MEMORY_MODULE_TYPE, DarkerDepths.MOD_ID);
 
     public static final RegistryObject<MemoryModuleType<Unit>> DASH_COOLDOWN = register("dash_cooldown");
     public static final RegistryObject<MemoryModuleType<Integer>> ATTACK_ANIMATION_COOLDOWN = register("attack_animation_cooldown");

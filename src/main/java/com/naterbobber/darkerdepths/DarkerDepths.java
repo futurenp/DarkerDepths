@@ -21,11 +21,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import software.bernie.geckolib.GeckoLib;
 
-@Mod(DarkerDepths.MODID)
+@Mod(DarkerDepths.MOD_ID)
 public class DarkerDepths {
 
     public static final Logger LOGGER = LogManager.getLogger();
-    public static final String MODID = "darkerdepths";
+    public static final String MOD_ID = "darkerdepths";
 
     public DarkerDepths() {
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, DDConfigs.SPEC, "darkerdepths-common.toml");
@@ -65,7 +65,7 @@ public class DarkerDepths {
     }
 
     public static ResourceLocation id(String name) {
-        return new ResourceLocation(MODID, name);
+        return new ResourceLocation(MOD_ID, name);
     }
 
 }
