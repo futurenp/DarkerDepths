@@ -247,7 +247,7 @@ public class DDBlockStateProvider extends BlockStateProvider {
     }
 
     private void woodBlockWithItem(DeferredHolder<Block, ? extends Block> block, DeferredHolder<Block, ? extends Block> logTextureSource) {
-        ResourceLocation texture = ResourceLocation.fromNamespaceAndPath(DarkerDepths.MOD_ID, "block/" + logTextureSource.getId().getPath());
+        ResourceLocation texture = DarkerDepths.id("block/" + logTextureSource.getId().getPath());
         axisBlock((RotatedPillarBlock) block.get(), texture, texture);
         simpleBlockItem(block.get(), models().getExistingFile(blockTexture(block.get())));
     }

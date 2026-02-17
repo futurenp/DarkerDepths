@@ -22,9 +22,9 @@ import java.util.Optional;
 
 public class SuperchargeHelper {
 
-    private static final ResourceLocation ATTACK_DAMAGE_MODIFIER_ID = ResourceLocation.fromNamespaceAndPath(DarkerDepths.MOD_ID, "supercharge_attack_damage");
-    private static final ResourceLocation ATTACK_SPEED_MODIFIER_ID = ResourceLocation.fromNamespaceAndPath(DarkerDepths.MOD_ID, "supercharge_attack_speed");
-    private static final ResourceLocation MINING_EFFICIENCY_MODIFIER_ID = ResourceLocation.fromNamespaceAndPath(DarkerDepths.MOD_ID, "supercharge_mining_speed");
+    private static final ResourceLocation ATTACK_DAMAGE_MODIFIER_ID = DarkerDepths.id("supercharge_attack_damage");
+    private static final ResourceLocation ATTACK_SPEED_MODIFIER_ID = DarkerDepths.id("supercharge_attack_speed");
+    private static final ResourceLocation MINING_EFFICIENCY_MODIFIER_ID = DarkerDepths.id("supercharge_mining_speed");
 
     public static void applyUpgrades(ItemStack stack, Level level) {
         if (stack.isEmpty() || level.isClientSide) {

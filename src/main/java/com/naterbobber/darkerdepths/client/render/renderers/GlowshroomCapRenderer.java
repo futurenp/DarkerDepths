@@ -17,7 +17,7 @@ import javax.annotation.Nullable;
 public class GlowshroomCapRenderer extends GeoArmorRenderer<GlowshroomCapItem> {
 
     public GlowshroomCapRenderer() {
-        super(new DefaultedItemGeoModel<>(ResourceLocation.fromNamespaceAndPath(DarkerDepths.MOD_ID, "armor/glowshroom_cap")));
+        super(new DefaultedItemGeoModel<>(DarkerDepths.id("armor/glowshroom_cap")));
     }
 
     @Override
