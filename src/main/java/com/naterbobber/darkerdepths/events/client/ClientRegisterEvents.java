@@ -1,7 +1,6 @@
 package com.naterbobber.darkerdepths.events.client;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
-import com.naterbobber.darkerdepths.client.models.GlowshroomCapModel;
 import com.naterbobber.darkerdepths.client.particle.DrippingParticle;
 import com.naterbobber.darkerdepths.client.particle.VoidSoulFlameParticle;
 import com.naterbobber.darkerdepths.client.particle.VoidSoulFlameSmokeParticle;
@@ -47,7 +46,6 @@ public class ClientRegisterEvents {
     public static void registerEntityModelLayers(EntityRenderersEvent.RegisterLayerDefinitions event) {
         event.registerLayerDefinition(new ModelLayerLocation(DarkerDepths.id("boat/petrified"), "main"), BoatModel::createBodyModel);
         event.registerLayerDefinition(new ModelLayerLocation(DarkerDepths.id("chest_boat/petrified"), "main"), ChestBoatModel::createBodyModel);
-        event.registerLayerDefinition(DDModelLayers.GLOWSHROOM_CAP, GlowshroomCapModel::createBodyLayer);
     }
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
