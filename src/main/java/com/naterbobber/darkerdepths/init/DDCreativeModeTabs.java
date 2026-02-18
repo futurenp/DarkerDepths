@@ -57,7 +57,7 @@ public class DDCreativeModeTabs {
                 .displayItems((itemDisplayParameters, output) -> {
                     for (RegistryObject<Item> item : DDItems.ITEMS.getEntries()) {
 
-                        if (DDBlocks.COMPAT.containsKey(item) && DDBlocks.COMPAT.get(item).stream().noneMatch(modID -> ModList.get().isLoaded(modID))) {
+                        if (DDBlocks.COMPAT.containsKey(item) && DDBlocks.COMPAT.get(item).stream().noneMatch(modID -> ModList.get().isLoaded(modID.toString()))) {
                             continue;
                         }
 

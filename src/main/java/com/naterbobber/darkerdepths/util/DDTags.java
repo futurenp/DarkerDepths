@@ -31,6 +31,8 @@ public class DDTags {
 
         public static final TagKey<Item> PETRIFIED_LOGS = TAGS.create("petrified_logs");
         public static final TagKey<Item> ROPES = TAGS.create("ropes", DDCompat.FORGE);
+        public static final TagKey<Item> FORSAKEN_BRONZE_INGOT = TAGS.create("ingots/forsaken_bronze");
+        public static final TagKey<Item> FORSAKEN_BRONZE_INGOT_FORGE = TAGS.create("ingots/forsaken_bronze", DDCompat.FORGE);
     }
 
     public static class Blocks {
@@ -39,9 +41,6 @@ public class DDTags {
         public static final TagKey<Block> GEYSER_BOOSTERS = TAGS.create("geyser_boosters");
         public static final TagKey<Block> GEYSER_BYPASSES = TAGS.create("geyser_bypasses");
         public static final TagKey<Block> HUSKS_SPAWNABLE_ON = TAGS.create("husks_spawnable_on");
-        public static final TagKey<Block> TRIMMED_PLANKS = TAGS.create("trimmed_planks", DDCompat.NO_MANS_LAND);
-        public static final TagKey<Block> WOODEN_BOOKSHELVES = TAGS.create("wooden_bookshelves", DDCompat.BLUEPRINT);
-        public static final TagKey<Block> WOODEN_BOARDS = TAGS.create("wooden_boards", DDCompat.WOODWORKS);
         public static final TagKey<Block> VERTICAL_PLANKS = TAGS.create("vertical_planks", DDCompat.QUARK);
         public static final TagKey<Block> VERTICAL_SLAB = TAGS.create("vertical_slab", DDCompat.QUARK);
     }

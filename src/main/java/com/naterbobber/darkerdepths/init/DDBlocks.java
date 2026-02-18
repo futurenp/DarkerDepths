@@ -5,6 +5,8 @@ import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.block.DDBlockSetTypes;
 import com.naterbobber.darkerdepths.block.custom.*;
 import com.naterbobber.darkerdepths.block.generic.*;
+import com.naterbobber.darkerdepths.compat.CompatID;
+import com.naterbobber.darkerdepths.compat.DDCompat;
 import com.naterbobber.darkerdepths.item.BlockItemWithHoverText;
 import net.minecraft.ChatFormatting;
 import net.minecraft.world.item.BlockItem;
@@ -27,7 +29,7 @@ import java.util.function.Supplier;
 @Mod.EventBusSubscriber(modid = DarkerDepths.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class DDBlocks {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, DarkerDepths.MOD_ID);
-    public static final Map<RegistryObject<? extends Item>, List<String>> COMPAT = Maps.newLinkedHashMap();
+    public static final Map<RegistryObject<? extends Item>, List<CompatID>> COMPAT = Maps.newLinkedHashMap();
 
 
     public static final BlockBehaviour.Properties PETRIFIED_LOG_PROPERTIES =
@@ -66,13 +68,13 @@ public class DDBlocks {
             () -> new RotatedPillarBlock(PETRIFIED_LOG_PROPERTIES));
     public static final RegistryObject<Block> PETRIFIED_PLANKS = registerBlock("petrified_planks",
             () -> new Block(PETRIFIED_PLANKS_PROPERTIES));
-    public static final RegistryObject<Block> VERTICAL_PETRIFIED_PLANKS = registerCompatBlock(List.of("quark"), "vertical_petrified_planks",
+    public static final RegistryObject<Block> VERTICAL_PETRIFIED_PLANKS = registerCompatBlock(List.of(DDCompat.QUARK), "vertical_petrified_planks",
             () -> new Block(PETRIFIED_PLANKS_PROPERTIES));
     public static final RegistryObject<Block> PETRIFIED_STAIRS = registerBlock("petrified_stairs",
             () -> new StairBlock(() -> PETRIFIED_PLANKS.get().defaultBlockState(), PETRIFIED_PLANKS_PROPERTIES));
     public static final RegistryObject<Block> PETRIFIED_SLAB = registerBlock("petrified_slab",
             () -> new SlabBlock(PETRIFIED_PLANKS_PROPERTIES));
-    public static final RegistryObject<Block> PETRIFIED_VERTICAL_SLAB = registerCompatBlock(List.of("quark"), "petrified_vertical_slab",
+    public static final RegistryObject<Block> PETRIFIED_VERTICAL_SLAB = registerCompatBlock(List.of(DDCompat.QUARK), "petrified_vertical_slab",
             () -> new VerticalSlabBlock(PETRIFIED_PLANKS_PROPERTIES));
     public static final RegistryObject<Block> PETRIFIED_FENCE = registerBlock("petrified_fence",
             () -> new FenceBlock(PETRIFIED_PLANKS_PROPERTIES));
@@ -94,9 +96,9 @@ public class DDBlocks {
             () -> new DDCeilingHangingSignBlock(PETRIFIED_SIGN_PROPERTIES, DDWoodType.PETRIFIED));
     public static final RegistryObject<Block> PETRIFIED_WALL_HANGING_SIGN = registerNoTabBlock("petrified_wall_hanging_sign",
             () -> new DDWallHangingSignBlock(PETRIFIED_SIGN_PROPERTIES, DDWoodType.PETRIFIED));
-    public static final RegistryObject<Block> PETRIFIED_POST = registerCompatBlock(List.of("quark"), "petrified_post",
+    public static final RegistryObject<Block> PETRIFIED_POST = registerCompatBlock(List.of(DDCompat.QUARK), "petrified_post",
             () -> new WoodPostBlock(PETRIFIED_LOG_PROPERTIES.noOcclusion()));
-    public static final RegistryObject<Block> STRIPPED_PETRIFIED_POST = registerCompatBlock(List.of("quark"), "stripped_petrified_post",
+    public static final RegistryObject<Block> STRIPPED_PETRIFIED_POST = registerCompatBlock(List.of(DDCompat.QUARK), "stripped_petrified_post",
             () -> new WoodPostBlock(PETRIFIED_LOG_PROPERTIES.noOcclusion()));
     public static final RegistryObject<Block> POROUS_PETRIFIED_LOG = registerBlock("porous_petrified_log",
             () -> new PorousBlock(PETRIFIED_LOG_PROPERTIES.randomTicks().lightLevel(value -> 6)));
@@ -106,7 +108,7 @@ public class DDBlocks {
             () -> new StairBlock(() -> ARIDROCK.get().defaultBlockState(), ARIDROCK_PROPERTIES));
     public static final RegistryObject<Block> ARIDROCK_SLAB = registerBlock("aridrock_slab",
             () -> new SlabBlock(ARIDROCK_PROPERTIES));
-    public static final RegistryObject<Block> ARIDROCK_VERTICAL_SLAB = registerCompatBlock(List.of("quark"), "aridrock_vertical_slab",
+    public static final RegistryObject<Block> ARIDROCK_VERTICAL_SLAB = registerCompatBlock(List.of(DDCompat.QUARK), "aridrock_vertical_slab",
             () -> new VerticalSlabBlock(ARIDROCK_PROPERTIES));
     public static final RegistryObject<Block> ARIDROCK_WALL = registerBlock("aridrock_wall",
             () -> new WallBlock(ARIDROCK_PROPERTIES));
@@ -116,7 +118,7 @@ public class DDBlocks {
             () -> new StairBlock(() -> POLISHED_ARIDROCK.get().defaultBlockState(), ARIDROCK_PROPERTIES));
     public static final RegistryObject<Block> POLISHED_ARIDROCK_SLAB = registerBlock("polished_aridrock_slab",
             () -> new SlabBlock(ARIDROCK_PROPERTIES));
-    public static final RegistryObject<Block> POLISHED_ARIDROCK_VERTICAL_SLAB = registerCompatBlock(List.of("quark"), "polished_aridrock_vertical_slab",
+    public static final RegistryObject<Block> POLISHED_ARIDROCK_VERTICAL_SLAB = registerCompatBlock(List.of(DDCompat.QUARK), "polished_aridrock_vertical_slab",
             () -> new VerticalSlabBlock(ARIDROCK_PROPERTIES));
     public static final RegistryObject<Block> ARIDROCK_BRICKS = registerBlock("aridrock_bricks",
             () -> new Block(ARIDROCK_BRICKS_PROPERTIES));
@@ -124,7 +126,7 @@ public class DDBlocks {
             () -> new StairBlock(ARIDROCK_BRICKS.get().defaultBlockState(), ARIDROCK_BRICKS_PROPERTIES));
     public static final RegistryObject<Block> ARIDROCK_BRICKS_SLAB = registerBlock("aridrock_bricks_slab",
             () -> new SlabBlock(ARIDROCK_BRICKS_PROPERTIES));
-    public static final RegistryObject<Block> ARIDROCK_BRICKS_VERTICAL_SLAB = registerCompatBlock(List.of("quark"), "aridrock_bricks_vertical_slab",
+    public static final RegistryObject<Block> ARIDROCK_BRICKS_VERTICAL_SLAB = registerCompatBlock(List.of(DDCompat.QUARK), "aridrock_bricks_vertical_slab",
             () -> new VerticalSlabBlock(ARIDROCK_BRICKS_PROPERTIES));
     public static final RegistryObject<Block> ARIDROCK_BRICKS_WALL = registerBlock("aridrock_bricks_wall",
             () -> new WallBlock(ARIDROCK_BRICKS_PROPERTIES));
@@ -142,7 +144,7 @@ public class DDBlocks {
             () -> new StairBlock(() -> DUSKROCK.get().defaultBlockState(), DUSKROCK_PROPERTIES));
     public static final RegistryObject<Block> DUSKROCK_SLAB = registerBlock("duskrock_slab",
             () -> new SlabBlock(DUSKROCK_PROPERTIES));
-    public static final RegistryObject<Block> DUSKROCK_VERTICAL_SLAB = registerCompatBlock(List.of("quark"), "duskrock_vertical_slab",
+    public static final RegistryObject<Block> DUSKROCK_VERTICAL_SLAB = registerCompatBlock(List.of(DDCompat.QUARK), "duskrock_vertical_slab",
             () -> new VerticalSlabBlock(DUSKROCK_PROPERTIES));
     public static final RegistryObject<Block> DUSKROCK_WALL = registerBlock("duskrock_wall",
             () -> new WallBlock(DUSKROCK_PROPERTIES));
@@ -152,7 +154,7 @@ public class DDBlocks {
             () -> new StairBlock(() -> POLISHED_DUSKROCK.get().defaultBlockState(), DUSKROCK_BRICKS_PROPERTIES));
     public static final RegistryObject<Block> POLISHED_DUSKROCK_SLAB = registerBlock("polished_duskrock_slab",
             () -> new SlabBlock(DUSKROCK_BRICKS_PROPERTIES));
-    public static final RegistryObject<Block> POLISHED_DUSKROCK_VERTICAL_SLAB = registerCompatBlock(List.of("quark"), "polished_duskrock_vertical_slab",
+    public static final RegistryObject<Block> POLISHED_DUSKROCK_VERTICAL_SLAB = registerCompatBlock(List.of(DDCompat.QUARK), "polished_duskrock_vertical_slab",
             () -> new VerticalSlabBlock(DUSKROCK_BRICKS_PROPERTIES));
     public static final RegistryObject<Block> DUSKROCK_BRICKS = registerBlock("duskrock_bricks",
             () -> new Block(DUSKROCK_BRICKS_PROPERTIES));
@@ -160,7 +162,7 @@ public class DDBlocks {
             () -> new StairBlock(() -> POLISHED_DUSKROCK.get().defaultBlockState(), DUSKROCK_BRICKS_PROPERTIES));
     public static final RegistryObject<Block> DUSKROCK_BRICKS_SLAB = registerBlock("duskrock_bricks_slab",
             () -> new SlabBlock(DUSKROCK_BRICKS_PROPERTIES));
-    public static final RegistryObject<Block> DUSKROCK_BRICKS_VERTICAL_SLAB = registerCompatBlock(List.of("quark"), "duskrock_bricks_vertical_slab",
+    public static final RegistryObject<Block> DUSKROCK_BRICKS_VERTICAL_SLAB = registerCompatBlock(List.of(DDCompat.QUARK), "duskrock_bricks_vertical_slab",
             () -> new VerticalSlabBlock(DUSKROCK_BRICKS_PROPERTIES));
     public static final RegistryObject<Block> DUSKROCK_BRICKS_WALL = registerBlock("duskrock_bricks_wall",
             () -> new WallBlock(DUSKROCK_BRICKS_PROPERTIES));
@@ -202,7 +204,7 @@ public class DDBlocks {
             () -> new StairBlock(() -> DARKSLATE.get().defaultBlockState(), DARKSLATE_PROPERTIES));
     public static final RegistryObject<Block> DARKSLATE_SLAB = registerBlock("darkslate_slab",
             () -> new SlabBlock(DARKSLATE_PROPERTIES));
-    public static final RegistryObject<Block> DARKSLATE_VERTICAL_SLAB = registerCompatBlock(List.of("quark"), "darkslate_vertical_slab",
+    public static final RegistryObject<Block> DARKSLATE_VERTICAL_SLAB = registerCompatBlock(List.of(DDCompat.QUARK), "darkslate_vertical_slab",
             () -> new VerticalSlabBlock(DARKSLATE_PROPERTIES));
     public static final RegistryObject<Block> DARKSLATE_WALL = registerBlock("darkslate_wall",
             () -> new WallBlock(DARKSLATE_PROPERTIES));
@@ -212,7 +214,7 @@ public class DDBlocks {
             () -> new StairBlock(() -> POLISHED_DARKSLATE.get().defaultBlockState(), DARKSLATE_PROPERTIES));
     public static final RegistryObject<Block> POLISHED_DARKSLATE_SLAB = registerBlock("polished_darkslate_slab",
             () -> new SlabBlock(DARKSLATE_PROPERTIES));
-    public static final RegistryObject<Block> POLISHED_DARKSLATE_VERTICAL_SLAB = registerCompatBlock(List.of("quark"), "polished_darkslate_vertical_slab",
+    public static final RegistryObject<Block> POLISHED_DARKSLATE_VERTICAL_SLAB = registerCompatBlock(List.of(DDCompat.QUARK), "polished_darkslate_vertical_slab",
             () -> new VerticalSlabBlock(DARKSLATE_PROPERTIES));
     public static final RegistryObject<Block> DARKSLATE_BRICKS = registerBlock("darkslate_bricks",
             () -> new Block(DARKSLATE_BRICKS_PROPERTIES));
@@ -220,7 +222,7 @@ public class DDBlocks {
             () -> new StairBlock(DARKSLATE_BRICKS.get().defaultBlockState(), DARKSLATE_BRICKS_PROPERTIES));
     public static final RegistryObject<Block> DARKSLATE_BRICKS_SLAB = registerBlock("darkslate_bricks_slab",
             () -> new SlabBlock(DARKSLATE_BRICKS_PROPERTIES));
-    public static final RegistryObject<Block> DARKSLATE_BRICKS_VERTICAL_SLAB = registerCompatBlock(List.of("quark"), "darkslate_bricks_vertical_slab",
+    public static final RegistryObject<Block> DARKSLATE_BRICKS_VERTICAL_SLAB = registerCompatBlock(List.of(DDCompat.QUARK), "darkslate_bricks_vertical_slab",
             () -> new VerticalSlabBlock(DARKSLATE_BRICKS_PROPERTIES));
     public static final RegistryObject<Block> DARKSLATE_BRICKS_WALL = registerBlock("darkslate_bricks_wall",
             () -> new WallBlock(DARKSLATE_BRICKS_PROPERTIES));
@@ -254,7 +256,7 @@ public class DDBlocks {
             () -> new StairBlock(GRIMESTONE.get().defaultBlockState(), DARKSLATE_PROPERTIES));
     public static final RegistryObject<Block> GRIMESTONE_SLAB = registerBlock("grimestone_slab",
             () -> new SlabBlock(DARKSLATE_PROPERTIES));
-    public static final RegistryObject<Block> GRIMESTONE_VERTICAL_SLAB = registerCompatBlock(List.of("quark"), "grimestone_vertical_slab",
+    public static final RegistryObject<Block> GRIMESTONE_VERTICAL_SLAB = registerCompatBlock(List.of(DDCompat.QUARK), "grimestone_vertical_slab",
             () -> new VerticalSlabBlock(DARKSLATE_PROPERTIES));
     public static final RegistryObject<Block> GRIMESTONE_WALL = registerBlock("grimestone_wall",
             () -> new WallBlock(DARKSLATE_PROPERTIES));
@@ -266,7 +268,7 @@ public class DDBlocks {
             () -> new StairBlock(POLISHED_GRIMESTONE.get().defaultBlockState(), DARKSLATE_PROPERTIES));
     public static final RegistryObject<Block> POLISHED_GRIMESTONE_SLAB = registerBlock("polished_grimestone_slab",
             () -> new SlabBlock(DARKSLATE_PROPERTIES));
-    public static final RegistryObject<Block> POLISHED_GRIMESTONE_VERTICAL_SLAB = registerCompatBlock(List.of("quark"), "polished_grimestone_vertical_slab",
+    public static final RegistryObject<Block> POLISHED_GRIMESTONE_VERTICAL_SLAB = registerCompatBlock(List.of(DDCompat.QUARK), "polished_grimestone_vertical_slab",
             () -> new VerticalSlabBlock(DARKSLATE_PROPERTIES));
     public static final RegistryObject<Block> GRIMESTONE_BRICKS = registerBlock("grimestone_bricks",
             () -> new Block(DARKSLATE_BRICKS_PROPERTIES));
@@ -274,7 +276,7 @@ public class DDBlocks {
             () -> new StairBlock(GRIMESTONE_BRICKS.get().defaultBlockState(), DARKSLATE_BRICKS_PROPERTIES));
     public static final RegistryObject<Block> GRIMESTONE_BRICKS_SLAB = registerBlock("grimestone_bricks_slab",
             () -> new SlabBlock(DARKSLATE_BRICKS_PROPERTIES));
-    public static final RegistryObject<Block> GRIMESTONE_BRICKS_VERTICAL_SLAB = registerCompatBlock(List.of("quark"), "grimestone_bricks_vertical_slab",
+    public static final RegistryObject<Block> GRIMESTONE_BRICKS_VERTICAL_SLAB = registerCompatBlock(List.of(DDCompat.QUARK), "grimestone_bricks_vertical_slab",
             () -> new VerticalSlabBlock(DARKSLATE_BRICKS_PROPERTIES));
     public static final RegistryObject<Block> GRIMESTONE_BRICKS_WALL = registerBlock("grimestone_bricks_wall",
             () -> new WallBlock(DARKSLATE_BRICKS_PROPERTIES));
@@ -326,7 +328,7 @@ public class DDBlocks {
         return block;
     }
 
-    public static <B extends Block> RegistryObject<B> registerCompatBlock(List<String> modIds, String key, Supplier<? extends B> block) {
+    public static <B extends Block> RegistryObject<B> registerCompatBlock(List<CompatID> modIds, String key, Supplier<? extends B> block) {
         RegistryObject<B> blocks = BLOCKS.register(key, block);
         RegistryObject<BlockItem> item = DDItems.ITEMS.register(key, () -> new BlockItem(blocks.get(), new Item.Properties()));
         COMPAT.put(item, modIds);
