@@ -291,11 +291,16 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
         );
     }
 
-    private void addType(Class blockType, TagKey... tags) {
+    @SafeVarargs
+    private void addType(Class<? extends Block> blockType, TagKey<Block>... tags) {
         DDBlocks.BLOCKS.getEntries()
                 .stream()
                 .map(DeferredHolder::get)
                 .filter(blockType::isInstance)
-                .forEach(block -> Arrays.stream(tags).forEach(tag -> this.tag(tag).add(block)));
+                .forEach(block -> {
+                    for (TagKey<Block> tag : tags) {
+                        this.tag(tag).add(block);
+                    }
+                });
     }
 }
