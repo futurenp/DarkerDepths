@@ -27,67 +27,15 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider provider) {
-        addType(SlabBlock.class, BlockTags.SLABS);
-        addType(StairBlock.class, BlockTags.STAIRS);
-        addType(WallBlock.class, BlockTags.WALLS);
-        addType(DoorBlock.class, BlockTags.DOORS);
-        addType(TrapDoorBlock.class, BlockTags.TRAPDOORS);
-        addType(ButtonBlock.class, BlockTags.BUTTONS);
-        addType(PressurePlateBlock.class, BlockTags.PRESSURE_PLATES);
-        addType(StandingSignBlock.class, BlockTags.STANDING_SIGNS, BlockTags.SIGNS);
-        addType(WallSignBlock.class, BlockTags.WALL_SIGNS, BlockTags.SIGNS);
-        addType(WallHangingSignBlock.class, BlockTags.WALL_HANGING_SIGNS, BlockTags.ALL_HANGING_SIGNS);
-        addType(CeilingHangingSignBlock.class, BlockTags.CEILING_HANGING_SIGNS, BlockTags.ALL_HANGING_SIGNS);
-        addType(SignBlock.class, BlockTags.ALL_SIGNS);
-        addType(VerticalSlabBlock.class, DDTags.Blocks.VERTICAL_SLAB);
+        generateTypeTags();
+        generateMinableTags();
+        generateNeedsToolTags();
+        generateModTags();
+        generateWoodenTags();
+        generateCompatTags();
+    }
 
-        List<Block> PETRIFIED = List.of(
-                DDBlocks.PETRIFIED_PLANKS.get(),
-                DDBlocks.PETRIFIED_SLAB.get(),
-                DDBlocks.PETRIFIED_VERTICAL_SLAB.get(),
-                DDBlocks.PETRIFIED_STAIRS.get(),
-                DDBlocks.PETRIFIED_PRESSURE_PLATE.get(),
-                DDBlocks.PETRIFIED_BUTTON.get(),
-                DDBlocks.PETRIFIED_POST.get(),
-                DDBlocks.PETRIFIED_FENCE.get(),
-                DDBlocks.PETRIFIED_FENCE_GATE.get(),
-                DDBlocks.PETRIFIED_DOOR.get(),
-                DDBlocks.PETRIFIED_TRAPDOOR.get(),
-                DDBlocks.PETRIFIED_SIGN.get(),
-                DDBlocks.PETRIFIED_HANGING_SIGN.get(),
-                DDBlocks.PETRIFIED_WALL_SIGN.get(),
-                DDBlocks.PETRIFIED_WALL_HANGING_SIGN.get(),
-                DDBlocks.PETRIFIED_LOG.get(),
-                DDBlocks.STRIPPED_PETRIFIED_LOG.get(),
-                DDBlocks.PETRIFIED_WOOD.get(),
-                DDBlocks.STRIPPED_PETRIFIED_WOOD.get(),
-                DDBlocks.POROUS_PETRIFIED_LOG.get(),
-                DDBlocks.PETRIFIED_BOARDS.get(),
-                DDBlocks.PETRIFIED_BOOKSHELF.get(),
-                DDBlocks.TRIMMED_PETRIFIED_PLANKS.get()
-        );
-
-        PETRIFIED.forEach(block -> {
-            this.tag(BlockTags.MINEABLE_WITH_AXE).add(block);
-            this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(block);
-        });
-
-        this.tag(BlockTags.LOGS).add(
-                DDBlocks.PETRIFIED_LOG.get(),
-                DDBlocks.STRIPPED_PETRIFIED_LOG.get(),
-                DDBlocks.PETRIFIED_WOOD.get(),
-                DDBlocks.STRIPPED_PETRIFIED_WOOD.get()
-        );
-        this.tag(BlockTags.BASE_STONE_OVERWORLD).add(
-                DDBlocks.DARKSLATE.get(),
-                DDBlocks.ARIDROCK.get(),
-                DDBlocks.DUSKROCK.get(),
-                DDBlocks.GRIMESTONE.get()
-        );
-
-        this.tag(BlockTags.WOODEN_FENCES).add(DDBlocks.PETRIFIED_FENCE.get());
-        this.tag(BlockTags.FENCE_GATES).add(DDBlocks.PETRIFIED_FENCE_GATE.get());
-
+    private void generateMinableTags() {
         this.tag(BlockTags.MINEABLE_WITH_HOE).add(
                 DDBlocks.GLOWSHROOM_BLOCK.get(),
                 DDBlocks.GLOWSHROOM_STEM.get(),
@@ -172,6 +120,39 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
                 DDBlocks.ASH_BLOCK.get()
         );
 
+        List<Block> PETRIFIED = List.of(
+                DDBlocks.PETRIFIED_PLANKS.get(),
+                DDBlocks.PETRIFIED_SLAB.get(),
+                DDBlocks.PETRIFIED_VERTICAL_SLAB.get(),
+                DDBlocks.PETRIFIED_STAIRS.get(),
+                DDBlocks.PETRIFIED_PRESSURE_PLATE.get(),
+                DDBlocks.PETRIFIED_BUTTON.get(),
+                DDBlocks.PETRIFIED_POST.get(),
+                DDBlocks.PETRIFIED_FENCE.get(),
+                DDBlocks.PETRIFIED_FENCE_GATE.get(),
+                DDBlocks.PETRIFIED_DOOR.get(),
+                DDBlocks.PETRIFIED_TRAPDOOR.get(),
+                DDBlocks.PETRIFIED_SIGN.get(),
+                DDBlocks.PETRIFIED_HANGING_SIGN.get(),
+                DDBlocks.PETRIFIED_WALL_SIGN.get(),
+                DDBlocks.PETRIFIED_WALL_HANGING_SIGN.get(),
+                DDBlocks.PETRIFIED_LOG.get(),
+                DDBlocks.STRIPPED_PETRIFIED_LOG.get(),
+                DDBlocks.PETRIFIED_WOOD.get(),
+                DDBlocks.STRIPPED_PETRIFIED_WOOD.get(),
+                DDBlocks.POROUS_PETRIFIED_LOG.get(),
+                DDBlocks.PETRIFIED_BOARDS.get(),
+                DDBlocks.PETRIFIED_BOOKSHELF.get(),
+                DDBlocks.TRIMMED_PETRIFIED_PLANKS.get()
+        );
+
+        PETRIFIED.forEach(block -> {
+            this.tag(BlockTags.MINEABLE_WITH_AXE).add(block);
+            this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(block);
+        });
+    }
+
+    private void generateNeedsToolTags() {
         this.tag(BlockTags.NEEDS_STONE_TOOL).add(
                 DDBlocks.GEYSER.get(),
                 DDBlocks.LIVING_CRYSTAL.get(),
@@ -186,38 +167,12 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
                 DDBlocks.DEATH_ANCHOR.get(),
                 DDBlocks.CRYSTAL_MELON.get()
         );
+    }
 
-        this.tag(Tags.Blocks.STORAGE_BLOCKS)
-                .add(DDBlocks.FORSAKEN_BRONZE_BLOCK.get());
-
-        this.tag(Tags.Blocks.BOOKSHELVES).add(
-                DDBlocks.PETRIFIED_BOOKSHELF.get()
-        );
-
-        this.tag(DDTags.Blocks.WOODEN_BOOKSHELVES).add(
-                DDBlocks.PETRIFIED_BOOKSHELF.get()
-        );
-
-        this.tag(BlockTags.ENCHANTMENT_POWER_PROVIDER).add(
-                DDBlocks.PETRIFIED_BOOKSHELF.get()
-        );
-
-        this.tag(DDTags.Blocks.TRIMMED_PLANKS).add(
-                DDBlocks.TRIMMED_PETRIFIED_PLANKS.get()
-        );
-
-        this.tag(DDTags.Blocks.WOODEN_BOARDS).add(
-                DDBlocks.PETRIFIED_BOARDS.get()
-        );
-
-        this.tag(DDTags.Blocks.VERTICAL_PLANKS).add(
-                DDBlocks.VERTICAL_PETRIFIED_PLANKS.get()
-        );
-
+    private void generateModTags() {
         this.tag(DDTags.Blocks.GEYSER_BOOSTERS).add(Blocks.MAGMA_BLOCK);
 
-        this.tag(DDTags.Blocks.GEYSER_BYPASSES)
-                .add(
+        this.tag(DDTags.Blocks.GEYSER_BYPASSES).add(
                         Blocks.SNOW,
                         Blocks.MOSS_CARPET,
                         Blocks.GLOW_LICHEN,
@@ -247,6 +202,24 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
                 .addTag(BlockTags.LEAVES)
                 .addTag(BlockTags.RAILS);
 
+        this.tag(BlockTags.LOGS).add(
+                DDBlocks.PETRIFIED_LOG.get(),
+                DDBlocks.STRIPPED_PETRIFIED_LOG.get(),
+                DDBlocks.PETRIFIED_WOOD.get(),
+                DDBlocks.STRIPPED_PETRIFIED_WOOD.get()
+        );
+
+        this.tag(BlockTags.BASE_STONE_OVERWORLD).add(
+                DDBlocks.DARKSLATE.get(),
+                DDBlocks.ARIDROCK.get(),
+                DDBlocks.DUSKROCK.get(),
+                DDBlocks.GRIMESTONE.get()
+        );
+
+        this.tag(BlockTags.PLANKS).add(
+                DDBlocks.PETRIFIED_PLANKS.get()
+        );
+
         this.tag(DDTags.Blocks.HUSKS_SPAWNABLE_ON).add(DDBlocks.ARIDROCK.get());
         this.tag(BlockTags.BEACON_BASE_BLOCKS).add(DDBlocks.FORSAKEN_BRONZE_BLOCK.get());
 
@@ -257,6 +230,24 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
                 DDBlocks.PETRIFIED_PRESSURE_PLATE.get()
         );
 
+        this.tag(BlockTags.SNAPS_GOAT_HORN).add(
+                DDBlocks.PETRIFIED_LOG.get(),
+                DDBlocks.POROUS_PETRIFIED_LOG.get()
+        );
+
+        this.tag(BlockTags.ENCHANTMENT_POWER_PROVIDER).add(
+                DDBlocks.PETRIFIED_BOOKSHELF.get()
+        );
+
+        this.tag(Tags.Blocks.STORAGE_BLOCKS)
+                .add(DDBlocks.FORSAKEN_BRONZE_BLOCK.get());
+
+        this.tag(Tags.Blocks.BOOKSHELVES).add(
+                DDBlocks.PETRIFIED_BOOKSHELF.get()
+        );
+    }
+
+    private void generateWoodenTags() {
         this.tag(BlockTags.WOODEN_DOORS).add(
                 DDBlocks.PETRIFIED_DOOR.get()
         );
@@ -281,14 +272,45 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
                 DDBlocks.PETRIFIED_PRESSURE_PLATE.get()
         );
 
-        this.tag(BlockTags.SNAPS_GOAT_HORN).add(
-                DDBlocks.PETRIFIED_LOG.get(),
-                DDBlocks.POROUS_PETRIFIED_LOG.get()
+        this.tag(BlockTags.WOODEN_FENCES).add(
+                DDBlocks.PETRIFIED_FENCE.get()
+        );
+    }
+
+    private void generateCompatTags() {
+        this.tag(DDTags.Blocks.WOODEN_BOOKSHELVES).add(
+                DDBlocks.PETRIFIED_BOOKSHELF.get()
         );
 
-        this.tag(BlockTags.PLANKS).add(
-                DDBlocks.PETRIFIED_PLANKS.get()
+        this.tag(DDTags.Blocks.TRIMMED_PLANKS).add(
+                DDBlocks.TRIMMED_PETRIFIED_PLANKS.get()
         );
+
+        this.tag(DDTags.Blocks.WOODEN_BOARDS).add(
+                DDBlocks.PETRIFIED_BOARDS.get()
+        );
+
+        this.tag(DDTags.Blocks.VERTICAL_PLANKS).add(
+                DDBlocks.VERTICAL_PETRIFIED_PLANKS.get()
+        );
+    }
+
+    private void generateTypeTags() {
+        addType(SlabBlock.class, BlockTags.SLABS);
+        addType(StairBlock.class, BlockTags.STAIRS);
+        addType(WallBlock.class, BlockTags.WALLS);
+        addType(DoorBlock.class, BlockTags.DOORS);
+        addType(TrapDoorBlock.class, BlockTags.TRAPDOORS);
+        addType(ButtonBlock.class, BlockTags.BUTTONS);
+        addType(PressurePlateBlock.class, BlockTags.PRESSURE_PLATES);
+        addType(StandingSignBlock.class, BlockTags.STANDING_SIGNS, BlockTags.SIGNS);
+        addType(WallSignBlock.class, BlockTags.WALL_SIGNS, BlockTags.SIGNS);
+        addType(WallHangingSignBlock.class, BlockTags.WALL_HANGING_SIGNS, BlockTags.ALL_HANGING_SIGNS);
+        addType(CeilingHangingSignBlock.class, BlockTags.CEILING_HANGING_SIGNS, BlockTags.ALL_HANGING_SIGNS);
+        addType(SignBlock.class, BlockTags.ALL_SIGNS);
+        addType(FenceBlock.class, BlockTags.FENCES);
+        addType(FenceGateBlock.class, BlockTags.FENCE_GATES);
+        addType(VerticalSlabBlock.class, DDTags.Blocks.VERTICAL_SLAB);
     }
 
     @SafeVarargs
