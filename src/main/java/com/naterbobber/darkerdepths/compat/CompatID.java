@@ -1,17 +1,23 @@
 package com.naterbobber.darkerdepths.compat;
 
-public class CompatID {
-    private final String id;
+import net.minecraft.resources.ResourceLocation;
 
-    public CompatID(String id) {
-        this.id = id;
+public class CompatID {
+    private final String compatID;
+
+    public CompatID(String compatID) {
+        this.compatID = compatID;
     }
 
-    public static CompatID createCompatID(String id) {
-        return new CompatID(id);
+    public static CompatID createCompatID(String compatID) {
+        return new CompatID(compatID);
     }
 
     public String toString() {
-        return id;
+        return compatID;
+    }
+
+    public ResourceLocation id(String name){
+        return ResourceLocation.fromNamespaceAndPath(compatID, name);
     }
 }
