@@ -297,10 +297,6 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
                 .stream()
                 .map(DeferredHolder::get)
                 .filter(blockType::isInstance)
-                .forEach(block -> {
-                    for (TagKey<Block> tag : tags) {
-                        this.tag(tag).add(block);
-                    }
-                });
+                .forEach(block -> Arrays.stream(tags).forEach(tag -> this.tag(tag).add(block)));
     }
 }
