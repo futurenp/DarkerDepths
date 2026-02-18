@@ -112,7 +112,18 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
                 DDBlocks.PARANOIA_ALTAR.get(),
                 DDBlocks.CRYSTAL_MELON.get(),
                 DDBlocks.FORSAKEN_BRONZE_BLOCK.get(),
-                DDBlocks.ARIDROCK_PILLAR.get()
+                DDBlocks.ARIDROCK_PILLAR.get(),
+                DDBlocks.ARIDROCK_VERTICAL_SLAB.get(),
+                DDBlocks.ARIDROCK_BRICKS_VERTICAL_SLAB.get(),
+                DDBlocks.DARKSLATE_VERTICAL_SLAB.get(),
+                DDBlocks.DARKSLATE_BRICKS_VERTICAL_SLAB.get(),
+                DDBlocks.DUSKROCK_VERTICAL_SLAB.get(),
+                DDBlocks.DUSKROCK_BRICKS_VERTICAL_SLAB.get(),
+                DDBlocks.GRIMESTONE_VERTICAL_SLAB.get(),
+                DDBlocks.GRIMESTONE_BRICKS_VERTICAL_SLAB.get(),
+                DDBlocks.POLISHED_ARIDROCK_VERTICAL_SLAB.get(),
+                DDBlocks.POLISHED_DARKSLATE_VERTICAL_SLAB.get(),
+                DDBlocks.POLISHED_GRIMESTONE_VERTICAL_SLAB.get()
         );
 
         this.tag(BlockTags.MINEABLE_WITH_SHOVEL).add(
@@ -128,6 +139,7 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
                 DDBlocks.PETRIFIED_PRESSURE_PLATE.get(),
                 DDBlocks.PETRIFIED_BUTTON.get(),
                 DDBlocks.PETRIFIED_POST.get(),
+                DDBlocks.STRIPPED_PETRIFIED_POST.get(),
                 DDBlocks.PETRIFIED_FENCE.get(),
                 DDBlocks.PETRIFIED_FENCE_GATE.get(),
                 DDBlocks.PETRIFIED_DOOR.get(),
