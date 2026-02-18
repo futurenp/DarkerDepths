@@ -39,6 +39,7 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
         addType(WallHangingSignBlock.class, BlockTags.WALL_HANGING_SIGNS, BlockTags.ALL_HANGING_SIGNS);
         addType(CeilingHangingSignBlock.class, BlockTags.CEILING_HANGING_SIGNS, BlockTags.ALL_HANGING_SIGNS);
         addType(SignBlock.class, BlockTags.ALL_SIGNS);
+        addType(VerticalSlabBlock.class, DDTags.Blocks.VERTICAL_SLAB);
 
         List<Block> PETRIFIED = List.of(
                 DDBlocks.PETRIFIED_PLANKS.get(),
@@ -207,6 +208,10 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
 
         this.tag(DDTags.Blocks.WOODEN_BOARDS).add(
                 DDBlocks.PETRIFIED_BOARDS.get()
+        );
+
+        this.tag(DDTags.Blocks.VERTICAL_PLANKS).add(
+                DDBlocks.VERTICAL_PETRIFIED_PLANKS.get()
         );
 
         this.tag(DDTags.Blocks.GEYSER_BOOSTERS).add(Blocks.MAGMA_BLOCK);

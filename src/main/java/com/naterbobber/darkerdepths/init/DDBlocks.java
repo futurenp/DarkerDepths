@@ -6,6 +6,8 @@ import com.naterbobber.darkerdepths.block.DDBlockSetTypes;
 import com.naterbobber.darkerdepths.block.custom.*;
 import com.naterbobber.darkerdepths.block.generic.*;
 import com.naterbobber.darkerdepths.compat.CompatBlocks;
+import com.naterbobber.darkerdepths.compat.CompatID;
+import com.naterbobber.darkerdepths.compat.DDCompat;
 import com.naterbobber.darkerdepths.item.BlockItemWithHoverText;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -26,7 +28,7 @@ import java.util.function.Supplier;
 
 public class DDBlocks {
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(DarkerDepths.MOD_ID);
-    public static final Map<DeferredItem<? extends Item>, List<String>> COMPAT = Maps.newLinkedHashMap();
+    public static final Map<DeferredItem<? extends Item>, List<CompatID>> COMPAT = Maps.newLinkedHashMap();
 
     public static final BlockBehaviour.Properties PETRIFIED_LOG_PROPERTIES =
             blockProperties(2.4f, 3.0f, SoundType.STEM, true);
@@ -66,16 +68,16 @@ public class DDBlocks {
             () -> new Block(PETRIFIED_PLANKS_PROPERTIES));
     public static final DeferredBlock<RotatedPillarBlock> PETRIFIED_BOARDS = registerCompatBlock(List.of(), "petrified_boards",
             () -> new RotatedPillarBlock(PETRIFIED_PLANKS_PROPERTIES));
-    public static final DeferredBlock<Block> VERTICAL_PETRIFIED_PLANKS = registerCompatBlock(List.of("quark"), "vertical_petrified_planks",
+    public static final DeferredBlock<Block> VERTICAL_PETRIFIED_PLANKS = registerCompatBlock(List.of(DDCompat.QUARK), "vertical_petrified_planks",
             () -> new Block(PETRIFIED_PLANKS_PROPERTIES));
     public static final DeferredBlock<RelationalStairBlock> PETRIFIED_STAIRS = registerBlock("petrified_stairs",
             () -> new RelationalStairBlock(PETRIFIED_PLANKS.get()));
     public static final DeferredBlock<RelationalSlabBlock> PETRIFIED_SLAB = registerBlock("petrified_slab",
             () -> new RelationalSlabBlock(PETRIFIED_PLANKS.get()));
 
-    public static final DeferredBlock<VerticalSlabBlock> PETRIFIED_VERTICAL_SLAB = registerCompatBlock(List.of("quark"), "petrified_vertical_slab",
+    public static final DeferredBlock<VerticalSlabBlock> PETRIFIED_VERTICAL_SLAB = registerCompatBlock(List.of(DDCompat.QUARK), "petrified_vertical_slab",
             () -> new VerticalSlabBlock(PETRIFIED_PLANKS_PROPERTIES));
-    public static final DeferredBlock<Block> TRIMMED_PETRIFIED_PLANKS = registerCompatBlock(List.of("nomansland"), "trimmed_petrified_planks", CompatBlocks::createTrimmedPlanks);
+    public static final DeferredBlock<Block> TRIMMED_PETRIFIED_PLANKS = registerCompatBlock(List.of(DDCompat.NO_MANS_LAND), "trimmed_petrified_planks", CompatBlocks::createTrimmedPlanks);
     public static final DeferredBlock<RelationalFenceBlock> PETRIFIED_FENCE = registerBlock("petrified_fence",
             () -> new RelationalFenceBlock(PETRIFIED_PLANKS.get()));
     public static final DeferredBlock<RelationalFenceGateBlock> PETRIFIED_FENCE_GATE = registerBlock("petrified_fence_gate",
@@ -84,7 +86,7 @@ public class DDBlocks {
             () -> new DoorBlock(DDBlockSetTypes.PETRIFIED, PETRIFIED_PLANKS_PROPERTIES));
     public static final DeferredBlock<TrapDoorBlock> PETRIFIED_TRAPDOOR = registerBlock("petrified_trapdoor",
             () -> new TrapDoorBlock(DDBlockSetTypes.PETRIFIED, PETRIFIED_PLANKS_PROPERTIES));
-    public static final DeferredBlock<Block> PETRIFIED_BOOKSHELF = registerCompatBlock(List.of("nomansland", "quark", "woodworks"),"petrified_bookshelf",
+    public static final DeferredBlock<Block> PETRIFIED_BOOKSHELF = registerCompatBlock(List.of(DDCompat.NO_MANS_LAND, DDCompat.QUARK, DDCompat.WOODWORKS),"petrified_bookshelf",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.BOOKSHELF)));
     public static final DeferredBlock<RelationalPressurePlateBlock> PETRIFIED_PRESSURE_PLATE = registerBlock("petrified_pressure_plate",
             () -> new RelationalPressurePlateBlock(PETRIFIED_PLANKS.get(), DDBlockSetTypes.PETRIFIED));
@@ -98,9 +100,9 @@ public class DDBlocks {
             () -> new DDCeilingHangingSignBlock(DDWoodType.PETRIFIED, PETRIFIED_SIGN_PROPERTIES));
     public static final DeferredBlock<DDWallHangingSignBlock> PETRIFIED_WALL_HANGING_SIGN = registerNoTabBlock("petrified_wall_hanging_sign",
             () -> new DDWallHangingSignBlock(DDWoodType.PETRIFIED, PETRIFIED_SIGN_PROPERTIES));
-    public static final DeferredBlock<WoodPostBlock> PETRIFIED_POST = registerCompatBlock(List.of("quark"), "petrified_post",
+    public static final DeferredBlock<WoodPostBlock> PETRIFIED_POST = registerCompatBlock(List.of(DDCompat.QUARK), "petrified_post",
             () -> new WoodPostBlock(PETRIFIED_LOG_PROPERTIES.noOcclusion()));
-    public static final DeferredBlock<WoodPostBlock> STRIPPED_PETRIFIED_POST = registerCompatBlock(List.of("quark"), "stripped_petrified_post",
+    public static final DeferredBlock<WoodPostBlock> STRIPPED_PETRIFIED_POST = registerCompatBlock(List.of(DDCompat.QUARK), "stripped_petrified_post",
             () -> new WoodPostBlock(PETRIFIED_LOG_PROPERTIES.noOcclusion()));
     public static final DeferredBlock<PorousBlock> POROUS_PETRIFIED_LOG = registerBlock("porous_petrified_log",
             () -> new PorousBlock(PETRIFIED_LOG_PROPERTIES.randomTicks().lightLevel(value -> 6)));
@@ -110,7 +112,7 @@ public class DDBlocks {
             () -> new RelationalStairBlock(ARIDROCK.get()));
     public static final DeferredBlock<RelationalSlabBlock> ARIDROCK_SLAB = registerBlock("aridrock_slab",
             () -> new RelationalSlabBlock(ARIDROCK.get()));
-    public static final DeferredBlock<VerticalSlabBlock> ARIDROCK_VERTICAL_SLAB = registerCompatBlock(List.of("quark"), "aridrock_vertical_slab",
+    public static final DeferredBlock<VerticalSlabBlock> ARIDROCK_VERTICAL_SLAB = registerCompatBlock(List.of(DDCompat.QUARK), "aridrock_vertical_slab",
             () -> new VerticalSlabBlock(ARIDROCK_PROPERTIES));
     public static final DeferredBlock<RelationalWallBlock> ARIDROCK_WALL = registerBlock("aridrock_wall",
             () -> new RelationalWallBlock(ARIDROCK.get()));
@@ -120,7 +122,7 @@ public class DDBlocks {
             () -> new RelationalStairBlock(POLISHED_ARIDROCK.get()));
     public static final DeferredBlock<RelationalSlabBlock> POLISHED_ARIDROCK_SLAB = registerBlock("polished_aridrock_slab",
             () -> new RelationalSlabBlock(POLISHED_ARIDROCK.get()));
-    public static final DeferredBlock<VerticalSlabBlock> POLISHED_ARIDROCK_VERTICAL_SLAB = registerCompatBlock(List.of("quark"), "polished_aridrock_vertical_slab",
+    public static final DeferredBlock<VerticalSlabBlock> POLISHED_ARIDROCK_VERTICAL_SLAB = registerCompatBlock(List.of(DDCompat.QUARK), "polished_aridrock_vertical_slab",
             () -> new VerticalSlabBlock(ARIDROCK_PROPERTIES));
     public static final DeferredBlock<Block> ARIDROCK_BRICKS = registerBlock("aridrock_bricks",
             () -> new Block(ARIDROCK_BRICKS_PROPERTIES));
@@ -128,7 +130,7 @@ public class DDBlocks {
             () -> new RelationalStairBlock(ARIDROCK_BRICKS.get()));
     public static final DeferredBlock<RelationalSlabBlock> ARIDROCK_BRICKS_SLAB = registerBlock("aridrock_bricks_slab",
             () -> new RelationalSlabBlock(ARIDROCK_BRICKS.get()));
-    public static final DeferredBlock<VerticalSlabBlock> ARIDROCK_BRICKS_VERTICAL_SLAB = registerCompatBlock(List.of("quark"), "aridrock_bricks_vertical_slab",
+    public static final DeferredBlock<VerticalSlabBlock> ARIDROCK_BRICKS_VERTICAL_SLAB = registerCompatBlock(List.of(DDCompat.QUARK), "aridrock_bricks_vertical_slab",
             () -> new VerticalSlabBlock(ARIDROCK_BRICKS_PROPERTIES));
     public static final DeferredBlock<RelationalWallBlock> ARIDROCK_BRICKS_WALL = registerBlock("aridrock_bricks_wall",
             () -> new RelationalWallBlock(ARIDROCK_BRICKS.get()));
@@ -146,7 +148,7 @@ public class DDBlocks {
             () -> new RelationalStairBlock(DUSKROCK.get()));
     public static final DeferredBlock<RelationalSlabBlock> DUSKROCK_SLAB = registerBlock("duskrock_slab",
             () -> new RelationalSlabBlock(DUSKROCK.get()));
-    public static final DeferredBlock<VerticalSlabBlock> DUSKROCK_VERTICAL_SLAB = registerCompatBlock(List.of("quark"), "duskrock_vertical_slab",
+    public static final DeferredBlock<VerticalSlabBlock> DUSKROCK_VERTICAL_SLAB = registerCompatBlock(List.of(DDCompat.QUARK), "duskrock_vertical_slab",
             () -> new VerticalSlabBlock(DUSKROCK_PROPERTIES));
     public static final DeferredBlock<RelationalWallBlock> DUSKROCK_WALL = registerBlock("duskrock_wall",
             () -> new RelationalWallBlock(DUSKROCK.get()));
@@ -156,7 +158,7 @@ public class DDBlocks {
             () -> new RelationalStairBlock(POLISHED_DUSKROCK.get()));
     public static final DeferredBlock<RelationalSlabBlock> POLISHED_DUSKROCK_SLAB = registerBlock("polished_duskrock_slab",
             () -> new RelationalSlabBlock(POLISHED_DUSKROCK.get()));
-    public static final DeferredBlock<VerticalSlabBlock> POLISHED_DUSKROCK_VERTICAL_SLAB = registerCompatBlock(List.of("quark"), "polished_duskrock_vertical_slab",
+    public static final DeferredBlock<VerticalSlabBlock> POLISHED_DUSKROCK_VERTICAL_SLAB = registerCompatBlock(List.of(DDCompat.QUARK), "polished_duskrock_vertical_slab",
             () -> new VerticalSlabBlock(DUSKROCK_BRICKS_PROPERTIES));
     public static final DeferredBlock<Block> DUSKROCK_BRICKS = registerBlock("duskrock_bricks",
             () -> new Block(DUSKROCK_BRICKS_PROPERTIES));
@@ -164,7 +166,7 @@ public class DDBlocks {
             () -> new RelationalStairBlock(DUSKROCK_BRICKS.get()));
     public static final DeferredBlock<RelationalSlabBlock> DUSKROCK_BRICKS_SLAB = registerBlock("duskrock_bricks_slab",
             () -> new RelationalSlabBlock(DUSKROCK_BRICKS.get()));
-    public static final DeferredBlock<VerticalSlabBlock> DUSKROCK_BRICKS_VERTICAL_SLAB = registerCompatBlock(List.of("quark"), "duskrock_bricks_vertical_slab",
+    public static final DeferredBlock<VerticalSlabBlock> DUSKROCK_BRICKS_VERTICAL_SLAB = registerCompatBlock(List.of(DDCompat.QUARK), "duskrock_bricks_vertical_slab",
             () -> new VerticalSlabBlock(DUSKROCK_BRICKS_PROPERTIES));
     public static final DeferredBlock<RelationalWallBlock> DUSKROCK_BRICKS_WALL = registerBlock("duskrock_bricks_wall",
             () -> new RelationalWallBlock(DUSKROCK_BRICKS.get()));
@@ -206,7 +208,7 @@ public class DDBlocks {
             () -> new RelationalStairBlock(DARKSLATE.get()));
     public static final DeferredBlock<RelationalSlabBlock> DARKSLATE_SLAB = registerBlock("darkslate_slab",
             () -> new RelationalSlabBlock(DARKSLATE.get()));
-    public static final DeferredBlock<VerticalSlabBlock> DARKSLATE_VERTICAL_SLAB = registerCompatBlock(List.of("quark"), "darkslate_vertical_slab",
+    public static final DeferredBlock<VerticalSlabBlock> DARKSLATE_VERTICAL_SLAB = registerCompatBlock(List.of(DDCompat.QUARK), "darkslate_vertical_slab",
             () -> new VerticalSlabBlock(DARKSLATE_PROPERTIES));
     public static final DeferredBlock<RelationalWallBlock> DARKSLATE_WALL = registerBlock("darkslate_wall",
             () -> new RelationalWallBlock(DARKSLATE.get()));
@@ -216,7 +218,7 @@ public class DDBlocks {
             () -> new RelationalStairBlock(POLISHED_DARKSLATE.get()));
     public static final DeferredBlock<RelationalSlabBlock> POLISHED_DARKSLATE_SLAB = registerBlock("polished_darkslate_slab",
             () -> new RelationalSlabBlock(POLISHED_DARKSLATE.get()));
-    public static final DeferredBlock<VerticalSlabBlock> POLISHED_DARKSLATE_VERTICAL_SLAB = registerCompatBlock(List.of("quark"), "polished_darkslate_vertical_slab",
+    public static final DeferredBlock<VerticalSlabBlock> POLISHED_DARKSLATE_VERTICAL_SLAB = registerCompatBlock(List.of(DDCompat.QUARK), "polished_darkslate_vertical_slab",
             () -> new VerticalSlabBlock(DARKSLATE_PROPERTIES));
     public static final DeferredBlock<Block> DARKSLATE_BRICKS = registerBlock("darkslate_bricks",
             () -> new Block(DARKSLATE_BRICKS_PROPERTIES));
@@ -224,7 +226,7 @@ public class DDBlocks {
             () -> new RelationalStairBlock(DARKSLATE_BRICKS.get()));
     public static final DeferredBlock<RelationalSlabBlock> DARKSLATE_BRICKS_SLAB = registerBlock("darkslate_bricks_slab",
             () -> new RelationalSlabBlock(DARKSLATE_BRICKS.get()));
-    public static final DeferredBlock<VerticalSlabBlock> DARKSLATE_BRICKS_VERTICAL_SLAB = registerCompatBlock(List.of("quark"), "darkslate_bricks_vertical_slab",
+    public static final DeferredBlock<VerticalSlabBlock> DARKSLATE_BRICKS_VERTICAL_SLAB = registerCompatBlock(List.of(DDCompat.QUARK), "darkslate_bricks_vertical_slab",
             () -> new VerticalSlabBlock(DARKSLATE_BRICKS_PROPERTIES));
     public static final DeferredBlock<RelationalWallBlock> DARKSLATE_BRICKS_WALL = registerBlock("darkslate_bricks_wall",
             () -> new RelationalWallBlock(DARKSLATE_BRICKS.get()));
@@ -258,7 +260,7 @@ public class DDBlocks {
             () -> new RelationalStairBlock(GRIMESTONE.get()));
     public static final DeferredBlock<RelationalSlabBlock> GRIMESTONE_SLAB = registerBlock("grimestone_slab",
             () -> new RelationalSlabBlock(GRIMESTONE.get()));
-    public static final DeferredBlock<VerticalSlabBlock> GRIMESTONE_VERTICAL_SLAB = registerCompatBlock(List.of("quark"), "grimestone_vertical_slab",
+    public static final DeferredBlock<VerticalSlabBlock> GRIMESTONE_VERTICAL_SLAB = registerCompatBlock(List.of(DDCompat.QUARK), "grimestone_vertical_slab",
             () -> new VerticalSlabBlock(DARKSLATE_PROPERTIES));
     public static final DeferredBlock<RelationalWallBlock> GRIMESTONE_WALL = registerBlock("grimestone_wall",
             () -> new RelationalWallBlock(GRIMESTONE.get()));
@@ -270,7 +272,7 @@ public class DDBlocks {
             () -> new RelationalStairBlock(POLISHED_GRIMESTONE.get()));
     public static final DeferredBlock<RelationalSlabBlock> POLISHED_GRIMESTONE_SLAB = registerBlock("polished_grimestone_slab",
             () -> new RelationalSlabBlock(POLISHED_GRIMESTONE.get()));
-    public static final DeferredBlock<VerticalSlabBlock> POLISHED_GRIMESTONE_VERTICAL_SLAB = registerCompatBlock(List.of("quark"), "polished_grimestone_vertical_slab",
+    public static final DeferredBlock<VerticalSlabBlock> POLISHED_GRIMESTONE_VERTICAL_SLAB = registerCompatBlock(List.of(DDCompat.QUARK), "polished_grimestone_vertical_slab",
             () -> new VerticalSlabBlock(DARKSLATE_PROPERTIES));
     public static final DeferredBlock<Block> GRIMESTONE_BRICKS = registerBlock("grimestone_bricks",
             () -> new Block(DARKSLATE_BRICKS_PROPERTIES));
@@ -278,7 +280,7 @@ public class DDBlocks {
             () -> new RelationalStairBlock(GRIMESTONE_BRICKS.get()));
     public static final DeferredBlock<RelationalSlabBlock> GRIMESTONE_BRICKS_SLAB = registerBlock("grimestone_bricks_slab",
             () -> new RelationalSlabBlock(GRIMESTONE_BRICKS.get()));
-    public static final DeferredBlock<VerticalSlabBlock> GRIMESTONE_BRICKS_VERTICAL_SLAB = registerCompatBlock(List.of("quark"), "grimestone_bricks_vertical_slab",
+    public static final DeferredBlock<VerticalSlabBlock> GRIMESTONE_BRICKS_VERTICAL_SLAB = registerCompatBlock(List.of(DDCompat.QUARK), "grimestone_bricks_vertical_slab",
             () -> new VerticalSlabBlock(DARKSLATE_BRICKS_PROPERTIES));
     public static final DeferredBlock<RelationalWallBlock> GRIMESTONE_BRICKS_WALL = registerBlock("grimestone_bricks_wall",
             () -> new RelationalWallBlock(GRIMESTONE_BRICKS.get()));
@@ -331,7 +333,7 @@ public class DDBlocks {
         return block;
     }
 
-    public static <B extends Block> DeferredBlock<B> registerCompatBlock(List<String> modIds, String key, Supplier<B> blockSupplier) {
+    public static <B extends Block> DeferredBlock<B> registerCompatBlock(List<CompatID> modIds, String key, Supplier<B> blockSupplier) {
         DeferredBlock<B> block = BLOCKS.register(key, blockSupplier);
         DeferredItem<BlockItem> item = DDItems.ITEMS.register(key, () -> new BlockItem(block.get(), new Item.Properties()));
         COMPAT.put(item, modIds);
