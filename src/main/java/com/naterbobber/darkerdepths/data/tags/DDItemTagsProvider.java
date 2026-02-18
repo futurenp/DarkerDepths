@@ -47,7 +47,7 @@ public class DDItemTagsProvider extends ItemTagsProvider {
                 DDBlocks.STRIPPED_PETRIFIED_WOOD.get().asItem()
         );
         this.tag(ItemTags.PLANKS).add(DDBlocks.PETRIFIED_PLANKS.get().asItem());
-        this.tag(ForgeItemTags.ROPES).add(DDItems.ROPE.get());
+        this.tag(DDTags.Items.ROPES).add(DDItems.ROPE.get());
         this.tag(ItemTags.BEACON_PAYMENT_ITEMS).add(DDItems.FORSAKEN_BRONZE_INGOT.get());
 
         this.tag(Tags.Items.INGOTS)
