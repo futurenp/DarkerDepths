@@ -2,6 +2,7 @@ package com.naterbobber.darkerdepths.block.custom;
 
 import com.naterbobber.darkerdepths.block.DDBlockStateProperties;
 import net.minecraft.core.BlockPos;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
@@ -61,7 +62,7 @@ public class DarkslateBlock extends RotatedPillarBlock {
             Block neighborBlock = neighborBlockState.getBlock();
 
             int neighborHeatLevel;
-            if (neighborBlockState.getFluidState().getType() == Fluids.LAVA) {
+            if (neighborBlockState.getFluidState().is(FluidTags.LAVA)) {
                 neighborHeatLevel = 5;
             } else {
                 switch (neighborBlock) {
