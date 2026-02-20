@@ -1,5 +1,6 @@
 package com.naterbobber.darkerdepths.block.custom;
 
+import com.naterbobber.darkerdepths.block.DDBlockStateProperties;
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import com.naterbobber.darkerdepths.util.DDResourceKeys;
 import net.minecraft.core.BlockPos;
@@ -35,7 +36,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
 public class GlowshroomBlock extends Block implements BonemealableBlock, SimpleWaterloggedBlock {
-    public static final IntegerProperty GLOWSHROOM_CLUSTERS = IntegerProperty.create("clusters", 1, 3);
+    public static final IntegerProperty GLOWSHROOM_CLUSTERS = DDBlockStateProperties.GLOWSHROOM_CLUSTERS;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     protected static final VoxelShape SHAPE_1 = Block.box(5.0D, 0.0D, 5.0D, 11.0D, 9.0D, 11.0D);
     protected static final VoxelShape SHAPE_2 = Block.box(3.0D, 0.0D, 3.0D, 13.0D, 9.0D, 13.0D);
