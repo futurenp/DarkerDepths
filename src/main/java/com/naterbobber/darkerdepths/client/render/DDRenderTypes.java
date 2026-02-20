@@ -19,9 +19,6 @@ public class DDRenderTypes extends RenderType {
                 .setShaderState(RENDERTYPE_ENTITY_CUTOUT_SHADER)
                 .setTextureState(new TextureStateShard(textureLocation, false, false))
                 .setTransparencyState(TRANSLUCENT_TRANSPARENCY)
-                .setCullState(CULL)
-                .setWriteMaskState(COLOR_DEPTH_WRITE)
-                .setDepthTestState(LEQUAL_DEPTH_TEST)
                 .createCompositeState(false);
 
         return create("inverted_cube",
@@ -37,10 +34,6 @@ public class DDRenderTypes extends RenderType {
         CompositeState state = CompositeState.builder()
                 .setShaderState(RENDERTYPE_EYES_SHADER)
                 .setTextureState(new TextureStateShard(textureLocation, false, false))
-                .setTransparencyState(NO_TRANSPARENCY)
-                .setCullState(CULL)
-                .setWriteMaskState(COLOR_DEPTH_WRITE)
-                .setDepthTestState(LEQUAL_DEPTH_TEST)
                 .createCompositeState(false);
 
         return create("emissive_solid",
