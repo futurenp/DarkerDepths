@@ -202,8 +202,8 @@ public class DDBlocks {
             () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(1.0f).sound(SoundType.AMETHYST).lightLevel(value -> 7)));
     public static final DeferredBlock<AmethystClusterBlock> AMBER_CLUSTER = registerBlock("amber_cluster",
             () -> new AmethystClusterBlock(6, 3, BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(1.0f).sound(SoundType.SMALL_AMETHYST_BUD).lightLevel(value -> 7)));
-    public static final DeferredBlock<RotatedPillarBlock> DARKSLATE = registerBlock("darkslate",
-            () -> new RotatedPillarBlock(DARKSLATE_PROPERTIES));
+    public static final DeferredBlock<DarkslateBlock> DARKSLATE = registerBlock("darkslate",
+            () -> new DarkslateBlock(DARKSLATE_PROPERTIES));
     public static final DeferredBlock<RelationalStairBlock> DARKSLATE_STAIRS = registerBlock("darkslate_stairs",
             () -> new RelationalStairBlock(DARKSLATE.get()));
     public static final DeferredBlock<RelationalSlabBlock> DARKSLATE_SLAB = registerBlock("darkslate_slab",

@@ -15,4 +15,5 @@ public class DDBlockStateProperties {
     public static final IntegerProperty GLOWSHROOM_CLUSTERS = IntegerProperty.create("clusters", 1, 3);
     public static final EnumProperty<ConnectedPillarBlock.PillarState> PILLAR_STATE = EnumProperty.create("pillar_state", ConnectedPillarBlock.PillarState.class);
     public static final EnumProperty<VerticalSlabBlock.VerticalSlabType> TYPE = EnumProperty.create("type", VerticalSlabBlock.VerticalSlabType.class);
+    public static final IntegerProperty HEAT_LEVEL = IntegerProperty.create("heat_level", 0, 4);
 }
