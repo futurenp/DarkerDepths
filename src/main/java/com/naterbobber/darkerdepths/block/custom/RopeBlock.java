@@ -1,5 +1,6 @@
 package com.naterbobber.darkerdepths.block.custom;
 
+import com.naterbobber.darkerdepths.block.DDBlockStateProperties;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvent;
@@ -34,7 +35,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Optional;
 
 public class RopeBlock extends Block implements BucketPickup, LiquidBlockContainer {
-    public static final EnumProperty<RopePart> PART = EnumProperty.create("part", RopePart.class);
+    public static final EnumProperty<RopeBlock.RopePart> PART = DDBlockStateProperties.PART;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
     public RopeBlock(Properties properties) {
