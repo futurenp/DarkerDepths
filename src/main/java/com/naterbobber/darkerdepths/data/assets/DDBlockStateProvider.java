@@ -1,6 +1,8 @@
 package com.naterbobber.darkerdepths.data.assets;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
+import com.naterbobber.darkerdepths.block.DDBlockStateProperties;
+import com.naterbobber.darkerdepths.block.custom.DarkslateBlock;
 import com.naterbobber.darkerdepths.block.generic.*;
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import com.naterbobber.darkerdepths.init.DDItems;
@@ -9,6 +11,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
@@ -105,6 +108,7 @@ public class DDBlockStateProvider extends BlockStateProvider {
                         case DoorBlock b -> doorBlockWithItem(holder);
                         case TrapDoorBlock b -> trapdoorBlockWithItem(holder);
                         case BushBlock b -> crossBlockWithItem(holder);
+                        case DarkslateBlock b -> axisBlockWithIntProperty(holder, DDBlockStateProperties.HEAT_LEVEL);
                         case RotatedPillarBlock b -> rotatablePillarBlockWithItem(holder);
                         case ConnectedPillarBlock b -> connectedPillarBlockWithItem(holder);
                         case SignBlock b -> skip(holder);
@@ -182,6 +186,36 @@ public class DDBlockStateProvider extends BlockStateProvider {
         } else {
             logBlockWithItem(blockHolder);
         }
+    }
+
+    public void axisBlockWithIntProperty(DeferredHolder<Block, ? extends Block> blockHolder, IntegerProperty property) {
+        Block block = blockHolder.get();
+        getVariantBuilder(block).forAllStates(state -> {
+            Direction.Axis axis = state.getValue(RotatedPillarBlock.AXIS);
+            int propValue = state.getValue(property);
+            String propertyName = property.getName();
+            String blockName = blockHolder.getId().getPath();
+            String stateName = blockName + "_" + propertyName + "_" + propValue;
+            if (propValue == 0) {
+                stateName = blockName;
+            }
+
+            ResourceLocation sideTexture = modLoc("block/" + stateName);
+            ResourceLocation endTexture = this.extend(sideTexture, "_top");
+
+            ModelFile vertical = this.models().cubeColumn(stateName, sideTexture, endTexture);
+            ModelFile horizontal = this.models().cubeColumnHorizontal(stateName + "_horizontal", sideTexture, endTexture);
+
+            if (axis == Direction.Axis.Y) {
+                return ConfiguredModel.builder().modelFile(vertical).build();
+            } else if (axis == Direction.Axis.Z) {
+                return ConfiguredModel.builder().modelFile(horizontal).rotationX(90).build();
+            } else {
+                return ConfiguredModel.builder().modelFile(horizontal).rotationX(90).rotationY(90).build();
+            }
+        });
+
+        simpleBlockItem(block, models().getExistingFile(blockTexture(block)));
     }
 
     private void doorBlockWithItem(DeferredHolder<Block, ? extends Block> block) {
@@ -270,5 +304,11 @@ public class DDBlockStateProvider extends BlockStateProvider {
 
         getVariantBuilder(block.get()).partialState().setModels(new ConfiguredModel(cubeColumn));
         simpleBlockItem(block.get(), cubeColumn);
+    }
+
+    private ResourceLocation extend(ResourceLocation rl, String suffix) {
+        String var10000 = rl.getNamespace();
+        String var10001 = rl.getPath();
+        return ResourceLocation.fromNamespaceAndPath(var10000, var10001 + suffix);
     }
 }

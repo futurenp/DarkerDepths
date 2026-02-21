@@ -2,7 +2,9 @@ package com.naterbobber.darkerdepths.block.custom;
 
 import com.naterbobber.darkerdepths.block.DDBlockStateProperties;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.tags.FluidTags;
+import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
@@ -22,7 +24,9 @@ public class DarkslateBlock extends RotatedPillarBlock {
 
     public DarkslateBlock(Properties pProperties) {
         super(pProperties);
-        this.registerDefaultState(this.stateDefinition.any().setValue(HEAT_LEVEL, 0));
+        this.registerDefaultState(this.defaultBlockState()
+                .setValue(HEAT_LEVEL, 0)
+        );
     }
 
     @Override
@@ -78,14 +82,6 @@ public class DarkslateBlock extends RotatedPillarBlock {
         }
 
         return highestLevel;
-    }
-
-    @Override
-    public void onNeighborChange(BlockState state, LevelReader levelReader, BlockPos pos, BlockPos neighbor) {
-        if (levelReader instanceof Level level) {
-            sendHeatUpdate(pos, level);
-        }
-        super.onNeighborChange(state, levelReader, pos, neighbor);
     }
 
     @Override
