@@ -1,6 +1,7 @@
 package com.naterbobber.darkerdepths.block.custom;
 
 import com.mojang.serialization.MapCodec;
+import com.naterbobber.darkerdepths.block.DDBlockStateProperties;
 import com.naterbobber.darkerdepths.block.blockentities.GeyserBlockEntity;
 import com.naterbobber.darkerdepths.init.DDBlockEntityTypes;
 import net.minecraft.core.BlockPos;
@@ -28,21 +29,27 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class GeyserBlock extends BaseEntityBlock {
     public static final DirectionProperty FACING = BlockStateProperties.FACING;
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
+    public static final BooleanProperty BURSTING = DDBlockStateProperties.BURSTING;
+    public static final MapCodec<GeyserBlock> CODEC = simpleCodec(GeyserBlock::new);
 
     public GeyserBlock(Properties properties) {
         super(properties);
-        this.registerDefaultState(this.stateDefinition.any().setValue(POWERED, false).setValue(FACING, Direction.UP));
+        this.registerDefaultState(this.stateDefinition.any()
+                .setValue(POWERED, false)
+                .setValue(FACING, Direction.UP)
+                .setValue(BURSTING, false)
+        );
     }
 
-    //?
     @Override
-    protected MapCodec<? extends BaseEntityBlock> codec() {
-        return null;
+    protected @NotNull MapCodec<? extends BaseEntityBlock> codec() {
+        return CODEC;
     }
 
     @Override
@@ -58,7 +65,10 @@ public class GeyserBlock extends BaseEntityBlock {
     @Nullable
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
-        return this.defaultBlockState().setValue(POWERED, context.getLevel().hasNeighborSignal(context.getClickedPos())).setValue(FACING, context.getClickedFace());
+        return this.defaultBlockState()
+                .setValue(POWERED, context.getLevel().hasNeighborSignal(context.getClickedPos()))
+                .setValue(FACING, context.getClickedFace()
+                );
     }
 
     @Nullable
@@ -71,9 +81,9 @@ public class GeyserBlock extends BaseEntityBlock {
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level worldIn, BlockState state, BlockEntityType<T> blockEntityType) {
         if (worldIn.isClientSide) {
-            return !state.getValue(POWERED) ? createTickerHelper(blockEntityType, DDBlockEntityTypes.GEYSER.get(), GeyserBlockEntity::geyserTick) : null;
+            return !state.getValue(POWERED) ? createTickerHelper(blockEntityType, DDBlockEntityTypes.GEYSER.get(), (level, pos, blockState, blockEntity) -> blockEntity.tick(level, pos, blockState)) : null;
         } else {
-            return createTickerHelper(blockEntityType, DDBlockEntityTypes.GEYSER.get(), GeyserBlockEntity::geyserTick);
+            return createTickerHelper(blockEntityType, DDBlockEntityTypes.GEYSER.get(), (level, pos, blockState, blockEntity) -> blockEntity.tick(level, pos, blockState));
         }
     }
 
@@ -104,7 +114,7 @@ public class GeyserBlock extends BaseEntityBlock {
 
     @Override
     public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, RandomSource rand) {
-        if (!stateIn.getValue(POWERED)) {
+        if (!stateIn.getValue(POWERED) && stateIn.getValue(BURSTING)) {
             this.addParticle(worldIn, rand, pos, stateIn.getValue(FACING));
         }
     }
@@ -220,7 +230,7 @@ public class GeyserBlock extends BaseEntityBlock {
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(POWERED, FACING);
+        builder.add(POWERED, FACING, BURSTING);
     }
 
 }
