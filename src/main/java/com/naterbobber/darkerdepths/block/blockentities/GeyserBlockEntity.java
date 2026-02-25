@@ -49,12 +49,19 @@ public class GeyserBlockEntity extends BlockEntity {
         BlockState relativeState;
         int boostColumnLength = 6;
 
+        double boostSpeed = 0.06;
+        double booster = (level.getBlockState(blockPos.relative(direction.getOpposite())).is(DDTags.Blocks.GEYSER_BOOSTERS)
+                ? boostSpeed * 2
+                : boostSpeed) * direction.getAxisDirection().getStep();
+
         for (int i = 0; i < boostColumnLength; i++) {
             relativePosition = blockPos.relative(direction, i + 1);
             relativeState = level.getBlockState(relativePosition);
             if (level.isStateAtPosition(relativePosition, DripstoneUtils::isEmptyOrWaterOrLava) ||
                     relativeState.getTags().anyMatch(DDTags.Blocks.GEYSER_BYPASSES::equals)) {
-                boostEntities(level, direction, blockPos, relativePosition);
+                boostEntities(level, direction, relativePosition, booster);
+            } else {
+                break;
             }
         }
     }
@@ -63,13 +70,8 @@ public class GeyserBlockEntity extends BlockEntity {
         return this.getBlockState().getValue(BURSTING);
     }
 
-    private static void boostEntities(Level level, Direction direction, BlockPos originPos, BlockPos blockPos) {
+    private static void boostEntities(Level level, Direction direction, BlockPos blockPos, double booster) {
         List<Entity> nearbyEntities = level.getEntitiesOfClass(Entity.class, new AABB(blockPos));
-        double boostSpeed = 0.06;
-        double booster = (level.getBlockState(originPos.relative(direction.getOpposite())).is(DDTags.Blocks.GEYSER_BOOSTERS)
-                ? boostSpeed * 2
-                : boostSpeed) * direction.getAxisDirection().getStep();
-
 
         for (Entity entity : nearbyEntities) {
             Vec3 motion = entity.getDeltaMovement();
