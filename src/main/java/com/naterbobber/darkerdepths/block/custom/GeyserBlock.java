@@ -4,6 +4,7 @@ import com.mojang.serialization.MapCodec;
 import com.naterbobber.darkerdepths.block.DDBlockStateProperties;
 import com.naterbobber.darkerdepths.block.blockentities.GeyserBlockEntity;
 import com.naterbobber.darkerdepths.init.DDBlockEntityTypes;
+import com.naterbobber.darkerdepths.init.DDParticleTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
@@ -179,7 +180,7 @@ public class GeyserBlock extends BaseEntityBlock {
         if (waterlogged) {
             for (int i = 1; i < 7; i++) {
                 if (worldIn.isEmptyBlock(pos.above(i))) {
-                    worldIn.addParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE, x, y, z, xSpeed, ySpeed, zSpeed);
+                    worldIn.addParticle(DDParticleTypes.GEYSER_BURST_SMOKE.get(), x, y, z, xSpeed, ySpeed, zSpeed);
                 }
             }
             worldIn.addAlwaysVisibleParticle(ParticleTypes.BUBBLE_COLUMN_UP, x, y, z, xSpeed, ySpeed/2, zSpeed);
@@ -188,7 +189,7 @@ public class GeyserBlock extends BaseEntityBlock {
                 worldIn.playLocalSound(x, y, z, SoundEvents.BUBBLE_COLUMN_UPWARDS_AMBIENT, SoundSource.BLOCKS, 0.2F + rand.nextFloat() * 0.2F, 0.9F + rand.nextFloat() * 0.15F, false);
             }
         } else {
-            worldIn.addParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE, x, y, z, xSpeed, ySpeed, zSpeed);
+            worldIn.addParticle(DDParticleTypes.GEYSER_BURST_SMOKE.get(), x, y, z, xSpeed, ySpeed, zSpeed);
             if (rand.nextInt(5) == 0) {
                 for (int i = 0; i < rand.nextInt(1) + 1; i++) {
                     worldIn.addParticle(ParticleTypes.LAVA, x, y, z, rand.nextFloat() / lavaSpeedX, rand.nextFloat() / lavaSpeedY, rand.nextFloat() / lavaSpeedZ);

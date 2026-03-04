@@ -1,10 +1,7 @@
 package com.naterbobber.darkerdepths.events.client;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
-import com.naterbobber.darkerdepths.client.particle.DrippingParticle;
-import com.naterbobber.darkerdepths.client.particle.VoidSoulFlameParticle;
-import com.naterbobber.darkerdepths.client.particle.VoidSoulFlameSmokeParticle;
-import com.naterbobber.darkerdepths.client.particle.VoidSoulParticle;
+import com.naterbobber.darkerdepths.client.particle.*;
 import com.naterbobber.darkerdepths.client.render.renderers.BodySnatcherRenderer;
 import com.naterbobber.darkerdepths.client.render.renderers.GlowshroomMonsterRenderer;
 import com.naterbobber.darkerdepths.client.render.renderers.ParanoiaAltarBlockEntityRenderer;
@@ -66,5 +63,6 @@ public class ClientRegisterEvents {
         engine.register(DDParticleTypes.VOID_SOUL.get(), VoidSoulParticle.VoidSoulFactory::new);
         engine.register(DDParticleTypes.VOID_SOUL_FLAME.get(), VoidSoulFlameParticle.VoidSoulFlameFactory::new);
         engine.register(DDParticleTypes.VOID_SOUL_FLAME_SMOKE.get(), VoidSoulFlameSmokeParticle.VoidSoulFlameSmokeFactory::new);
+        engine.register(DDParticleTypes.GEYSER_BURST_SMOKE.get(), GeyserBurstSmokeParticle.GeyserBurstSmokeParticleFactory::new);
     }
 }

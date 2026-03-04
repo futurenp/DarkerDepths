@@ -37,7 +37,7 @@ public class GeyserBlockEntity extends BlockEntity {
     public void tick(Level level, BlockPos blockPos, BlockState blockState) {
         if (level.isClientSide()) return;
 
-        if (isBursting()) {
+        if (blockState.getValue(BURSTING)) {
             updateBurstLength(level, blockState, blockPos);
         } else {
             updateBurstDelay(level, blockState, blockPos);
@@ -64,10 +64,6 @@ public class GeyserBlockEntity extends BlockEntity {
                 break;
             }
         }
-    }
-
-    private boolean isBursting() {
-        return this.getBlockState().getValue(BURSTING);
     }
 
     private static void boostEntities(Level level, Direction direction, BlockPos blockPos, double booster) {
