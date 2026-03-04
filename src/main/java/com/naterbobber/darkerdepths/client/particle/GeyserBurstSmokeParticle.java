@@ -14,23 +14,35 @@ public class GeyserBurstSmokeParticle extends TextureSheetParticle {
 
     protected GeyserBurstSmokeParticle(ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
         super(level, x, y, z, xSpeed, ySpeed, zSpeed);
+        this.yd = 1;
+        this.xd = 0;
+        this.zd = 0;
+        this.quadSize = 2;
+        this.lifetime = 15;
+        this.gravity = 0.0F;
     }
 
     protected GeyserBurstSmokeParticle(ClientLevel level, double x, double y, double z) {
         super(level, x, y, z, 0, 0, 0);
-        this.yd = level.getRandom().nextDouble()/2 + 1.5;
+        this.yd = 0.05;
         this.quadSize = 2;
+        this.lifetime = 20;
     }
 
     @Override
     public void tick() {
-        move();
+        super.tick();
+        setParticleSpeed(this.xd, this.yd - 0.035, this.zd);
     }
 
     public void move() {
-        this.x += this.xd;
+//        this.x += this.xd;
         this.y += this.yd;
-        this.z += this.zd;
+//        this.z += this.zd;
+
+        this.xo = this.x;
+        this.yo = this.y;
+        this.zo = this.z;
     }
 
     @Override
@@ -49,8 +61,8 @@ public class GeyserBurstSmokeParticle extends TextureSheetParticle {
 
         @Override
         public @Nullable Particle createParticle(SimpleParticleType simpleParticleType, ClientLevel clientLevel, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
-            GeyserBurstSmokeParticle particle = new GeyserBurstSmokeParticle(clientLevel, x, y, z);
-            particle.setColor(0.22F, 0.22F, 0.22F);
+            GeyserBurstSmokeParticle particle = new GeyserBurstSmokeParticle(clientLevel, x, y, z, xSpeed, ySpeed, zSpeed);
+//            particle.setColor(0.22F, 0.22F, 0.22F);
             particle.pickSprite(this.spriteSet);
             return particle;
         }

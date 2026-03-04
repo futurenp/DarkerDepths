@@ -68,6 +68,7 @@ public class DarkslateBlock extends RotatedPillarBlock {
                 switch (neighborBlock) {
                     case DarkslateBlock b -> neighborHeatLevel = neighborBlockState.getValue(HEAT_LEVEL);
                     case MagmaBlock b -> neighborHeatLevel = 4;
+                    case GeyserBlock b -> neighborHeatLevel = neighborBlockState.getValue(DDBlockStateProperties.HEAT_LEVEL);
                     default -> neighborHeatLevel = 0;
                 }
             }

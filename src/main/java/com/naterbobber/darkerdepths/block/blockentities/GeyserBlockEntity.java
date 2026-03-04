@@ -3,6 +3,7 @@ package com.naterbobber.darkerdepths.block.blockentities;
 import com.naterbobber.darkerdepths.block.DDBlockStateProperties;
 import com.naterbobber.darkerdepths.block.custom.GeyserBlock;
 import com.naterbobber.darkerdepths.init.DDBlockEntityTypes;
+import com.naterbobber.darkerdepths.init.DDParticleTypes;
 import com.naterbobber.darkerdepths.util.DDTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -15,6 +16,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.levelgen.feature.DripstoneUtils;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
@@ -23,10 +25,11 @@ import java.util.List;
 
 public class GeyserBlockEntity extends BlockEntity {
     private static final BooleanProperty BURSTING = DDBlockStateProperties.BURSTING;
+    private static final IntegerProperty HEAT_LEVEL = DDBlockStateProperties.HEAT_LEVEL;
     private static final String burstDelayTag = "burstDelay";
     private static final String burstLengthTag = "burstLength";
     private static final int minBurstLength = 100;
-    private static final int minBurstDelay = 300;
+    private static final int minBurstDelay = 20;
     private int currentBurstLength = minBurstLength;
     private int currentBurstDelay = minBurstDelay;
 
@@ -35,8 +38,6 @@ public class GeyserBlockEntity extends BlockEntity {
     }
 
     public void tick(Level level, BlockPos blockPos, BlockState blockState) {
-        if (level.isClientSide()) return;
-
         if (blockState.getValue(BURSTING)) {
             updateBurstLength(level, blockState, blockPos);
         } else {
@@ -66,6 +67,23 @@ public class GeyserBlockEntity extends BlockEntity {
         }
     }
 
+    public void clientTick(Level level, BlockPos blockPos, BlockState blockState) {
+        if (blockState.getValue(BURSTING)) {
+            double x = blockPos.getX();
+            double y = blockPos.getY();
+            double z = blockPos.getZ();
+            double ySpeed = 1;
+
+            var rand = level.getRandom();
+            for (int i = 0; i < 5; i++) {
+                double randX = rand.nextDouble();
+                double randY = rand.nextDouble();
+                double randZ = rand.nextDouble();
+                level.addAlwaysVisibleParticle(DDParticleTypes.GEYSER_BURST_SMOKE.get(), x + randX, y + randY, z + randZ, 0, ySpeed + randY/2, 0);
+            }
+        }
+    }
+
     private static void boostEntities(Level level, Direction direction, BlockPos blockPos, double booster) {
         List<Entity> nearbyEntities = level.getEntitiesOfClass(Entity.class, new AABB(blockPos));
 
@@ -89,6 +107,9 @@ public class GeyserBlockEntity extends BlockEntity {
             setBursting(level, blockState, blockPos, true);
             currentBurstDelay = minBurstDelay + (int)(Math.random() * 1000);
         } else {
+            if(blockState.getValue(HEAT_LEVEL) > 0 && currentBurstDelay % 20 == 0) {
+                updateHeatLevel(level, blockState, blockPos);
+            }
             currentBurstDelay--;
         }
         setChanged();
@@ -105,7 +126,16 @@ public class GeyserBlockEntity extends BlockEntity {
     }
 
     private void setBursting(Level level, BlockState blockState, BlockPos blockPos, boolean value) {
-        BlockState newBlockState = blockState.setValue(BURSTING, value);
+        BlockState newBlockState = blockState.setValue(BURSTING, value).setValue(HEAT_LEVEL, 4);
+        level.setBlock(blockPos, newBlockState, 3);
+    }
+
+    private void updateHeatLevel(Level level, BlockState blockState, BlockPos blockPos) {
+        int heatLevel = blockState.getValue(HEAT_LEVEL);
+        if(heatLevel > 0) {
+            heatLevel--;
+        }
+        BlockState newBlockState = blockState.setValue(HEAT_LEVEL, heatLevel);
         level.setBlock(blockPos, newBlockState, 3);
     }
 
