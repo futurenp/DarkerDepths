@@ -18,7 +18,8 @@ public class GeyserBurstSmokeParticle extends TextureSheetParticle {
 
     protected GeyserBurstSmokeParticle(ClientLevel level, double x, double y, double z) {
         super(level, x, y, z, 0, 0, 0);
-        this.yd = level.getRandom().nextDouble() + 3;
+        this.yd = level.getRandom().nextDouble()/2 + 1.5;
+        this.quadSize = 2;
     }
 
     @Override

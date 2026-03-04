@@ -26,7 +26,7 @@ public class GeyserBlockEntity extends BlockEntity {
     private static final String burstDelayTag = "burstDelay";
     private static final String burstLengthTag = "burstLength";
     private static final int minBurstLength = 100;
-    private static final int minBurstDelay = 500;
+    private static final int minBurstDelay = 300;
     private int currentBurstLength = minBurstLength;
     private int currentBurstDelay = minBurstDelay;
 
