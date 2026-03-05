@@ -1,5 +1,9 @@
 {
   "textures": [
-    "darkerdepths:void_soul_flame"
+    "darkerdepths:geyser_burst/1",
+    "darkerdepths:geyser_burst/2",
+    "darkerdepths:geyser_burst/3",
+    "darkerdepths:geyser_burst/4",
+    "darkerdepths:geyser_burst/5"
   ]
 }
