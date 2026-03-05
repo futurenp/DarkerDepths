@@ -245,6 +245,33 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
 
         this.tag(Tags.Blocks.STORAGE_BLOCKS)
                 .add(DDBlocks.FORSAKEN_BRONZE_BLOCK.get());
+
+        this.tag(DDTags.Blocks.STRIPPED_LOGS).add(
+                Blocks.STRIPPED_ACACIA_LOG,
+                Blocks.STRIPPED_BAMBOO_BLOCK,
+                Blocks.STRIPPED_BIRCH_LOG,
+                Blocks.STRIPPED_CHERRY_LOG,
+                Blocks.STRIPPED_DARK_OAK_LOG,
+                Blocks.STRIPPED_JUNGLE_LOG,
+                Blocks.STRIPPED_MANGROVE_LOG,
+                Blocks.STRIPPED_OAK_LOG,
+                Blocks.STRIPPED_SPRUCE_LOG,
+                Blocks.STRIPPED_CRIMSON_STEM,
+                Blocks.STRIPPED_WARPED_STEM
+        );
+
+        this.tag(DDTags.Blocks.STRIPPED_WOODS).add(
+                Blocks.STRIPPED_ACACIA_WOOD,
+                Blocks.STRIPPED_BIRCH_WOOD,
+                Blocks.STRIPPED_CHERRY_WOOD,
+                Blocks.STRIPPED_DARK_OAK_WOOD,
+                Blocks.STRIPPED_JUNGLE_WOOD,
+                Blocks.STRIPPED_MANGROVE_WOOD,
+                Blocks.STRIPPED_OAK_WOOD,
+                Blocks.STRIPPED_SPRUCE_WOOD,
+                Blocks.STRIPPED_CRIMSON_HYPHAE,
+                Blocks.STRIPPED_WARPED_HYPHAE
+        );
     }
 
     private void generateWoodenTags() {

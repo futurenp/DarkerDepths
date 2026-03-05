@@ -1,16 +1,14 @@
 package com.naterbobber.darkerdepths.mixin;
 
 import com.naterbobber.darkerdepths.init.DDBlocks;
+import com.naterbobber.darkerdepths.util.DDTags;
 import net.minecraft.core.BlockPos;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.neoforged.neoforge.common.Tags;
 import org.spongepowered.asm.mixin.Mixin;
 
 import java.util.stream.Collectors;
@@ -29,7 +27,7 @@ public class RotatedPillarBlockMixin extends Block {
     }
 
     @Override
-    protected void neighborChanged(BlockState state, Level level, BlockPos pos, Block neighborBlock, BlockPos neighborPos, boolean movedByPiston) {
+    public void neighborChanged(BlockState state, Level level, BlockPos pos, Block neighborBlock, BlockPos neighborPos, boolean movedByPiston) {
         super.neighborChanged(state, level, pos, neighborBlock, neighborPos, movedByPiston);
         checkForPetrifiedConversion(level, state, pos);
     }
@@ -47,9 +45,9 @@ public class RotatedPillarBlockMixin extends Block {
 
         if(tags.contains(BlockTags.OVERWORLD_NATURAL_LOGS)) {
             petrifiedLog = DDBlocks.PETRIFIED_LOG.get();
-        } else if (tags.contains(Tags.Blocks.STRIPPED_LOGS)) {
+        } else if (tags.contains(DDTags.Blocks.STRIPPED_LOGS)) {
             petrifiedLog = DDBlocks.STRIPPED_PETRIFIED_LOG.get();
-        } else if (tags.contains(Tags.Blocks.STRIPPED_WOODS)) {
+        } else if (tags.contains(DDTags.Blocks.STRIPPED_WOODS)) {
             petrifiedLog = DDBlocks.STRIPPED_PETRIFIED_WOOD.get();
         } else {
             petrifiedLog = DDBlocks.PETRIFIED_WOOD.get();

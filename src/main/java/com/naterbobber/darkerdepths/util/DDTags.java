@@ -43,6 +43,8 @@ public class DDTags {
         public static final TagKey<Block> HUSKS_SPAWNABLE_ON = TAGS.create("husks_spawnable_on");
         public static final TagKey<Block> VERTICAL_PLANKS = TAGS.create("vertical_planks", DDCompat.QUARK);
         public static final TagKey<Block> VERTICAL_SLAB = TAGS.create("vertical_slab", DDCompat.QUARK);
+        public static final TagKey<Block> STRIPPED_LOGS = TAGS.create("stripped_logs");
+        public static final TagKey<Block> STRIPPED_WOODS = TAGS.create("stripped_woods");
     }
 
     public static class Biomes {
