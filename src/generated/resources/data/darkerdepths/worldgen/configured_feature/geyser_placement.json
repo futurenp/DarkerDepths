@@ -6,7 +6,9 @@
       "state": {
         "Name": "darkerdepths:geyser",
         "Properties": {
+          "bursting": "false",
           "facing": "up",
+          "heat_level": "0",
           "powered": "false"
         }
       }

@@ -110,8 +110,6 @@ public class GeyserBlock extends BaseEntityBlock {
         if (state.getValue(POWERED)) {
             if (!worldIn.hasNeighborSignal(pos)) {
                 worldIn.setBlock(pos, state.cycle(POWERED), 2);
-            } else {
-
             }
         }
     }
@@ -133,6 +131,7 @@ public class GeyserBlock extends BaseEntityBlock {
         if (facing == Direction.UP && facingState.is(Blocks.WATER)) {
             worldIn.scheduleTick(currentPos, this, 20);
         }
+
         return super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
     }
 

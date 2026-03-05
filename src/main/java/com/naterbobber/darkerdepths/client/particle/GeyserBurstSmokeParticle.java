@@ -3,6 +3,7 @@ package com.naterbobber.darkerdepths.client.particle;
 import com.naterbobber.darkerdepths.init.DDParticleTypes;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
+import net.minecraft.core.Direction;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.world.level.material.Fluids;
 import net.neoforged.api.distmarker.Dist;
@@ -14,35 +15,27 @@ public class GeyserBurstSmokeParticle extends TextureSheetParticle {
 
     protected GeyserBurstSmokeParticle(ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
         super(level, x, y, z, xSpeed, ySpeed, zSpeed);
-        this.yd = 1;
-        this.xd = 0;
-        this.zd = 0;
-        this.quadSize = 2;
+        this.x = x;
+        this.y = y;
+        this.z = z;
+        this.xd = xSpeed;
+        this.yd = ySpeed;
+        this.zd = zSpeed;
+        this.quadSize = 0.75f;
         this.lifetime = 15;
-        this.gravity = 0.0F;
+        this.gravity = 0.035F;
     }
 
     protected GeyserBurstSmokeParticle(ClientLevel level, double x, double y, double z) {
-        super(level, x, y, z, 0, 0, 0);
-        this.yd = 0.05;
-        this.quadSize = 2;
-        this.lifetime = 20;
+        super(level, x, y, z, 0, 1, 0);
+        this.quadSize = 0.75f;
+        this.lifetime = 15;
+        this.gravity = 0.035F;
     }
 
     @Override
     public void tick() {
         super.tick();
-        setParticleSpeed(this.xd, this.yd - 0.035, this.zd);
-    }
-
-    public void move() {
-//        this.x += this.xd;
-        this.y += this.yd;
-//        this.z += this.zd;
-
-        this.xo = this.x;
-        this.yo = this.y;
-        this.zo = this.z;
     }
 
     @Override
@@ -62,7 +55,6 @@ public class GeyserBurstSmokeParticle extends TextureSheetParticle {
         @Override
         public @Nullable Particle createParticle(SimpleParticleType simpleParticleType, ClientLevel clientLevel, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
             GeyserBurstSmokeParticle particle = new GeyserBurstSmokeParticle(clientLevel, x, y, z, xSpeed, ySpeed, zSpeed);
-//            particle.setColor(0.22F, 0.22F, 0.22F);
             particle.pickSprite(this.spriteSet);
             return particle;
         }
