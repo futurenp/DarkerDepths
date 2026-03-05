@@ -20,19 +20,23 @@ public class RotatedPillarBlockMixin extends Block {
     }
 
     @Override
-    public void onPlace(BlockState p_60566_, Level p_60567_, BlockPos p_60568_, BlockState p_60569_, boolean p_60570_) {
-        super.onPlace(p_60566_, p_60567_, p_60568_, p_60569_, p_60570_);
-        p_60567_.scheduleTick(p_60568_, this, 40);
-    }
+    public void onPlace(BlockState blockState, Level level, BlockPos blockPos, BlockState oldState, boolean movedByPiston) {
+        super.onPlace(blockState, level, blockPos, oldState, movedByPiston);
 
-    @Override
-    public void tick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
-        super.tick(state, world, pos, random);
-        BlockState blockState = world.getBlockState(pos);
-        BlockState belowState = world.getBlockState(pos.below());
-        if ((belowState.is(Blocks.SOUL_FIRE) || belowState.is(Blocks.SOUL_CAMPFIRE)) && blockState.is(BlockTags.LOGS_THAT_BURN)) {
-            world.setBlock(pos, DDBlocks.PETRIFIED_LOG.get().defaultBlockState().setValue(RotatedPillarBlock.AXIS, blockState.getValue(RotatedPillarBlock.AXIS)), 2);
-            world.levelEvent(1501, pos, 0);
+        if(!blockState.is(BlockTags.LOGS_THAT_BURN)) return;
+
+        Block petrifiedLog;
+
+        if(blockState.is(BlockTags.OVERWORLD_NATURAL_LOGS)) {
+            petrifiedLog = DDBlocks.PETRIFIED_LOG.get();
+        } else {
+            petrifiedLog = DDBlocks.PETRIFIED_WOOD.get();
+        }
+
+        BlockState belowState = level.getBlockState(blockPos.below());
+        if ((belowState.is(Blocks.SOUL_FIRE) || belowState.is(Blocks.SOUL_CAMPFIRE))) {
+            level.setBlock(blockPos, petrifiedLog.defaultBlockState().setValue(RotatedPillarBlock.AXIS, blockState.getValue(RotatedPillarBlock.AXIS)), 2);
+            level.levelEvent(1501, blockPos, 0);
         }
     }
 }
