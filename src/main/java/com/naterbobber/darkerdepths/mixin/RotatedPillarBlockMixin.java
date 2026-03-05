@@ -45,9 +45,9 @@ public class RotatedPillarBlockMixin extends Block {
 
         if(tags.contains(BlockTags.OVERWORLD_NATURAL_LOGS)) {
             petrifiedLog = DDBlocks.PETRIFIED_LOG.get();
-        } else if (tags.contains(DDTags.Blocks.STRIPPED_LOGS)) {
+        } else if ((tags.contains(DDTags.Blocks.STRIPPED_LOGS)) || tags.contains(DDTags.Blocks.STRIPPED_LOGS_FORGE)) {
             petrifiedLog = DDBlocks.STRIPPED_PETRIFIED_LOG.get();
-        } else if (tags.contains(DDTags.Blocks.STRIPPED_WOODS)) {
+        } else if ((tags.contains(DDTags.Blocks.STRIPPED_WOODS)) || tags.contains(DDTags.Blocks.STRIPPED_WOODS_FORGE)) {
             petrifiedLog = DDBlocks.STRIPPED_PETRIFIED_WOOD.get();
         } else {
             petrifiedLog = DDBlocks.PETRIFIED_WOOD.get();
