@@ -98,7 +98,7 @@ public class DDConfiguredFeatures {
 
         FeatureUtils.register(context, MOLTEN_POOL, DDFeatures.LAVA_VEGETATION_PATCH_FEATURE.get(), new VegetationPatchConfiguration(
                 BlockTags.BASE_STONE_OVERWORLD,
-                BlockStateProvider.simple(DDBlocks.ASH_BLOCK.get().defaultBlockState()),
+                BlockStateProvider.simple(DDBlocks.DARKSLATE.get().defaultBlockState()),
                 PlacementUtils.inlinePlaced(lookup.getOrThrow(GEYSER_PLACEMENT)),
                 CaveSurface.FLOOR,
                 ConstantInt.of(1), 0.0F, 5, 0.4F, UniformInt.of(4, 7), 0.3F)
