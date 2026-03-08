@@ -75,7 +75,7 @@ public class GeyserBlock extends BaseEntityBlock {
         return this.defaultBlockState()
                 .setValue(POWERED, context.getLevel().hasNeighborSignal(context.getClickedPos()))
                 .setValue(FACING, context.getClickedFace())
-                .setValue(BOOSTED, checkBoosted(context.getLevel(), context.getClickedPos()));
+                .setValue(BOOSTED, checkBoosted(context.getLevel(), context.getClickedPos(), context.getClickedFace()));
     }
 
     @Nullable
@@ -107,7 +107,7 @@ public class GeyserBlock extends BaseEntityBlock {
             }
         }
 
-        setBoosted(worldIn, state, pos, checkBoosted(worldIn, pos));
+        setBoosted(worldIn, state, pos, checkBoosted(worldIn, pos, state.getValue(FACING)));
 
     }
 
@@ -163,8 +163,10 @@ public class GeyserBlock extends BaseEntityBlock {
         level.setBlock(blockPos, newBlockState, 3);
     }
 
-    private static boolean checkBoosted(Level level, BlockPos blockPos) {
-        if(level.getBlockState(blockPos.below()).is(DDTags.Blocks.GEYSER_BOOSTERS)) {
+    private static boolean checkBoosted(Level level, BlockPos blockPos, Direction direction) {
+        var boosterPos = blockPos.relative(direction.getOpposite());
+
+        if(level.getBlockState(boosterPos).is(DDTags.Blocks.GEYSER_BOOSTERS)) {
             return true;
         } else {
             return false;
