@@ -8,11 +8,14 @@ import com.naterbobber.darkerdepths.util.DDTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.game.ClientboundSetEntityMotionPacket;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -20,7 +23,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
-import net.minecraft.world.level.levelgen.feature.DripstoneUtils;
+import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 
@@ -30,9 +33,10 @@ public class GeyserBlockEntity extends BlockEntity {
     private static final BooleanProperty BURSTING = DDBlockStateProperties.BURSTING;
     private static final IntegerProperty HEAT_LEVEL = DDBlockStateProperties.HEAT_LEVEL;
     private static final BooleanProperty POWERED = BlockStateProperties.POWERED;
+    private static final BooleanProperty BOOSTED = DDBlockStateProperties.BOOSTED;
     private static final String burstDelayTag = "burstDelay";
     private static final String burstLengthTag = "burstLength";
-    private static final int minBurstLength = 40;
+    private static final int minBurstLength = 60;
     private static final int minBurstDelay = 100;
     private int currentBurstLength = minBurstLength;
     private int currentBurstDelay = minBurstDelay;
@@ -57,25 +61,30 @@ public class GeyserBlockEntity extends BlockEntity {
         }
 
         Direction direction = blockState.getValue(GeyserBlock.FACING);
+
+        int boostColumnLength = findColumnLength(level, blockPos, direction);
+        boostEntities(level, direction, blockPos, boostColumnLength);
+    }
+
+    private static int findColumnLength(Level level, BlockPos blockPos, Direction direction){
+        int boostColumnLength = 6;
         BlockPos relativePosition;
         BlockState relativeState;
-        int boostColumnLength = 6;
+        FluidState relativeFluidState;
 
-        double boostSpeed = 0.06;
-        double booster = (level.getBlockState(blockPos.relative(direction.getOpposite())).is(DDTags.Blocks.GEYSER_BOOSTERS)
-                ? boostSpeed * 2
-                : boostSpeed) * direction.getAxisDirection().getStep();
-
-        for (int i = 0; i < boostColumnLength; i++) {
-            relativePosition = blockPos.relative(direction, i + 1);
+        for(int i = 1; i <= boostColumnLength; i++) {
+            relativePosition = blockPos.relative(direction, i);
             relativeState = level.getBlockState(relativePosition);
-            if (level.isStateAtPosition(relativePosition, DripstoneUtils::isEmptyOrWaterOrLava) ||
-                    relativeState.getTags().anyMatch(DDTags.Blocks.GEYSER_BYPASSES::equals)) {
-                boostEntities(level, direction, relativePosition, booster);
-            } else {
-                break;
+            relativeFluidState = level.getFluidState(relativePosition);
+            if (!(relativeState.isAir() ||
+                    relativeFluidState.is(FluidTags.LAVA) ||
+                    relativeState.is(DDTags.Blocks.GEYSER_BYPASSES) ||
+                    relativeFluidState.is(FluidTags.WATER))) {
+                return i;
             }
         }
+
+        return boostColumnLength;
     }
 
     public void clientTick(Level level, BlockPos blockPos, BlockState blockState) {
@@ -84,43 +93,43 @@ public class GeyserBlockEntity extends BlockEntity {
         }
     }
 
-    private void sendDirectionalParticle(Level level, BlockPos blockPos, BlockState blockState) {
-        double x = blockPos.getX(), y = blockPos.getY(), z = blockPos.getZ(), xSpeed = 0, ySpeed = 0, zSpeed = 0;
-        switch (blockState.getValue(BlockStateProperties.FACING)) {
-            case UP -> {
-                y += 1;
-                ySpeed = 1;
-            }
-            case DOWN -> {
-                y += -1;
-                ySpeed = -1;
-            }
-            case NORTH -> {
-                z += -1;
-                zSpeed = -1;
-            }
-            case SOUTH -> {
-                z += 1;
-                zSpeed = 1;
-            }
-            case EAST -> {
-                x += 1;
-                xSpeed = 1;
-            }
-            case WEST -> {
-                x += -1;
-                xSpeed = -1;
-            }
-        }
+    private static void sendDirectionalParticle(Level level, BlockPos blockPos, BlockState blockState) {
+        var direction = blockState.getValue(BlockStateProperties.FACING);
+
+        double x = blockPos.getX() + direction.getStepX();
+        double y = blockPos.getY() + direction.getStepY();
+        double z = blockPos.getZ() + direction.getStepZ();
+        double xSpeed = direction.getStepX();
+        double ySpeed = direction.getStepY();
+        double zSpeed = direction.getStepZ();
 
         var rand = level.getRandom();
+
+        var boosted = blockState.getValue(BOOSTED);
 
         for (int i = 0; i < 5; i++) {
             double randX = rand.nextDouble();
             double randY = rand.nextDouble();
             double randZ = rand.nextDouble();
             level.addAlwaysVisibleParticle(
-                    DDParticleTypes.GEYSER_BURST_SMOKE.get(),
+                    boosted
+                            ? DDParticleTypes.GEYSER_BURST_SMOKE_BOOSTED.get()
+                            : DDParticleTypes.GEYSER_BURST_SMOKE.get(),
+                    x + randX,
+                    y + randY,
+                    z + randZ,
+                    xSpeed == 0 ? 0 : xSpeed + randX/2 - 0.25,
+                    ySpeed == 0 ? 0 : ySpeed + randY/2 - 0.25,
+                    zSpeed == 0 ? 0 : zSpeed + randZ/2 - 0.25
+            );
+        }
+
+        for (int i = 0; i < 5; i++) {
+            double randX = rand.nextDouble();
+            double randY = rand.nextDouble();
+            double randZ = rand.nextDouble();
+            level.addAlwaysVisibleParticle(
+                    ParticleTypes.SMOKE,
                     x + randX,
                     y + randY,
                     z + randZ,
@@ -132,14 +141,20 @@ public class GeyserBlockEntity extends BlockEntity {
     }
 
 
-    private static void boostEntities(Level level, Direction direction, BlockPos blockPos, double booster) {
-        List<Entity> nearbyEntities = level.getEntitiesOfClass(Entity.class, new AABB(blockPos));
+    private static void boostEntities(Level level, Direction direction, BlockPos blockPos, int length) {
+        double boostSpeed = 0.14;
+        double boost = level.getBlockState(blockPos).getValue(BOOSTED)
+                ? boostSpeed * 2
+                : boostSpeed * direction.getAxisDirection().getStep();
+
+        var boostArea = AABB.encapsulatingFullBlocks(blockPos, blockPos.relative(direction, length));
+        List<Entity> nearbyEntities = level.getEntitiesOfClass(Entity.class, boostArea);
 
         for (Entity entity : nearbyEntities) {
             Vec3 motion = entity.getDeltaMovement();
-            double xBooster = direction.getAxis() == Direction.Axis.X ? booster : 0.0D;
-            double yBooster = direction.getAxis() == Direction.Axis.Y ? booster : 0.0D;
-            double zBooster = direction.getAxis() == Direction.Axis.Z ? booster : 0.0D;
+            double xBooster = direction.getAxis() == Direction.Axis.X ? boost : 0.0D;
+            double yBooster = direction.getAxis() == Direction.Axis.Y ? boost : 0.0D;
+            double zBooster = direction.getAxis() == Direction.Axis.Z ? boost : 0.0D;
 
             entity.setDeltaMovement(motion.x + xBooster, motion.y + yBooster, motion.z + zBooster);
             entity.fallDistance = 0.0F;
@@ -154,6 +169,23 @@ public class GeyserBlockEntity extends BlockEntity {
         if(currentBurstDelay == 0) {
             setBursting(level, blockState, blockPos, true);
             level.playSound(null, blockPos, SoundEvents.LAVA_EXTINGUISH, SoundSource.BLOCKS, 2.25f, 0.25f);
+
+            if(level instanceof ServerLevel &&
+                    level.getFluidState(blockPos.above()).is(FluidTags.LAVA)
+            ) {
+                ((ServerLevel) level).sendParticles(
+                        ParticleTypes.LAVA,
+                        blockPos.getX() + 0.5,
+                        blockPos.getY() + 0.9,
+                        blockPos.getZ() + 0.5,
+                        50,
+                        0,
+                        0,
+                        0,
+                        2);
+
+            }
+
             currentBurstDelay = minBurstDelay + (int)(Math.random() * 1000);
         } else {
             if(blockState.getValue(HEAT_LEVEL) > 0 && currentBurstDelay % 20 == 0) {
@@ -167,7 +199,7 @@ public class GeyserBlockEntity extends BlockEntity {
     private void updateBurstLength(Level level, BlockState blockState, BlockPos blockPos) {
         if(currentBurstLength == 0) {
             setBursting(level, blockState, blockPos, false);
-            currentBurstLength = minBurstLength + (int)(Math.random() * 30);
+            currentBurstLength = minBurstLength + (int)(Math.random() * 20);
         } else {
             currentBurstLength--;
         }

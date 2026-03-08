@@ -5,6 +5,7 @@ import com.naterbobber.darkerdepths.block.DDBlockStateProperties;
 import com.naterbobber.darkerdepths.block.blockentities.GeyserBlockEntity;
 import com.naterbobber.darkerdepths.init.DDBlockEntityTypes;
 import com.naterbobber.darkerdepths.init.DDParticleTypes;
+import com.naterbobber.darkerdepths.util.DDTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
@@ -39,6 +40,7 @@ public class GeyserBlock extends BaseEntityBlock {
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
     public static final BooleanProperty BURSTING = DDBlockStateProperties.BURSTING;
     private static final IntegerProperty HEAT_LEVEL = DDBlockStateProperties.HEAT_LEVEL;
+    private static final BooleanProperty BOOSTED = DDBlockStateProperties.BOOSTED;
     public static final MapCodec<GeyserBlock> CODEC = simpleCodec(GeyserBlock::new);
 
     public GeyserBlock(Properties properties) {
@@ -48,6 +50,7 @@ public class GeyserBlock extends BaseEntityBlock {
                 .setValue(FACING, Direction.UP)
                 .setValue(BURSTING, false)
                 .setValue(HEAT_LEVEL, 0)
+                .setValue(BOOSTED, false)
         );
     }
 
@@ -71,8 +74,8 @@ public class GeyserBlock extends BaseEntityBlock {
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         return this.defaultBlockState()
                 .setValue(POWERED, context.getLevel().hasNeighborSignal(context.getClickedPos()))
-                .setValue(FACING, context.getClickedFace()
-                );
+                .setValue(FACING, context.getClickedFace())
+                .setValue(BOOSTED, checkBoosted(context.getLevel(), context.getClickedPos()));
     }
 
     @Nullable
@@ -92,17 +95,20 @@ public class GeyserBlock extends BaseEntityBlock {
     }
 
     @Override
-    public void neighborChanged(BlockState state, Level worldIn, BlockPos pos, Block p_60512_, BlockPos p_60513_, boolean p_60514_) {
-        if (!worldIn.isClientSide()) {
-            boolean isPowered = state.getValue(POWERED);
-            if (isPowered != worldIn.hasNeighborSignal(pos)) {
-                if (isPowered) {
-                    worldIn.scheduleTick(pos, this, 4);
-                } else {
-                    worldIn.setBlock(pos, state.cycle(POWERED), 2);
-                }
+    public void neighborChanged(BlockState state, Level worldIn, BlockPos pos, Block block, BlockPos fromPos, boolean p_60514_) {
+        if (worldIn.isClientSide()) return;
+
+        boolean isPowered = state.getValue(POWERED);
+        if (isPowered != worldIn.hasNeighborSignal(pos)) {
+            if (isPowered) {
+                worldIn.scheduleTick(pos, this, 4);
+            } else {
+                worldIn.setBlock(pos, state.cycle(POWERED), 2);
             }
         }
+
+        setBoosted(worldIn, state, pos, checkBoosted(worldIn, pos));
+
     }
 
     @Override
@@ -145,8 +151,24 @@ public class GeyserBlock extends BaseEntityBlock {
     }
 
     @Override
-    public void onPlace(BlockState p_60566_, Level worldIn, BlockPos pos, BlockState p_60569_, boolean p_60570_) {
-        worldIn.scheduleTick(pos, this, 1);
+    public void onPlace(BlockState blockState, Level level, BlockPos blockPos, BlockState oldState, boolean movedByPiston) {
+        level.scheduleTick(blockPos, this, 1);
+    }
+
+    private static void setBoosted(Level level, BlockState blockState, BlockPos blockPos, boolean boosted) {
+        if(blockState.getValue(BOOSTED) == boosted) {
+            return;
+        }
+        BlockState newBlockState = blockState.setValue(BOOSTED, boosted);
+        level.setBlock(blockPos, newBlockState, 3);
+    }
+
+    private static boolean checkBoosted(Level level, BlockPos blockPos) {
+        if(level.getBlockState(blockPos.below()).is(DDTags.Blocks.GEYSER_BOOSTERS)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
@@ -156,7 +178,7 @@ public class GeyserBlock extends BaseEntityBlock {
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(POWERED, FACING, BURSTING, HEAT_LEVEL);
+        builder.add(POWERED, FACING, BURSTING, HEAT_LEVEL, BOOSTED);
     }
 
 }

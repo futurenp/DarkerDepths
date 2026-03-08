@@ -64,5 +64,6 @@ public class ClientRegisterEvents {
         engine.register(DDParticleTypes.VOID_SOUL_FLAME.get(), VoidSoulFlameParticle.VoidSoulFlameFactory::new);
         engine.register(DDParticleTypes.VOID_SOUL_FLAME_SMOKE.get(), VoidSoulFlameSmokeParticle.VoidSoulFlameSmokeFactory::new);
         engine.register(DDParticleTypes.GEYSER_BURST_SMOKE.get(), GeyserBurstSmokeParticle.GeyserBurstSmokeParticleFactory::new);
+        engine.register(DDParticleTypes.GEYSER_BURST_SMOKE_BOOSTED.get(), GeyserBurstSmokeParticle.GeyserBurstSmokeBoostedParticleFactory::new);
     }
 }
