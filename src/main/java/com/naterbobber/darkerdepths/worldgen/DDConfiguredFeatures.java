@@ -1,6 +1,7 @@
 package com.naterbobber.darkerdepths.worldgen;
 
 import com.google.common.collect.ImmutableList;
+import com.naterbobber.darkerdepths.block.DDBlockStateProperties;
 import com.naterbobber.darkerdepths.block.custom.AshBlock;
 import com.naterbobber.darkerdepths.block.custom.GlowshroomBlock;
 import com.naterbobber.darkerdepths.block.custom.GlowspursBlock;
@@ -98,7 +99,7 @@ public class DDConfiguredFeatures {
 
         FeatureUtils.register(context, MOLTEN_POOL, DDFeatures.LAVA_VEGETATION_PATCH_FEATURE.get(), new VegetationPatchConfiguration(
                 BlockTags.BASE_STONE_OVERWORLD,
-                BlockStateProvider.simple(DDBlocks.DARKSLATE.get().defaultBlockState()),
+                BlockStateProvider.simple(DDBlocks.DARKSLATE.get().defaultBlockState().setValue(DDBlockStateProperties.HEAT_LEVEL, 4)),
                 PlacementUtils.inlinePlaced(lookup.getOrThrow(GEYSER_PLACEMENT)),
                 CaveSurface.FLOOR,
                 ConstantInt.of(1), 0.0F, 5, 0.4F, UniformInt.of(4, 7), 0.3F)

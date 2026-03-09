@@ -31,26 +31,48 @@ public class LavaVegetationPatchFeature extends VegetationPatchFeature {
         BlockPos.MutableBlockPos mutable = new BlockPos.MutableBlockPos();
         Iterator<BlockPos> posIterator = landGroundPatch.iterator();
 
-        BlockPos positions;
+        BlockPos position;
         while (posIterator.hasNext()) {
-            positions = posIterator.next();
-            if (!isExposed(world, positions, mutable)) {
-                lavaGroundPatch.add(positions);
+            position = posIterator.next();
+
+
+            var positions = Set.of(
+                    position.north(),
+                    position.south(),
+                    position.east(),
+                    position.west(),
+                    position
+            );
+
+            var place = true;
+            for(var blockPos : positions) {
+                if(isExposed(world, blockPos, mutable)) {
+                    place = false;
+                    break;
+                }
+            }
+
+            if(place) {
+                lavaGroundPatch.add(position);
             }
         }
 
         posIterator = lavaGroundPatch.iterator();
 
         while (posIterator.hasNext()) {
-            positions = posIterator.next();
-            world.setBlock(positions, Blocks.LAVA.defaultBlockState(), 2);
+            position = posIterator.next();
+            world.setBlock(position, Blocks.LAVA.defaultBlockState(), 2);
         }
 
         return lavaGroundPatch;
     }
 
     private static boolean isExposed(WorldGenLevel world, BlockPos pos, BlockPos.MutableBlockPos mutable) {
-        return isExposedDirection(world, pos, mutable, Direction.NORTH) || isExposedDirection(world, pos, mutable, Direction.EAST) || isExposedDirection(world, pos, mutable, Direction.SOUTH) || isExposedDirection(world, pos, mutable, Direction.WEST) || isExposedDirection(world, pos, mutable, Direction.DOWN);
+        return isExposedDirection(world, pos, mutable, Direction.NORTH)
+                || isExposedDirection(world, pos, mutable, Direction.EAST)
+                || isExposedDirection(world, pos, mutable, Direction.SOUTH)
+                || isExposedDirection(world, pos, mutable, Direction.WEST)
+                || isExposedDirection(world, pos, mutable, Direction.DOWN);
     }
 
     private static boolean isExposedDirection(WorldGenLevel world, BlockPos pos, BlockPos.MutableBlockPos mutable, Direction direction) {
@@ -60,10 +82,10 @@ public class LavaVegetationPatchFeature extends VegetationPatchFeature {
 
     @Override
     protected boolean placeVegetation(WorldGenLevel world, VegetationPatchConfiguration config, ChunkGenerator generator, RandomSource random, BlockPos pos) {
-//        if (random.nextFloat() < 0.1F) {
-//            world.setBlock(pos.above(), DDBlocks.MAGMA_PAD.get().defaultBlockState().setValue(BlockStateProperties.HORIZONTAL_FACING, Direction.Plane.HORIZONTAL.getRandomDirection(random)), 2);
-//            return true;
-//        }
+        if (random.nextFloat() < 0.1F) {
+            world.setBlock(pos.above(), DDBlocks.MAGMA_PAD.get().defaultBlockState().setValue(BlockStateProperties.HORIZONTAL_FACING, Direction.Plane.HORIZONTAL.getRandomDirection(random)), 2);
+            return true;
+        }
         return random.nextFloat() < 0.035F && super.placeVegetation(world, config, generator, random, pos.below(2));
     }
 }
