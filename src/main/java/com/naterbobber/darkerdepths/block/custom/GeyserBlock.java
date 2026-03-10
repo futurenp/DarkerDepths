@@ -135,11 +135,11 @@ public class GeyserBlock extends BaseEntityBlock {
     @Override
     public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, RandomSource rand) {
         double x = pos.getX(), y = pos.getY() + 1, z = pos.getZ();
-        float lavaSpeedX = 2, lavaSpeedY = 2, lavaSpeedZ = 2;
+        float lavaSpeed = 2;
 
         if (rand.nextInt(5) == 0) {
             for (int i = 0; i < rand.nextInt(1) + 1; i++) {
-                worldIn.addParticle(ParticleTypes.LAVA, x, y, z, rand.nextFloat() / lavaSpeedX, rand.nextFloat() / lavaSpeedY, rand.nextFloat() / lavaSpeedZ);
+                worldIn.addParticle(ParticleTypes.LAVA, x, y, z, rand.nextFloat() / lavaSpeed, rand.nextFloat() / lavaSpeed, rand.nextFloat() / lavaSpeed);
             }
         }
 
