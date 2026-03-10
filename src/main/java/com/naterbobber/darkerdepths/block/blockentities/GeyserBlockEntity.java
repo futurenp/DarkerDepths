@@ -17,6 +17,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.FluidTags;
+import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
@@ -102,6 +103,30 @@ public class GeyserBlockEntity extends BlockEntity {
         if (blockState.getValue(BURSTING)) {
             sendDirectionalBurstParticles(level, blockPos, blockState);
         }
+
+        var direction = blockState.getValue(BlockStateProperties.FACING);
+
+        double x = blockPos.getX(), y = blockPos.getY(), z = blockPos.getZ();
+
+        if(!blockState.getValue(BURSTING)) {
+            if(level.getRandom().nextFloat() > 0.95F) {
+                sendParticleType(level, blockPos, ParticleTypes.CAMPFIRE_COSY_SMOKE, direction,1, 0.04);
+            }
+        }
+
+        if(blockState.getValue(DDBlockStateProperties.PROVIDES_ASH)) {
+            var rand = level.getRandom();
+            var mBlockPos = new BlockPos.MutableBlockPos();
+            for(int i = 0; i < 10; i++) {
+                mBlockPos.set(x + Mth.nextInt(rand, -20, 20), y  + Mth.nextInt(rand, -10, 25), z + Mth.nextInt(rand, -20, 20));
+                BlockState blockstate = level.getBlockState(mBlockPos);
+
+                if (!blockstate.isCollisionShapeFullBlock(level, mBlockPos)) {
+                    level.addParticle(ParticleTypes.WHITE_ASH, (double)mBlockPos.getX() + rand.nextDouble(), (double)mBlockPos.getY() + rand.nextDouble(), (double)mBlockPos.getZ() + rand.nextDouble(), (double)0.0F, (double)0.0F, (double)0.0F);
+
+                }
+            }
+        }
     }
 
     private static void sendDirectionalBurstParticles(Level level, BlockPos blockPos, BlockState blockState) {
@@ -139,12 +164,13 @@ public class GeyserBlockEntity extends BlockEntity {
             double randZ = rand.nextDouble();
             level.addAlwaysVisibleParticle(
                     particle,
+                    true,
                     x + randX,
                     y + randY,
                     z + randZ,
-                    xSpeed == 0 ? 0 : xSpeed + randX/2 - 0.25,
-                    ySpeed == 0 ? 0 : ySpeed + randY/2 - 0.25,
-                    zSpeed == 0 ? 0 : zSpeed + randZ/2 - 0.25
+                    xSpeed,
+                    ySpeed,
+                    zSpeed
             );
         }
     }

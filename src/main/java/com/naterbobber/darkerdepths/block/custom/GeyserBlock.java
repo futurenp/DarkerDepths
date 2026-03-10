@@ -137,30 +137,6 @@ public class GeyserBlock extends BaseEntityBlock {
                 worldIn.addParticle(ParticleTypes.LAVA, x, y, z, rand.nextFloat() / lavaSpeed, rand.nextFloat() / lavaSpeed, rand.nextFloat() / lavaSpeed);
             }
         }
-
-        if(stateIn.getValue(PROVIDES_ASH)) {
-            var mBlockPos = new BlockPos.MutableBlockPos();
-            for(int i = 0; i < 50; i++) {
-                mBlockPos.set(x + Mth.nextInt(rand, -20, 20), y  + Mth.nextInt(rand, -10, 25), z + Mth.nextInt(rand, -20, 20));
-                BlockState blockstate = worldIn.getBlockState(mBlockPos);
-
-                if (!blockstate.isCollisionShapeFullBlock(worldIn, mBlockPos)) {
-                    worldIn.addParticle(ParticleTypes.WHITE_ASH, (double)mBlockPos.getX() + rand.nextDouble(), (double)mBlockPos.getY() + rand.nextDouble(), (double)mBlockPos.getZ() + rand.nextDouble(), (double)0.0F, (double)0.0F, (double)0.0F);
-
-                }
-            }
-        }
-
-        if(!stateIn.getValue(BURSTING)) {
-            var direction = stateIn.getValue(FACING);
-            var xSpeed = direction.getStepX();
-            var ySpeed = direction.getStepY();
-            var zSpeed = direction.getStepZ();
-            x += xSpeed + 0.5;
-            y += ySpeed + 0.5 - 1;
-            z += zSpeed + 0.5;
-            worldIn.addAlwaysVisibleParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE, true, x, y, z, xSpeed / 8F, ySpeed / 8F, zSpeed / 8F);
-        }
     }
 
     @Override
