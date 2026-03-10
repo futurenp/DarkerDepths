@@ -155,6 +155,17 @@ public class GeyserBlock extends BaseEntityBlock {
                 }
             }
         }
+
+        if(!stateIn.getValue(BOOSTED)) {
+            var direction = stateIn.getValue(FACING);
+            var xSpeed = direction.getStepX();
+            var ySpeed = direction.getStepY();
+            var zSpeed = direction.getStepZ();
+            x += xSpeed + 0.5;
+            y += ySpeed + 0.5 - 1;
+            z += zSpeed + 0.5;
+            worldIn.addParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE, x, y, z, xSpeed / 8F, ySpeed / 8F, zSpeed / 8F);
+        }
     }
 
     @Override

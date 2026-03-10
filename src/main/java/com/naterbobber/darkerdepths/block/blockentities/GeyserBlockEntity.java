@@ -100,11 +100,11 @@ public class GeyserBlockEntity extends BlockEntity {
 
     public void clientTick(Level level, BlockPos blockPos, BlockState blockState) {
         if (blockState.getValue(BURSTING)) {
-            sendDirectionalParticles(level, blockPos, blockState);
+            sendDirectionalBurstParticles(level, blockPos, blockState);
         }
     }
 
-    private static void sendDirectionalParticles(Level level, BlockPos blockPos, BlockState blockState) {
+    private static void sendDirectionalBurstParticles(Level level, BlockPos blockPos, BlockState blockState) {
         var direction = blockState.getValue(BlockStateProperties.FACING);
         var isUnderWater = level.getFluidState(blockPos.relative(direction)).is(FluidTags.WATER);
         var boosted = blockState.getValue(BOOSTED);
