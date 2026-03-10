@@ -8,6 +8,7 @@ import com.naterbobber.darkerdepths.util.DDTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.game.ClientboundSetEntityMotionPacket;
@@ -17,6 +18,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -53,21 +55,22 @@ public class GeyserBlockEntity extends BlockEntity {
             return;
         }
 
+        Direction direction = blockState.getValue(GeyserBlock.FACING);
+
         if (blockState.getValue(BURSTING)) {
             updateBurstLength(level, blockState, blockPos);
-        } else {
+        } else if (isExposed(level, blockPos, direction)){
             updateBurstDelay(level, blockState, blockPos);
             return;
         }
-
-        Direction direction = blockState.getValue(GeyserBlock.FACING);
 
         int boostColumnLength = findColumnLength(level, blockPos, direction);
         boostEntities(level, direction, blockPos, boostColumnLength);
     }
 
     private static int findColumnLength(Level level, BlockPos blockPos, Direction direction){
-        int boostColumnLength = 6;
+        boolean boosted = level.getBlockState(blockPos).getValue(BOOSTED);
+        int boostColumnLength = boosted ? 8 : 6;
         BlockPos relativePosition;
         BlockState relativeState;
         FluidState relativeFluidState;
@@ -87,49 +90,55 @@ public class GeyserBlockEntity extends BlockEntity {
         return boostColumnLength;
     }
 
+    private boolean isExposed(Level level, BlockPos blockPos, Direction direction) {
+        var frontState = level.getBlockState(blockPos.relative(direction));
+        var frontFluidState = level.getFluidState(blockPos.relative(direction));
+        return frontState.isAir()
+                || frontFluidState.is(FluidTags.WATER)
+                || frontFluidState.is(FluidTags.LAVA);
+    }
+
     public void clientTick(Level level, BlockPos blockPos, BlockState blockState) {
         if (blockState.getValue(BURSTING)) {
-            sendDirectionalParticle(level, blockPos, blockState);
+            sendDirectionalParticles(level, blockPos, blockState);
         }
     }
 
-    private static void sendDirectionalParticle(Level level, BlockPos blockPos, BlockState blockState) {
+    private static void sendDirectionalParticles(Level level, BlockPos blockPos, BlockState blockState) {
         var direction = blockState.getValue(BlockStateProperties.FACING);
+        var isUnderWater = level.getFluidState(blockPos.relative(direction)).is(FluidTags.WATER);
+        var boosted = blockState.getValue(BOOSTED);
 
+        if(isUnderWater) {
+            sendParticleType(level, blockPos, ParticleTypes.CLOUD, direction,10, boosted ? 1 : 0.5);
+            sendParticleType(level, blockPos, boosted
+                            ? DDParticleTypes.GEYSER_BURST_SMOKE_BOOSTED.get()
+                            : DDParticleTypes.GEYSER_BURST_SMOKE.get(),
+                    direction, 5, 0.75);
+        } else {
+            sendParticleType(level, blockPos, ParticleTypes.LARGE_SMOKE, direction,5, boosted ? 1 : 0.5);
+            sendParticleType(level, blockPos, boosted
+                            ? DDParticleTypes.GEYSER_BURST_SMOKE_BOOSTED.get()
+                            : DDParticleTypes.GEYSER_BURST_SMOKE.get(),
+                    direction, 5, 1);
+        }
+    }
+
+    private static void sendParticleType(Level level, BlockPos blockPos, ParticleOptions particle, Direction direction, int amount, double speed) {
         double x = blockPos.getX() + direction.getStepX();
         double y = blockPos.getY() + direction.getStepY();
         double z = blockPos.getZ() + direction.getStepZ();
-        double xSpeed = direction.getStepX();
-        double ySpeed = direction.getStepY();
-        double zSpeed = direction.getStepZ();
-
+        double xSpeed = direction.getStepX() * speed;
+        double ySpeed = direction.getStepY() * speed;
+        double zSpeed = direction.getStepZ() * speed;
         var rand = level.getRandom();
 
-        var boosted = blockState.getValue(BOOSTED);
-
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < amount; i++) {
             double randX = rand.nextDouble();
             double randY = rand.nextDouble();
             double randZ = rand.nextDouble();
             level.addAlwaysVisibleParticle(
-                    boosted
-                            ? DDParticleTypes.GEYSER_BURST_SMOKE_BOOSTED.get()
-                            : DDParticleTypes.GEYSER_BURST_SMOKE.get(),
-                    x + randX,
-                    y + randY,
-                    z + randZ,
-                    xSpeed == 0 ? 0 : xSpeed + randX/2 - 0.25,
-                    ySpeed == 0 ? 0 : ySpeed + randY/2 - 0.25,
-                    zSpeed == 0 ? 0 : zSpeed + randZ/2 - 0.25
-            );
-        }
-
-        for (int i = 0; i < 5; i++) {
-            double randX = rand.nextDouble();
-            double randY = rand.nextDouble();
-            double randZ = rand.nextDouble();
-            level.addAlwaysVisibleParticle(
-                    ParticleTypes.SMOKE,
+                    particle,
                     x + randX,
                     y + randY,
                     z + randZ,
@@ -143,15 +152,17 @@ public class GeyserBlockEntity extends BlockEntity {
 
     private static void boostEntities(Level level, Direction direction, BlockPos blockPos, int length) {
         double boostSpeed = 0.14;
-        double boost = level.getBlockState(blockPos).getValue(BOOSTED)
-                ? boostSpeed * 2
-                : boostSpeed * direction.getAxisDirection().getStep();
+        boolean boosted = level.getBlockState(blockPos).getValue(BOOSTED);
+        double boost = boostSpeed * direction.getAxisDirection().getStep() * (boosted ? 2 : 1);
 
         var boostArea = AABB.encapsulatingFullBlocks(blockPos, blockPos.relative(direction, length));
         List<Entity> nearbyEntities = level.getEntitiesOfClass(Entity.class, boostArea);
 
         for (Entity entity : nearbyEntities) {
             Vec3 motion = entity.getDeltaMovement();
+            if(entity instanceof Player) {
+                boost *= ((Player) entity).isFallFlying() ? 2 : 1;
+            }
             double xBooster = direction.getAxis() == Direction.Axis.X ? boost : 0.0D;
             double yBooster = direction.getAxis() == Direction.Axis.Y ? boost : 0.0D;
             double zBooster = direction.getAxis() == Direction.Axis.Z ? boost : 0.0D;

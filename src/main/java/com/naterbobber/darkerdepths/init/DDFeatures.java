@@ -9,6 +9,7 @@ import com.naterbobber.darkerdepths.worldgen.features.config.ReplaceListLayeredC
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.SimpleBlockConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.VegetationPatchConfiguration;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -28,5 +29,6 @@ public class DDFeatures {
     public static final DeferredHolder<Feature<?>, AridBoulderFeature> ARID_BOULDER = FEATURES.register("arid_boulder", () -> new AridBoulderFeature(NoneFeatureConfiguration.CODEC));
     public static final DeferredHolder<Feature<?>, CatacombsLavaLiningFeature> CATACOMBS_LAVA_LINING = FEATURES.register("catacombs_lava_lining", () -> new CatacombsLavaLiningFeature(NoneFeatureConfiguration.CODEC));
     public static final DeferredHolder<Feature<?>, LimestoneStripeFeature> DUSKROCK_STRIPE = FEATURES.register("limestone_stripe", () -> new LimestoneStripeFeature(NoneFeatureConfiguration.CODEC));
+    public static final DeferredHolder<Feature<?>, GeyserFeature> GEYSER_UNDER_FLUID = FEATURES.register("geyser_under_fluid", () -> new GeyserFeature(SimpleBlockConfiguration.CODEC));
 
 }

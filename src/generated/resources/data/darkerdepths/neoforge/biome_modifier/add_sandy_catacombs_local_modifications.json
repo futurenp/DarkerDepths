@@ -1,6 +1,6 @@
 {
   "type": "neoforge:add_features",
   "biomes": "darkerdepths:sandy_catacombs",
-  "features": [],
+  "features": "darkerdepths:catacombs_layered_placement",
   "step": "local_modifications"
 }

@@ -2,9 +2,8 @@ package com.naterbobber.darkerdepths.block.custom;
 
 import com.mojang.serialization.MapCodec;
 import com.naterbobber.darkerdepths.block.DDBlockStateProperties;
-import com.naterbobber.darkerdepths.block.blockentities.GeyserBlockEntity;
 import com.naterbobber.darkerdepths.init.DDBlockEntityTypes;
-import com.naterbobber.darkerdepths.init.DDParticleTypes;
+import com.naterbobber.darkerdepths.init.DDBlocks;
 import com.naterbobber.darkerdepths.util.DDTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -13,6 +12,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.FluidTags;
+import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
@@ -41,6 +41,7 @@ public class GeyserBlock extends BaseEntityBlock {
     public static final BooleanProperty BURSTING = DDBlockStateProperties.BURSTING;
     private static final IntegerProperty HEAT_LEVEL = DDBlockStateProperties.HEAT_LEVEL;
     private static final BooleanProperty BOOSTED = DDBlockStateProperties.BOOSTED;
+    private static final BooleanProperty PROVIDES_ASH = DDBlockStateProperties.PROVIDES_ASH;
     public static final MapCodec<GeyserBlock> CODEC = simpleCodec(GeyserBlock::new);
 
     public GeyserBlock(Properties properties) {
@@ -51,6 +52,7 @@ public class GeyserBlock extends BaseEntityBlock {
                 .setValue(BURSTING, false)
                 .setValue(HEAT_LEVEL, 0)
                 .setValue(BOOSTED, false)
+                .setValue(PROVIDES_ASH, false)
         );
     }
 
@@ -75,7 +77,8 @@ public class GeyserBlock extends BaseEntityBlock {
         return this.defaultBlockState()
                 .setValue(POWERED, context.getLevel().hasNeighborSignal(context.getClickedPos()))
                 .setValue(FACING, context.getClickedFace())
-                .setValue(BOOSTED, checkBoosted(context.getLevel(), context.getClickedPos(), context.getClickedFace()));
+                .setValue(BOOSTED, checkModifier(context).isBoosted())
+                .setValue(PROVIDES_ASH, checkModifier(context).isAshProvider());
     }
 
     @Nullable
@@ -107,8 +110,17 @@ public class GeyserBlock extends BaseEntityBlock {
             }
         }
 
-        setBoosted(worldIn, state, pos, checkBoosted(worldIn, pos, state.getValue(FACING)));
+        var currentModifier = checkModifier(worldIn, pos, state.getValue(FACING));
 
+        if(state.getValue(BOOSTED) == currentModifier.isBoosted() && state.getValue(PROVIDES_ASH) == currentModifier.isAshProvider()) {
+            return;
+        }
+
+        var newBlockState = state
+                .setValue(BOOSTED, currentModifier.isBoosted())
+                .setValue(PROVIDES_ASH, currentModifier.isAshProvider());
+
+        worldIn.setBlock(pos, newBlockState, 3);
     }
 
     @Override
@@ -128,6 +140,19 @@ public class GeyserBlock extends BaseEntityBlock {
         if (rand.nextInt(5) == 0) {
             for (int i = 0; i < rand.nextInt(1) + 1; i++) {
                 worldIn.addParticle(ParticleTypes.LAVA, x, y, z, rand.nextFloat() / lavaSpeedX, rand.nextFloat() / lavaSpeedY, rand.nextFloat() / lavaSpeedZ);
+            }
+        }
+
+        if(stateIn.getValue(PROVIDES_ASH)) {
+            var mBlockPos = new BlockPos.MutableBlockPos();
+            for(int i = 0; i < 50; i++) {
+                mBlockPos.set(x + Mth.nextInt(rand, -20, 20), y  + Mth.nextInt(rand, -10, 25), z + Mth.nextInt(rand, -20, 20));
+                BlockState blockstate = worldIn.getBlockState(mBlockPos);
+
+                if (!blockstate.isCollisionShapeFullBlock(worldIn, mBlockPos)) {
+                    worldIn.addParticle(ParticleTypes.WHITE_ASH, (double)mBlockPos.getX() + rand.nextDouble(), (double)mBlockPos.getY() + rand.nextDouble(), (double)mBlockPos.getZ() + rand.nextDouble(), (double)0.0F, (double)0.0F, (double)0.0F);
+
+                }
             }
         }
     }
@@ -155,21 +180,20 @@ public class GeyserBlock extends BaseEntityBlock {
         level.scheduleTick(blockPos, this, 1);
     }
 
-    private static void setBoosted(Level level, BlockState blockState, BlockPos blockPos, boolean boosted) {
-        if(blockState.getValue(BOOSTED) == boosted) {
-            return;
-        }
-        BlockState newBlockState = blockState.setValue(BOOSTED, boosted);
-        level.setBlock(blockPos, newBlockState, 3);
-    }
+    private static Modifier checkModifier(BlockPlaceContext context) { {
+        return checkModifier(context.getLevel(), context.getClickedPos(), context.getClickedFace());
+    }}
 
-    private static boolean checkBoosted(Level level, BlockPos blockPos, Direction direction) {
-        var boosterPos = blockPos.relative(direction.getOpposite());
+    private static Modifier checkModifier(Level level, BlockPos blockPos, Direction direction) {
+        var bottomPos = blockPos.relative(direction.getOpposite());
+        var blockState = level.getBlockState(bottomPos);
 
-        if(level.getBlockState(boosterPos).is(DDTags.Blocks.GEYSER_BOOSTERS)) {
-            return true;
+        if(blockState.is(DDTags.Blocks.GEYSER_BOOSTERS)) {
+            return Modifier.BOOST;
+        } else if (blockState.is(DDBlocks.ASH_BLOCK)) {
+            return Modifier.ASH;
         } else {
-            return false;
+            return Modifier.NONE;
         }
     }
 
@@ -180,7 +204,21 @@ public class GeyserBlock extends BaseEntityBlock {
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(POWERED, FACING, BURSTING, HEAT_LEVEL, BOOSTED);
+        builder.add(POWERED, FACING, BURSTING, HEAT_LEVEL, BOOSTED, PROVIDES_ASH);
+    }
+
+    private enum Modifier {
+        BOOST,
+        ASH,
+        NONE;
+
+        private boolean isBoosted() {
+            return this == BOOST;
+        }
+
+        private boolean isAshProvider() {
+            return this == ASH;
+        }
     }
 
 }

@@ -35,6 +35,9 @@ public class LavaVegetationPatchFeature extends VegetationPatchFeature {
         while (posIterator.hasNext()) {
             position = posIterator.next();
 
+            if(isOdd(position)) {
+                continue;
+            }
 
             var positions = Set.of(
                     position.north(),
@@ -73,6 +76,10 @@ public class LavaVegetationPatchFeature extends VegetationPatchFeature {
                 || isExposedDirection(world, pos, mutable, Direction.SOUTH)
                 || isExposedDirection(world, pos, mutable, Direction.WEST)
                 || isExposedDirection(world, pos, mutable, Direction.DOWN);
+    }
+
+    private static boolean isOdd(BlockPos pos) {
+        return pos.getY() % 2 != 0;
     }
 
     private static boolean isExposedDirection(WorldGenLevel world, BlockPos pos, BlockPos.MutableBlockPos mutable, Direction direction) {

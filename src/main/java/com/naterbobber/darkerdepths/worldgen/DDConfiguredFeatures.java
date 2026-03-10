@@ -93,13 +93,13 @@ public class DDConfiguredFeatures {
                 )
         ));
 
-        FeatureUtils.register(context, GEYSER_PLACEMENT, Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(
+        FeatureUtils.register(context, GEYSER_PLACEMENT, DDFeatures.GEYSER_UNDER_FLUID.get(), new SimpleBlockConfiguration(
                 BlockStateProvider.simple(DDBlocks.GEYSER.get().defaultBlockState())
         ));
 
         FeatureUtils.register(context, MOLTEN_POOL, DDFeatures.LAVA_VEGETATION_PATCH_FEATURE.get(), new VegetationPatchConfiguration(
                 BlockTags.BASE_STONE_OVERWORLD,
-                BlockStateProvider.simple(DDBlocks.DARKSLATE.get().defaultBlockState().setValue(DDBlockStateProperties.HEAT_LEVEL, 4)),
+                BlockStateProvider.simple(DDBlocks.DARKSLATE.get().defaultBlockState()),
                 PlacementUtils.inlinePlaced(lookup.getOrThrow(GEYSER_PLACEMENT)),
                 CaveSurface.FLOOR,
                 ConstantInt.of(1), 0.0F, 5, 0.4F, UniformInt.of(4, 7), 0.3F)

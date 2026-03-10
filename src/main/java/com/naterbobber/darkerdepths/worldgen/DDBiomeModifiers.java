@@ -29,7 +29,6 @@ public class DDBiomeModifiers {
                 getPlacedFeature(
                         context,
                         DARKSLATE_PLACEMENT,
-                        AMBER_PLACEMENT,
                         MOLTEN_POOL,
                         MOLTEN_SPRING
                 ),
@@ -47,9 +46,9 @@ public class DDBiomeModifiers {
         context.register(ADD_SANDY_CATACOMBS_LOCAL_MODIFICATIONS, new BiomeModifiers.AddFeaturesBiomeModifier(
                         getBiome(context, SANDY_CATACOMBS),
                         getPlacedFeature(
-                                context
+                                context,
 //                          Testing out this feature for 2.1
-//                        CATACOMBS_LAYERED_PLACEMENT
+                        CATACOMBS_LAYERED_PLACEMENT
                         ),
                         GenerationStep.Decoration.LOCAL_MODIFICATIONS)
         );
@@ -57,6 +56,7 @@ public class DDBiomeModifiers {
                 getBiome(context, SANDY_CATACOMBS),
                 getPlacedFeature(
                         context,
+                        AMBER_PLACEMENT,
                         PETRIFIED_BRANCH,
                         ARID_SURFACE
                 ),
@@ -77,8 +77,8 @@ public class DDBiomeModifiers {
                 getPlacedFeature(
                         context,
                         ARID_BOULDER,
-                        DUSKROCK_ORE
-                        //DUSKROCK_STRIPE
+                        DUSKROCK_ORE,
+                        DUSKROCK_STRIPE
                 ),
                 GenerationStep.Decoration.RAW_GENERATION)
         );

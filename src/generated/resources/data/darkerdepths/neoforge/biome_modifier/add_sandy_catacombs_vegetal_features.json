@@ -2,6 +2,7 @@
   "type": "neoforge:add_features",
   "biomes": "darkerdepths:sandy_catacombs",
   "features": [
+    "darkerdepths:amber",
     "darkerdepths:petrified_branch",
     "darkerdepths:arid_surface"
   ],

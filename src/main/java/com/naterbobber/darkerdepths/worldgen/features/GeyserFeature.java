@@ -7,20 +7,25 @@ import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
+import net.minecraft.world.level.levelgen.feature.SimpleBlockFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.SimpleBlockConfiguration;
 
-public class GeyserFeature extends Feature<NoneFeatureConfiguration> {
+public class GeyserFeature extends Feature<SimpleBlockConfiguration> {
 
-    public GeyserFeature(Codec<NoneFeatureConfiguration> codec) {
+    public GeyserFeature(Codec<SimpleBlockConfiguration> codec) {
         super(codec);
     }
 
     @Override
-    public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> context) {
+    public boolean place(FeaturePlaceContext<SimpleBlockConfiguration> context) {
         WorldGenLevel world = context.level();
         BlockPos blockPos = context.origin();
-        if ((world.getBlockState(blockPos.above()).is(Blocks.LAVA) || world.getBlockState(blockPos.above()).is(Blocks.WATER)) && world.getBlockState(blockPos).canOcclude()) {
+        if ((world.getBlockState(blockPos.above()).is(Blocks.LAVA) || world.getBlockState(blockPos.above()).is(Blocks.WATER))
+                && world.getBlockState(blockPos).canOcclude()
+                && world.getBlockState(blockPos.below()).canOcclude()){
             this.setBlock(world, blockPos, DDBlocks.GEYSER.get().defaultBlockState());
+            this.setBlock(world, blockPos.below(), DDBlocks.ASH_BLOCK.get().defaultBlockState());
             return true;
         } else {
             return false;

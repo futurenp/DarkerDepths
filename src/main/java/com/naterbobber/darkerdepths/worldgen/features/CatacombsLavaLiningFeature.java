@@ -49,7 +49,7 @@ public class CatacombsLavaLiningFeature extends Feature<NoneFeatureConfiguration
                                     )) {
 
 
-                                world.setBlock(adjacentPos, DDBlocks.DARKSLATE.get().defaultBlockState(), 2);
+                                world.setBlock(adjacentPos, Blocks.DEEPSLATE.defaultBlockState(), 2);
                                 blocksPlaced++;
 
                                 if(world.getBlockState(adjacentPos.above()).is(DDBlocks.DRY_SPROUTS.get())){
