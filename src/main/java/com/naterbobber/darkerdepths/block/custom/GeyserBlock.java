@@ -159,7 +159,7 @@ public class GeyserBlock extends BaseEntityBlock {
             x += xSpeed + 0.5;
             y += ySpeed + 0.5 - 1;
             z += zSpeed + 0.5;
-            worldIn.addAlwaysVisibleParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE, x, y, z, xSpeed / 8F, ySpeed / 8F, zSpeed / 8F);
+            worldIn.addAlwaysVisibleParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE, true, x, y, z, xSpeed / 8F, ySpeed / 8F, zSpeed / 8F);
         }
     }
 
