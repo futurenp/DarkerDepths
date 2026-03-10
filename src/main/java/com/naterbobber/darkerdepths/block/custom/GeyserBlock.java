@@ -156,7 +156,7 @@ public class GeyserBlock extends BaseEntityBlock {
             }
         }
 
-        if(!stateIn.getValue(BOOSTED)) {
+        if(!stateIn.getValue(BURSTING)) {
             var direction = stateIn.getValue(FACING);
             var xSpeed = direction.getStepX();
             var ySpeed = direction.getStepY();
