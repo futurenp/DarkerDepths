@@ -5,6 +5,7 @@ import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.SimpleParticleType;
+import net.minecraft.util.Mth;
 import net.minecraft.world.level.material.Fluids;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
@@ -34,7 +35,7 @@ public class GeyserBurstSmokeParticle extends TextureSheetParticle {
         return new GeyserBurstSmokeParticle(level, x, y, z, xSpeed, ySpeed, zSpeed, NORMAL_LIFETIME, NORMAL_SIZE);
     }
     protected static GeyserBurstSmokeParticle boostedBurstParticle(ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
-        return new GeyserBurstSmokeParticle(level, x, y, z, xSpeed, ySpeed, zSpeed, BOOSTED_LIFETIME, BOOSTED_SIZE);
+        return new GeyserBurstSmokeParticle(level, x, y, z, xSpeed * 1.2, ySpeed * 1.2, zSpeed * 1.2, BOOSTED_LIFETIME, BOOSTED_SIZE);
     }
 
     @Override
@@ -49,6 +50,14 @@ public class GeyserBurstSmokeParticle extends TextureSheetParticle {
         return ParticleRenderType.PARTICLE_SHEET_OPAQUE;
     }
 
+    @Override
+    public int getLightColor(float partialTick) {
+        var level = (int)(((float)(lifetime - age) / (float)lifetime) * 255F);
+        if(level < 100) {
+            level = 100;
+        }
+        return level;
+    }
 
     @OnlyIn(Dist.CLIENT)
     public static class GeyserBurstSmokeParticleFactory implements ParticleProvider<SimpleParticleType> {
