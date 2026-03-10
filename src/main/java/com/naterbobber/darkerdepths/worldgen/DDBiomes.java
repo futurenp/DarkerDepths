@@ -53,7 +53,7 @@ public class DDBiomes {
         BiomeDefaultFeatures.addPlainGrass(biomeBuilder);
         BiomeDefaultFeatures.addDefaultOres(biomeBuilder);
         Music music = Musics.createGameMusic(SoundEvents.MUSIC_BIOME_DRIPSTONE_CAVES);
-        return biome(true, 0.5F, 0.5F, mobBuilder, biomeBuilder, music);
+        return biome(true, 0.5F, 0.5F, 4159204, 329011, 5478752, mobBuilder, biomeBuilder, music, 8276265, calculateSkyColor(0.5F));
     }
 
     public static Biome createSandyCatacombs(HolderGetter<PlacedFeature> holderGetter, HolderGetter<ConfiguredWorldCarver<?>> holderGetter1) {
@@ -72,10 +72,14 @@ public class DDBiomes {
     }
 
     private static Biome biome(boolean precipitation, float temperature, float downfall, MobSpawnSettings.Builder mobBuilder, BiomeGenerationSettings.Builder biomeBuilder, @Nullable Music music) {
-        return biome(precipitation, temperature, downfall, 4159204, 329011, 5478752, mobBuilder, biomeBuilder, music);
+        return biome(precipitation, temperature, downfall, 4159204, 329011, 5478752, mobBuilder, biomeBuilder, music, 12638463, calculateSkyColor(temperature));
     }
 
-    private static Biome biome(boolean precipitation, float temperature, float downfall, int waterColor, int waterFogColor, int grassColor, MobSpawnSettings.Builder builder, BiomeGenerationSettings.Builder biomeBuilder, @Nullable Music music) {
+    private static Biome biome(boolean precipitation, float temperature, float downfall, int waterColor, int waterFogColor, int grassColor, MobSpawnSettings.Builder mobBuilder, BiomeGenerationSettings.Builder biomeBuilder, @Nullable Music music) {
+        return biome(precipitation, temperature, downfall, waterColor, waterFogColor, grassColor, mobBuilder, biomeBuilder, music, 12638463, calculateSkyColor(temperature));
+    }
+
+    private static Biome biome(boolean precipitation, float temperature, float downfall, int waterColor, int waterFogColor, int grassColor, MobSpawnSettings.Builder builder, BiomeGenerationSettings.Builder biomeBuilder, @Nullable Music music, int fogColor, int skyColor) {
         return (new Biome.BiomeBuilder())
                 .hasPrecipitation(precipitation)
                 .temperature(temperature)
@@ -83,9 +87,9 @@ public class DDBiomes {
                 .specialEffects((new BiomeSpecialEffects.Builder())
                         .waterColor(waterColor)
                         .waterFogColor(waterFogColor)
-                        .fogColor(12638463)
+                        .fogColor(fogColor)
                         .grassColorOverride(grassColor)
-                        .skyColor(calculateSkyColor(temperature))
+                        .skyColor(skyColor)
                         .ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS)
                         .backgroundMusic(music).build()).mobSpawnSettings(builder.build())
                 .generationSettings(biomeBuilder.build()).build();

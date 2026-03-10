@@ -2,8 +2,12 @@ package com.naterbobber.darkerdepths.events.client;
 
 import com.mojang.blaze3d.shaders.FogShape;
 import com.naterbobber.darkerdepths.client.DynamicLightHandler;
+import com.naterbobber.darkerdepths.data.tags.DDBiomeTagsProvider;
 import com.naterbobber.darkerdepths.init.DDItems;
 import com.naterbobber.darkerdepths.init.DDMobEffects;
+import com.naterbobber.darkerdepths.util.DDResourceKeys;
+import com.naterbobber.darkerdepths.util.DDTags;
+import com.naterbobber.darkerdepths.worldgen.BiomeReagentHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.world.effect.MobEffects;
@@ -14,6 +18,8 @@ import net.minecraft.world.item.Items;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.client.event.ClientTickEvent;
 import net.neoforged.neoforge.client.event.ViewportEvent;
+
+import java.io.IOException;
 
 public class ClientEvents {
 
@@ -54,6 +60,44 @@ public class ClientEvents {
 
     @SubscribeEvent
     public void onRenderFog(ViewportEvent.RenderFog event) {
+        checkAndApplyParanoiaFog(event);
+        checkAndApplyMoltenCavernFog(event);
+    }
+
+    @SubscribeEvent
+    public void onComputeFov(ViewportEvent.ComputeFov event) {
+        if (paranoiaFactor > 0.0f) {
+            double defaultFov = event.getFOV();
+
+            int amplifier = getEffectAmplifier();
+            double zoomedFov = defaultFov * (0.9 - (amplifier * 0.05));
+
+            event.setFOV(lerp(defaultFov, zoomedFov, paranoiaFactor));
+        }
+    }
+
+    private void checkAndApplyMoltenCavernFog(ViewportEvent.RenderFog event) {
+        LocalPlayer player = Minecraft.getInstance().player;
+
+        if (player == null) {
+            return;
+        }
+
+        var level = player.level();
+        var blockPos = player.getOnPos();
+        if (!level.getBiome(blockPos).is(DDResourceKeys.Biomes.MOLTEN_CAVERN)) {
+            return;
+        }
+
+        var dist = event.getFarPlaneDistance();
+
+        event.setNearPlaneDistance(dist * 0.25F);
+        event.setFarPlaneDistance(dist * 0.9F);
+        event.setFogShape(FogShape.SPHERE);
+        event.setCanceled(true);
+    }
+
+    private void checkAndApplyParanoiaFog(ViewportEvent.RenderFog event) {
         LocalPlayer player = Minecraft.getInstance().player;
 
         if (player == null
@@ -108,18 +152,6 @@ public class ClientEvents {
             }
 
             event.setCanceled(true);
-        }
-    }
-
-    @SubscribeEvent
-    public void onComputeFov(ViewportEvent.ComputeFov event) {
-        if (paranoiaFactor > 0.0f) {
-            double defaultFov = event.getFOV();
-
-            int amplifier = getEffectAmplifier();
-            double zoomedFov = defaultFov * (0.9 - (amplifier * 0.05));
-
-            event.setFOV(lerp(defaultFov, zoomedFov, paranoiaFactor));
         }
     }
 
