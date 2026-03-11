@@ -2,14 +2,8 @@ package com.naterbobber.darkerdepths.events.client;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.client.particle.*;
-import com.naterbobber.darkerdepths.client.render.renderers.BodySnatcherRenderer;
-import com.naterbobber.darkerdepths.client.render.renderers.GlowshroomMonsterRenderer;
-import com.naterbobber.darkerdepths.client.render.renderers.ParanoiaAltarBlockEntityRenderer;
-import com.naterbobber.darkerdepths.client.render.renderers.PetrifiedBoatRenderer;
-import com.naterbobber.darkerdepths.client.render.renderers.TombBlockEntityRenderer;
-import com.naterbobber.darkerdepths.client.render.renderers.VoidSoulJarBlockEntityRenderer;
-import com.naterbobber.darkerdepths.client.render.renderers.VoidSoulKnightRenderer;
-import com.naterbobber.darkerdepths.client.render.renderers.VoidSoulRenderer;
+import com.naterbobber.darkerdepths.client.render.EmissiveBakedModel;
+import com.naterbobber.darkerdepths.client.render.renderers.*;
 import com.naterbobber.darkerdepths.init.DDBlockEntityTypes;
 import com.naterbobber.darkerdepths.init.DDEntityTypes;
 import com.naterbobber.darkerdepths.init.DDParticleTypes;
@@ -20,13 +14,17 @@ import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.particle.ParticleEngine;
 import net.minecraft.client.renderer.blockentity.HangingSignRenderer;
 import net.minecraft.client.renderer.blockentity.SignRenderer;
+import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
+import net.neoforged.neoforge.client.event.ModelEvent;
 import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
+
+import java.util.List;
 
 @OnlyIn(Dist.CLIENT)
 @EventBusSubscriber(modid = DarkerDepths.MOD_ID, value = Dist.CLIENT)
@@ -43,6 +41,7 @@ public class ClientRegisterEvents {
         event.registerEntityRenderer(DDEntityTypes.BODY_SNATCHER.get(), BodySnatcherRenderer::new);
         event.registerEntityRenderer(DDEntityTypes.VOID_SOUL_KNIGHT.get(), VoidSoulKnightRenderer::new);
         event.registerEntityRenderer(DDEntityTypes.VOID_SOUL.get(), VoidSoulRenderer::new);
+        event.registerEntityRenderer(DDEntityTypes.SCORCHER.get(), ScorcherRenderer::new);
         event.registerBlockEntityRenderer(DDBlockEntityTypes.TOMB.get(), TombBlockEntityRenderer::new);
         event.registerBlockEntityRenderer(DDBlockEntityTypes.PARANOIA_ALTAR.get(), ParanoiaAltarBlockEntityRenderer::new);
         event.registerBlockEntityRenderer(DDBlockEntityTypes.VOID_SOUL_JAR.get(), VoidSoulJarBlockEntityRenderer::new);

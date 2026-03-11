@@ -1,10 +1,7 @@
 package com.naterbobber.darkerdepths.events;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
-import com.naterbobber.darkerdepths.entities.BodySnatcherEntity;
-import com.naterbobber.darkerdepths.entities.GlowshroomMonsterEntity;
-import com.naterbobber.darkerdepths.entities.VoidSoulEntity;
-import com.naterbobber.darkerdepths.entities.VoidSoulKnightEntity;
+import com.naterbobber.darkerdepths.entities.*;
 import com.naterbobber.darkerdepths.init.DDEntityTypes;
 import net.minecraft.world.entity.SpawnPlacementTypes;
 import net.minecraft.world.level.levelgen.Heightmap;
@@ -28,5 +25,6 @@ public class RegisterEvents {
         event.put(DDEntityTypes.BODY_SNATCHER.get(), BodySnatcherEntity.createAttributes().build());
         event.put(DDEntityTypes.VOID_SOUL_KNIGHT.get(), VoidSoulKnightEntity.createAttributes().build());
         event.put(DDEntityTypes.VOID_SOUL.get(), VoidSoulEntity.createAttributes().build());
+        event.put(DDEntityTypes.SCORCHER.get(), ScorcherEntity.createAttributes().build());
     }
 }
