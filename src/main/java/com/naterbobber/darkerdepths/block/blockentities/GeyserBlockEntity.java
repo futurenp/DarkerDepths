@@ -37,7 +37,6 @@ public class GeyserBlockEntity extends BlockEntity {
     private static final IntegerProperty HEAT_LEVEL = DDBlockStateProperties.HEAT_LEVEL;
     private static final BooleanProperty POWERED = BlockStateProperties.POWERED;
     private static final BooleanProperty BOOSTED = DDBlockStateProperties.BOOSTED;
-    private static final String burstDelayTag = "burstDelay";
     private static final String burstLengthTag = "burstLength";
     private static final int minBurstLength = 60;
     private int currentBurstLength = minBurstLength;
