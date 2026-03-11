@@ -234,15 +234,6 @@ public class GeyserBlockEntity extends BlockEntity {
         }
     }
 
-    private void updateHeatLevel(Level level, BlockState blockState, BlockPos blockPos) {
-        int heatLevel = blockState.getValue(HEAT_LEVEL);
-        if(heatLevel > 0) {
-            heatLevel--;
-        }
-        BlockState newBlockState = blockState.setValue(HEAT_LEVEL, heatLevel);
-        level.setBlock(blockPos, newBlockState, 3);
-    }
-
     @Override
     protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.saveAdditional(tag, registries);
