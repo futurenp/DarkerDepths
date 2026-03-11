@@ -32,6 +32,7 @@ import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.*;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
+import net.minecraft.world.level.levelgen.feature.stateproviders.RuleBasedBlockStateProvider;
 import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
 import net.minecraft.world.level.levelgen.placement.CaveSurface;
 import net.minecraft.world.level.levelgen.structure.templatesystem.BlockMatchTest;
@@ -210,6 +211,15 @@ public class DDConfiguredFeatures {
                         )
                 ),
                 30)
+        );
+
+        FeatureUtils.register(context, MAGMA_DISK, Feature.DISK,
+                new DiskConfiguration(
+                        RuleBasedBlockStateProvider.simple(Blocks.MAGMA_BLOCK),
+                        BlockPredicate.matchesBlocks(DDBlocks.DARKSLATE.get()),
+                        UniformInt.of(2, 4),
+                        1
+                )
         );
 
         FeatureUtils.register(context, DUSKROCK_ORE, Feature.ORE, new OreConfiguration(

@@ -68,6 +68,7 @@ public class DDResourceKeys {
         public static final ResourceKey<ConfiguredFeature<?, ?>> LONG_PETRIFIED_BRANCH = createKey("long_petrified_branch");
         public static final ResourceKey<ConfiguredFeature<?, ?>> PETRIFIED_BRANCH = createKey("petrified_branch");
         public static final ResourceKey<ConfiguredFeature<?, ?>> MAGMA_ORE = createKey("magma_ore");
+        public static final ResourceKey<ConfiguredFeature<?, ?>> MAGMA_DISK = createKey("magma_disk");
         public static final ResourceKey<ConfiguredFeature<?, ?>> DARKSLATE_SURFACE = createKey("darkslate_surface");
         public static final ResourceKey<ConfiguredFeature<?, ?>> ARID_SURFACE = createKey("arid_surface");
         public static final ResourceKey<ConfiguredFeature<?, ?>> GRIME_SURFACE = createKey("grime_surface");
@@ -91,9 +92,9 @@ public class DDResourceKeys {
         public static final ResourceKey<PlacedFeature> DARKSLATE_PLACEMENT = createKey("darkslate_placement");
         public static final ResourceKey<PlacedFeature> CATACOMBS_SAND_PLACEMENT = createKey("catacombs_sand_placement");
         public static final ResourceKey<PlacedFeature> CATACOMBS_LAYERED_PLACEMENT = createKey("catacombs_layered_placement");
-
         public static final ResourceKey<PlacedFeature> PETRIFIED_BRANCH = createKey("petrified_branch");
         public static final ResourceKey<PlacedFeature> MAGMA_ORE = createKey("magma_ore");
+        public static final ResourceKey<PlacedFeature> MAGMA_DISK = createKey("magma_disk");
         public static final ResourceKey<PlacedFeature> GRIME_SURFACE = createKey("grime_surface");
         public static final ResourceKey<PlacedFeature> ARID_SURFACE = createKey("arid_surface");
         public static final ResourceKey<PlacedFeature> DARKSLATE_SURFACE = createKey("darkslate_surface");
