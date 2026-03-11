@@ -44,6 +44,8 @@ public class DDBlockStateProvider extends BlockStateProvider {
         add(this::woodBlockWithItem, DDBlocks.STRIPPED_PETRIFIED_WOOD, DDBlocks.STRIPPED_PETRIFIED_LOG);
         add(this::columnBlockWithItem, DDBlocks.PETRIFIED_BOOKSHELF, DDBlocks.PETRIFIED_PLANKS);
         add(this::woodBlockWithItem, DDBlocks.PETRIFIED_BOARDS, DDBlocks.PETRIFIED_BOARDS);
+        add(this::geyserBlock, DDBlocks.GEYSER);
+        add(this::crossBlockWithItem, DDBlocks.ASH);
 
 
         skip(
@@ -52,10 +54,8 @@ public class DDBlockStateProvider extends BlockStateProvider {
                 DDBlocks.AMBER_CLUSTER,
                 DDBlocks.DEATH_ANCHOR,
                 DDBlocks.AMBER_CLUSTER,
-                DDBlocks.ASH,
                 DDBlocks.CRYSTAL_MELON,
                 DDBlocks.DEAD_LIVING_CRYSTAL,
-                DDBlocks.GEYSER,
                 DDBlocks.GLOWSHROOM,
                 DDBlocks.GLIMMERING_VINE_PLANT,
                 DDBlocks.GLIMMERING_VINES,
@@ -108,7 +108,7 @@ public class DDBlockStateProvider extends BlockStateProvider {
                         case DoorBlock b -> doorBlockWithItem(holder);
                         case TrapDoorBlock b -> trapdoorBlockWithItem(holder);
                         case BushBlock b -> crossBlockWithItem(holder);
-                        case DarkslateBlock b -> axisBlockWithIntProperty(holder, DDBlockStateProperties.HEAT_LEVEL);
+                        case DarkslateBlock b -> darkslateBlockWithItem(holder, DDBlockStateProperties.HEAT_LEVEL);
                         case RotatedPillarBlock b -> rotatablePillarBlockWithItem(holder);
                         case ConnectedPillarBlock b -> connectedPillarBlockWithItem(holder);
                         case SignBlock b -> skip(holder);
@@ -188,13 +188,14 @@ public class DDBlockStateProvider extends BlockStateProvider {
         }
     }
 
-    public void axisBlockWithIntProperty(DeferredHolder<Block, ? extends Block> blockHolder, IntegerProperty property) {
+    public void darkslateBlockWithItem(DeferredHolder<Block, ? extends Block> blockHolder, IntegerProperty property) {
         Block block = blockHolder.get();
         getVariantBuilder(block).forAllStates(state -> {
             Direction.Axis axis = state.getValue(RotatedPillarBlock.AXIS);
             int propValue = state.getValue(property);
             String propertyName = property.getName();
             String blockName = blockHolder.getId().getPath();
+
             String stateName = blockName + "_" + propertyName + "_" + propValue;
             if (propValue == 0) {
                 stateName = blockName;
@@ -203,8 +204,72 @@ public class DDBlockStateProvider extends BlockStateProvider {
             ResourceLocation sideTexture = modLoc("block/" + stateName);
             ResourceLocation endTexture = this.extend(sideTexture, "_top");
 
-            ModelFile vertical = this.models().cubeColumn(stateName, sideTexture, endTexture);
-            ModelFile horizontal = this.models().cubeColumnHorizontal(stateName + "_horizontal", sideTexture, endTexture);
+            ModelFile vertical;
+            ModelFile horizontal;
+
+            if (propValue >= 2) {
+                ResourceLocation glowSideTexture = this.extend(sideTexture, "_glow");
+                ResourceLocation glowEndTexture = this.extend(endTexture, "_glow");
+
+                // 1. Emissive Vertical Model
+                vertical = this.models().getBuilder(stateName)
+                        .parent(new net.neoforged.neoforge.client.model.generators.ModelFile.UncheckedModelFile("minecraft:block/block"))
+                        .renderType("minecraft:translucent")
+                        .texture("particle", sideTexture)
+                        .texture("base_side", sideTexture)
+                        .texture("base_end", endTexture)
+                        .texture("glow_side", glowSideTexture)
+                        .texture("glow_end", glowEndTexture)
+                        // Base stone cube (Ends on UP/DOWN)
+                        .element().from(0, 0, 0).to(16, 16, 16)
+                        .face(Direction.UP).texture("#base_end").cullface(Direction.UP).end()
+                        .face(Direction.DOWN).texture("#base_end").cullface(Direction.DOWN).end()
+                        .face(Direction.NORTH).texture("#base_side").cullface(Direction.NORTH).end()
+                        .face(Direction.SOUTH).texture("#base_side").cullface(Direction.SOUTH).end()
+                        .face(Direction.EAST).texture("#base_side").cullface(Direction.EAST).end()
+                        .face(Direction.WEST).texture("#base_side").cullface(Direction.WEST).end()
+                        .end()
+                        // Glowing overlay cube
+                        .element().from(0, 0, 0).to(16, 16, 16)
+                        .face(Direction.UP).texture("#glow_end").cullface(Direction.UP).end()
+                        .face(Direction.DOWN).texture("#glow_end").cullface(Direction.DOWN).end()
+                        .face(Direction.NORTH).texture("#glow_side").cullface(Direction.NORTH).end()
+                        .face(Direction.SOUTH).texture("#glow_side").cullface(Direction.SOUTH).end()
+                        .face(Direction.EAST).texture("#glow_side").cullface(Direction.EAST).end()
+                        .face(Direction.WEST).texture("#glow_side").cullface(Direction.WEST).end()
+                        .end();
+
+                // 2. Emissive Horizontal Model
+                horizontal = this.models().getBuilder(stateName + "_horizontal")
+                        .parent(new net.neoforged.neoforge.client.model.generators.ModelFile.UncheckedModelFile("minecraft:block/block"))
+                        .renderType("minecraft:translucent")
+                        .texture("particle", sideTexture)
+                        .texture("base_side", sideTexture)
+                        .texture("base_end", endTexture)
+                        .texture("glow_side", glowSideTexture)
+                        .texture("glow_end", glowEndTexture)
+                        // Base stone cube (Ends STILL on UP/DOWN, Sides get 90-degree UV rotation)
+                        .element().from(0, 0, 0).to(16, 16, 16)
+                        .face(Direction.UP).texture("#base_end").cullface(Direction.UP).end()
+                        .face(Direction.DOWN).texture("#base_end").cullface(Direction.DOWN).end()
+                        .face(Direction.NORTH).texture("#base_side").cullface(Direction.NORTH).rotation(net.neoforged.neoforge.client.model.generators.ModelBuilder.FaceRotation.CLOCKWISE_90).end()
+                        .face(Direction.SOUTH).texture("#base_side").cullface(Direction.SOUTH).rotation(net.neoforged.neoforge.client.model.generators.ModelBuilder.FaceRotation.CLOCKWISE_90).end()
+                        .face(Direction.EAST).texture("#base_side").cullface(Direction.EAST).rotation(net.neoforged.neoforge.client.model.generators.ModelBuilder.FaceRotation.CLOCKWISE_90).end()
+                        .face(Direction.WEST).texture("#base_side").cullface(Direction.WEST).rotation(net.neoforged.neoforge.client.model.generators.ModelBuilder.FaceRotation.CLOCKWISE_90).end()
+                        .end()
+                        // Glowing overlay cube
+                        .element().from(0, 0, 0).to(16, 16, 16)
+                        .face(Direction.UP).texture("#glow_end").cullface(Direction.UP).end()
+                        .face(Direction.DOWN).texture("#glow_end").cullface(Direction.DOWN).end()
+                        .face(Direction.NORTH).texture("#glow_side").cullface(Direction.NORTH).rotation(net.neoforged.neoforge.client.model.generators.ModelBuilder.FaceRotation.CLOCKWISE_90).end()
+                        .face(Direction.SOUTH).texture("#glow_side").cullface(Direction.SOUTH).rotation(net.neoforged.neoforge.client.model.generators.ModelBuilder.FaceRotation.CLOCKWISE_90).end()
+                        .face(Direction.EAST).texture("#glow_side").cullface(Direction.EAST).rotation(net.neoforged.neoforge.client.model.generators.ModelBuilder.FaceRotation.CLOCKWISE_90).end()
+                        .face(Direction.WEST).texture("#glow_side").cullface(Direction.WEST).rotation(net.neoforged.neoforge.client.model.generators.ModelBuilder.FaceRotation.CLOCKWISE_90).end()
+                        .end();
+            } else {
+                vertical = this.models().cubeColumn(stateName, sideTexture, endTexture);
+                horizontal = this.models().cubeColumnHorizontal(stateName + "_horizontal", sideTexture, endTexture);
+            }
 
             if (axis == Direction.Axis.Y) {
                 return ConfiguredModel.builder().modelFile(vertical).build();
@@ -216,6 +281,71 @@ public class DDBlockStateProvider extends BlockStateProvider {
         });
 
         simpleBlockItem(block, models().getExistingFile(blockTexture(block)));
+    }
+
+    public void geyserBlock(DeferredHolder<Block, ? extends Block> blockHolder) {
+        Block block = blockHolder.get();
+
+        // Standard textures
+        ResourceLocation sideTexture = modLoc("block/geyser");
+        ResourceLocation bottomTexture = modLoc("block/darkslate_top");
+        ResourceLocation topTexture = modLoc("block/geyser_top");
+
+        // Heated base textures
+        ResourceLocation heatedSideTexture = modLoc("block/heated_geyser");
+        ResourceLocation heatedBottomTexture = modLoc("block/darkslate_heat_level_2_top");
+        ResourceLocation heatedTopTexture = modLoc("block/heated_geyser_top");
+
+        // Emissive overlay textures
+        ResourceLocation heatedSideGlow = modLoc("block/heated_geyser_glow");
+        ResourceLocation heatedBottomGlow = modLoc("block/darkslate_heat_level_2_top_glow");
+        ResourceLocation heatedTopGlow = modLoc("block/heated_geyser_top_glow");
+
+        // 1. Generate the standard Geyser model
+        ModelFile normalModel = models().cubeBottomTop(
+                "geyser",
+                sideTexture,
+                bottomTexture,
+                topTexture
+        );
+
+        // 2. Generate the Bursting (heated) Geyser model
+        ModelFile burstingModel = this.models().getBuilder("heated_geyser")
+                .parent(new net.neoforged.neoforge.client.model.generators.ModelFile.UncheckedModelFile("minecraft:block/block"))
+                .texture("particle", heatedSideTexture)
+                .texture("base_side", heatedSideTexture)
+                .texture("base_bottom", heatedBottomTexture)
+                .texture("base_top", heatedTopTexture)
+                .texture("glow_side", heatedSideGlow)
+                .texture("glow_bottom", heatedBottomGlow) // Added the bottom glow texture
+                .texture("glow_top", heatedTopGlow)
+                // Base stone cube
+                .element().from(0, 0, 0).to(16, 16, 16)
+                .face(Direction.DOWN).texture("#base_bottom").cullface(Direction.DOWN).end()
+                .face(Direction.UP).texture("#base_top").cullface(Direction.UP).end()
+                .face(Direction.NORTH).texture("#base_side").cullface(Direction.NORTH).end()
+                .face(Direction.SOUTH).texture("#base_side").cullface(Direction.SOUTH).end()
+                .face(Direction.EAST).texture("#base_side").cullface(Direction.EAST).end()
+                .face(Direction.WEST).texture("#base_side").cullface(Direction.WEST).end()
+                .end()
+                // Glowing overlay cube (Now includes the DOWN face)
+                .element().from(0, 0, 0).to(16, 16, 16)
+                .face(Direction.DOWN).texture("#glow_bottom").cullface(Direction.DOWN).end()
+                .face(Direction.UP).texture("#glow_top").cullface(Direction.UP).end()
+                .face(Direction.NORTH).texture("#glow_side").cullface(Direction.NORTH).end()
+                .face(Direction.SOUTH).texture("#glow_side").cullface(Direction.SOUTH).end()
+                .face(Direction.EAST).texture("#glow_side").cullface(Direction.EAST).end()
+                .face(Direction.WEST).texture("#glow_side").cullface(Direction.WEST).end()
+                .end();
+
+        // 3. Apply the directional rotations automatically
+        directionalBlock(block, state -> {
+            boolean isBursting = state.getValue(DDBlockStateProperties.BURSTING);
+            return isBursting ? burstingModel : normalModel;
+        });
+
+        // 4. Create the inventory item model (defaulting to the non-bursting state)
+        simpleBlockItem(block, normalModel);
     }
 
     private void doorBlockWithItem(DeferredHolder<Block, ? extends Block> block) {

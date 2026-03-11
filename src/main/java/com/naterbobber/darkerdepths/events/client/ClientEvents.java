@@ -91,8 +91,8 @@ public class ClientEvents {
 
         var dist = event.getFarPlaneDistance();
 
-        event.setNearPlaneDistance(dist * 0.25F);
-        event.setFarPlaneDistance(dist * 0.9F);
+        event.setNearPlaneDistance(32);
+        event.setFarPlaneDistance(128);
         event.setFogShape(FogShape.SPHERE);
         event.setCanceled(true);
     }

@@ -1,0 +1,2084 @@
+{
+  "variants": {
+    "boosted=false,bursting=false,facing=down,heat_level=0,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 180
+    },
+    "boosted=false,bursting=false,facing=down,heat_level=0,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 180
+    },
+    "boosted=false,bursting=false,facing=down,heat_level=0,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 180
+    },
+    "boosted=false,bursting=false,facing=down,heat_level=0,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 180
+    },
+    "boosted=false,bursting=false,facing=down,heat_level=1,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 180
+    },
+    "boosted=false,bursting=false,facing=down,heat_level=1,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 180
+    },
+    "boosted=false,bursting=false,facing=down,heat_level=1,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 180
+    },
+    "boosted=false,bursting=false,facing=down,heat_level=1,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 180
+    },
+    "boosted=false,bursting=false,facing=down,heat_level=2,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 180
+    },
+    "boosted=false,bursting=false,facing=down,heat_level=2,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 180
+    },
+    "boosted=false,bursting=false,facing=down,heat_level=2,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 180
+    },
+    "boosted=false,bursting=false,facing=down,heat_level=2,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 180
+    },
+    "boosted=false,bursting=false,facing=down,heat_level=3,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 180
+    },
+    "boosted=false,bursting=false,facing=down,heat_level=3,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 180
+    },
+    "boosted=false,bursting=false,facing=down,heat_level=3,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 180
+    },
+    "boosted=false,bursting=false,facing=down,heat_level=3,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 180
+    },
+    "boosted=false,bursting=false,facing=down,heat_level=4,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 180
+    },
+    "boosted=false,bursting=false,facing=down,heat_level=4,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 180
+    },
+    "boosted=false,bursting=false,facing=down,heat_level=4,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 180
+    },
+    "boosted=false,bursting=false,facing=down,heat_level=4,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 180
+    },
+    "boosted=false,bursting=false,facing=east,heat_level=0,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=false,bursting=false,facing=east,heat_level=0,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=false,bursting=false,facing=east,heat_level=0,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=false,bursting=false,facing=east,heat_level=0,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=false,bursting=false,facing=east,heat_level=1,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=false,bursting=false,facing=east,heat_level=1,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=false,bursting=false,facing=east,heat_level=1,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=false,bursting=false,facing=east,heat_level=1,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=false,bursting=false,facing=east,heat_level=2,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=false,bursting=false,facing=east,heat_level=2,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=false,bursting=false,facing=east,heat_level=2,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=false,bursting=false,facing=east,heat_level=2,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=false,bursting=false,facing=east,heat_level=3,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=false,bursting=false,facing=east,heat_level=3,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=false,bursting=false,facing=east,heat_level=3,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=false,bursting=false,facing=east,heat_level=3,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=false,bursting=false,facing=east,heat_level=4,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=false,bursting=false,facing=east,heat_level=4,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=false,bursting=false,facing=east,heat_level=4,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=false,bursting=false,facing=east,heat_level=4,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=false,bursting=false,facing=north,heat_level=0,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90
+    },
+    "boosted=false,bursting=false,facing=north,heat_level=0,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90
+    },
+    "boosted=false,bursting=false,facing=north,heat_level=0,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90
+    },
+    "boosted=false,bursting=false,facing=north,heat_level=0,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90
+    },
+    "boosted=false,bursting=false,facing=north,heat_level=1,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90
+    },
+    "boosted=false,bursting=false,facing=north,heat_level=1,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90
+    },
+    "boosted=false,bursting=false,facing=north,heat_level=1,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90
+    },
+    "boosted=false,bursting=false,facing=north,heat_level=1,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90
+    },
+    "boosted=false,bursting=false,facing=north,heat_level=2,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90
+    },
+    "boosted=false,bursting=false,facing=north,heat_level=2,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90
+    },
+    "boosted=false,bursting=false,facing=north,heat_level=2,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90
+    },
+    "boosted=false,bursting=false,facing=north,heat_level=2,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90
+    },
+    "boosted=false,bursting=false,facing=north,heat_level=3,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90
+    },
+    "boosted=false,bursting=false,facing=north,heat_level=3,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90
+    },
+    "boosted=false,bursting=false,facing=north,heat_level=3,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90
+    },
+    "boosted=false,bursting=false,facing=north,heat_level=3,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90
+    },
+    "boosted=false,bursting=false,facing=north,heat_level=4,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90
+    },
+    "boosted=false,bursting=false,facing=north,heat_level=4,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90
+    },
+    "boosted=false,bursting=false,facing=north,heat_level=4,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90
+    },
+    "boosted=false,bursting=false,facing=north,heat_level=4,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90
+    },
+    "boosted=false,bursting=false,facing=south,heat_level=0,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=false,bursting=false,facing=south,heat_level=0,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=false,bursting=false,facing=south,heat_level=0,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=false,bursting=false,facing=south,heat_level=0,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=false,bursting=false,facing=south,heat_level=1,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=false,bursting=false,facing=south,heat_level=1,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=false,bursting=false,facing=south,heat_level=1,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=false,bursting=false,facing=south,heat_level=1,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=false,bursting=false,facing=south,heat_level=2,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=false,bursting=false,facing=south,heat_level=2,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=false,bursting=false,facing=south,heat_level=2,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=false,bursting=false,facing=south,heat_level=2,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=false,bursting=false,facing=south,heat_level=3,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=false,bursting=false,facing=south,heat_level=3,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=false,bursting=false,facing=south,heat_level=3,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=false,bursting=false,facing=south,heat_level=3,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=false,bursting=false,facing=south,heat_level=4,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=false,bursting=false,facing=south,heat_level=4,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=false,bursting=false,facing=south,heat_level=4,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=false,bursting=false,facing=south,heat_level=4,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=false,bursting=false,facing=up,heat_level=0,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/geyser"
+    },
+    "boosted=false,bursting=false,facing=up,heat_level=0,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/geyser"
+    },
+    "boosted=false,bursting=false,facing=up,heat_level=0,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/geyser"
+    },
+    "boosted=false,bursting=false,facing=up,heat_level=0,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/geyser"
+    },
+    "boosted=false,bursting=false,facing=up,heat_level=1,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/geyser"
+    },
+    "boosted=false,bursting=false,facing=up,heat_level=1,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/geyser"
+    },
+    "boosted=false,bursting=false,facing=up,heat_level=1,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/geyser"
+    },
+    "boosted=false,bursting=false,facing=up,heat_level=1,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/geyser"
+    },
+    "boosted=false,bursting=false,facing=up,heat_level=2,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/geyser"
+    },
+    "boosted=false,bursting=false,facing=up,heat_level=2,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/geyser"
+    },
+    "boosted=false,bursting=false,facing=up,heat_level=2,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/geyser"
+    },
+    "boosted=false,bursting=false,facing=up,heat_level=2,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/geyser"
+    },
+    "boosted=false,bursting=false,facing=up,heat_level=3,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/geyser"
+    },
+    "boosted=false,bursting=false,facing=up,heat_level=3,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/geyser"
+    },
+    "boosted=false,bursting=false,facing=up,heat_level=3,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/geyser"
+    },
+    "boosted=false,bursting=false,facing=up,heat_level=3,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/geyser"
+    },
+    "boosted=false,bursting=false,facing=up,heat_level=4,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/geyser"
+    },
+    "boosted=false,bursting=false,facing=up,heat_level=4,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/geyser"
+    },
+    "boosted=false,bursting=false,facing=up,heat_level=4,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/geyser"
+    },
+    "boosted=false,bursting=false,facing=up,heat_level=4,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/geyser"
+    },
+    "boosted=false,bursting=false,facing=west,heat_level=0,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 270
+    },
+    "boosted=false,bursting=false,facing=west,heat_level=0,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 270
+    },
+    "boosted=false,bursting=false,facing=west,heat_level=0,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 270
+    },
+    "boosted=false,bursting=false,facing=west,heat_level=0,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 270
+    },
+    "boosted=false,bursting=false,facing=west,heat_level=1,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 270
+    },
+    "boosted=false,bursting=false,facing=west,heat_level=1,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 270
+    },
+    "boosted=false,bursting=false,facing=west,heat_level=1,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 270
+    },
+    "boosted=false,bursting=false,facing=west,heat_level=1,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 270
+    },
+    "boosted=false,bursting=false,facing=west,heat_level=2,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 270
+    },
+    "boosted=false,bursting=false,facing=west,heat_level=2,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 270
+    },
+    "boosted=false,bursting=false,facing=west,heat_level=2,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 270
+    },
+    "boosted=false,bursting=false,facing=west,heat_level=2,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 270
+    },
+    "boosted=false,bursting=false,facing=west,heat_level=3,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 270
+    },
+    "boosted=false,bursting=false,facing=west,heat_level=3,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 270
+    },
+    "boosted=false,bursting=false,facing=west,heat_level=3,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 270
+    },
+    "boosted=false,bursting=false,facing=west,heat_level=3,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 270
+    },
+    "boosted=false,bursting=false,facing=west,heat_level=4,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 270
+    },
+    "boosted=false,bursting=false,facing=west,heat_level=4,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 270
+    },
+    "boosted=false,bursting=false,facing=west,heat_level=4,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 270
+    },
+    "boosted=false,bursting=false,facing=west,heat_level=4,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 270
+    },
+    "boosted=false,bursting=true,facing=down,heat_level=0,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 180
+    },
+    "boosted=false,bursting=true,facing=down,heat_level=0,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 180
+    },
+    "boosted=false,bursting=true,facing=down,heat_level=0,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 180
+    },
+    "boosted=false,bursting=true,facing=down,heat_level=0,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 180
+    },
+    "boosted=false,bursting=true,facing=down,heat_level=1,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 180
+    },
+    "boosted=false,bursting=true,facing=down,heat_level=1,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 180
+    },
+    "boosted=false,bursting=true,facing=down,heat_level=1,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 180
+    },
+    "boosted=false,bursting=true,facing=down,heat_level=1,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 180
+    },
+    "boosted=false,bursting=true,facing=down,heat_level=2,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 180
+    },
+    "boosted=false,bursting=true,facing=down,heat_level=2,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 180
+    },
+    "boosted=false,bursting=true,facing=down,heat_level=2,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 180
+    },
+    "boosted=false,bursting=true,facing=down,heat_level=2,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 180
+    },
+    "boosted=false,bursting=true,facing=down,heat_level=3,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 180
+    },
+    "boosted=false,bursting=true,facing=down,heat_level=3,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 180
+    },
+    "boosted=false,bursting=true,facing=down,heat_level=3,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 180
+    },
+    "boosted=false,bursting=true,facing=down,heat_level=3,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 180
+    },
+    "boosted=false,bursting=true,facing=down,heat_level=4,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 180
+    },
+    "boosted=false,bursting=true,facing=down,heat_level=4,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 180
+    },
+    "boosted=false,bursting=true,facing=down,heat_level=4,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 180
+    },
+    "boosted=false,bursting=true,facing=down,heat_level=4,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 180
+    },
+    "boosted=false,bursting=true,facing=east,heat_level=0,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=false,bursting=true,facing=east,heat_level=0,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=false,bursting=true,facing=east,heat_level=0,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=false,bursting=true,facing=east,heat_level=0,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=false,bursting=true,facing=east,heat_level=1,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=false,bursting=true,facing=east,heat_level=1,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=false,bursting=true,facing=east,heat_level=1,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=false,bursting=true,facing=east,heat_level=1,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=false,bursting=true,facing=east,heat_level=2,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=false,bursting=true,facing=east,heat_level=2,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=false,bursting=true,facing=east,heat_level=2,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=false,bursting=true,facing=east,heat_level=2,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=false,bursting=true,facing=east,heat_level=3,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=false,bursting=true,facing=east,heat_level=3,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=false,bursting=true,facing=east,heat_level=3,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=false,bursting=true,facing=east,heat_level=3,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=false,bursting=true,facing=east,heat_level=4,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=false,bursting=true,facing=east,heat_level=4,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=false,bursting=true,facing=east,heat_level=4,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=false,bursting=true,facing=east,heat_level=4,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=false,bursting=true,facing=north,heat_level=0,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90
+    },
+    "boosted=false,bursting=true,facing=north,heat_level=0,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90
+    },
+    "boosted=false,bursting=true,facing=north,heat_level=0,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90
+    },
+    "boosted=false,bursting=true,facing=north,heat_level=0,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90
+    },
+    "boosted=false,bursting=true,facing=north,heat_level=1,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90
+    },
+    "boosted=false,bursting=true,facing=north,heat_level=1,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90
+    },
+    "boosted=false,bursting=true,facing=north,heat_level=1,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90
+    },
+    "boosted=false,bursting=true,facing=north,heat_level=1,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90
+    },
+    "boosted=false,bursting=true,facing=north,heat_level=2,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90
+    },
+    "boosted=false,bursting=true,facing=north,heat_level=2,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90
+    },
+    "boosted=false,bursting=true,facing=north,heat_level=2,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90
+    },
+    "boosted=false,bursting=true,facing=north,heat_level=2,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90
+    },
+    "boosted=false,bursting=true,facing=north,heat_level=3,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90
+    },
+    "boosted=false,bursting=true,facing=north,heat_level=3,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90
+    },
+    "boosted=false,bursting=true,facing=north,heat_level=3,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90
+    },
+    "boosted=false,bursting=true,facing=north,heat_level=3,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90
+    },
+    "boosted=false,bursting=true,facing=north,heat_level=4,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90
+    },
+    "boosted=false,bursting=true,facing=north,heat_level=4,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90
+    },
+    "boosted=false,bursting=true,facing=north,heat_level=4,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90
+    },
+    "boosted=false,bursting=true,facing=north,heat_level=4,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90
+    },
+    "boosted=false,bursting=true,facing=south,heat_level=0,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=false,bursting=true,facing=south,heat_level=0,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=false,bursting=true,facing=south,heat_level=0,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=false,bursting=true,facing=south,heat_level=0,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=false,bursting=true,facing=south,heat_level=1,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=false,bursting=true,facing=south,heat_level=1,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=false,bursting=true,facing=south,heat_level=1,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=false,bursting=true,facing=south,heat_level=1,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=false,bursting=true,facing=south,heat_level=2,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=false,bursting=true,facing=south,heat_level=2,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=false,bursting=true,facing=south,heat_level=2,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=false,bursting=true,facing=south,heat_level=2,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=false,bursting=true,facing=south,heat_level=3,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=false,bursting=true,facing=south,heat_level=3,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=false,bursting=true,facing=south,heat_level=3,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=false,bursting=true,facing=south,heat_level=3,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=false,bursting=true,facing=south,heat_level=4,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=false,bursting=true,facing=south,heat_level=4,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=false,bursting=true,facing=south,heat_level=4,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=false,bursting=true,facing=south,heat_level=4,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=false,bursting=true,facing=up,heat_level=0,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser"
+    },
+    "boosted=false,bursting=true,facing=up,heat_level=0,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser"
+    },
+    "boosted=false,bursting=true,facing=up,heat_level=0,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser"
+    },
+    "boosted=false,bursting=true,facing=up,heat_level=0,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser"
+    },
+    "boosted=false,bursting=true,facing=up,heat_level=1,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser"
+    },
+    "boosted=false,bursting=true,facing=up,heat_level=1,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser"
+    },
+    "boosted=false,bursting=true,facing=up,heat_level=1,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser"
+    },
+    "boosted=false,bursting=true,facing=up,heat_level=1,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser"
+    },
+    "boosted=false,bursting=true,facing=up,heat_level=2,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser"
+    },
+    "boosted=false,bursting=true,facing=up,heat_level=2,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser"
+    },
+    "boosted=false,bursting=true,facing=up,heat_level=2,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser"
+    },
+    "boosted=false,bursting=true,facing=up,heat_level=2,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser"
+    },
+    "boosted=false,bursting=true,facing=up,heat_level=3,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser"
+    },
+    "boosted=false,bursting=true,facing=up,heat_level=3,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser"
+    },
+    "boosted=false,bursting=true,facing=up,heat_level=3,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser"
+    },
+    "boosted=false,bursting=true,facing=up,heat_level=3,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser"
+    },
+    "boosted=false,bursting=true,facing=up,heat_level=4,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser"
+    },
+    "boosted=false,bursting=true,facing=up,heat_level=4,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser"
+    },
+    "boosted=false,bursting=true,facing=up,heat_level=4,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser"
+    },
+    "boosted=false,bursting=true,facing=up,heat_level=4,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser"
+    },
+    "boosted=false,bursting=true,facing=west,heat_level=0,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 270
+    },
+    "boosted=false,bursting=true,facing=west,heat_level=0,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 270
+    },
+    "boosted=false,bursting=true,facing=west,heat_level=0,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 270
+    },
+    "boosted=false,bursting=true,facing=west,heat_level=0,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 270
+    },
+    "boosted=false,bursting=true,facing=west,heat_level=1,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 270
+    },
+    "boosted=false,bursting=true,facing=west,heat_level=1,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 270
+    },
+    "boosted=false,bursting=true,facing=west,heat_level=1,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 270
+    },
+    "boosted=false,bursting=true,facing=west,heat_level=1,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 270
+    },
+    "boosted=false,bursting=true,facing=west,heat_level=2,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 270
+    },
+    "boosted=false,bursting=true,facing=west,heat_level=2,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 270
+    },
+    "boosted=false,bursting=true,facing=west,heat_level=2,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 270
+    },
+    "boosted=false,bursting=true,facing=west,heat_level=2,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 270
+    },
+    "boosted=false,bursting=true,facing=west,heat_level=3,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 270
+    },
+    "boosted=false,bursting=true,facing=west,heat_level=3,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 270
+    },
+    "boosted=false,bursting=true,facing=west,heat_level=3,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 270
+    },
+    "boosted=false,bursting=true,facing=west,heat_level=3,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 270
+    },
+    "boosted=false,bursting=true,facing=west,heat_level=4,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 270
+    },
+    "boosted=false,bursting=true,facing=west,heat_level=4,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 270
+    },
+    "boosted=false,bursting=true,facing=west,heat_level=4,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 270
+    },
+    "boosted=false,bursting=true,facing=west,heat_level=4,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 270
+    },
+    "boosted=true,bursting=false,facing=down,heat_level=0,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 180
+    },
+    "boosted=true,bursting=false,facing=down,heat_level=0,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 180
+    },
+    "boosted=true,bursting=false,facing=down,heat_level=0,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 180
+    },
+    "boosted=true,bursting=false,facing=down,heat_level=0,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 180
+    },
+    "boosted=true,bursting=false,facing=down,heat_level=1,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 180
+    },
+    "boosted=true,bursting=false,facing=down,heat_level=1,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 180
+    },
+    "boosted=true,bursting=false,facing=down,heat_level=1,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 180
+    },
+    "boosted=true,bursting=false,facing=down,heat_level=1,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 180
+    },
+    "boosted=true,bursting=false,facing=down,heat_level=2,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 180
+    },
+    "boosted=true,bursting=false,facing=down,heat_level=2,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 180
+    },
+    "boosted=true,bursting=false,facing=down,heat_level=2,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 180
+    },
+    "boosted=true,bursting=false,facing=down,heat_level=2,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 180
+    },
+    "boosted=true,bursting=false,facing=down,heat_level=3,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 180
+    },
+    "boosted=true,bursting=false,facing=down,heat_level=3,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 180
+    },
+    "boosted=true,bursting=false,facing=down,heat_level=3,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 180
+    },
+    "boosted=true,bursting=false,facing=down,heat_level=3,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 180
+    },
+    "boosted=true,bursting=false,facing=down,heat_level=4,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 180
+    },
+    "boosted=true,bursting=false,facing=down,heat_level=4,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 180
+    },
+    "boosted=true,bursting=false,facing=down,heat_level=4,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 180
+    },
+    "boosted=true,bursting=false,facing=down,heat_level=4,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 180
+    },
+    "boosted=true,bursting=false,facing=east,heat_level=0,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=true,bursting=false,facing=east,heat_level=0,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=true,bursting=false,facing=east,heat_level=0,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=true,bursting=false,facing=east,heat_level=0,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=true,bursting=false,facing=east,heat_level=1,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=true,bursting=false,facing=east,heat_level=1,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=true,bursting=false,facing=east,heat_level=1,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=true,bursting=false,facing=east,heat_level=1,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=true,bursting=false,facing=east,heat_level=2,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=true,bursting=false,facing=east,heat_level=2,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=true,bursting=false,facing=east,heat_level=2,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=true,bursting=false,facing=east,heat_level=2,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=true,bursting=false,facing=east,heat_level=3,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=true,bursting=false,facing=east,heat_level=3,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=true,bursting=false,facing=east,heat_level=3,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=true,bursting=false,facing=east,heat_level=3,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=true,bursting=false,facing=east,heat_level=4,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=true,bursting=false,facing=east,heat_level=4,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=true,bursting=false,facing=east,heat_level=4,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=true,bursting=false,facing=east,heat_level=4,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=true,bursting=false,facing=north,heat_level=0,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90
+    },
+    "boosted=true,bursting=false,facing=north,heat_level=0,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90
+    },
+    "boosted=true,bursting=false,facing=north,heat_level=0,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90
+    },
+    "boosted=true,bursting=false,facing=north,heat_level=0,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90
+    },
+    "boosted=true,bursting=false,facing=north,heat_level=1,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90
+    },
+    "boosted=true,bursting=false,facing=north,heat_level=1,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90
+    },
+    "boosted=true,bursting=false,facing=north,heat_level=1,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90
+    },
+    "boosted=true,bursting=false,facing=north,heat_level=1,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90
+    },
+    "boosted=true,bursting=false,facing=north,heat_level=2,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90
+    },
+    "boosted=true,bursting=false,facing=north,heat_level=2,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90
+    },
+    "boosted=true,bursting=false,facing=north,heat_level=2,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90
+    },
+    "boosted=true,bursting=false,facing=north,heat_level=2,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90
+    },
+    "boosted=true,bursting=false,facing=north,heat_level=3,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90
+    },
+    "boosted=true,bursting=false,facing=north,heat_level=3,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90
+    },
+    "boosted=true,bursting=false,facing=north,heat_level=3,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90
+    },
+    "boosted=true,bursting=false,facing=north,heat_level=3,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90
+    },
+    "boosted=true,bursting=false,facing=north,heat_level=4,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90
+    },
+    "boosted=true,bursting=false,facing=north,heat_level=4,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90
+    },
+    "boosted=true,bursting=false,facing=north,heat_level=4,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90
+    },
+    "boosted=true,bursting=false,facing=north,heat_level=4,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90
+    },
+    "boosted=true,bursting=false,facing=south,heat_level=0,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=true,bursting=false,facing=south,heat_level=0,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=true,bursting=false,facing=south,heat_level=0,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=true,bursting=false,facing=south,heat_level=0,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=true,bursting=false,facing=south,heat_level=1,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=true,bursting=false,facing=south,heat_level=1,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=true,bursting=false,facing=south,heat_level=1,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=true,bursting=false,facing=south,heat_level=1,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=true,bursting=false,facing=south,heat_level=2,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=true,bursting=false,facing=south,heat_level=2,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=true,bursting=false,facing=south,heat_level=2,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=true,bursting=false,facing=south,heat_level=2,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=true,bursting=false,facing=south,heat_level=3,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=true,bursting=false,facing=south,heat_level=3,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=true,bursting=false,facing=south,heat_level=3,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=true,bursting=false,facing=south,heat_level=3,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=true,bursting=false,facing=south,heat_level=4,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=true,bursting=false,facing=south,heat_level=4,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=true,bursting=false,facing=south,heat_level=4,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=true,bursting=false,facing=south,heat_level=4,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=true,bursting=false,facing=up,heat_level=0,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/geyser"
+    },
+    "boosted=true,bursting=false,facing=up,heat_level=0,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/geyser"
+    },
+    "boosted=true,bursting=false,facing=up,heat_level=0,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/geyser"
+    },
+    "boosted=true,bursting=false,facing=up,heat_level=0,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/geyser"
+    },
+    "boosted=true,bursting=false,facing=up,heat_level=1,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/geyser"
+    },
+    "boosted=true,bursting=false,facing=up,heat_level=1,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/geyser"
+    },
+    "boosted=true,bursting=false,facing=up,heat_level=1,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/geyser"
+    },
+    "boosted=true,bursting=false,facing=up,heat_level=1,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/geyser"
+    },
+    "boosted=true,bursting=false,facing=up,heat_level=2,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/geyser"
+    },
+    "boosted=true,bursting=false,facing=up,heat_level=2,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/geyser"
+    },
+    "boosted=true,bursting=false,facing=up,heat_level=2,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/geyser"
+    },
+    "boosted=true,bursting=false,facing=up,heat_level=2,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/geyser"
+    },
+    "boosted=true,bursting=false,facing=up,heat_level=3,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/geyser"
+    },
+    "boosted=true,bursting=false,facing=up,heat_level=3,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/geyser"
+    },
+    "boosted=true,bursting=false,facing=up,heat_level=3,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/geyser"
+    },
+    "boosted=true,bursting=false,facing=up,heat_level=3,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/geyser"
+    },
+    "boosted=true,bursting=false,facing=up,heat_level=4,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/geyser"
+    },
+    "boosted=true,bursting=false,facing=up,heat_level=4,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/geyser"
+    },
+    "boosted=true,bursting=false,facing=up,heat_level=4,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/geyser"
+    },
+    "boosted=true,bursting=false,facing=up,heat_level=4,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/geyser"
+    },
+    "boosted=true,bursting=false,facing=west,heat_level=0,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 270
+    },
+    "boosted=true,bursting=false,facing=west,heat_level=0,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 270
+    },
+    "boosted=true,bursting=false,facing=west,heat_level=0,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 270
+    },
+    "boosted=true,bursting=false,facing=west,heat_level=0,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 270
+    },
+    "boosted=true,bursting=false,facing=west,heat_level=1,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 270
+    },
+    "boosted=true,bursting=false,facing=west,heat_level=1,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 270
+    },
+    "boosted=true,bursting=false,facing=west,heat_level=1,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 270
+    },
+    "boosted=true,bursting=false,facing=west,heat_level=1,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 270
+    },
+    "boosted=true,bursting=false,facing=west,heat_level=2,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 270
+    },
+    "boosted=true,bursting=false,facing=west,heat_level=2,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 270
+    },
+    "boosted=true,bursting=false,facing=west,heat_level=2,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 270
+    },
+    "boosted=true,bursting=false,facing=west,heat_level=2,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 270
+    },
+    "boosted=true,bursting=false,facing=west,heat_level=3,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 270
+    },
+    "boosted=true,bursting=false,facing=west,heat_level=3,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 270
+    },
+    "boosted=true,bursting=false,facing=west,heat_level=3,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 270
+    },
+    "boosted=true,bursting=false,facing=west,heat_level=3,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 270
+    },
+    "boosted=true,bursting=false,facing=west,heat_level=4,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 270
+    },
+    "boosted=true,bursting=false,facing=west,heat_level=4,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 270
+    },
+    "boosted=true,bursting=false,facing=west,heat_level=4,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 270
+    },
+    "boosted=true,bursting=false,facing=west,heat_level=4,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/geyser",
+      "x": 90,
+      "y": 270
+    },
+    "boosted=true,bursting=true,facing=down,heat_level=0,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 180
+    },
+    "boosted=true,bursting=true,facing=down,heat_level=0,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 180
+    },
+    "boosted=true,bursting=true,facing=down,heat_level=0,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 180
+    },
+    "boosted=true,bursting=true,facing=down,heat_level=0,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 180
+    },
+    "boosted=true,bursting=true,facing=down,heat_level=1,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 180
+    },
+    "boosted=true,bursting=true,facing=down,heat_level=1,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 180
+    },
+    "boosted=true,bursting=true,facing=down,heat_level=1,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 180
+    },
+    "boosted=true,bursting=true,facing=down,heat_level=1,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 180
+    },
+    "boosted=true,bursting=true,facing=down,heat_level=2,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 180
+    },
+    "boosted=true,bursting=true,facing=down,heat_level=2,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 180
+    },
+    "boosted=true,bursting=true,facing=down,heat_level=2,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 180
+    },
+    "boosted=true,bursting=true,facing=down,heat_level=2,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 180
+    },
+    "boosted=true,bursting=true,facing=down,heat_level=3,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 180
+    },
+    "boosted=true,bursting=true,facing=down,heat_level=3,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 180
+    },
+    "boosted=true,bursting=true,facing=down,heat_level=3,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 180
+    },
+    "boosted=true,bursting=true,facing=down,heat_level=3,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 180
+    },
+    "boosted=true,bursting=true,facing=down,heat_level=4,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 180
+    },
+    "boosted=true,bursting=true,facing=down,heat_level=4,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 180
+    },
+    "boosted=true,bursting=true,facing=down,heat_level=4,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 180
+    },
+    "boosted=true,bursting=true,facing=down,heat_level=4,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 180
+    },
+    "boosted=true,bursting=true,facing=east,heat_level=0,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=true,bursting=true,facing=east,heat_level=0,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=true,bursting=true,facing=east,heat_level=0,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=true,bursting=true,facing=east,heat_level=0,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=true,bursting=true,facing=east,heat_level=1,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=true,bursting=true,facing=east,heat_level=1,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=true,bursting=true,facing=east,heat_level=1,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=true,bursting=true,facing=east,heat_level=1,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=true,bursting=true,facing=east,heat_level=2,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=true,bursting=true,facing=east,heat_level=2,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=true,bursting=true,facing=east,heat_level=2,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=true,bursting=true,facing=east,heat_level=2,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=true,bursting=true,facing=east,heat_level=3,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=true,bursting=true,facing=east,heat_level=3,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=true,bursting=true,facing=east,heat_level=3,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=true,bursting=true,facing=east,heat_level=3,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=true,bursting=true,facing=east,heat_level=4,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=true,bursting=true,facing=east,heat_level=4,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=true,bursting=true,facing=east,heat_level=4,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=true,bursting=true,facing=east,heat_level=4,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 90
+    },
+    "boosted=true,bursting=true,facing=north,heat_level=0,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90
+    },
+    "boosted=true,bursting=true,facing=north,heat_level=0,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90
+    },
+    "boosted=true,bursting=true,facing=north,heat_level=0,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90
+    },
+    "boosted=true,bursting=true,facing=north,heat_level=0,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90
+    },
+    "boosted=true,bursting=true,facing=north,heat_level=1,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90
+    },
+    "boosted=true,bursting=true,facing=north,heat_level=1,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90
+    },
+    "boosted=true,bursting=true,facing=north,heat_level=1,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90
+    },
+    "boosted=true,bursting=true,facing=north,heat_level=1,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90
+    },
+    "boosted=true,bursting=true,facing=north,heat_level=2,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90
+    },
+    "boosted=true,bursting=true,facing=north,heat_level=2,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90
+    },
+    "boosted=true,bursting=true,facing=north,heat_level=2,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90
+    },
+    "boosted=true,bursting=true,facing=north,heat_level=2,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90
+    },
+    "boosted=true,bursting=true,facing=north,heat_level=3,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90
+    },
+    "boosted=true,bursting=true,facing=north,heat_level=3,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90
+    },
+    "boosted=true,bursting=true,facing=north,heat_level=3,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90
+    },
+    "boosted=true,bursting=true,facing=north,heat_level=3,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90
+    },
+    "boosted=true,bursting=true,facing=north,heat_level=4,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90
+    },
+    "boosted=true,bursting=true,facing=north,heat_level=4,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90
+    },
+    "boosted=true,bursting=true,facing=north,heat_level=4,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90
+    },
+    "boosted=true,bursting=true,facing=north,heat_level=4,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90
+    },
+    "boosted=true,bursting=true,facing=south,heat_level=0,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=true,bursting=true,facing=south,heat_level=0,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=true,bursting=true,facing=south,heat_level=0,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=true,bursting=true,facing=south,heat_level=0,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=true,bursting=true,facing=south,heat_level=1,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=true,bursting=true,facing=south,heat_level=1,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=true,bursting=true,facing=south,heat_level=1,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=true,bursting=true,facing=south,heat_level=1,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=true,bursting=true,facing=south,heat_level=2,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=true,bursting=true,facing=south,heat_level=2,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=true,bursting=true,facing=south,heat_level=2,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=true,bursting=true,facing=south,heat_level=2,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=true,bursting=true,facing=south,heat_level=3,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=true,bursting=true,facing=south,heat_level=3,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=true,bursting=true,facing=south,heat_level=3,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=true,bursting=true,facing=south,heat_level=3,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=true,bursting=true,facing=south,heat_level=4,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=true,bursting=true,facing=south,heat_level=4,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=true,bursting=true,facing=south,heat_level=4,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=true,bursting=true,facing=south,heat_level=4,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 180
+    },
+    "boosted=true,bursting=true,facing=up,heat_level=0,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser"
+    },
+    "boosted=true,bursting=true,facing=up,heat_level=0,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser"
+    },
+    "boosted=true,bursting=true,facing=up,heat_level=0,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser"
+    },
+    "boosted=true,bursting=true,facing=up,heat_level=0,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser"
+    },
+    "boosted=true,bursting=true,facing=up,heat_level=1,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser"
+    },
+    "boosted=true,bursting=true,facing=up,heat_level=1,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser"
+    },
+    "boosted=true,bursting=true,facing=up,heat_level=1,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser"
+    },
+    "boosted=true,bursting=true,facing=up,heat_level=1,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser"
+    },
+    "boosted=true,bursting=true,facing=up,heat_level=2,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser"
+    },
+    "boosted=true,bursting=true,facing=up,heat_level=2,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser"
+    },
+    "boosted=true,bursting=true,facing=up,heat_level=2,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser"
+    },
+    "boosted=true,bursting=true,facing=up,heat_level=2,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser"
+    },
+    "boosted=true,bursting=true,facing=up,heat_level=3,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser"
+    },
+    "boosted=true,bursting=true,facing=up,heat_level=3,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser"
+    },
+    "boosted=true,bursting=true,facing=up,heat_level=3,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser"
+    },
+    "boosted=true,bursting=true,facing=up,heat_level=3,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser"
+    },
+    "boosted=true,bursting=true,facing=up,heat_level=4,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser"
+    },
+    "boosted=true,bursting=true,facing=up,heat_level=4,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser"
+    },
+    "boosted=true,bursting=true,facing=up,heat_level=4,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser"
+    },
+    "boosted=true,bursting=true,facing=up,heat_level=4,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser"
+    },
+    "boosted=true,bursting=true,facing=west,heat_level=0,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 270
+    },
+    "boosted=true,bursting=true,facing=west,heat_level=0,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 270
+    },
+    "boosted=true,bursting=true,facing=west,heat_level=0,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 270
+    },
+    "boosted=true,bursting=true,facing=west,heat_level=0,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 270
+    },
+    "boosted=true,bursting=true,facing=west,heat_level=1,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 270
+    },
+    "boosted=true,bursting=true,facing=west,heat_level=1,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 270
+    },
+    "boosted=true,bursting=true,facing=west,heat_level=1,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 270
+    },
+    "boosted=true,bursting=true,facing=west,heat_level=1,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 270
+    },
+    "boosted=true,bursting=true,facing=west,heat_level=2,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 270
+    },
+    "boosted=true,bursting=true,facing=west,heat_level=2,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 270
+    },
+    "boosted=true,bursting=true,facing=west,heat_level=2,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 270
+    },
+    "boosted=true,bursting=true,facing=west,heat_level=2,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 270
+    },
+    "boosted=true,bursting=true,facing=west,heat_level=3,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 270
+    },
+    "boosted=true,bursting=true,facing=west,heat_level=3,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 270
+    },
+    "boosted=true,bursting=true,facing=west,heat_level=3,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 270
+    },
+    "boosted=true,bursting=true,facing=west,heat_level=3,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 270
+    },
+    "boosted=true,bursting=true,facing=west,heat_level=4,powered=false,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 270
+    },
+    "boosted=true,bursting=true,facing=west,heat_level=4,powered=false,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 270
+    },
+    "boosted=true,bursting=true,facing=west,heat_level=4,powered=true,provides_ash=false": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 270
+    },
+    "boosted=true,bursting=true,facing=west,heat_level=4,powered=true,provides_ash=true": {
+      "model": "darkerdepths:block/heated_geyser",
+      "x": 90,
+      "y": 270
+    }
+  }
+}

@@ -1,18 +1,28 @@
 package com.naterbobber.darkerdepths.events.client;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
+import com.naterbobber.darkerdepths.block.DDBlockStateProperties;
 import com.naterbobber.darkerdepths.client.ClientDeathAnchorAnimationOverlay;
+import com.naterbobber.darkerdepths.client.render.EmissiveBakedModel;
+import com.naterbobber.darkerdepths.init.DDBlocks;
 import com.naterbobber.darkerdepths.init.DDDataComponents;
 import com.naterbobber.darkerdepths.init.DDItems;
 import com.naterbobber.darkerdepths.init.DDWoodType;
+import net.minecraft.client.renderer.block.BlockModelShaper;
 import net.minecraft.client.renderer.item.ItemProperties;
+import net.minecraft.client.resources.model.ModelResourceLocation;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.neoforge.client.event.ModelEvent;
 import net.neoforged.neoforge.common.NeoForge;
+
+import java.util.List;
 
 @OnlyIn(Dist.CLIENT)
 @EventBusSubscriber(modid = DarkerDepths.MOD_ID, value = Dist.CLIENT)
@@ -46,5 +56,29 @@ public class ClientSetupEvents {
 
             return 0.0F;
         });
+    }
+
+    @SubscribeEvent
+    public static void onModifyBakingResult(ModelEvent.ModifyBakingResult event) {
+        // Iterate through EVERY possible blockstate variant of your Darkslate block
+        for (BlockState state : DDBlocks.DARKSLATE.get().getStateDefinition().getPossibleStates()) {
+            if (state.hasProperty(DDBlockStateProperties.HEAT_LEVEL) && state.getValue(DDBlockStateProperties.HEAT_LEVEL) >= 2) {
+                ModelResourceLocation targetModel = BlockModelShaper.stateToModelLocation(state);
+                var originalModel = event.getModels().get(targetModel);
+                if (originalModel != null) {
+                    event.getModels().put(targetModel, new EmissiveBakedModel(originalModel));
+                }
+            }
+        }
+
+        for (BlockState state : DDBlocks.GEYSER.get().getStateDefinition().getPossibleStates()) {
+            if (state.hasProperty(DDBlockStateProperties.BURSTING) && state.getValue(DDBlockStateProperties.BURSTING)) {
+                ModelResourceLocation targetModel = BlockModelShaper.stateToModelLocation(state);
+                var originalModel = event.getModels().get(targetModel);
+                if (originalModel != null) {
+                    event.getModels().put(targetModel, new EmissiveBakedModel(originalModel));
+                }
+            }
+        }
     }
 }
