@@ -40,9 +40,7 @@ public class GeyserBlockEntity extends BlockEntity {
     private static final String burstDelayTag = "burstDelay";
     private static final String burstLengthTag = "burstLength";
     private static final int minBurstLength = 60;
-    private static final int minBurstDelay = 100;
     private int currentBurstLength = minBurstLength;
-    private int currentBurstDelay = minBurstDelay;
 
     public GeyserBlockEntity(BlockPos pos, BlockState state) {
         super(DDBlockEntityTypes.GEYSER.get(), pos, state);
@@ -50,21 +48,19 @@ public class GeyserBlockEntity extends BlockEntity {
 
     public void tick(Level level, BlockPos blockPos, BlockState blockState) {
         if(blockState.getValue(POWERED)) {
-            setBursting(level, blockState, blockPos, false);
-            currentBurstDelay = 0;
-            currentBurstLength = 100;
+            if(blockState.getValue(BURSTING)) {
+                setBursting(level, blockState, blockPos, false);
+                currentBurstLength = 100;
+            }
             return;
         }
 
+        if (!blockState.getValue(BURSTING)) {
+            return;
+        }
+
+        updateBurstLength(level, blockState, blockPos);
         Direction direction = blockState.getValue(GeyserBlock.FACING);
-
-        if (blockState.getValue(BURSTING)) {
-            updateBurstLength(level, blockState, blockPos);
-        } else if (isExposed(level, blockPos, direction)){
-            updateBurstDelay(level, blockState, blockPos);
-            return;
-        }
-
         int boostColumnLength = findColumnLength(level, blockPos, direction);
         boostEntities(level, direction, blockPos, boostColumnLength);
     }
@@ -91,7 +87,7 @@ public class GeyserBlockEntity extends BlockEntity {
         return boostColumnLength;
     }
 
-    private boolean isExposed(Level level, BlockPos blockPos, Direction direction) {
+    private static boolean isExposed(Level level, BlockPos blockPos, Direction direction) {
         var frontState = level.getBlockState(blockPos.relative(direction));
         var frontFluidState = level.getFluidState(blockPos.relative(direction));
         return frontState.isAir()
@@ -175,7 +171,6 @@ public class GeyserBlockEntity extends BlockEntity {
         }
     }
 
-
     private static void boostEntities(Level level, Direction direction, BlockPos blockPos, int length) {
         double boostSpeed = 0.14;
         boolean boosted = level.getBlockState(blockPos).getValue(BOOSTED);
@@ -202,11 +197,26 @@ public class GeyserBlockEntity extends BlockEntity {
         }
     }
 
-    private void updateBurstDelay(Level level, BlockState blockState, BlockPos blockPos) {
-        if(currentBurstDelay == 0) {
-            setBursting(level, blockState, blockPos, true);
-            level.playSound(null, blockPos, SoundEvents.LAVA_EXTINGUISH, SoundSource.BLOCKS, 2.25f, 0.25f);
+    private void updateBurstLength(Level level, BlockState blockState, BlockPos blockPos) {
+        if(currentBurstLength == 0) {
+            setBursting(level, blockState, blockPos, false);
+            currentBurstLength = minBurstLength + (int)(Math.random() * 20);
+        } else {
+            currentBurstLength--;
+        }
+        setChanged();
+    }
 
+    public static void setBursting(Level level, BlockState blockState, BlockPos blockPos, boolean value) {
+        if(!isExposed(level, blockPos, blockState.getValue(BlockStateProperties.FACING))) {
+            return;
+        }
+
+        BlockState newBlockState = blockState.setValue(BURSTING, value).setValue(HEAT_LEVEL, value ? 4 : 0);
+        level.setBlock(blockPos, newBlockState, 3);
+
+        if(value) {
+            level.playSound(null, blockPos, SoundEvents.LAVA_EXTINGUISH, SoundSource.BLOCKS, 2.25f, 0.25f);
             if(level instanceof ServerLevel &&
                     level.getFluidState(blockPos.above()).is(FluidTags.LAVA)
             ) {
@@ -220,32 +230,8 @@ public class GeyserBlockEntity extends BlockEntity {
                         0,
                         0,
                         2);
-
             }
-
-            currentBurstDelay = minBurstDelay + (int)(Math.random() * 1000);
-        } else {
-            if(blockState.getValue(HEAT_LEVEL) > 0 && currentBurstDelay % 20 == 0) {
-                updateHeatLevel(level, blockState, blockPos);
-            }
-            currentBurstDelay--;
         }
-        setChanged();
-    }
-
-    private void updateBurstLength(Level level, BlockState blockState, BlockPos blockPos) {
-        if(currentBurstLength == 0) {
-            setBursting(level, blockState, blockPos, false);
-            currentBurstLength = minBurstLength + (int)(Math.random() * 20);
-        } else {
-            currentBurstLength--;
-        }
-        setChanged();
-    }
-
-    private void setBursting(Level level, BlockState blockState, BlockPos blockPos, boolean value) {
-        BlockState newBlockState = blockState.setValue(BURSTING, value).setValue(HEAT_LEVEL, 4);
-        level.setBlock(blockPos, newBlockState, 3);
     }
 
     private void updateHeatLevel(Level level, BlockState blockState, BlockPos blockPos) {
@@ -260,14 +246,12 @@ public class GeyserBlockEntity extends BlockEntity {
     @Override
     protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.saveAdditional(tag, registries);
-        tag.putInt(burstDelayTag, currentBurstDelay);
         tag.putInt(burstLengthTag, currentBurstLength);
     }
 
     @Override
     protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.loadAdditional(tag, registries);
-        currentBurstDelay = tag.getInt(burstDelayTag);
         currentBurstLength = tag.getInt(burstLengthTag);
     }
 }

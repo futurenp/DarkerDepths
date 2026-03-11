@@ -2,6 +2,7 @@ package com.naterbobber.darkerdepths.block.custom;
 
 import com.mojang.serialization.MapCodec;
 import com.naterbobber.darkerdepths.block.DDBlockStateProperties;
+import com.naterbobber.darkerdepths.block.blockentities.GeyserBlockEntity;
 import com.naterbobber.darkerdepths.init.DDBlockEntityTypes;
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import com.naterbobber.darkerdepths.util.DDTags;
@@ -123,6 +124,11 @@ public class GeyserBlock extends BaseEntityBlock {
         if (state.getValue(POWERED)) {
             if (!worldIn.hasNeighborSignal(pos)) {
                 worldIn.setBlock(pos, state.cycle(POWERED), 2);
+
+                var newState = worldIn.getBlockState(pos);
+                if(!state.getValue(BURSTING)) {
+                    GeyserBlockEntity.setBursting(worldIn, newState, pos, true);
+                }
             }
         }
     }
@@ -149,11 +155,15 @@ public class GeyserBlock extends BaseEntityBlock {
     }
 
     @Override
-    public void randomTick(BlockState p_60551_, ServerLevel worldIn, BlockPos pos, RandomSource rand) {
+    public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand) {
         BlockPos blockpos = pos.above();
-        if (worldIn.getFluidState(pos).is(FluidTags.WATER)) {
-            worldIn.playSound(null, pos, SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 0.5F, 2.6F + (worldIn.random.nextFloat() - worldIn.random.nextFloat()) * 0.8F);
-            worldIn.sendParticles(ParticleTypes.LARGE_SMOKE, (double)blockpos.getX() + 0.5D, (double)blockpos.getY() + 0.25D, (double)blockpos.getZ() + 0.5D, 8, 0.5D, 0.25D, 0.5D, 0.0D);
+        if (level.getFluidState(pos).is(FluidTags.WATER)) {
+            level.playSound(null, pos, SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 0.5F, 2.6F + (level.random.nextFloat() - level.random.nextFloat()) * 0.8F);
+            level.sendParticles(ParticleTypes.LARGE_SMOKE, (double)blockpos.getX() + 0.5D, (double)blockpos.getY() + 0.25D, (double)blockpos.getZ() + 0.5D, 8, 0.5D, 0.25D, 0.5D, 0.0D);
+        }
+
+        if(!state.getValue(BURSTING) && !state.getValue(POWERED)) {
+            GeyserBlockEntity.setBursting(level, state, pos, true);
         }
     }
 
