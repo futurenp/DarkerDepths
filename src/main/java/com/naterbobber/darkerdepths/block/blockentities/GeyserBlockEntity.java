@@ -117,7 +117,7 @@ public class GeyserBlockEntity extends BlockEntity {
                 BlockState blockstate = level.getBlockState(mBlockPos);
 
                 if (!blockstate.isCollisionShapeFullBlock(level, mBlockPos)) {
-                    level.addParticle(ParticleTypes.WHITE_ASH, (double)mBlockPos.getX() + rand.nextDouble(), (double)mBlockPos.getY() + rand.nextDouble(), (double)mBlockPos.getZ() + rand.nextDouble(), (double)0.0F, (double)0.0F, (double)0.0F);
+                    level.addParticle(DDParticleTypes.MOLTEN_ASH.get(), (double)mBlockPos.getX() + rand.nextDouble(), (double)mBlockPos.getY() + rand.nextDouble(), (double)mBlockPos.getZ() + rand.nextDouble(), (double)0.0F, (double)0.0F, (double)0.0F);
 
                 }
             }
