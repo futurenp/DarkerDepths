@@ -55,15 +55,6 @@ public class ClientRegisterEvents {
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void registerParticles(RegisterParticleProvidersEvent event) {
-        ParticleEngine engine = Minecraft.getInstance().particleEngine;
-        engine.register(DDParticleTypes.DRIPPING_AMBER.get(), DrippingParticle.DrippingAmberFactory::new);
-        engine.register(DDParticleTypes.FALLING_AMBER.get(), DrippingParticle.FallingAmberFactory::new);
-        engine.register(DDParticleTypes.LANDING_AMBER.get(), DrippingParticle.LandingAmberFactory::new);
-        engine.register(DDParticleTypes.VOID_SOUL.get(), VoidSoulParticle.VoidSoulFactory::new);
-        engine.register(DDParticleTypes.VOID_SOUL_FLAME.get(), VoidSoulFlameParticle.VoidSoulFlameFactory::new);
-        engine.register(DDParticleTypes.VOID_SOUL_FLAME_SMOKE.get(), VoidSoulFlameSmokeParticle.VoidSoulFlameSmokeFactory::new);
-        engine.register(DDParticleTypes.GEYSER_BURST_SMOKE.get(), GeyserBurstSmokeParticle.GeyserBurstSmokeParticleFactory::new);
-        engine.register(DDParticleTypes.GEYSER_BURST_SMOKE_BOOSTED.get(), GeyserBurstSmokeParticle.GeyserBurstSmokeBoostedParticleFactory::new);
-        engine.register(DDParticleTypes.RED_ASH.get(), (spriteSet) -> new ColoredAshParticle.Provider(spriteSet, 1F, 0F, 0F));
+        DDParticleTypes.bootstrap(Minecraft.getInstance().particleEngine);
     }
 }
