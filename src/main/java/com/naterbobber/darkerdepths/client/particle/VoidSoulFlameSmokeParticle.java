@@ -47,10 +47,10 @@ public class VoidSoulFlameSmokeParticle extends TextureSheetParticle {
     public ParticleRenderType getRenderType(){ return ParticleRenderType.PARTICLE_SHEET_LIT; }
 
     @OnlyIn(Dist.CLIENT)
-    public static class VoidSoulFlameSmokeFactory implements ParticleProvider<SimpleParticleType> {
+    public static class Provider implements ParticleProvider<SimpleParticleType> {
         private final SpriteSet spriteSet;
 
-        public VoidSoulFlameSmokeFactory(SpriteSet spriteSet) {
+        public Provider(SpriteSet spriteSet) {
             this.spriteSet = spriteSet;
         }
 

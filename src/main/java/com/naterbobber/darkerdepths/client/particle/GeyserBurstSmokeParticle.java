@@ -1,12 +1,8 @@
 package com.naterbobber.darkerdepths.client.particle;
 
-import com.naterbobber.darkerdepths.init.DDParticleTypes;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
-import net.minecraft.core.Direction;
 import net.minecraft.core.particles.SimpleParticleType;
-import net.minecraft.util.Mth;
-import net.minecraft.world.level.material.Fluids;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.Nullable;
@@ -60,10 +56,10 @@ public class GeyserBurstSmokeParticle extends TextureSheetParticle {
     }
 
     @OnlyIn(Dist.CLIENT)
-    public static class GeyserBurstSmokeParticleFactory implements ParticleProvider<SimpleParticleType> {
+    public static class Provider implements ParticleProvider<SimpleParticleType> {
         protected final SpriteSet spriteSet;
 
-        public GeyserBurstSmokeParticleFactory(SpriteSet spriteSet) {
+        public Provider(SpriteSet spriteSet) {
             this.spriteSet = spriteSet;
         }
 
@@ -76,10 +72,10 @@ public class GeyserBurstSmokeParticle extends TextureSheetParticle {
     }
 
     @OnlyIn(Dist.CLIENT)
-    public static class GeyserBurstSmokeBoostedParticleFactory implements ParticleProvider<SimpleParticleType> {
+    public static class BoostedProvider implements ParticleProvider<SimpleParticleType> {
         protected final SpriteSet spriteSet;
 
-        public GeyserBurstSmokeBoostedParticleFactory(SpriteSet spriteSet) {
+        public BoostedProvider(SpriteSet spriteSet) {
             this.spriteSet = spriteSet;
         }
 

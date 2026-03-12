@@ -146,10 +146,10 @@ public class DrippingParticle extends TextureSheetParticle {
     }
 
     @OnlyIn(Dist.CLIENT)
-    public static class DrippingAmberFactory implements ParticleProvider<SimpleParticleType> {
+    public static class DrippingAmberProvider implements ParticleProvider<SimpleParticleType> {
         protected final SpriteSet spriteSet;
 
-        public DrippingAmberFactory(SpriteSet spriteSet) {
+        public DrippingAmberProvider(SpriteSet spriteSet) {
             this.spriteSet = spriteSet;
         }
 
@@ -167,10 +167,10 @@ public class DrippingParticle extends TextureSheetParticle {
     }
 
     @OnlyIn(Dist.CLIENT)
-    public static class FallingAmberFactory implements ParticleProvider<SimpleParticleType> {
+    public static class FallingAmberProvider implements ParticleProvider<SimpleParticleType> {
         protected final SpriteSet spriteSet;
 
-        public FallingAmberFactory(SpriteSet spriteSet) {
+        public FallingAmberProvider(SpriteSet spriteSet) {
             this.spriteSet = spriteSet;
         }
 
@@ -187,10 +187,10 @@ public class DrippingParticle extends TextureSheetParticle {
     }
 
     @OnlyIn(Dist.CLIENT)
-    public static class LandingAmberFactory implements ParticleProvider<SimpleParticleType> {
+    public static class LandingAmberProvider implements ParticleProvider<SimpleParticleType> {
         protected final SpriteSet spriteSet;
 
-        public LandingAmberFactory(SpriteSet spriteSet) {
+        public LandingAmberProvider(SpriteSet spriteSet) {
             this.spriteSet = spriteSet;
         }
 

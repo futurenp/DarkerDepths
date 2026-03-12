@@ -55,6 +55,6 @@ public class ClientRegisterEvents {
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void registerParticles(RegisterParticleProvidersEvent event) {
-        DDParticleTypes.bootstrap(Minecraft.getInstance().particleEngine);
+        DDParticleTypes.bootstrap(event);
     }
 }

@@ -6,6 +6,7 @@ import net.minecraft.client.particle.ParticleEngine;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.core.registries.Registries;
+import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
@@ -17,23 +18,23 @@ public class DDParticleTypes {
     public static final HashMap<DeferredHolder<ParticleType<?>, SimpleParticleType>, ParticleEngine.SpriteParticleRegistration<SimpleParticleType>> particleFactoryMap = new HashMap<>();
 
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> DRIPPING_AMBER
-            = registerParticle("dripping_amber", DrippingParticle.DrippingAmberFactory::new, false);
+            = registerParticle("dripping_amber", DrippingParticle.DrippingAmberProvider::new, false);
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> FALLING_AMBER
-            = registerParticle("falling_amber", DrippingParticle.FallingAmberFactory::new, false);
+            = registerParticle("falling_amber", DrippingParticle.FallingAmberProvider::new, false);
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> LANDING_AMBER
-            = registerParticle("landing_amber", DrippingParticle.LandingAmberFactory::new, false);
+            = registerParticle("landing_amber", DrippingParticle.LandingAmberProvider::new, false);
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> VOID_SOUL
-            = registerParticle("void_soul", VoidSoulParticle.VoidSoulFactory::new, false);
+            = registerParticle("void_soul", VoidSoulParticle.Provider::new, false);
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> VOID_SOUL_FLAME
-            = registerParticle("void_soul_flame", VoidSoulFlameParticle.VoidSoulFlameFactory::new, false);
+            = registerParticle("void_soul_flame", VoidSoulFlameParticle.Provider::new, false);
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> VOID_SOUL_FLAME_SMOKE
-            = registerParticle("void_soul_flame_smoke", VoidSoulFlameSmokeParticle.VoidSoulFlameSmokeFactory::new, false);
+            = registerParticle("void_soul_flame_smoke", VoidSoulFlameSmokeParticle.Provider::new, false);
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> GEYSER_BURST_SMOKE
-            = registerParticle("geyser_burst_smoke", GeyserBurstSmokeParticle.GeyserBurstSmokeParticleFactory::new, false);
+            = registerParticle("geyser_burst_smoke", GeyserBurstSmokeParticle.Provider::new, false);
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> GEYSER_BURST_SMOKE_BOOSTED
-            = registerParticle("geyser_burst_smoke_boosted", GeyserBurstSmokeParticle.GeyserBurstSmokeBoostedParticleFactory::new, false);
-    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> RED_ASH
-            = registerParticle("red_ash", (spriteSet) -> new ColoredAshParticle.Provider(spriteSet, 1F, 0F, 0F), false);
+            = registerParticle("geyser_burst_smoke_boosted", GeyserBurstSmokeParticle.BoostedProvider::new, false);
+    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> MOLTEN_ASH
+            = registerParticle("molten_ash", (spriteSet) -> new ColoredAshParticle.Provider(spriteSet, 1F, 0.4F, 0.25F, ColoredAshParticle.BrightnessBehavior.FADE), false);
 
 
 
@@ -43,9 +44,9 @@ public class DDParticleTypes {
         return holder;
     }
 
-    public static void bootstrap(ParticleEngine engine) {
+    public static void bootstrap(RegisterParticleProvidersEvent event) {
         particleFactoryMap.forEach((holder, particleMetaFactory) -> {
-            engine.register(holder.get(), particleMetaFactory);
+            event.registerSpriteSet(holder.get(), particleMetaFactory);
         });
     }
 
