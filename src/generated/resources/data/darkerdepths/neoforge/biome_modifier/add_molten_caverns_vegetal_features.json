@@ -4,7 +4,8 @@
   "features": [
     "darkerdepths:darkslate_placement",
     "darkerdepths:molten_pool",
-    "darkerdepths:molten_spring"
+    "darkerdepths:molten_spring",
+    "darkerdepths:scorcher_placer"
   ],
   "step": "vegetal_decoration"
 }

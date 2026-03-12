@@ -4,6 +4,7 @@ import com.naterbobber.darkerdepths.init.DDEntityTypes;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.data.worldgen.placement.CavePlacements;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.biome.Biome;
@@ -30,9 +31,18 @@ public class DDBiomeModifiers {
                         context,
                         DARKSLATE_PLACEMENT,
                         MOLTEN_POOL,
-                        MOLTEN_SPRING
+                        MOLTEN_SPRING,
+                        SCORCHER_PLACER
                 ),
                 GenerationStep.Decoration.VEGETAL_DECORATION)
+        );
+        context.register(ADD_MOLTEN_CAVERNS_LOCAL_MODIFICATIONS, new BiomeModifiers.AddFeaturesBiomeModifier(
+                getBiome(context, MOLTEN_CAVERN),
+                getPlacedFeature(
+                        context,
+                        LARGE_MOLTEN_PILLAR
+                ),
+                GenerationStep.Decoration.LOCAL_MODIFICATIONS)
         );
         context.register(ADD_MOLTEN_CAVERNS_ORES, new BiomeModifiers.AddFeaturesBiomeModifier(
                 getBiome(context, MOLTEN_CAVERN),

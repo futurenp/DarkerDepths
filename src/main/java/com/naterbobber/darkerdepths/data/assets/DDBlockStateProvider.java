@@ -45,8 +45,6 @@ public class DDBlockStateProvider extends BlockStateProvider {
         add(this::columnBlockWithItem, DDBlocks.PETRIFIED_BOOKSHELF, DDBlocks.PETRIFIED_PLANKS);
         add(this::woodBlockWithItem, DDBlocks.PETRIFIED_BOARDS, DDBlocks.PETRIFIED_BOARDS);
         add(this::geyserBlock, DDBlocks.GEYSER);
-        add(this::crossBlockWithItem, DDBlocks.ASH);
-
 
         skip(
                 DDBlocks.VOID_SOUL_JAR,
@@ -54,6 +52,7 @@ public class DDBlockStateProvider extends BlockStateProvider {
                 DDBlocks.AMBER_CLUSTER,
                 DDBlocks.DEATH_ANCHOR,
                 DDBlocks.AMBER_CLUSTER,
+                DDBlocks.ASH,
                 DDBlocks.CRYSTAL_MELON,
                 DDBlocks.DEAD_LIVING_CRYSTAL,
                 DDBlocks.GLOWSHROOM,

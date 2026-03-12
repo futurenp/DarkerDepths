@@ -2,12 +2,10 @@ package com.naterbobber.darkerdepths.init;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.worldgen.features.*;
-import com.naterbobber.darkerdepths.worldgen.features.config.CorrespondentLayersConfig;
-import com.naterbobber.darkerdepths.worldgen.features.config.PetrifiedBranchConfig;
-import com.naterbobber.darkerdepths.worldgen.features.config.ReplaceListConfig;
-import com.naterbobber.darkerdepths.worldgen.features.config.ReplaceListLayeredConfig;
+import com.naterbobber.darkerdepths.worldgen.features.config.*;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.configurations.LargeDripstoneConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.SimpleBlockConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.VegetationPatchConfiguration;
@@ -30,5 +28,7 @@ public class DDFeatures {
     public static final DeferredHolder<Feature<?>, CatacombsLavaLiningFeature> CATACOMBS_LAVA_LINING = FEATURES.register("catacombs_lava_lining", () -> new CatacombsLavaLiningFeature(NoneFeatureConfiguration.CODEC));
     public static final DeferredHolder<Feature<?>, LimestoneStripeFeature> DUSKROCK_STRIPE = FEATURES.register("limestone_stripe", () -> new LimestoneStripeFeature(NoneFeatureConfiguration.CODEC));
     public static final DeferredHolder<Feature<?>, GeyserFeature> GEYSER_UNDER_FLUID = FEATURES.register("geyser_under_fluid", () -> new GeyserFeature(SimpleBlockConfiguration.CODEC));
+    public static final DeferredHolder<Feature<?>, LargeMoltenPillarFeature> LARGE_MOLTEN_PILLAR = FEATURES.register("large_molten_pillar", () -> new LargeMoltenPillarFeature(LargeDripstoneConfiguration.CODEC));
+    public static final DeferredHolder<Feature<?>, ScorcherFeature> SCORCHER_PLACER = FEATURES.register("scorcher_placer", () -> new ScorcherFeature(ScorcherFeatureConfig.CODEC));
 
 }

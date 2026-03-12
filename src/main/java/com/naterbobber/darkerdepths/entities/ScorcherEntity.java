@@ -49,25 +49,21 @@ public class ScorcherEntity extends Mob implements GeoEntity {
         this.setNoGravity(true);
     }
 
-    // Unconditionally strips gravity from the entity's physics calculations
     @Override
     public boolean isNoGravity() {
         return true;
     }
 
-    // Allows the mob to look straight up and straight down
     @Override
     public int getMaxHeadXRot() {
         return 90;
     }
 
-    // Allows the mob to turn its head a full 90 degrees left or right
     @Override
     public int getMaxHeadYRot() {
         return 90;
     }
 
-    // --- BRAIN AI SETUP ---
     @Override
     protected Brain.Provider<ScorcherEntity> brainProvider() {
         return Brain.provider(
@@ -82,7 +78,7 @@ public class ScorcherEntity extends Mob implements GeoEntity {
 
         brain.addActivity(Activity.CORE, ImmutableList.of(
                 Pair.of(0, new ScorcherStareBehavior()),
-                Pair.of(1, new ScorcherIdleLookBehavior()) // Added idle scanning behavior
+                Pair.of(1, new ScorcherIdleLookBehavior())
         ));
 
         brain.setDefaultActivity(Activity.CORE);
@@ -122,18 +118,11 @@ public class ScorcherEntity extends Mob implements GeoEntity {
         return didHurt;
     }
 
-    @Override
-    protected void registerGoals() {
-        // COMPLETELY REMOVED:
-        // We cannot have the old Goal system running LookAt goals, otherwise it will
-        // fight the new Brain AI behaviors for control of the head!
-    }
-
     public static AttributeSupplier.Builder createAttributes() {
         return Mob.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 20.0D)
                 .add(Attributes.FOLLOW_RANGE, 48.0D)
-                .add(Attributes.KNOCKBACK_RESISTANCE, 1.0D); // Grants 100% knockback immunity
+                .add(Attributes.KNOCKBACK_RESISTANCE, 1.0D);
     }
 
     @Override
@@ -150,6 +139,11 @@ public class ScorcherEntity extends Mob implements GeoEntity {
     @Override
     public AnimatableInstanceCache getAnimatableInstanceCache() {
         return geoCache;
+    }
+
+    @Override
+    public boolean canBeCollidedWith() {
+        return false;
     }
 
     public void setBeingStaredAt() {
@@ -200,7 +194,6 @@ public class ScorcherEntity extends Mob implements GeoEntity {
         super.tick();
 
         if (!this.level().isClientSide()) {
-            // Hard-lock the Y velocity to 0 to prevent drifting or standard fall gravity pathing
             this.setDeltaMovement(this.getDeltaMovement().multiply(1.0, 0.0, 1.0));
 
             if (this.isAlive() && this.tickCount % 2 == 0) {
@@ -243,9 +236,6 @@ public class ScorcherEntity extends Mob implements GeoEntity {
         }
     }
 
-    // --- BRAIN BEHAVIORS ---
-
-    // 1. Idle Scanning Behavior
     static class ScorcherIdleLookBehavior extends Behavior<ScorcherEntity> {
         private float currentAngle;
         private int pauseTicks;
@@ -257,13 +247,11 @@ public class ScorcherEntity extends Mob implements GeoEntity {
 
         @Override
         protected boolean checkExtraStartConditions(ServerLevel level, ScorcherEntity entity) {
-            // Only idle look if no target is acquired
             return entity.getTarget() == null;
         }
 
         @Override
         protected void start(ServerLevel level, ScorcherEntity entity, long gameTime) {
-            // Initialize the angle to roughly where the head is currently facing
             this.currentAngle = (float) Math.toRadians(entity.getYHeadRot() + 90.0f);
             this.pauseTicks = 20 + level.random.nextInt(40);
         }
@@ -276,17 +264,14 @@ public class ScorcherEntity extends Mob implements GeoEntity {
         @Override
         protected void tick(ServerLevel level, ScorcherEntity entity, long gameTime) {
             if (this.pauseTicks > 0) {
-                // Halting behavior: stay focused on the current spot
                 this.pauseTicks--;
             } else {
-                // Panning behavior: smoothly rotate the target angle
                 this.currentAngle += 0.03f * this.panDirection;
 
-                // 1% chance each tick to suddenly "decide" to stop and inspect a spot
                 if (level.random.nextFloat() < 0.01f) {
-                    this.pauseTicks = 20 + level.random.nextInt(60); // Halt for 1 to 4 seconds
+                    this.pauseTicks = 20 + level.random.nextInt(60);
                     if (level.random.nextBoolean()) {
-                        this.panDirection *= -1; // 50% chance to reverse sweeping direction after halting
+                        this.panDirection *= -1;
                     }
                 }
             }
@@ -294,11 +279,10 @@ public class ScorcherEntity extends Mob implements GeoEntity {
             double radius = 10.0;
             double dx = Math.cos(this.currentAngle) * radius;
             double dz = Math.sin(this.currentAngle) * radius;
-            double dy = -2.0; // Biased downwards
+            double dy = -2.0;
 
             Vec3 lookPos = entity.getEyePosition().add(dx, dy, dz);
 
-            // Slower look speed (10.0F) so the physical head smoothly drags behind the target point
             entity.getLookControl().setLookAt(lookPos.x, lookPos.y, lookPos.z, 10.0F, 10.0F);
         }
     }
@@ -307,13 +291,11 @@ public class ScorcherEntity extends Mob implements GeoEntity {
     protected void clampHeadRotationToBody() {
     }
 
-    // 2. Aggressive Stare Behavior
     static class ScorcherStareBehavior extends Behavior<ScorcherEntity> {
         private Player target;
         private int losTicks = 0;
         private int losLostTicks = 0;
         private Vec3 lastKnownPos = null;
-        // Added selector to strictly filter out creative and spectator players
         private final TargetingConditions targetConditions = TargetingConditions.forNonCombat().range(48.0).ignoreLineOfSight().selector((entity) -> {
             if (entity instanceof Player player) {
                 return !player.isCreative() && !player.isSpectator();
@@ -338,18 +320,15 @@ public class ScorcherEntity extends Mob implements GeoEntity {
             return true;
         }
 
-        // Custom, more forgiving Line of Sight check so it doesn't lose track of the player easily
         private boolean hasForgivingLineOfSight(ScorcherEntity entity, Player target) {
             if (entity.getSensing().hasLineOfSight(target)) return true;
 
-            // Check chest (center of mass)
             Vec3 start = entity.getEyePosition();
             Vec3 chestPos = target.position().add(0, target.getBbHeight() * 0.5, 0);
             if (entity.level().clip(new ClipContext(start, chestPos, ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, entity)).getType() == HitResult.Type.MISS) {
                 return true;
             }
 
-            // Check feet
             Vec3 feetPos = target.position().add(0, 0.1, 0);
             if (entity.level().clip(new ClipContext(start, feetPos, ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, entity)).getType() == HitResult.Type.MISS) {
                 return true;
@@ -360,15 +339,12 @@ public class ScorcherEntity extends Mob implements GeoEntity {
 
         @Override
         protected void tick(ServerLevel level, ScorcherEntity entity, long gameTime) {
-            // Target Acquisition - explicit check to drop targets that switch to Creative mode
             if (this.target == null || !this.target.isAlive() || entity.distanceToSqr(this.target) > 48 * 48 || this.target.isSpectator() || this.target.isCreative()) {
                 this.target = level.getNearestPlayer(this.targetConditions, entity);
                 this.losTicks = 0;
                 this.losLostTicks = 0;
                 this.lastKnownPos = null;
 
-                // CRITICAL FIX: We must inform the Mob entity of the target so that
-                // the ScorcherIdleLookBehavior knows to abort and stop spinning the head!
                 if (this.target != null) {
                     entity.setBeingStaredAt();
                     entity.setBeamTarget(this.target.getId());
@@ -379,24 +355,20 @@ public class ScorcherEntity extends Mob implements GeoEntity {
                 }
             }
 
-            // Logic execution while engaged
             if (this.target != null) {
                 if (hasForgivingLineOfSight(entity, this.target)) {
                     this.losLostTicks = 0;
                     this.losTicks++;
                     this.lastKnownPos = this.target.getEyePosition();
 
-                    // If the player is within 10 blocks (100 distance sqr), the eye speeds up massively to keep track!
                     float turnSpeed = entity.distanceToSqr(this.target) < 100.0 ? 120.0F : 30.0F;
                     entity.getLookControl().setLookAt(this.target, turnSpeed, turnSpeed);
 
-                    // --- CONTINUOUS RAMPING DAMAGE LOGIC ---
                     if (this.losTicks % 20 == 0) {
                         int secondsInLos = this.losTicks / 20;
                         float damage = secondsInLos - 1f;
 
                         if (damage > 0) {
-                            // Strip invulnerability frames so the damage ticks are guaranteed to register
                             this.target.invulnerableTime = 0;
 
                             this.target.hurt(entity.damageSources().onFire(), damage);
@@ -404,7 +376,6 @@ public class ScorcherEntity extends Mob implements GeoEntity {
                     }
 
                 } else {
-                    // Line of Sight Broken
                     this.losLostTicks++;
                     this.losTicks = 0;
 

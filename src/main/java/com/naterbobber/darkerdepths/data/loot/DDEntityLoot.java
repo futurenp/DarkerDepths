@@ -53,6 +53,10 @@ public class DDEntityLoot extends VanillaEntityLoot {
         this.add(DDEntityTypes.VOID_SOUL.get(),
                 LootTable.lootTable()
         );
+
+        this.add(DDEntityTypes.SCORCHER.get(),
+                LootTable.lootTable()
+        );
     }
 
     @Override

@@ -1,10 +1,10 @@
 package com.naterbobber.darkerdepths.worldgen;
 
-import com.naterbobber.darkerdepths.util.DDResourceKeys;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BiomeDefaultFeatures;
 import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.data.worldgen.Carvers;
 import net.minecraft.data.worldgen.placement.CavePlacements;
 import net.minecraft.sounds.Music;
 import net.minecraft.sounds.Musics;
@@ -46,6 +46,9 @@ public class DDBiomes {
         MobSpawnSettings.Builder mobBuilder = new MobSpawnSettings.Builder();
         BiomeDefaultFeatures.commonSpawns(mobBuilder);
         BiomeGenerationSettings.Builder biomeBuilder = new BiomeGenerationSettings.Builder(holderGetter, holderGetter1);
+        biomeBuilder.addCarver(GenerationStep.Carving.AIR, Carvers.CAVE);
+        biomeBuilder.addCarver(GenerationStep.Carving.AIR, Carvers.CAVE_EXTRA_UNDERGROUND);
+        biomeBuilder.addCarver(GenerationStep.Carving.AIR, Carvers.CANYON);
         BiomeDefaultFeatures.addDefaultCarversAndLakes(biomeBuilder);
         BiomeDefaultFeatures.addDefaultCrystalFormations(biomeBuilder);
         BiomeDefaultFeatures.addDefaultMonsterRoom(biomeBuilder);

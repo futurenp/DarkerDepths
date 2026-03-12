@@ -7,10 +7,7 @@ import com.naterbobber.darkerdepths.block.custom.GlowshroomBlock;
 import com.naterbobber.darkerdepths.block.custom.GlowspursBlock;
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import com.naterbobber.darkerdepths.init.DDFeatures;
-import com.naterbobber.darkerdepths.worldgen.features.config.CorrespondentLayersConfig;
-import com.naterbobber.darkerdepths.worldgen.features.config.PetrifiedBranchConfig;
-import com.naterbobber.darkerdepths.worldgen.features.config.ReplaceListConfig;
-import com.naterbobber.darkerdepths.worldgen.features.config.ReplaceListLayeredConfig;
+import com.naterbobber.darkerdepths.worldgen.features.config.*;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderSet;
@@ -20,10 +17,7 @@ import net.minecraft.data.worldgen.features.FeatureUtils;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.random.SimpleWeightedRandomList;
-import net.minecraft.util.valueproviders.ConstantInt;
-import net.minecraft.util.valueproviders.IntProvider;
-import net.minecraft.util.valueproviders.UniformInt;
-import net.minecraft.util.valueproviders.WeightedListInt;
+import net.minecraft.util.valueproviders.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
@@ -221,6 +215,25 @@ public class DDConfiguredFeatures {
                         1
                 )
         );
+
+        FeatureUtils.register(context, LARGE_MOLTEN_PILLAR,
+                DDFeatures.LARGE_MOLTEN_PILLAR.get(),
+                new LargeDripstoneConfiguration(
+                        30,
+                        UniformInt.of(3, 19),
+                        UniformFloat.of(0.4F, 2.0F),
+                        0.33F,
+                        UniformFloat.of(0.3F, 0.9F),
+                        UniformFloat.of(0.4F, 1.0F),
+                        UniformFloat.of(0.0F, 0.3F),
+                        4,
+                        0.6F)
+        );
+
+        FeatureUtils.register(context, SCORCHER_PLACER,
+                DDFeatures.SCORCHER_PLACER.get(),
+                new ScorcherFeatureConfig(5, 9, 2));
+
 
         FeatureUtils.register(context, DUSKROCK_ORE, Feature.ORE, new OreConfiguration(
                 List.of(
