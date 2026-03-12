@@ -64,5 +64,6 @@ public class ClientRegisterEvents {
         engine.register(DDParticleTypes.VOID_SOUL_FLAME_SMOKE.get(), VoidSoulFlameSmokeParticle.VoidSoulFlameSmokeFactory::new);
         engine.register(DDParticleTypes.GEYSER_BURST_SMOKE.get(), GeyserBurstSmokeParticle.GeyserBurstSmokeParticleFactory::new);
         engine.register(DDParticleTypes.GEYSER_BURST_SMOKE_BOOSTED.get(), GeyserBurstSmokeParticle.GeyserBurstSmokeBoostedParticleFactory::new);
+        engine.register(DDParticleTypes.RED_ASH.get(), (spriteSet) -> new ColoredAshParticle.Provider(spriteSet, 1F, 0F, 0F));
     }
 }

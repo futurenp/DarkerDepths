@@ -19,6 +19,7 @@ public class DDParticleTypes {
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> VOID_SOUL_FLAME_SMOKE= registerParticle("void_soul_flame_smoke", false);
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> GEYSER_BURST_SMOKE   = registerParticle("geyser_burst_smoke", false);
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> GEYSER_BURST_SMOKE_BOOSTED  = registerParticle("geyser_burst_smoke_boosted", false);
+    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> RED_ASH  = registerParticle("red_ash", false);
 
 
     public static DeferredHolder<ParticleType<?>, SimpleParticleType> registerParticle(String name, boolean alwaysShow) {
