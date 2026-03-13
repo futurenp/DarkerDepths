@@ -29,11 +29,14 @@ import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvi
 import net.minecraft.world.level.levelgen.feature.stateproviders.RuleBasedBlockStateProvider;
 import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
 import net.minecraft.world.level.levelgen.placement.CaveSurface;
+import net.minecraft.world.level.levelgen.placement.EnvironmentScanPlacement;
+import net.minecraft.world.level.levelgen.placement.RandomOffsetPlacement;
 import net.minecraft.world.level.levelgen.structure.templatesystem.BlockMatchTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
 import net.minecraft.world.level.material.Fluids;
 
 import java.util.List;
+import java.util.Set;
 
 import static com.naterbobber.darkerdepths.util.DDResourceKeys.ConfiguredFeatures.*;
 
@@ -123,12 +126,20 @@ public class DDConfiguredFeatures {
                 )
         ));
 
-        FeatureUtils.register(context, DARKSLATE_VEGETATION, Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(
+        FeatureUtils.register(context, DARKSLATE_VEGETATION, DDFeatures.RANDOM_FLOOR_PLACEMENT.get(), new RandomFloorPlacementConfig(
                 new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
-                        .add(Blocks.AIR.defaultBlockState(), 60)
+                        .add(DDBlocks.SCORCHED_REMAINS.get().defaultBlockState(), 1)
                         .build()
+                ),
+                HolderSet.direct(DDBlocks.DARKSLATE.getDelegate()),
+                10,
+                4,
+                2,
+                1
                 )
-        ));
+        );
+
+
 
         FeatureUtils.register(context, DARKSLATE_PLACEMENT, DDFeatures.REPLACE_LIST.get(), new ReplaceListConfig(
                 OVERWORLD_REPLACEABLES,
@@ -257,17 +268,21 @@ public class DDConfiguredFeatures {
                 64)
         );
 
-        FeatureUtils.register(context, DARKSLATE_SURFACE, DDFeatures.CORRESPONDENT_LAYER.get(), new CorrespondentLayersConfig(
-                BlockTags.LUSH_GROUND_REPLACEABLE,
-                List.of(
-                        BlockStateProvider.simple(DDBlocks.DARKSLATE.get()),
-                        BlockStateProvider.simple(DDBlocks.DARKSLATE.get())
-                ),
-                PlacementUtils.inlinePlaced(lookup.getOrThrow(DARKSLATE_VEGETATION)),
-                CaveSurface.FLOOR,
-                ConstantInt.of(1), 0.0F, 5, 0.8F,
-                UniformInt.of(4, 7), 0.3F, false)
+        FeatureUtils.register(context, DARKSLATE_SURFACE, Feature.VEGETATION_PATCH,
+                new VegetationPatchConfiguration(
+                        BlockTags.AIR,
+                        BlockStateProvider.simple(DDBlocks.DARKSLATE.get().defaultBlockState()),
+                        PlacementUtils.inlinePlaced(lookup.getOrThrow(DARKSLATE_VEGETATION)),
+                        CaveSurface.FLOOR,
+                        ConstantInt.of(1),
+                        0.0F,
+                        5,
+                        0.0F,
+                        UniformInt.of(4, 7),
+                        0.3F
+                )
         );
+
 
         FeatureUtils.register(context, ARID_SURFACE, DDFeatures.CORRESPONDENT_LAYER.get(), new CorrespondentLayersConfig(
                 BlockTags.LUSH_GROUND_REPLACEABLE,

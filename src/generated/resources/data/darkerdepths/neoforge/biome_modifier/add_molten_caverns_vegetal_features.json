@@ -1,11 +1,6 @@
 {
   "type": "neoforge:add_features",
   "biomes": "darkerdepths:molten_cavern",
-  "features": [
-    "darkerdepths:darkslate_placement",
-    "darkerdepths:molten_pool",
-    "darkerdepths:molten_spring",
-    "darkerdepths:scorcher_placer"
-  ],
+  "features": "darkerdepths:darkslate_vegetation",
   "step": "vegetal_decoration"
 }

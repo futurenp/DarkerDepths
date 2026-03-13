@@ -25,7 +25,7 @@ public class GeyserFeature extends Feature<SimpleBlockConfiguration> {
                 && world.getBlockState(blockPos).canOcclude()
                 && world.getBlockState(blockPos.below()).canOcclude()){
             this.setBlock(world, blockPos, DDBlocks.GEYSER.get().defaultBlockState());
-            this.setBlock(world, blockPos.below(), DDBlocks.ASH_BLOCK.get().defaultBlockState());
+            this.setBlock(world, blockPos.below(), DDBlocks.SCORCHED_REMAINS_BLOCK.get().defaultBlockState());
             return true;
         } else {
             return false;

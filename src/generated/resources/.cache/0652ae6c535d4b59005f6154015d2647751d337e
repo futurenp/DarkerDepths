@@ -1,9 +1,10 @@
-// 1.21.1	2026-02-17T23:37:53.4116802	Tags for minecraft:block mod id darkerdepths
+// 1.21.1	2026-03-12T23:53:44.2543999	Tags for minecraft:block mod id darkerdepths
 0163428a12a8c0cf1e5c527b85275a53bd3d364b data/blueprint/tags/block/wooden_bookshelves.json
 0163428a12a8c0cf1e5c527b85275a53bd3d364b data/c/tags/block/bookshelves.json
 9cb44c49895785a868a717fe96a0e3ce7e215187 data/c/tags/block/storage_blocks.json
+6e8a8f5878ba07b54132671990b8070097a4ca96 data/darkerdepths/tags/block/geyser_ash_providers.json
 f0f92c5f0b5c5412980a4ca8436b4cb180919deb data/darkerdepths/tags/block/geyser_boosters.json
-acb229a0a11f926d8072d3a6ef8f06a2b9f61b38 data/darkerdepths/tags/block/geyser_bypasses.json
+0b81105dad4e5416b7f09206a642e7a71a9fe310 data/darkerdepths/tags/block/geyser_bypasses.json
 3dfb0ae86440be076ba09273ec3517fb643e005c data/darkerdepths/tags/block/husks_spawnable_on.json
 629b5359bc3115f148d4aabf634436db522199d9 data/minecraft/tags/block/all_hanging_signs.json
 cf6fc837315dff0c0cf820f01506173a674bc611 data/minecraft/tags/block/all_signs.json
@@ -11,6 +12,7 @@ cf6fc837315dff0c0cf820f01506173a674bc611 data/minecraft/tags/block/all_signs.jso
 9cb44c49895785a868a717fe96a0e3ce7e215187 data/minecraft/tags/block/beacon_base_blocks.json
 8216d0d7b0dd9a30490ae89acf02954df17d94ec data/minecraft/tags/block/buttons.json
 d3b03ea502166dcd0a9352d813cd13e324a97d68 data/minecraft/tags/block/ceiling_hanging_signs.json
+28fe96aa3f5bc5a4b3049dd574f895b07dce6184 data/minecraft/tags/block/deepslate_ore_replaceables.json
 6e4c061fb1cbfc8ed1a0db1366c7fa2a39227480 data/minecraft/tags/block/doors.json
 0163428a12a8c0cf1e5c527b85275a53bd3d364b data/minecraft/tags/block/enchantment_power_provider.json
 f554d471ce51b93b48815f100f6e9e6a04baecf5 data/minecraft/tags/block/fences.json
@@ -18,17 +20,19 @@ d46196cd8880069d772cedd2866445ceffda8735 data/minecraft/tags/block/fence_gates.j
 5e277297b74dc60b3a92d2fe9b9fc06fe32cf551 data/minecraft/tags/block/logs.json
 92aa6f612a46aba41cb64f696191d1a300bb9b76 data/minecraft/tags/block/mineable/axe.json
 97e68b293c92fb0079c8055d153d93d2d0d44e54 data/minecraft/tags/block/mineable/hoe.json
-885dc44039e5fcb2fbb944eae08edde99fddc1d4 data/minecraft/tags/block/mineable/pickaxe.json
+245d5a76eb5eb7df05c7cca1b599aabcde2cc9be data/minecraft/tags/block/mineable/pickaxe.json
 7a0301efb3765b21b4d17f79d065044da8501821 data/minecraft/tags/block/mineable/shovel.json
 2a533a2c364bc2276b484e6a6d192ec1ec26908a data/minecraft/tags/block/needs_iron_tool.json
 4a106d74771bd71781ad1f13f3a26fc4a8eef1c6 data/minecraft/tags/block/needs_stone_tool.json
 af16345a95dc5cfb6cba85b5968ec2574833fb60 data/minecraft/tags/block/planks.json
 8faf61b13091699957a2e9ec22ef080406d6efd7 data/minecraft/tags/block/pressure_plates.json
+644a7abf7f758c89a36f7af5727bd02a27cd1c5c data/minecraft/tags/block/replaceable.json
 441c96a4d313f42230262f8f486dac685da9c3e3 data/minecraft/tags/block/signs.json
 fd90f97ce809a815b9c3296f4710bc3a5049db16 data/minecraft/tags/block/slabs.json
 1a243e7de12e13b51ad420d7cb2ec6a6f0a0d989 data/minecraft/tags/block/snaps_goat_horn.json
 9a4d121e6133cfce7fb44eb497ddbf05d0f1dbc4 data/minecraft/tags/block/stairs.json
 6b6a5bffd99a837c9798283e41315bd4b10daf24 data/minecraft/tags/block/standing_signs.json
+644a7abf7f758c89a36f7af5727bd02a27cd1c5c data/minecraft/tags/block/sword_efficient.json
 e8b395f5db7c0033880697c121e9bcd8ea764521 data/minecraft/tags/block/trapdoors.json
 459da9d07303606a0b2510b93915615ab9dc6cfc data/minecraft/tags/block/walls.json
 29dc3f286bdcc2cf6821233c7f032be12ea553b6 data/minecraft/tags/block/wall_hanging_signs.json

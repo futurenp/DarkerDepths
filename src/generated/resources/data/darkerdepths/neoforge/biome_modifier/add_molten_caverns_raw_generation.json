@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "darkerdepths:molten_cavern",
+  "features": "darkerdepths:large_molten_pillar",
+  "step": "raw_generation"
+}

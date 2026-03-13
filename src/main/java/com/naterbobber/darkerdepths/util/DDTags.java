@@ -41,6 +41,7 @@ public class DDTags {
         private static final TagFactory<Block> TAGS = make(Registries.BLOCK);
 
         public static final TagKey<Block> GEYSER_BOOSTERS = TAGS.create("geyser_boosters");
+        public static final TagKey<Block> GEYSER_ASH_PROVIDERS = TAGS.create("geyser_ash_providers");
         public static final TagKey<Block> GEYSER_BYPASSES = TAGS.create("geyser_bypasses");
         public static final TagKey<Block> HUSKS_SPAWNABLE_ON = TAGS.create("husks_spawnable_on");
         public static final TagKey<Block> TRIMMED_PLANKS = TAGS.create("trimmed_planks", DDCompat.NO_MANS_LAND);

@@ -123,7 +123,9 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
                 DDBlocks.GRIMESTONE_BRICKS_VERTICAL_SLAB.get(),
                 DDBlocks.POLISHED_ARIDROCK_VERTICAL_SLAB.get(),
                 DDBlocks.POLISHED_DARKSLATE_VERTICAL_SLAB.get(),
-                DDBlocks.POLISHED_GRIMESTONE_VERTICAL_SLAB.get()
+                DDBlocks.POLISHED_GRIMESTONE_VERTICAL_SLAB.get(),
+                DDBlocks.SCORCHED_REMAINS.get(),
+                DDBlocks.SCORCHED_REMAINS_BLOCK.get()
         );
 
         this.tag(BlockTags.MINEABLE_WITH_SHOVEL).add(
@@ -183,6 +185,7 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
 
     private void generateModTags() {
         this.tag(DDTags.Blocks.GEYSER_BOOSTERS).add(Blocks.MAGMA_BLOCK);
+        this.tag(DDTags.Blocks.GEYSER_ASH_PROVIDERS).add(DDBlocks.SCORCHED_REMAINS_BLOCK.get());
 
         this.tag(DDTags.Blocks.GEYSER_BYPASSES).add(
                         Blocks.SNOW,
@@ -206,9 +209,6 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
                 .addTag(BlockTags.CORAL_PLANTS)
                 .addTag(BlockTags.FENCES)
                 .addTag(BlockTags.FENCE_GATES)
-                .addTag(BlockTags.REPLACEABLE_BY_TREES)
-                .addTag(BlockTags.LUSH_GROUND_REPLACEABLE)
-                .addTag(BlockTags.REPLACEABLE_BY_TREES)
                 .addTag(BlockTags.REPLACEABLE)
                 .addTag(BlockTags.BUTTONS)
                 .addTag(BlockTags.LEAVES)
@@ -227,6 +227,21 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
                 DDBlocks.DUSKROCK.get(),
                 DDBlocks.GRIMESTONE.get()
         );
+
+        this.tag(BlockTags.DEEPSLATE_ORE_REPLACEABLES).add(
+                DDBlocks.DARKSLATE.get(),
+                DDBlocks.GRIMESTONE.get(),
+                DDBlocks.ARIDROCK.get(),
+                DDBlocks.DUSKROCK.get()
+        );
+        //Has issues for cross-deepslate generation
+        //Unless that was just isolated to single-biome worlds
+//        this.tag(BlockTags.STONE_ORE_REPLACEABLES).add(
+//                DDBlocks.DARKSLATE.get(),
+//                DDBlocks.GRIMESTONE.get(),
+//                DDBlocks.ARIDROCK.get(),
+//                DDBlocks.DUSKROCK.get()
+//        );
 
         this.tag(BlockTags.PLANKS).add(
                 DDBlocks.PETRIFIED_PLANKS.get()
@@ -256,6 +271,28 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
 
         this.tag(Tags.Blocks.BOOKSHELVES).add(
                 DDBlocks.PETRIFIED_BOOKSHELF.get()
+        );
+
+        this.tag(BlockTags.REPLACEABLE).add(
+                DDBlocks.SCORCHED_REMAINS.get(),
+                DDBlocks.DRY_SPROUTS.get(),
+                DDBlocks.PETRIFIED_ROOTS.get(),
+                DDBlocks.PETRIFIED_ROOTS_PLANT.get(),
+                DDBlocks.MOSSY_SPROUTS.get(),
+                DDBlocks.GLOWSPURS.get(),
+                DDBlocks.GLIMMERING_VINES.get(),
+                DDBlocks.GLIMMERING_VINE_PLANT.get()
+        );
+
+        this.tag(BlockTags.SWORD_EFFICIENT).add(
+                DDBlocks.SCORCHED_REMAINS.get(),
+                DDBlocks.DRY_SPROUTS.get(),
+                DDBlocks.PETRIFIED_ROOTS.get(),
+                DDBlocks.PETRIFIED_ROOTS_PLANT.get(),
+                DDBlocks.MOSSY_SPROUTS.get(),
+                DDBlocks.GLOWSPURS.get(),
+                DDBlocks.GLIMMERING_VINES.get(),
+                DDBlocks.GLIMMERING_VINE_PLANT.get()
         );
     }
 

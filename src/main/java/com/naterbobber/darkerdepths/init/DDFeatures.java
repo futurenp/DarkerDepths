@@ -30,5 +30,6 @@ public class DDFeatures {
     public static final DeferredHolder<Feature<?>, GeyserFeature> GEYSER_UNDER_FLUID = FEATURES.register("geyser_under_fluid", () -> new GeyserFeature(SimpleBlockConfiguration.CODEC));
     public static final DeferredHolder<Feature<?>, LargeMoltenPillarFeature> LARGE_MOLTEN_PILLAR = FEATURES.register("large_molten_pillar", () -> new LargeMoltenPillarFeature(LargeDripstoneConfiguration.CODEC));
     public static final DeferredHolder<Feature<?>, ScorcherFeature> SCORCHER_PLACER = FEATURES.register("scorcher_placer", () -> new ScorcherFeature(ScorcherFeatureConfig.CODEC));
+    public static final DeferredHolder<Feature<?>, RandomFloorPlacementFeature> RANDOM_FLOOR_PLACEMENT = FEATURES.register("random_floor_placement", () -> new RandomFloorPlacementFeature(RandomFloorPlacementConfig.CODEC));
 
 }

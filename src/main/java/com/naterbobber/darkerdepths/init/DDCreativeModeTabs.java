@@ -43,6 +43,10 @@ public class DDCreativeModeTabs {
                     DDItems.GLOWSHROOM_CAP,
                     DDItems.GLOW_GRIME,
                     DDItems.GLOWSHROOM_MONSTER_SPAWN_EGG
+            ),
+            "geyser", List.of(
+                    DDItems.MAGMA_PAD,
+                    DDItems.SCORCHER_SPAWN_EGG
             )
     );
 

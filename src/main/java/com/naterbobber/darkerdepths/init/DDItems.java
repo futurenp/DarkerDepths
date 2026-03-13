@@ -27,8 +27,8 @@ public class DDItems {
             () -> new RopeItem(DDBlocks.ROPE.get(), new Item.Properties()));
     //    public static final DeferredItem<QuickRopeItem> QUICKROPE = ITEMS.register("quickrope",
 //     () -> new QuickRopeItem(new Item.Properties().maxDamage(16)));
-//    public static final DeferredItem<BlockItem> MAGMA_PAD = ITEMS.register("magma_pad",
-//            () -> new BlockItem(DDBlocks.MAGMA_PAD.get(), new Item.Properties())); // Note: PlaceOnWaterBlockItem is removed
+    public static final DeferredItem<BlockItem> MAGMA_PAD = ITEMS.register("magma_pad",
+            () -> new BlockItem(DDBlocks.MAGMA_PAD.get(), new Item.Properties()));
     public static final DeferredItem<Item> AMBER = createSimpleItem("amber");
     public static final DeferredItem<Item> VOID_SOUL_REQUIEM = createSimpleItem("void_soul_requiem");
     public static final DeferredItem<Item> FORSAKEN_BRONZE_SCRAP = createSimpleItem("forsaken_bronze_scrap");
@@ -64,6 +64,8 @@ public class DDItems {
             () -> new SpawnEggItem(DDEntityTypes.VOID_SOUL_KNIGHT.get(), 3542019, 16757097, new Item.Properties()));
     public static final DeferredItem<SpawnEggItem> VOID_SOUL_SPAWN_EGG = ITEMS.register("void_soul_spawn_egg",
             () -> new SpawnEggItem(DDEntityTypes.VOID_SOUL.get(), 0, 16749117, new Item.Properties()));
+    public static final DeferredItem<SpawnEggItem> SCORCHER_SPAWN_EGG = ITEMS.register("scorcher_spawn_egg",
+            () -> new SpawnEggItem(DDEntityTypes.SCORCHER.get(), 16228419, 16777215, new Item.Properties()));
     public static final DeferredItem<DDBoatItem> PETRIFIED_BOAT = ITEMS.register("petrified_boat",
             () -> new DDBoatItem(false, PetrifiedBoatEntity.BoatType.PETRIFIED, new Item.Properties().stacksTo(1)));
     public static final DeferredItem<DDBoatItem> PETRIFIED_CHEST_BOAT = ITEMS.register("petrified_chest_boat",

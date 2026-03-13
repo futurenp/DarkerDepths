@@ -25,7 +25,7 @@ import static com.naterbobber.darkerdepths.util.DDResourceKeys.PlacedFeatures.*;
 
 public class DDBiomeModifiers {
     public static void bootstrap(BootstrapContext<BiomeModifier> context) {
-        context.register(ADD_MOLTEN_CAVERNS_VEGETAL_FEATURES, new BiomeModifiers.AddFeaturesBiomeModifier(
+        context.register(ADD_MOLTEN_CAVERNS_LOCAL_MODIFICATIONS, new BiomeModifiers.AddFeaturesBiomeModifier(
                 getBiome(context, MOLTEN_CAVERN),
                 getPlacedFeature(
                         context,
@@ -33,16 +33,17 @@ public class DDBiomeModifiers {
                         MOLTEN_POOL,
                         MOLTEN_SPRING,
                         SCORCHER_PLACER
+
                 ),
-                GenerationStep.Decoration.VEGETAL_DECORATION)
+                GenerationStep.Decoration.LOCAL_MODIFICATIONS)
         );
-        context.register(ADD_MOLTEN_CAVERNS_LOCAL_MODIFICATIONS, new BiomeModifiers.AddFeaturesBiomeModifier(
+        context.register(ADD_MOLTEN_CAVERNS_RAW_GENERATION, new BiomeModifiers.AddFeaturesBiomeModifier(
                 getBiome(context, MOLTEN_CAVERN),
                 getPlacedFeature(
                         context,
                         LARGE_MOLTEN_PILLAR
                 ),
-                GenerationStep.Decoration.LOCAL_MODIFICATIONS)
+                GenerationStep.Decoration.RAW_GENERATION)
         );
         context.register(ADD_MOLTEN_CAVERNS_ORES, new BiomeModifiers.AddFeaturesBiomeModifier(
                 getBiome(context, MOLTEN_CAVERN),
@@ -52,6 +53,14 @@ public class DDBiomeModifiers {
                         DEAD_LIVING_CRYSTAL_ORE
                 ),
                 GenerationStep.Decoration.UNDERGROUND_ORES
+        ));
+        context.register(ADD_MOLTEN_CAVERNS_VEGETAL_FEATURES, new BiomeModifiers.AddFeaturesBiomeModifier(
+                getBiome(context, MOLTEN_CAVERN),
+                getPlacedFeature(
+                        context,
+                        DARKSLATE_VEGETATION
+                ),
+                GenerationStep.Decoration.VEGETAL_DECORATION
         ));
         context.register(ADD_SANDY_CATACOMBS_LOCAL_MODIFICATIONS, new BiomeModifiers.AddFeaturesBiomeModifier(
                         getBiome(context, SANDY_CATACOMBS),

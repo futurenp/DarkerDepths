@@ -1,4 +1,4 @@
-// 1.21.1	2026-03-11T16:51:29.0441287	Loot Tables
+// 1.21.1	2026-03-12T22:40:42.7201268	Loot Tables
 69a68443e41c0ea8610b4ece66b6a6a3bff163d0 data/darkerdepths/loot_table/archaeology/catacombs/standard.json
 b26089f15d136d6d0b9b7870fd170249ec0473de data/darkerdepths/loot_table/blocks/amber_block.json
 7b8aa851d67ec8c45ab85ef504b99c843fe25237 data/darkerdepths/loot_table/blocks/amber_cluster.json
@@ -70,7 +70,7 @@ cd5bb5ff580c46d3110dc984f037a2d7df560f67 data/darkerdepths/loot_table/blocks/gri
 7465fa63872d26d8cd9f81ba755ff4b974184a59 data/darkerdepths/loot_table/blocks/grimestone_vertical_slab.json
 701426229885a9cf05c1cb46eb578dcadd99e492 data/darkerdepths/loot_table/blocks/grimestone_wall.json
 30029d03a9ffde5a77dc519a42bd23134c397a42 data/darkerdepths/loot_table/blocks/living_crystal.json
-6859ceb9c2dcf56ed1432e6a80f54cd55a349d8b data/darkerdepths/loot_table/blocks/magma_pad.json
+7d57cb80814efc4fe16d75f8bae8e9382f001fff data/darkerdepths/loot_table/blocks/magma_pad.json
 ce75075c970e39ec0de082b2245a13f04fb3835d data/darkerdepths/loot_table/blocks/mossy_grimestone.json
 64ebcb549e9a211e2b53db3b3f89290e9a46b2bc data/darkerdepths/loot_table/blocks/mossy_sprouts.json
 51faf3407ceb035928e56999d644ca0bf2b8974f data/darkerdepths/loot_table/blocks/paranoia_altar.json
@@ -114,6 +114,8 @@ fe059856640a25089c636995846ea437470fb7aa data/darkerdepths/loot_table/blocks/pol
 8922d9f85b23a010d622ef18ca952fee281ba77c data/darkerdepths/loot_table/blocks/porous_petrified_log.json
 ef5a93dd3fc952fa55133f527a66924c6f3442b2 data/darkerdepths/loot_table/blocks/potted_glowshroom.json
 1096585c0434e9226c2073650caa0e4a6d6b1a00 data/darkerdepths/loot_table/blocks/rope.json
+8670ae4190a5d01303a72267c04850efe0479cfe data/darkerdepths/loot_table/blocks/scorched_remains.json
+4c6a5932e9a66284687cd6b49e4c481dad11c60a data/darkerdepths/loot_table/blocks/scorched_remains_block.json
 8aea018e4a575143f2621a8289c0ccbe970f3245 data/darkerdepths/loot_table/blocks/skull_wall.json
 9aca8741b7cbd31d05120d70b78711662badaec4 data/darkerdepths/loot_table/blocks/stone_melon.json
 e3845cce2b0c03ba18d1e00f79bba44932d94a06 data/darkerdepths/loot_table/blocks/stripped_petrified_log.json

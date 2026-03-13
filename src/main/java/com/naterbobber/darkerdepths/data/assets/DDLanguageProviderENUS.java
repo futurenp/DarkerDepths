@@ -3,6 +3,7 @@ package com.naterbobber.darkerdepths.data.assets;
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.init.*;
 import net.minecraft.data.PackOutput;
+import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.data.LanguageProvider;
 
 public class DDLanguageProviderENUS extends LanguageProvider {
@@ -16,6 +17,7 @@ public class DDLanguageProviderENUS extends LanguageProvider {
         add(DDItems.GLOWSHROOM_MONSTER_SPAWN_EGG.get(), "Glowshroom Monster Spawn Egg");
         add(DDItems.BODY_SNATCHER_SPAWN_EGG.get(), "Body Snatcher Spawn Egg");
         add(DDItems.VOID_SOUL_KNIGHT_SPAWN_EGG.get(), "Void Soul Knight Spawn Egg");
+        add(DDItems.SCORCHER_SPAWN_EGG.get(), "Scorcher Spawn Egg");
         add(DDItems.VOID_SOUL_SPAWN_EGG.get(), "Void Soul Spawn Egg");
         add(DDItems.GLOWSHROOM_CAP.get(), "Glowshroom Cap");
         add(DDItems.GLOW_GRIME.get(), "Glow Grime");
@@ -155,6 +157,8 @@ public class DDLanguageProviderENUS extends LanguageProvider {
         add(DDBlocks.PARANOIA_ALTAR.get(), "Paranoia Altar");
         add(DDBlocks.VOID_SOUL_TORCH.get(), "Void Soul Torch");
         add(DDBlocks.GLOWSHROOM_HEART.get(), "Glowshroom Heart");
+        add(DDBlocks.SCORCHED_REMAINS.get(), "Scorched Remains");
+        add(DDBlocks.SCORCHED_REMAINS_BLOCK.get(), "Block of Scorched Remains");
         // Entities
         add(DDEntityTypes.GLOWSHROOM_MONSTER.get(), "Glowshroom Monster");
         add(DDEntityTypes.BODY_SNATCHER.get(), "Body Snatcher");

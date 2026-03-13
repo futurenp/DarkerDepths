@@ -1,6 +1,11 @@
 {
   "type": "neoforge:add_features",
   "biomes": "darkerdepths:molten_cavern",
-  "features": "darkerdepths:large_molten_pillar",
+  "features": [
+    "darkerdepths:darkslate_placement",
+    "darkerdepths:molten_pool",
+    "darkerdepths:molten_spring",
+    "darkerdepths:scorcher_placer"
+  ],
   "step": "local_modifications"
 }

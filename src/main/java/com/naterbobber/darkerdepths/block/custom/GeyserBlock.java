@@ -13,7 +13,6 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.FluidTags;
-import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
@@ -37,7 +36,7 @@ public class GeyserBlock extends BaseEntityBlock {
     public static final BooleanProperty BURSTING = DDBlockStateProperties.BURSTING;
     private static final IntegerProperty HEAT_LEVEL = DDBlockStateProperties.HEAT_LEVEL;
     private static final BooleanProperty BOOSTED = DDBlockStateProperties.BOOSTED;
-    private static final BooleanProperty PROVIDES_ASH = DDBlockStateProperties.PROVIDES_ASH;
+    private static final BooleanProperty ASH_PROVIDER = DDBlockStateProperties.PROVIDES_ASH;
     public static final MapCodec<GeyserBlock> CODEC = simpleCodec(GeyserBlock::new);
 
     public GeyserBlock(Properties properties) {
@@ -48,7 +47,7 @@ public class GeyserBlock extends BaseEntityBlock {
                 .setValue(BURSTING, false)
                 .setValue(HEAT_LEVEL, 0)
                 .setValue(BOOSTED, false)
-                .setValue(PROVIDES_ASH, false)
+                .setValue(ASH_PROVIDER, false)
         );
     }
 
@@ -74,7 +73,7 @@ public class GeyserBlock extends BaseEntityBlock {
                 .setValue(POWERED, context.getLevel().hasNeighborSignal(context.getClickedPos()))
                 .setValue(FACING, context.getClickedFace())
                 .setValue(BOOSTED, checkModifier(context).isBoosted())
-                .setValue(PROVIDES_ASH, checkModifier(context).isAshProvider());
+                .setValue(ASH_PROVIDER, checkModifier(context).isAshProvider());
     }
 
     @Nullable
@@ -108,13 +107,13 @@ public class GeyserBlock extends BaseEntityBlock {
 
         var currentModifier = checkModifier(worldIn, pos, state.getValue(FACING));
 
-        if(state.getValue(BOOSTED) == currentModifier.isBoosted() && state.getValue(PROVIDES_ASH) == currentModifier.isAshProvider()) {
+        if(state.getValue(BOOSTED) == currentModifier.isBoosted() && state.getValue(ASH_PROVIDER) == currentModifier.isAshProvider()) {
             return;
         }
 
         var newBlockState = state
                 .setValue(BOOSTED, currentModifier.isBoosted())
-                .setValue(PROVIDES_ASH, currentModifier.isAshProvider());
+                .setValue(ASH_PROVIDER, currentModifier.isAshProvider());
 
         worldIn.setBlock(pos, newBlockState, 3);
     }
@@ -182,7 +181,7 @@ public class GeyserBlock extends BaseEntityBlock {
 
         if(blockState.is(DDTags.Blocks.GEYSER_BOOSTERS)) {
             return Modifier.BOOST;
-        } else if (blockState.is(DDBlocks.ASH_BLOCK)) {
+        } else if (blockState.is(DDTags.Blocks.GEYSER_ASH_PROVIDERS)) {
             return Modifier.ASH;
         } else {
             return Modifier.NONE;
@@ -196,7 +195,7 @@ public class GeyserBlock extends BaseEntityBlock {
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(POWERED, FACING, BURSTING, HEAT_LEVEL, BOOSTED, PROVIDES_ASH);
+        builder.add(POWERED, FACING, BURSTING, HEAT_LEVEL, BOOSTED, ASH_PROVIDER);
     }
 
     private enum Modifier {

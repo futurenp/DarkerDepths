@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "darkerdepths:magma_pad"
+          "name": "darkerdepths:scorched_remains_block"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "darkerdepths:blocks/magma_pad"
+  "random_sequence": "darkerdepths:blocks/scorched_remains_block"
 }

@@ -1,13 +1,9 @@
 {
-  "feature": "darkerdepths:large_molten_pillar",
+  "feature": "darkerdepths:darkslate_vegetation",
   "placement": [
     {
       "type": "minecraft:count",
-      "count": {
-        "type": "minecraft:uniform",
-        "max_inclusive": 64,
-        "min_inclusive": 32
-      }
+      "count": 175
     },
     {
       "type": "minecraft:in_square"

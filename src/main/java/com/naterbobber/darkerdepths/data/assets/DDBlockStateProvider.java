@@ -9,16 +9,21 @@ import com.naterbobber.darkerdepths.init.DDItems;
 import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.SpawnEggItem;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredItem;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.function.BiConsumer;
@@ -26,6 +31,9 @@ import java.util.function.Consumer;
 
 public class DDBlockStateProvider extends BlockStateProvider {
     private final Set<Block> blockIgnores = new HashSet<>();
+    private final Set<Item> itemIgnores = new HashSet<>();
+    private final Set<String> blockItems = new HashSet<>();
+
 
     public DDBlockStateProvider(PackOutput output, ExistingFileHelper exFileHelper) {
         super(output, DarkerDepths.MOD_ID, exFileHelper);
@@ -33,20 +41,13 @@ public class DDBlockStateProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
-        simpleItem(DDItems.AMBER);
-        simpleItem(DDItems.VOID_SOUL_REQUIEM);
-        simpleItem(DDItems.GLOW_GRIME);
-        simpleItem(DDItems.GLOWSHROOM_CAP);
-        simpleItem(DDItems.FORSAKEN_BRONZE_SCRAP);
-        simpleItem(DDItems.FORSAKEN_BRONZE_INGOT);
-
         add(this::woodBlockWithItem, DDBlocks.PETRIFIED_WOOD, DDBlocks.PETRIFIED_LOG);
         add(this::woodBlockWithItem, DDBlocks.STRIPPED_PETRIFIED_WOOD, DDBlocks.STRIPPED_PETRIFIED_LOG);
         add(this::columnBlockWithItem, DDBlocks.PETRIFIED_BOOKSHELF, DDBlocks.PETRIFIED_PLANKS);
         add(this::woodBlockWithItem, DDBlocks.PETRIFIED_BOARDS, DDBlocks.PETRIFIED_BOARDS);
         add(this::geyserBlock, DDBlocks.GEYSER);
 
-        skip(
+        skipBlock(
                 DDBlocks.VOID_SOUL_JAR,
                 DDBlocks.DEATH_ANCHOR,
                 DDBlocks.AMBER_CLUSTER,
@@ -77,12 +78,25 @@ public class DDBlockStateProvider extends BlockStateProvider {
                 DDBlocks.GLOWSHROOM_LAMP
         );
 
+        skipItem(DDItems.STILETTO,
+                DDItems.PARANOIA_ALTAR,
+                DDItems.PETRIFIED_BOAT,
+                DDItems.PETRIFIED_CHEST_BOAT,
+                DDItems.VOID_SOUL_JAR
+        );
+
         autoGenerateBlockAssets();
+        autoGenerateItemAssets();
     }
 
     @SafeVarargs
-    private void skip(DeferredHolder<Block, ? extends Block>... blockHolders) {
+    private void skipBlock(DeferredHolder<Block, ? extends Block>... blockHolders) {
         Arrays.stream(blockHolders).forEach(blockHolder -> blockIgnores.add(blockHolder.get()));
+    }
+
+    @SafeVarargs
+    private void skipItem(DeferredHolder<Item, ? extends Item>... itemHolders) {
+        Arrays.stream(itemHolders).forEach(itemHolder -> itemIgnores.add(itemHolder.get()));
     }
 
     private void add(Consumer<DeferredHolder<Block, ? extends Block>> function, DeferredHolder<Block, ? extends Block> block) {
@@ -93,6 +107,29 @@ public class DDBlockStateProvider extends BlockStateProvider {
     private void add(BiConsumer<DeferredHolder<Block, ? extends Block>, DeferredHolder<Block, ? extends Block>> function, DeferredHolder<Block, ? extends Block> block, DeferredHolder<Block, ? extends Block> parentBlock) {
         blockIgnores.add(block.get());
         function.accept(block, parentBlock);
+    }
+
+    private void autoGenerateItemAssets() {
+        DDItems.ITEMS.getEntries()
+                .stream()
+                .filter(holder -> !itemIgnores.contains(holder.get()))
+                .forEach(holder -> {
+            Item item = holder.get();
+
+            switch (item) {
+                case SpawnEggItem i -> spawnEggItem(holder);
+//                case BlockItem i -> blockItems.add(holder.getRegisteredName());
+                case BlockItem i -> {
+
+                }
+                default -> {
+                    simpleItem(holder);
+                }
+            }
+
+//            assignBlockItems();
+        });
+
     }
 
     private void autoGenerateBlockAssets() {
@@ -110,13 +147,24 @@ public class DDBlockStateProvider extends BlockStateProvider {
                         case DarkslateBlock b -> darkslateBlockWithItem(holder, DDBlockStateProperties.HEAT_LEVEL);
                         case RotatedPillarBlock b -> rotatablePillarBlockWithItem(holder);
                         case ConnectedPillarBlock b -> connectedPillarBlockWithItem(holder);
-                        case SignBlock b -> skip(holder);
-                        case VerticalSlabBlock b -> skip(holder);
-                        case WoodPostBlock b -> skip(holder);
+                        case SignBlock b -> skipBlock(holder);
+                        case VerticalSlabBlock b -> skipBlock(holder);
+                        case WoodPostBlock b -> skipBlock(holder);
                         default -> simpleBlockWithItem(holder);
                 }
             });
 
+    }
+
+    private void assignBlockItems() {
+        DDBlocks.BLOCKS.getEntries()
+                .stream()
+                .filter(holder -> !blockIgnores.contains(holder.get()))
+                .forEach(holder -> {
+                    if(blockItems.contains(holder.getRegisteredName())) {
+                        simpleBlockItem(holder.get(), models().getExistingFile(blockTexture(holder.get())));
+                    }
+                });
     }
 
     private void relationalBlockWithItem(DeferredHolder<Block, ? extends Block> blockHolder) {
@@ -136,9 +184,15 @@ public class DDBlockStateProvider extends BlockStateProvider {
 
     }
 
+
+
     private void simpleItem(DeferredHolder<Item, ? extends Item> item) {
         itemModels().withExistingParent(item.getId().getPath(), "item/generated")
                 .texture("layer0", modLoc("item/" + item.getId().getPath()));
+    }
+
+    private void spawnEggItem(DeferredHolder<Item, ? extends Item> item) {
+        itemModels().spawnEggItem(item.get());
     }
 
     private void simpleBlockWithItem(DeferredHolder<Block, ? extends Block> block) {

@@ -35,6 +35,7 @@ public class DDResourceKeys {
     
     public static class BiomeModifiers {
         public static final ResourceKey<BiomeModifier> ADD_MOLTEN_CAVERNS_VEGETAL_FEATURES = createKey("add_molten_caverns_vegetal_features");
+        public static final ResourceKey<BiomeModifier> ADD_MOLTEN_CAVERNS_RAW_GENERATION = createKey("add_molten_caverns_raw_generation");
         public static final ResourceKey<BiomeModifier> ADD_MOLTEN_CAVERNS_LOCAL_MODIFICATIONS = createKey("add_molten_caverns_local_modifications");
         public static final ResourceKey<BiomeModifier> ADD_MOLTEN_CAVERNS_ORES = createKey("add_molten_caverns_ores");
         public static final ResourceKey<BiomeModifier> ADD_SANDY_CATACOMBS_LOCAL_MODIFICATIONS = createKey("add_sandy_catacombs_local_modifications");
@@ -93,6 +94,7 @@ public class DDResourceKeys {
         public static final ResourceKey<PlacedFeature> MOLTEN_SPRING = createKey("molten_spring");
         public static final ResourceKey<PlacedFeature> MOLTEN_POOL = createKey("molten_pool");
         public static final ResourceKey<PlacedFeature> DARKSLATE_PLACEMENT = createKey("darkslate_placement");
+        public static final ResourceKey<PlacedFeature> DARKSLATE_VEGETATION = createKey("darkslate_vegetation");
         public static final ResourceKey<PlacedFeature> LARGE_MOLTEN_PILLAR = createKey("large_molten_pillar");
         public static final ResourceKey<PlacedFeature> SCORCHER_PLACER = createKey("scorcher_placer");
         public static final ResourceKey<PlacedFeature> CATACOMBS_SAND_PLACEMENT = createKey("catacombs_sand_placement");
