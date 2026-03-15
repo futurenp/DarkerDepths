@@ -1,8 +1,8 @@
-package com.naterbobber.darkerdepths.config;
+package com.naterbobber.darkerdepths.config.builders;
 
 import net.neoforged.neoforge.common.ModConfigSpec;
 
-public class DDConfigValues {
+public class DDConfigBuilder {
     public final ModConfigSpec.IntValue SUPERCHARGE_DURATION;
     public final ModConfigSpec.IntValue SUPERCHARGE_DIG_SPEED;
     public final ModConfigSpec.IntValue SUPERCHARGE_ATTACK_SPEED;
@@ -11,8 +11,46 @@ public class DDConfigValues {
     public final ModConfigSpec.BooleanValue PARANOIA_ALTAR_EFFECTS_CREATIVE;
     public final ModConfigSpec.IntValue PARANOIA_ALTAR_RADIUS_HORIZONTAL;
     public final ModConfigSpec.IntValue PARANOIA_ALTAR_RADIUS_VERTICAL;
+    public final DDBiomeConfigBuilder SANDY_CATACOMBS_CLIMATE;
+    public final DDBiomeConfigBuilder GLOWSHROOM_FOREST_CLIMATE;
+    public final DDBiomeConfigBuilder MOLTEN_CAVERN_CLIMATE;
 
-    public DDConfigValues(ModConfigSpec.Builder builder) {
+    public DDConfigBuilder(ModConfigSpec.Builder builder) {
+        builder.push("Biomes");
+        var sandyCatacombsDefaults = new DDBiomeConfigBuilder.Defaults(
+                0.5, 1.2,
+                -1.0, -0.4,
+                0.1, 0.3,
+                -0.25, 1.0,
+                -1.0, 1.0,
+                0.3, 2.0,
+                0.0
+        );
+        SANDY_CATACOMBS_CLIMATE = DDBiomeConfigBuilder.create(builder, "sandy_catacombs", sandyCatacombsDefaults);
+
+        var glowshroomForestDefaults = new DDBiomeConfigBuilder.Defaults(
+                0.4, 1,
+                0.6, 1.2,
+                -0.5, 0.5,
+                0.1, 0.5,
+                -1.0, 1.0,
+                0.3, 0.9,
+                0.0
+        );
+        GLOWSHROOM_FOREST_CLIMATE = DDBiomeConfigBuilder.create(builder, "glowshroom_forest", glowshroomForestDefaults);
+
+        var moltenCavernDefaults = new DDBiomeConfigBuilder.Defaults(
+                -0.75, 0.75,
+                -1.0, 1.0,
+                0.65, 0.8,
+                -0.325, 0,
+                -1.0, 1.0,
+                0.8, 2.0,
+                0.0
+        );
+        MOLTEN_CAVERN_CLIMATE = DDBiomeConfigBuilder.create(builder, "molten_cavern", moltenCavernDefaults);
+        builder.pop();
+
         builder.push("Supercharges");
         SUPERCHARGE_DURATION = builder.comment("Duration of the supercharge buff in minutes")
                 .defineInRange("supercharge_minutes", 5, 1, 3600);

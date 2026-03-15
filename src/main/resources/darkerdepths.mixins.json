@@ -4,9 +4,7 @@
   "compatibilityLevel": "JAVA_21",
   "refmap": "darkerdepths.refmap.json",
   "mixins": [
-    "BuildStateMixin",
     "HuskMixin",
-    "OverworldBiomeBuilderMixin",
     "PlayerMixin",
     "RotatedPillarBlockMixin",
     "ServerGamePacketListenerImplMixin"

@@ -71,6 +71,11 @@ repositories {
     }
 
     maven {
+        name = 'TerraformersMC'
+        url = 'https://maven.terraformersmc.com/'
+    }
+
+    maven {
         name = "Forge"
         url = "https://maven.minecraftforge.net"
     }
@@ -89,7 +94,8 @@ repositories {
 }
 
 dependencies {
-    implementation "software.bernie.geckolib:geckolib-neoforge-1.21.1:4.7.7"
+    implementation("software.bernie.geckolib:geckolib-neoforge-1.21.1:4.7.7")
+    implementation("com.terraformersmc:biolith-neoforge:${project.biolith_version}")
 
 //    compileOnly "maven.modrinth:no-mans-land:h56TqJQD"
 //    compileOnly "maven.modrinth:biolith:byVGeYWw"
@@ -143,7 +149,8 @@ tasks.withType(ProcessResources).configureEach {
             mod_version            : mod_version,
             mod_authors            : mod_authors,
             mod_description        : mod_description,
-            geckolib_version       : geckolib_version
+            geckolib_version       : geckolib_version,
+            biolith_version        : biolith_version
     ]
     inputs.properties replaceProperties
 

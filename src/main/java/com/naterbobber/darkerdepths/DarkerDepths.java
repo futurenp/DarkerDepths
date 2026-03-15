@@ -35,7 +35,6 @@ public class DarkerDepths {
         modEventBus.register(DDNetwork.class);
         modEventBus.register(RegisterEvents.class);
 
-
         DDArmorMaterials.ARMOR_MATERIALS.register(modEventBus);
         DDBlocks.BLOCKS.register(modEventBus);
         DDItems.ITEMS.register(modEventBus);
@@ -57,6 +56,7 @@ public class DarkerDepths {
 
     private void commonSetup(final FMLCommonSetupEvent event) {
         event.enqueueWork(DDVanillaIntegration::init);
+        event.enqueueWork(DDBiomeIntegration::init);
     }
 
     private void clientSetup(final FMLClientSetupEvent event) {

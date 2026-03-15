@@ -1,9 +1,9 @@
-package com.naterbobber.darkerdepths.config;
+package com.naterbobber.darkerdepths.config.builders;
 
 import net.neoforged.neoforge.common.ModConfigSpec;
 
-@Deprecated
-public record DDBiomeConfig(
+
+public record DDBiomeConfigBuilder(
         ModConfigSpec.DoubleValue tempMin, ModConfigSpec.DoubleValue tempMax,
         ModConfigSpec.DoubleValue humidityMin, ModConfigSpec.DoubleValue humidityMax,
         ModConfigSpec.DoubleValue continentalnessMin, ModConfigSpec.DoubleValue continentalnessMax,
@@ -12,7 +12,7 @@ public record DDBiomeConfig(
         ModConfigSpec.DoubleValue depthMin, ModConfigSpec.DoubleValue depthMax,
         ModConfigSpec.DoubleValue offset) {
 
-    public static DDBiomeConfig create(ModConfigSpec.Builder builder, String biomeName, Defaults defaults) {
+    public static DDBiomeConfigBuilder create(ModConfigSpec.Builder builder, String biomeName, Defaults defaults) {
         builder.comment("Climate parameters for the " + biomeName + " biome.").push(biomeName);
 
         var tempMin = builder.defineInRange("temperature_min", defaults.tempMin, -2.0, 2.0);
@@ -37,7 +37,7 @@ public record DDBiomeConfig(
 
         builder.pop();
 
-        return new DDBiomeConfig(tempMin, tempMax, humidityMin, humidityMax, continentalnessMin, continentalnessMax,
+        return new DDBiomeConfigBuilder(tempMin, tempMax, humidityMin, humidityMax, continentalnessMin, continentalnessMax,
                 erosionMin, erosionMax, weirdnessMin, weirdnessMax, depthMin, depthMax, offset);
     }
 
