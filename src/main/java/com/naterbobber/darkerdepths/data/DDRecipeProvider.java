@@ -187,13 +187,13 @@ public class DDRecipeProvider extends RecipeProvider {
 
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.BUILDING_BLOCKS, DDBlocks.GEYSER.get().asItem())
-                .define('#', DDBlocks.ASH_BLOCK.get().asItem())
-                .define('S', DDBlocks.DARKSLATE.get().asItem())
-                .define('A', Items.LAVA_BUCKET)
-                .pattern("###")
-                .pattern("SAS")
-                .pattern("SSS")
-                .unlockedBy("has_ash_block", has(Items.LAVA_BUCKET))
+                .define('D', DDBlocks.DARKSLATE.get().asItem())
+                .define('M', Blocks.MAGMA_BLOCK)
+                .define('L', Items.LAVA_BUCKET)
+                .pattern("MMM")
+                .pattern("DLD")
+                .pattern("DDD")
+                .unlockedBy("has_lava_bucket", has(Items.LAVA_BUCKET))
                 .save(recipeOutput);
 
         ShapedRecipeBuilder

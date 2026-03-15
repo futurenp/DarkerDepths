@@ -155,6 +155,7 @@
   "tooltip.darkerdepths.death_anchor.shift_desc_2": "Charge with a Void Soul Requiem.",
   "tooltip.darkerdepths.glowshroom_cap.shift_desc_1": "Provides light and haste when worn.",
   "tooltip.darkerdepths.glowshroom_cap.shift_desc_2": "Found on the back of the Glowshroom Monster.",
+  "tooltip.darkerdepths.legacy.shift_desc": "Legacy item no longer obtainable.",
   "tooltip.darkerdepths.press_shift": "Press [SHIFT]",
   "tooltip.darkerdepths.stiletto.shift_desc": "Use [RIGHT CLICK] to dash."
 }

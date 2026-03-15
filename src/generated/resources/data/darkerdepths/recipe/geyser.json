@@ -2,20 +2,20 @@
   "type": "minecraft:crafting_shaped",
   "category": "building",
   "key": {
-    "#": {
-      "item": "darkerdepths:ash_block"
+    "D": {
+      "item": "darkerdepths:darkslate"
     },
-    "A": {
+    "L": {
       "item": "minecraft:lava_bucket"
     },
-    "S": {
-      "item": "darkerdepths:darkslate"
+    "M": {
+      "item": "minecraft:magma_block"
     }
   },
   "pattern": [
-    "###",
-    "SAS",
-    "SSS"
+    "MMM",
+    "DLD",
+    "DDD"
   ],
   "result": {
     "count": 1,

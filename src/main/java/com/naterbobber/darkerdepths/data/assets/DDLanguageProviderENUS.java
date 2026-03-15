@@ -11,6 +11,11 @@ public class DDLanguageProviderENUS extends LanguageProvider {
         super(output, DarkerDepths.MOD_ID, "en_us");
     }
 
+    private static final String TOOLTIP = String.format("tooltip.%s.", DarkerDepths.MOD_ID);
+    private static final String ENCHANTMENT = String.format("enchantment.%s.", DarkerDepths.MOD_ID);
+    private static final String BIOME = String.format("biome.%s.", DarkerDepths.MOD_ID);
+    private static final String ITEM_GROUP = String.format("itemGroup.%s.", DarkerDepths.MOD_ID);
+
     @Override
     protected void addTranslations() {
         // Items
@@ -168,32 +173,38 @@ public class DDLanguageProviderENUS extends LanguageProvider {
         add(DDEntityTypes.PETRIFIED_CHEST_BOAT.get(), "Boat with Chest");
 
         // Enchantments
-        add("enchantment.darkerdepths.swift_strike", "Swift Strike");
-        add("enchantment.darkerdepths.quick_dash", "Quick Dash");
+        add(ENCHANTMENT, "swift_strike", "Swift Strike");
+        add(ENCHANTMENT, "quick_dash", "Quick Dash");
 
         // Effects
         add(DDMobEffects.SOUL_BINDING.get(), "Soul Binding");
         add(DDMobEffects.PARANOIA.get(), "Paranoia");
 
         // Biomes
-        add("biome.darkerdepths.molten_cavern", "Molten Cavern");
-        add("biome.darkerdepths.sandy_catacombs", "Sandy Catacombs");
-        add("biome.darkerdepths.glowshroom_forest", "Glowshroom Forest");
+        add(BIOME, "molten_cavern", "Molten Cavern");
+        add(BIOME, "sandy_catacombs", "Sandy Catacombs");
+        add(BIOME, "glowshroom_forest", "Glowshroom Forest");
 
         // Death Messages
         add("death.attack.soul_binding_damage", "%1$s's soul was consumed by the Death Anchor.");
 
         // Tooltips
-        add("tooltip.darkerdepths.press_shift", "Press [SHIFT]");
-        add("tooltip.darkerdepths.glowshroom_cap.shift_desc_1", "Provides light and haste when worn.");
-        add("tooltip.darkerdepths.glowshroom_cap.shift_desc_2", "Found on the back of the Glowshroom Monster.");
-        add("tooltip.darkerdepths.stiletto.shift_desc", "Use [RIGHT CLICK] to dash.");
-        add("tooltip.darkerdepths.crystal_melon.shift_desc_1", "Used to supercharge any tool or weapon.");
-        add("tooltip.darkerdepths.crystal_melon.shift_desc_2", "Right click when holding in the offhand to supercharge.");
-        add("tooltip.darkerdepths.death_anchor.shift_desc_1", "Used to set a death location.");
-        add("tooltip.darkerdepths.death_anchor.shift_desc_2", "Charge with a Void Soul Requiem.");
+        add(TOOLTIP, "press_shift", "Press [SHIFT]");
+        add(TOOLTIP, "glowshroom_cap.shift_desc_1", "Provides light and haste when worn.");
+        add(TOOLTIP, "glowshroom_cap.shift_desc_2", "Found on the back of the Glowshroom Monster.");
+        add(TOOLTIP, "stiletto.shift_desc", "Use [RIGHT CLICK] to dash.");
+        add(TOOLTIP, "crystal_melon.shift_desc_1", "Used to supercharge any tool or weapon.");
+        add(TOOLTIP, "crystal_melon.shift_desc_2", "Right click when holding in the offhand to supercharge.");
+        add(TOOLTIP, "death_anchor.shift_desc_1", "Used to set a death location.");
+        add(TOOLTIP, "death_anchor.shift_desc_2", "Charge with a Void Soul Requiem.");
+        add(TOOLTIP, "legacy.shift_desc", "Legacy item no longer obtainable.");
 
         // Creative Tab
-        add("itemGroup.darkerdepths.creative_tab", "Darker Depths");
+        add(ITEM_GROUP, "creative_tab", "Darker Depths");
+    }
+
+    public void add(String type, String key, String value) {
+        key = type + key;
+        super.add(key, value);
     }
 }

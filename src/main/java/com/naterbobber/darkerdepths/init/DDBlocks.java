@@ -254,10 +254,12 @@ public class DDBlocks {
     );
     public static final DeferredBlock<MagmaPadBlock> MAGMA_PAD = registerNoTabBlock("magma_pad",
             () -> new MagmaPadBlock(BlockBehaviour.Properties.of().strength(0.1F).lightLevel(state -> 3).sound(DDSoundTypes.GRIMESTONE.get()).noOcclusion().pushReaction(PushReaction.DESTROY)));
-    public static final DeferredBlock<AshFullBlock> ASH_BLOCK = registerBlock("ash_block",
-            () -> new AshFullBlock(blockProperties(0.2f, SoundType.SNOW, false).mapColor(MapColor.COLOR_BLACK).randomTicks()));
-    public static final DeferredBlock<AshBlock> ASH = registerBlock("ash",
-            () -> new AshBlock(blockProperties(0.1f, SoundType.SNOW, true).mapColor(MapColor.COLOR_BLACK).randomTicks()));
+    public static final DeferredBlock<AshFullBlock> ASH_BLOCK = registerTooltipBlock("ash_block",
+            () -> new AshFullBlock(blockProperties(0.2f, SoundType.SNOW, false).mapColor(MapColor.COLOR_BLACK).randomTicks()),
+            List.of(Component.translatable("tooltip.darkerdepths.legacy.shift_desc").withStyle(ChatFormatting.RED)));
+    public static final DeferredBlock<AshBlock> ASH = registerTooltipBlock("ash",
+            () -> new AshBlock(blockProperties(0.1f, SoundType.SNOW, true).mapColor(MapColor.COLOR_BLACK).randomTicks()),
+            List.of(Component.translatable("tooltip.darkerdepths.legacy.shift_desc").withStyle(ChatFormatting.RED)));
     public static final DeferredBlock<GrimestoneBlock> GRIMESTONE = registerBlock("grimestone",
             () -> new GrimestoneBlock(DARKSLATE_PROPERTIES));
     public static final DeferredBlock<RelationalStairBlock> GRIMESTONE_STAIRS = registerBlock("grimestone_stairs",
