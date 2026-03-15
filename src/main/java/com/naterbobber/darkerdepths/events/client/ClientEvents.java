@@ -51,6 +51,13 @@ public class ClientEvents {
             event.setGreen(lerp(normalGreen, 0.0f, paranoiaFactor));
             event.setBlue(lerp(normalBlue, 0.0f, paranoiaFactor));
         }
+
+        LocalPlayer player = Minecraft.getInstance().player;
+        if(player.level().getBiome(player.getOnPos()).is(DDResourceKeys.Biomes.MOLTEN_CAVERN)) {
+            event.setRed(0.4F);
+            event.setGreen(0.16F);
+            event.setBlue(0.08F);
+        }
     }
 
     @SubscribeEvent
@@ -71,7 +78,7 @@ public class ClientEvents {
         }
     }
 
-    private void checkAndApplyMoltenCavernFog(ViewportEvent.RenderFog event) {
+    private static void checkAndApplyMoltenCavernFog(ViewportEvent.RenderFog event) {
         LocalPlayer player = Minecraft.getInstance().player;
 
         if (player == null) {
@@ -86,7 +93,7 @@ public class ClientEvents {
 
         var dist = event.getFarPlaneDistance();
 
-        event.setNearPlaneDistance(32);
+        event.setNearPlaneDistance(16);
         event.setFarPlaneDistance(128);
         event.setFogShape(FogShape.SPHERE);
         event.setCanceled(true);
