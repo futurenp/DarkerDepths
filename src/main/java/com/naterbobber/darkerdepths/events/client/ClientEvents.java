@@ -2,6 +2,7 @@ package com.naterbobber.darkerdepths.events.client;
 
 import com.mojang.blaze3d.shaders.FogShape;
 import com.naterbobber.darkerdepths.client.DynamicLightHandler;
+import com.naterbobber.darkerdepths.config.DDConfig;
 import com.naterbobber.darkerdepths.init.DDItems;
 import com.naterbobber.darkerdepths.init.DDMobEffects;
 import com.naterbobber.darkerdepths.util.DDResourceKeys;
@@ -52,18 +53,24 @@ public class ClientEvents {
             event.setBlue(lerp(normalBlue, 0.0f, paranoiaFactor));
         }
 
-        LocalPlayer player = Minecraft.getInstance().player;
-        if(player.level().getBiome(player.getOnPos()).is(DDResourceKeys.Biomes.MOLTEN_CAVERN)) {
-            event.setRed(0.42F);
-            event.setGreen(0.27F);
-            event.setBlue(0.18F);
+        if(DDConfig.CONFIG.ENABLE_BIOME_FOG.get()) {
+            LocalPlayer player = Minecraft.getInstance().player;
+            if(player.level().getBiome(player.getOnPos()).is(DDResourceKeys.Biomes.MOLTEN_CAVERN)) {
+                event.setRed(0.42F);
+                event.setGreen(0.27F);
+                event.setBlue(0.18F);
+            }
         }
+
     }
 
     @SubscribeEvent
     public void onRenderFog(ViewportEvent.RenderFog event) {
         checkAndApplyParanoiaFog(event);
-        checkAndApplyMoltenCavernFog(event);
+
+        if(DDConfig.CONFIG.ENABLE_BIOME_FOG.get()) {
+            checkAndApplyMoltenCavernFog(event);
+        }
     }
 
     @SubscribeEvent
@@ -93,8 +100,8 @@ public class ClientEvents {
 
         var dist = event.getFarPlaneDistance();
 
-        event.setNearPlaneDistance(16);
-        event.setFarPlaneDistance(128);
+        event.setNearPlaneDistance(DDConfig.CONFIG.MOLTEN_CAVERN_FOG_MIN.get());
+        event.setFarPlaneDistance(DDConfig.CONFIG.MOLTEN_CAVERN_FOG_MAX.get());
         event.setFogShape(FogShape.SPHERE);
         event.setCanceled(true);
     }

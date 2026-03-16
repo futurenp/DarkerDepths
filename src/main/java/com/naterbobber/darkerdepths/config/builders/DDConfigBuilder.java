@@ -11,6 +11,9 @@ public class DDConfigBuilder {
     public final ModConfigSpec.BooleanValue PARANOIA_ALTAR_EFFECTS_CREATIVE;
     public final ModConfigSpec.IntValue PARANOIA_ALTAR_RADIUS_HORIZONTAL;
     public final ModConfigSpec.IntValue PARANOIA_ALTAR_RADIUS_VERTICAL;
+    public final ModConfigSpec.BooleanValue ENABLE_BIOME_FOG;
+    public final ModConfigSpec.IntValue MOLTEN_CAVERN_FOG_MIN;
+    public final ModConfigSpec.IntValue MOLTEN_CAVERN_FOG_MAX;
     public final DDBiomeConfigBuilder SANDY_CATACOMBS_CLIMATE;
     public final DDBiomeConfigBuilder GLOWSHROOM_FOREST_CLIMATE;
     public final DDBiomeConfigBuilder MOLTEN_CAVERN_CLIMATE;
@@ -49,6 +52,14 @@ public class DDConfigBuilder {
                 0.0
         );
         MOLTEN_CAVERN_CLIMATE = DDBiomeConfigBuilder.create(builder, "molten_cavern", moltenCavernDefaults);
+        builder.pop();
+
+        builder.push("Biome Fog");
+        ENABLE_BIOME_FOG = builder.comment("Enable/disable Darker Depths biome fog adjustments:").define("biome_fog", true);
+        builder.push("Molten Cavern");
+        MOLTEN_CAVERN_FOG_MIN = builder.comment("Min fog distance:").defineInRange("min_fog", 16, 0, 1000);
+        MOLTEN_CAVERN_FOG_MAX = builder.comment("Max fog distance:").defineInRange("max_fog", 128, 0, 1000);
+        builder.pop();
         builder.pop();
 
         builder.push("Supercharges");
