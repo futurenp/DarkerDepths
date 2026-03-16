@@ -1,0 +1,28 @@
+{
+  "criteria": {
+    "auto_grant": {
+      "trigger": "minecraft:tick"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "background": "darkerdepths:textures/block/grimestone.png",
+    "description": {
+      "translate": "advancements.darkerdepths.parent.description"
+    },
+    "frame": "goal",
+    "icon": {
+      "count": 1,
+      "id": "darkerdepths:glowshroom_cap"
+    },
+    "title": {
+      "translate": "advancements.darkerdepths.parent.title"
+    }
+  },
+  "requirements": [
+    [
+      "auto_grant"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

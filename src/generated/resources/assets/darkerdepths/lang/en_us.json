@@ -1,4 +1,12 @@
 {
+  "advancements.darkerdepths.glowshroom_forest.description": "Visit the Glowshroom Forest biome",
+  "advancements.darkerdepths.glowshroom_forest.title": "Glowshroom Forest",
+  "advancements.darkerdepths.molten_cavern.description": "Visit the Molten Cavern biome",
+  "advancements.darkerdepths.molten_cavern.title": "Molten Cavern",
+  "advancements.darkerdepths.parent.description": "Thank you for installing Darker Depths!",
+  "advancements.darkerdepths.parent.title": "Darker Depths",
+  "advancements.darkerdepths.sandy_catacombs.description": "Visit the Sandy Catacombs biome",
+  "advancements.darkerdepths.sandy_catacombs.title": "Sandy Catacombs",
   "biome.darkerdepths.glowshroom_forest": "Glowshroom Forest",
   "biome.darkerdepths.molten_cavern": "Molten Cavern",
   "biome.darkerdepths.sandy_catacombs": "Sandy Catacombs",

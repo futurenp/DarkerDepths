@@ -2,6 +2,7 @@ package com.naterbobber.darkerdepths.data.assets;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.init.*;
+import com.naterbobber.darkerdepths.util.DDResourceKeys;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.data.LanguageProvider;
@@ -11,10 +12,11 @@ public class DDLanguageProviderENUS extends LanguageProvider {
         super(output, DarkerDepths.MOD_ID, "en_us");
     }
 
-    private static final String TOOLTIP = String.format("tooltip.%s.", DarkerDepths.MOD_ID);
-    private static final String ENCHANTMENT = String.format("enchantment.%s.", DarkerDepths.MOD_ID);
-    private static final String BIOME = String.format("biome.%s.", DarkerDepths.MOD_ID);
-    private static final String ITEM_GROUP = String.format("itemGroup.%s.", DarkerDepths.MOD_ID);
+    private static final String TOOLTIP = ddString("tooltip");
+    private static final String ENCHANTMENT = ddString("enchantment");
+    private static final String BIOME = ddString("biome");
+    private static final String ITEM_GROUP = ddString("itemGroup");
+    private static final String ADVANCEMENT = ddString("advancements");
 
     @Override
     protected void addTranslations() {
@@ -201,10 +203,28 @@ public class DDLanguageProviderENUS extends LanguageProvider {
 
         // Creative Tab
         add(ITEM_GROUP, "creative_tab", "Darker Depths");
+
+        //Advancements
+        add(ADVANCEMENT, "parent.title", "Darker Depths");
+        add(ADVANCEMENT, "parent.description", "Thank you for installing Darker Depths!");
+
+        var moltenCavern = DDResourceKeys.Biomes.MOLTEN_CAVERN.location().getPath();
+        var sandyCatacombs = DDResourceKeys.Biomes.SANDY_CATACOMBS.location().getPath();
+        var glowshroomCavern = DDResourceKeys.Biomes.GLOWSHROOM_FOREST.location().getPath();
+        add(ADVANCEMENT,  sandyCatacombs + ".title", "Sandy Catacombs");
+        add(ADVANCEMENT,  sandyCatacombs + ".description", "Visit the Sandy Catacombs biome");
+        add(ADVANCEMENT,  moltenCavern + ".title", "Molten Cavern");
+        add(ADVANCEMENT,  moltenCavern + ".description", "Visit the Molten Cavern biome");
+        add(ADVANCEMENT,  glowshroomCavern + ".title", "Glowshroom Forest");
+        add(ADVANCEMENT,  glowshroomCavern + ".description", "Visit the Glowshroom Forest biome");
     }
 
-    public void add(String type, String key, String value) {
+    private void add(String type, String key, String value) {
         key = type + key;
         super.add(key, value);
+    }
+
+    private static String ddString(String str) {
+        return String.format("%s.%s.", str, DarkerDepths.MOD_ID);
     }
 }
