@@ -54,9 +54,9 @@ public class ClientEvents {
 
         LocalPlayer player = Minecraft.getInstance().player;
         if(player.level().getBiome(player.getOnPos()).is(DDResourceKeys.Biomes.MOLTEN_CAVERN)) {
-            event.setRed(0.4F);
-            event.setGreen(0.16F);
-            event.setBlue(0.08F);
+            event.setRed(0.42F);
+            event.setGreen(0.27F);
+            event.setBlue(0.18F);
         }
     }
 
