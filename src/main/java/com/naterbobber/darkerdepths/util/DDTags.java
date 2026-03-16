@@ -56,6 +56,7 @@ public class DDTags {
 
         public static final TagKey<Biome> HAS_ROPE_MINE_FOREST = TAGS.create("has_structure/rope_mine_forest");
         public static final TagKey<Biome> HAS_ROPE_MINE_DESERT = TAGS.create("has_structure/rope_mine_desert");
+        public static final TagKey<Biome> HAS_PETRIFIED_MINESHAFT = TAGS.create("has_structure/petrified_mineshaft");
         public static final TagKey<Biome> CATACOMBS = TAGS.create("has_structure/catacombs");
     }
 }

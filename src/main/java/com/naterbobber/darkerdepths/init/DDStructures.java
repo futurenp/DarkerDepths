@@ -4,11 +4,16 @@ import com.mojang.datafixers.util.Pair;
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.util.DDResourceKeys;
 import com.naterbobber.darkerdepths.util.DDTags;
+import com.naterbobber.darkerdepths.worldgen.structures.DDMineshaftStructure;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
+import net.minecraft.core.Vec3i;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.data.worldgen.Pools;
+import net.minecraft.data.worldgen.StructureSets;
+import net.minecraft.data.worldgen.Structures;
+import net.minecraft.tags.BiomeTags;
 import net.minecraft.util.random.WeightedRandomList;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.biome.Biome;
@@ -16,16 +21,14 @@ import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
 import net.minecraft.world.level.levelgen.heightproviders.ConstantHeight;
-import net.minecraft.world.level.levelgen.structure.Structure;
-import net.minecraft.world.level.levelgen.structure.StructureSet;
-import net.minecraft.world.level.levelgen.structure.StructureSpawnOverride;
-import net.minecraft.world.level.levelgen.structure.StructureType;
-import net.minecraft.world.level.levelgen.structure.TerrainAdjustment;
+import net.minecraft.world.level.levelgen.structure.*;
 import net.minecraft.world.level.levelgen.structure.placement.RandomSpreadStructurePlacement;
 import net.minecraft.world.level.levelgen.structure.placement.RandomSpreadType;
+import net.minecraft.world.level.levelgen.structure.placement.StructurePlacement;
 import net.minecraft.world.level.levelgen.structure.pools.StructurePoolElement;
 import net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool;
 import net.minecraft.world.level.levelgen.structure.structures.JigsawStructure;
+import net.minecraft.world.level.levelgen.structure.structures.MineshaftStructure;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProcessorList;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -38,8 +41,6 @@ import java.util.stream.Collectors;
 import static net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool.Projection.RIGID;
 
 public class DDStructures {
-    public static final DeferredRegister<StructureType<?>> STRUCTURE_TYPES =
-            DeferredRegister.create(Registries.STRUCTURE_TYPE, DarkerDepths.MOD_ID);
 
     public static void bootstrap(BootstrapContext<Structure> context) {
         HolderGetter<Biome> biomeGetter = context.lookup(Registries.BIOME);
@@ -111,6 +112,14 @@ public class DDStructures {
                 JigsawStructure.DEFAULT_DIMENSION_PADDING,
                 JigsawStructure.DEFAULT_LIQUID_SETTINGS
         ));
+
+        context.register(DDResourceKeys.Structures.PETRIFIED_MINESHAFT, new DDMineshaftStructure(
+                        new Structure.StructureSettings.Builder(biomeGetter.getOrThrow(DDTags.Biomes.HAS_PETRIFIED_MINESHAFT))
+                                .generationStep(GenerationStep.Decoration.UNDERGROUND_STRUCTURES)
+                                .build(),
+                        DDMineshaftStructure.Type.PETRIFIED
+                )
+        );
     }
 
     public static void bootstrapStructureSet(BootstrapContext<StructureSet> context) {
@@ -136,6 +145,25 @@ public class DDStructures {
                         new RandomSpreadStructurePlacement(24, 8, RandomSpreadType.LINEAR, 20083232)
                 )
         );
+
+        context.register(DDResourceKeys.StructureSets.PETRIFIED_MINESHAFT_SET,
+                new StructureSet(
+                        List.of(
+                                StructureSet.entry(structureGetter.getOrThrow(DDResourceKeys.Structures.PETRIFIED_MINESHAFT))
+                        ),
+                        new RandomSpreadStructurePlacement(
+                                Vec3i.ZERO,
+                                StructurePlacement.FrequencyReductionMethod.LEGACY_TYPE_3,
+                                0.004F,
+                                0,
+                                Optional.empty(),
+                                1,
+                                0,
+                                RandomSpreadType.LINEAR
+                        )
+                )
+        );
+
     }
 
     public static void bootstrapTemplatePool(BootstrapContext<StructureTemplatePool> context) {

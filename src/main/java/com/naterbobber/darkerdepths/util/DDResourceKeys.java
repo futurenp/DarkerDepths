@@ -121,6 +121,7 @@ public class DDResourceKeys {
         public static final ResourceKey<Structure> ROPE_MINE_FOREST = createKey("rope_mine_forest");
         public static final ResourceKey<Structure> ROPE_MINE_DESERT = createKey("rope_mine_desert");
         public static final ResourceKey<Structure> CATACOMBS = createKey("catacombs");
+        public static final ResourceKey<Structure> PETRIFIED_MINESHAFT = createKey("petrified_mineshaft");
 
         private static ResourceKey<net.minecraft.world.level.levelgen.structure.Structure> createKey(String name) {
             return ResourceKey.create(Registries.STRUCTURE, DarkerDepths.id(name));
@@ -130,6 +131,7 @@ public class DDResourceKeys {
     public static class StructureSets {
         public static final ResourceKey<StructureSet> ROPE_MINE_FOREST_SET = createKey("rope_mine_forest");
         public static final ResourceKey<StructureSet> ROPE_MINE_DESERT_SET = createKey("rope_mine_desert");
+        public static final ResourceKey<StructureSet> PETRIFIED_MINESHAFT_SET = createKey("petrified_mineshaft");
         public static final ResourceKey<StructureSet> CATACOMBS_SET = createKey("catacombs_set");
 
         private static ResourceKey<StructureSet> createKey(String name) {
