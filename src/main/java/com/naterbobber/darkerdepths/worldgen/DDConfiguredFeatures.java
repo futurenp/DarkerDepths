@@ -20,6 +20,7 @@ import net.minecraft.util.random.SimpleWeightedRandomList;
 import net.minecraft.util.valueproviders.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.MagmaBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
@@ -34,6 +35,7 @@ import net.minecraft.world.level.levelgen.placement.RandomOffsetPlacement;
 import net.minecraft.world.level.levelgen.structure.templatesystem.BlockMatchTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
 import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.level.material.LavaFluid;
 
 import java.util.List;
 import java.util.Set;
@@ -60,21 +62,13 @@ public class DDConfiguredFeatures {
 
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
         HolderGetter<ConfiguredFeature<?, ?>> lookup = context.lookup(Registries.CONFIGURED_FEATURE);
-
         FeatureUtils.register(context, GLOWSHROOM_PATCH, DDFeatures.RANDOM_GLOWSHROOM_PATCHES.get(), FeatureConfiguration.NONE);
-
         FeatureUtils.register(context, HUGE_GLOWSHROOM, DDFeatures.HUGE_GLOWSHROOM.get(), FeatureConfiguration.NONE);
-
         FeatureUtils.register(context, HUGE_GLOWSHROOM_PLANTED, DDFeatures.HUGE_GLOWSHROOM.get(), FeatureConfiguration.NONE);
-
         FeatureUtils.register(context, AMBERS_PLACEMENT, DDFeatures.GEMSTONE.get(), FeatureConfiguration.NONE);
-
         FeatureUtils.register(context, ARID_BOULDER, DDFeatures.ARID_BOULDER.get(), FeatureConfiguration.NONE);
-
         FeatureUtils.register(context, CATACOMBS_LAVA_LINING, DDFeatures.CATACOMBS_LAVA_LINING.get(), FeatureConfiguration.NONE);
-
         FeatureUtils.register(context, DUSKROCK_STRIPE, DDFeatures.DUSKROCK_STRIPE.get(), FeatureConfiguration.NONE);
-
         FeatureUtils.register(context, MOLTEN_SPRING, Feature.SPRING, new SpringConfiguration(
                 Fluids.LAVA.defaultFluidState(),
                 false, 4,

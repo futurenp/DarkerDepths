@@ -46,9 +46,6 @@ public class DDBiomes {
         MobSpawnSettings.Builder mobBuilder = new MobSpawnSettings.Builder();
         BiomeDefaultFeatures.commonSpawns(mobBuilder);
         BiomeGenerationSettings.Builder biomeBuilder = new BiomeGenerationSettings.Builder(holderGetter, holderGetter1);
-        biomeBuilder.addCarver(GenerationStep.Carving.AIR, Carvers.CAVE);
-        biomeBuilder.addCarver(GenerationStep.Carving.AIR, Carvers.CAVE_EXTRA_UNDERGROUND);
-        biomeBuilder.addCarver(GenerationStep.Carving.AIR, Carvers.CANYON);
         BiomeDefaultFeatures.addDefaultCarversAndLakes(biomeBuilder);
         BiomeDefaultFeatures.addDefaultCrystalFormations(biomeBuilder);
         BiomeDefaultFeatures.addDefaultMonsterRoom(biomeBuilder);

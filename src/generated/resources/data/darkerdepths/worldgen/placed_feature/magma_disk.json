@@ -27,7 +27,6 @@
         "blocks": [
           "minecraft:air",
           "minecraft:cave_air",
-          "minecraft:water",
           "minecraft:lava"
         ]
       },
