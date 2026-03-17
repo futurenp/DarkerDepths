@@ -55,3 +55,17 @@ Artist:
     ordering="NONE"
     side="BOTH"
 
+[[dependencies.darkerdepths]]
+    modId="biolith"
+    type="optional"
+    versionRange="${biolith_version}"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.darkerdepths]]
+    modId="terrablender"
+    type="optional"
+    versionRange="${terrablender_version}"
+    ordering="NONE"
+    side="BOTH"
+

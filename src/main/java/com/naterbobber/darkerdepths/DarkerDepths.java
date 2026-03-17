@@ -1,5 +1,6 @@
 package com.naterbobber.darkerdepths;
 
+import com.naterbobber.darkerdepths.compat.DDCompat;
 import com.naterbobber.darkerdepths.init.DDEnchantmentEffects;
 import com.naterbobber.darkerdepths.config.DDConfig;
 import com.naterbobber.darkerdepths.events.RegisterEvents;
@@ -7,18 +8,18 @@ import com.naterbobber.darkerdepths.init.*;
 import com.naterbobber.darkerdepths.network.DDNetwork;
 import com.naterbobber.darkerdepths.init.DDFeatures;
 import com.naterbobber.darkerdepths.init.DDStructureProcessorTypes;
-import com.naterbobber.darkerdepths.init.DDStructures;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.block.Block;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
+import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.neoforged.neoforge.registries.DeferredHolder;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.util.function.Predicate;
 
 @Mod(DarkerDepths.MOD_ID)
 public class DarkerDepths {
@@ -57,7 +58,35 @@ public class DarkerDepths {
 
     private void commonSetup(final FMLCommonSetupEvent event) {
         event.enqueueWork(DDVanillaIntegration::init);
-        event.enqueueWork(DDBiomeIntegration::init);
+
+        boolean hasBiolith = ModList.get().isLoaded(DDCompat.BIOLITH.toString());
+        boolean hasTerrablender = ModList.get().isLoaded(DDCompat.TERRABLENDER.toString());
+
+        if (!hasBiolith && !hasTerrablender) {
+            throw new IllegalStateException("Missing Worldgen API! Install TerraBlender or Biolith.");
+        }
+
+        if (DDConfig.CONFIG.USE_BIOLITH.get()) {
+            if (hasBiolith) {
+                safeInitBiolith(event);
+            } else {
+                safeInitTerrablender(event);
+            }
+        } else {
+            if (hasTerrablender) {
+                safeInitTerrablender(event);
+            } else {
+                safeInitBiolith(event);
+            }
+        }
+    }
+
+    private void safeInitBiolith(FMLCommonSetupEvent event) {
+        event.enqueueWork(DDBiolithIntegration::init);
+    }
+
+    private void safeInitTerrablender(FMLCommonSetupEvent event) {
+        event.enqueueWork(DDTerrablenderIntegration::init);
     }
 
     private void clientSetup(final FMLClientSetupEvent event) {

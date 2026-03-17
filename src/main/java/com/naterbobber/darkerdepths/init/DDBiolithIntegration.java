@@ -6,7 +6,7 @@ import com.naterbobber.darkerdepths.util.DDResourceKeys;
 import com.terraformersmc.biolith.api.biome.BiomePlacement;
 import net.minecraft.world.level.biome.Climate;
 
-public class DDBiomeIntegration {
+public class DDBiolithIntegration {
 
     public static void init() {
         BiomePlacement.addOverworld(DDResourceKeys.Biomes.SANDY_CATACOMBS, climateParamsFromConfig(DDConfig.CONFIG.SANDY_CATACOMBS_CLIMATE));

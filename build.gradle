@@ -94,8 +94,9 @@ repositories {
 }
 
 dependencies {
-    implementation("software.bernie.geckolib:geckolib-neoforge-1.21.1:4.7.7")
-    implementation("com.terraformersmc:biolith-neoforge:${project.biolith_version}")
+    implementation("software.bernie.geckolib:geckolib-neoforge-${project.minecraft_version}:4.7.7")
+    compileOnly("com.terraformersmc:biolith-neoforge:${project.biolith_version}")
+    implementation("com.github.glitchfiend:TerraBlender-neoforge:${project.minecraft_version}-${project.terrablender_version}")
 
 //    compileOnly "maven.modrinth:no-mans-land:h56TqJQD"
 //    compileOnly "maven.modrinth:biolith:byVGeYWw"
@@ -150,7 +151,8 @@ tasks.withType(ProcessResources).configureEach {
             mod_authors            : mod_authors,
             mod_description        : mod_description,
             geckolib_version       : geckolib_version,
-            biolith_version        : biolith_version
+            biolith_version        : biolith_version,
+            terrablender_version   : terrablender_version
     ]
     inputs.properties replaceProperties
 

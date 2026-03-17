@@ -17,9 +17,17 @@ public class DDConfigBuilder {
     public final DDBiomeConfigBuilder SANDY_CATACOMBS_CLIMATE;
     public final DDBiomeConfigBuilder GLOWSHROOM_FOREST_CLIMATE;
     public final DDBiomeConfigBuilder MOLTEN_CAVERN_CLIMATE;
+    public final ModConfigSpec.BooleanValue USE_BIOLITH;
 
     public DDConfigBuilder(ModConfigSpec.Builder builder) {
-        builder.push("Biomes");
+        builder.push("Biome Provider");
+        USE_BIOLITH = builder
+                .comment("If Terrablender and Biolith are installed at the same time, Biolith is used by default. Set this to false to use Terrablender.")
+                .define("use_biolith_by_default", true);
+        builder.pop();
+
+        builder.push("Biolith Biome Parameters");
+        builder.comment("These values will only be used when using biolith");
         var sandyCatacombsDefaults = new DDBiomeConfigBuilder.Defaults(
                 0.5, 0.9,
                 -0.8, -0.1,
@@ -59,8 +67,7 @@ public class DDConfigBuilder {
         builder.push("Molten Cavern");
         MOLTEN_CAVERN_FOG_MIN = builder.comment("Min fog distance:").defineInRange("min_fog", 16, 0, 1000);
         MOLTEN_CAVERN_FOG_MAX = builder.comment("Max fog distance:").defineInRange("max_fog", 128, 0, 1000);
-        builder.pop();
-        builder.pop();
+        builder.pop(2);
 
         builder.push("Supercharges");
         SUPERCHARGE_DURATION = builder.comment("Duration of the supercharge buff in minutes")
