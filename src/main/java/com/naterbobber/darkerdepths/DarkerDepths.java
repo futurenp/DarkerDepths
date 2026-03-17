@@ -52,6 +52,7 @@ public class DarkerDepths {
         DDActivities.ACTIVITIES.register(modEventBus);
         DDMemoryModuleTypes.MEMORY_MODULE_TYPES.register(modEventBus);
         DDDataComponents.DATA_COMPONENTS.register(modEventBus);
+        DDCriteria.TRIGGERS.register(modEventBus);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {

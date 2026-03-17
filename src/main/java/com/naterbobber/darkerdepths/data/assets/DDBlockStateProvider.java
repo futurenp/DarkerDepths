@@ -18,12 +18,9 @@ import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
-import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredHolder;
-import net.neoforged.neoforge.registries.DeferredItem;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.function.BiConsumer;
@@ -55,7 +52,7 @@ public class DDBlockStateProvider extends BlockStateProvider {
                 DDBlocks.AMBER_CLUSTER,
                 DDBlocks.ASH,
                 DDBlocks.CRYSTAL_MELON,
-                DDBlocks.DEAD_LIVING_CRYSTAL,
+                DDBlocks.CRYSTAL_HUSK,
                 DDBlocks.GLOWSHROOM,
                 DDBlocks.GLIMMERING_VINE_PLANT,
                 DDBlocks.GLIMMERING_VINES,

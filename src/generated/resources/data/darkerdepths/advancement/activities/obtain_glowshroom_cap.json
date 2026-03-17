@@ -1,0 +1,33 @@
+{
+  "parent": "darkerdepths:visited/glowshroom_forest",
+  "criteria": {
+    "obtain_glowshroom_cap": {
+      "conditions": {
+        "items": [
+          {
+            "items": "darkerdepths:glowshroom_cap"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.darkerdepths.obtain_glowshroom_cap.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "darkerdepths:glowshroom_cap"
+    },
+    "title": {
+      "translate": "advancements.darkerdepths.obtain_glowshroom_cap.title"
+    }
+  },
+  "requirements": [
+    [
+      "obtain_glowshroom_cap"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

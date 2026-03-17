@@ -3,6 +3,7 @@ package com.naterbobber.darkerdepths.block.blockentities;
 import com.naterbobber.darkerdepths.block.DDBlockStateProperties;
 import com.naterbobber.darkerdepths.block.custom.GeyserBlock;
 import com.naterbobber.darkerdepths.init.DDBlockEntityTypes;
+import com.naterbobber.darkerdepths.init.DDCriteria;
 import com.naterbobber.darkerdepths.init.DDParticleTypes;
 import com.naterbobber.darkerdepths.util.DDTags;
 import net.minecraft.core.BlockPos;
@@ -180,9 +181,12 @@ public class GeyserBlockEntity extends BlockEntity {
 
         for (Entity entity : nearbyEntities) {
             Vec3 motion = entity.getDeltaMovement();
-            if(entity instanceof Player) {
-                boost *= ((Player) entity).isFallFlying() ? 2 : 1;
+
+            if(entity instanceof ServerPlayer player && player.isFallFlying()) {
+                boost *= 2;
+                DDCriteria.GEYSER_ELYTRA_BOOST.get().trigger(player);
             }
+
             double xBooster = direction.getAxis() == Direction.Axis.X ? boost : 0.0D;
             double yBooster = direction.getAxis() == Direction.Axis.Y ? boost : 0.0D;
             double zBooster = direction.getAxis() == Direction.Axis.Z ? boost : 0.0D;

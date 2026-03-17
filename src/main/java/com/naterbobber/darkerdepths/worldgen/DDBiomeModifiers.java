@@ -4,7 +4,6 @@ import com.naterbobber.darkerdepths.init.DDEntityTypes;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
-import net.minecraft.data.worldgen.placement.CavePlacements;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.biome.Biome;
@@ -50,7 +49,7 @@ public class DDBiomeModifiers {
                 getPlacedFeature(
                         context,
                         MAGMA_DISK,
-                        DEAD_LIVING_CRYSTAL_ORE
+                        CRYSTAL_HUSK_ORE
                 ),
                 GenerationStep.Decoration.UNDERGROUND_ORES
         ));

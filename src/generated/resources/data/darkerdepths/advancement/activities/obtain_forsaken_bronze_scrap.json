@@ -1,0 +1,33 @@
+{
+  "parent": "darkerdepths:visited/structure/visited_catacombs",
+  "criteria": {
+    "obtain_forsaken_bronze_scrap": {
+      "conditions": {
+        "items": [
+          {
+            "items": "darkerdepths:forsaken_bronze_scrap"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.darkerdepths.obtain_forsaken_bronze_scrap.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "darkerdepths:forsaken_bronze_scrap"
+    },
+    "title": {
+      "translate": "advancements.darkerdepths.obtain_forsaken_bronze_scrap.title"
+    }
+  },
+  "requirements": [
+    [
+      "obtain_forsaken_bronze_scrap"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

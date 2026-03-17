@@ -1,0 +1,44 @@
+{
+  "parent": "darkerdepths:activities/obtain_forsaken_bronze_scrap",
+  "criteria": {
+    "set_death_anchor": {
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "block": {
+                "blocks": "darkerdepths:death_anchor"
+              }
+            }
+          },
+          {
+            "condition": "minecraft:match_tool",
+            "predicate": {
+              "items": "darkerdepths:void_soul_requiem"
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:item_used_on_block"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.darkerdepths.set_death_anchor.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "darkerdepths:death_anchor"
+    },
+    "title": {
+      "translate": "advancements.darkerdepths.set_death_anchor.title"
+    }
+  },
+  "requirements": [
+    [
+      "set_death_anchor"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

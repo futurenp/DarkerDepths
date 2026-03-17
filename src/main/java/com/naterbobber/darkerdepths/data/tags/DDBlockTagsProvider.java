@@ -42,7 +42,7 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
                 DDBlocks.GLOWSHROOM_HEART.get()
         );
         this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(
-                DDBlocks.DEAD_LIVING_CRYSTAL.get(),
+                DDBlocks.CRYSTAL_HUSK.get(),
                 DDBlocks.LIVING_CRYSTAL.get(),
                 DDBlocks.DARKSLATE.get(),
                 DDBlocks.ARIDROCK.get(),
@@ -170,7 +170,7 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
         this.tag(BlockTags.NEEDS_STONE_TOOL).add(
                 DDBlocks.GEYSER.get(),
                 DDBlocks.LIVING_CRYSTAL.get(),
-                DDBlocks.DEAD_LIVING_CRYSTAL.get(),
+                DDBlocks.CRYSTAL_HUSK.get(),
                 DDBlocks.STONE_MELON.get(),
                 DDBlocks.GLOWSHROOM_LAMP.get(),
                 DDBlocks.TOMB.get()

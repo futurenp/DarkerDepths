@@ -1,0 +1,26 @@
+{
+  "parent": "darkerdepths:visited/molten_cavern",
+  "criteria": {
+    "elytra_boosted_by_geyser": {
+      "trigger": "darkerdepths:geyser_elytra_boost"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.darkerdepths.elytra_boosted_by_geyser.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "darkerdepths:geyser"
+    },
+    "title": {
+      "translate": "advancements.darkerdepths.elytra_boosted_by_geyser.title"
+    }
+  },
+  "requirements": [
+    [
+      "elytra_boosted_by_geyser"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

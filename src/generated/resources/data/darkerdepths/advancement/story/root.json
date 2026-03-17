@@ -6,14 +6,14 @@
   },
   "display": {
     "announce_to_chat": false,
-    "background": "darkerdepths:textures/block/grimestone.png",
+    "background": "darkerdepths:textures/block/duskrock.png",
     "description": {
       "translate": "advancements.darkerdepths.parent.description"
     },
     "frame": "goal",
     "icon": {
       "count": 1,
-      "id": "darkerdepths:glowshroom_cap"
+      "id": "darkerdepths:glowshroom"
     },
     "title": {
       "translate": "advancements.darkerdepths.parent.title"

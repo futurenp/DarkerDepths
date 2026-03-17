@@ -80,7 +80,7 @@ public class DDResourceKeys {
         public static final ResourceKey<ConfiguredFeature<?, ?>> CATACOMBS_LAVA_LINING = createKey("catacombs_lava_lining");
         public static final ResourceKey<ConfiguredFeature<?, ?>> DUSKROCK_STRIPE = createKey("duskrock_stripe");
         public static final ResourceKey<ConfiguredFeature<?, ?>> GLIMMERING_VINES = createKey("glimmering_vines");
-        public static final ResourceKey<ConfiguredFeature<?, ?>> DEAD_LIVING_CRYSTAL_ORE = createKey("dead_living_crystal_ore");
+        public static final ResourceKey<ConfiguredFeature<?, ?>> CRYSTAL_HUSK_ORE = createKey("crystal_husk_ore");
         public static final ResourceKey<ConfiguredFeature<?, ?>> DUSKROCK_ORE = createKey("duskrock_ore");
         public static ResourceKey<ConfiguredFeature<?, ?>> createKey(String name) {
             return ResourceKey.create(Registries.CONFIGURED_FEATURE, DarkerDepths.id(name));
@@ -109,7 +109,7 @@ public class DDResourceKeys {
         public static final ResourceKey<PlacedFeature> CATACOMBS_LAVA_LINING = createKey("catacombs_lava_lining");
         public static final ResourceKey<PlacedFeature> DUSKROCK_STRIPE = createKey("duskrock_stripe");
         public static final ResourceKey<PlacedFeature> GLIMMERING_VINES = createKey("glimmering_vines");
-        public static final ResourceKey<PlacedFeature> DEAD_LIVING_CRYSTAL_ORE = createKey("dead_living_crystal_ore");
+        public static final ResourceKey<PlacedFeature> CRYSTAL_HUSK_ORE = createKey("crystal_husk_ore");
         public static final ResourceKey<PlacedFeature> DUSKROCK_ORE = createKey("duskrock_ore");
 
         public static ResourceKey<PlacedFeature> createKey(String name) {

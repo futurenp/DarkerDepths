@@ -1,0 +1,26 @@
+{
+  "parent": "darkerdepths:activities/insert_diamond_into_crystal_husk",
+  "criteria": {
+    "use_crystal_melon": {
+      "trigger": "darkerdepths:used_crystal_melon"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.darkerdepths.use_crystal_melon.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "darkerdepths:crystal_melon"
+    },
+    "title": {
+      "translate": "advancements.darkerdepths.use_crystal_melon.title"
+    }
+  },
+  "requirements": [
+    [
+      "use_crystal_melon"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

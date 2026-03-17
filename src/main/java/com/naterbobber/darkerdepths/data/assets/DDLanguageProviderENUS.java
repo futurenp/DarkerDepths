@@ -4,8 +4,9 @@ import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.init.*;
 import com.naterbobber.darkerdepths.util.DDResourceKeys;
 import net.minecraft.data.PackOutput;
-import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.data.LanguageProvider;
+
+import java.util.function.Consumer;
 
 public class DDLanguageProviderENUS extends LanguageProvider {
     public DDLanguageProviderENUS(PackOutput output) {
@@ -158,7 +159,7 @@ public class DDLanguageProviderENUS extends LanguageProvider {
         add(DDBlocks.DEATH_ANCHOR.get(), "Death Anchor");
         add(DDBlocks.MAGMA_PAD.get(), "Magma Pad");
         add(DDBlocks.LIVING_CRYSTAL.get(), "Living Crystal");
-        add(DDBlocks.DEAD_LIVING_CRYSTAL.get(), "Dead Living Crystal");
+        add(DDBlocks.CRYSTAL_HUSK.get(), "Crystal Husk");
         add(DDBlocks.TOMB.get(), "Tomb");
         add(DDBlocks.FORSAKEN_BRONZE_BLOCK.get(), "Block of Forsaken Bronze");
         add(DDBlocks.PARANOIA_ALTAR.get(), "Paranoia Altar");
@@ -205,18 +206,52 @@ public class DDLanguageProviderENUS extends LanguageProvider {
         add(ITEM_GROUP, "creative_tab", "Darker Depths");
 
         //Advancements
-        add(ADVANCEMENT, "parent.title", "Darker Depths");
-        add(ADVANCEMENT, "parent.description", "Thank you for installing Darker Depths!");
+        addAdvancement("parent", "Darker Depths",
+                "Thank you for installing Darker Depths!");
 
         var moltenCavern = DDResourceKeys.Biomes.MOLTEN_CAVERN.location().getPath();
         var sandyCatacombs = DDResourceKeys.Biomes.SANDY_CATACOMBS.location().getPath();
         var glowshroomCavern = DDResourceKeys.Biomes.GLOWSHROOM_FOREST.location().getPath();
-        add(ADVANCEMENT,  sandyCatacombs + ".title", "Sandy Catacombs");
-        add(ADVANCEMENT,  sandyCatacombs + ".description", "Visit the Sandy Catacombs biome");
-        add(ADVANCEMENT,  moltenCavern + ".title", "Molten Cavern");
-        add(ADVANCEMENT,  moltenCavern + ".description", "Visit the Molten Cavern biome");
-        add(ADVANCEMENT,  glowshroomCavern + ".title", "Glowshroom Forest");
-        add(ADVANCEMENT,  glowshroomCavern + ".description", "Visit the Glowshroom Forest biome");
+
+        addAdvancement(sandyCatacombs, "Desert but Underground?",
+                "Visit the Sandy Catacombs biome");
+        addAdvancement(moltenCavern, "It's Getting Hot in Here!",
+                "Visit the Molten Cavern biome");
+        addAdvancement(glowshroomCavern, "Luminous Depths",
+                "Visit the Glowshroom Forest biome");
+
+        var catacombs = DDResourceKeys.Structures.CATACOMBS.location().getPath();
+        addAdvancement(catacombs, "The Lost Souls", "Visit the Catacombs Structure");
+
+        addAdvancement("elytra_boosted_by_geyser", "Inverse Rocketry",
+                "Fly through a geyser burst with an Elytra");
+
+        addAdvancement("insert_diamond_into_crystal_husk", "Back From the Dead!",
+                "Give a Crystal Husk a Diamond");
+
+        addAdvancement("obtain_glowshroom_cap", "Glow In the Dark",
+                "Obtain a Glowshroom Cap from a Glowshroom Monster");
+
+        addAdvancement("set_death_anchor", "Soul Pact",
+                "Set a Death Anchor with a Void Soul Requiem");
+
+        addAdvancement("obtain_forsaken_bronze_scrap", "Titan's Slag",
+                "Obtain a Forsaken Bronze Scrap from the Catacombs");
+
+        addAdvancement("bottle_void_soul", "Bottle O'Void Souls",
+                "Bottle a Void Soul with a Glass Bottle");
+
+        addAdvancement("use_crystal_melon", "Feel the POWAH!",
+                "Use a Crystal Melon");
+    }
+
+    private void addAdvancement(String key, String title, String description) {
+        if (title != null && !title.isBlank()) {
+            add(ADVANCEMENT, key + ".title", title);
+        }
+        if (description != null && !description.isBlank()) {
+            add(ADVANCEMENT, key + ".description", description);
+        }
     }
 
     private void add(String type, String key, String value) {

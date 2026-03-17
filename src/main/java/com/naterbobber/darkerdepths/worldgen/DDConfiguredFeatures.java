@@ -1,7 +1,6 @@
 package com.naterbobber.darkerdepths.worldgen;
 
 import com.google.common.collect.ImmutableList;
-import com.naterbobber.darkerdepths.block.DDBlockStateProperties;
 import com.naterbobber.darkerdepths.block.custom.AshBlock;
 import com.naterbobber.darkerdepths.block.custom.GlowshroomBlock;
 import com.naterbobber.darkerdepths.block.custom.GlowspursBlock;
@@ -20,7 +19,6 @@ import net.minecraft.util.random.SimpleWeightedRandomList;
 import net.minecraft.util.valueproviders.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.MagmaBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
@@ -30,15 +28,11 @@ import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvi
 import net.minecraft.world.level.levelgen.feature.stateproviders.RuleBasedBlockStateProvider;
 import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
 import net.minecraft.world.level.levelgen.placement.CaveSurface;
-import net.minecraft.world.level.levelgen.placement.EnvironmentScanPlacement;
-import net.minecraft.world.level.levelgen.placement.RandomOffsetPlacement;
 import net.minecraft.world.level.levelgen.structure.templatesystem.BlockMatchTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
 import net.minecraft.world.level.material.Fluids;
-import net.minecraft.world.level.material.LavaFluid;
 
 import java.util.List;
-import java.util.Set;
 
 import static com.naterbobber.darkerdepths.util.DDResourceKeys.ConfiguredFeatures.*;
 
@@ -184,15 +178,15 @@ public class DDConfiguredFeatures {
                 PlacementUtils.inlinePlaced(lookup.getOrThrow(LONG_PETRIFIED_BRANCH))
         ));
 
-        FeatureUtils.register(context, DEAD_LIVING_CRYSTAL_ORE, Feature.ORE, new OreConfiguration(
+        FeatureUtils.register(context, CRYSTAL_HUSK_ORE, Feature.ORE, new OreConfiguration(
                 List.of(
                         OreConfiguration.target(
                                 new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES),
-                                DDBlocks.DEAD_LIVING_CRYSTAL.get().defaultBlockState()
+                                DDBlocks.CRYSTAL_HUSK.get().defaultBlockState()
                         ),
                         OreConfiguration.target(
                                 new BlockMatchTest(DDBlocks.DARKSLATE.get()),
-                                DDBlocks.DEAD_LIVING_CRYSTAL.get().defaultBlockState()
+                                DDBlocks.CRYSTAL_HUSK.get().defaultBlockState()
                         )
                 ),
                 6)

@@ -1,8 +1,10 @@
 package com.naterbobber.darkerdepths.events;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
+import com.naterbobber.darkerdepths.advancements.criteria.CrystalMelonTrigger;
 import com.naterbobber.darkerdepths.config.DDConfig;
 import com.naterbobber.darkerdepths.init.DDBlocks;
+import com.naterbobber.darkerdepths.init.DDCriteria;
 import com.naterbobber.darkerdepths.init.DDDataComponents;
 import com.naterbobber.darkerdepths.util.SuperchargeHelper;
 import com.naterbobber.darkerdepths.component.SuperchargeInfo;
@@ -10,6 +12,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
@@ -49,6 +52,10 @@ public class PlayerEvents {
                 isEligible &&
                 !(mainHandStack.getItem() instanceof ArmorItem) &&
                 !isSupercharged(mainHandStack, level)) {
+
+            if(player instanceof ServerPlayer sPlayer) {
+                DDCriteria.USED_CRYSTAL_MELON.get().trigger(sPlayer);
+            }
 
             SuperchargeHelper.applyUpgrades(mainHandStack, level);
             offHandStack.shrink(1);

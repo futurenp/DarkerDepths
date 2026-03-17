@@ -242,7 +242,7 @@ public class DDBlocks {
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.TUBE_CORAL_BLOCK).sound(SoundType.STEM)));
     public static final DeferredBlock<StoneMelonBlock> STONE_MELON = registerBlock("stone_melon",
             () -> new StoneMelonBlock(BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_GRAY).requiresCorrectToolForDrops().strength(1.0f).sound(SoundType.DEEPSLATE)));
-    public static final DeferredBlock<DeadLivingCrystalBlock> DEAD_LIVING_CRYSTAL = registerBlock("dead_living_crystal",
+    public static final DeferredBlock<DeadLivingCrystalBlock> CRYSTAL_HUSK = registerBlock("dead_living_crystal",
             () -> new DeadLivingCrystalBlock(LIVING_CRYSTAL_PROPERTIES));
     public static final DeferredBlock<LivingCrystalBlock> LIVING_CRYSTAL = registerBlock("living_crystal",
             () -> new LivingCrystalBlock(LIVING_CRYSTAL_PROPERTIES));
