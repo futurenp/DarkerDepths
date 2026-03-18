@@ -1,4 +1,4 @@
-package com.naterbobber.darkerdepths.advancements;
+package com.naterbobber.darkerdepths.data;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.advancements.criteria.CrystalMelonTrigger;

@@ -1,4 +1,4 @@
-// 1.21.1	2026-03-12T22:40:42.7201268	Loot Tables
+// 1.21.1	2026-03-18T11:16:15.8339522	Loot Tables
 69a68443e41c0ea8610b4ece66b6a6a3bff163d0 data/darkerdepths/loot_table/archaeology/catacombs/standard.json
 b26089f15d136d6d0b9b7870fd170249ec0473de data/darkerdepths/loot_table/blocks/amber_block.json
 7b8aa851d67ec8c45ab85ef504b99c843fe25237 data/darkerdepths/loot_table/blocks/amber_cluster.json
@@ -31,6 +31,7 @@ d546022a48858231abc591d947cf4a1705025a56 data/darkerdepths/loot_table/blocks/cry
 41e3362ec5b74f59284c13cb4dae7b03316579d3 data/darkerdepths/loot_table/blocks/darkslate_bricks_stairs.json
 df42f679d68ce786dffa2d6c382501a3510fb18e data/darkerdepths/loot_table/blocks/darkslate_bricks_vertical_slab.json
 5f34ef3cf1d2686791bfdba7646e617c63cf2a8b data/darkerdepths/loot_table/blocks/darkslate_bricks_wall.json
+0be349dcfa85120be2d4affbb67681f5626a02f9 data/darkerdepths/loot_table/blocks/darkslate_pillar.json
 8a81adda7139e95e80e69de6ac842cd31655310f data/darkerdepths/loot_table/blocks/darkslate_slab.json
 d39e8cfa72eade715d0ba493d00ad395f06f34aa data/darkerdepths/loot_table/blocks/darkslate_stairs.json
 8db04890d06bd53696cb5ed4bf563665359686cf data/darkerdepths/loot_table/blocks/darkslate_vertical_slab.json
@@ -65,6 +66,7 @@ d63d3891d51e9b403e22f7b21cfa420d57b670d6 data/darkerdepths/loot_table/blocks/glo
 f26be01479723d7dad93cba4cbf34a114c43ddbe data/darkerdepths/loot_table/blocks/grimestone_bricks_stairs.json
 568b802e689f7707909a2f3c71a9fb85b3a54e7a data/darkerdepths/loot_table/blocks/grimestone_bricks_vertical_slab.json
 20fd11b4cd64e3972b81a7cbaec23aa42db28886 data/darkerdepths/loot_table/blocks/grimestone_bricks_wall.json
+1efb0915b629760c3a5747a0389054e348a2d70d data/darkerdepths/loot_table/blocks/grimestone_pillar.json
 961194992fde6ac58ab62908ce78a45d2abea46a data/darkerdepths/loot_table/blocks/grimestone_slab.json
 cd5bb5ff580c46d3110dc984f037a2d7df560f67 data/darkerdepths/loot_table/blocks/grimestone_stairs.json
 7465fa63872d26d8cd9f81ba755ff4b974184a59 data/darkerdepths/loot_table/blocks/grimestone_vertical_slab.json

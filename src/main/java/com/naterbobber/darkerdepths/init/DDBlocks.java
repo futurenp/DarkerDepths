@@ -234,6 +234,8 @@ public class DDBlocks {
             () -> new Block(DARKSLATE_BRICKS_PROPERTIES));
     public static final DeferredBlock<Block> CRACKED_DARKSLATE_BRICKS = registerBlock("cracked_darkslate_bricks",
             () -> new Block(DARKSLATE_BRICKS_PROPERTIES));
+    public static final DeferredBlock<ConnectedPillarBlock> DARKSLATE_PILLAR = registerBlock("darkslate_pillar",
+            () -> new ConnectedPillarBlock(DARKSLATE_BRICKS_PROPERTIES));
     public static final DeferredBlock<GeyserBlock> GEYSER = registerBlock("geyser",
             () -> new GeyserBlock(DARKSLATE_PROPERTIES.randomTicks()));
     public static final DeferredBlock<ScorchedRemainsBushBlock> SCORCHED_REMAINS = registerBlock("scorched_remains",
@@ -294,6 +296,8 @@ public class DDBlocks {
             () -> new Block(DARKSLATE_BRICKS_PROPERTIES));
     public static final DeferredBlock<Block> CRACKED_GRIMESTONE_BRICKS = registerBlock("cracked_grimestone_bricks",
             () -> new Block(DARKSLATE_BRICKS_PROPERTIES));
+    public static final DeferredBlock<ConnectedPillarBlock> GRIMESTONE_PILLAR = registerBlock("grimestone_pillar",
+            () -> new ConnectedPillarBlock(DARKSLATE_BRICKS_PROPERTIES));
     public static final DeferredBlock<Block> GLOWSHROOM_BLOCK = registerBlock("glowshroom_block",
             () -> new Block(BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.SLIME_BLOCK)));
     public static final DeferredBlock<RotatedPillarBlock> GLOWSHROOM_STEM = registerBlock("glowshroom_stem",

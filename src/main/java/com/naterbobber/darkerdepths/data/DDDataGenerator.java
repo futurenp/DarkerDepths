@@ -1,7 +1,6 @@
 package com.naterbobber.darkerdepths.data;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
-import com.naterbobber.darkerdepths.advancements.DDAdvancementProvider;
 import com.naterbobber.darkerdepths.data.assets.DDBlockStateProvider;
 import com.naterbobber.darkerdepths.data.assets.DDLanguageProviderENUS;
 import com.naterbobber.darkerdepths.data.loot.DDLootTableProvider;

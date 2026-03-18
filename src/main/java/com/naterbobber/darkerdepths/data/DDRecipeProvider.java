@@ -75,6 +75,8 @@ public class DDRecipeProvider extends RecipeProvider {
         slabBlock(recipeOutput, DDBlocks.PETRIFIED_SLAB.get(), DDBlocks.PETRIFIED_PLANKS.get().asItem());
 
         pillarBlock(recipeOutput, DDBlocks.ARIDROCK_PILLAR.get(), DDBlocks.POLISHED_ARIDROCK.get().asItem());
+        pillarBlock(recipeOutput, DDBlocks.GRIMESTONE_PILLAR.get(), DDBlocks.POLISHED_GRIMESTONE.get().asItem());
+        pillarBlock(recipeOutput, DDBlocks.DARKSLATE_PILLAR.get(), DDBlocks.POLISHED_DARKSLATE.get().asItem());
 
         wallBlock(recipeOutput, DDBlocks.DARKSLATE_WALL.get(), DDBlocks.DARKSLATE.get().asItem());
         wallBlock(recipeOutput, DDBlocks.ARIDROCK_WALL.get(), DDBlocks.ARIDROCK.get().asItem());
@@ -372,6 +374,8 @@ public class DDRecipeProvider extends RecipeProvider {
         stonecutterResultFromBase(recipeOutput, DDBlocks.CHISELED_GRIMESTONE_BRICKS.get(), DDBlocks.GRIMESTONE.get());
 
         stonecutterResultFromBase(recipeOutput, DDBlocks.ARIDROCK_PILLAR.get(), DDBlocks.ARIDROCK.get());
+        stonecutterResultFromBase(recipeOutput, DDBlocks.GRIMESTONE_PILLAR.get(), DDBlocks.GRIMESTONE.get());
+        stonecutterResultFromBase(recipeOutput, DDBlocks.DARKSLATE_PILLAR.get(), DDBlocks.DARKSLATE.get());
 
         stonecutterResultFromBase(recipeOutput, DDBlocks.DARKSLATE_BRICKS.get(), DDBlocks.POLISHED_DARKSLATE.get());
         stonecutterResultFromBase(recipeOutput, DDBlocks.ARIDROCK_BRICKS.get(), DDBlocks.POLISHED_ARIDROCK.get());
@@ -412,6 +416,8 @@ public class DDRecipeProvider extends RecipeProvider {
         stonecutterResultFromBase(recipeOutput, DDBlocks.CHISELED_GRIMESTONE_BRICKS.get(), DDBlocks.GRIMESTONE_BRICKS.get());
 
         stonecutterResultFromBase(recipeOutput, DDBlocks.ARIDROCK_PILLAR.get(), DDBlocks.POLISHED_ARIDROCK.get());
+        stonecutterResultFromBase(recipeOutput, DDBlocks.GRIMESTONE_PILLAR.get(), DDBlocks.POLISHED_GRIMESTONE.get());
+        stonecutterResultFromBase(recipeOutput, DDBlocks.DARKSLATE_PILLAR.get(), DDBlocks.POLISHED_DARKSLATE.get());
 
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.DECORATIONS, DDItems.ROPE.get(), 12)
