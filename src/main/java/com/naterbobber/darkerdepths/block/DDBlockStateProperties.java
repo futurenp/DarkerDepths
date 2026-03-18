@@ -1,7 +1,8 @@
 package com.naterbobber.darkerdepths.block;
 
+import com.naterbobber.darkerdepths.block.blockstates.PillarState;
 import com.naterbobber.darkerdepths.block.custom.RopeBlock;
-import com.naterbobber.darkerdepths.block.generic.ConnectedPillarBlock;
+import com.naterbobber.darkerdepths.block.generic.ConnectedRotatablePillarBlock;
 import com.naterbobber.darkerdepths.block.generic.VerticalSlabBlock;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
@@ -13,7 +14,7 @@ public class DDBlockStateProperties {
     public static final BooleanProperty INHABITED = BooleanProperty.create("inhabited");
     public static final EnumProperty<RopeBlock.RopePart> PART = EnumProperty.create("part", RopeBlock.RopePart.class);
     public static final IntegerProperty GLOWSHROOM_CLUSTERS = IntegerProperty.create("clusters", 1, 3);
-    public static final EnumProperty<ConnectedPillarBlock.PillarState> PILLAR_STATE = EnumProperty.create("pillar_state", ConnectedPillarBlock.PillarState.class);
+    public static final EnumProperty<PillarState> PILLAR_STATE = EnumProperty.create("pillar_state", PillarState.class);
     public static final EnumProperty<VerticalSlabBlock.VerticalSlabType> TYPE = EnumProperty.create("type", VerticalSlabBlock.VerticalSlabType.class);
     public static final IntegerProperty HEAT_LEVEL = IntegerProperty.create("heat_level", 0, 4);
     public static final BooleanProperty BURSTING = BooleanProperty.create("bursting");

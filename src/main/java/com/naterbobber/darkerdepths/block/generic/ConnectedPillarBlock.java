@@ -1,9 +1,9 @@
 package com.naterbobber.darkerdepths.block.generic;
 
 import com.naterbobber.darkerdepths.block.DDBlockStateProperties;
+import com.naterbobber.darkerdepths.block.blockstates.PillarState;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
@@ -14,7 +14,7 @@ import net.minecraft.world.level.block.state.properties.EnumProperty;
 import javax.annotation.Nullable;
 
 public class ConnectedPillarBlock extends Block {
-    public static final EnumProperty<PillarState> PILLAR_STATE = DDBlockStateProperties.PILLAR_STATE;
+    private static final EnumProperty<PillarState> PILLAR_STATE = DDBlockStateProperties.PILLAR_STATE;
     public ConnectedPillarBlock(Properties properties) {
         super(properties);
         this.registerDefaultState(this.stateDefinition.any().setValue(PILLAR_STATE, PillarState.DEFAULT));
@@ -58,28 +58,5 @@ public class ConnectedPillarBlock extends Block {
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
         pBuilder.add(PILLAR_STATE);
-    }
-
-    public enum PillarState implements StringRepresentable {
-        DEFAULT("default"),
-        LOWER("lower"),
-        MIDDLE("middle"),
-        UPPER("upper");
-
-        private final String name;
-
-        PillarState(String name) {
-            this.name = name;
-        }
-
-        @Override
-        public String getSerializedName() {
-            return this.name;
-        }
-
-        @Override
-        public String toString() {
-            return this.name;
-        }
     }
 }

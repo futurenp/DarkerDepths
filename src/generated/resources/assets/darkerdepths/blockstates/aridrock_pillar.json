@@ -1,16 +1,40 @@
 {
   "variants": {
-    "pillar_state=default": {
+    "axis=x,pillar_state=default": {
+      "model": "darkerdepths:block/aridrock_pillar_default_x"
+    },
+    "axis=x,pillar_state=lower": {
+      "model": "darkerdepths:block/aridrock_pillar_lower_x"
+    },
+    "axis=x,pillar_state=middle": {
+      "model": "darkerdepths:block/aridrock_pillar_middle_x"
+    },
+    "axis=x,pillar_state=upper": {
+      "model": "darkerdepths:block/aridrock_pillar_upper_x"
+    },
+    "axis=y,pillar_state=default": {
       "model": "darkerdepths:block/aridrock_pillar_default"
     },
-    "pillar_state=lower": {
+    "axis=y,pillar_state=lower": {
       "model": "darkerdepths:block/aridrock_pillar_lower"
     },
-    "pillar_state=middle": {
+    "axis=y,pillar_state=middle": {
       "model": "darkerdepths:block/aridrock_pillar_middle"
     },
-    "pillar_state=upper": {
+    "axis=y,pillar_state=upper": {
       "model": "darkerdepths:block/aridrock_pillar_upper"
+    },
+    "axis=z,pillar_state=default": {
+      "model": "darkerdepths:block/aridrock_pillar_default_z"
+    },
+    "axis=z,pillar_state=lower": {
+      "model": "darkerdepths:block/aridrock_pillar_lower_z"
+    },
+    "axis=z,pillar_state=middle": {
+      "model": "darkerdepths:block/aridrock_pillar_middle_z"
+    },
+    "axis=z,pillar_state=upper": {
+      "model": "darkerdepths:block/aridrock_pillar_upper_z"
     }
   }
 }

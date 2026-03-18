@@ -2,6 +2,7 @@ package com.naterbobber.darkerdepths.data.assets;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.block.DDBlockStateProperties;
+import com.naterbobber.darkerdepths.block.blockstates.PillarState;
 import com.naterbobber.darkerdepths.block.custom.DarkslateBlock;
 import com.naterbobber.darkerdepths.block.generic.*;
 import com.naterbobber.darkerdepths.init.DDBlocks;
@@ -16,6 +17,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
+import net.neoforged.neoforge.client.model.generators.ModelBuilder;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -143,6 +145,7 @@ public class DDBlockStateProvider extends BlockStateProvider {
                         case BushBlock b -> crossBlockWithItem(holder);
                         case DarkslateBlock b -> darkslateBlockWithItem(holder, DDBlockStateProperties.HEAT_LEVEL);
                         case RotatedPillarBlock b -> rotatablePillarBlockWithItem(holder);
+                        case ConnectedRotatablePillarBlock b -> connectedRotatablePillarBlockWithItem(holder);
                         case ConnectedPillarBlock b -> connectedPillarBlockWithItem(holder);
                         case SignBlock b -> skipBlock(holder);
                         case VerticalSlabBlock b -> skipBlock(holder);
@@ -261,7 +264,6 @@ public class DDBlockStateProvider extends BlockStateProvider {
                 ResourceLocation glowSideTexture = this.extend(sideTexture, "_glow");
                 ResourceLocation glowEndTexture = this.extend(endTexture, "_glow");
 
-                // 1. Emissive Vertical Model
                 vertical = this.models().getBuilder(stateName)
                         .parent(new net.neoforged.neoforge.client.model.generators.ModelFile.UncheckedModelFile("minecraft:block/block"))
                         .renderType("minecraft:translucent")
@@ -270,7 +272,6 @@ public class DDBlockStateProvider extends BlockStateProvider {
                         .texture("base_end", endTexture)
                         .texture("glow_side", glowSideTexture)
                         .texture("glow_end", glowEndTexture)
-                        // Base stone cube (Ends on UP/DOWN)
                         .element().from(0, 0, 0).to(16, 16, 16)
                         .face(Direction.UP).texture("#base_end").cullface(Direction.UP).end()
                         .face(Direction.DOWN).texture("#base_end").cullface(Direction.DOWN).end()
@@ -289,7 +290,6 @@ public class DDBlockStateProvider extends BlockStateProvider {
                         .face(Direction.WEST).texture("#glow_side").cullface(Direction.WEST).end()
                         .end();
 
-                // 2. Emissive Horizontal Model
                 horizontal = this.models().getBuilder(stateName + "_horizontal")
                         .parent(new net.neoforged.neoforge.client.model.generators.ModelFile.UncheckedModelFile("minecraft:block/block"))
                         .renderType("minecraft:translucent")
@@ -298,7 +298,6 @@ public class DDBlockStateProvider extends BlockStateProvider {
                         .texture("base_end", endTexture)
                         .texture("glow_side", glowSideTexture)
                         .texture("glow_end", glowEndTexture)
-                        // Base stone cube (Ends STILL on UP/DOWN, Sides get 90-degree UV rotation)
                         .element().from(0, 0, 0).to(16, 16, 16)
                         .face(Direction.UP).texture("#base_end").cullface(Direction.UP).end()
                         .face(Direction.DOWN).texture("#base_end").cullface(Direction.DOWN).end()
@@ -336,22 +335,18 @@ public class DDBlockStateProvider extends BlockStateProvider {
     public void geyserBlock(DeferredHolder<Block, ? extends Block> blockHolder) {
         Block block = blockHolder.get();
 
-        // Standard textures
         ResourceLocation sideTexture = modLoc("block/geyser");
         ResourceLocation bottomTexture = modLoc("block/darkslate_top");
         ResourceLocation topTexture = modLoc("block/geyser_top");
 
-        // Heated base textures
         ResourceLocation heatedSideTexture = modLoc("block/heated_geyser");
         ResourceLocation heatedBottomTexture = modLoc("block/darkslate_heat_level_2_top");
         ResourceLocation heatedTopTexture = modLoc("block/heated_geyser_top");
 
-        // Emissive overlay textures
         ResourceLocation heatedSideGlow = modLoc("block/heated_geyser_glow");
         ResourceLocation heatedBottomGlow = modLoc("block/darkslate_heat_level_2_top_glow");
         ResourceLocation heatedTopGlow = modLoc("block/heated_geyser_top_glow");
 
-        // 1. Generate the standard Geyser model
         ModelFile normalModel = models().cubeBottomTop(
                 "geyser",
                 sideTexture,
@@ -359,7 +354,6 @@ public class DDBlockStateProvider extends BlockStateProvider {
                 topTexture
         );
 
-        // 2. Generate the Bursting (heated) Geyser model
         ModelFile burstingModel = this.models().getBuilder("heated_geyser")
                 .parent(new net.neoforged.neoforge.client.model.generators.ModelFile.UncheckedModelFile("minecraft:block/block"))
                 .texture("particle", heatedSideTexture)
@@ -367,7 +361,7 @@ public class DDBlockStateProvider extends BlockStateProvider {
                 .texture("base_bottom", heatedBottomTexture)
                 .texture("base_top", heatedTopTexture)
                 .texture("glow_side", heatedSideGlow)
-                .texture("glow_bottom", heatedBottomGlow) // Added the bottom glow texture
+                .texture("glow_bottom", heatedBottomGlow)
                 .texture("glow_top", heatedTopGlow)
                 // Base stone cube
                 .element().from(0, 0, 0).to(16, 16, 16)
@@ -388,13 +382,11 @@ public class DDBlockStateProvider extends BlockStateProvider {
                 .face(Direction.WEST).texture("#glow_side").cullface(Direction.WEST).end()
                 .end();
 
-        // 3. Apply the directional rotations automatically
         directionalBlock(block, state -> {
             boolean isBursting = state.getValue(DDBlockStateProperties.BURSTING);
             return isBursting ? burstingModel : normalModel;
         });
 
-        // 4. Create the inventory item model (defaulting to the non-bursting state)
         simpleBlockItem(block, normalModel);
     }
 
@@ -426,7 +418,7 @@ public class DDBlockStateProvider extends BlockStateProvider {
         ModelFile upperModel = models().cubeColumn(blockName + "_upper", sideUpperTexture, endTexture);
 
         getVariantBuilder(block.get()).forAllStates(state -> {
-            ConnectedPillarBlock.PillarState type = state.getValue(ConnectedPillarBlock.PILLAR_STATE);
+            PillarState type = state.getValue(ConnectedRotatablePillarBlock.PILLAR_STATE);
 
             ModelFile modelToUse = switch (type) {
                 case LOWER -> lowerModel;
@@ -484,6 +476,111 @@ public class DDBlockStateProvider extends BlockStateProvider {
 
         getVariantBuilder(block.get()).partialState().setModels(new ConfiguredModel(cubeColumn));
         simpleBlockItem(block.get(), cubeColumn);
+    }
+
+    private void connectedRotatablePillarBlockWithItem(DeferredHolder<Block, ? extends Block> block) {
+        ResourceLocation location = block.getId();
+        String blockName = location.getPath();
+
+        ResourceLocation endTexture = location.withPath("block/" + blockName + "_end");
+
+        ResourceLocation sideTexture = location.withPath("block/" + blockName + "_side");
+        ResourceLocation sideLowerTexture = location.withPath("block/" + blockName + "_side_lower");
+        ResourceLocation sideMiddleTexture = location.withPath("block/" + blockName + "_side_middle");
+        ResourceLocation sideUpperTexture = location.withPath("block/" + blockName + "_side_upper");
+
+        ResourceLocation sideTextureHoriz = location.withPath("block/" + blockName + "_side_horizontal");
+        ResourceLocation sideLowerTextureHoriz = location.withPath("block/" + blockName + "_side_lower_horizontal");
+        ResourceLocation sideMiddleTextureHoriz = location.withPath("block/" + blockName + "_side_middle_horizontal");
+        ResourceLocation sideUpperTextureHoriz = location.withPath("block/" + blockName + "_side_upper_horizontal");
+
+        ModelFile defaultModelY = models().cubeColumn(blockName + "_default", sideTexture, endTexture);
+        ModelFile lowerModelY = models().cubeColumn(blockName + "_lower", sideLowerTexture, endTexture);
+        ModelFile middleModelY = models().cubeColumn(blockName + "_middle", sideMiddleTexture, endTexture);
+        ModelFile upperModelY = models().cubeColumn(blockName + "_upper", sideUpperTexture, endTexture);
+
+        ModelFile defaultModelZ = createZAxisModel(blockName + "_default_z", sideTextureHoriz, endTexture);
+        ModelFile lowerModelZ = createZAxisModel(blockName + "_lower_z", sideLowerTextureHoriz, endTexture);
+        ModelFile middleModelZ = createZAxisModel(blockName + "_middle_z", sideMiddleTextureHoriz, endTexture);
+        ModelFile upperModelZ = createZAxisModel(blockName + "_upper_z", sideUpperTextureHoriz, endTexture);
+
+        ModelFile defaultModelX = createXAxisModel(blockName + "_default_x", sideTextureHoriz, endTexture);
+        ModelFile lowerModelX = createXAxisModel(blockName + "_lower_x", sideLowerTextureHoriz, endTexture);
+        ModelFile middleModelX = createXAxisModel(blockName + "_middle_x", sideMiddleTextureHoriz, endTexture);
+        ModelFile upperModelX = createXAxisModel(blockName + "_upper_x", sideUpperTextureHoriz, endTexture);
+
+        getVariantBuilder(block.get()).forAllStates(state -> {
+            PillarState type = state.getValue(ConnectedRotatablePillarBlock.PILLAR_STATE);
+            Direction.Axis axis = state.getValue(ConnectedRotatablePillarBlock.AXIS);
+
+            ModelFile modelToUse;
+
+            switch (axis) {
+                case X -> {
+                    modelToUse = switch (type) {
+                        case LOWER -> lowerModelX;
+                        case MIDDLE -> middleModelX;
+                        case UPPER -> upperModelX;
+                        default -> defaultModelX;
+                    };
+                }
+                case Z -> {
+                    modelToUse = switch (type) {
+                        case LOWER -> lowerModelZ;
+                        case MIDDLE -> middleModelZ;
+                        case UPPER -> upperModelZ;
+                        default -> defaultModelZ;
+                    };
+                }
+                case Y -> {
+                    modelToUse = switch (type) {
+                        case LOWER -> lowerModelY;
+                        case MIDDLE -> middleModelY;
+                        case UPPER -> upperModelY;
+                        default -> defaultModelY;
+                    };
+                }
+                default -> modelToUse = defaultModelY;
+            }
+
+            return ConfiguredModel.builder()
+                    .modelFile(modelToUse)
+                    .build();
+        });
+
+        simpleBlockItem(block.get(), defaultModelY);
+    }
+
+    private ModelFile createZAxisModel(String name, ResourceLocation sideTex, ResourceLocation endTex) {
+        return models().withExistingParent(name, "block/block")
+                .texture("particle", sideTex)
+                .texture("side", sideTex)
+                .texture("end", endTex)
+                .element()
+                .from(0, 0, 0).to(16, 16, 16)
+                .face(Direction.NORTH).texture("#end").end()
+                .face(Direction.SOUTH).texture("#end").end()
+                .face(Direction.UP).texture("#side").rotation(ModelBuilder.FaceRotation.CLOCKWISE_90).end()
+                .face(Direction.DOWN).texture("#side").rotation(ModelBuilder.FaceRotation.COUNTERCLOCKWISE_90).end()
+                .face(Direction.WEST).texture("#side").uvs(0, 0, 16, 16).end()
+                .face(Direction.EAST).texture("#side").uvs(16, 0, 0, 16).end()
+                .end();
+    }
+
+    private ModelFile createXAxisModel(String name, ResourceLocation sideTex, ResourceLocation endTex) {
+        return models().withExistingParent(name, "block/block")
+                .texture("particle", sideTex)
+                .texture("side", sideTex)
+                .texture("end", endTex)
+                .element()
+                .from(0, 0, 0).to(16, 16, 16)
+                .face(Direction.EAST).texture("#end").end()
+                .face(Direction.WEST).texture("#end").end()
+                .face(Direction.UP).texture("#side").end()
+                .face(Direction.DOWN).texture("#side").end()
+                .face(Direction.SOUTH).texture("#side").uvs(0, 0, 16, 16).end()
+                .face(Direction.NORTH).texture("#side").uvs(16, 0, 0, 16).end()
+                .end();
     }
 
     private ResourceLocation extend(ResourceLocation rl, String suffix) {
