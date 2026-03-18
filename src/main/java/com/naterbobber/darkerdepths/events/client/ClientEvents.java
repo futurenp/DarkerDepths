@@ -22,6 +22,11 @@ public class ClientEvents {
     private static float paranoiaFactor = 0.0f;
     private static final float TRANSITION_SECONDS = 1.5f;
 
+    private static float moltenCavernWeight = 0.0f;
+    private static float glowshroomWeight = 0.0f;
+    private static float catacombsWeight = 0.0f;
+    private static final float BIOME_TRANSITION_SECONDS = 2.0f;
+
     @SubscribeEvent
     public void onClientTick(ClientTickEvent.Pre event) {
         DynamicLightHandler.onClientTick();
@@ -37,73 +42,100 @@ public class ClientEvents {
         } else {
             paranoiaFactor -= step;
         }
-
         paranoiaFactor = Math.max(0.0f, Math.min(1.0f, paranoiaFactor));
+
+        if (DDConfig.CONFIG.ENABLE_BIOME_FOG.get()) {
+            float biomeStep = 1.0f / (BIOME_TRANSITION_SECONDS * ticks);
+            var currentBiome = player.level().getBiome(player.getOnPos());
+
+            boolean inMolten = currentBiome.is(DDResourceKeys.Biomes.MOLTEN_CAVERN);
+            boolean inGlow = currentBiome.is(DDResourceKeys.Biomes.GLOWSHROOM_FOREST);
+            boolean inSand = currentBiome.is(DDResourceKeys.Biomes.SANDY_CATACOMBS);
+
+            moltenCavernWeight = Math.max(0.0f, Math.min(1.0f, moltenCavernWeight + (inMolten ? biomeStep : -biomeStep)));
+            glowshroomWeight = Math.max(0.0f, Math.min(1.0f, glowshroomWeight + (inGlow ? biomeStep : -biomeStep)));
+            catacombsWeight = Math.max(0.0f, Math.min(1.0f, catacombsWeight + (inSand ? biomeStep : -biomeStep)));
+        } else {
+            moltenCavernWeight = 0.0f;
+            glowshroomWeight = 0.0f;
+            catacombsWeight = 0.0f;
+        }
     }
 
     @SubscribeEvent
     public void onFogColor(ViewportEvent.ComputeFogColor event) {
-        if (paranoiaFactor > 0.0f) {
-            float normalRed = event.getRed();
-            float normalGreen = event.getGreen();
-            float normalBlue = event.getBlue();
+        float red = event.getRed();
+        float green = event.getGreen();
+        float blue = event.getBlue();
 
-            event.setRed(lerp(normalRed, 0.0f, paranoiaFactor));
-            event.setGreen(lerp(normalGreen, 0.0f, paranoiaFactor));
-            event.setBlue(lerp(normalBlue, 0.0f, paranoiaFactor));
-        }
+        if (DDConfig.CONFIG.ENABLE_BIOME_FOG.get()) {
+            float totalWeight = moltenCavernWeight + glowshroomWeight + catacombsWeight;
+            if (totalWeight > 0.0f) {
+                float invWeight = Math.max(0.0f, 1.0f - Math.min(1.0f, totalWeight));
 
-        if(DDConfig.CONFIG.ENABLE_BIOME_FOG.get()) {
-            LocalPlayer player = Minecraft.getInstance().player;
-            if(player.level().getBiome(player.getOnPos()).is(DDResourceKeys.Biomes.MOLTEN_CAVERN)) {
-                event.setRed(0.42F);
-                event.setGreen(0.27F);
-                event.setBlue(0.18F);
+                float r = red * invWeight + 0.42f * moltenCavernWeight + 0.16f * glowshroomWeight + 0.33f * catacombsWeight;
+                float g = green * invWeight + 0.27f * moltenCavernWeight + 0.34f * glowshroomWeight + 0.21f * catacombsWeight;
+                float b = blue * invWeight + 0.18f * moltenCavernWeight + 0.24f * glowshroomWeight + 0.16f * catacombsWeight;
+
+                float scale = 1.0f / (invWeight + totalWeight);
+
+                red = r * scale;
+                green = g * scale;
+                blue = b * scale;
             }
         }
 
+        if (paranoiaFactor > 0.0f) {
+            red = lerp(red, 0.0f, paranoiaFactor);
+            green = lerp(green, 0.0f, paranoiaFactor);
+            blue = lerp(blue, 0.0f, paranoiaFactor);
+        }
+
+        event.setRed(red);
+        event.setGreen(green);
+        event.setBlue(blue);
     }
 
     @SubscribeEvent
     public void onRenderFog(ViewportEvent.RenderFog event) {
-        checkAndApplyParanoiaFog(event);
+        if (DDConfig.CONFIG.ENABLE_BIOME_FOG.get()) {
+            float totalWeight = moltenCavernWeight + glowshroomWeight + catacombsWeight;
+            if (totalWeight > 0.0f) {
+                float invWeight = Math.max(0.0f, 1.0f - Math.min(1.0f, totalWeight));
 
-        if(DDConfig.CONFIG.ENABLE_BIOME_FOG.get()) {
-            checkAndApplyMoltenCavernFog(event);
+                float defaultNear = event.getNearPlaneDistance();
+                float defaultFar = event.getFarPlaneDistance();
+
+                float n = defaultNear * invWeight
+                        + DDConfig.CONFIG.MOLTEN_CAVERN_FOG_MIN.get() * moltenCavernWeight
+                        + DDConfig.CONFIG.GLOWSHROOM_FOREST_FOG_MIN.get() * glowshroomWeight
+                        + DDConfig.CONFIG.SANDY_CATACOMBS_FOG_MIN.get() * catacombsWeight;
+
+                float f = defaultFar * invWeight
+                        + DDConfig.CONFIG.MOLTEN_CAVERN_FOG_MAX.get() * moltenCavernWeight
+                        + DDConfig.CONFIG.GLOWSHROOM_FOREST_FOG_MAX.get() * glowshroomWeight
+                        + DDConfig.CONFIG.SANDY_CATACOMBS_FOG_MAX.get() * catacombsWeight;
+
+                float scale = 1.0f / (invWeight + totalWeight);
+
+                event.setNearPlaneDistance(n * scale);
+                event.setFarPlaneDistance(f * scale);
+                event.setFogShape(FogShape.SPHERE);
+                event.setCanceled(true);
+            }
         }
+
+        checkAndApplyParanoiaFog(event);
     }
 
     @SubscribeEvent
     public void onComputeFov(ViewportEvent.ComputeFov event) {
         if (paranoiaFactor > 0.0f) {
             double defaultFov = event.getFOV();
-
             int amplifier = getEffectAmplifier();
             double zoomedFov = defaultFov * (0.9 - (amplifier * 0.05));
-
             event.setFOV(lerp(defaultFov, zoomedFov, paranoiaFactor));
         }
-    }
-
-    private static void checkAndApplyMoltenCavernFog(ViewportEvent.RenderFog event) {
-        LocalPlayer player = Minecraft.getInstance().player;
-
-        if (player == null) {
-            return;
-        }
-
-        var level = player.level();
-        var blockPos = player.getOnPos();
-        if (!level.getBiome(blockPos).is(DDResourceKeys.Biomes.MOLTEN_CAVERN)) {
-            return;
-        }
-
-        var dist = event.getFarPlaneDistance();
-
-        event.setNearPlaneDistance(DDConfig.CONFIG.MOLTEN_CAVERN_FOG_MIN.get());
-        event.setFarPlaneDistance(DDConfig.CONFIG.MOLTEN_CAVERN_FOG_MAX.get());
-        event.setFogShape(FogShape.SPHERE);
-        event.setCanceled(true);
     }
 
     private void checkAndApplyParanoiaFog(ViewportEvent.RenderFog event) {
@@ -117,7 +149,6 @@ public class ClientEvents {
         }
 
         boolean isParanoid = paranoiaFactor > 0.0f;
-
         float farPlaneMultiplier = 1f;
         ItemStack mainHandItem = player.getMainHandItem();
         ItemStack offHandItem = player.getOffhandItem();
@@ -151,7 +182,6 @@ public class ClientEvents {
             }
 
             event.setFarPlaneDistance(event.getFarPlaneDistance() * farPlaneMultiplier);
-
             event.setCanceled(true);
         }
 
@@ -159,7 +189,6 @@ public class ClientEvents {
             if(mainHandItem.is(voidSoulTorch) || offHandItem.is(voidSoulTorch)){
                 event.setFarPlaneDistance(event.getFarPlaneDistance() * 2F);
             }
-
             event.setCanceled(true);
         }
     }
