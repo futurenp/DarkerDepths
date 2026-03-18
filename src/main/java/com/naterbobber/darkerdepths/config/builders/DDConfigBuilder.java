@@ -17,17 +17,26 @@ public class DDConfigBuilder {
     public final DDBiomeConfigBuilder SANDY_CATACOMBS_CLIMATE;
     public final DDBiomeConfigBuilder GLOWSHROOM_FOREST_CLIMATE;
     public final DDBiomeConfigBuilder MOLTEN_CAVERN_CLIMATE;
-    public final ModConfigSpec.BooleanValue USE_BIOLITH;
+    public final ModConfigSpec.BooleanValue PRIORITIZE_BIOLITH;
+    public final ModConfigSpec.BooleanValue USE_DEFAULTS_TERRABLENDER;
+    public final ModConfigSpec.IntValue OVERWORLD_BIOME_WEIGHT_TERRABLENDER;
 
     public DDConfigBuilder(ModConfigSpec.Builder builder) {
         builder.push("Biome Provider");
-        USE_BIOLITH = builder
+        PRIORITIZE_BIOLITH = builder
                 .comment("If Terrablender and Biolith are installed at the same time, Biolith is used by default. Set this to false to use Terrablender.")
-                .define("use_biolith_by_default", true);
+                .comment("If only one is installed, Darker Depths will use whichever is available.")
+                .define("prioritize_biolith", true);
         builder.pop();
 
-        builder.push("Biolith Biome Parameters");
-        builder.comment("These values will only be used when using biolith");
+        builder.push("Biome Parameters");
+        builder.push("Terrablender");
+        OVERWORLD_BIOME_WEIGHT_TERRABLENDER = builder.comment("Darker Depths Terrablender region weight").defineInRange("weight", 4, 0, Integer.MAX_VALUE);
+        USE_DEFAULTS_TERRABLENDER = builder
+                .comment("Biome parameters are set to much more lenient values for Terrablender due to regions. To disable the defaults and use the config parameters, set this to false.")
+                .define("use_default_biome_params_terrablender", true);
+        builder.pop();
+        builder.comment("These values will only be used when using biolith unless defaults for Terrablender are turned off.");
         var sandyCatacombsDefaults = new DDBiomeConfigBuilder.Defaults(
                 0.5, 0.9,
                 -0.8, -0.1,

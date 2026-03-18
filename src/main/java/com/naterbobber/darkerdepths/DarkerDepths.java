@@ -19,8 +19,6 @@ import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.function.Predicate;
-
 @Mod(DarkerDepths.MOD_ID)
 public class DarkerDepths {
 
@@ -66,7 +64,7 @@ public class DarkerDepths {
             throw new IllegalStateException("Missing Worldgen API! Install TerraBlender or Biolith.");
         }
 
-        if (DDConfig.CONFIG.USE_BIOLITH.get()) {
+        if (DDConfig.CONFIG.PRIORITIZE_BIOLITH.get()) {
             if (hasBiolith) {
                 safeInitBiolith(event);
             } else {
