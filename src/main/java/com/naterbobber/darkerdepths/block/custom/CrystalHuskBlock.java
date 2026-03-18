@@ -19,10 +19,10 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
 
-public class DeadLivingCrystalBlock extends Block {
+public class CrystalHuskBlock extends Block {
     private static final IntegerProperty CRYSTAL_GROWTH_LEVEL = DDBlockStateProperties.CRYSTAL_GROWTH_LEVEL;
 
-    public DeadLivingCrystalBlock(Properties properties) {
+    public CrystalHuskBlock(Properties properties) {
         super(properties);
         this.registerDefaultState(this.stateDefinition.any().setValue(CRYSTAL_GROWTH_LEVEL, 0));
     }
