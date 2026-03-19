@@ -62,12 +62,6 @@ public class CrystalHuskBlock extends Block implements HeatableBlock {
     }
 
     @Override
-    protected void neighborChanged(BlockState state, Level level, BlockPos pos, Block neighborBlock, BlockPos neighborPos, boolean movedByPiston) {
-        super.neighborChanged(state, level, pos, neighborBlock, neighborPos, movedByPiston);
-        sendHeatUpdate(level, pos, state);
-    }
-
-    @Override
     public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource randomSource) {
         sendHeatUpdate(level, pos, state);
 
@@ -91,7 +85,7 @@ public class CrystalHuskBlock extends Block implements HeatableBlock {
     @Override
     public BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor level, BlockPos currentPos, BlockPos neighborPos) {
         if (!level.isClientSide()) {
-            level.scheduleTick(currentPos, this, 1);
+            level.scheduleTick(currentPos, this, 10);
         }
         return super.updateShape(state, direction, neighborState, level, currentPos, neighborPos);
     }

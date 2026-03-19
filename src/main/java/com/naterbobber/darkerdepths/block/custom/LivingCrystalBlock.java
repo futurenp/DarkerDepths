@@ -43,7 +43,7 @@ public class LivingCrystalBlock extends Block implements HeatableBlock {
     @Override
     public BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor level, BlockPos currentPos, BlockPos neighborPos) {
         if (!level.isClientSide()) {
-            level.scheduleTick(currentPos, this, 1);
+            level.scheduleTick(currentPos, this, 10);
         }
         return super.updateShape(state, direction, neighborState, level, currentPos, neighborPos);
     }
