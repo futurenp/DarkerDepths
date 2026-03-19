@@ -317,6 +317,21 @@ public class DDRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_forsaken_bronze_scrap", has(DDItems.FORSAKEN_BRONZE_SCRAP.get()))
                 .save(recipeOutput,DarkerDepths.id("forsaken_bronze_ingot_from_scrap"));
 
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, DDBlocks.SCORCHED_REMAINS.get())
+                .requires(Items.ROTTEN_FLESH)
+                .requires(Items.CHARCOAL)
+                .unlockedBy("has_rotten_flesh", has(Items.ROTTEN_FLESH))
+                .save(recipeOutput,DarkerDepths.id("scorched_remains"));
+
+        ShapedRecipeBuilder
+                .shaped(RecipeCategory.MISC, DDBlocks.SCORCHED_REMAINS_BLOCK.get(), 1)
+                .define('F', Items.ROTTEN_FLESH)
+                .define('C', Items.CHARCOAL)
+                .pattern("FCF")
+                .pattern("CFC")
+                .pattern("FCF")
+                .unlockedBy("has_rotten_flesh", has(Items.ROTTEN_FLESH)).save(recipeOutput);
+
         stonecutterResultFromBase(recipeOutput, DDBlocks.DARKSLATE_STAIRS.get(), DDBlocks.DARKSLATE.get());
         stonecutterResultFromBase(recipeOutput, DDBlocks.ARIDROCK_STAIRS.get(), DDBlocks.ARIDROCK.get());
         stonecutterResultFromBase(recipeOutput, DDBlocks.DUSKROCK_STAIRS.get(), DDBlocks.DUSKROCK.get());
@@ -487,7 +502,9 @@ public class DDRecipeProvider extends RecipeProvider {
                 .pattern("#X#")
                 .pattern(" # ")
                 .unlockedBy("has_aridrock", has(DDBlocks.ARIDROCK.get())).save(recipeOutput);
+
     }
+
 
     protected static void stonecutterResultFromBase(RecipeOutput recipeOutput, ItemLike result, ItemLike ingredient) {
         stonecutterResultFromBase(recipeOutput, result, ingredient, 1);

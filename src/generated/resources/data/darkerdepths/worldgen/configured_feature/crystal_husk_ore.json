@@ -8,7 +8,8 @@
         "state": {
           "Name": "darkerdepths:dead_living_crystal",
           "Properties": {
-            "crystal_growth_level": "0"
+            "crystal_growth_level": "0",
+            "heat_level": "0"
           }
         },
         "target": {
@@ -20,7 +21,8 @@
         "state": {
           "Name": "darkerdepths:dead_living_crystal",
           "Properties": {
-            "crystal_growth_level": "0"
+            "crystal_growth_level": "0",
+            "heat_level": "0"
           }
         },
         "target": {

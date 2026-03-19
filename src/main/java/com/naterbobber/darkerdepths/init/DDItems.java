@@ -27,8 +27,8 @@ public class DDItems {
             () -> new RopeItem(DDBlocks.ROPE.get(), new Item.Properties()));
     //    public static final DeferredItem<QuickRopeItem> QUICKROPE = ITEMS.register("quickrope",
 //     () -> new QuickRopeItem(new Item.Properties().maxDamage(16)));
-    public static final DeferredItem<BlockItem> MAGMA_PAD = ITEMS.register("magma_pad",
-            () -> new BlockItem(DDBlocks.MAGMA_PAD.get(), new Item.Properties()));
+    public static final DeferredItem<PlaceOnWaterBlockItem> MAGMA_PAD = ITEMS.register("magma_pad",
+            () -> new PlaceOnWaterBlockItem(DDBlocks.MAGMA_PAD.get(), new Item.Properties()));
     public static final DeferredItem<Item> AMBER = createSimpleItem("amber");
     public static final DeferredItem<Item> VOID_SOUL_REQUIEM = createSimpleItem("void_soul_requiem");
     public static final DeferredItem<Item> FORSAKEN_BRONZE_SCRAP = createSimpleItem("forsaken_bronze_scrap");

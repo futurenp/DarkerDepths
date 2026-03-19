@@ -1,8 +1,10 @@
 package com.naterbobber.darkerdepths.block.custom;
 
 import com.naterbobber.darkerdepths.block.DDBlockStateProperties;
+import com.naterbobber.darkerdepths.block.generic.HeatableBlock;
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -12,24 +14,37 @@ import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
+import org.jetbrains.annotations.Nullable;
 
-public class CrystalHuskBlock extends Block {
+public class CrystalHuskBlock extends Block implements HeatableBlock {
     private static final IntegerProperty CRYSTAL_GROWTH_LEVEL = DDBlockStateProperties.CRYSTAL_GROWTH_LEVEL;
+    private static final IntegerProperty HEAT_LEVEL = DDBlockStateProperties.HEAT_LEVEL;
 
     public CrystalHuskBlock(Properties properties) {
         super(properties);
-        this.registerDefaultState(this.stateDefinition.any().setValue(CRYSTAL_GROWTH_LEVEL, 0));
+        this.registerDefaultState(this.stateDefinition.any()
+                .setValue(CRYSTAL_GROWTH_LEVEL, 0)
+                .setValue(HEAT_LEVEL, 0)
+        );
     }
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(CRYSTAL_GROWTH_LEVEL);
+        builder.add(CRYSTAL_GROWTH_LEVEL, HEAT_LEVEL);
+    }
+
+    @Override
+    public @Nullable BlockState getStateForPlacement(BlockPlaceContext context) {
+        int neighborHeat = getHighestNeighborHeat(context.getLevel(), context.getClickedPos());
+        return this.defaultBlockState().setValue(HEAT_LEVEL, calculateNewHeat(neighborHeat));
     }
 
     @Override
@@ -47,7 +62,21 @@ public class CrystalHuskBlock extends Block {
     }
 
     @Override
+    protected void neighborChanged(BlockState state, Level level, BlockPos pos, Block neighborBlock, BlockPos neighborPos, boolean movedByPiston) {
+        super.neighborChanged(state, level, pos, neighborBlock, neighborPos, movedByPiston);
+        sendHeatUpdate(level, pos, state);
+    }
+
+    @Override
     public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource randomSource) {
+        sendHeatUpdate(level, pos, state);
+
+        state = level.getBlockState(pos);
+
+        if(state.getValue(HEAT_LEVEL) > 0) {
+            return;
+        }
+
         int cracked = state.getValue(CRYSTAL_GROWTH_LEVEL);
         if (cracked < 3 && cracked != 0) {
             level.setBlock(pos, state.setValue(CRYSTAL_GROWTH_LEVEL, cracked + 1), 2);
@@ -57,5 +86,18 @@ public class CrystalHuskBlock extends Block {
             level.setBlockAndUpdate(pos, DDBlocks.LIVING_CRYSTAL.get().defaultBlockState());
             level.playSound(null, pos, SoundEvents.DEEPSLATE_PLACE, SoundSource.BLOCKS, 1.0F, 1.0F);
         }
+    }
+
+    @Override
+    public BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor level, BlockPos currentPos, BlockPos neighborPos) {
+        if (!level.isClientSide()) {
+            level.scheduleTick(currentPos, this, 1);
+        }
+        return super.updateShape(state, direction, neighborState, level, currentPos, neighborPos);
+    }
+
+    @Override
+    public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+        sendHeatUpdate(level, pos, state);
     }
 }

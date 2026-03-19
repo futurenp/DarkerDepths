@@ -73,9 +73,9 @@ public class ClientEvents {
             if (totalWeight > 0.0f) {
                 float invWeight = Math.max(0.0f, 1.0f - Math.min(1.0f, totalWeight));
 
-                float r = red * invWeight + 0.42f * moltenCavernWeight + 0.16f * glowshroomWeight + 0.33f * catacombsWeight;
-                float g = green * invWeight + 0.27f * moltenCavernWeight + 0.34f * glowshroomWeight + 0.21f * catacombsWeight;
-                float b = blue * invWeight + 0.18f * moltenCavernWeight + 0.24f * glowshroomWeight + 0.16f * catacombsWeight;
+                float r = red * invWeight + 0.42f * moltenCavernWeight + 0.16f * glowshroomWeight + 0.22f * catacombsWeight;
+                float g = green * invWeight + 0.27f * moltenCavernWeight + 0.34f * glowshroomWeight + 0.13f * catacombsWeight;
+                float b = blue * invWeight + 0.18f * moltenCavernWeight + 0.24f * glowshroomWeight + 0.10f * catacombsWeight;
 
                 float scale = 1.0f / (invWeight + totalWeight);
 

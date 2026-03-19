@@ -239,9 +239,9 @@ public class DDBlocks {
     public static final DeferredBlock<GeyserBlock> GEYSER = registerBlock("geyser",
             () -> new GeyserBlock(DARKSLATE_PROPERTIES.randomTicks()));
     public static final DeferredBlock<ScorchedRemainsBushBlock> SCORCHED_REMAINS = registerBlock("scorched_remains",
-            () -> new ScorchedRemainsBushBlock(BlockBehaviour.Properties.of().instabreak().noOcclusion().noCollission().sound(SoundType.STEM)));
-    public static final DeferredBlock<Block> SCORCHED_REMAINS_BLOCK = registerBlock("scorched_remains_block",
-            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.TUBE_CORAL_BLOCK).sound(SoundType.STEM)));
+            () -> new ScorchedRemainsBushBlock(BlockBehaviour.Properties.of().instabreak().noOcclusion().noCollission().sound(SoundType.WART_BLOCK)));
+    public static final DeferredBlock<ScorchedRemainsFullBlock> SCORCHED_REMAINS_BLOCK = registerBlock("scorched_remains_block",
+            () -> new ScorchedRemainsFullBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.TUBE_CORAL_BLOCK).sound(SoundType.WART_BLOCK)));
     public static final DeferredBlock<StoneMelonBlock> STONE_MELON = registerBlock("stone_melon",
             () -> new StoneMelonBlock(BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_GRAY).requiresCorrectToolForDrops().strength(1.0f).sound(SoundType.DEEPSLATE)));
     public static final DeferredBlock<CrystalHuskBlock> CRYSTAL_HUSK = registerBlock("dead_living_crystal",

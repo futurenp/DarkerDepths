@@ -3,6 +3,7 @@ package com.naterbobber.darkerdepths.data.assets;
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.block.DDBlockStateProperties;
 import com.naterbobber.darkerdepths.block.blockstates.PillarState;
+import com.naterbobber.darkerdepths.block.custom.CrystalHuskBlock;
 import com.naterbobber.darkerdepths.block.custom.DarkslateBlock;
 import com.naterbobber.darkerdepths.block.generic.*;
 import com.naterbobber.darkerdepths.init.DDBlocks;
@@ -45,6 +46,8 @@ public class DDBlockStateProvider extends BlockStateProvider {
         add(this::columnBlockWithItem, DDBlocks.PETRIFIED_BOOKSHELF, DDBlocks.PETRIFIED_PLANKS);
         add(this::woodBlockWithItem, DDBlocks.PETRIFIED_BOARDS, DDBlocks.PETRIFIED_BOARDS);
         add(this::geyserBlock, DDBlocks.GEYSER);
+        add(this::crystalHuskBlock, DDBlocks.CRYSTAL_HUSK);
+        add(this::livingCrystalBlock, DDBlocks.LIVING_CRYSTAL);
 
         skipBlock(
                 DDBlocks.VOID_SOUL_JAR,
@@ -332,6 +335,62 @@ public class DDBlockStateProvider extends BlockStateProvider {
         simpleBlockItem(block, models().getExistingFile(blockTexture(block)));
     }
 
+    public void crystalHuskBlock(DeferredHolder<Block, ? extends Block> block) {
+        getVariantBuilder(block.get()).forAllStates(state -> {
+            int growth = state.getValue(DDBlockStateProperties.CRYSTAL_GROWTH_LEVEL);
+            int heat = state.getValue(DDBlockStateProperties.HEAT_LEVEL);
+
+            String baseName = "crystal_husk";
+            if (growth > 0) {
+                baseName += "_growth_" + growth;
+            }
+
+            String heatSuffix = "";
+            if (heat == 1) {
+                heatSuffix = "_heat_1";
+            } else if (heat >= 2) {
+                heatSuffix = "_heat_2";
+            }
+
+            String modelName = baseName + heatSuffix;
+            ResourceLocation textureLocation = modLoc("block/" + modelName);
+
+            ModelFile model = models().cubeAll(modelName, textureLocation);
+
+            return ConfiguredModel.builder()
+                    .modelFile(model)
+                    .build();
+        });
+
+        simpleBlockItem(block.get(), models().getExistingFile(modLoc("block/crystal_husk")));
+    }
+
+    public void livingCrystalBlock(DeferredHolder<Block, ? extends Block> block) {
+        getVariantBuilder(block.get()).forAllStates(state -> {
+            int heat = state.getValue(DDBlockStateProperties.HEAT_LEVEL);
+
+            String baseName = "living_crystal";
+            String heatSuffix = "";
+
+            if (heat == 1) {
+                heatSuffix = "_heat_1";
+            } else if (heat >= 2) {
+                heatSuffix = "_heat_2";
+            }
+
+            String modelName = baseName + heatSuffix;
+            ResourceLocation textureLocation = modLoc("block/" + modelName);
+
+            ModelFile model = models().cubeAll(modelName, textureLocation);
+
+            return ConfiguredModel.builder()
+                    .modelFile(model)
+                    .build();
+        });
+
+        simpleBlockItem(block.get(), models().getExistingFile(modLoc("block/living_crystal")));
+    }
+
     public void geyserBlock(DeferredHolder<Block, ? extends Block> blockHolder) {
         Block block = blockHolder.get();
 
@@ -363,7 +422,6 @@ public class DDBlockStateProvider extends BlockStateProvider {
                 .texture("glow_side", heatedSideGlow)
                 .texture("glow_bottom", heatedBottomGlow)
                 .texture("glow_top", heatedTopGlow)
-                // Base stone cube
                 .element().from(0, 0, 0).to(16, 16, 16)
                 .face(Direction.DOWN).texture("#base_bottom").cullface(Direction.DOWN).end()
                 .face(Direction.UP).texture("#base_top").cullface(Direction.UP).end()
@@ -372,7 +430,6 @@ public class DDBlockStateProvider extends BlockStateProvider {
                 .face(Direction.EAST).texture("#base_side").cullface(Direction.EAST).end()
                 .face(Direction.WEST).texture("#base_side").cullface(Direction.WEST).end()
                 .end()
-                // Glowing overlay cube (Now includes the DOWN face)
                 .element().from(0, 0, 0).to(16, 16, 16)
                 .face(Direction.DOWN).texture("#glow_bottom").cullface(Direction.DOWN).end()
                 .face(Direction.UP).texture("#glow_top").cullface(Direction.UP).end()

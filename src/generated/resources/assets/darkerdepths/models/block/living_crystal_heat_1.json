@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "darkerdepths:block/living_crystal_heat_1"
+  }
+}

@@ -2,8 +2,10 @@ package com.naterbobber.darkerdepths.block.custom;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
@@ -58,8 +60,9 @@ public class MagmaPadBlock extends Block {
 
     @Override
     public boolean canSurvive(BlockState blockState, LevelReader level, BlockPos pos) {
-        FluidState fluidState = level.getFluidState(pos.below());
-        return level.getBlockState(pos.below()).isFaceSturdy(level, pos.below(), Direction.UP) || fluidState.is(Fluids.LAVA) && fluidState.isSource();
+        FluidState belowState = level.getFluidState(pos.below());
+        FluidState fluidState = level.getFluidState(pos);
+        return belowState.is(FluidTags.LAVA) && belowState.isSource() && fluidState.is(Fluids.EMPTY);
     }
 
     @Override

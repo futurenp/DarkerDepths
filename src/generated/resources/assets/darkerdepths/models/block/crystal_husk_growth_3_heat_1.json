@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "darkerdepths:block/crystal_husk_growth_3_heat_1"
+  }
+}

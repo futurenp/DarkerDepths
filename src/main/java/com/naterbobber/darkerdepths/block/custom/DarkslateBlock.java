@@ -1,26 +1,21 @@
 package com.naterbobber.darkerdepths.block.custom;
 
 import com.naterbobber.darkerdepths.block.DDBlockStateProperties;
+import com.naterbobber.darkerdepths.block.generic.HeatableBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.tags.FluidTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.MagmaBlock;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
-import net.minecraft.world.ticks.TickPriority;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Set;
-
-public class DarkslateBlock extends RotatedPillarBlock {
+public class DarkslateBlock extends RotatedPillarBlock implements HeatableBlock {
     private static final IntegerProperty HEAT_LEVEL = DDBlockStateProperties.HEAT_LEVEL;
 
     public DarkslateBlock(Properties pProperties) {
@@ -31,76 +26,33 @@ public class DarkslateBlock extends RotatedPillarBlock {
     }
 
     @Override
-    public @Nullable BlockState getStateForPlacement(BlockPlaceContext context) {
-        BlockState state = super.getStateForPlacement(context);
-
-        int neighborHeat = getHighestNeighborState(context.getClickedPos(), context.getLevel());
-        return state.setValue(HEAT_LEVEL, newHeat(neighborHeat));
-    }
-
-    private void sendHeatUpdate(BlockPos blockPos, Level level) {
-        int heat = newHeat(getHighestNeighborState(blockPos, level));
-        BlockState blockState = level.getBlockState(blockPos);
-
-        if (blockState.getValue(HEAT_LEVEL) != heat) {
-            level.setBlock(blockPos, blockState.setValue(HEAT_LEVEL, heat), 3);
-        }
-    }
-
-    private int newHeat(int heat){
-        return heat - (heat > 0 ? 1 : 0);
-    }
-
-    private int getHighestNeighborState(BlockPos blockPos, Level level) {
-        Set<BlockPos> neighbors = Set.of(
-                blockPos.above(),
-                blockPos.below(),
-                blockPos.north(),
-                blockPos.south(),
-                blockPos.east(),
-                blockPos.west()
-        );
-
-        int highestLevel = 0;
-        for (BlockPos neighborPos : neighbors) {
-            BlockState neighborBlockState = level.getBlockState(neighborPos);
-            Block neighborBlock = neighborBlockState.getBlock();
-
-            int neighborHeatLevel;
-            if (neighborBlockState.getFluidState().is(FluidTags.LAVA)) {
-                neighborHeatLevel = 5;
-            } else {
-                switch (neighborBlock) {
-                    case DarkslateBlock b -> neighborHeatLevel = neighborBlockState.getValue(HEAT_LEVEL);
-                    case MagmaBlock b -> neighborHeatLevel = 4;
-                    case GeyserBlock b -> neighborHeatLevel = neighborBlockState.getValue(DDBlockStateProperties.HEAT_LEVEL);
-                    default -> neighborHeatLevel = 0;
-                }
-            }
-
-            if (neighborHeatLevel > highestLevel) {
-                highestLevel = neighborHeatLevel;
-            }
-        }
-
-        return highestLevel;
-    }
-
-    @Override
-    protected void neighborChanged(BlockState state, Level level, BlockPos pos, Block neighborBlock, BlockPos neighborPos, boolean movedByPiston) {
-        sendHeatUpdate(pos, level);
-        super.neighborChanged(state, level, pos, neighborBlock, neighborPos, movedByPiston);
-    }
-
-    @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         super.createBlockStateDefinition(builder);
-        builder.add(HEAT_LEVEL);
+        builder.add(DDBlockStateProperties.HEAT_LEVEL);
+    }
+
+    @Nullable
+    @Override
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
+        int neighborHeat = getHighestNeighborHeat(context.getLevel(), context.getClickedPos());
+        return this.defaultBlockState().setValue(HEAT_LEVEL, calculateNewHeat(neighborHeat));
+    }
+
+    @Override
+    public BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor level, BlockPos currentPos, BlockPos neighborPos) {
+        if (!level.isClientSide()) {
+            level.scheduleTick(currentPos, this, 10);
+        }
+        return super.updateShape(state, direction, neighborState, level, currentPos, neighborPos);
+    }
+
+    @Override
+    public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+        sendHeatUpdate(level, pos, state);
     }
 
     @Override
     protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
-        super.randomTick(state, level, pos, random);
-        sendHeatUpdate(pos, level);
+        level.scheduleTick(pos, this, 1);
     }
 }

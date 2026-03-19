@@ -1,4 +1,4 @@
-// 1.21.1	2026-03-16T21:08:18.5744236	Registries
+// 1.21.1	2026-03-18T16:43:29.5535879	Registries
 c4ee168e7bc25f3368a39009dc20c9876da3354f data/darkerdepths/damage_type/soul_binding_damage.json
 67449d45b04557a6ff85e2e4fb14a19e83a15a27 data/darkerdepths/enchantment/quick_dash.json
 efd3542a868f364e528e55ec4c13c3d5e8a423f0 data/darkerdepths/enchantment/swift_strike.json
@@ -24,7 +24,7 @@ c43c642dcae5d2a745d04f12c3c395400639dc2b data/darkerdepths/worldgen/configured_f
 00a41c728ab987690afc9b551f0b2b7bc5845239 data/darkerdepths/worldgen/configured_feature/catacombs_lava_lining.json
 2707e2913aa41aac060ac8b0beea26213ab332fd data/darkerdepths/worldgen/configured_feature/catacombs_layer_placement.json
 28f2b78369eebe94b9f1faad96000475574aaee9 data/darkerdepths/worldgen/configured_feature/catacombs_sand_placement.json
-c097fdb2ab467300d9cb6d8edf0beb3b31e2a5d5 data/darkerdepths/worldgen/configured_feature/crystal_husk_ore.json
+a957ccc653b2fa72148c37d1e2238b1fe0e0d148 data/darkerdepths/worldgen/configured_feature/crystal_husk_ore.json
 ad34733083b53288d3b6a7fe97ceaff03c12ef33 data/darkerdepths/worldgen/configured_feature/darkslate_placement.json
 52a56275d90c6653ef6a39fff7e33dd6e20ca2e2 data/darkerdepths/worldgen/configured_feature/darkslate_surface.json
 657d6ca155d627e0dd428f69d2a9612cf98b33af data/darkerdepths/worldgen/configured_feature/darkslate_vegetation.json

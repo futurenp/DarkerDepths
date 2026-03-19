@@ -1,10 +1,14 @@
 package com.naterbobber.darkerdepths.block.custom;
 
+import com.naterbobber.darkerdepths.DarkerDepths;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
@@ -88,5 +92,57 @@ public class CrystalMelonBlock extends Block implements SimpleWaterloggedBlock {
         boolean water = context.getLevel().getBlockState(context.getClickedPos()).getBlock() == Blocks.WATER;
 
         return super.getStateForPlacement(context).setValue(WATERLOGGED, water);
+    }
+
+    @Override
+    public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
+        super.animateTick(state, level, pos, random);
+
+        if(!level.isClientSide) {
+            return;
+        }
+
+        if(level.getRandom().nextFloat() > 0.2) {
+            return;
+        }
+
+        var edge = 0.035;
+
+        int corner = level.getRandom().nextInt(4);
+
+        double x = 0;
+        double z = 0;
+
+        switch (corner) {
+            case 0 -> {
+                x = edge;
+                z = edge;
+            }
+            case 1 -> {
+                x = 1 - edge;
+                z = edge;
+            }
+            case 2 -> {
+                x = 1 - edge;
+                z = 1 - edge;
+            }
+            case 3 -> {
+                x = edge;
+                z = 1 - edge;
+            }
+        }
+
+        x += pos.getX();
+        z += pos.getZ();
+
+        level.addParticle(
+                ParticleTypes.END_ROD,
+                x,
+                pos.getY() + level.getRandom().nextFloat()/2 - edge + 0.5,
+                z,
+                0,
+                -0.02,
+                0
+        );
     }
 }

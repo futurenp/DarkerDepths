@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "minecraft:charcoal"
+    },
+    "F": {
+      "item": "minecraft:rotten_flesh"
+    }
+  },
+  "pattern": [
+    "FCF",
+    "CFC",
+    "FCF"
+  ],
+  "result": {
+    "count": 1,
+    "id": "darkerdepths:scorched_remains_block"
+  }
+}
