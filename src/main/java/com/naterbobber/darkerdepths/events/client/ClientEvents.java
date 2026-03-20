@@ -37,14 +37,14 @@ public class ClientEvents {
         float ticks = 20.0f;
         float step = 1.0f / (TRANSITION_SECONDS * ticks);
 
-        if (player.hasEffect(DDMobEffects.PARANOIA)) {
+        if (player.hasEffect(DDMobEffects.PARANOIA) && !player.isInFluidType()) {
             paranoiaFactor += step;
         } else {
             paranoiaFactor -= step;
         }
         paranoiaFactor = Math.max(0.0f, Math.min(1.0f, paranoiaFactor));
 
-        if (DDConfig.CONFIG.ENABLE_BIOME_FOG.get()) {
+        if (DDConfig.CONFIG.ENABLE_BIOME_FOG.get() && !player.isInFluidType()) {
             float biomeStep = 1.0f / (BIOME_TRANSITION_SECONDS * ticks);
             var currentBiome = player.level().getBiome(player.getOnPos());
 
