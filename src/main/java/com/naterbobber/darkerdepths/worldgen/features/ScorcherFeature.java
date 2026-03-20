@@ -57,11 +57,10 @@ public class ScorcherFeature extends Feature<ScorcherFeatureConfig> {
         // 2. FORGIVING CLEARANCE CHECK (Cross Pattern)
         // Check 10 blocks N/S/E/W and 5 blocks above the exact peak where the Scorcher spawns
         BlockPos peakPos = origin.offset(0, height, 0);
-        for (int d = 0; d <= 10; d++) { // Distance outwards
-            for (int yOffset = 0; yOffset <= 5; yOffset++) { // Distance upwards
+        for (int d = 0; d <= 4; d++) { // Distance outwards
+            for (int yOffset = 0; yOffset <= 2; yOffset++) { // Distance upwards
                 if (d == 0) {
                     if (!level.isEmptyBlock(peakPos.offset(0, yOffset, 0))) {
-                        DarkerDepths.LOGGER.info("Canceled: Ceiling is too low directly above peak at " + peakPos);
                         return false;
                     }
                 } else {
@@ -70,7 +69,6 @@ public class ScorcherFeature extends Feature<ScorcherFeatureConfig> {
                             !level.isEmptyBlock(peakPos.offset(-d, yOffset, 0)) ||
                             !level.isEmptyBlock(peakPos.offset(0, yOffset, d)) ||
                             !level.isEmptyBlock(peakPos.offset(0, yOffset, -d))) {
-                        DarkerDepths.LOGGER.info("Canceled: Lack of cross-pattern clearance around " + peakPos);
                         return false;
                     }
                 }

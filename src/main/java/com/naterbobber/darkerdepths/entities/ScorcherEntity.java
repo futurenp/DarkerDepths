@@ -10,6 +10,8 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -23,15 +25,16 @@ import net.minecraft.world.entity.ai.sensing.SensorType;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.schedule.Activity;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
+import net.neoforged.neoforge.fluids.FluidType;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.animation.AnimatableManager;
+import software.bernie.geckolib.animation.*;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 import javax.annotation.Nullable;
@@ -41,12 +44,15 @@ public class ScorcherEntity extends Mob implements GeoEntity {
     private final AnimatableInstanceCache geoCache = GeckoLibUtil.createInstanceCache(this);
     private static final EntityDataAccessor<Boolean> DATA_STARED_AT = SynchedEntityData.defineId(ScorcherEntity.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Integer> DATA_TARGET_ID = SynchedEntityData.defineId(ScorcherEntity.class, EntityDataSerializers.INT);
+    private static final EntityDataAccessor<Boolean> DATA_SHAKING = SynchedEntityData.defineId(ScorcherEntity.class, EntityDataSerializers.BOOLEAN);
 
-    public boolean hasGivenItem = false;
+    protected static final RawAnimation SHAKE_ANIM = RawAnimation.begin().thenLoop("shake");
+    protected static final RawAnimation IDLE_ANIM = RawAnimation.begin().thenLoop("idle");
 
     public ScorcherEntity(EntityType<? extends Mob> entityType, Level level) {
         super(entityType, level);
         this.setNoGravity(true);
+        this.xpReward = 25;
     }
 
     @Override
@@ -73,6 +79,25 @@ public class ScorcherEntity extends Mob implements GeoEntity {
     }
 
     @Override
+    public boolean isPushable() {
+        return false;
+    }
+
+    @Override
+    public boolean isPushedByFluid(FluidType type) {
+        return false;
+    }
+
+    @Override
+    public void die(DamageSource damageSource) {
+        var state = this.level().getBlockState(getOnPos().above());
+        if(state.is(Blocks.LIGHT)) {
+            this.level().setBlock(getOnPos().above(), Blocks.AIR.defaultBlockState(), 3);
+        }
+        super.die(damageSource);
+    }
+
+    @Override
     protected Brain<?> makeBrain(Dynamic<?> dynamic) {
         Brain<ScorcherEntity> brain = this.brainProvider().makeBrain(dynamic);
 
@@ -85,6 +110,24 @@ public class ScorcherEntity extends Mob implements GeoEntity {
         brain.useDefaultActivity();
         return brain;
     }
+
+    @Override
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
+        controllerRegistrar.add(new AnimationController<>(this, "baseController", 5, this::basePredicate));
+    }
+
+    protected <E extends ScorcherEntity> PlayState basePredicate(final AnimationState<E> event) {
+        if (this.isShaking()) {
+            return event.setAndContinue(SHAKE_ANIM);
+        }
+
+        return event.setAndContinue(IDLE_ANIM);
+    }
+
+    private boolean isShaking() {
+        return this.entityData.get(DATA_SHAKING);
+    }
+
 
     @Override
     @SuppressWarnings("unchecked")
@@ -120,7 +163,7 @@ public class ScorcherEntity extends Mob implements GeoEntity {
 
     public static AttributeSupplier.Builder createAttributes() {
         return Mob.createMobAttributes()
-                .add(Attributes.MAX_HEALTH, 20.0D)
+                .add(Attributes.MAX_HEALTH, 40.0D)
                 .add(Attributes.FOLLOW_RANGE, 48.0D)
                 .add(Attributes.KNOCKBACK_RESISTANCE, 1.0D);
     }
@@ -134,9 +177,6 @@ public class ScorcherEntity extends Mob implements GeoEntity {
     }
 
     @Override
-    public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {}
-
-    @Override
     public AnimatableInstanceCache getAnimatableInstanceCache() {
         return geoCache;
     }
@@ -144,6 +184,10 @@ public class ScorcherEntity extends Mob implements GeoEntity {
     @Override
     public boolean canBeCollidedWith() {
         return false;
+    }
+
+    public void setShaking(boolean value) {
+        this.entityData.set(DATA_SHAKING, value);
     }
 
     public void setBeingStaredAt() {
@@ -174,19 +218,18 @@ public class ScorcherEntity extends Mob implements GeoEntity {
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
         super.defineSynchedData(builder);
         builder.define(DATA_STARED_AT, false);
+        builder.define(DATA_SHAKING, false);
         builder.define(DATA_TARGET_ID, 0);
     }
 
     @Override
     public void addAdditionalSaveData(CompoundTag compound) {
         super.addAdditionalSaveData(compound);
-        compound.putBoolean("HasGivenItem", this.hasGivenItem);
     }
 
     @Override
     public void readAdditionalSaveData(CompoundTag compound) {
         super.readAdditionalSaveData(compound);
-        this.hasGivenItem = compound.getBoolean("HasGivenItem");
     }
 
     @Override
@@ -198,6 +241,13 @@ public class ScorcherEntity extends Mob implements GeoEntity {
 
             if (this.isAlive() && this.tickCount % 2 == 0) {
                 spawnSearchlightParticles();
+            }
+
+            var state = this.level().getBlockState(getOnPos().above());
+
+            if((state.is(BlockTags.REPLACEABLE) || state.is(BlockTags.AIR) && !state.is(Blocks.LIGHT)) && this.isAlive()) {
+                var lightState = Blocks.LIGHT.defaultBlockState().setValue(BlockStateProperties.LEVEL, 10);
+                this.level().setBlock(getOnPos().above(), lightState, 3);
             }
         }
     }
@@ -304,7 +354,7 @@ public class ScorcherEntity extends Mob implements GeoEntity {
         });
 
         public ScorcherStareBehavior() {
-            super(Map.of(), 220);
+            super(Map.of(), 320);
         }
 
         @Override
@@ -361,6 +411,10 @@ public class ScorcherEntity extends Mob implements GeoEntity {
                     this.losTicks++;
                     this.lastKnownPos = this.target.getEyePosition();
 
+                    if(entity.distanceToSqr(this.target) < 15 * 15) {
+                        entity.setShaking(true);
+                    }
+
                     float turnSpeed = entity.distanceToSqr(this.target) < 100.0 ? 120.0F : 30.0F;
                     entity.getLookControl().setLookAt(this.target, turnSpeed, turnSpeed);
 
@@ -388,6 +442,10 @@ public class ScorcherEntity extends Mob implements GeoEntity {
                         entity.setBeamTarget(0);
                         entity.setTarget(null);
                     }
+                }
+            } else {
+                if(entity.isShaking()) {
+                    entity.setShaking(false);
                 }
             }
         }

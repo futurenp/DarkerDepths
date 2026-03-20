@@ -231,7 +231,7 @@ public class DDConfiguredFeatures {
 
         FeatureUtils.register(context, SCORCHER_PLACER,
                 DDFeatures.SCORCHER_PLACER.get(),
-                new ScorcherFeatureConfig(5, 9, 2));
+                new ScorcherFeatureConfig(4, 7, 1));
 
 
         FeatureUtils.register(context, DUSKROCK_ORE, Feature.ORE, new OreConfiguration(

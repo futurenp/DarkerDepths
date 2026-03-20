@@ -11,6 +11,7 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
+import software.bernie.geckolib.util.Color;
 
 @OnlyIn(Dist.CLIENT)
 public class ScorcherRenderer extends GeoEntityRenderer<ScorcherEntity> {
@@ -21,5 +22,14 @@ public class ScorcherRenderer extends GeoEntityRenderer<ScorcherEntity> {
     @Override
     public @Nullable RenderType getRenderType(ScorcherEntity animatable, ResourceLocation texture, @Nullable MultiBufferSource bufferSource, float partialTick) {
         return DDRenderTypes.EMISSIVE_TRANSPARENT(this.getTextureLocation(animatable));
+    }
+
+    @Override
+    public Color getRenderColor(ScorcherEntity animatable, float partialTick, int packedLight) {
+        if (animatable.hurtTime > 0) {
+            return Color.ofRGBA(255, 180, 180, 255);
+        }
+
+        return Color.WHITE;
     }
 }

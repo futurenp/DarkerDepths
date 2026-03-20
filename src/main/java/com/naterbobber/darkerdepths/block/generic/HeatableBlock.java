@@ -6,6 +6,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.FireBlock;
 import net.minecraft.world.level.block.MagmaBlock;
 import net.minecraft.world.level.block.state.BlockState;
 
@@ -38,6 +39,8 @@ public interface HeatableBlock {
                 neighborHeatLevel = 5;
             } else if (neighborState.getBlock() instanceof MagmaBlock) {
                 neighborHeatLevel = 4;
+            } else if (neighborState.getBlock() instanceof FireBlock) {
+                neighborHeatLevel = 3;
             } else if (neighborState.hasProperty(DDBlockStateProperties.HEAT_LEVEL)) {
                 neighborHeatLevel = neighborState.getValue(DDBlockStateProperties.HEAT_LEVEL);
             }
