@@ -26,6 +26,7 @@ public class ClientEvents {
     private static float glowshroomWeight = 0.0f;
     private static float catacombsWeight = 0.0f;
     private static final float BIOME_TRANSITION_SECONDS = 2.0f;
+    private boolean useBiomeFog = true;
 
     @SubscribeEvent
     public void onClientTick(ClientTickEvent.Pre event) {
@@ -44,7 +45,16 @@ public class ClientEvents {
         }
         paranoiaFactor = Math.max(0.0f, Math.min(1.0f, paranoiaFactor));
 
-        if (DDConfig.CONFIG.ENABLE_BIOME_FOG.get() && !player.isInFluidType()) {
+        if (DDConfig.CONFIG.ENABLE_BIOME_FOG.get()) {
+            if(player.isInFluidType()) {
+                var fluidType = player.getEyeInFluidType();
+                if(!fluidType.isAir()) {
+                    useBiomeFog = false;
+                    return;
+                }
+            }
+            useBiomeFog = true;
+
             float biomeStep = 1.0f / (BIOME_TRANSITION_SECONDS * ticks);
             var currentBiome = player.level().getBiome(player.getOnPos());
 
@@ -56,10 +66,14 @@ public class ClientEvents {
             glowshroomWeight = Math.max(0.0f, Math.min(1.0f, glowshroomWeight + (inGlow ? biomeStep : -biomeStep)));
             catacombsWeight = Math.max(0.0f, Math.min(1.0f, catacombsWeight + (inSand ? biomeStep : -biomeStep)));
         } else {
-            moltenCavernWeight = 0.0f;
-            glowshroomWeight = 0.0f;
-            catacombsWeight = 0.0f;
+            resetFog();
         }
+    }
+
+    private void resetFog(){
+        moltenCavernWeight = 0.0f;
+        glowshroomWeight = 0.0f;
+        catacombsWeight = 0.0f;
     }
 
     @SubscribeEvent
@@ -68,7 +82,7 @@ public class ClientEvents {
         float green = event.getGreen();
         float blue = event.getBlue();
 
-        if (DDConfig.CONFIG.ENABLE_BIOME_FOG.get()) {
+        if (DDConfig.CONFIG.ENABLE_BIOME_FOG.get() && useBiomeFog) {
             float totalWeight = moltenCavernWeight + glowshroomWeight + catacombsWeight;
             if (totalWeight > 0.0f) {
                 float invWeight = Math.max(0.0f, 1.0f - Math.min(1.0f, totalWeight));
@@ -98,28 +112,23 @@ public class ClientEvents {
 
     @SubscribeEvent
     public void onRenderFog(ViewportEvent.RenderFog event) {
-        if (DDConfig.CONFIG.ENABLE_BIOME_FOG.get()) {
+        if (DDConfig.CONFIG.ENABLE_BIOME_FOG.get() && useBiomeFog) {
             float totalWeight = moltenCavernWeight + glowshroomWeight + catacombsWeight;
             if (totalWeight > 0.0f) {
                 float invWeight = Math.max(0.0f, 1.0f - Math.min(1.0f, totalWeight));
 
-                float defaultNear = event.getNearPlaneDistance();
-                float defaultFar = event.getFarPlaneDistance();
-
-                float n = defaultNear * invWeight
+                float near = invWeight
                         + DDConfig.CONFIG.MOLTEN_CAVERN_FOG_MIN.get() * moltenCavernWeight
                         + DDConfig.CONFIG.GLOWSHROOM_FOREST_FOG_MIN.get() * glowshroomWeight
                         + DDConfig.CONFIG.SANDY_CATACOMBS_FOG_MIN.get() * catacombsWeight;
 
-                float f = defaultFar * invWeight
+                float far = invWeight
                         + DDConfig.CONFIG.MOLTEN_CAVERN_FOG_MAX.get() * moltenCavernWeight
                         + DDConfig.CONFIG.GLOWSHROOM_FOREST_FOG_MAX.get() * glowshroomWeight
                         + DDConfig.CONFIG.SANDY_CATACOMBS_FOG_MAX.get() * catacombsWeight;
 
-                float scale = 1.0f / (invWeight + totalWeight);
-
-                event.setNearPlaneDistance(n * scale);
-                event.setFarPlaneDistance(f * scale);
+                event.setNearPlaneDistance(near);
+                event.setFarPlaneDistance(far);
                 event.setFogShape(FogShape.SPHERE);
                 event.setCanceled(true);
             }

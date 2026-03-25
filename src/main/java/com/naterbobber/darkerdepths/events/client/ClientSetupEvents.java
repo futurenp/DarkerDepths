@@ -60,7 +60,6 @@ public class ClientSetupEvents {
 
     @SubscribeEvent
     public static void onModifyBakingResult(ModelEvent.ModifyBakingResult event) {
-        // Iterate through EVERY possible blockstate variant of your Darkslate block
         for (BlockState state : DDBlocks.DARKSLATE.get().getStateDefinition().getPossibleStates()) {
             if (state.hasProperty(DDBlockStateProperties.HEAT_LEVEL) && state.getValue(DDBlockStateProperties.HEAT_LEVEL) >= 2) {
                 ModelResourceLocation targetModel = BlockModelShaper.stateToModelLocation(state);
