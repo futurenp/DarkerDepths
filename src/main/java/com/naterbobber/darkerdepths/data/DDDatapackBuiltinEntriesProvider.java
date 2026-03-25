@@ -4,7 +4,12 @@ import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.damage.DDDamageTypes;
 import com.naterbobber.darkerdepths.enchantment.DDEnchantments;
 import com.naterbobber.darkerdepths.init.DDStructures;
-import com.naterbobber.darkerdepths.worldgen.*;
+import com.naterbobber.darkerdepths.worldgen.biomes.DDBiomeModifiers;
+import com.naterbobber.darkerdepths.worldgen.biomes.DDBiomes;
+import com.naterbobber.darkerdepths.worldgen.carvers.DDCarvers;
+import com.naterbobber.darkerdepths.worldgen.features.DDConfiguredFeatures;
+import com.naterbobber.darkerdepths.worldgen.features.DDPlacedFeatures;
+import com.naterbobber.darkerdepths.worldgen.processors.DDProcessorLists;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.registries.Registries;
@@ -27,6 +32,7 @@ public class DDDatapackBuiltinEntriesProvider extends DatapackBuiltinEntriesProv
             .add(Registries.STRUCTURE, DDStructures::bootstrap)
             .add(Registries.STRUCTURE_SET, DDStructures::bootstrapStructureSet)
             .add(Registries.PROCESSOR_LIST, DDProcessorLists::bootstrap)
+            .add(Registries.CONFIGURED_CARVER, DDCarvers::bootstrap)
             .add(Registries.ENCHANTMENT, DDEnchantments::bootstrap)
             .add(Registries.DAMAGE_TYPE, DDDamageTypes::bootstrap);
 

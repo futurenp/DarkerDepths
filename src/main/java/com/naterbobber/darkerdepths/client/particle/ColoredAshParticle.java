@@ -25,7 +25,7 @@ public class ColoredAshParticle extends BaseAshSmokeParticle {
         double d0 = (double)randomsource.nextFloat() * -1.9 * (double)randomsource.nextFloat() * 0.1;
         double d1 = (double)randomsource.nextFloat() * (double)-0.5F * (double)randomsource.nextFloat() * 0.1 * (double)5.0F;
         double d2 = (double)randomsource.nextFloat() * -1.9 * (double)randomsource.nextFloat() * 0.1;
-        return new ColoredAshParticle(level, x, y, z, d0, d1, d2, quadSizeMultiplier, sprites, rCol, gCol, bCol, brightnessBehavior);
+        return new ColoredAshParticle(level, x, y, z, d0, d1, d2, quadSizeMultiplier * 1.5F, sprites, rCol, gCol, bCol, brightnessBehavior);
     }
 
     @Override

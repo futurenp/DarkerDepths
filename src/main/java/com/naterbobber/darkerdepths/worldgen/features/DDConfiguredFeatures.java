@@ -1,4 +1,4 @@
-package com.naterbobber.darkerdepths.worldgen;
+package com.naterbobber.darkerdepths.worldgen.features;
 
 import com.google.common.collect.ImmutableList;
 import com.naterbobber.darkerdepths.block.custom.AshBlock;
@@ -6,6 +6,7 @@ import com.naterbobber.darkerdepths.block.custom.GlowshroomBlock;
 import com.naterbobber.darkerdepths.block.custom.GlowspursBlock;
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import com.naterbobber.darkerdepths.init.DDFeatures;
+import com.naterbobber.darkerdepths.util.DDTags;
 import com.naterbobber.darkerdepths.worldgen.features.config.*;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderGetter;
@@ -47,7 +48,7 @@ public class DDConfiguredFeatures {
             DDBlocks.DARKSLATE.get().defaultBlockState(),
             DDBlocks.ARIDROCK.get().defaultBlockState(),
             DDBlocks.ARID_DEEPSLATE.get().defaultBlockState(),
-            DDBlocks.DUSKROCK.get().defaultBlockState(),
+//            DDBlocks.DUSKROCK.get().defaultBlockState(),
             Blocks.GRAVEL.defaultBlockState(),
             Blocks.DEEPSLATE.defaultBlockState(),
             Blocks.TUFF.defaultBlockState()
@@ -106,13 +107,22 @@ public class DDConfiguredFeatures {
                 )
         ));
 
-        FeatureUtils.register(context, ARID_VEGETATION, Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(
+        FeatureUtils.register(context, ARID_VEGETATION, DDFeatures.RANDOM_FLOOR_PLACEMENT.get(), new RandomFloorPlacementConfig(
                 new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
-                        .add(DDBlocks.DRY_SPROUTS.get().defaultBlockState(), 3)
-                        .add(Blocks.AIR.defaultBlockState(), 60)
+                        .add(DDBlocks.DRY_SPROUTS.get().defaultBlockState(), 1)
+                        .add(Blocks.AIR.defaultBlockState(), 2)
                         .build()
+                ),
+                HolderSet.direct(
+                        DDBlocks.ARIDROCK.getDelegate(),
+                        DDBlocks.DUSKROCK.getDelegate(),
+                        Blocks.PACKED_MUD.builtInRegistryHolder()),
+                15,
+                4,
+                3,
+                7
                 )
-        ));
+        );
 
         FeatureUtils.register(context, DARKSLATE_VEGETATION, DDFeatures.RANDOM_FLOOR_PLACEMENT.get(), new RandomFloorPlacementConfig(
                 new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
@@ -132,7 +142,7 @@ public class DDConfiguredFeatures {
         FeatureUtils.register(context, DARKSLATE_PLACEMENT, DDFeatures.REPLACE_LIST.get(), new ReplaceListConfig(
                 OVERWORLD_REPLACEABLES,
                 DDBlocks.DARKSLATE.get().defaultBlockState(),
-                UniformInt.of(3, 7)
+                UniformInt.of(6, 9)
 
         ));
 
@@ -145,7 +155,7 @@ public class DDConfiguredFeatures {
 
         FeatureUtils.register(context, CATACOMBS_LAYERED_PLACEMENT, DDFeatures.REPLACE_LIST_LAYERED.get(), new ReplaceListLayeredConfig(
                 OVERWORLD_REPLACEABLES,
-                UniformInt.of(6, 7),
+                UniformInt.of(8, 10),
                 ImmutableList.of(
                         DDBlocks.ARIDROCK.get().defaultBlockState(),
                         Blocks.PACKED_MUD.defaultBlockState(),
@@ -157,13 +167,6 @@ public class DDConfiguredFeatures {
                         DDBlocks.DUSKROCK.get().defaultBlockState(),
                         Blocks.PACKED_MUD.defaultBlockState(),
                         Blocks.PACKED_MUD.defaultBlockState(),
-                        DDBlocks.ARIDROCK.get().defaultBlockState(),
-                        Blocks.PACKED_MUD.defaultBlockState(),
-                        Blocks.PACKED_MUD.defaultBlockState(),
-                        DDBlocks.DUSKROCK.get().defaultBlockState(),
-                        Blocks.PACKED_MUD.defaultBlockState(),
-                        Blocks.PACKED_MUD.defaultBlockState(),
-                        DDBlocks.ARIDROCK.get().defaultBlockState(),
                         DDBlocks.ARIDROCK.get().defaultBlockState()
                 )
 
@@ -178,7 +181,7 @@ public class DDConfiguredFeatures {
                 PlacementUtils.inlinePlaced(lookup.getOrThrow(LONG_PETRIFIED_BRANCH))
         ));
 
-        FeatureUtils.register(context, CRYSTAL_HUSK_ORE, Feature.ORE, new OreConfiguration(
+        FeatureUtils.register(context, CRYSTAL_HUSK_ORE, Feature.SCATTERED_ORE, new OreConfiguration(
                 List.of(
                         OreConfiguration.target(
                                 new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES),
@@ -189,7 +192,8 @@ public class DDConfiguredFeatures {
                                 DDBlocks.CRYSTAL_HUSK.get().defaultBlockState()
                         )
                 ),
-                6)
+                5,
+                0F)
         );
 
         FeatureUtils.register(context, MAGMA_ORE, Feature.ORE, new OreConfiguration(
@@ -273,13 +277,14 @@ public class DDConfiguredFeatures {
 
 
         FeatureUtils.register(context, ARID_SURFACE, DDFeatures.CORRESPONDENT_LAYER.get(), new CorrespondentLayersConfig(
-                BlockTags.LUSH_GROUND_REPLACEABLE,
+                DDTags.Blocks.ARID_GROUND,
                 List.of(
                         BlockStateProvider.simple(DDBlocks.ARIDROCK.get()),
                         BlockStateProvider.simple(DDBlocks.ARID_DEEPSLATE.get())
                 ),
                 PlacementUtils.inlinePlaced(lookup.getOrThrow(ARID_VEGETATION)),
-                CaveSurface.FLOOR, ConstantInt.of(1), 0.0F, 5, 0.8F,
+                CaveSurface.FLOOR,
+                ConstantInt.of(1), 0.0F, 5, 0.05F,
                 UniformInt.of(4, 7), 0.3F, true)
         );
 
@@ -291,7 +296,8 @@ public class DDConfiguredFeatures {
                         BlockStateProvider.simple(Blocks.TUFF)
                 ),
                 PlacementUtils.inlinePlaced(lookup.getOrThrow(GRIME_VEGETATION)),
-                CaveSurface.FLOOR, ConstantInt.of(1), 0.0F, 5, 0.8F,
+                CaveSurface.FLOOR,
+                ConstantInt.of(1), 0.0F, 5, 0.8F,
                 UniformInt.of(4, 7), 0.3F, false)
         );
 
@@ -306,6 +312,23 @@ public class DDConfiguredFeatures {
                         ),
                         BlockColumnConfiguration.layer(ConstantInt.of(1),
                                 BlockStateProvider.simple(DDBlocks.GLIMMERING_VINES.get().defaultBlockState()))
+                ),
+                Direction.DOWN,
+                BlockPredicate.ONLY_IN_AIR_PREDICATE,
+                true)
+        );
+
+        FeatureUtils.register(context, PETRIFIED_ROOTS, Feature.BLOCK_COLUMN, new BlockColumnConfiguration(
+                List.of(BlockColumnConfiguration.layer(
+                                new WeightedListInt(SimpleWeightedRandomList.<IntProvider>builder()
+                                        .add(UniformInt.of(0, 0), 4)
+                                        .add(UniformInt.of(0, 1), 2)
+                                        .add(UniformInt.of(0, 2), 1)
+                                        .build()),
+                                BlockStateProvider.simple(DDBlocks.PETRIFIED_ROOTS_PLANT.get().defaultBlockState())
+                        ),
+                        BlockColumnConfiguration.layer(ConstantInt.of(1),
+                                BlockStateProvider.simple(DDBlocks.PETRIFIED_ROOTS.get().defaultBlockState()))
                 ),
                 Direction.DOWN,
                 BlockPredicate.ONLY_IN_AIR_PREDICATE,

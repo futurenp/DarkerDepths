@@ -3,6 +3,7 @@ package com.naterbobber.darkerdepths.entities;
 import com.naterbobber.darkerdepths.entities.goals.AttackMemoryTargetGoal;
 import com.naterbobber.darkerdepths.entities.goals.DashGoal;
 import com.naterbobber.darkerdepths.entities.goals.IDashable;
+import com.naterbobber.darkerdepths.init.DDMobEffects;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -10,6 +11,7 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -105,8 +107,10 @@ public class BodySnatcherEntity extends VoidSoulMonster implements GeoEntity, ID
         if(this.damageDelay == 0) {
             if (this.distanceToSqr(this.attackTarget) < 4) {
                 this.attackTarget.hurt(this.level().damageSources().mobAttack(this),
-                        (float) this.getAttributeValue(Attributes.ATTACK_DAMAGE)
-                );
+                        (float) this.getAttributeValue(Attributes.ATTACK_DAMAGE));
+                if(this.attackTarget instanceof Player player) {
+                    player.forceAddEffect(new MobEffectInstance(DDMobEffects.PARANOIA, 200, 0, false, false, true), this);
+                }
             }
 
             this.attackTarget = null;

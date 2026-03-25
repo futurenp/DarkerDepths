@@ -78,16 +78,16 @@ public class DDConfigBuilder {
         builder.push("Biome Fog");
         ENABLE_BIOME_FOG = builder.comment("Enable/disable Darker Depths biome fog adjustments:").define("biome_fog", true);
         builder.push("Glowshroom Forest");
-        GLOWSHROOM_FOREST_FOG_MIN = builder.comment("Min fog distance:").defineInRange("min_fog", 24, 0, 1000);
-        GLOWSHROOM_FOREST_FOG_MAX = builder.comment("Max fog distance:").defineInRange("max_fog", 196, 0, 1000);
+        GLOWSHROOM_FOREST_FOG_MIN = builder.comment("Min fog distance:").defineInRange("min_fog", 0, -1000, 1000);
+        GLOWSHROOM_FOREST_FOG_MAX = builder.comment("Max fog distance:").defineInRange("max_fog", 96, -1000, 1000);
         builder.pop();
         builder.push("Molten Cavern");
-        MOLTEN_CAVERN_FOG_MIN = builder.comment("Min fog distance:").defineInRange("min_fog", 16, 0, 1000);
-        MOLTEN_CAVERN_FOG_MAX = builder.comment("Max fog distance:").defineInRange("max_fog", 128, 0, 1000);
+        MOLTEN_CAVERN_FOG_MIN = builder.comment("Min fog distance:").defineInRange("min_fog", 0, -1000, 1000);
+        MOLTEN_CAVERN_FOG_MAX = builder.comment("Max fog distance:").defineInRange("max_fog", 96, -1000, 1000);
         builder.pop();
         builder.push("Sandy Catacombs");
-        SANDY_CATACOMBS_FOG_MIN = builder.comment("Min fog distance:").defineInRange("min_fog", 0, 0, 1000);
-        SANDY_CATACOMBS_FOG_MAX = builder.comment("Max fog distance:").defineInRange("max_fog", 128, 0, 1000);
+        SANDY_CATACOMBS_FOG_MIN = builder.comment("Min fog distance:").defineInRange("min_fog", -10, -1000, 1000);
+        SANDY_CATACOMBS_FOG_MAX = builder.comment("Max fog distance:").defineInRange("max_fog", 128, -1000, 1000);
         builder.pop(2);
 
         builder.push("Supercharges");

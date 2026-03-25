@@ -232,8 +232,34 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
                 DDBlocks.DARKSLATE.get(),
                 DDBlocks.GRIMESTONE.get(),
                 DDBlocks.ARIDROCK.get(),
-                DDBlocks.DUSKROCK.get()
+                DDBlocks.DUSKROCK.get(),
+                Blocks.PACKED_MUD
         );
+
+        this.tag(DDTags.Blocks.CATACOMBS_STRIPE_REPLACEABLE).add(
+                DDBlocks.ARIDROCK.get(),
+                Blocks.PACKED_MUD
+        );
+
+        this.tag(DDTags.Blocks.MAGMA_STRIPE_REPLACEABLE).add(
+                DDBlocks.DARKSLATE.get(),
+                Blocks.TUFF
+        );
+
+        this.tag(BlockTags.OVERWORLD_CARVER_REPLACEABLES).add(
+                DDBlocks.ARIDROCK.get(),
+                DDBlocks.DUSKROCK.get(),
+                DDBlocks.ARID_DEEPSLATE.get(),
+                Blocks.PACKED_MUD,
+                Blocks.MAGMA_BLOCK
+        );
+
+        this.tag(DDTags.Blocks.ARID_GROUND).add(
+                DDBlocks.ARIDROCK.get(),
+                DDBlocks.DUSKROCK.get(),
+                Blocks.PACKED_MUD
+        );
+
         //Has issues for cross-deepslate generation
         //Unless that was just isolated to single-biome worlds
 //        this.tag(BlockTags.STONE_ORE_REPLACEABLES).add(

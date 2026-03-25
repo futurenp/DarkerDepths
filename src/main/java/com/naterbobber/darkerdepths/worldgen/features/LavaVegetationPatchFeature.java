@@ -4,6 +4,7 @@ import com.mojang.serialization.Codec;
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Blocks;
@@ -39,25 +40,15 @@ public class LavaVegetationPatchFeature extends VegetationPatchFeature {
                 continue;
             }
 
-            var positions = Set.of(
-                    position.north(),
-                    position.south(),
-                    position.east(),
-                    position.west(),
-                    position
-            );
-
-            var place = true;
-            for(var blockPos : positions) {
-                if(isExposed(world, blockPos, mutable)) {
-                    place = false;
-                    break;
-                }
+            if(isExposed(world, position, mutable)) {
+                continue;
             }
 
-            if(place) {
-                lavaGroundPatch.add(position);
+            if(isExposedCorner(world, position, mutable)) {
+                continue;
             }
+
+            lavaGroundPatch.add(position);
         }
 
         posIterator = lavaGroundPatch.iterator();
@@ -78,8 +69,20 @@ public class LavaVegetationPatchFeature extends VegetationPatchFeature {
                 || isExposedDirection(world, pos, mutable, Direction.DOWN);
     }
 
+    private static boolean isExposedCorner(WorldGenLevel world, BlockPos pos, BlockPos.MutableBlockPos mutable) {
+        return isExposedPosition(world, pos, mutable, 1, 1)
+                || isExposedPosition(world, pos, mutable, 1, -1)
+                || isExposedPosition(world, pos, mutable, -1, -1)
+                || isExposedPosition(world, pos, mutable, -1, 1);
+    }
+
     private static boolean isOdd(BlockPos pos) {
         return pos.getY() % 2 != 0;
+    }
+
+    private static boolean isExposedPosition(WorldGenLevel world, BlockPos pos, BlockPos.MutableBlockPos mutable, int x, int z) {
+        mutable.setWithOffset(pos, x, 0, z);
+        return world.getBlockState(mutable).isEmpty() || world.getBlockState(mutable).is(BlockTags.REPLACEABLE);
     }
 
     private static boolean isExposedDirection(WorldGenLevel world, BlockPos pos, BlockPos.MutableBlockPos mutable, Direction direction) {

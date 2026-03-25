@@ -25,9 +25,6 @@ public class ScorcherFeature extends Feature<ScorcherFeatureConfig> {
         BlockPos origin = context.origin();
         var random = context.random();
         ScorcherFeatureConfig config = context.config();
-
-        DarkerDepths.LOGGER.info("WorldGen triggered ScorcherFeature at: " + origin);
-
         // 1. SMART SNAP TO FLOOR
         // The worldgen often feeds us bad coordinates (mid-air or inside a wall).
         // Let's scan up or down to find the actual floor of the cave.
@@ -44,7 +41,6 @@ public class ScorcherFeature extends Feature<ScorcherFeatureConfig> {
 
         // Final sanity check: are we actually on solid ground now?
         if (!level.getBlockState(mutableOrigin.below()).isSolid() || !level.isEmptyBlock(mutableOrigin)) {
-            DarkerDepths.LOGGER.info("Canceled: Could not find a valid solid floor.");
             return false;
         }
 
@@ -113,7 +109,6 @@ public class ScorcherFeature extends Feature<ScorcherFeatureConfig> {
             placerEntity.setRotation(90F);
         }
 
-        DarkerDepths.LOGGER.info("SUCCESSFULLY placed Scorcher Spike at: " + origin);
         return true;
     }
 }

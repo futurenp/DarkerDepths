@@ -1,6 +1,10 @@
 {
   "type": "neoforge:add_features",
   "biomes": "darkerdepths:sandy_catacombs",
-  "features": "darkerdepths:catacombs_lava_lining",
+  "features": [
+    "darkerdepths:catacombs_lava_lining",
+    "darkerdepths:catacombs_layered_placement",
+    "darkerdepths:arid_surface"
+  ],
   "step": "underground_decoration"
 }

@@ -7,6 +7,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.levelgen.carver.ConfiguredWorldCarver;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraft.world.level.levelgen.structure.Structure;
@@ -80,6 +81,7 @@ public class DDResourceKeys {
         public static final ResourceKey<ConfiguredFeature<?, ?>> CATACOMBS_LAVA_LINING = createKey("catacombs_lava_lining");
         public static final ResourceKey<ConfiguredFeature<?, ?>> DUSKROCK_STRIPE = createKey("duskrock_stripe");
         public static final ResourceKey<ConfiguredFeature<?, ?>> GLIMMERING_VINES = createKey("glimmering_vines");
+        public static final ResourceKey<ConfiguredFeature<?, ?>> PETRIFIED_ROOTS = createKey("petrified_roots");
         public static final ResourceKey<ConfiguredFeature<?, ?>> CRYSTAL_HUSK_ORE = createKey("crystal_husk_ore");
         public static final ResourceKey<ConfiguredFeature<?, ?>> DUSKROCK_ORE = createKey("duskrock_ore");
         public static ResourceKey<ConfiguredFeature<?, ?>> createKey(String name) {
@@ -104,11 +106,13 @@ public class DDResourceKeys {
         public static final ResourceKey<PlacedFeature> MAGMA_DISK = createKey("magma_disk");
         public static final ResourceKey<PlacedFeature> GRIME_SURFACE = createKey("grime_surface");
         public static final ResourceKey<PlacedFeature> ARID_SURFACE = createKey("arid_surface");
+        public static final ResourceKey<PlacedFeature> ARID_VEGETATION = createKey("arid_vegetation");
         public static final ResourceKey<PlacedFeature> DARKSLATE_SURFACE = createKey("darkslate_surface");
         public static final ResourceKey<PlacedFeature> ARID_BOULDER = createKey("arid_boulder");
         public static final ResourceKey<PlacedFeature> CATACOMBS_LAVA_LINING = createKey("catacombs_lava_lining");
         public static final ResourceKey<PlacedFeature> DUSKROCK_STRIPE = createKey("duskrock_stripe");
         public static final ResourceKey<PlacedFeature> GLIMMERING_VINES = createKey("glimmering_vines");
+        public static final ResourceKey<PlacedFeature> PETRIFIED_ROOTS = createKey("petrified_roots");
         public static final ResourceKey<PlacedFeature> CRYSTAL_HUSK_ORE = createKey("crystal_husk_ore");
         public static final ResourceKey<PlacedFeature> DUSKROCK_ORE = createKey("duskrock_ore");
 
@@ -158,6 +162,16 @@ public class DDResourceKeys {
 
         private static ResourceKey<StructureProcessorList> createKey(String pName) {
             return ResourceKey.create(Registries.PROCESSOR_LIST, DarkerDepths.id(pName));
+        }
+    }
+
+    public static class ConfiguredWorldCarvers {
+        public static final ResourceKey<ConfiguredWorldCarver<?>> DUSKROCK_CARVER = createKey("duskrock_carver");
+        public static final ResourceKey<ConfiguredWorldCarver<?>> MAGMA_CARVER = createKey("magma_carver");
+        public static final ResourceKey<ConfiguredWorldCarver<?>> TUFF_CARVER = createKey("tuff_carver");
+
+        private static ResourceKey<ConfiguredWorldCarver<?>> createKey(String pName) {
+            return ResourceKey.create(Registries.CONFIGURED_CARVER, DarkerDepths.id(pName));
         }
     }
 

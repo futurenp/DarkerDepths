@@ -12,6 +12,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
+import net.neoforged.neoforge.common.Tags;
 
 import javax.annotation.Nullable;
 
@@ -49,6 +50,9 @@ public class DDTags {
         public static final TagKey<Block> WOODEN_BOARDS = TAGS.create("wooden_boards", DDCompat.WOODWORKS);
         public static final TagKey<Block> VERTICAL_PLANKS = TAGS.create("vertical_planks", DDCompat.QUARK);
         public static final TagKey<Block> VERTICAL_SLAB = TAGS.create("vertical_slab", DDCompat.QUARK);
+        public static final TagKey<Block> CATACOMBS_STRIPE_REPLACEABLE = TAGS.create("catacombs_stripe_replaceable");
+        public static final TagKey<Block> MAGMA_STRIPE_REPLACEABLE = TAGS.create("magma_stripe_replaceable");
+        public static final TagKey<Block> ARID_GROUND = TAGS.create("arid_ground");
     }
 
     public static class Biomes {

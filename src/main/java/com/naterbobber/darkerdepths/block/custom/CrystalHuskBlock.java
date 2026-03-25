@@ -54,7 +54,9 @@ public class CrystalHuskBlock extends Block implements HeatableBlock {
                 stack.shrink(1);
             }
             level.setBlock(blockPos, blockState.setValue(CRYSTAL_GROWTH_LEVEL, 1), 2);
+            level.playSound(null, blockPos, SoundEvents.AMETHYST_BLOCK_CHIME, SoundSource.BLOCKS, 1.0F, 1.0F);
             level.playSound(null, blockPos, SoundEvents.TURTLE_EGG_CRACK, SoundSource.BLOCKS, 1.0F, 1.0F);
+
             level.scheduleTick(blockPos, this, 1);
             return ItemInteractionResult.SUCCESS;
         }
@@ -74,6 +76,7 @@ public class CrystalHuskBlock extends Block implements HeatableBlock {
         int cracked = state.getValue(CRYSTAL_GROWTH_LEVEL);
         if (cracked < 3 && cracked != 0) {
             level.setBlock(pos, state.setValue(CRYSTAL_GROWTH_LEVEL, cracked + 1), 2);
+            level.playSound(null, pos, SoundEvents.AMETHYST_BLOCK_CHIME, SoundSource.BLOCKS, 1.0F, 1.0F);
             level.playSound(null, pos, SoundEvents.TURTLE_EGG_CRACK, SoundSource.BLOCKS, 1.0F, 1.0F);
             level.scheduleTick(pos, this, 20);
         } else if (cracked == 3) {

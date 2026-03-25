@@ -202,6 +202,8 @@ public class DDBlocks {
             () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(1.0f).sound(SoundType.AMETHYST).lightLevel(value -> 7)));
     public static final DeferredBlock<AmethystClusterBlock> AMBER_CLUSTER = registerBlock("amber_cluster",
             () -> new AmethystClusterBlock(6, 3, BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(1.0f).sound(SoundType.SMALL_AMETHYST_BUD).lightLevel(value -> 7)));
+
+
     public static final DeferredBlock<DarkslateBlock> DARKSLATE = registerBlock("darkslate",
             () -> new DarkslateBlock(DARKSLATE_PROPERTIES.randomTicks()));
     public static final DeferredBlock<RelationalStairBlock> DARKSLATE_STAIRS = registerBlock("darkslate_stairs",
@@ -262,6 +264,8 @@ public class DDBlocks {
     public static final DeferredBlock<AshBlock> ASH = registerTooltipBlock("ash",
             () -> new AshBlock(blockProperties(0.1f, SoundType.SNOW, true).mapColor(MapColor.COLOR_BLACK).randomTicks()),
             List.of(Component.translatable("tooltip.darkerdepths.legacy.shift_desc").withStyle(ChatFormatting.RED)));
+
+
     public static final DeferredBlock<GrimestoneBlock> GRIMESTONE = registerBlock("grimestone",
             () -> new GrimestoneBlock(DARKSLATE_PROPERTIES));
     public static final DeferredBlock<RelationalStairBlock> GRIMESTONE_STAIRS = registerBlock("grimestone_stairs",

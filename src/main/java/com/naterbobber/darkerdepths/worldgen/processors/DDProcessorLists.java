@@ -1,4 +1,4 @@
-package com.naterbobber.darkerdepths.worldgen;
+package com.naterbobber.darkerdepths.worldgen.processors;
 
 import com.google.common.collect.ImmutableList;
 import com.naterbobber.darkerdepths.util.DDResourceKeys;

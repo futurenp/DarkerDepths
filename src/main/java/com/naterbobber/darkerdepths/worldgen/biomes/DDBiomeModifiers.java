@@ -1,4 +1,4 @@
-package com.naterbobber.darkerdepths.worldgen;
+package com.naterbobber.darkerdepths.worldgen.biomes;
 
 import com.naterbobber.darkerdepths.init.DDEntityTypes;
 import net.minecraft.core.HolderSet;
@@ -9,6 +9,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.MobSpawnSettings;
 import net.minecraft.world.level.levelgen.GenerationStep;
+import net.minecraft.world.level.levelgen.OreVeinifier;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.neoforged.neoforge.common.world.BiomeModifiers;
 import net.neoforged.neoforge.common.world.BiomeModifier;
@@ -28,11 +29,9 @@ public class DDBiomeModifiers {
                 getBiome(context, MOLTEN_CAVERN),
                 getPlacedFeature(
                         context,
-                        DARKSLATE_PLACEMENT,
                         MOLTEN_POOL,
                         MOLTEN_SPRING,
                         SCORCHER_PLACER
-
                 ),
                 GenerationStep.Decoration.LOCAL_MODIFICATIONS)
         );
@@ -57,16 +56,15 @@ public class DDBiomeModifiers {
                 getBiome(context, MOLTEN_CAVERN),
                 getPlacedFeature(
                         context,
-                        DARKSLATE_VEGETATION
+                        DARKSLATE_VEGETATION,
+                        PETRIFIED_ROOTS
                 ),
                 GenerationStep.Decoration.VEGETAL_DECORATION
         ));
         context.register(ADD_SANDY_CATACOMBS_LOCAL_MODIFICATIONS, new BiomeModifiers.AddFeaturesBiomeModifier(
                         getBiome(context, SANDY_CATACOMBS),
                         getPlacedFeature(
-                                context,
-//                          Testing out this feature for 2.1
-                        CATACOMBS_LAYERED_PLACEMENT
+                                context
                         ),
                         GenerationStep.Decoration.LOCAL_MODIFICATIONS)
         );
@@ -76,7 +74,8 @@ public class DDBiomeModifiers {
                         context,
                         AMBER_PLACEMENT,
                         PETRIFIED_BRANCH,
-                        ARID_SURFACE
+                        PETRIFIED_ROOTS,
+                        ARID_VEGETATION
                 ),
                 GenerationStep.Decoration.VEGETAL_DECORATION)
         );
@@ -94,17 +93,20 @@ public class DDBiomeModifiers {
                 getBiome(context, SANDY_CATACOMBS),
                 getPlacedFeature(
                         context,
-                        ARID_BOULDER,
-                        DUSKROCK_ORE,
-                        DUSKROCK_STRIPE
+                        ARID_BOULDER
+//                        DUSKROCK_ORE,
+//                        DUSKROCK_STRIPE
                 ),
                 GenerationStep.Decoration.RAW_GENERATION)
         );
+
         context.register(ADD_SANDY_CATACOMBS_UNDERGROUND_DECORATION, new BiomeModifiers.AddFeaturesBiomeModifier(
                         getBiome(context, SANDY_CATACOMBS),
                         getPlacedFeature(
                                 context,
-                                CATACOMBS_LAVA_LINING
+                                CATACOMBS_LAVA_LINING,
+                                CATACOMBS_LAYERED_PLACEMENT,
+                                ARID_SURFACE
 //                        CATACOMBS_SAND_PLACEMENT
                         ),
                         GenerationStep.Decoration.UNDERGROUND_DECORATION)
