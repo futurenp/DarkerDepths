@@ -3,13 +3,17 @@ package com.naterbobber.darkerdepths.entities;
 import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
 import com.mojang.serialization.Dynamic;
+import com.naterbobber.darkerdepths.DarkerDepths;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.protocol.game.ClientboundSetEntityMotionPacket;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
@@ -55,20 +59,33 @@ public class ScorcherEntity extends Mob implements GeoEntity {
         this.xpReward = 25;
     }
 
-    @Override
-    public boolean isNoGravity() {
-        return true;
-    }
+    // --- Core Entity Overrides ---
 
     @Override
-    public int getMaxHeadXRot() {
-        return 90;
-    }
+    public boolean isNoGravity() { return true; }
 
     @Override
-    public int getMaxHeadYRot() {
-        return 90;
-    }
+    public int getMaxHeadXRot() { return 90; }
+
+    @Override
+    public int getMaxHeadYRot() { return 90; }
+
+    @Override
+    public boolean isPushable() { return false; }
+
+    @Override
+    public boolean isPushedByFluid(FluidType type) { return false; }
+
+    @Override
+    public boolean removeWhenFarAway(double distanceToClosestPlayer) { return false; }
+
+    @Override
+    public boolean canBeCollidedWith() { return false; }
+
+    @Override
+    protected void clampHeadRotationToBody() {}
+
+    // --- Brain & AI ---
 
     @Override
     protected Brain.Provider<ScorcherEntity> brainProvider() {
@@ -76,25 +93,6 @@ public class ScorcherEntity extends Mob implements GeoEntity {
                 ImmutableList.of(MemoryModuleType.ATTACK_TARGET),
                 ImmutableList.of(SensorType.NEAREST_PLAYERS)
         );
-    }
-
-    @Override
-    public boolean isPushable() {
-        return false;
-    }
-
-    @Override
-    public boolean isPushedByFluid(FluidType type) {
-        return false;
-    }
-
-    @Override
-    public void die(DamageSource damageSource) {
-        var state = this.level().getBlockState(getOnPos().above());
-        if(state.is(Blocks.LIGHT)) {
-            this.level().setBlock(getOnPos().above(), Blocks.AIR.defaultBlockState(), 3);
-        }
-        super.die(damageSource);
     }
 
     @Override
@@ -112,24 +110,6 @@ public class ScorcherEntity extends Mob implements GeoEntity {
     }
 
     @Override
-    public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
-        controllerRegistrar.add(new AnimationController<>(this, "baseController", 5, this::basePredicate));
-    }
-
-    protected <E extends ScorcherEntity> PlayState basePredicate(final AnimationState<E> event) {
-        if (this.isShaking()) {
-            return event.setAndContinue(SHAKE_ANIM);
-        }
-
-        return event.setAndContinue(IDLE_ANIM);
-    }
-
-    private boolean isShaking() {
-        return this.entityData.get(DATA_SHAKING);
-    }
-
-
-    @Override
     @SuppressWarnings("unchecked")
     public Brain<ScorcherEntity> getBrain() {
         return (Brain<ScorcherEntity>) super.getBrain();
@@ -144,36 +124,18 @@ public class ScorcherEntity extends Mob implements GeoEntity {
         super.customServerAiStep();
     }
 
+    // --- Geckolib & Animations ---
+
     @Override
-    public boolean removeWhenFarAway(double distanceToClosestPlayer) {
-        return false;
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
+        controllerRegistrar.add(new AnimationController<>(this, "baseController", 5, this::basePredicate));
     }
 
-    @Override
-    public boolean doHurtTarget(Entity target) {
-        Vec3 initialMotion = target.getDeltaMovement();
-        boolean didHurt = super.doHurtTarget(target);
-
-        if (didHurt) {
-            target.setDeltaMovement(initialMotion);
-            target.hasImpulse = false;
+    protected <E extends ScorcherEntity> PlayState basePredicate(final AnimationState<E> event) {
+        if (this.isShaking()) {
+            return event.setAndContinue(SHAKE_ANIM);
         }
-        return didHurt;
-    }
-
-    public static AttributeSupplier.Builder createAttributes() {
-        return Mob.createMobAttributes()
-                .add(Attributes.MAX_HEALTH, 40.0D)
-                .add(Attributes.FOLLOW_RANGE, 48.0D)
-                .add(Attributes.KNOCKBACK_RESISTANCE, 1.0D);
-    }
-
-    @Override
-    public void setTarget(@Nullable LivingEntity livingEntity) {
-        super.setTarget(livingEntity);
-        if (livingEntity == null) {
-            this.entityData.set(DATA_STARED_AT, false);
-        }
+        return event.setAndContinue(IDLE_ANIM);
     }
 
     @Override
@@ -181,21 +143,54 @@ public class ScorcherEntity extends Mob implements GeoEntity {
         return geoCache;
     }
 
+    // --- Data Syncing & Target Management ---
+
     @Override
-    public boolean canBeCollidedWith() {
-        return false;
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(DATA_STARED_AT, false);
+        builder.define(DATA_SHAKING, false);
+        builder.define(DATA_TARGET_ID, 0);
     }
 
-    public void setShaking(boolean value) {
-        this.entityData.set(DATA_SHAKING, value);
+    /**
+     * Unified method to safely start targeting a player and sync all related client data.
+     */
+    public void setScorcherTarget(Player player) {
+        if (this.getTarget() != player) {
+            this.setTarget(player);
+        }
+        if (!this.entityData.get(DATA_STARED_AT)) {
+            this.entityData.set(DATA_STARED_AT, true);
+        }
+        if (!this.entityData.get(DATA_SHAKING)) {
+            this.entityData.set(DATA_SHAKING, true);
+        }
+        if (this.entityData.get(DATA_TARGET_ID) != player.getId()) {
+            this.entityData.set(DATA_TARGET_ID, player.getId());
+        }
     }
 
-    public void setBeingStaredAt() {
-        this.entityData.set(DATA_STARED_AT, true);
+    /**
+     * Unified method to safely clear the target and clean up all synced client data.
+     */
+    public void clearScorcherTarget() {
+        if (this.getTarget() != null) {
+            this.setTarget(null);
+        }
+        if (this.entityData.get(DATA_STARED_AT)) {
+            this.entityData.set(DATA_STARED_AT, false);
+        }
+        if (this.entityData.get(DATA_SHAKING)) {
+            this.entityData.set(DATA_SHAKING, false);
+        }
+        if (this.entityData.get(DATA_TARGET_ID) != 0) {
+            this.entityData.set(DATA_TARGET_ID, 0);
+        }
     }
 
-    public void setBeamTarget(int entityId) {
-        this.entityData.set(DATA_TARGET_ID, entityId);
+    private boolean isShaking() {
+        return this.entityData.get(DATA_SHAKING);
     }
 
     public boolean hasBeamTarget() {
@@ -214,29 +209,129 @@ public class ScorcherEntity extends Mob implements GeoEntity {
         }
     }
 
-    @Override
-    protected void defineSynchedData(SynchedEntityData.Builder builder) {
-        super.defineSynchedData(builder);
-        builder.define(DATA_STARED_AT, false);
-        builder.define(DATA_SHAKING, false);
-        builder.define(DATA_TARGET_ID, 0);
+    // --- Logic & Ticking ---
+
+    public static AttributeSupplier.Builder createAttributes() {
+        return Mob.createMobAttributes()
+                .add(Attributes.MAX_HEALTH, 40.0D)
+                .add(Attributes.FOLLOW_RANGE, 48.0D)
+                .add(Attributes.KNOCKBACK_RESISTANCE, 1.0D);
     }
 
     @Override
-    public void addAdditionalSaveData(CompoundTag compound) {
-        super.addAdditionalSaveData(compound);
+    public boolean doHurtTarget(Entity target) {
+        Vec3 initialMotion = target.getDeltaMovement();
+        boolean didHurt = super.doHurtTarget(target);
+
+        if (didHurt) {
+            target.setDeltaMovement(initialMotion);
+            target.hasImpulse = false;
+        }
+        return didHurt;
     }
 
     @Override
-    public void readAdditionalSaveData(CompoundTag compound) {
-        super.readAdditionalSaveData(compound);
+    public void die(DamageSource damageSource) {
+        // --- Existing Light Removal Logic ---
+        var state = this.level().getBlockState(getOnPos().above());
+        if(state.is(Blocks.LIGHT)) {
+            this.level().setBlock(getOnPos().above(), Blocks.AIR.defaultBlockState(), 3);
+        }
+
+        // --- NEW: Death Particles ---
+        if (this.level() instanceof ServerLevel serverLevel) {
+            // Calculate the center of the entity
+            double centerX = this.getX();
+            double centerY = this.getY() + (this.getBbHeight() / 2.0);
+            double centerZ = this.getZ();
+
+            // The spread based on the entity's size
+            double spreadX = this.getBbWidth() / 4.0;
+            double spreadY = this.getBbHeight() / 1.0;
+            double spreadZ = this.getBbWidth() / 4.0;
+
+            // Big pop of flames
+            // Parameters: particle, x, y, z, count, deltaX, deltaY, deltaZ, speed
+            serverLevel.sendParticles(ParticleTypes.FLAME,
+                    centerX, centerY, centerZ,
+                    25, // Number of particles
+                    spreadX, spreadY, spreadZ,
+                    0.1D); // Speed (gives them an outward burst)
+
+            // A secondary pop of thick smoke for a better explosion effect
+            serverLevel.sendParticles(ParticleTypes.LARGE_SMOKE,
+                    centerX, centerY, centerZ,
+                    25,
+                    spreadX, spreadY, spreadZ,
+                    0.07D);
+        }
+
+        super.die(damageSource);
+    }
+
+    @Override
+    public boolean hurt(DamageSource source, float amount) {
+        // Check if the damage is from a projectile (this covers normal arrows, tipped arrows, and spectral arrows)
+        if (source.is(net.minecraft.tags.DamageTypeTags.IS_PROJECTILE)) {
+            // Reduce the damage by 50%
+            amount *= 0.5F;
+
+            // Optional: Play a sound or spawn a particle here to indicate the arrow deflected/tinked off!
+            // if (!this.level().isClientSide) {
+            //     this.playSound(net.minecraft.sounds.SoundEvents.SHIELD_BLOCK, 1.0F, 1.2F);
+            // }
+        }
+
+        // Pass the final damage amount to the super method to actually apply it
+        return super.hurt(source, amount);
+    }
+
+    @Override
+    protected @org.jetbrains.annotations.Nullable SoundEvent getAmbientSound() {
+        return SoundEvents.BLAZE_AMBIENT;
+    }
+
+    @Override
+    protected @org.jetbrains.annotations.Nullable SoundEvent getHurtSound(DamageSource damageSource) {
+        return SoundEvents.BLAZE_HURT;
+    }
+
+    @Override
+    protected @org.jetbrains.annotations.Nullable SoundEvent getDeathSound() {
+        return SoundEvents.BLAZE_DEATH;
+    }
+
+    @Override
+    public float getVoicePitch() {
+        return 0.5F;
+    }
+
+    @Override
+    protected float getSoundVolume() {
+        return 3.5F;
     }
 
     @Override
     public void tick() {
         super.tick();
 
+        // --- Client & Server Shared Logic ---
+        this.applyBeamPushback();
+
+        // --- Existing Server Logic ---
         if (!this.level().isClientSide()) {
+
+            // --- NEW: Apply Blindness if looked at directly ---
+            this.applyFlashEffect();
+
+            // --- Targeting Sound (Plays at the Player's Location) ---
+            if (this.isAlive() && this.hasBeamTarget()) {
+                LivingEntity target = this.getBeamTarget();
+                if (target != null && this.tickCount % 20 == 0) {
+                    this.level().playSound(null, target.blockPosition(), net.minecraft.sounds.SoundEvents.GUARDIAN_ATTACK, net.minecraft.sounds.SoundSource.HOSTILE, 1.5F, 0.8F + this.random.nextFloat() * 0.2F);
+                }
+            }
+
             this.setDeltaMovement(this.getDeltaMovement().multiply(1.0, 0.0, 1.0));
 
             if (this.isAlive() && this.tickCount % 2 == 0) {
@@ -244,10 +339,80 @@ public class ScorcherEntity extends Mob implements GeoEntity {
             }
 
             var state = this.level().getBlockState(getOnPos().above());
-
             if((state.is(BlockTags.REPLACEABLE) || state.is(BlockTags.AIR) && !state.is(Blocks.LIGHT)) && this.isAlive()) {
                 var lightState = Blocks.LIGHT.defaultBlockState().setValue(BlockStateProperties.LEVEL, 10);
                 this.level().setBlock(getOnPos().above(), lightState, 3);
+            }
+        }
+    }
+
+    private void applyFlashEffect() {
+        // Only the server can apply potion effects
+        if (this.level().isClientSide || !this.isAlive() || !this.hasBeamTarget()) return;
+
+        LivingEntity target = this.getBeamTarget();
+        if (target instanceof Player player) {
+            Vec3 playerLook = player.getViewVector(1.0F).normalize();
+            Vec3 toScorcher = this.getEyePosition().subtract(player.getEyePosition());
+
+            double distance = toScorcher.length();
+            toScorcher = toScorcher.normalize();
+
+            // Calculate the dot product.
+            // 1.0 means perfectly centered on the screen. -1.0 means looking exactly away.
+            double dotProduct = playerLook.dot(toScorcher);
+
+            // We calculate a dynamic threshold based on distance.
+            // The closer they are, the wider the blinding angle becomes on their screen.
+            // (Using 0.1D makes the "hitbox" of the flash larger than an Enderman's aggro angle)
+            double threshold = 1.0D - (0.1D / Math.max(distance, 1.0D));
+
+            if (dotProduct > threshold && player.hasLineOfSight(this)) {
+                // Apply Blindness for 60 ticks (3 seconds).
+                // The booleans at the end hide the potion particles and the top-right icon
+                // so it feels like a natural physical effect rather than a magic spell.
+                player.addEffect(new net.minecraft.world.effect.MobEffectInstance(
+                        net.minecraft.world.effect.MobEffects.BLINDNESS,
+                        60, 0, false, false, false
+                ));
+            }
+        }
+    }
+
+    private void applyBeamPushback() {
+        // Exit early if dead or no target
+        if (!this.isAlive() || !this.hasBeamTarget()) return;
+
+        LivingEntity target = this.getBeamTarget();
+        if (target == null) return;
+
+        double distSqr = this.distanceToSqr(target);
+
+        // --- Configuration Variables ---
+        double pushbackDistance = 32.0D; // Maximum range of the pushback
+        double innerDistance = 5.0D;     // Distance where pushback force maxes out
+
+        if (distSqr <= pushbackDistance * pushbackDistance) {
+            double dist = Math.sqrt(distSqr);
+
+            // Calculate the force multiplier (0.0 at 32 blocks, 1.0 at 5 blocks)
+            double forceMultiplier = 1.0D;
+            if (dist > innerDistance) {
+                forceMultiplier = (pushbackDistance - dist) / (pushbackDistance - innerDistance);
+            }
+
+            // Max force is 0.055
+            double currentForce = 0.055D * forceMultiplier;
+
+            // Get direction TOWARD the scorcher
+            Vec3 dirToScorcher = this.position().subtract(target.position()).normalize();
+
+            // Push them backwards
+            target.push(dirToScorcher.x * -currentForce, 0.0D, dirToScorcher.z * -currentForce);
+
+            // Sync to client if on the server
+            if (!this.level().isClientSide) {
+                target.hasImpulse = true;
             }
         }
     }
@@ -285,6 +450,8 @@ public class ScorcherEntity extends Mob implements GeoEntity {
             }
         }
     }
+
+    // --- Behaviors ---
 
     static class ScorcherIdleLookBehavior extends Behavior<ScorcherEntity> {
         private float currentAngle;
@@ -332,13 +499,8 @@ public class ScorcherEntity extends Mob implements GeoEntity {
             double dy = -2.0;
 
             Vec3 lookPos = entity.getEyePosition().add(dx, dy, dz);
-
             entity.getLookControl().setLookAt(lookPos.x, lookPos.y, lookPos.z, 10.0F, 10.0F);
         }
-    }
-
-    @Override
-    protected void clampHeadRotationToBody() {
     }
 
     static class ScorcherStareBehavior extends Behavior<ScorcherEntity> {
@@ -363,11 +525,116 @@ public class ScorcherEntity extends Mob implements GeoEntity {
         }
 
         @Override
-        protected void start(ServerLevel level, ScorcherEntity entity, long gameTime) {}
-
-        @Override
         protected boolean canStillUse(ServerLevel level, ScorcherEntity entity, long gameTime) {
             return true;
+        }
+
+        @Override
+        protected void tick(ServerLevel level, ScorcherEntity entity, long gameTime) {
+            // 1. Check if we need a new target
+            if (!isValidTarget(entity, this.target)) {
+                findNewTarget(level, entity);
+            }
+
+            // 2. If we STILL don't have a target, ensure state is cleared and stop ticking
+            if (this.target == null) {
+                entity.clearScorcherTarget();
+                return;
+            }
+
+            // 3. Process the active target
+            if (hasForgivingLineOfSight(entity, this.target)) {
+                handleLineOfSight(entity);
+            } else {
+                handleLostLineOfSight(entity);
+            }
+        }
+
+        private boolean isValidTarget(ScorcherEntity entity, Player player) {
+            if (player == null || !player.isAlive() || player.isSpectator() || player.isCreative()) return false;
+            if (entity.distanceToSqr(player) > 48 * 48) return false;
+            return true;
+        }
+
+        private void findNewTarget(ServerLevel level, ScorcherEntity entity) {
+            this.target = level.getNearestPlayer(this.targetConditions, entity);
+            this.losTicks = 0;
+            this.losLostTicks = 0;
+            this.lastKnownPos = null;
+
+            if (this.target != null && hasForgivingLineOfSight(entity, this.target)) {
+                entity.setScorcherTarget(this.target);
+            } else {
+                this.target = null; // Don't hold onto a target we can't initially see
+                entity.clearScorcherTarget();
+            }
+        }
+
+        private void handleLineOfSight(ScorcherEntity entity) {
+            this.losLostTicks = 0;
+            this.losTicks++;
+            this.lastKnownPos = this.target.getEyePosition();
+
+            // Ensure our entity knows it is actively targeting
+            entity.setScorcherTarget(this.target);
+
+            // Handle head tracking
+            float turnSpeed = entity.distanceToSqr(this.target) < 100.0 ? 120.0F : 30.0F;
+            entity.getLookControl().setLookAt(this.target, turnSpeed, turnSpeed);
+
+            // Delegate combat logic
+            this.applyBeamDamage(entity);
+        }
+
+        private void applyBeamDamage(ScorcherEntity entity) {
+            // Only apply damage once every second (20 ticks)
+            if (this.losTicks % 20 != 0) return;
+
+            int secondsInLos = this.losTicks / 20;
+            float damage = secondsInLos - 1f;
+
+            // The first second gives a grace period, so damage is 0.
+            if (damage <= 0) return;
+
+            // Ensure the beam pierces normal i-frames
+            this.target.invulnerableTime = 0;
+
+            if (this.target.isBlocking()) {
+                net.minecraft.world.item.ItemStack shield = this.target.getUseItem();
+                int shieldDamage = (int) (damage * 4);
+
+                net.minecraft.world.InteractionHand hand = this.target.getUsedItemHand();
+                net.minecraft.world.entity.EquipmentSlot slot = hand == net.minecraft.world.InteractionHand.MAIN_HAND ?
+                        net.minecraft.world.entity.EquipmentSlot.MAINHAND : net.minecraft.world.entity.EquipmentSlot.OFFHAND;
+
+                // Damage the shield and trigger break events if it breaks
+                shield.hurtAndBreak(shieldDamage, this.target, slot);
+
+                // Play the block sound
+                this.target.level().playSound(null, this.target.blockPosition(), net.minecraft.sounds.SoundEvents.SHIELD_BLOCK, net.minecraft.sounds.SoundSource.PLAYERS, 1.0F, 0.8F + entity.getRandom().nextFloat() * 0.4F);
+            } else {
+                // Not blocking, burn the player
+                this.target.hurt(entity.damageSources().onFire(), damage);
+            }
+        }
+
+        private void handleLostLineOfSight(ScorcherEntity entity) {
+            this.losLostTicks++;
+            this.losTicks = 0;
+
+            if (this.lastKnownPos != null) {
+                entity.getLookControl().setLookAt(this.lastKnownPos.x, this.lastKnownPos.y, this.lastKnownPos.z, 30.0F, 30.0F);
+            }
+
+            if (this.losLostTicks > 20) {
+                // Time's up, grace period over. Drop the target entirely.
+                this.target = null;
+                entity.clearScorcherTarget();
+            } else {
+                // Optional: Stop shaking during the 20-tick grace period, but keep target data.
+                // Alternatively, you can remove this to keep it shaking until it completely drops aggro.
+                entity.entityData.set(DATA_SHAKING, false);
+            }
         }
 
         private boolean hasForgivingLineOfSight(ScorcherEntity entity, Player target) {
@@ -388,73 +655,9 @@ public class ScorcherEntity extends Mob implements GeoEntity {
         }
 
         @Override
-        protected void tick(ServerLevel level, ScorcherEntity entity, long gameTime) {
-            if (this.target == null || !this.target.isAlive() || entity.distanceToSqr(this.target) > 48 * 48 || this.target.isSpectator() || this.target.isCreative()) {
-                this.target = level.getNearestPlayer(this.targetConditions, entity);
-                this.losTicks = 0;
-                this.losLostTicks = 0;
-                this.lastKnownPos = null;
-
-                if (this.target != null) {
-                    entity.setBeingStaredAt();
-                    entity.setBeamTarget(this.target.getId());
-                    entity.setTarget(this.target);
-                } else {
-                    entity.setBeamTarget(0);
-                    entity.setTarget(null);
-                }
-            }
-
-            if (this.target != null) {
-                if (hasForgivingLineOfSight(entity, this.target)) {
-                    this.losLostTicks = 0;
-                    this.losTicks++;
-                    this.lastKnownPos = this.target.getEyePosition();
-
-                    if(entity.distanceToSqr(this.target) < 15 * 15) {
-                        entity.setShaking(true);
-                    }
-
-                    float turnSpeed = entity.distanceToSqr(this.target) < 100.0 ? 120.0F : 30.0F;
-                    entity.getLookControl().setLookAt(this.target, turnSpeed, turnSpeed);
-
-                    if (this.losTicks % 20 == 0) {
-                        int secondsInLos = this.losTicks / 20;
-                        float damage = secondsInLos - 1f;
-
-                        if (damage > 0) {
-                            this.target.invulnerableTime = 0;
-
-                            this.target.hurt(entity.damageSources().onFire(), damage);
-                        }
-                    }
-
-                } else {
-                    this.losLostTicks++;
-                    this.losTicks = 0;
-
-                    if (this.lastKnownPos != null) {
-                        entity.getLookControl().setLookAt(this.lastKnownPos.x, this.lastKnownPos.y, this.lastKnownPos.z, 30.0F, 30.0F);
-                    }
-
-                    if (this.losLostTicks > 40) {
-                        this.target = null;
-                        entity.setBeamTarget(0);
-                        entity.setTarget(null);
-                    }
-                }
-            } else {
-                if(entity.isShaking()) {
-                    entity.setShaking(false);
-                }
-            }
-        }
-
-        @Override
         protected void stop(ServerLevel level, ScorcherEntity entity, long gameTime) {
             this.target = null;
-            entity.setBeamTarget(0);
-            entity.setTarget(null);
+            entity.clearScorcherTarget();
         }
     }
 }

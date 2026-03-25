@@ -6,6 +6,7 @@ import com.naterbobber.darkerdepths.init.DDItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.loot.packs.VanillaEntityLoot;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
@@ -55,7 +56,10 @@ public class DDEntityLoot extends VanillaEntityLoot {
         );
 
         this.add(DDEntityTypes.SCORCHER.get(),
-                LootTable.lootTable()
+                LootTable.lootTable().withPool(LootPool.lootPool()
+                        .add(LootItem.lootTableItem(Items.BLAZE_POWDER)
+                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 4.0F)))
+                        ))
         );
     }
 
