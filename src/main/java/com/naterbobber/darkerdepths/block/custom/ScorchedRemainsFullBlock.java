@@ -1,6 +1,7 @@
 package com.naterbobber.darkerdepths.block.custom;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
+import com.naterbobber.darkerdepths.init.DDBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.entity.Entity;
@@ -18,6 +19,10 @@ public class ScorchedRemainsFullBlock extends Block {
     @Override
     public void stepOn(Level level, BlockPos pos, BlockState state, Entity entity) {
         super.stepOn(level, pos, state, entity);
+
+        if(level.getBlockState(pos.above()).is(DDBlocks.SCORCHED_REMAINS)) {
+            return;
+        }
 
         if(level.isClientSide) {
             var vec3 = entity.getDeltaMovement();
