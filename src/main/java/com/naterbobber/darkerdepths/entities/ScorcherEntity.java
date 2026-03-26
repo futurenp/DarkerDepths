@@ -16,6 +16,7 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.Difficulty;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -318,7 +319,12 @@ public class ScorcherEntity extends Mob implements GeoEntity {
     }
 
     private void applyFlashEffect() {
-        if (this.level().isClientSide || !this.isAlive() || !this.hasBeamTarget()) return;
+        if (this.level().isClientSide
+                || !this.isAlive()
+                || !this.hasBeamTarget()
+                || this.level().getDifficulty() == Difficulty.PEACEFUL) {
+            return;
+        }
 
         LivingEntity target = this.getBeamTarget();
         if (target instanceof Player player) {
@@ -341,7 +347,7 @@ public class ScorcherEntity extends Mob implements GeoEntity {
     }
 
     private void applyBeamPushback() {
-        if (!this.isAlive() || !this.hasBeamTarget()) return;
+        if (!this.isAlive() || !this.hasBeamTarget() || this.level().getDifficulty() == Difficulty.PEACEFUL) return;
 
         LivingEntity target = this.getBeamTarget();
         if (target == null) return;
@@ -462,7 +468,7 @@ public class ScorcherEntity extends Mob implements GeoEntity {
         private Vec3 lastKnownPos = null;
         private final TargetingConditions targetConditions = TargetingConditions.forNonCombat().range(48.0).ignoreLineOfSight().selector((entity) -> {
             if (entity instanceof Player player) {
-                return !player.isCreative() && !player.isSpectator();
+                return !player.isCreative() && !player.isSpectator() && player.level().getDifficulty() != Difficulty.PEACEFUL;
             }
             return true;
         });
@@ -500,7 +506,7 @@ public class ScorcherEntity extends Mob implements GeoEntity {
         }
 
         private boolean isValidTarget(ScorcherEntity entity, Player player) {
-            if (player == null || !player.isAlive() || player.isSpectator() || player.isCreative()) return false;
+            if (player == null || !player.isAlive() || player.isSpectator() || player.isCreative() || player.level().getDifficulty() == Difficulty.PEACEFUL) return false;
             if (entity.distanceToSqr(player) > 48 * 48) return false;
             return true;
         }
