@@ -268,6 +268,15 @@ public class DDRecipeProvider extends RecipeProvider {
                 .pattern("##")
                 .unlockedBy("has_log", has(DDBlocks.STRIPPED_PETRIFIED_LOG.get())).save(recipeOutput);
 
+        ShapedRecipeBuilder
+                .shaped(RecipeCategory.DECORATIONS, DDBlocks.MAGMA_PAD.get(), 4)
+                .define('D', DDBlocks.DARKSLATE.get())
+                .define('M', Blocks.MAGMA_BLOCK)
+                .pattern(" D ")
+                .pattern("DMD")
+                .pattern(" D ")
+                .unlockedBy("has_darkslate", has(DDBlocks.DARKSLATE.get())).save(recipeOutput);
+
         hangingSignBlock(recipeOutput, DDItems.PETRIFIED_HANGING_SIGN.get(), DDBlocks.STRIPPED_PETRIFIED_LOG.get().asItem(), Items.CHAIN);
         trimmedPlanksBlock(recipeOutput, DDBlocks.TRIMMED_PETRIFIED_PLANKS.asItem(), DDBlocks.PETRIFIED_PLANKS.asItem());
         bookshelfBlock(recipeOutput, DDBlocks.PETRIFIED_BOOKSHELF.asItem(), DDBlocks.PETRIFIED_PLANKS.asItem());

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "D": {
+      "item": "darkerdepths:darkslate"
+    },
+    "M": {
+      "item": "minecraft:magma_block"
+    }
+  },
+  "pattern": [
+    " D ",
+    "DMD",
+    " D "
+  ],
+  "result": {
+    "count": 4,
+    "id": "darkerdepths:magma_pad"
+  }
+}
