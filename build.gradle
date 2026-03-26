@@ -100,7 +100,7 @@ dependencies {
 
 //    compileOnly "maven.modrinth:no-mans-land:h56TqJQD"
 //    compileOnly "maven.modrinth:biolith:byVGeYWw"
-    runtimeOnly "maven.modrinth:no-mans-land:h56TqJQD"
+//    runtimeOnly "maven.modrinth:no-mans-land:h56TqJQD"
 //    runtimeOnly "maven.modrinth:biolith:byVGeYWw"
 }
 

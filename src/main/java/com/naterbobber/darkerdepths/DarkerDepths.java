@@ -1,5 +1,6 @@
 package com.naterbobber.darkerdepths;
 
+import com.naterbobber.darkerdepths.client.events.ClientEvents;
 import com.naterbobber.darkerdepths.compat.DDCompat;
 import com.naterbobber.darkerdepths.init.DDEnchantmentEffects;
 import com.naterbobber.darkerdepths.config.DDConfig;

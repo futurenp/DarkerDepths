@@ -1,8 +1,8 @@
 package com.naterbobber.darkerdepths.init;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
-import com.naterbobber.darkerdepths.worldgen.features.*;
-import com.naterbobber.darkerdepths.worldgen.features.config.*;
+import com.naterbobber.darkerdepths.worldgen.feature.config.*;
+import com.naterbobber.darkerdepths.worldgen.feature.features.*;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.LargeDripstoneConfiguration;

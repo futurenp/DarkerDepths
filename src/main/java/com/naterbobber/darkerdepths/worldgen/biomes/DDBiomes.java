@@ -39,7 +39,8 @@ public class DDBiomes {
         BiomeDefaultFeatures.addPlainGrass(biomeBuilder);
         BiomeDefaultFeatures.addDefaultOres(biomeBuilder);
         Music music = Musics.createGameMusic(SoundEvents.MUSIC_BIOME_DRIPSTONE_CAVES);
-        return biome(true, 0.5F, 0.5F, mobBuilder, biomeBuilder, music);
+        return biome(true, 0.5F, 0.5F, 4169409, 341062, 5478752, mobBuilder, biomeBuilder, music);
+
     }
 
     public static Biome createMoltenCavern(HolderGetter<PlacedFeature> holderGetter, HolderGetter<ConfiguredWorldCarver<?>> holderGetter1) {

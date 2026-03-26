@@ -2,11 +2,11 @@ package com.naterbobber.darkerdepths.init;
 
 import com.mojang.serialization.MapCodec;
 import com.naterbobber.darkerdepths.DarkerDepths;
-import com.naterbobber.darkerdepths.worldgen.processors.catacombs.CatacombsArchaeologyProcessor;
-import com.naterbobber.darkerdepths.worldgen.processors.catacombs.CatacombsBarrelProcessor;
-import com.naterbobber.darkerdepths.worldgen.processors.catacombs.TombProcessor;
-import com.naterbobber.darkerdepths.worldgen.processors.catacombs.VoidSoulKnightProcessor;
-import com.naterbobber.darkerdepths.worldgen.processors.rope_mines.RopeMinesArchaeologyProcessor;
+import com.naterbobber.darkerdepths.worldgen.structures.processors.catacombs.CatacombsArchaeologyProcessor;
+import com.naterbobber.darkerdepths.worldgen.structures.processors.catacombs.CatacombsBarrelProcessor;
+import com.naterbobber.darkerdepths.worldgen.structures.processors.catacombs.TombProcessor;
+import com.naterbobber.darkerdepths.worldgen.structures.processors.catacombs.VoidSoulKnightProcessor;
+import com.naterbobber.darkerdepths.worldgen.structures.processors.rope_mines.RopeMinesArchaeologyProcessor;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProcessor;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProcessorType;

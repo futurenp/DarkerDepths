@@ -3,9 +3,12 @@ package com.naterbobber.darkerdepths.block.generic;
 import com.naterbobber.darkerdepths.block.DDBlockStateProperties;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FireBlock;
 import net.minecraft.world.level.block.MagmaBlock;
 import net.minecraft.world.level.block.state.BlockState;
@@ -30,19 +33,23 @@ public interface HeatableBlock {
     default int getHighestNeighborHeat(LevelAccessor level, BlockPos pos) {
         int highestLevel = 0;
 
+        BlockPos.MutableBlockPos mutablePos = new BlockPos.MutableBlockPos();
+
         for (Direction direction : Direction.values()) {
-            BlockPos neighborPos = pos.relative(direction);
-            BlockState neighborState = level.getBlockState(neighborPos);
+            mutablePos.setWithOffset(pos, direction);
+            BlockState neighborState = level.getBlockState(mutablePos);
             int neighborHeatLevel = 0;
 
-            if (neighborState.getFluidState().is(FluidTags.LAVA)) {
-                neighborHeatLevel = 5;
-            } else if (neighborState.getBlock() instanceof MagmaBlock) {
-                neighborHeatLevel = 4;
-            } else if (neighborState.getBlock() instanceof FireBlock) {
-                neighborHeatLevel = 3;
-            } else if (neighborState.hasProperty(DDBlockStateProperties.HEAT_LEVEL)) {
+            if(neighborState.hasProperty(DDBlockStateProperties.HEAT_LEVEL)) {
                 neighborHeatLevel = neighborState.getValue(DDBlockStateProperties.HEAT_LEVEL);
+            } else if (neighborState.is(BlockTags.AIR)) {
+
+            } else if (neighborState.is(Blocks.MAGMA_BLOCK)) {
+                neighborHeatLevel = 4;
+            } else if (neighborState.getFluidState().is(FluidTags.LAVA)) {
+                return 5;
+            } else if (neighborState.is(Blocks.FIRE)) {
+                neighborHeatLevel = 3;
             }
 
             if (neighborHeatLevel > highestLevel) {

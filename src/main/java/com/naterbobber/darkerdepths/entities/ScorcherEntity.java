@@ -14,6 +14,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
@@ -59,8 +60,6 @@ public class ScorcherEntity extends Mob implements GeoEntity {
         this.xpReward = 25;
     }
 
-    // --- Core Entity Overrides ---
-
     @Override
     public boolean isNoGravity() { return true; }
 
@@ -85,14 +84,17 @@ public class ScorcherEntity extends Mob implements GeoEntity {
     @Override
     protected void clampHeadRotationToBody() {}
 
-    // --- Brain & AI ---
-
     @Override
     protected Brain.Provider<ScorcherEntity> brainProvider() {
         return Brain.provider(
                 ImmutableList.of(MemoryModuleType.ATTACK_TARGET),
                 ImmutableList.of(SensorType.NEAREST_PLAYERS)
         );
+    }
+
+    @Override
+    public SoundSource getSoundSource() {
+        return SoundSource.HOSTILE;
     }
 
     @Override
@@ -124,8 +126,6 @@ public class ScorcherEntity extends Mob implements GeoEntity {
         super.customServerAiStep();
     }
 
-    // --- Geckolib & Animations ---
-
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
         controllerRegistrar.add(new AnimationController<>(this, "baseController", 5, this::basePredicate));
@@ -143,8 +143,6 @@ public class ScorcherEntity extends Mob implements GeoEntity {
         return geoCache;
     }
 
-    // --- Data Syncing & Target Management ---
-
     @Override
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
         super.defineSynchedData(builder);
@@ -153,9 +151,6 @@ public class ScorcherEntity extends Mob implements GeoEntity {
         builder.define(DATA_TARGET_ID, 0);
     }
 
-    /**
-     * Unified method to safely start targeting a player and sync all related client data.
-     */
     public void setScorcherTarget(Player player) {
         if (this.getTarget() != player) {
             this.setTarget(player);
@@ -171,9 +166,6 @@ public class ScorcherEntity extends Mob implements GeoEntity {
         }
     }
 
-    /**
-     * Unified method to safely clear the target and clean up all synced client data.
-     */
     public void clearScorcherTarget() {
         if (this.getTarget() != null) {
             this.setTarget(null);
@@ -209,8 +201,6 @@ public class ScorcherEntity extends Mob implements GeoEntity {
         }
     }
 
-    // --- Logic & Ticking ---
-
     public static AttributeSupplier.Builder createAttributes() {
         return Mob.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 40.0D)
@@ -232,33 +222,26 @@ public class ScorcherEntity extends Mob implements GeoEntity {
 
     @Override
     public void die(DamageSource damageSource) {
-        // --- Existing Light Removal Logic ---
         var state = this.level().getBlockState(getOnPos().above());
         if(state.is(Blocks.LIGHT)) {
             this.level().setBlock(getOnPos().above(), Blocks.AIR.defaultBlockState(), 3);
         }
 
-        // --- NEW: Death Particles ---
         if (this.level() instanceof ServerLevel serverLevel) {
-            // Calculate the center of the entity
             double centerX = this.getX();
             double centerY = this.getY() + (this.getBbHeight() / 2.0);
             double centerZ = this.getZ();
 
-            // The spread based on the entity's size
             double spreadX = this.getBbWidth() / 4.0;
             double spreadY = this.getBbHeight() / 1.0;
             double spreadZ = this.getBbWidth() / 4.0;
 
-            // Big pop of flames
-            // Parameters: particle, x, y, z, count, deltaX, deltaY, deltaZ, speed
             serverLevel.sendParticles(ParticleTypes.FLAME,
                     centerX, centerY, centerZ,
-                    25, // Number of particles
+                    25,
                     spreadX, spreadY, spreadZ,
-                    0.1D); // Speed (gives them an outward burst)
+                    0.1D);
 
-            // A secondary pop of thick smoke for a better explosion effect
             serverLevel.sendParticles(ParticleTypes.LARGE_SMOKE,
                     centerX, centerY, centerZ,
                     25,
@@ -271,18 +254,10 @@ public class ScorcherEntity extends Mob implements GeoEntity {
 
     @Override
     public boolean hurt(DamageSource source, float amount) {
-        // Check if the damage is from a projectile (this covers normal arrows, tipped arrows, and spectral arrows)
         if (source.is(net.minecraft.tags.DamageTypeTags.IS_PROJECTILE)) {
-            // Reduce the damage by 50%
             amount *= 0.5F;
-
-            // Optional: Play a sound or spawn a particle here to indicate the arrow deflected/tinked off!
-            // if (!this.level().isClientSide) {
-            //     this.playSound(net.minecraft.sounds.SoundEvents.SHIELD_BLOCK, 1.0F, 1.2F);
-            // }
         }
 
-        // Pass the final damage amount to the super method to actually apply it
         return super.hurt(source, amount);
     }
 
@@ -308,23 +283,19 @@ public class ScorcherEntity extends Mob implements GeoEntity {
 
     @Override
     protected float getSoundVolume() {
-        return 3.5F;
+        return 3.25F;
     }
 
     @Override
     public void tick() {
         super.tick();
 
-        // --- Client & Server Shared Logic ---
         this.applyBeamPushback();
 
-        // --- Existing Server Logic ---
         if (!this.level().isClientSide()) {
 
-            // --- NEW: Apply Blindness if looked at directly ---
             this.applyFlashEffect();
 
-            // --- Targeting Sound (Plays at the Player's Location) ---
             if (this.isAlive() && this.hasBeamTarget()) {
                 LivingEntity target = this.getBeamTarget();
                 if (target != null && this.tickCount % 20 == 0) {
@@ -347,7 +318,6 @@ public class ScorcherEntity extends Mob implements GeoEntity {
     }
 
     private void applyFlashEffect() {
-        // Only the server can apply potion effects
         if (this.level().isClientSide || !this.isAlive() || !this.hasBeamTarget()) return;
 
         LivingEntity target = this.getBeamTarget();
@@ -358,19 +328,10 @@ public class ScorcherEntity extends Mob implements GeoEntity {
             double distance = toScorcher.length();
             toScorcher = toScorcher.normalize();
 
-            // Calculate the dot product.
-            // 1.0 means perfectly centered on the screen. -1.0 means looking exactly away.
             double dotProduct = playerLook.dot(toScorcher);
-
-            // We calculate a dynamic threshold based on distance.
-            // The closer they are, the wider the blinding angle becomes on their screen.
-            // (Using 0.1D makes the "hitbox" of the flash larger than an Enderman's aggro angle)
             double threshold = 1.0D - (0.1D / Math.max(distance, 1.0D));
 
             if (dotProduct > threshold && player.hasLineOfSight(this)) {
-                // Apply Blindness for 60 ticks (3 seconds).
-                // The booleans at the end hide the potion particles and the top-right icon
-                // so it feels like a natural physical effect rather than a magic spell.
                 player.addEffect(new net.minecraft.world.effect.MobEffectInstance(
                         net.minecraft.world.effect.MobEffects.BLINDNESS,
                         60, 0, false, false, false
@@ -380,7 +341,6 @@ public class ScorcherEntity extends Mob implements GeoEntity {
     }
 
     private void applyBeamPushback() {
-        // Exit early if dead or no target
         if (!this.isAlive() || !this.hasBeamTarget()) return;
 
         LivingEntity target = this.getBeamTarget();
@@ -388,29 +348,23 @@ public class ScorcherEntity extends Mob implements GeoEntity {
 
         double distSqr = this.distanceToSqr(target);
 
-        // --- Configuration Variables ---
-        double pushbackDistance = 32.0D; // Maximum range of the pushback
-        double innerDistance = 5.0D;     // Distance where pushback force maxes out
+        double pushbackDistance = 32.0D;
+        double innerDistance = 5.0D;
 
         if (distSqr <= pushbackDistance * pushbackDistance) {
             double dist = Math.sqrt(distSqr);
 
-            // Calculate the force multiplier (0.0 at 32 blocks, 1.0 at 5 blocks)
             double forceMultiplier = 1.0D;
             if (dist > innerDistance) {
                 forceMultiplier = (pushbackDistance - dist) / (pushbackDistance - innerDistance);
             }
 
-            // Max force is 0.055
             double currentForce = 0.055D * forceMultiplier;
 
-            // Get direction TOWARD the scorcher
             Vec3 dirToScorcher = this.position().subtract(target.position()).normalize();
 
-            // Push them backwards
             target.push(dirToScorcher.x * -currentForce, 0.0D, dirToScorcher.z * -currentForce);
 
-            // Sync to client if on the server
             if (!this.level().isClientSide) {
                 target.hasImpulse = true;
             }
@@ -450,8 +404,6 @@ public class ScorcherEntity extends Mob implements GeoEntity {
             }
         }
     }
-
-    // --- Behaviors ---
 
     static class ScorcherIdleLookBehavior extends Behavior<ScorcherEntity> {
         private float currentAngle;
@@ -531,18 +483,15 @@ public class ScorcherEntity extends Mob implements GeoEntity {
 
         @Override
         protected void tick(ServerLevel level, ScorcherEntity entity, long gameTime) {
-            // 1. Check if we need a new target
             if (!isValidTarget(entity, this.target)) {
                 findNewTarget(level, entity);
             }
 
-            // 2. If we STILL don't have a target, ensure state is cleared and stop ticking
             if (this.target == null) {
                 entity.clearScorcherTarget();
                 return;
             }
 
-            // 3. Process the active target
             if (hasForgivingLineOfSight(entity, this.target)) {
                 handleLineOfSight(entity);
             } else {
@@ -565,7 +514,7 @@ public class ScorcherEntity extends Mob implements GeoEntity {
             if (this.target != null && hasForgivingLineOfSight(entity, this.target)) {
                 entity.setScorcherTarget(this.target);
             } else {
-                this.target = null; // Don't hold onto a target we can't initially see
+                this.target = null;
                 entity.clearScorcherTarget();
             }
         }
@@ -575,28 +524,22 @@ public class ScorcherEntity extends Mob implements GeoEntity {
             this.losTicks++;
             this.lastKnownPos = this.target.getEyePosition();
 
-            // Ensure our entity knows it is actively targeting
             entity.setScorcherTarget(this.target);
 
-            // Handle head tracking
             float turnSpeed = entity.distanceToSqr(this.target) < 100.0 ? 120.0F : 30.0F;
             entity.getLookControl().setLookAt(this.target, turnSpeed, turnSpeed);
 
-            // Delegate combat logic
             this.applyBeamDamage(entity);
         }
 
         private void applyBeamDamage(ScorcherEntity entity) {
-            // Only apply damage once every second (20 ticks)
             if (this.losTicks % 20 != 0) return;
 
             int secondsInLos = this.losTicks / 20;
             float damage = secondsInLos - 1f;
 
-            // The first second gives a grace period, so damage is 0.
             if (damage <= 0) return;
 
-            // Ensure the beam pierces normal i-frames
             this.target.invulnerableTime = 0;
 
             if (this.target.isBlocking()) {
@@ -607,13 +550,10 @@ public class ScorcherEntity extends Mob implements GeoEntity {
                 net.minecraft.world.entity.EquipmentSlot slot = hand == net.minecraft.world.InteractionHand.MAIN_HAND ?
                         net.minecraft.world.entity.EquipmentSlot.MAINHAND : net.minecraft.world.entity.EquipmentSlot.OFFHAND;
 
-                // Damage the shield and trigger break events if it breaks
                 shield.hurtAndBreak(shieldDamage, this.target, slot);
 
-                // Play the block sound
                 this.target.level().playSound(null, this.target.blockPosition(), net.minecraft.sounds.SoundEvents.SHIELD_BLOCK, net.minecraft.sounds.SoundSource.PLAYERS, 1.0F, 0.8F + entity.getRandom().nextFloat() * 0.4F);
             } else {
-                // Not blocking, burn the player
                 this.target.hurt(entity.damageSources().onFire(), damage);
             }
         }
@@ -627,12 +567,9 @@ public class ScorcherEntity extends Mob implements GeoEntity {
             }
 
             if (this.losLostTicks > 20) {
-                // Time's up, grace period over. Drop the target entirely.
                 this.target = null;
                 entity.clearScorcherTarget();
             } else {
-                // Optional: Stop shaking during the 20-tick grace period, but keep target data.
-                // Alternatively, you can remove this to keep it shaking until it completely drops aggro.
                 entity.entityData.set(DATA_SHAKING, false);
             }
         }

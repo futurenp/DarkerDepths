@@ -1,5 +1,6 @@
 package com.naterbobber.darkerdepths.entities;
 
+import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.entities.goals.AttackMemoryTargetGoal;
 import com.naterbobber.darkerdepths.entities.control.ConfigurableMoveControl;
 import com.naterbobber.darkerdepths.init.DDSoundEvents;
@@ -12,6 +13,8 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -46,11 +49,15 @@ public class GlowshroomMonsterEntity extends Monster implements GeoEntity {
     protected static final RawAnimation IDLE = RawAnimation.begin().thenLoop("idle");
     protected static final RawAnimation ROAR = RawAnimation.begin().thenLoop("roar");
     protected static final RawAnimation WALK = RawAnimation.begin().thenLoop("move.walk");
+    protected static final RawAnimation RUN = RawAnimation.begin().thenLoop("move.run");
+
 
     private static final EntityDataAccessor<Boolean> ATTACKING =
             SynchedEntityData.defineId(GlowshroomMonsterEntity.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Integer> ATTACK_TICK =
             SynchedEntityData.defineId(GlowshroomMonsterEntity.class, EntityDataSerializers.INT);
+    private static final EntityDataAccessor<Boolean> HAS_TARGET =
+            SynchedEntityData.defineId(GlowshroomMonsterEntity.class, EntityDataSerializers.BOOLEAN);
 
 
     public GlowshroomMonsterEntity(EntityType<? extends Monster> type, Level world) {
@@ -66,7 +73,9 @@ public class GlowshroomMonsterEntity extends Monster implements GeoEntity {
                 .add(Attributes.ATTACK_KNOCKBACK, 2.0)
                 .add(Attributes.ATTACK_DAMAGE, 12)
                 .add(Attributes.KNOCKBACK_RESISTANCE, 0.75)
-                .add(Attributes.FOLLOW_RANGE, 32);
+                .add(Attributes.STEP_HEIGHT, 1.2)
+                .add(Attributes.FOLLOW_RANGE, 32)
+                .add(Attributes.WATER_MOVEMENT_EFFICIENCY, 1.5);
     }
 
     @Override
@@ -89,6 +98,16 @@ public class GlowshroomMonsterEntity extends Monster implements GeoEntity {
     public void aiStep() {
         super.aiStep();
 
+        if(level().isClientSide) {
+            return;
+        }
+
+        if (!this.level().isClientSide && this.isAlive() && this.tickCount % 20 == 0) {
+            this.heal(1.0F);
+        }
+
+        setHasTarget(getTarget() != null);
+
         if (this.getAttackTick() > 0) {
             this.setAttackTick(this.getAttackTick() - 1);
 
@@ -101,7 +120,9 @@ public class GlowshroomMonsterEntity extends Monster implements GeoEntity {
             this.damageDelay--;
         }
 
-        if(this.attackTarget == null) return;
+        if(this.attackTarget == null) {
+            return;
+        }
 
         if(!this.attackTarget.isAlive() || !this.isAlive()) {
             this.attackTarget = null;
@@ -111,7 +132,7 @@ public class GlowshroomMonsterEntity extends Monster implements GeoEntity {
         if(this.damageDelay == 0) {
             if (this.distanceToSqr(this.attackTarget) < 16) {
                 this.attackTarget.hurt(this.level().damageSources().mobAttack(this), (float) this.getAttributeValue(Attributes.ATTACK_DAMAGE));
-                this.playSound(SoundEvents.GENERIC_EXPLODE.value(), 1.0f, 1.5f);
+                this.playSound(SoundEvents.GENERIC_EXPLODE.value(), 1.6f, 1.5f);
             }
 
             this.attackTarget = null;
@@ -125,6 +146,11 @@ public class GlowshroomMonsterEntity extends Monster implements GeoEntity {
         } else {
             super.handleEntityEvent(id);
         }
+    }
+
+    @Override
+    public void heal(float healAmount) {
+        super.heal(healAmount);
     }
 
     @Override
@@ -199,11 +225,17 @@ public class GlowshroomMonsterEntity extends Monster implements GeoEntity {
     }
 
     protected <E extends GlowshroomMonsterEntity> PlayState predicate(final AnimationState<E> event) {
-        if (event.isMoving()) {
-            return event.setAndContinue(WALK);
+        if (!event.isMoving()) {
+            return event.setAndContinue(IDLE);
         }
 
-        return event.setAndContinue(IDLE);
+//        DarkerDepths.LOGGER.info(this.hasTarget());
+
+        if(this.hasTarget()) {
+            return event.setAndContinue(RUN);
+        } else {
+            return event.setAndContinue(WALK);
+        }
     }
 
     protected <E extends GlowshroomMonsterEntity> PlayState attackPredicate(final AnimationState<E> event) {
@@ -226,8 +258,9 @@ public class GlowshroomMonsterEntity extends Monster implements GeoEntity {
     @Override
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
         super.defineSynchedData(builder);
-        SynchedEntityData.Builder define = builder.define(ATTACKING, false);
+        builder.define(ATTACKING, false);
         builder.define(ATTACK_TICK, 0);
+        builder.define(HAS_TARGET, false);
     }
 
     public int getAttackTick() { return this.entityData.get(ATTACK_TICK); }
@@ -241,5 +274,13 @@ public class GlowshroomMonsterEntity extends Monster implements GeoEntity {
 
     public void setAttacking(boolean attacking) {
         this.entityData.set(ATTACKING, attacking);
+    }
+
+    public boolean hasTarget() {
+        return this.entityData.get(HAS_TARGET);
+    }
+
+    public void setHasTarget(boolean value) {
+        this.entityData.set(HAS_TARGET, value);
     }
 }
