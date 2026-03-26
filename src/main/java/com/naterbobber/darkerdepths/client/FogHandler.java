@@ -47,6 +47,12 @@ public class FogHandler {
                     return;
                 }
             }
+
+            if(player.hasEffect(MobEffects.BLINDNESS) || player.hasEffect(DDMobEffects.PARANOIA)) {
+                useBiomeFog = false;
+                return;
+            }
+
             useBiomeFog = true;
 
             float biomeStep = 1.0f / (BIOME_TRANSITION_SECONDS * ticks);
