@@ -1,4 +1,4 @@
-// 1.21.1	2026-03-25T23:22:05.6267948	Registries
+// 1.21.1	2026-03-25T23:47:12.5229964	Registries
 c4ee168e7bc25f3368a39009dc20c9876da3354f data/darkerdepths/damage_type/soul_binding_damage.json
 67449d45b04557a6ff85e2e4fb14a19e83a15a27 data/darkerdepths/enchantment/quick_dash.json
 efd3542a868f364e528e55ec4c13c3d5e8a423f0 data/darkerdepths/enchantment/swift_strike.json
@@ -73,7 +73,7 @@ caa6b34bb6a1fe1b005355d600635e46fb567bea data/darkerdepths/worldgen/placed_featu
 01b15be240f25be9ac1dd277fa7904baad665891 data/darkerdepths/worldgen/placed_feature/molten_pool.json
 4fab81584ac2c1c50a506a58f31e5a77bad14053 data/darkerdepths/worldgen/placed_feature/molten_spring.json
 d8047e494901c234916bdf2f11c409496bc38417 data/darkerdepths/worldgen/placed_feature/petrified_branch.json
-f93319b35bc9288b8fa1cf85dfaac37194ad6b1b data/darkerdepths/worldgen/placed_feature/petrified_roots.json
+ff768b5e859ab8f14c5982f8ed6935117d78698d data/darkerdepths/worldgen/placed_feature/petrified_roots.json
 3739fe9defbebca6f68045beed66421c9504f7ac data/darkerdepths/worldgen/placed_feature/scorcher_placer.json
 da095869b7c2ff406779eb355fcf1d4d2f701d87 data/darkerdepths/worldgen/processor_list/catacombs_processor.json
 433e6f0c26ccdb56935a73895a575606b80f1cc5 data/darkerdepths/worldgen/processor_list/rope_mines_processor.json

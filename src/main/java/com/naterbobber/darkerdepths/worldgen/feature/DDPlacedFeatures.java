@@ -1,5 +1,6 @@
 package com.naterbobber.darkerdepths.worldgen.feature;
 
+import com.naterbobber.darkerdepths.init.DDBlocks;
 import com.naterbobber.darkerdepths.util.DDResourceKeys;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderGetter;
@@ -44,14 +45,16 @@ public class DDPlacedFeatures {
         PlacementUtils.register(context, MOLTEN_SPRING, lookup.getOrThrow(DDResourceKeys.ConfiguredFeatures.MOLTEN_SPRING),
                 CountPlacement.of(20),
                 InSquarePlacement.spread(),
-                HeightRangePlacement.of(VeryBiasedToBottomHeight.of(VerticalAnchor.bottom(), VerticalAnchor.belowTop(32), 32)), BiomeFilter.biome());
+                HeightRangePlacement.of(VeryBiasedToBottomHeight.of(VerticalAnchor.bottom(), VerticalAnchor.belowTop(32), 32)),
+                BiomeFilter.biome());
 
         PlacementUtils.register(context, MOLTEN_POOL, lookup.getOrThrow(DDResourceKeys.ConfiguredFeatures.MOLTEN_POOL),
                 CountPlacement.of(60),
                 InSquarePlacement.spread(),
                 PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
                 EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.solid(), BlockPredicate.ONLY_IN_AIR_PREDICATE, 12),
-                RandomOffsetPlacement.vertical(ConstantInt.of(1)), BiomeFilter.biome());
+                RandomOffsetPlacement.vertical(ConstantInt.of(1)),
+                BiomeFilter.biome());
 
         PlacementUtils.register(context, LARGE_MOLTEN_PILLAR, lookup.getOrThrow(DDResourceKeys.ConfiguredFeatures.LARGE_MOLTEN_PILLAR),
                 CountPlacement.of(UniformInt.of(32, 64)),
@@ -65,7 +68,8 @@ public class DDPlacedFeatures {
                 PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT, RarityFilter.onAverageOnceEvery(12),
                 EnvironmentScanPlacement.scanningFor(Direction.DOWN,
                         BlockPredicate.solid(),
-                        BlockPredicate.ONLY_IN_AIR_PREDICATE, 32), BiomeFilter.biome()));
+                        BlockPredicate.ONLY_IN_AIR_PREDICATE, 32),
+                BiomeFilter.biome()));
 
         PlacementUtils.register(context, DARKSLATE_PLACEMENT, lookup.getOrThrow(DDResourceKeys.ConfiguredFeatures.DARKSLATE_PLACEMENT),
                 CountPlacement.of(0),
@@ -161,20 +165,29 @@ public class DDPlacedFeatures {
         PlacementUtils.register(context, DUSKROCK_STRIPE, lookup.getOrThrow(DDResourceKeys.ConfiguredFeatures.DUSKROCK_STRIPE),
                 CountPlacement.of(UniformInt.of(96, 128)),
                 InSquarePlacement.spread(),
-                HeightRangePlacement.uniform(VerticalAnchor.BOTTOM, VerticalAnchor.belowTop(16)), BiomeFilter.biome());
+                HeightRangePlacement.uniform(VerticalAnchor.BOTTOM, VerticalAnchor.belowTop(16)),
+                BiomeFilter.biome());
 
         PlacementUtils.register(context, GLIMMERING_VINES, lookup.getOrThrow(DDResourceKeys.ConfiguredFeatures.GLIMMERING_VINES),
                 CountPlacement.of(188),
                 InSquarePlacement.spread(),
                 PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
                 EnvironmentScanPlacement.scanningFor(Direction.UP, BlockPredicate.solid(), BlockPredicate.ONLY_IN_AIR_PREDICATE, 12),
-                RandomOffsetPlacement.vertical(ConstantInt.of(-1)), BiomeFilter.biome());
+                RandomOffsetPlacement.vertical(ConstantInt.of(-1)),
+                BiomeFilter.biome());
 
         PlacementUtils.register(context, PETRIFIED_ROOTS, lookup.getOrThrow(DDResourceKeys.ConfiguredFeatures.PETRIFIED_ROOTS),
                 CountPlacement.of(256),
                 InSquarePlacement.spread(),
                 PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
-                EnvironmentScanPlacement.scanningFor(Direction.UP, BlockPredicate.solid(), BlockPredicate.ONLY_IN_AIR_PREDICATE, 12),
-                RandomOffsetPlacement.vertical(ConstantInt.of(-1)), BiomeFilter.biome());
+                EnvironmentScanPlacement.scanningFor(Direction.UP, BlockPredicate.matchesBlocks(
+                        DDBlocks.DARKSLATE.get(),
+                        DDBlocks.ARIDROCK.get(),
+                        DDBlocks.DUSKROCK.get(),
+                        Blocks.PACKED_MUD,
+                        Blocks.TUFF),
+                        BlockPredicate.ONLY_IN_AIR_PREDICATE, 12),
+                RandomOffsetPlacement.vertical(ConstantInt.of(-1)),
+                BiomeFilter.biome());
     }
 }
