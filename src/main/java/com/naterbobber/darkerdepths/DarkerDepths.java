@@ -58,26 +58,30 @@ public class DarkerDepths {
 
     private void commonSetup(final FMLCommonSetupEvent event) {
         event.enqueueWork(DDVanillaIntegration::init);
+        determineWorldGenAPI(event);
+    }
 
+    private void determineWorldGenAPI(FMLCommonSetupEvent event) {
         boolean hasBiolith = ModList.get().isLoaded(DDCompat.BIOLITH.toString());
         boolean hasTerrablender = ModList.get().isLoaded(DDCompat.TERRABLENDER.toString());
+        boolean hasBoth = hasBiolith && hasTerrablender;
+        boolean hasNone = !hasBiolith && !hasTerrablender;
 
-        if (!hasBiolith && !hasTerrablender) {
+        if (hasNone) {
             throw new IllegalStateException("Missing Worldgen API! Install TerraBlender or Biolith.");
         }
 
-        if (DDConfig.CONFIG.PRIORITIZE_BIOLITH.get()) {
-            if (hasBiolith) {
-                safeInitBiolith(event);
-            } else {
-                safeInitTerrablender(event);
-            }
-        } else {
-            if (hasTerrablender) {
+        if (hasBoth) {
+            if(DDConfig.CONFIG.PRIORITIZE_TERRABLENDER.get()) {
                 safeInitTerrablender(event);
             } else {
                 safeInitBiolith(event);
             }
+        } else if(hasTerrablender) {
+            safeInitTerrablender(event);
+        }
+        else {
+            safeInitBiolith(event);
         }
     }
 

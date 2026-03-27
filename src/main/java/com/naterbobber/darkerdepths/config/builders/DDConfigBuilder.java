@@ -21,16 +21,16 @@ public class DDConfigBuilder {
     public final DDBiomeConfigBuilder SANDY_CATACOMBS_CLIMATE;
     public final DDBiomeConfigBuilder GLOWSHROOM_FOREST_CLIMATE;
     public final DDBiomeConfigBuilder MOLTEN_CAVERN_CLIMATE;
-    public final ModConfigSpec.BooleanValue PRIORITIZE_BIOLITH;
+    public final ModConfigSpec.BooleanValue PRIORITIZE_TERRABLENDER;
     public final ModConfigSpec.BooleanValue USE_DEFAULTS_TERRABLENDER;
     public final ModConfigSpec.IntValue OVERWORLD_BIOME_WEIGHT_TERRABLENDER;
 
     public DDConfigBuilder(ModConfigSpec.Builder builder) {
         builder.push("Biome Provider");
-        PRIORITIZE_BIOLITH = builder
-                .comment("If Terrablender and Biolith are installed at the same time, Biolith is used by default. Set this to false to use Terrablender.")
+        PRIORITIZE_TERRABLENDER = builder
+                .comment("If Terrablender and Biolith are installed at the same time, Terrablender is used by default. Set this to false to use Biolith.")
                 .comment("If only one is installed, Darker Depths will use whichever is available.")
-                .define("prioritize_biolith", true);
+                .define("prioritize_terrablender", true);
         builder.pop();
 
         builder.push("Biome Parameters");
