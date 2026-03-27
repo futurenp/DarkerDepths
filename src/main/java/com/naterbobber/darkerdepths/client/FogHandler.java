@@ -83,8 +83,8 @@ public class FogHandler {
             var currentBiome = player.level().getBiome(player.getOnPos());
 
             for(var biome : BIOME_FOG_LIST) {
-                boolean isInBiome = currentBiome.is(biome.getBiome());
-                biome.setWeight(Math.max(0.0f, Math.min(1.0f, biome.getWeight() + (isInBiome ? biomeStep : -biomeStep))));
+                boolean isInBiome = currentBiome.is(biome.biomeKey);
+                biome.weight = Math.max(0.0f, Math.min(1.0f, biome.weight + (isInBiome ? biomeStep : -biomeStep)));
             }
         } else {
             resetFog();
@@ -93,7 +93,7 @@ public class FogHandler {
 
     private static void resetFog(){
         for(var biome : BIOME_FOG_LIST) {
-            biome.resetWeight();
+            biome.weight = 0;
         }
     }
 
@@ -179,7 +179,7 @@ public class FogHandler {
     private static float getTotalBiomeWeight() {
         float total = 0;
         for(var biome : BIOME_FOG_LIST) {
-            total += biome.getWeight();
+            total += biome.weight;
         }
 
         return total;
@@ -257,14 +257,14 @@ public class FogHandler {
     }
 
     private static class BiomeFog {
-        private final ResourceKey<Biome> biome;
+        private final ResourceKey<Biome> biomeKey;
         private Color color;
         private float weight;
         private int minDist;
         private int maxDist;
 
         public BiomeFog(ResourceKey<Biome> biome, Color color, int minDist, int maxDist) {
-            this.biome = biome;
+            this.biomeKey = biome;
             this.color = color;
             this.minDist = minDist;
             this.maxDist = maxDist;
@@ -272,22 +272,6 @@ public class FogHandler {
 
         public Color getWeightedColors() {
             return Color.ofRGB(color.getRedFloat() * weight, color.getGreen() * weight, color.getBlueFloat() * weight);
-        }
-
-        public void resetWeight() {
-            weight = 0;
-        }
-
-        public void setWeight(float weight) {
-            this.weight = weight;
-        }
-
-        public float getWeight() {
-            return weight;
-        }
-
-        public ResourceKey<Biome> getBiome() {
-            return biome;
         }
 
         public float getWeightedMin() {
