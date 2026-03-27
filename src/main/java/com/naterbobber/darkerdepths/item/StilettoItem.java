@@ -107,8 +107,8 @@ public class StilettoItem extends SwordItem {
 
     @Override
     public boolean supportsEnchantment(ItemStack stack, Holder<Enchantment> enchantment) {
-        if(stack.is(DDItems.STILETTO.asItem())) {
-            return !enchantment.is(Enchantments.SWEEPING_EDGE);
+        if((stack.is(DDItems.STILETTO.asItem())) && enchantment.is(Enchantments.SWEEPING_EDGE)) {
+            return false;
         }
 
         return super.supportsEnchantment(stack, enchantment);
