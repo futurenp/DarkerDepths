@@ -1,6 +1,7 @@
 package com.naterbobber.darkerdepths.block.generic;
 
 import com.naterbobber.darkerdepths.block.DDBlockStateProperties;
+import com.naterbobber.darkerdepths.init.DDBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.BlockTags;
@@ -50,6 +51,8 @@ public interface HeatableBlock {
                 return 5;
             } else if (neighborState.is(Blocks.FIRE)) {
                 neighborHeatLevel = 3;
+            } else if (neighborState.is(DDBlocks.SCORCHER_LIGHT_BLOCK.get())) {
+                neighborHeatLevel = 4;
             }
 
             if (neighborHeatLevel > highestLevel) {

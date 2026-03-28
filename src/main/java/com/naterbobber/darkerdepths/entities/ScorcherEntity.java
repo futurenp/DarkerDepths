@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
 import com.mojang.serialization.Dynamic;
 import com.naterbobber.darkerdepths.DarkerDepths;
+import com.naterbobber.darkerdepths.init.DDBlocks;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.game.ClientboundSetEntityMotionPacket;
@@ -52,7 +53,7 @@ public class ScorcherEntity extends Mob implements GeoEntity {
     private static final EntityDataAccessor<Integer> DATA_TARGET_ID = SynchedEntityData.defineId(ScorcherEntity.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Boolean> DATA_SHAKING = SynchedEntityData.defineId(ScorcherEntity.class, EntityDataSerializers.BOOLEAN);
 
-    protected static final RawAnimation SHAKE_ANIM = RawAnimation.begin().thenLoop("shake");
+    protected static final RawAnimation SHAKE_ANIM = RawAnimation.begin().thenLoop("attack");
     protected static final RawAnimation IDLE_ANIM = RawAnimation.begin().thenLoop("idle");
 
     public ScorcherEntity(EntityType<? extends Mob> entityType, Level level) {
@@ -224,7 +225,7 @@ public class ScorcherEntity extends Mob implements GeoEntity {
     @Override
     public void die(DamageSource damageSource) {
         var state = this.level().getBlockState(getOnPos().above());
-        if(state.is(Blocks.LIGHT)) {
+        if(state.is(DDBlocks.SCORCHER_LIGHT_BLOCK.get())) {
             this.level().setBlock(getOnPos().above(), Blocks.AIR.defaultBlockState(), 3);
         }
 
@@ -311,8 +312,8 @@ public class ScorcherEntity extends Mob implements GeoEntity {
             }
 
             var state = this.level().getBlockState(getOnPos().above());
-            if((state.is(BlockTags.REPLACEABLE) || state.is(BlockTags.AIR) && !state.is(Blocks.LIGHT)) && this.isAlive()) {
-                var lightState = Blocks.LIGHT.defaultBlockState().setValue(BlockStateProperties.LEVEL, 10);
+            if((state.is(BlockTags.REPLACEABLE) || state.is(BlockTags.AIR) && !state.is(DDBlocks.SCORCHER_LIGHT_BLOCK.get())) && this.isAlive()) {
+                var lightState = DDBlocks.SCORCHER_LIGHT_BLOCK.get().defaultBlockState().setValue(BlockStateProperties.LEVEL, 10);
                 this.level().setBlock(getOnPos().above(), lightState, 3);
             }
         }

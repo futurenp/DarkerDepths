@@ -264,6 +264,8 @@ public class DDBlocks {
     public static final DeferredBlock<AshBlock> ASH = registerTooltipBlock("ash",
             () -> new AshBlock(blockProperties(0.1f, SoundType.SNOW, true).mapColor(MapColor.COLOR_BLACK).randomTicks()),
             List.of(Component.translatable("tooltip.darkerdepths.legacy.shift_desc").withStyle(ChatFormatting.RED)));
+    public static final DeferredBlock<ScorcherLightBlock> SCORCHER_LIGHT_BLOCK = registerNoTabBlock("scorcher_light_block",
+            () -> new ScorcherLightBlock(Block.Properties.ofFullCopy(Blocks.LIGHT)));
 
 
     public static final DeferredBlock<GrimestoneBlock> GRIMESTONE = registerBlock("grimestone",
@@ -326,6 +328,8 @@ public class DDBlocks {
             () -> new GlowshroomLanternBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LANTERN)));
     public static final DeferredBlock<RopeBlock> ROPE = registerNoTabBlock("rope",
             () -> new RopeBlock(blockProperties(0.1f, SoundType.WOOL, false)));
+
+
     public static final DeferredBlock<MobPlacerBlock> MOB_PLACER = registerNoTabBlock("mob_placer",
             () -> new MobPlacerBlock(Block.Properties.ofFullCopy(Blocks.BEDROCK)));
 
