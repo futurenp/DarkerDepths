@@ -1,6 +1,7 @@
 package com.naterbobber.darkerdepths.client;
 
 import com.mojang.blaze3d.shaders.FogShape;
+import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.config.DDConfig;
 import com.naterbobber.darkerdepths.init.DDItems;
 import com.naterbobber.darkerdepths.init.DDMobEffects;
@@ -32,22 +33,22 @@ public class FogHandler {
             DDConfig.CONFIG.MOLTEN_CAVERN_FOG_MAX.get()
     );
     private static final BiomeFog SANDY_CATACOMBS = new BiomeFog(
-            DDResourceKeys.Biomes.MOLTEN_CAVERN,
+            DDResourceKeys.Biomes.SANDY_CATACOMBS,
             Color.ofRGB(0.22F, 0.13F, 0.10F),
-            DDConfig.CONFIG.MOLTEN_CAVERN_FOG_MIN.get(),
-            DDConfig.CONFIG.MOLTEN_CAVERN_FOG_MAX.get()
+            DDConfig.CONFIG.SANDY_CATACOMBS_FOG_MIN.get(),
+            DDConfig.CONFIG.SANDY_CATACOMBS_FOG_MAX.get()
     );
-    private static final BiomeFog GLOWSHROOM_CAVERN = new BiomeFog(
-            DDResourceKeys.Biomes.MOLTEN_CAVERN,
+    private static final BiomeFog GLOWSHROOM_FOREST = new BiomeFog(
+            DDResourceKeys.Biomes.GLOWSHROOM_FOREST,
             Color.ofRGB(0.16F, 0.34F, 0.24F),
-            DDConfig.CONFIG.MOLTEN_CAVERN_FOG_MIN.get(),
-            DDConfig.CONFIG.MOLTEN_CAVERN_FOG_MAX.get()
+            DDConfig.CONFIG.GLOWSHROOM_FOREST_FOG_MIN.get(),
+            DDConfig.CONFIG.GLOWSHROOM_FOREST_FOG_MAX.get()
     );
 
     private static final List<BiomeFog> BIOME_FOG_LIST = List.of(
             MOLTEN_CAVERN,
             SANDY_CATACOMBS,
-            GLOWSHROOM_CAVERN
+            GLOWSHROOM_FOREST
     );
 
     public static void onClientTick() {
@@ -110,8 +111,8 @@ public class FogHandler {
                 float invWeight = Math.max(0.0f, 1.0f - Math.min(1.0f, totalWeight));
 
                 float r = red * invWeight;
-                float b = red * invWeight;
-                float g = red * invWeight;
+                float b = blue * invWeight;
+                float g = green * invWeight;
                 for(var biome : BIOME_FOG_LIST) {
                     var color = biome.getWeightedColors();
                     r += color.getRedFloat();
@@ -271,7 +272,7 @@ public class FogHandler {
         }
 
         public Color getWeightedColors() {
-            return Color.ofRGB(color.getRedFloat() * weight, color.getGreen() * weight, color.getBlueFloat() * weight);
+            return Color.ofRGB(color.getRedFloat() * weight, color.getGreenFloat() * weight, color.getBlueFloat() * weight);
         }
 
         public float getWeightedMin() {
