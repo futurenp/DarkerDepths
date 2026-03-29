@@ -1,18 +1,19 @@
 {
-  "type": "minecraft:crafting_shaped",
+  "type": "minecraft:crafting_shapeless",
   "category": "misc",
-  "key": {
-    "C": {
+  "ingredients": [
+    {
+      "item": "minecraft:rotten_flesh"
+    },
+    {
       "item": "minecraft:charcoal"
     },
-    "F": {
+    {
       "item": "minecraft:rotten_flesh"
+    },
+    {
+      "item": "minecraft:charcoal"
     }
-  },
-  "pattern": [
-    "FCF",
-    "CFC",
-    "FCF"
   ],
   "result": {
     "count": 1,

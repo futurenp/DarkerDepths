@@ -1,4 +1,4 @@
-// 1.21.1	2026-03-25T22:59:26.1596658	Recipes
+// 1.21.1	2026-03-29T15:12:28.727368	Recipes
 ff652785d115346aa01ab81d44c9f51938866bf2 data/darkerdepths/advancement/recipes/building_blocks/amber_block.json
 cf7d05ffc420cbc56873b963aa0557fecedfece0 data/darkerdepths/advancement/recipes/building_blocks/aridrock.json
 c1536e97e0649b6e1840acf866746bdfa27c6455 data/darkerdepths/advancement/recipes/building_blocks/aridrock_bricks.json
@@ -372,7 +372,7 @@ e7249ee0c9db6081dd840c743474dfd5e21eb9a6 data/darkerdepths/recipe/polished_duskr
 5fdd33923be65c47c84234006381d7d7e08b3d77 data/darkerdepths/recipe/porous_petrified_log.json
 6d1e54c5cb5976b3ebbc14f191fc4b59e097a959 data/darkerdepths/recipe/rope.json
 0989febd1e80595d098f84c275571178378c186d data/darkerdepths/recipe/scorched_remains.json
-6f198bdc76186c6eb213804647d5c9f4c10389be data/darkerdepths/recipe/scorched_remains_block.json
+c9894f9e2d341d0bfb1ac1338bb817737920c921 data/darkerdepths/recipe/scorched_remains_block.json
 0a23a093fa2751af72be76fa1c2a6902fe533fb6 data/darkerdepths/recipe/skull_wall.json
 c53a1504e66a718ae30d2b4012abc24d402a1233 data/darkerdepths/recipe/slime_ball_from_glow_grime.json
 41387baa27a5d3d5f5500673d63ae1718c81e622 data/darkerdepths/recipe/stiletto.json

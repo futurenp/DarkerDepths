@@ -330,16 +330,15 @@ public class DDRecipeProvider extends RecipeProvider {
                 .requires(Items.ROTTEN_FLESH)
                 .requires(Items.CHARCOAL)
                 .unlockedBy("has_rotten_flesh", has(Items.ROTTEN_FLESH))
-                .save(recipeOutput,DarkerDepths.id("scorched_remains"));
+                .save(recipeOutput);
 
-        ShapedRecipeBuilder
-                .shaped(RecipeCategory.MISC, DDBlocks.SCORCHED_REMAINS_BLOCK.get(), 1)
-                .define('F', Items.ROTTEN_FLESH)
-                .define('C', Items.CHARCOAL)
-                .pattern("FCF")
-                .pattern("CFC")
-                .pattern("FCF")
-                .unlockedBy("has_rotten_flesh", has(Items.ROTTEN_FLESH)).save(recipeOutput);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, DDBlocks.SCORCHED_REMAINS_BLOCK.get())
+                .requires(Items.ROTTEN_FLESH)
+                .requires(Items.CHARCOAL)
+                .requires(Items.ROTTEN_FLESH)
+                .requires(Items.CHARCOAL)
+                .unlockedBy("has_rotten_flesh", has(Items.ROTTEN_FLESH))
+                .save(recipeOutput);
 
         stonecutterResultFromBase(recipeOutput, DDBlocks.DARKSLATE_STAIRS.get(), DDBlocks.DARKSLATE.get());
         stonecutterResultFromBase(recipeOutput, DDBlocks.ARIDROCK_STAIRS.get(), DDBlocks.ARIDROCK.get());

@@ -76,7 +76,8 @@ public class DDBlockStateProvider extends BlockStateProvider {
                 DDBlocks.GLOWSHROOM_LANTERN,
                 DDBlocks.MOB_PLACER,
                 DDBlocks.MOSSY_GRIMESTONE,
-                DDBlocks.GLOWSHROOM_LAMP
+                DDBlocks.GLOWSHROOM_LAMP,
+                DDBlocks.SCORCHER_LIGHT_BLOCK
         );
 
         skipItem(DDItems.STILETTO,

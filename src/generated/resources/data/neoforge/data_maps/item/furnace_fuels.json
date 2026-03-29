@@ -1,0 +1,10 @@
+{
+  "values": {
+    "darkerdepths:scorched_remains": {
+      "burn_time": 2000
+    },
+    "darkerdepths:scorched_remains_block": {
+      "burn_time": 4800
+    }
+  }
+}

@@ -38,6 +38,7 @@ public class DDDataGenerator {
 
         dataGenerator.addProvider(server, new DDAdvancementProvider(packOutput, registryLookup, existingFileHelper));
         dataGenerator.addProvider(server, new DDRecipeProvider(packOutput, registryLookup));
+        dataGenerator.addProvider(server, new DDDataMapProvider(packOutput, registryLookup));
         dataGenerator.addProvider(server, new DDLootTableProvider(packOutput, registryLookup));
 
         DDBlockTagsProvider blockTagsProvider = dataGenerator.addProvider(server, new DDBlockTagsProvider(packOutput, registryLookup, existingFileHelper));
