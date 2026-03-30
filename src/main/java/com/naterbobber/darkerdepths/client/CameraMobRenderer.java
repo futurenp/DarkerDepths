@@ -1,100 +1,127 @@
 package com.naterbobber.darkerdepths.client;
 
+import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.naterbobber.darkerdepths.DarkerDepths;
+import com.naterbobber.darkerdepths.client.fog.modifiers.ScorcherFlashModifier;
 import com.naterbobber.darkerdepths.entities.ScorcherEntity;
-import com.naterbobber.darkerdepths.entities.StatelessScorcherEntity;
 import com.naterbobber.darkerdepths.init.DDEntityTypes;
-import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.Pose;
-import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.RenderLevelStageEvent;
+import org.lwjgl.opengl.GL11;
 
-// We use the GAME bus for in-game render events, restricted strictly to the physical client
 @EventBusSubscriber(modid = DarkerDepths.MOD_ID, value = Dist.CLIENT)
 public class CameraMobRenderer {
 
-    // Cache the dummy entity so we don't create a new one every single frame
-    private static StatelessScorcherEntity dummyZombie;
+    private static ScorcherEntity scorcher;
+    private static boolean wasFlashedLastFrame = false;
 
     @SubscribeEvent
     public static void onRenderLevel(RenderLevelStageEvent event) {
-        // We only want to draw our dummy after the real world entities are drawn
-        if (event.getStage() != RenderLevelStageEvent.Stage.AFTER_ENTITIES) return;
+        if (event.getStage() != RenderLevelStageEvent.Stage.AFTER_LEVEL) return;
 
         Minecraft mc = Minecraft.getInstance();
-        if (mc.level == null || mc.player == null) return;
-
-        // 1. Initialize the dummy entity once
-        if (dummyZombie == null) {
-            dummyZombie = DDEntityTypes.STATELESS_SCORCHER.get().create(mc.level);
+        if (mc.level == null || mc.player == null || !mc.player.isAlive() || !ScorcherFlashModifier.isFlashed()) {
+            if (scorcher != null) {
+                scorcher = null;
+                wasFlashedLastFrame = false;
+            }
+            return;
         }
 
-        PoseStack poseStack = event.getPoseStack();
-        Camera camera = event.getCamera();
-        Vec3 cameraPos = camera.getPosition();
+        if (scorcher == null) {
+            scorcher = DDEntityTypes.SCORCHER.get().create(mc.level);
+            if (scorcher != null) {
+                scorcher.setId(999999);
+                scorcher.triggerAnim("shake_controller", "attack");
+                wasFlashedLastFrame = true;
+            }
+        }
 
-        // 2. Position the mob
-        // Get the direction the camera is looking, scale it by 3 blocks, and add it to the camera's world position
-// Convert the JOML Vector3f to a Minecraft Vec3, then scale it!
-        Vec3 forwardVector = new Vec3(camera.getLookVector()).scale(3.0);
-        Vec3 targetWorldPos = cameraPos.add(forwardVector);
+        if(scorcher == null) {
+            return;
+        }
 
-        // Minecraft's PoseStack during this event is already centered at the camera's exact coordinates.
-        // Therefore, the coordinates we pass to the renderer must be relative to the camera, not absolute world coordinates.
-        double renderX = targetWorldPos.x - cameraPos.x;
-        double renderY = targetWorldPos.y - cameraPos.y;
-        double renderZ = targetWorldPos.z - cameraPos.z;
+        Vec3 camPos = event.getCamera().getPosition();
+        scorcher.setPos(camPos.x, camPos.y, camPos.z);
+        scorcher.xo = camPos.x;
+        scorcher.yo = camPos.y;
+        scorcher.zo = camPos.z;
 
-        float partialTick = event.getPartialTick().getGameTimeDeltaTicks();
+        float fixedYaw = 180f;
+        scorcher.setYRot(fixedYaw);
+        scorcher.yRotO = fixedYaw;
+        scorcher.setXRot(0);
+        scorcher.xRotO = 0;
+        scorcher.yHeadRot = fixedYaw;
+        scorcher.yHeadRotO = fixedYaw;
+        scorcher.yBodyRot = fixedYaw;
+        scorcher.yBodyRotO = fixedYaw;
 
-        float targetYaw = camera.getYRot() + 180f; // Face the camera
-        float targetPitch = -camera.getXRot();
-        // 3. Make the dummy look back at the camera
-        dummyZombie.setYRot(targetYaw);
-        dummyZombie.setXRot(targetPitch);
-        dummyZombie.yHeadRot = targetYaw;
-        dummyZombie.yBodyRot = targetYaw;
+        scorcher.tickCount = mc.player.tickCount;
 
-// 3. Set the PREVIOUS tick rotations (This is the magic fix!)
-        dummyZombie.yRotO = targetYaw;
-        dummyZombie.xRotO = targetPitch;
-        dummyZombie.yHeadRotO = targetYaw;
-        dummyZombie.yBodyRotO = targetYaw;
-
-//        DarkerDepths.LOGGER.info(camera.getYRot() + " " + camera.getXRot() + " " + camera.getRoll());
-
-        // Update its internal position (important for lighting/culling math internally)
-        dummyZombie.setPos(targetWorldPos.x, targetWorldPos.y, targetWorldPos.z);
-        dummyZombie.triggerAnim("shake_controller", "shake");
-
-        // 4. Render the Entity
         EntityRenderDispatcher dispatcher = mc.getEntityRenderDispatcher();
         MultiBufferSource.BufferSource bufferSource = mc.renderBuffers().bufferSource();
 
-        // We use LightTexture.FULL_BRIGHT here to make it glow in the dark.
-        // If you want it to match the environment's shadows, use: dispatcher.getPackedLightCoords(dummyZombie, event.getPartialTick().getGameTimeDeltaTicks())
-        int light = LightTexture.FULL_BRIGHT;
+        float pTick = mc.getTimer().getGameTimeDeltaPartialTick(true);
+
+        int remaining = ScorcherFlashModifier.getTicksRemaining();
+        int maxTime = ScorcherFlashModifier.getMaxTicks();
+        float elapsedTicks = (maxTime - remaining) + pTick;
+        float zTranslation = calculateZTranslation(elapsedTicks, maxTime);
+
+        PoseStack screenStack = new PoseStack();
+        screenStack.translate(0.0, -0.5, zTranslation);
+
+        bufferSource.endBatch();
+        RenderSystem.clear(GL11.GL_DEPTH_BUFFER_BIT, Minecraft.ON_OSX);
 
         dispatcher.render(
-                dummyZombie,
-                renderX,
-                renderY - 1.5,
-                renderZ,
-                0F,
-                partialTick, // Use the real partial tick here!
-                poseStack,
+                scorcher,
+                0.0,
+                0.0,
+                0.0,
+                fixedYaw,
+                pTick,
+                screenStack,
                 bufferSource,
                 LightTexture.FULL_BRIGHT
         );
+
+        bufferSource.endBatch();
+    }
+
+    private static float calculateZTranslation(float time, float maxTime) {
+        if (maxTime < 20) return -1.5f;
+
+        float rushInDuration = 8.0f;
+        float settleDuration = 8.0f;
+        float jumpScareDuration = 6.0f;
+
+        if (time < rushInDuration) {
+            float t = time / rushInDuration;
+            float ease = 1.0f - (float)Math.pow(1.0f - t, 3);
+            return -60.0f + (59.0f * ease);
+        }
+        else if (time < rushInDuration + settleDuration) {
+            float t = (time - rushInDuration) / settleDuration;
+            float ease = t * t * (3.0f - 2.0f * t);
+            return -1.0f - (0.5f * ease);
+        }
+        else if (time < maxTime - jumpScareDuration) {
+            return -1.5f;
+        }
+        else {
+            float t = (time - (maxTime - jumpScareDuration)) / jumpScareDuration;
+            float ease = t * t * t;
+            return -1.5f + (3.5f * ease);
+        }
     }
 }

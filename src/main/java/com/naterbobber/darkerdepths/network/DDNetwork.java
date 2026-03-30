@@ -1,6 +1,7 @@
 package com.naterbobber.darkerdepths.network;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
+import com.naterbobber.darkerdepths.client.fog.modifiers.ScorcherFlashModifier;
 import com.naterbobber.darkerdepths.network.SendDeathAnchorPacket;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -19,6 +20,15 @@ public class DDNetwork {
                 SendDeathAnchorPacket.TYPE,
                 SendDeathAnchorPacket.CODEC,
                 SendDeathAnchorPacket::handle
+        );
+        registrar.playToClient(
+                ScorcherFlashPacket.TYPE,
+                ScorcherFlashPacket.STREAM_CODEC,
+                (payload, context) -> {
+                    context.enqueueWork(() -> {
+                        ScorcherFlashModifier.triggerFlash(payload.durationTicks());
+                    });
+                }
         );
     }
 }

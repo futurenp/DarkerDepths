@@ -4,7 +4,9 @@ import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
 import com.mojang.serialization.Dynamic;
 import com.naterbobber.darkerdepths.DarkerDepths;
+import com.naterbobber.darkerdepths.client.fog.modifiers.ScorcherFlashModifier;
 import com.naterbobber.darkerdepths.init.DDBlocks;
+import com.naterbobber.darkerdepths.network.ScorcherFlashPacket;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.game.ClientboundSetEntityMotionPacket;
@@ -39,6 +41,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.fluids.FluidType;
+import net.neoforged.neoforge.network.PacketDistributor;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.animation.*;
@@ -132,7 +135,7 @@ public class ScorcherEntity extends Mob implements GeoEntity {
     public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
         controllerRegistrar.add(new AnimationController<>(this, "baseController", 5, this::basePredicate));
         controllerRegistrar.add(new AnimationController<>(this, "shake_controller", state -> PlayState.STOP)
-                .triggerableAnim("shake", SHAKE_ANIM));
+                .triggerableAnim("attack", SHAKE_ANIM));
     }
 
     protected <E extends ScorcherEntity> PlayState basePredicate(final AnimationState<E> event) {
@@ -326,11 +329,19 @@ public class ScorcherEntity extends Mob implements GeoEntity {
         if (this.level().isClientSide
                 || !this.isAlive()
                 || !this.hasBeamTarget()
-                || this.level().getDifficulty() == Difficulty.PEACEFUL) {
+                || this.level().getDifficulty() == Difficulty.PEACEFUL
+                || ScorcherFlashModifier.isFlashed()) {
             return;
         }
 
         LivingEntity target = this.getBeamTarget();
+
+        if(target != null) {
+            if(distanceToSqr(target) < 7 * 7) {
+                return;
+            }
+        }
+
         if (target instanceof Player player) {
             Vec3 playerLook = player.getViewVector(1.0F).normalize();
             Vec3 toScorcher = this.getEyePosition().subtract(player.getEyePosition());
@@ -342,10 +353,14 @@ public class ScorcherEntity extends Mob implements GeoEntity {
             double threshold = 1.0D - (0.1D / Math.max(distance, 1.0D));
 
             if (dotProduct > threshold && player.hasLineOfSight(this)) {
-                player.addEffect(new net.minecraft.world.effect.MobEffectInstance(
-                        net.minecraft.world.effect.MobEffects.BLINDNESS,
-                        60, 0, false, false, false
-                ));
+
+                if (player instanceof ServerPlayer serverPlayer) {
+                    PacketDistributor.sendToPlayer(
+                            serverPlayer,
+                            new ScorcherFlashPacket(40)
+                    );
+                }
+
             }
         }
     }
