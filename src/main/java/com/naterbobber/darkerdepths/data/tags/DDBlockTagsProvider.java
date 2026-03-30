@@ -196,7 +196,8 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
                         DDBlocks.GLOWSPURS.get(),
                         DDBlocks.GLIMMERING_VINES.get(),
                         DDBlocks.GLIMMERING_VINE_PLANT.get(),
-                        DDBlocks.DRY_SPROUTS.get()
+                        DDBlocks.DRY_SPROUTS.get(),
+                        DDBlocks.SCORCHER_LIGHT_BLOCK.get()
                 )
                 .addTag(BlockTags.WOOL_CARPETS)
                 .addTag(BlockTags.ALL_SIGNS)
@@ -233,7 +234,8 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
                 DDBlocks.GRIMESTONE.get(),
                 DDBlocks.ARIDROCK.get(),
                 DDBlocks.DUSKROCK.get(),
-                Blocks.PACKED_MUD
+                Blocks.PACKED_MUD,
+                DDBlocks.MOSSY_GRIMESTONE.get()
         );
 
         this.tag(DDTags.Blocks.CATACOMBS_STRIPE_REPLACEABLE).add(
@@ -251,7 +253,9 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
                 DDBlocks.DUSKROCK.get(),
                 DDBlocks.ARID_DEEPSLATE.get(),
                 Blocks.PACKED_MUD,
-                Blocks.MAGMA_BLOCK
+                Blocks.MAGMA_BLOCK,
+                DDBlocks.GRIMESTONE.get(),
+                DDBlocks.MOSSY_GRIMESTONE.get()
         );
 
         this.tag(DDTags.Blocks.ARID_GROUND).add(
@@ -260,14 +264,10 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
                 Blocks.PACKED_MUD
         );
 
-        //Has issues for cross-deepslate generation
-        //Unless that was just isolated to single-biome worlds
-//        this.tag(BlockTags.STONE_ORE_REPLACEABLES).add(
-//                DDBlocks.DARKSLATE.get(),
-//                DDBlocks.GRIMESTONE.get(),
-//                DDBlocks.ARIDROCK.get(),
-//                DDBlocks.DUSKROCK.get()
-//        );
+        this.tag(DDTags.Blocks.HUGE_GLOWSHROOM_GROWABLE).add(
+            DDBlocks.MOSSY_GRIMESTONE.get(),
+            DDBlocks.GLOWSHROOM_BLOCK.get()
+        ).addTag(BlockTags.BASE_STONE_OVERWORLD);
 
         this.tag(BlockTags.PLANKS).add(
                 DDBlocks.PETRIFIED_PLANKS.get()

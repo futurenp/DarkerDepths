@@ -53,6 +53,7 @@ public class DDTags {
         public static final TagKey<Block> CATACOMBS_STRIPE_REPLACEABLE = TAGS.create("catacombs_stripe_replaceable");
         public static final TagKey<Block> MAGMA_STRIPE_REPLACEABLE = TAGS.create("magma_stripe_replaceable");
         public static final TagKey<Block> ARID_GROUND = TAGS.create("arid_ground");
+        public static final TagKey<Block> HUGE_GLOWSHROOM_GROWABLE = TAGS.create("huge_glowshroom_growable");
     }
 
     public static class Biomes {

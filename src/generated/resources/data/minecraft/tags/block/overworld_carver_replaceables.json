@@ -4,6 +4,8 @@
     "darkerdepths:duskrock",
     "darkerdepths:arid_deepslate",
     "minecraft:packed_mud",
-    "minecraft:magma_block"
+    "minecraft:magma_block",
+    "darkerdepths:grimestone",
+    "darkerdepths:mossy_grimestone"
   ]
 }

@@ -3,6 +3,7 @@ package com.naterbobber.darkerdepths.worldgen.feature.features;
 import com.mojang.serialization.Codec;
 import com.naterbobber.darkerdepths.block.custom.GlowshroomBlock;
 import com.naterbobber.darkerdepths.init.DDBlocks;
+import com.naterbobber.darkerdepths.util.DDTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
@@ -28,7 +29,7 @@ public class HugeGlowshroomFeature extends Feature<NoneFeatureConfiguration> {
         BlockPos pos = context.origin();
         RandomSource rand = context.random();
         BlockState belowState = world.getBlockState(pos.below());
-        boolean flag = (belowState.is(BlockTags.BASE_STONE_OVERWORLD) || belowState.is(DDBlocks.MOSSY_GRIMESTONE.get()) || belowState.is(DDBlocks.GRIMESTONE.get())) && !belowState.is(Blocks.LAVA);
+        boolean flag = belowState.is(DDTags.Blocks.HUGE_GLOWSHROOM_GROWABLE);
         boolean flag2 = (world.isStateAtPosition(pos, BlockBehaviour.BlockStateBase::isAir) || world.getBlockState(pos).is(DDBlocks.GLOWSHROOM.get()) || world.getBlockState(pos).canBeReplaced()) && !world.getBlockState(pos).is(Blocks.LAVA);
         if (flag2 && flag) {
             int height = Mth.nextInt(rand, 2, 4);
@@ -242,9 +243,5 @@ public class HugeGlowshroomFeature extends Feature<NoneFeatureConfiguration> {
                 }
             }
         }
-    }
-
-    public boolean checkBelowState(LevelAccessor world, BlockPos pos) {
-        return world.getBlockState(pos.below()).is(DDBlocks.GRIMESTONE.get()) || world.getBlockState(pos.below()).is(DDBlocks.MOSSY_GRIMESTONE.get());
     }
 }
