@@ -26,7 +26,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class MagmaPadBlock extends Block {
     private static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
-    protected static final VoxelShape AABB = Block.box(1.0D, 0.0D, 1.0D, 15.0D, 1.5D, 15.0D);
+    protected static final VoxelShape AABB = Block.box(1.0D, -2D, 1.0D, 15.0D, -1D, 15.0D);
 
     public MagmaPadBlock(Properties properties) {
         super(properties);
@@ -38,12 +38,21 @@ public class MagmaPadBlock extends Block {
         builder.add(FACING);
     }
 
+    @Override
     public void stepOn(Level level, BlockPos pos, BlockState state, Entity entity) {
         if (!entity.isSteppingCarefully() && entity instanceof LivingEntity) {
             entity.hurt(level.damageSources().hotFloor(), 1.0F);
         }
 
         super.stepOn(level, pos, state, entity);
+    }
+
+    @Override
+    protected void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
+        if (!entity.isSteppingCarefully() && entity instanceof LivingEntity && entity.onGround() && entity.blockPosition().asLong() == BlockPos.offset(pos.asLong(), 0, -1, 0)) {
+            entity.hurt(level.damageSources().hotFloor(), 1.0F);
+        }
+        super.entityInside(state, level, pos, entity);
     }
 
     @Override

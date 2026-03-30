@@ -156,7 +156,7 @@ public class DDPlacedFeatures {
                 BiomeFilter.biome());
 
         PlacementUtils.register(context, SCORCHED_REMAINS_PILE, lookup.getOrThrow(DDResourceKeys.ConfiguredFeatures.SCORCHED_REMAINS_PILE),
-                CountPlacement.of(64),
+                CountPlacement.of(40),
                 InSquarePlacement.spread(),
                 PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
                 EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.solid(), BlockPredicate.matchesBlocks(Blocks.AIR, Blocks.CAVE_AIR, Blocks.LAVA), 8),

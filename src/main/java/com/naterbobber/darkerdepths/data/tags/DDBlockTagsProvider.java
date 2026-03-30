@@ -39,7 +39,9 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
         this.tag(BlockTags.MINEABLE_WITH_HOE).add(
                 DDBlocks.GLOWSHROOM_BLOCK.get(),
                 DDBlocks.GLOWSHROOM_STEM.get(),
-                DDBlocks.GLOWSHROOM_HEART.get()
+                DDBlocks.GLOWSHROOM_HEART.get(),
+                DDBlocks.SCORCHED_REMAINS_BLOCK.get(),
+                DDBlocks.SCORCHED_REMAINS.get()
         );
         this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(
                 DDBlocks.CRYSTAL_HUSK.get(),
@@ -124,8 +126,7 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
                 DDBlocks.POLISHED_ARIDROCK_VERTICAL_SLAB.get(),
                 DDBlocks.POLISHED_DARKSLATE_VERTICAL_SLAB.get(),
                 DDBlocks.POLISHED_GRIMESTONE_VERTICAL_SLAB.get(),
-                DDBlocks.SCORCHED_REMAINS.get(),
-                DDBlocks.SCORCHED_REMAINS_BLOCK.get()
+                DDBlocks.MAGMA_PAD.get()
         );
 
         this.tag(BlockTags.MINEABLE_WITH_SHOVEL).add(

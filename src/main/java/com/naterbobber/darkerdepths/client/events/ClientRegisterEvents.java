@@ -34,7 +34,6 @@ public class ClientRegisterEvents {
         event.registerEntityRenderer(DDEntityTypes.VOID_SOUL_KNIGHT.get(), VoidSoulKnightRenderer::new);
         event.registerEntityRenderer(DDEntityTypes.VOID_SOUL.get(), VoidSoulRenderer::new);
         event.registerEntityRenderer(DDEntityTypes.SCORCHER.get(), ScorcherRenderer::new);
-        event.registerEntityRenderer(DDEntityTypes.STATELESS_SCORCHER.get(), ScorcherRenderer::new);
         event.registerBlockEntityRenderer(DDBlockEntityTypes.TOMB.get(), TombBlockEntityRenderer::new);
         event.registerBlockEntityRenderer(DDBlockEntityTypes.PARANOIA_ALTAR.get(), ParanoiaAltarBlockEntityRenderer::new);
         event.registerBlockEntityRenderer(DDBlockEntityTypes.VOID_SOUL_JAR.get(), VoidSoulJarBlockEntityRenderer::new);
