@@ -34,6 +34,7 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
 import net.minecraft.world.level.material.Fluids;
 
 import java.util.List;
+import java.util.Optional;
 
 import static com.naterbobber.darkerdepths.util.DDResourceKeys.ConfiguredFeatures.*;
 
@@ -137,7 +138,11 @@ public class DDConfiguredFeatures {
                 )
         );
 
-
+        FeatureUtils.register(context, SCORCHED_REMAINS_PILE, DDFeatures.SMALL_BOULDER.get(), new SmallBoulderConfiguration(
+                BlockStateProvider.simple(DDBlocks.SCORCHED_REMAINS_BLOCK.get()),
+                Optional.of(BlockStateProvider.simple(DDBlocks.SCORCHED_REMAINS.get())),
+                0.25F
+        ));
 
         FeatureUtils.register(context, DARKSLATE_PLACEMENT, DDFeatures.REPLACE_LIST.get(), new ReplaceListConfig(
                 OVERWORLD_REPLACEABLES,

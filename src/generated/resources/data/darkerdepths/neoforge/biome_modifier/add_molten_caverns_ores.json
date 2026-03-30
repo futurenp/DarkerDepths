@@ -3,7 +3,8 @@
   "biomes": "darkerdepths:molten_cavern",
   "features": [
     "darkerdepths:magma_disk",
-    "darkerdepths:crystal_husk_ore"
+    "darkerdepths:crystal_husk_ore",
+    "darkerdepths:scorched_remains_pile"
   ],
   "step": "underground_ores"
 }

@@ -155,6 +155,14 @@ public class DDPlacedFeatures {
                 PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
                 BiomeFilter.biome());
 
+        PlacementUtils.register(context, SCORCHED_REMAINS_PILE, lookup.getOrThrow(DDResourceKeys.ConfiguredFeatures.SCORCHED_REMAINS_PILE),
+                CountPlacement.of(64),
+                InSquarePlacement.spread(),
+                PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
+                EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.solid(), BlockPredicate.matchesBlocks(Blocks.AIR, Blocks.CAVE_AIR, Blocks.LAVA), 8),
+                RandomOffsetPlacement.vertical(ConstantInt.of(1)),
+                BiomeFilter.biome());
+
         PlacementUtils.register(context, CATACOMBS_LAVA_LINING, lookup.getOrThrow(DDResourceKeys.ConfiguredFeatures.CATACOMBS_LAVA_LINING), List.of(
                 CountPlacement.of(96),
                 InSquarePlacement.spread(),

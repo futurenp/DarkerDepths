@@ -3,11 +3,16 @@ package com.naterbobber.darkerdepths.block.custom;
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.util.ParticleUtils;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.Vec3;
 
 public class ScorchedRemainsFullBlock extends Block {
 
@@ -46,5 +51,13 @@ public class ScorchedRemainsFullBlock extends Block {
                 );
             }
         }
+    }
+
+    @Override
+    public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
+        if(!level.getBlockState(pos.above()).is(BlockTags.AIR)) return;
+        if(random.nextFloat() > 0.05) return;
+        ParticleUtils.spawnParticleOnFace(
+                level, pos, Direction.UP, ParticleTypes.LARGE_SMOKE, new Vec3(0, 0.015, 0), 0.05);
     }
 }

@@ -9,7 +9,6 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.MobSpawnSettings;
 import net.minecraft.world.level.levelgen.GenerationStep;
-import net.minecraft.world.level.levelgen.OreVeinifier;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.neoforged.neoforge.common.world.BiomeModifiers;
 import net.neoforged.neoforge.common.world.BiomeModifier;
@@ -48,7 +47,8 @@ public class DDBiomeModifiers {
                 getPlacedFeature(
                         context,
                         MAGMA_DISK,
-                        CRYSTAL_HUSK_ORE
+                        CRYSTAL_HUSK_ORE,
+                        SCORCHED_REMAINS_PILE
                 ),
                 GenerationStep.Decoration.UNDERGROUND_ORES
         ));
