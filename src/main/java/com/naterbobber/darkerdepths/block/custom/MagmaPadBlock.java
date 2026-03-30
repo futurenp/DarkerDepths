@@ -69,7 +69,7 @@ public class MagmaPadBlock extends Block {
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext ctx) {
         BlockState blockstate = super.getStateForPlacement(ctx);
-        return blockstate != null ? blockstate.setValue(FACING, ctx.getHorizontalDirection().getOpposite()) : null;
+        return blockstate != null ? blockstate.setValue(FACING, ctx.getHorizontalDirection()) : null;
     }
 
     @Override
