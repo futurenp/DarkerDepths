@@ -131,6 +131,8 @@ public class ScorcherEntity extends Mob implements GeoEntity {
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
         controllerRegistrar.add(new AnimationController<>(this, "baseController", 5, this::basePredicate));
+        controllerRegistrar.add(new AnimationController<>(this, "shake_controller", state -> PlayState.STOP)
+                .triggerableAnim("shake", SHAKE_ANIM));
     }
 
     protected <E extends ScorcherEntity> PlayState basePredicate(final AnimationState<E> event) {
@@ -139,6 +141,7 @@ public class ScorcherEntity extends Mob implements GeoEntity {
         }
         return event.setAndContinue(IDLE_ANIM);
     }
+
 
     @Override
     public AnimatableInstanceCache getAnimatableInstanceCache() {

@@ -94,7 +94,7 @@ repositories {
 }
 
 dependencies {
-    implementation("software.bernie.geckolib:geckolib-neoforge-${project.minecraft_version}:4.7.7")
+    implementation("software.bernie.geckolib:geckolib-neoforge-${project.minecraft_version}:4.8.4")
     implementation("com.terraformersmc:biolith-neoforge:${project.biolith_version}")
     compileOnly("com.github.glitchfiend:TerraBlender-neoforge:${project.minecraft_version}-${project.terrablender_version}")
 
