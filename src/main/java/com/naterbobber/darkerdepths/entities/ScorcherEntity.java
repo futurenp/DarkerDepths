@@ -6,6 +6,7 @@ import com.mojang.serialization.Dynamic;
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.client.fog.modifiers.ScorcherFlashModifier;
 import com.naterbobber.darkerdepths.init.DDBlocks;
+import com.naterbobber.darkerdepths.init.DDParticleTypes;
 import com.naterbobber.darkerdepths.network.ScorcherFlashPacket;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
@@ -244,7 +245,7 @@ public class ScorcherEntity extends Mob implements GeoEntity {
             double spreadY = this.getBbHeight() / 1.0;
             double spreadZ = this.getBbWidth() / 4.0;
 
-            serverLevel.sendParticles(ParticleTypes.FLAME,
+            serverLevel.sendParticles(DDParticleTypes.SCORCHER_SEARCHLIGHT.get(),
                     centerX, centerY, centerZ,
                     25,
                     spreadX, spreadY, spreadZ,
@@ -423,9 +424,9 @@ public class ScorcherEntity extends Mob implements GeoEntity {
             Vec3 particlePos = start.add(trajectory.scale(d));
 
             for (ServerPlayer player : serverLevel.players()) {
-                serverLevel.sendParticles(player, ParticleTypes.FLAME, true,
-                        particlePos.x, particlePos.y, particlePos.z,
-                        0, trajectory.x, trajectory.y, trajectory.z, 0.15);
+                serverLevel.sendParticles(player, DDParticleTypes.SCORCHER_SEARCHLIGHT.get(), true,
+                        particlePos.x, particlePos.y + 0.15, particlePos.z,
+                        0, trajectory.x, trajectory.y, trajectory.z, 0.25);
             }
         }
     }

@@ -37,6 +37,8 @@ public class DDParticleTypes {
             = registerParticle("molten_ash", (spriteSet) -> new ColoredAshParticle.Provider(spriteSet, 1F, 0.4F, 0.25F, ColoredAshParticle.BrightnessBehavior.FADE), false);
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> GLOW_GLIMMER
             = registerParticle("glow_glimmer", (spriteSet) -> new ColoredAshParticle.Provider(spriteSet, 0.25F, 1F, 0.55F, ColoredAshParticle.BrightnessBehavior.FULL_BRIGHT), false);
+    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> SCORCHER_SEARCHLIGHT
+            = registerParticle("scorcher_searchlight", ScorcherSearchlightParticle.Provider::new, false);
 
 
 
