@@ -1,62 +1,122 @@
 {
   "variants": {
-    "axis=x,heat_level=0": {
+    "axis=x,heat_level=0,initialized=false": {
       "model": "darkerdepths:block/darkslate_horizontal",
       "x": 90,
       "y": 90
     },
-    "axis=x,heat_level=1": {
+    "axis=x,heat_level=0,initialized=true": {
+      "model": "darkerdepths:block/darkslate_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=x,heat_level=1,initialized=false": {
       "model": "darkerdepths:block/darkslate_heat_level_1_horizontal",
       "x": 90,
       "y": 90
     },
-    "axis=x,heat_level=2": {
+    "axis=x,heat_level=1,initialized=true": {
+      "model": "darkerdepths:block/darkslate_heat_level_1_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=x,heat_level=2,initialized=false": {
       "model": "darkerdepths:block/darkslate_heat_level_2_horizontal",
       "x": 90,
       "y": 90
     },
-    "axis=x,heat_level=3": {
+    "axis=x,heat_level=2,initialized=true": {
+      "model": "darkerdepths:block/darkslate_heat_level_2_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=x,heat_level=3,initialized=false": {
       "model": "darkerdepths:block/darkslate_heat_level_3_horizontal",
       "x": 90,
       "y": 90
     },
-    "axis=x,heat_level=4": {
+    "axis=x,heat_level=3,initialized=true": {
+      "model": "darkerdepths:block/darkslate_heat_level_3_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=x,heat_level=4,initialized=false": {
       "model": "darkerdepths:block/darkslate_heat_level_4_horizontal",
       "x": 90,
       "y": 90
     },
-    "axis=y,heat_level=0": {
+    "axis=x,heat_level=4,initialized=true": {
+      "model": "darkerdepths:block/darkslate_heat_level_4_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y,heat_level=0,initialized=false": {
       "model": "darkerdepths:block/darkslate"
     },
-    "axis=y,heat_level=1": {
+    "axis=y,heat_level=0,initialized=true": {
+      "model": "darkerdepths:block/darkslate"
+    },
+    "axis=y,heat_level=1,initialized=false": {
       "model": "darkerdepths:block/darkslate_heat_level_1"
     },
-    "axis=y,heat_level=2": {
+    "axis=y,heat_level=1,initialized=true": {
+      "model": "darkerdepths:block/darkslate_heat_level_1"
+    },
+    "axis=y,heat_level=2,initialized=false": {
       "model": "darkerdepths:block/darkslate_heat_level_2"
     },
-    "axis=y,heat_level=3": {
+    "axis=y,heat_level=2,initialized=true": {
+      "model": "darkerdepths:block/darkslate_heat_level_2"
+    },
+    "axis=y,heat_level=3,initialized=false": {
       "model": "darkerdepths:block/darkslate_heat_level_3"
     },
-    "axis=y,heat_level=4": {
+    "axis=y,heat_level=3,initialized=true": {
+      "model": "darkerdepths:block/darkslate_heat_level_3"
+    },
+    "axis=y,heat_level=4,initialized=false": {
       "model": "darkerdepths:block/darkslate_heat_level_4"
     },
-    "axis=z,heat_level=0": {
+    "axis=y,heat_level=4,initialized=true": {
+      "model": "darkerdepths:block/darkslate_heat_level_4"
+    },
+    "axis=z,heat_level=0,initialized=false": {
       "model": "darkerdepths:block/darkslate_horizontal",
       "x": 90
     },
-    "axis=z,heat_level=1": {
+    "axis=z,heat_level=0,initialized=true": {
+      "model": "darkerdepths:block/darkslate_horizontal",
+      "x": 90
+    },
+    "axis=z,heat_level=1,initialized=false": {
       "model": "darkerdepths:block/darkslate_heat_level_1_horizontal",
       "x": 90
     },
-    "axis=z,heat_level=2": {
+    "axis=z,heat_level=1,initialized=true": {
+      "model": "darkerdepths:block/darkslate_heat_level_1_horizontal",
+      "x": 90
+    },
+    "axis=z,heat_level=2,initialized=false": {
       "model": "darkerdepths:block/darkslate_heat_level_2_horizontal",
       "x": 90
     },
-    "axis=z,heat_level=3": {
+    "axis=z,heat_level=2,initialized=true": {
+      "model": "darkerdepths:block/darkslate_heat_level_2_horizontal",
+      "x": 90
+    },
+    "axis=z,heat_level=3,initialized=false": {
       "model": "darkerdepths:block/darkslate_heat_level_3_horizontal",
       "x": 90
     },
-    "axis=z,heat_level=4": {
+    "axis=z,heat_level=3,initialized=true": {
+      "model": "darkerdepths:block/darkslate_heat_level_3_horizontal",
+      "x": 90
+    },
+    "axis=z,heat_level=4,initialized=false": {
+      "model": "darkerdepths:block/darkslate_heat_level_4_horizontal",
+      "x": 90
+    },
+    "axis=z,heat_level=4,initialized=true": {
       "model": "darkerdepths:block/darkslate_heat_level_4_horizontal",
       "x": 90
     }

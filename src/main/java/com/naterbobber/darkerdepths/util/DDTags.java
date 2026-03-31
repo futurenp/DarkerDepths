@@ -12,6 +12,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.material.Fluid;
 import net.neoforged.neoforge.common.Tags;
 
 import javax.annotation.Nullable;
@@ -54,6 +55,22 @@ public class DDTags {
         public static final TagKey<Block> MAGMA_STRIPE_REPLACEABLE = TAGS.create("magma_stripe_replaceable");
         public static final TagKey<Block> ARID_GROUND = TAGS.create("arid_ground");
         public static final TagKey<Block> HUGE_GLOWSHROOM_GROWABLE = TAGS.create("huge_glowshroom_growable");
+        public static final TagKey<Block> HEATABLE = TAGS.create("heatable");
+        public static final TagKey<Block> VERY_HIGH_HEAT = TAGS.create("very_high_heat");
+        public static final TagKey<Block> HIGH_HEAT = TAGS.create("high_heat");
+        public static final TagKey<Block> MEDIUM_HEAT = TAGS.create("medium_heat");
+        public static final TagKey<Block> LOW_HEAT = TAGS.create("low_heat");
+        public static final TagKey<Block> HEAT_PROVIDER = TAGS.create("heat_provider");
+    }
+    public static class Fluids {
+        private static final TagFactory<Fluid> TAGS = make(Registries.FLUID);
+
+        public static final TagKey<Fluid> VERY_HIGH_HEAT = TAGS.create("very_high_heat");
+        public static final TagKey<Fluid> HIGH_HEAT = TAGS.create("high_heat");
+        public static final TagKey<Fluid> MEDIUM_HEAT = TAGS.create("medium_heat");
+        public static final TagKey<Fluid> LOW_HEAT = TAGS.create("low_heat");
+        public static final TagKey<Fluid> HEAT_PROVIDER = TAGS.create("heat_provider");
+
     }
 
     public static class Biomes {

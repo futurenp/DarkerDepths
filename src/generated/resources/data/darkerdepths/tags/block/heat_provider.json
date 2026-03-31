@@ -1,0 +1,20 @@
+{
+  "values": [
+    {
+      "id": "#darkerdepths:very_high_heat",
+      "required": false
+    },
+    {
+      "id": "#darkerdepths:high_heat",
+      "required": false
+    },
+    {
+      "id": "#darkerdepths:medium_heat",
+      "required": false
+    },
+    {
+      "id": "#darkerdepths:low_heat",
+      "required": false
+    }
+  ]
+}

@@ -2,7 +2,6 @@ package com.naterbobber.darkerdepths.block;
 
 import com.naterbobber.darkerdepths.block.blockstates.PillarState;
 import com.naterbobber.darkerdepths.block.custom.RopeBlock;
-import com.naterbobber.darkerdepths.block.generic.ConnectedRotatablePillarBlock;
 import com.naterbobber.darkerdepths.block.generic.VerticalSlabBlock;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
@@ -20,5 +19,6 @@ public class DDBlockStateProperties {
     public static final BooleanProperty BURSTING = BooleanProperty.create("bursting");
     public static final BooleanProperty BOOSTED = BooleanProperty.create("boosted");
     public static final BooleanProperty PROVIDES_ASH = BooleanProperty.create("provides_ash");
+    public static final BooleanProperty INITIALIZED = BooleanProperty.create("initialized");
 
 }

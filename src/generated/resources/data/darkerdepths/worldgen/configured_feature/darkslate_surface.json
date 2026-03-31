@@ -10,7 +10,8 @@
         "Name": "darkerdepths:darkslate",
         "Properties": {
           "axis": "y",
-          "heat_level": "0"
+          "heat_level": "0",
+          "initialized": "false"
         }
       }
     },

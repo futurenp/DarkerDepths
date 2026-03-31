@@ -2,6 +2,7 @@ package com.naterbobber.darkerdepths.block.generic;
 
 import com.naterbobber.darkerdepths.block.DDBlockStateProperties;
 import com.naterbobber.darkerdepths.init.DDBlocks;
+import com.naterbobber.darkerdepths.util.DDTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.BlockTags;
@@ -39,21 +40,8 @@ public interface HeatableBlock {
         for (Direction direction : Direction.values()) {
             mutablePos.setWithOffset(pos, direction);
             BlockState neighborState = level.getBlockState(mutablePos);
-            int neighborHeatLevel = 0;
 
-            if(neighborState.hasProperty(DDBlockStateProperties.HEAT_LEVEL)) {
-                neighborHeatLevel = neighborState.getValue(DDBlockStateProperties.HEAT_LEVEL);
-            } else if (neighborState.is(BlockTags.AIR)) {
-
-            } else if (neighborState.is(Blocks.MAGMA_BLOCK)) {
-                neighborHeatLevel = 4;
-            } else if (neighborState.getFluidState().is(FluidTags.LAVA)) {
-                return 5;
-            } else if (neighborState.is(Blocks.FIRE)) {
-                neighborHeatLevel = 3;
-            } else if (neighborState.is(DDBlocks.SCORCHER_LIGHT_BLOCK.get())) {
-                neighborHeatLevel = 4;
-            }
+            int neighborHeatLevel = determineHeat(neighborState);
 
             if (neighborHeatLevel > highestLevel) {
                 highestLevel = neighborHeatLevel;
@@ -61,5 +49,38 @@ public interface HeatableBlock {
         }
 
         return highestLevel;
+    }
+
+    default int determineHeat(BlockState state) {
+        if(state.is(DDTags.Blocks.HEATABLE)) {
+            if(state.hasProperty(DDBlockStateProperties.HEAT_LEVEL)) {
+                return state.getValue(DDBlockStateProperties.HEAT_LEVEL);
+            }
+        } else if(state.is(BlockTags.AIR)) {
+            return 0;
+        } else if(state.is(DDTags.Blocks.HEAT_PROVIDER)){
+            if(state.is(DDTags.Blocks.VERY_HIGH_HEAT)) {
+                return 5;
+            } else if(state.is(DDTags.Blocks.HIGH_HEAT)) {
+                return 4;
+            } else if(state.is(DDTags.Blocks.MEDIUM_HEAT)) {
+                return 3;
+            } else if(state.is(DDTags.Blocks.LOW_HEAT)) {
+                return 2;
+            }
+        } else if(state.getFluidState().is(DDTags.Fluids.HEAT_PROVIDER)) {
+            var fluidState = state.getFluidState();
+            if(fluidState.is(DDTags.Fluids.VERY_HIGH_HEAT)) {
+                return 5;
+            } else if(fluidState.is(DDTags.Fluids.HIGH_HEAT)) {
+                return 4;
+            } else if(fluidState.is(DDTags.Fluids.MEDIUM_HEAT)) {
+                return 3;
+            } else if(fluidState.is(DDTags.Fluids.LOW_HEAT)) {
+                return 2;
+            }
+        }
+
+        return 0;
     }
 }

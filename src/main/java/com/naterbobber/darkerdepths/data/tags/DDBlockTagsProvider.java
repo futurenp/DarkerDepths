@@ -321,6 +321,35 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
                 DDBlocks.GLIMMERING_VINES.get(),
                 DDBlocks.GLIMMERING_VINE_PLANT.get()
         );
+
+        this.tag(DDTags.Blocks.HIGH_HEAT).add(
+                DDBlocks.SCORCHER_LIGHT_BLOCK.get(),
+                Blocks.MAGMA_BLOCK
+        );
+
+        this.tag(DDTags.Blocks.MEDIUM_HEAT).add(
+                Blocks.FIRE,
+                Blocks.CAMPFIRE
+        );
+
+        this.tag(DDTags.Blocks.LOW_HEAT).add(
+                Blocks.SOUL_FIRE,
+                Blocks.SOUL_CAMPFIRE,
+                DDBlocks.SCORCHED_REMAINS_BLOCK.get()
+        );
+
+        this.tag(DDTags.Blocks.HEATABLE).add(
+                DDBlocks.DARKSLATE.get(),
+                DDBlocks.CRYSTAL_HUSK.get(),
+                DDBlocks.LIVING_CRYSTAL.get(),
+                DDBlocks.GEYSER.get()
+        );
+
+        this.tag(DDTags.Blocks.HEAT_PROVIDER)
+                .addOptionalTag(DDTags.Blocks.VERY_HIGH_HEAT)
+                .addOptionalTag(DDTags.Blocks.HIGH_HEAT)
+                .addOptionalTag(DDTags.Blocks.MEDIUM_HEAT)
+                .addOptionalTag(DDTags.Blocks.LOW_HEAT);
     }
 
     private void generateWoodenTags() {
