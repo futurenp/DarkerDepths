@@ -28,7 +28,14 @@ public interface HeatableBlock {
         }
     }
 
-    default int calculateNewHeat(int neighborHeat) {
+    default boolean updatedByHeat(LevelAccessor level, BlockState state) {
+        return !level.isClientSide() &&
+                (state.is(DDTags.Blocks.HEAT_PROVIDER)
+                        || state.is(DDTags.Blocks.HEATABLE)
+                        || state.getFluidState().is(DDTags.Fluids.HEAT_PROVIDER));
+    }
+
+    static int calculateNewHeat(int neighborHeat) {
         return neighborHeat - (neighborHeat > 0 ? 1 : 0);
     }
 
@@ -51,33 +58,28 @@ public interface HeatableBlock {
         return highestLevel;
     }
 
-    default int determineHeat(BlockState state) {
+    static int determineHeat(BlockState state) {
         if(state.is(DDTags.Blocks.HEATABLE)) {
             if(state.hasProperty(DDBlockStateProperties.HEAT_LEVEL)) {
                 return state.getValue(DDBlockStateProperties.HEAT_LEVEL);
             }
-        } else if(state.is(BlockTags.AIR)) {
+        }
+        else if(state.is(BlockTags.AIR)) {
             return 0;
-        } else if(state.is(DDTags.Blocks.HEAT_PROVIDER)){
-            if(state.is(DDTags.Blocks.VERY_HIGH_HEAT)) {
-                return 5;
-            } else if(state.is(DDTags.Blocks.HIGH_HEAT)) {
-                return 4;
-            } else if(state.is(DDTags.Blocks.MEDIUM_HEAT)) {
-                return 3;
-            } else if(state.is(DDTags.Blocks.LOW_HEAT)) {
-                return 2;
-            }
-        } else if(state.getFluidState().is(DDTags.Fluids.HEAT_PROVIDER)) {
+        }
+        else if(state.is(DDTags.Blocks.HEAT_PROVIDER)){
+            if(state.is(DDTags.Blocks.VERY_HIGH_HEAT))   return 5;
+            else if(state.is(DDTags.Blocks.HIGH_HEAT))   return 4;
+            else if(state.is(DDTags.Blocks.MEDIUM_HEAT)) return 3;
+            else if(state.is(DDTags.Blocks.LOW_HEAT))    return 2;
+        }
+        else {
             var fluidState = state.getFluidState();
-            if(fluidState.is(DDTags.Fluids.VERY_HIGH_HEAT)) {
-                return 5;
-            } else if(fluidState.is(DDTags.Fluids.HIGH_HEAT)) {
-                return 4;
-            } else if(fluidState.is(DDTags.Fluids.MEDIUM_HEAT)) {
-                return 3;
-            } else if(fluidState.is(DDTags.Fluids.LOW_HEAT)) {
-                return 2;
+            if(fluidState.is(DDTags.Fluids.HEAT_PROVIDER)) {
+                if (fluidState.is(DDTags.Fluids.VERY_HIGH_HEAT))   return 5;
+                else if (fluidState.is(DDTags.Fluids.HIGH_HEAT))   return 4;
+                else if (fluidState.is(DDTags.Fluids.MEDIUM_HEAT)) return 3;
+                else if (fluidState.is(DDTags.Fluids.LOW_HEAT))    return 2;
             }
         }
 

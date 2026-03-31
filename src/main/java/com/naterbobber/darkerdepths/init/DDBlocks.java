@@ -205,7 +205,7 @@ public class DDBlocks {
 
 
     public static final DeferredBlock<DarkslateBlock> DARKSLATE = registerBlock("darkslate",
-            () -> new DarkslateBlock(DARKSLATE_PROPERTIES.randomTicks()));
+            () -> new DarkslateBlock(DARKSLATE_PROPERTIES));
     public static final DeferredBlock<RelationalStairBlock> DARKSLATE_STAIRS = registerBlock("darkslate_stairs",
             () -> new RelationalStairBlock(DARKSLATE.get()));
     public static final DeferredBlock<RelationalSlabBlock> DARKSLATE_SLAB = registerBlock("darkslate_slab",

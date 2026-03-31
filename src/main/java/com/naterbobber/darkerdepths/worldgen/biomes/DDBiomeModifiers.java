@@ -61,6 +61,14 @@ public class DDBiomeModifiers {
                 ),
                 GenerationStep.Decoration.VEGETAL_DECORATION
         ));
+        context.register(ADD_MOLTEN_CAVERNS_TOP_LAYER_MODIFICATIONS, new BiomeModifiers.AddFeaturesBiomeModifier(
+                getBiome(context, MOLTEN_CAVERN),
+                getPlacedFeature(
+                        context,
+                        DARKSLATE_HEAT_BAKE
+                ),
+                GenerationStep.Decoration.TOP_LAYER_MODIFICATION
+        ));
         context.register(ADD_SANDY_CATACOMBS_LOCAL_MODIFICATIONS, new BiomeModifiers.AddFeaturesBiomeModifier(
                         getBiome(context, SANDY_CATACOMBS),
                         getPlacedFeature(

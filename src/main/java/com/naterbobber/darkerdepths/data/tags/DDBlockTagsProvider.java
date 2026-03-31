@@ -322,9 +322,14 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
                 DDBlocks.GLIMMERING_VINE_PLANT.get()
         );
 
+        this.tag(DDTags.Blocks.VERY_HIGH_HEAT).add(
+                Blocks.LAVA
+        );
+
         this.tag(DDTags.Blocks.HIGH_HEAT).add(
                 DDBlocks.SCORCHER_LIGHT_BLOCK.get(),
-                Blocks.MAGMA_BLOCK
+                Blocks.MAGMA_BLOCK,
+                Blocks.LAVA_CAULDRON
         );
 
         this.tag(DDTags.Blocks.MEDIUM_HEAT).add(

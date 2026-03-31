@@ -19,6 +19,4 @@ public class DDBlockStateProperties {
     public static final BooleanProperty BURSTING = BooleanProperty.create("bursting");
     public static final BooleanProperty BOOSTED = BooleanProperty.create("boosted");
     public static final BooleanProperty PROVIDES_ASH = BooleanProperty.create("provides_ash");
-    public static final BooleanProperty INITIALIZED = BooleanProperty.create("initialized");
-
 }

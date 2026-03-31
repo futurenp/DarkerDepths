@@ -65,6 +65,7 @@ public class DDConfiguredFeatures {
         FeatureUtils.register(context, ARID_BOULDER, DDFeatures.ARID_BOULDER.get(), FeatureConfiguration.NONE);
         FeatureUtils.register(context, CATACOMBS_LAVA_LINING, DDFeatures.CATACOMBS_LAVA_LINING.get(), FeatureConfiguration.NONE);
         FeatureUtils.register(context, DUSKROCK_STRIPE, DDFeatures.DUSKROCK_STRIPE.get(), FeatureConfiguration.NONE);
+        FeatureUtils.register(context, DARKSLATE_HEAT_BAKE, DDFeatures.DARKSLATE_HEAT_BAKE.get(), FeatureConfiguration.NONE);
         FeatureUtils.register(context, MOLTEN_SPRING, Feature.SPRING, new SpringConfiguration(
                 Fluids.LAVA.defaultFluidState(),
                 false, 4,

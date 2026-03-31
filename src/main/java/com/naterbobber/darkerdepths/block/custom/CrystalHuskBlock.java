@@ -44,7 +44,7 @@ public class CrystalHuskBlock extends Block implements HeatableBlock {
     @Override
     public @Nullable BlockState getStateForPlacement(BlockPlaceContext context) {
         int neighborHeat = getHighestNeighborHeat(context.getLevel(), context.getClickedPos());
-        return this.defaultBlockState().setValue(HEAT_LEVEL, calculateNewHeat(neighborHeat));
+        return this.defaultBlockState().setValue(HEAT_LEVEL, HeatableBlock.calculateNewHeat(neighborHeat));
     }
 
     @Override
@@ -65,8 +65,6 @@ public class CrystalHuskBlock extends Block implements HeatableBlock {
 
     @Override
     public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource randomSource) {
-        sendHeatUpdate(level, pos, state);
-
         state = level.getBlockState(pos);
 
         if(state.getValue(HEAT_LEVEL) > 0) {
@@ -87,7 +85,7 @@ public class CrystalHuskBlock extends Block implements HeatableBlock {
 
     @Override
     public BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor level, BlockPos currentPos, BlockPos neighborPos) {
-        if (!level.isClientSide()) {
+        if (updatedByHeat(level, state)) {
             level.scheduleTick(currentPos, this, 10);
         }
         return super.updateShape(state, direction, neighborState, level, currentPos, neighborPos);

@@ -30,6 +30,8 @@ public class DDPlacedFeatures {
                 PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
                 BiomeFilter.biome());
 
+        PlacementUtils.register(context, DARKSLATE_HEAT_BAKE, lookup.getOrThrow(DDResourceKeys.ConfiguredFeatures.DARKSLATE_HEAT_BAKE));
+
         PlacementUtils.register(context, GLOWSHROOM_PATCH, lookup.getOrThrow(DDResourceKeys.ConfiguredFeatures.GLOWSHROOM_PATCH),
                 CountPlacement.of(UniformInt.of(3, 8)),
                 InSquarePlacement.spread(),

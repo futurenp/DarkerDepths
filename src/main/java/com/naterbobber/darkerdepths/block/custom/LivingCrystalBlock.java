@@ -37,12 +37,12 @@ public class LivingCrystalBlock extends Block implements HeatableBlock {
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         int neighborHeat = getHighestNeighborHeat(context.getLevel(), context.getClickedPos());
-        return this.defaultBlockState().setValue(HEAT_LEVEL, calculateNewHeat(neighborHeat));
+        return this.defaultBlockState().setValue(HEAT_LEVEL, HeatableBlock.calculateNewHeat(neighborHeat));
     }
 
     @Override
     public BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor level, BlockPos currentPos, BlockPos neighborPos) {
-        if (!level.isClientSide()) {
+        if (updatedByHeat(level, state)) {
             level.scheduleTick(currentPos, this, 10);
         }
         return super.updateShape(state, direction, neighborState, level, currentPos, neighborPos);
@@ -55,11 +55,11 @@ public class LivingCrystalBlock extends Block implements HeatableBlock {
 
     @Override
     public void randomTick(BlockState state, ServerLevel level, BlockPos blockPos, RandomSource random) {
-        if (random.nextInt(5) != 0) {
+        if(state.getValue(HEAT_LEVEL) > 0) {
             return;
         }
 
-        if(state.getValue(HEAT_LEVEL) > 0) {
+        if (random.nextInt(5) != 0) {
             return;
         }
 
