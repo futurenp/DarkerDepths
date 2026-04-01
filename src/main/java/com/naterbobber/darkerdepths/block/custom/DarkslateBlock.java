@@ -13,8 +13,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.block.state.properties.*;
 import org.jetbrains.annotations.Nullable;
 
 public class DarkslateBlock extends RotatedPillarBlock implements HeatableBlock {
@@ -23,8 +22,7 @@ public class DarkslateBlock extends RotatedPillarBlock implements HeatableBlock 
     public DarkslateBlock(Properties pProperties) {
         super(pProperties);
         this.registerDefaultState(this.defaultBlockState()
-                .setValue(HEAT_LEVEL, 0)
-        );
+                .setValue(HEAT_LEVEL, 0));
     }
 
     @Override
@@ -37,7 +35,7 @@ public class DarkslateBlock extends RotatedPillarBlock implements HeatableBlock 
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         int neighborHeat = getHighestNeighborHeat(context.getLevel(), context.getClickedPos());
-        return this.defaultBlockState().setValue(HEAT_LEVEL, HeatableBlock.calculateNewHeat(neighborHeat));
+        return super.getStateForPlacement(context).setValue(HEAT_LEVEL, HeatableBlock.calculateNewHeat(neighborHeat));
     }
 
     @Override

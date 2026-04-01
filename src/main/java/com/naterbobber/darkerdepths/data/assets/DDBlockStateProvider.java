@@ -268,7 +268,7 @@ public class DDBlockStateProvider extends BlockStateProvider {
                 ResourceLocation glowEndTexture = this.extend(endTexture, "_glow");
 
                 vertical = this.models().getBuilder(stateName)
-                        .parent(new net.neoforged.neoforge.client.model.generators.ModelFile.UncheckedModelFile("minecraft:block/block"))
+                        .parent(new ModelFile.UncheckedModelFile("minecraft:block/block"))
                         .renderType("minecraft:translucent")
                         .texture("particle", sideTexture)
                         .texture("base_side", sideTexture)
@@ -294,7 +294,7 @@ public class DDBlockStateProvider extends BlockStateProvider {
                         .end();
 
                 horizontal = this.models().getBuilder(stateName + "_horizontal")
-                        .parent(new net.neoforged.neoforge.client.model.generators.ModelFile.UncheckedModelFile("minecraft:block/block"))
+                        .parent(new ModelFile.UncheckedModelFile("minecraft:block/block"))
                         .renderType("minecraft:translucent")
                         .texture("particle", sideTexture)
                         .texture("base_side", sideTexture)
@@ -304,19 +304,19 @@ public class DDBlockStateProvider extends BlockStateProvider {
                         .element().from(0, 0, 0).to(16, 16, 16)
                         .face(Direction.UP).texture("#base_end").cullface(Direction.UP).end()
                         .face(Direction.DOWN).texture("#base_end").cullface(Direction.DOWN).end()
-                        .face(Direction.NORTH).texture("#base_side").cullface(Direction.NORTH).rotation(net.neoforged.neoforge.client.model.generators.ModelBuilder.FaceRotation.CLOCKWISE_90).end()
-                        .face(Direction.SOUTH).texture("#base_side").cullface(Direction.SOUTH).rotation(net.neoforged.neoforge.client.model.generators.ModelBuilder.FaceRotation.CLOCKWISE_90).end()
-                        .face(Direction.EAST).texture("#base_side").cullface(Direction.EAST).rotation(net.neoforged.neoforge.client.model.generators.ModelBuilder.FaceRotation.CLOCKWISE_90).end()
-                        .face(Direction.WEST).texture("#base_side").cullface(Direction.WEST).rotation(net.neoforged.neoforge.client.model.generators.ModelBuilder.FaceRotation.CLOCKWISE_90).end()
+                        .face(Direction.NORTH).texture("#base_side").cullface(Direction.NORTH).end()
+                        .face(Direction.SOUTH).texture("#base_side").cullface(Direction.SOUTH).end()
+                        .face(Direction.EAST).texture("#base_side").cullface(Direction.EAST).end()
+                        .face(Direction.WEST).texture("#base_side").cullface(Direction.WEST).end()
                         .end()
                         // Glowing overlay cube
                         .element().from(0, 0, 0).to(16, 16, 16)
                         .face(Direction.UP).texture("#glow_end").cullface(Direction.UP).end()
                         .face(Direction.DOWN).texture("#glow_end").cullface(Direction.DOWN).end()
-                        .face(Direction.NORTH).texture("#glow_side").cullface(Direction.NORTH).rotation(net.neoforged.neoforge.client.model.generators.ModelBuilder.FaceRotation.CLOCKWISE_90).end()
-                        .face(Direction.SOUTH).texture("#glow_side").cullface(Direction.SOUTH).rotation(net.neoforged.neoforge.client.model.generators.ModelBuilder.FaceRotation.CLOCKWISE_90).end()
-                        .face(Direction.EAST).texture("#glow_side").cullface(Direction.EAST).rotation(net.neoforged.neoforge.client.model.generators.ModelBuilder.FaceRotation.CLOCKWISE_90).end()
-                        .face(Direction.WEST).texture("#glow_side").cullface(Direction.WEST).rotation(net.neoforged.neoforge.client.model.generators.ModelBuilder.FaceRotation.CLOCKWISE_90).end()
+                        .face(Direction.NORTH).texture("#glow_side").cullface(Direction.NORTH).end()
+                        .face(Direction.SOUTH).texture("#glow_side").cullface(Direction.SOUTH).end()
+                        .face(Direction.EAST).texture("#glow_side").cullface(Direction.EAST).end()
+                        .face(Direction.WEST).texture("#glow_side").cullface(Direction.WEST).end()
                         .end();
             } else {
                 vertical = this.models().cubeColumn(stateName, sideTexture, endTexture);
