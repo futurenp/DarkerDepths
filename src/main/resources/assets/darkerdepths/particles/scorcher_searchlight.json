@@ -1,5 +1,10 @@
 {
   "textures": [
-    "minecraft:generic_0"
+    "darkerdepths:scorcher_searchlight/1",
+    "darkerdepths:scorcher_searchlight/2",
+    "darkerdepths:scorcher_searchlight/3",
+    "darkerdepths:scorcher_searchlight/4",
+    "darkerdepths:scorcher_searchlight/5",
+    "darkerdepths:scorcher_searchlight/6"
   ]
 }

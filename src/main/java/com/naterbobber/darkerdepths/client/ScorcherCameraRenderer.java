@@ -6,22 +6,28 @@ import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.client.fog.modifiers.ScorcherFlashModifier;
 import com.naterbobber.darkerdepths.entities.ScorcherEntity;
 import com.naterbobber.darkerdepths.init.DDEntityTypes;
+import com.naterbobber.darkerdepths.init.DDParticleTypes; // Make sure this is imported
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.RenderLevelStageEvent;
+import org.joml.Vector3f;
 import org.lwjgl.opengl.GL11;
 
+@OnlyIn(Dist.CLIENT)
 @EventBusSubscriber(modid = DarkerDepths.MOD_ID, value = Dist.CLIENT)
-public class CameraMobRenderer {
+public class ScorcherCameraRenderer {
 
     private static ScorcherEntity scorcher;
     private static boolean wasFlashedLastFrame = false;
+
+    private static int lastParticleTick = -1;
 
     @SubscribeEvent
     public static void onRenderLevel(RenderLevelStageEvent event) {
@@ -50,6 +56,35 @@ public class CameraMobRenderer {
         }
 
         Vec3 camPos = event.getCamera().getPosition();
+
+        if (!mc.isPaused() && mc.player.tickCount != lastParticleTick) {
+            lastParticleTick = mc.player.tickCount;
+
+            Vector3f forward = event.getCamera().getLookVector();
+            Vector3f up = event.getCamera().getUpVector();
+            Vector3f left = event.getCamera().getLeftVector();
+
+            double spawnDistance = 2.0;
+            float angle = (float) (Math.random() * Math.PI * 2);
+            float radialSpeed = 0.075f + (float) Math.random() * 0.025f;
+            float approachSpeed = 0.15f + (float) Math.random() * 0.075f;
+
+            double driftX = up.x() * Math.sin(angle) * radialSpeed + left.x() * Math.cos(angle) * radialSpeed;
+            double driftY = up.y() * Math.sin(angle) * radialSpeed + left.y() * Math.cos(angle) * radialSpeed;
+            double driftZ = up.z() * Math.sin(angle) * radialSpeed + left.z() * Math.cos(angle) * radialSpeed;
+
+            double velX = driftX - (forward.x() * approachSpeed);
+            double velY = driftY - (forward.y() * approachSpeed);
+            double velZ = driftZ - (forward.z() * approachSpeed);
+
+            double spawnX = camPos.x + forward.x() * spawnDistance;
+            double spawnY = camPos.y + forward.y() * spawnDistance;
+            double spawnZ = camPos.z + forward.z() * spawnDistance;
+
+            mc.level.addAlwaysVisibleParticle(DDParticleTypes.SCORCHER_SEARCHLIGHT.get(), true, spawnX, spawnY, spawnZ, velX, velY, velZ);
+
+        }
+
         scorcher.setPos(camPos.x, camPos.y, camPos.z);
         scorcher.xo = camPos.x;
         scorcher.yo = camPos.y;
@@ -81,6 +116,7 @@ public class CameraMobRenderer {
         screenStack.translate(0.0, -0.5, zTranslation);
 
         bufferSource.endBatch();
+
         RenderSystem.clear(GL11.GL_DEPTH_BUFFER_BIT, Minecraft.ON_OSX);
 
         dispatcher.render(
