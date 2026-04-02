@@ -24,6 +24,8 @@ public class DDConfigBuilder {
     public final ModConfigSpec.BooleanValue PRIORITIZE_TERRABLENDER;
     public final ModConfigSpec.BooleanValue USE_DEFAULTS_TERRABLENDER;
     public final ModConfigSpec.IntValue OVERWORLD_BIOME_WEIGHT_TERRABLENDER;
+    public final ModConfigSpec.BooleanValue DISABLE_HEATABLE_BLOCK_BAKING;
+    public final ModConfigSpec.IntValue HEAT_BAKE_BUDGET;
 
     public DDConfigBuilder(ModConfigSpec.Builder builder) {
         builder.push("Biome Provider");
@@ -115,6 +117,21 @@ public class DDConfigBuilder {
 
         PARANOIA_ALTAR_RADIUS_HORIZONTAL = builder.defineInRange("paranoia_altar_horizontal_range", 72, 0, 128);
         PARANOIA_ALTAR_RADIUS_VERTICAL = builder.defineInRange("paranoia_altar_vertical_range", 8, 0, 128);
+        builder.pop();
+
+
+        builder.push("Performance");
+        HEAT_BAKE_BUDGET = builder.comment("Blocks like Darkslate are 'baked' into generation so that all of their stages are set correctly after world generation. \n" +
+                "This budget controls how many resources are provided to bake each tick. \n" +
+                "Setting this to a high value will result in more lag when generating, but will finish baking faster. \n" +
+                "Recommended to keep this value low (< 2500) as baking is typically not a priority.\n" +
+                "A value too low will result in worse performance overall as chunks will repeatedly have to be revisited as baking has not completed.")
+                .defineInRange("heat_bake_budget",2500, 500, Integer.MAX_VALUE);
+
+        DISABLE_HEATABLE_BLOCK_BAKING = builder.comment("Disable baking heatable blocks (not recommended!)\n" +
+                "Blocks such as Darkslate will not generate with the correct stages and will not be updated to be correct heat values upon generation if true.\n" +
+                "Baking does require additional resources, so disabling should improve world gen performance.")
+                .define("disable_heatable_block_baking", false);
         builder.pop();
     }
 }
