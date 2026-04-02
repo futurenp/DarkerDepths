@@ -64,8 +64,8 @@ public class DDBiomeModifiers {
         context.register(ADD_MOLTEN_CAVERNS_TOP_LAYER_MODIFICATIONS, new BiomeModifiers.AddFeaturesBiomeModifier(
                 getBiome(context, MOLTEN_CAVERN),
                 getPlacedFeature(
-                        context,
-                        DARKSLATE_HEAT_BAKE
+                        context
+//                        DARKSLATE_HEAT_BAKE
                 ),
                 GenerationStep.Decoration.TOP_LAYER_MODIFICATION
         ));

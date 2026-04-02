@@ -86,7 +86,6 @@ public class DDResourceKeys {
         public static final ResourceKey<ConfiguredFeature<?, ?>> CRYSTAL_HUSK_ORE = createKey("crystal_husk_ore");
         public static final ResourceKey<ConfiguredFeature<?, ?>> DUSKROCK_ORE = createKey("duskrock_ore");
         public static final ResourceKey<ConfiguredFeature<?, ?>> SCORCHED_REMAINS_PILE = createKey("scorched_remains_pile");
-        public static final ResourceKey<ConfiguredFeature<?, ?>> DARKSLATE_HEAT_BAKE = createKey("darkslate_heat_bake");
         public static ResourceKey<ConfiguredFeature<?, ?>> createKey(String name) {
             return ResourceKey.create(Registries.CONFIGURED_FEATURE, DarkerDepths.id(name));
         }
@@ -119,7 +118,6 @@ public class DDResourceKeys {
         public static final ResourceKey<PlacedFeature> CRYSTAL_HUSK_ORE = createKey("crystal_husk_ore");
         public static final ResourceKey<PlacedFeature> DUSKROCK_ORE = createKey("duskrock_ore");
         public static final ResourceKey<PlacedFeature> SCORCHED_REMAINS_PILE = createKey("scorched_remains_pile");
-        public static final ResourceKey<PlacedFeature> DARKSLATE_HEAT_BAKE = createKey("darkslate_heat_bake");
 
         public static ResourceKey<PlacedFeature> createKey(String name) {
             return ResourceKey.create(Registries.PLACED_FEATURE, DarkerDepths.id(name));

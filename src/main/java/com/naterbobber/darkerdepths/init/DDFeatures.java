@@ -32,6 +32,4 @@ public class DDFeatures {
     public static final DeferredHolder<Feature<?>, ScorcherFeature> SCORCHER_PLACER = FEATURES.register("scorcher_placer", () -> new ScorcherFeature(ScorcherFeatureConfig.CODEC));
     public static final DeferredHolder<Feature<?>, RandomFloorPlacementFeature> RANDOM_FLOOR_PLACEMENT = FEATURES.register("random_floor_placement", () -> new RandomFloorPlacementFeature(RandomFloorPlacementConfig.CODEC));
     public static final DeferredHolder<Feature<?>, SmallBoulderFeature> SMALL_BOULDER = FEATURES.register("small_boulder", () -> new SmallBoulderFeature(SmallBoulderConfiguration.CODEC));
-    public static final DeferredHolder<Feature<?>, DarkslateHeatBakeFeature> DARKSLATE_HEAT_BAKE = FEATURES.register("darkslate_heat_bake", () -> new DarkslateHeatBakeFeature(NoneFeatureConfiguration.CODEC));
-
 }
