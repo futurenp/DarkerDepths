@@ -8,6 +8,8 @@ import com.naterbobber.darkerdepths.client.fog.modifiers.ScorcherFlashModifier;
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import com.naterbobber.darkerdepths.init.DDParticleTypes;
 import com.naterbobber.darkerdepths.network.ScorcherFlashPacket;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.game.ClientboundSetEntityMotionPacket;
@@ -21,11 +23,9 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.Difficulty;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.Brain;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -35,9 +35,12 @@ import net.minecraft.world.entity.ai.sensing.SensorType;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.schedule.Activity;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
@@ -46,6 +49,7 @@ import net.neoforged.neoforge.network.PacketDistributor;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.animation.*;
+import software.bernie.geckolib.animation.AnimationState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 import javax.annotation.Nullable;
@@ -94,7 +98,7 @@ public class ScorcherEntity extends Mob implements GeoEntity {
     protected Brain.Provider<ScorcherEntity> brainProvider() {
         return Brain.provider(
                 ImmutableList.of(MemoryModuleType.ATTACK_TARGET),
-                ImmutableList.of(SensorType.NEAREST_PLAYERS)
+                ImmutableList.of(SensorType.NEAREST_PLAYERS, SensorType.HURT_BY)
         );
     }
 
@@ -160,9 +164,9 @@ public class ScorcherEntity extends Mob implements GeoEntity {
         builder.define(DATA_TARGET_ID, 0);
     }
 
-    public void setScorcherTarget(Player player) {
-        if (this.getTarget() != player) {
-            this.setTarget(player);
+    public void setScorcherTarget(LivingEntity target) {
+        if (this.getTarget() != target) {
+            this.setTarget(target);
         }
         if (!this.entityData.get(DATA_STARED_AT)) {
             this.entityData.set(DATA_STARED_AT, true);
@@ -170,8 +174,8 @@ public class ScorcherEntity extends Mob implements GeoEntity {
         if (!this.entityData.get(DATA_SHAKING)) {
             this.entityData.set(DATA_SHAKING, true);
         }
-        if (this.entityData.get(DATA_TARGET_ID) != player.getId()) {
-            this.entityData.set(DATA_TARGET_ID, player.getId());
+        if (this.entityData.get(DATA_TARGET_ID) != target.getId()) {
+            this.entityData.set(DATA_TARGET_ID, target.getId());
         }
     }
 
@@ -322,6 +326,43 @@ public class ScorcherEntity extends Mob implements GeoEntity {
             if((state.is(BlockTags.REPLACEABLE) || state.is(BlockTags.AIR) && !state.is(DDBlocks.SCORCHER_LIGHT_BLOCK.get())) && this.isAlive()) {
                 var lightState = DDBlocks.SCORCHER_LIGHT_BLOCK.get().defaultBlockState().setValue(BlockStateProperties.LEVEL, 10);
                 this.level().setBlock(getOnPos().above(), lightState, 3);
+            }
+        }
+    }
+
+    @Override
+    public void awardKillScore(Entity killed, int score, DamageSource damageSource) {
+        super.awardKillScore(killed, score, damageSource);
+
+        if (killed instanceof LivingEntity victim && this.level() instanceof ServerLevel level) {
+            BlockPos pos = victim.blockPosition();
+            BlockPos groundPos = null;
+
+            for (int i = 0; i < 3; i++) {
+                BlockPos checkPos = pos.below(i);
+                if (level.getBlockState(checkPos).isFaceSturdy(level, checkPos, Direction.UP)) {
+                    groundPos = checkPos;
+                    break;
+                }
+            }
+
+            if (groundPos != null) {
+                BlockPos placePos = groundPos.above();
+                BlockState currentState = level.getBlockState(placePos);
+
+                if (victim.getMaxHealth() > 20.0F) {
+                    BlockPos abovePos = placePos.above();
+                    BlockState aboveState = level.getBlockState(abovePos);
+
+                    if (currentState.canBeReplaced() && aboveState.canBeReplaced()) {
+                        level.setBlock(placePos, DDBlocks.SCORCHED_REMAINS_BLOCK.get().defaultBlockState(), 3);
+                        level.setBlock(abovePos, DDBlocks.SCORCHED_REMAINS.get().defaultBlockState(), 3);
+                    }
+                } else {
+                    if (currentState.canBeReplaced()) {
+                        level.setBlock(placePos, DDBlocks.SCORCHED_REMAINS.get().defaultBlockState(), 3);
+                    }
+                }
             }
         }
     }
@@ -482,11 +523,12 @@ public class ScorcherEntity extends Mob implements GeoEntity {
     }
 
     static class ScorcherStareBehavior extends Behavior<ScorcherEntity> {
-        private Player target;
+        private LivingEntity target;
         private int losTicks = 0;
         private int losLostTicks = 0;
         private Vec3 lastKnownPos = null;
-        private final TargetingConditions targetConditions = TargetingConditions.forNonCombat().range(48.0).ignoreLineOfSight().selector((entity) -> {
+
+        private final TargetingConditions playerTargetConditions = TargetingConditions.forNonCombat().range(48.0).ignoreLineOfSight().selector((entity) -> {
             if (entity instanceof Player player) {
                 return !player.isCreative() && !player.isSpectator() && player.level().getDifficulty() != Difficulty.PEACEFUL;
             }
@@ -525,14 +567,23 @@ public class ScorcherEntity extends Mob implements GeoEntity {
             }
         }
 
-        private boolean isValidTarget(ScorcherEntity entity, Player player) {
-            if (player == null || !player.isAlive() || player.isSpectator() || player.isCreative() || player.level().getDifficulty() == Difficulty.PEACEFUL) return false;
-            if (entity.distanceToSqr(player) > 48 * 48) return false;
+        private boolean isValidTarget(ScorcherEntity entity, LivingEntity potentialTarget) {
+            if (potentialTarget == null || !potentialTarget.isAlive() || potentialTarget.level().getDifficulty() == Difficulty.PEACEFUL) return false;
+            if (potentialTarget instanceof Player player && (player.isSpectator() || player.isCreative())) return false;
+            if (potentialTarget instanceof ScorcherEntity) return false;
+            if (entity.distanceToSqr(potentialTarget) > 48 * 48) return false;
             return true;
         }
 
         private void findNewTarget(ServerLevel level, ScorcherEntity entity) {
-            this.target = level.getNearestPlayer(this.targetConditions, entity);
+            LivingEntity attacker = entity.getLastHurtByMob();
+
+            if (isValidTarget(entity, attacker) && hasForgivingLineOfSight(entity, attacker)) {
+                this.target = attacker;
+            } else {
+                this.target = level.getNearestPlayer(this.playerTargetConditions, entity);
+            }
+
             this.losTicks = 0;
             this.losLostTicks = 0;
             this.lastKnownPos = null;
@@ -569,18 +620,18 @@ public class ScorcherEntity extends Mob implements GeoEntity {
             this.target.invulnerableTime = 0;
 
             if (this.target.isBlocking()) {
-                net.minecraft.world.item.ItemStack shield = this.target.getUseItem();
+                ItemStack shield = this.target.getUseItem();
                 int shieldDamage = (int) (damage * 4);
 
-                net.minecraft.world.InteractionHand hand = this.target.getUsedItemHand();
-                net.minecraft.world.entity.EquipmentSlot slot = hand == net.minecraft.world.InteractionHand.MAIN_HAND ?
-                        net.minecraft.world.entity.EquipmentSlot.MAINHAND : net.minecraft.world.entity.EquipmentSlot.OFFHAND;
+                InteractionHand hand = this.target.getUsedItemHand();
+                EquipmentSlot slot = hand == InteractionHand.MAIN_HAND ?
+                        EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND;
 
                 shield.hurtAndBreak(shieldDamage, this.target, slot);
 
-                this.target.level().playSound(null, this.target.blockPosition(), net.minecraft.sounds.SoundEvents.SHIELD_BLOCK, net.minecraft.sounds.SoundSource.PLAYERS, 1.0F, 0.8F + entity.getRandom().nextFloat() * 0.4F);
+                this.target.level().playSound(null, this.target.blockPosition(), SoundEvents.SHIELD_BLOCK, SoundSource.PLAYERS, 1.0F, 0.8F + entity.getRandom().nextFloat() * 0.4F);
             } else {
-                this.target.hurt(entity.damageSources().onFire(), damage);
+                this.target.hurt(entity.damageSources().mobAttack(entity), damage);
             }
         }
 
@@ -593,6 +644,10 @@ public class ScorcherEntity extends Mob implements GeoEntity {
             }
 
             if (this.losLostTicks > 20) {
+                // If it loses line of sight on its attacker long enough, it forgets them
+                if (this.target == entity.getLastHurtByMob()) {
+                    entity.setLastHurtByMob(null);
+                }
                 this.target = null;
                 entity.clearScorcherTarget();
             } else {
@@ -600,7 +655,7 @@ public class ScorcherEntity extends Mob implements GeoEntity {
             }
         }
 
-        private boolean hasForgivingLineOfSight(ScorcherEntity entity, Player target) {
+        private boolean hasForgivingLineOfSight(ScorcherEntity entity, LivingEntity target) {
             if (entity.getSensing().hasLineOfSight(target)) return true;
 
             Vec3 start = entity.getEyePosition();

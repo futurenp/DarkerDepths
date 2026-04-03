@@ -4,6 +4,7 @@ import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.init.*;
 import com.naterbobber.darkerdepths.util.DDResourceKeys;
 import net.minecraft.data.PackOutput;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.data.LanguageProvider;
@@ -19,6 +20,7 @@ public class DDLanguageProviderENUS extends LanguageProvider {
     }
     private final Set<Block> blockOverrides = new HashSet<>();
     private final Set<Item> itemOverrides = new HashSet<>();
+    private final Set<EntityType> entityTypeOverrides = new HashSet<>();
 
     private static final String TOOLTIP = ddString("tooltip");
     private static final String ENCHANTMENT = ddString("enchantment");
@@ -38,11 +40,7 @@ public class DDLanguageProviderENUS extends LanguageProvider {
         blockOverrides.add(DDBlocks.PETRIFIED_WALL_HANGING_SIGN.get());
         blockOverrides.add(DDBlocks.WALL_VOID_SOUL_TORCH.get());
         // Entities
-        add(DDEntityTypes.GLOWSHROOM_MONSTER.get(), "Glowshroom Monster");
-        add(DDEntityTypes.BODY_SNATCHER.get(), "Body Snatcher");
-        add(DDEntityTypes.VOID_SOUL_KNIGHT.get(), "Void Soul Knight");
-        add(DDEntityTypes.VOID_SOUL.get(), "Void Soul");
-        add(DDEntityTypes.PETRIFIED_BOAT.get(), "Petrified Boat");
+        entityTypeOverrides.add(DDEntityTypes.PETRIFIED_CHEST_BOAT.get());
         add(DDEntityTypes.PETRIFIED_CHEST_BOAT.get(), "Boat with Chest");
 
         // Enchantments
@@ -164,6 +162,13 @@ public class DDLanguageProviderENUS extends LanguageProvider {
                 .forEach(holder -> {
                     var item = holder.get();
                     add(item, toStartCase(holder.getId().getPath()));
+                });
+
+        DDEntityTypes.ENTITY_TYPES.getEntries().stream()
+                .filter(holder -> !entityTypeOverrides.contains(holder.get()))
+                .forEach(holder -> {
+                    var entityType = holder.get();
+                    add(entityType, toStartCase(holder.getId().getPath()));
                 });
     }
 
