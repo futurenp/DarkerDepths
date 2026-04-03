@@ -1,4 +1,4 @@
-// 1.21.1	2026-03-25T02:22:58.6925967	Loot Tables
+// 1.21.1	2026-04-02T19:38:49.1676324	Loot Tables
 69a68443e41c0ea8610b4ece66b6a6a3bff163d0 data/darkerdepths/loot_table/archaeology/catacombs/standard.json
 b26089f15d136d6d0b9b7870fd170249ec0473de data/darkerdepths/loot_table/blocks/amber_block.json
 7b8aa851d67ec8c45ab85ef504b99c843fe25237 data/darkerdepths/loot_table/blocks/amber_cluster.json
@@ -87,8 +87,8 @@ e8c8fe8c808e8e7b9d05b8ae39bdf0ddc288962d data/darkerdepths/loot_table/blocks/pet
 b6ce8ac368530188fb52330ee1a5c18ac2db9081 data/darkerdepths/loot_table/blocks/petrified_planks.json
 d3b22c453a257929ca05edfe902a721e16818345 data/darkerdepths/loot_table/blocks/petrified_post.json
 124c86e8d31d4a9551865affec4ed1d8090c94e5 data/darkerdepths/loot_table/blocks/petrified_pressure_plate.json
-c087c2d9bb5890a2d6ae1ea9af339d4831670c32 data/darkerdepths/loot_table/blocks/petrified_roots.json
-71e6416346b9dc56e673aeee776b3f1b24d59cae data/darkerdepths/loot_table/blocks/petrified_roots_plant.json
+6c96ba161a335adc4c78f13eb720ebce7058bfe6 data/darkerdepths/loot_table/blocks/petrified_roots.json
+1175bce227e713985f688a21b047fe3a5d708ad2 data/darkerdepths/loot_table/blocks/petrified_roots_plant.json
 b8241b2fbb218bfd5c973f90de5e2e94e8fba7fd data/darkerdepths/loot_table/blocks/petrified_sign.json
 f35399fdd389f318f31110c1cfddb305ad956d8d data/darkerdepths/loot_table/blocks/petrified_slab.json
 8415c26c727d896125cc858e0e527443918ff96c data/darkerdepths/loot_table/blocks/petrified_stairs.json
@@ -116,7 +116,7 @@ fe059856640a25089c636995846ea437470fb7aa data/darkerdepths/loot_table/blocks/pol
 8922d9f85b23a010d622ef18ca952fee281ba77c data/darkerdepths/loot_table/blocks/porous_petrified_log.json
 ef5a93dd3fc952fa55133f527a66924c6f3442b2 data/darkerdepths/loot_table/blocks/potted_glowshroom.json
 1096585c0434e9226c2073650caa0e4a6d6b1a00 data/darkerdepths/loot_table/blocks/rope.json
-8670ae4190a5d01303a72267c04850efe0479cfe data/darkerdepths/loot_table/blocks/scorched_remains.json
+5c8dd518dd317527b563a17e0f56a5aded0ec97e data/darkerdepths/loot_table/blocks/scorched_remains.json
 4c6a5932e9a66284687cd6b49e4c481dad11c60a data/darkerdepths/loot_table/blocks/scorched_remains_block.json
 8aea018e4a575143f2621a8289c0ccbe970f3245 data/darkerdepths/loot_table/blocks/skull_wall.json
 9aca8741b7cbd31d05120d70b78711662badaec4 data/darkerdepths/loot_table/blocks/stone_melon.json

@@ -26,7 +26,7 @@ public class ScorcherRenderer extends GeoEntityRenderer<ScorcherEntity> {
 
     @Override
     public Color getRenderColor(ScorcherEntity animatable, float partialTick, int packedLight) {
-        if (animatable.hurtTime > 0) {
+        if (animatable.hurtTime > 0 || !animatable.isAlive()) {
             return Color.ofRGBA(255, 180, 180, 255);
         }
 

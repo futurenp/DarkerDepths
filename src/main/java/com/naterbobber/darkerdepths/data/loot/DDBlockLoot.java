@@ -45,11 +45,13 @@ public class DDBlockLoot extends BlockLootSubProvider {
         skipBlock(DDBlocks.MOB_PLACER.get());
         skipBlock(DDBlocks.SCORCHER_LIGHT_BLOCK.get());
         add(DDBlocks.MOSSY_GRIMESTONE.get(), block -> createSingleItemTableWithSilkTouch(DDBlocks.MOSSY_GRIMESTONE.get(), DDBlocks.GRIMESTONE.asItem()));
-        add(DDBlocks.SCORCHED_REMAINS.get(), block -> createSingleItemTableWithSilkTouch(DDBlocks.SCORCHED_REMAINS.get(), Items.CHARCOAL, UniformGenerator.between(0.0F, 1.0F)));
         add(DDBlocks.ARID_DEEPSLATE.get(), block -> createSingleItemTableWithSilkTouch(DDBlocks.ARID_DEEPSLATE.get(), Blocks.DEEPSLATE.asItem()));
         add(DDBlocks.AMBER_CLUSTER.get(), block -> createSingleItemTableWithSilkTouch(DDBlocks.AMBER_CLUSTER.get(), DDItems.AMBER.get()));
         add(DDBlocks.GLIMMERING_VINES.get(), block -> createShearsOrChanceBreakLoot(DDBlocks.GLIMMERING_VINES.get(), DDItems.GLOW_GRIME.get(), 0.3F));
         add(DDBlocks.GLIMMERING_VINE_PLANT.get(), block -> createShearsOrChanceBreakLoot(DDBlocks.GLIMMERING_VINES.get(), DDItems.GLOW_GRIME.get(), 0.3F));
+        add(DDBlocks.PETRIFIED_ROOTS.get(), block -> createShearsOrChanceBreakLoot(DDBlocks.PETRIFIED_ROOTS.get(), Items.STICK, 0.5F));
+        add(DDBlocks.PETRIFIED_ROOTS_PLANT.get(), block -> createShearsOrChanceBreakLoot(DDBlocks.PETRIFIED_ROOTS.get(), Items.STICK, 0.5F));
+        add(DDBlocks.SCORCHED_REMAINS.get(), block -> createShearsOrChanceBreakLoot(DDBlocks.SCORCHED_REMAINS.get(), Items.CHARCOAL, 0.5F));
         add(DDBlocks.GLOWSHROOM.get(), block -> createStageBasedLoot(DDBlocks.GLOWSHROOM.get(), GlowshroomBlock.GLOWSHROOM_CLUSTERS));
         add(DDBlocks.ASH.get(), block -> createStageBasedLoot(DDBlocks.ASH.get(), AshBlock.LAYERS));
         add(DDBlocks.POROUS_PETRIFIED_LOG.get(), block -> createSingleItemTableWithSilkTouch(DDBlocks.POROUS_PETRIFIED_LOG.get(), DDItems.AMBER.get(), UniformGenerator.between(2F, 5F)));
