@@ -28,7 +28,7 @@ public class VoidSoulDeathParticle extends LargeSmokeParticle {
         }
 
         public Particle createParticle(SimpleParticleType type, ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
-            return new VoidSoulDeathParticle(level, x, y, z, 0.007F, ySpeed, 0.01F, this.sprites);
+            return new VoidSoulDeathParticle(level, x, y, z, 0.006F, ySpeed, 0.01F, this.sprites);
         }
     }
 }

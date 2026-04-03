@@ -172,6 +172,7 @@ public class DDResourceKeys {
         public static final ResourceKey<ConfiguredWorldCarver<?>> DUSKROCK_CARVER = createKey("duskrock_carver");
         public static final ResourceKey<ConfiguredWorldCarver<?>> MAGMA_CARVER = createKey("magma_carver");
         public static final ResourceKey<ConfiguredWorldCarver<?>> TUFF_CARVER = createKey("tuff_carver");
+        public static final ResourceKey<ConfiguredWorldCarver<?>> MAGMA_LINE_CARVER = createKey("magma_line_carver");
 
         private static ResourceKey<ConfiguredWorldCarver<?>> createKey(String pName) {
             return ResourceKey.create(Registries.CONFIGURED_CARVER, DarkerDepths.id(pName));

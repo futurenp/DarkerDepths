@@ -164,7 +164,7 @@ public class VoidSoulEntity extends PathfinderMob implements GeoEntity {
                         this.getX(),
                         this.getY(0.5),
                         this.getZ(),
-                        20,
+                        10,
                         this.getBbWidth() / 2.0,
                         this.getBbHeight() / 2.0,
                         this.getBbWidth() / 2.0,

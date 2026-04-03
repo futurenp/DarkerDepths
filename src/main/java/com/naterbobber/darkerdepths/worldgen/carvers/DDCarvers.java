@@ -74,5 +74,23 @@ public class DDCarvers {
                                 )
                         )
         );
+
+        context.register(
+                MAGMA_LINE_CARVER,
+                DDWorldCarvers.CURTAIN_CARVER.get()
+                        .configured(
+                                new BlockCarverConfiguration(
+                                        0.02F,
+                                        UniformHeight.of(VerticalAnchor.aboveBottom(8), VerticalAnchor.absolute(180)),
+                                        UniformFloat.of(0.1F, 0.9F), VerticalAnchor.aboveBottom(8),
+                                        CarverDebugSettings.of(false, Blocks.CRIMSON_BUTTON.defaultBlockState()),
+                                        holdergetter.getOrThrow(DDTags.Blocks.MAGMA_STRIPE_REPLACEABLE),
+                                        UniformFloat.of(0.4F, 0.5F),
+                                        UniformFloat.of(1.2F, 1.5F),
+                                        UniformFloat.of(-1.0F, -0.4F),
+                                        Blocks.MAGMA_BLOCK
+                                )
+                        )
+        );
     }
 }
