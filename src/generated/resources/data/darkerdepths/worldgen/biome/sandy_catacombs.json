@@ -9,7 +9,7 @@
   },
   "downfall": 0.5,
   "effects": {
-    "fog_color": 12638463,
+    "fog_color": -13098726,
     "grass_color": 11976546,
     "mood_sound": {
       "block_search_extent": 8,
@@ -74,7 +74,7 @@
       "minecraft:freeze_top_layer"
     ]
   ],
-  "has_precipitation": true,
+  "has_precipitation": false,
   "spawn_costs": {},
   "spawners": {
     "ambient": [],

@@ -23,7 +23,7 @@ public class DDBiomeTagsProvider extends BiomeTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider provider) {
-        DDResourceKeys.Biomes.BIOMES.stream().forEach(this::addDefaultOverworldBiomeTags);
+        DDResourceKeys.Biomes.BIOMES.forEach(this::addDefaultOverworldBiomeTags);
 
         this.tag(Tags.Biomes.IS_HOT_OVERWORLD).addOptional(DDResourceKeys.Biomes.MOLTEN_CAVERN.location());
         this.tag(Tags.Biomes.IS_DRY_OVERWORLD).addOptional(DDResourceKeys.Biomes.SANDY_CATACOMBS.location());
