@@ -1,12 +1,15 @@
 package com.naterbobber.darkerdepths.init;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
+import com.naterbobber.darkerdepths.enchantment.DDEnchantments;
+import com.naterbobber.darkerdepths.util.DDResourceKeys;
 import net.minecraft.core.Holder;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentInstance;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.fml.ModList;
 import net.neoforged.neoforge.registries.DeferredBlock;
@@ -95,9 +98,17 @@ public class DDCreativeModeTabs {
                 }
 
                 insertItem(item, output);
-            }
-        });
 
+
+            }
+
+            itemDisplayParameters
+                    .holders()
+                    .lookup(Registries.ENCHANTMENT)
+                    .ifPresent((registryLookup) -> {
+                generateEnchantmentBookTypesOnlyMaxLevel(output, registryLookup, CreativeModeTab.TabVisibility.PARENT_TAB_ONLY);
+            });
+        });
 
         return ddCreativeTabBuilder.build();
     });
@@ -119,6 +130,15 @@ public class DDCreativeModeTabs {
         else {
             output.accept(item.get());
         }
+    }
+
+    private static void generateEnchantmentBookTypesOnlyMaxLevel(CreativeModeTab.Output output, HolderLookup<Enchantment> enchantments, CreativeModeTab.TabVisibility tabVisibility) {
+        enchantments.listElements()
+                .filter(enchantmentReference -> DDResourceKeys.Enchantments.ENCHANTMENTS.contains(enchantmentReference.getKey()))
+                .map((enchantmentHolder) ->
+                        EnchantedBookItem.createForEnchantment(new EnchantmentInstance(enchantmentHolder, (enchantmentHolder.value()).getMaxLevel()))
+                )
+                .forEach((enchantment) -> output.accept(enchantment, tabVisibility));
     }
 }
 
