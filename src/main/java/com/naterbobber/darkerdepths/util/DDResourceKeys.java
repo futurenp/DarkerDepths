@@ -46,6 +46,7 @@ public class DDResourceKeys {
         public static final ResourceKey<BiomeModifier> ADD_SANDY_CATACOMBS_RAW_GENERATION = createKey("add_sandy_catacombs_raw_generation");
         public static final ResourceKey<BiomeModifier> ADD_SANDY_CATACOMBS_UNDERGROUND_DECORATION = createKey("add_sandy_catacombs_underground_decoration");
         public static final ResourceKey<BiomeModifier> ADD_GLOWSHROOM_FOREST_VEGETAL_FEATURES = createKey("add_glowshroom_forest_vegetal_features");
+        public static final ResourceKey<BiomeModifier> ADD_GLOWSHROOM_FOREST_UNDERGROUND_DECORATION = createKey("add_glowshroom_forest_underground_decoration");
         public static final ResourceKey<BiomeModifier> ADD_GLOWSHROOM_FOREST_SPAWNS = createKey("add_glowshroom_forest_spawns");
 
         private static ResourceKey<BiomeModifier> createKey(String name) {

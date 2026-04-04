@@ -125,20 +125,27 @@ public class DDBiomeModifiers {
     }
 
     private static void registerGlowshroomForest(BootstrapContext<BiomeModifier> context) {
+        context.register(ADD_GLOWSHROOM_FOREST_UNDERGROUND_DECORATION, new BiomeModifiers.AddFeaturesBiomeModifier(
+                getBiome(context, GLOWSHROOM_FOREST),
+                getPlacedFeature(
+                        context,
+                        GRIME_SURFACE
+                ),
+                GenerationStep.Decoration.UNDERGROUND_DECORATION)
+        );
         context.register(ADD_GLOWSHROOM_FOREST_VEGETAL_FEATURES, new BiomeModifiers.AddFeaturesBiomeModifier(
                 getBiome(context, GLOWSHROOM_FOREST),
                 getPlacedFeature(
                         context,
                         GLIMMERING_VINES,
-                        HUGE_GLOWSHROOM,
-                        GRIME_SURFACE
+                        HUGE_GLOWSHROOM
                 ),
                 GenerationStep.Decoration.VEGETAL_DECORATION)
         );
         context.register(ADD_GLOWSHROOM_FOREST_SPAWNS, new BiomeModifiers.AddSpawnsBiomeModifier(
                 getBiome(context, GLOWSHROOM_FOREST),
                 List.of(
-                        new MobSpawnSettings.SpawnerData(DDEntityTypes.GLOWSHROOM_MONSTER.get(), 200, 1, 2)
+                        new MobSpawnSettings.SpawnerData(DDEntityTypes.GLOWSHROOM_MONSTER.get(), 120, 1, 2)
                 )
         ));
     }

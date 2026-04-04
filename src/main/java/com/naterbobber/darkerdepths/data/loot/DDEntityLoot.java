@@ -11,6 +11,8 @@ import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSet;
+import net.minecraft.world.level.storage.loot.predicates.LootItemKilledByPlayerCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -28,8 +30,9 @@ public class DDEntityLoot extends VanillaEntityLoot {
         this.add(DDEntityTypes.GLOWSHROOM_MONSTER.get(),
                 LootTable.lootTable()
                         .withPool(LootPool.lootPool()
-                                .setRolls(ConstantValue.exactly(1.0F))
+                                .setRolls(UniformGenerator.between(0.0F, 1.0F))
                                 .add(LootItem.lootTableItem(DDItems.GLOWSHROOM_CAP.get()))
+                                .when(LootItemKilledByPlayerCondition.killedByPlayer())
                         )
                         .withPool(LootPool.lootPool()
                                 .add(LootItem.lootTableItem(DDItems.GLOW_GRIME.get())

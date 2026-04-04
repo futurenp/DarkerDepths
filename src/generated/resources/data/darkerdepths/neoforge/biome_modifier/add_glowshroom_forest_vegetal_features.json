@@ -3,8 +3,7 @@
   "biomes": "darkerdepths:glowshroom_forest",
   "features": [
     "darkerdepths:glimmering_vines",
-    "darkerdepths:huge_glowshroom",
-    "darkerdepths:grime_surface"
+    "darkerdepths:huge_glowshroom"
   ],
   "step": "vegetal_decoration"
 }

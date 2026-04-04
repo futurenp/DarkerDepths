@@ -1,4 +1,4 @@
-// 1.21.1	2026-04-04T00:42:23.8625325	Loot Tables
+// 1.21.1	2026-04-04T17:24:22.7981126	Loot Tables
 69a68443e41c0ea8610b4ece66b6a6a3bff163d0 data/darkerdepths/loot_table/archaeology/catacombs/standard.json
 b26089f15d136d6d0b9b7870fd170249ec0473de data/darkerdepths/loot_table/blocks/amber_block.json
 7b8aa851d67ec8c45ab85ef504b99c843fe25237 data/darkerdepths/loot_table/blocks/amber_cluster.json
@@ -132,7 +132,7 @@ d830b6d68273d586a749701e795650fb22662af5 data/darkerdepths/loot_table/blocks/voi
 922215f9c8707c8544a64d05b9e51ac9ae1e8dab data/darkerdepths/loot_table/chests/catacombs/standard.json
 c1b85cdbca2c0cdf1be484d30cf6d8d3d30131a6 data/darkerdepths/loot_table/chests/catacombs/treasure.json
 4e843a9fcaa41391d4a1a5a104c73d83da774f2c data/darkerdepths/loot_table/entities/body_snatcher.json
-918f438ad7aebd4564d48ea56a45ec73736af62c data/darkerdepths/loot_table/entities/glowshroom_monster.json
+971051b9872527c910cce340ee260f329d9dbbc6 data/darkerdepths/loot_table/entities/glowshroom_monster.json
 2ea254c00108f2c5a6f13de4d12b4c734fa81b71 data/darkerdepths/loot_table/entities/scorcher.json
 16d972864d6a15bef01690b89139c702d0f6aa82 data/darkerdepths/loot_table/entities/void_soul.json
 203bd0894ddbd60358e16634b7ad48fbb0f21e1b data/darkerdepths/loot_table/entities/void_soul_knight.json

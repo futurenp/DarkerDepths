@@ -26,9 +26,16 @@ public class DDPlacedFeatures {
         HolderGetter<ConfiguredFeature<?, ?>> lookup = context.lookup(Registries.CONFIGURED_FEATURE);
 
         PlacementUtils.register(context, HUGE_GLOWSHROOM, lookup.getOrThrow(DDResourceKeys.ConfiguredFeatures.HUGE_GLOWSHROOM),
-                CountPlacement.of(UniformInt.of(140, 180)),
+                CountPlacement.of(UniformInt.of(32, 48)),
                 InSquarePlacement.spread(),
                 PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
+                EnvironmentScanPlacement.scanningFor(
+                        Direction.DOWN,
+                        BlockPredicate.matchesBlocks(Direction.DOWN.getNormal(), DDBlocks.MOSSY_GRIMESTONE.get()),
+                        BlockPredicate.matchesTag(BlockTags.AIR),
+                        4
+                ),
+//                RandomOffsetPlacement.vertical(ConstantInt.of(1)),
                 BiomeFilter.biome());
 
         PlacementUtils.register(context, GLOWSHROOM_PATCH, lookup.getOrThrow(DDResourceKeys.ConfiguredFeatures.GLOWSHROOM_PATCH),
@@ -121,7 +128,7 @@ public class DDPlacedFeatures {
                 EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.solid(), BlockPredicate.matchesBlocks(Blocks.AIR, Blocks.CAVE_AIR, Blocks.LAVA), 8));
 
         PlacementUtils.register(context, GRIME_SURFACE, lookup.getOrThrow(DDResourceKeys.ConfiguredFeatures.GRIME_SURFACE),
-                CountPlacement.of(UniformInt.of(192, 256)),
+                CountPlacement.of(UniformInt.of(64, 108)),
                 InSquarePlacement.spread(),
                 PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
                 BiomeFilter.biome());

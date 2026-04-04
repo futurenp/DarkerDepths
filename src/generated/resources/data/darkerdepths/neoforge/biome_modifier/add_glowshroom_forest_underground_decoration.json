@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "darkerdepths:glowshroom_forest",
+  "features": "darkerdepths:grime_surface",
+  "step": "underground_decoration"
+}
