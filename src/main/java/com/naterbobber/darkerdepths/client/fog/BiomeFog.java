@@ -4,7 +4,6 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.biome.Biome;
 import software.bernie.geckolib.util.Color;
 
-import java.util.function.IntSupplier;
 import java.util.function.Supplier;
 
 public class BiomeFog {

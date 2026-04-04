@@ -37,7 +37,7 @@ public class DDBiomes {
         BiomeDefaultFeatures.addSurfaceFreezing(biomeBuilder);
         BiomeDefaultFeatures.addPlainGrass(biomeBuilder);
         BiomeDefaultFeatures.addDefaultOres(biomeBuilder);
-        Music music = Musics.createGameMusic(SoundEvents.MUSIC_BIOME_DRIPSTONE_CAVES);
+        Music music = Musics.createGameMusic(SoundEvents.MUSIC_BIOME_LUSH_CAVES);
         int fogColor = DDBiomeFogs.GLOWSHROOM_FOREST.getIntColor();
 
         return new DDBiomeBuilder(biomeBuilder)
@@ -110,7 +110,7 @@ public class DDBiomes {
         private boolean precipitation = true;
         private MobSpawnSettings.Builder mobBuilder = new MobSpawnSettings.Builder();
         private final BiomeGenerationSettings.Builder biomeBuilder;
-        private Music music = null;
+        private Music music;
 
         public DDBiomeBuilder(BiomeGenerationSettings.Builder biomeBuilder) {
             this.biomeBuilder = biomeBuilder;

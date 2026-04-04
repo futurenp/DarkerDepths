@@ -1,4 +1,4 @@
-// 1.21.1	2026-04-02T19:38:49.1676324	Loot Tables
+// 1.21.1	2026-04-04T00:42:23.8625325	Loot Tables
 69a68443e41c0ea8610b4ece66b6a6a3bff163d0 data/darkerdepths/loot_table/archaeology/catacombs/standard.json
 b26089f15d136d6d0b9b7870fd170249ec0473de data/darkerdepths/loot_table/blocks/amber_block.json
 7b8aa851d67ec8c45ab85ef504b99c843fe25237 data/darkerdepths/loot_table/blocks/amber_cluster.json
@@ -45,6 +45,7 @@ d39e8cfa72eade715d0ba493d00ad395f06f34aa data/darkerdepths/loot_table/blocks/dar
 0100a33b219af45f38c44243567d123952d8f512 data/darkerdepths/loot_table/blocks/duskrock_bricks_stairs.json
 8d0ed5a6684867784d9ed530c4c33b96f91a9add data/darkerdepths/loot_table/blocks/duskrock_bricks_vertical_slab.json
 e4a25541c4727e44a72351df395376927a530db5 data/darkerdepths/loot_table/blocks/duskrock_bricks_wall.json
+95ef0daf44100a3fb2b9c300e9c533a3126e0ed7 data/darkerdepths/loot_table/blocks/duskrock_pillar.json
 a15bfae9d13ec61baf8b37177c098d24e9423c0d data/darkerdepths/loot_table/blocks/duskrock_slab.json
 0e3d17816e16702e050eec13b2a4c9a9afd367bf data/darkerdepths/loot_table/blocks/duskrock_stairs.json
 1323725efea983df4f13b081d02afa71596f95a2 data/darkerdepths/loot_table/blocks/duskrock_vertical_slab.json

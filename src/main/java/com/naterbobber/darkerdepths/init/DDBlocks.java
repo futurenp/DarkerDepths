@@ -174,6 +174,8 @@ public class DDBlocks {
             () -> new Block(DUSKROCK_BRICKS_PROPERTIES));
     public static final DeferredBlock<Block> CRACKED_DUSKROCK_BRICKS = registerBlock("cracked_duskrock_bricks",
             () -> new Block(DUSKROCK_BRICKS_PROPERTIES));
+    public static final DeferredBlock<ConnectedRotatablePillarBlock> DUSKROCK_PILLAR = registerBlock("duskrock_pillar",
+            () -> new ConnectedRotatablePillarBlock(DUSKROCK_BRICKS_PROPERTIES));
     public static final DeferredBlock<VoidSoulJarBlock> VOID_SOUL_JAR = registerNoTabBlock("void_soul_jar",
             () -> new VoidSoulJarBlock(BlockBehaviour.Properties.of().strength(0.8f).sound(SoundType.GLASS).lightLevel(value -> 5)));
     public static final DeferredBlock<Block> FORSAKEN_BRONZE_BLOCK = registerBlock("forsaken_bronze_block",
