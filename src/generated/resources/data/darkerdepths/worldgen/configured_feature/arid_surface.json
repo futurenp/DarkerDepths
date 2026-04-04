@@ -17,10 +17,7 @@
       {
         "type": "minecraft:simple_state_provider",
         "state": {
-          "Name": "darkerdepths:arid_deepslate",
-          "Properties": {
-            "axis": "y"
-          }
+          "Name": "darkerdepths:arid_deepslate"
         }
       }
     ],

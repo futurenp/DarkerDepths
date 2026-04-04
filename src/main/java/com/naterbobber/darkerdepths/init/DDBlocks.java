@@ -188,8 +188,8 @@ public class DDBlocks {
             () -> new TombBlock(blockProperties(4.0f, 10.0f, SoundType.DEEPSLATE, true).noOcclusion()));
     public static final DeferredBlock<ParanoiaAltarBlock> PARANOIA_ALTAR = registerNoTabBlock("paranoia_altar",
             () -> new ParanoiaAltarBlock(blockProperties(2.5f, 3.0f, SoundType.DEEPSLATE, true).lightLevel(level -> 9).noOcclusion()));
-    public static final DeferredBlock<LayeredDeepslateBlock> ARID_DEEPSLATE = registerBlock("arid_deepslate",
-            () -> new LayeredDeepslateBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE).randomTicks()));
+    public static final DeferredBlock<Block> ARID_DEEPSLATE = registerBlock("arid_deepslate",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE).randomTicks()));
     public static final DeferredBlock<VoidSoulTorchBlock> VOID_SOUL_TORCH = registerNoTabBlock("void_soul_torch",
             () -> new VoidSoulTorchBlock(DDParticleTypes.VOID_SOUL_FLAME::get, BlockBehaviour.Properties.of().strength(0.0F, 1.0F).noCollission().sound(SoundType.WOOD).lightLevel(state -> 10)));
     public static final DeferredBlock<WallVoidSoulTorchBlock> WALL_VOID_SOUL_TORCH = registerNoTabBlock("wall_void_soul_torch",

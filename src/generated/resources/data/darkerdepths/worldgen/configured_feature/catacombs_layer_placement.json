@@ -83,10 +83,7 @@
         }
       },
       {
-        "Name": "darkerdepths:arid_deepslate",
-        "Properties": {
-          "axis": "y"
-        }
+        "Name": "darkerdepths:arid_deepslate"
       },
       {
         "Name": "minecraft:gravel"

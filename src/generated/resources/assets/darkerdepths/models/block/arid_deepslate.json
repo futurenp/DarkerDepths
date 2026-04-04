@@ -1,7 +1,6 @@
 {
-  "parent": "minecraft:block/cube_column",
+  "parent": "minecraft:block/cube_all",
   "textures": {
-    "end": "darkerdepths:block/arid_deepslate_top",
-    "side": "darkerdepths:block/arid_deepslate"
+    "all": "darkerdepths:block/arid_deepslate"
   }
 }
