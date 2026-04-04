@@ -90,12 +90,8 @@ public class DDStructures {
 
         Structure.StructureSettings catacombs = new Structure.StructureSettings(
                 biomeGetter.getOrThrow(DDTags.Biomes.CATACOMBS),
-                Arrays.stream(MobCategory.values()).collect(Collectors.toMap(v -> {
-                    return v;
-                }, v1 -> {
-                    return new StructureSpawnOverride(StructureSpawnOverride.BoundingBoxType.STRUCTURE, WeightedRandomList.create());
-                })),
-                GenerationStep.Decoration.VEGETAL_DECORATION,
+                Arrays.stream(MobCategory.values()).collect(Collectors.toMap(v -> v, v1 -> new StructureSpawnOverride(StructureSpawnOverride.BoundingBoxType.STRUCTURE, WeightedRandomList.create()))),
+                GenerationStep.Decoration.TOP_LAYER_MODIFICATION,
                 TerrainAdjustment.BURY
         );
 

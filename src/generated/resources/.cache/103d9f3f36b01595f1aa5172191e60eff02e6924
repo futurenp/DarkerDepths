@@ -1,4 +1,4 @@
-// 1.21.1	2026-04-04T14:15:03.5403543	Registries
+// 1.21.1	2026-04-04T14:44:29.4279232	Registries
 c4ee168e7bc25f3368a39009dc20c9876da3354f data/darkerdepths/damage_type/soul_binding_damage.json
 67449d45b04557a6ff85e2e4fb14a19e83a15a27 data/darkerdepths/enchantment/quick_dash.json
 efd3542a868f364e528e55ec4c13c3d5e8a423f0 data/darkerdepths/enchantment/swift_strike.json
@@ -81,7 +81,7 @@ ff768b5e859ab8f14c5982f8ed6935117d78698d data/darkerdepths/worldgen/placed_featu
 3739fe9defbebca6f68045beed66421c9504f7ac data/darkerdepths/worldgen/placed_feature/scorcher_placer.json
 da095869b7c2ff406779eb355fcf1d4d2f701d87 data/darkerdepths/worldgen/processor_list/catacombs_processor.json
 433e6f0c26ccdb56935a73895a575606b80f1cc5 data/darkerdepths/worldgen/processor_list/rope_mines_processor.json
-23b702bfbddcef523ac2c2d7b7539e8f1e1cb29d data/darkerdepths/worldgen/structure/catacombs.json
+029cf17e08d7b37b52c7c8d6a797804fea541870 data/darkerdepths/worldgen/structure/catacombs.json
 032642d15d308d540566fea616276bb1271242c6 data/darkerdepths/worldgen/structure/petrified_mineshaft.json
 d44301ea52e894b75d6896a24e909825953d1227 data/darkerdepths/worldgen/structure/rope_mine_desert.json
 cfddf8ef8f8fc110c89f1dab8ffcac5a24aac121 data/darkerdepths/worldgen/structure/rope_mine_forest.json
