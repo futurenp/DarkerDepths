@@ -1,25 +1,18 @@
 package com.naterbobber.darkerdepths.client.fog.modifiers;
 
 import com.mojang.blaze3d.shaders.FogShape;
+import com.naterbobber.darkerdepths.client.fog.BiomeFog;
+import com.naterbobber.darkerdepths.client.fog.DDBiomeFogs;
 import com.naterbobber.darkerdepths.client.fog.FogModifier;
 import com.naterbobber.darkerdepths.config.DDConfig;
 import com.naterbobber.darkerdepths.init.DDMobEffects;
-import com.naterbobber.darkerdepths.util.DDResourceKeys;
 import net.minecraft.client.player.LocalPlayer;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.level.biome.Biome;
 import net.neoforged.neoforge.client.event.ViewportEvent;
 import software.bernie.geckolib.util.Color;
-import java.util.List;
 
 public class BiomeFogModifier implements FogModifier {
     private static final float BIOME_TRANSITION_SECONDS = 2.0f;
-    private final List<BiomeFog> biomeFogs = List.of(
-            new BiomeFog(DDResourceKeys.Biomes.MOLTEN_CAVERN, Color.ofRGB(0.42F, 0.27F, 0.18F), DDConfig.CONFIG.MOLTEN_CAVERN_FOG_MIN.get(), DDConfig.CONFIG.MOLTEN_CAVERN_FOG_MAX.get()),
-            new BiomeFog(DDResourceKeys.Biomes.SANDY_CATACOMBS, Color.ofRGB(0.22F, 0.13F, 0.10F), DDConfig.CONFIG.SANDY_CATACOMBS_FOG_MIN.get(), DDConfig.CONFIG.SANDY_CATACOMBS_FOG_MAX.get()),
-            new BiomeFog(DDResourceKeys.Biomes.GLOWSHROOM_FOREST, Color.ofRGB(0.16F, 0.34F, 0.24F), DDConfig.CONFIG.GLOWSHROOM_FOREST_FOG_MIN.get(), DDConfig.CONFIG.GLOWSHROOM_FOREST_FOG_MAX.get())
-    );
 
     @Override
     public int getPriority() { return 10; }
@@ -38,9 +31,9 @@ public class BiomeFogModifier implements FogModifier {
         float biomeStep = 1.0f / (BIOME_TRANSITION_SECONDS * 20.0f);
         var currentBiome = player.level().getBiome(player.getOnPos());
 
-        for (BiomeFog biome : biomeFogs) {
-            boolean isInBiome = currentBiome.is(biome.biomeKey);
-            biome.weight = Math.max(0.0f, Math.min(1.0f, biome.weight + (isInBiome ? biomeStep : -biomeStep)));
+        for (BiomeFog biome : DDBiomeFogs.BIOME_FOGS) {
+            boolean isInBiome = currentBiome.is(biome.getBiomeKey());
+            biome.setWeight(Math.max(0.0f, Math.min(1.0f, biome.getWeight() + (isInBiome ? biomeStep : -biomeStep))));
         }
     }
     @Override
@@ -49,10 +42,10 @@ public class BiomeFogModifier implements FogModifier {
         if (totalWeight <= 0.0f) return;
 
         float targetR = 0, targetG = 0, targetB = 0;
-        for (BiomeFog biome : biomeFogs) {
-            if (biome.weight <= 0) continue;
-            Color color = biome.color;
-            float normalizedWeight = biome.weight / totalWeight;
+        for (BiomeFog biome : DDBiomeFogs.BIOME_FOGS) {
+            if (biome.getWeight() <= 0) continue;
+            Color color = biome.getColor();
+            float normalizedWeight = biome.getWeight() / totalWeight;
             targetR += color.getRedFloat() * normalizedWeight;
             targetG += color.getGreenFloat() * normalizedWeight;
             targetB += color.getBlueFloat() * normalizedWeight;
@@ -70,11 +63,11 @@ public class BiomeFogModifier implements FogModifier {
 
         float targetNear = 0;
         float targetFar = 0;
-        for (BiomeFog biome : biomeFogs) {
-            if (biome.weight <= 0) continue;
-            float normalizedWeight = biome.weight / totalWeight;
-            targetNear += biome.minDist * normalizedWeight;
-            targetFar += biome.maxDist * normalizedWeight;
+        for (BiomeFog biome : DDBiomeFogs.BIOME_FOGS) {
+            if (biome.getWeight() <= 0) continue;
+            float normalizedWeight = biome.getWeight() / totalWeight;
+            targetNear += biome.getMinDist() * normalizedWeight;
+            targetFar += biome.getMaxDist() * normalizedWeight;
         }
 
         float vanillaNear = event.getNearPlaneDistance();
@@ -93,17 +86,9 @@ public class BiomeFogModifier implements FogModifier {
 
     private float getTotalBiomeWeight() {
         float total = 0;
-        for (BiomeFog biome : biomeFogs) total += biome.weight;
+        for (BiomeFog biome : DDBiomeFogs.BIOME_FOGS) total += biome.getWeight();
         return total;
     }
 
-    private static class BiomeFog {
-        ResourceKey<Biome> biomeKey; Color color; float weight; int minDist; int maxDist;
-        BiomeFog(ResourceKey<Biome> biome, Color color, int minDist, int maxDist) {
-            this.biomeKey = biome; this.color = color; this.minDist = minDist; this.maxDist = maxDist;
-        }
-        Color getWeightedColors() { return Color.ofRGB(color.getRedFloat() * weight, color.getGreenFloat() * weight, color.getBlueFloat() * weight); }
-        float getWeightedMin() { return weight * minDist; }
-        float getWeightedMax() { return weight * maxDist; }
-    }
+
 }
