@@ -20,9 +20,9 @@ public class DDArmorMaterials {
 
     public static final DeferredHolder<ArmorMaterial, ArmorMaterial> GLOWSHROOM_MATERIAL = ARMOR_MATERIALS.register("glowshroom", () ->
             new ArmorMaterial(
-                    Map.of(ArmorItem.Type.HELMET, 1),
+                    Map.of(ArmorItem.Type.HELMET, 0),
                     0,
-                    SoundEvents.ARMOR_EQUIP_LEATHER,
+                    SoundEvents.ARMOR_EQUIP_TURTLE,
                     () -> Ingredient.of(DDItems.GLOW_GRIME.get()),
                     List.of(new ArmorMaterial.Layer(DarkerDepths.id("glowshroom"))),
                     0.0f,

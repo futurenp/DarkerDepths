@@ -21,7 +21,7 @@ public class DDItems {
 //    private static final Boat.Type PETRIFIED_BOAT_TYPE = Boat.Type.byName("PETRIFIED");
 
     public static final DeferredItem<GlowshroomCapItem> GLOWSHROOM_CAP = ITEMS.register("glowshroom_cap",
-            () -> new GlowshroomCapItem(new Item.Properties().stacksTo(1).durability(ArmorItem.Type.HELMET.getDurability(156))));
+            () -> new GlowshroomCapItem(new Item.Properties().stacksTo(1).durability(ArmorItem.Type.HELMET.getDurability(8))));
     public static final DeferredItem<Item> GLOW_GRIME = createSimpleItem("glow_grime");
     public static final DeferredItem<RopeItem> ROPE = ITEMS.register("rope",
             () -> new RopeItem(DDBlocks.ROPE.get(), new Item.Properties()));
