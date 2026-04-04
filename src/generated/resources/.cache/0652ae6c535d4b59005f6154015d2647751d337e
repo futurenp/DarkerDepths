@@ -1,4 +1,4 @@
-// 1.21.1	2026-04-04T00:44:04.813297	Tags for minecraft:block mod id darkerdepths
+// 1.21.1	2026-04-04T01:45:11.1641877	Tags for minecraft:block mod id darkerdepths
 0163428a12a8c0cf1e5c527b85275a53bd3d364b data/blueprint/tags/block/wooden_bookshelves.json
 0163428a12a8c0cf1e5c527b85275a53bd3d364b data/c/tags/block/bookshelves.json
 9cb44c49895785a868a717fe96a0e3ce7e215187 data/c/tags/block/storage_blocks.json
@@ -12,9 +12,9 @@ a39e015170ad81010779a5d446a2e44c0e8e49d6 data/darkerdepths/tags/block/heat_provi
 93edf834754c5da600737150f2d3453d6e54ae5b data/darkerdepths/tags/block/high_heat.json
 0c462ed9e2e0b077146d01a3868fac36d9e27839 data/darkerdepths/tags/block/huge_glowshroom_growable.json
 3dfb0ae86440be076ba09273ec3517fb643e005c data/darkerdepths/tags/block/husks_spawnable_on.json
-2634dacf158e3988e4713b8beb8697fc5f0ba657 data/darkerdepths/tags/block/low_heat.json
+1ace75266a4612fb869bd03caa98b5bc9b9facda data/darkerdepths/tags/block/low_heat.json
 814260cd7113b8871b49a303cf2dc36d1ea81b0c data/darkerdepths/tags/block/magma_stripe_replaceable.json
-8ab72c8953853281ca07fa4e516e52648c7518fa data/darkerdepths/tags/block/medium_heat.json
+d8dfe60bd1ae85f7a46defc4a7cc4bf42b5cf87e data/darkerdepths/tags/block/medium_heat.json
 db6195d77bd598771b111d12750ba39f41fe35c7 data/darkerdepths/tags/block/very_high_heat.json
 629b5359bc3115f148d4aabf634436db522199d9 data/minecraft/tags/block/all_hanging_signs.json
 cf6fc837315dff0c0cf820f01506173a674bc611 data/minecraft/tags/block/all_signs.json

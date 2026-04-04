@@ -336,13 +336,13 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
         );
 
         this.tag(DDTags.Blocks.MEDIUM_HEAT).add(
-                Blocks.FIRE,
-                Blocks.CAMPFIRE
+                Blocks.SOUL_FIRE,
+                Blocks.SOUL_CAMPFIRE
         );
 
         this.tag(DDTags.Blocks.LOW_HEAT).add(
-                Blocks.SOUL_FIRE,
-                Blocks.SOUL_CAMPFIRE,
+                Blocks.FIRE,
+                Blocks.CAMPFIRE,
                 DDBlocks.SCORCHED_REMAINS_BLOCK.get()
         );
 
