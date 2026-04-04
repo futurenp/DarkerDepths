@@ -27,12 +27,12 @@ public class AridBoulderFeature extends Feature<NoneFeatureConfiguration> {
         BlockPos blockpos = context.origin();
         WorldGenLevel world = context.level();
         RandomSource random = context.random();
-        if (!world.isEmptyBlock(blockpos) || !world.getBlockState(blockpos.below()).is(BlockTags.BASE_STONE_OVERWORLD)) {
+        if (!world.isEmptyBlock(blockpos) || !world.getBlockState(blockpos.below()).is(DDBlocks.ARIDROCK)) {
             return false;
         } else {
             boolean flag = false;
-            int radius = 8;
-            int height = Mth.nextInt(random, 8, 16);
+            int radius = 7;
+            int height = Mth.nextInt(random, 8, 10);
             for (int x = -radius; x <= radius; x++) {
                 for (int z = -radius; z <= radius; z++) {
                     for (int y = 0; y <= height; y++) {

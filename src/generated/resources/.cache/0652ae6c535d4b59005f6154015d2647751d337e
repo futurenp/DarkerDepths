@@ -1,4 +1,4 @@
-// 1.21.1	2026-04-04T01:45:11.1641877	Tags for minecraft:block mod id darkerdepths
+// 1.21.1	2026-04-04T14:26:17.7456636	Tags for minecraft:block mod id darkerdepths
 0163428a12a8c0cf1e5c527b85275a53bd3d364b data/blueprint/tags/block/wooden_bookshelves.json
 0163428a12a8c0cf1e5c527b85275a53bd3d364b data/c/tags/block/bookshelves.json
 9cb44c49895785a868a717fe96a0e3ce7e215187 data/c/tags/block/storage_blocks.json
@@ -18,7 +18,7 @@ d8dfe60bd1ae85f7a46defc4a7cc4bf42b5cf87e data/darkerdepths/tags/block/medium_hea
 db6195d77bd598771b111d12750ba39f41fe35c7 data/darkerdepths/tags/block/very_high_heat.json
 629b5359bc3115f148d4aabf634436db522199d9 data/minecraft/tags/block/all_hanging_signs.json
 cf6fc837315dff0c0cf820f01506173a674bc611 data/minecraft/tags/block/all_signs.json
-9c0a87766251bf1373112a8db57276e89e917f91 data/minecraft/tags/block/base_stone_overworld.json
+9cb0fd2c4cb6a988265704293d179e1e40bc5da2 data/minecraft/tags/block/base_stone_overworld.json
 9cb44c49895785a868a717fe96a0e3ce7e215187 data/minecraft/tags/block/beacon_base_blocks.json
 8216d0d7b0dd9a30490ae89acf02954df17d94ec data/minecraft/tags/block/buttons.json
 d3b03ea502166dcd0a9352d813cd13e324a97d68 data/minecraft/tags/block/ceiling_hanging_signs.json

@@ -24,6 +24,12 @@ import static com.naterbobber.darkerdepths.util.DDResourceKeys.PlacedFeatures.*;
 
 public class DDBiomeModifiers {
     public static void bootstrap(BootstrapContext<BiomeModifier> context) {
+        registerMoltenCavern(context);
+        registerSandyCatacombs(context);
+        registerGlowshroomForest(context);
+    }
+
+    private static void registerMoltenCavern(BootstrapContext<BiomeModifier> context) {
         context.register(ADD_MOLTEN_CAVERNS_LOCAL_MODIFICATIONS, new BiomeModifiers.AddFeaturesBiomeModifier(
                 getBiome(context, MOLTEN_CAVERN),
                 getPlacedFeature(
@@ -65,16 +71,18 @@ public class DDBiomeModifiers {
                 getBiome(context, MOLTEN_CAVERN),
                 getPlacedFeature(
                         context
-//                        DARKSLATE_HEAT_BAKE
                 ),
                 GenerationStep.Decoration.TOP_LAYER_MODIFICATION
         ));
+    }
+
+    private static void registerSandyCatacombs(BootstrapContext<BiomeModifier> context){
         context.register(ADD_SANDY_CATACOMBS_LOCAL_MODIFICATIONS, new BiomeModifiers.AddFeaturesBiomeModifier(
-                        getBiome(context, SANDY_CATACOMBS),
-                        getPlacedFeature(
-                                context
-                        ),
-                        GenerationStep.Decoration.LOCAL_MODIFICATIONS)
+                getBiome(context, SANDY_CATACOMBS),
+                getPlacedFeature(
+                        context
+                ),
+                GenerationStep.Decoration.LOCAL_MODIFICATIONS)
         );
         context.register(ADD_SANDY_CATACOMBS_VEGETAL_FEATURES, new BiomeModifiers.AddFeaturesBiomeModifier(
                 getBiome(context, SANDY_CATACOMBS),
@@ -98,27 +106,25 @@ public class DDBiomeModifiers {
                 )
         ));
         context.register(ADD_SANDY_CATACOMBS_RAW_GENERATION, new BiomeModifiers.AddFeaturesBiomeModifier(
-                getBiome(context, SANDY_CATACOMBS),
-                getPlacedFeature(
-                        context,
-                        ARID_BOULDER
-//                        DUSKROCK_ORE,
-//                        DUSKROCK_STRIPE
-                ),
-                GenerationStep.Decoration.RAW_GENERATION)
+                        getBiome(context, SANDY_CATACOMBS),
+                        getPlacedFeature(
+                                context,
+                                ARID_BOULDER
+                        ),
+                        GenerationStep.Decoration.RAW_GENERATION)
         );
 
         context.register(ADD_SANDY_CATACOMBS_UNDERGROUND_DECORATION, new BiomeModifiers.AddFeaturesBiomeModifier(
                         getBiome(context, SANDY_CATACOMBS),
                         getPlacedFeature(
                                 context,
-                                CATACOMBS_LAVA_LINING,
-                                CATACOMBS_LAYERED_PLACEMENT,
-                                ARID_SURFACE
-//                        CATACOMBS_SAND_PLACEMENT
+                                CATACOMBS_LAVA_LINING
                         ),
                         GenerationStep.Decoration.UNDERGROUND_DECORATION)
         );
+    }
+
+    private static void registerGlowshroomForest(BootstrapContext<BiomeModifier> context) {
         context.register(ADD_GLOWSHROOM_FOREST_VEGETAL_FEATURES, new BiomeModifiers.AddFeaturesBiomeModifier(
                 getBiome(context, GLOWSHROOM_FOREST),
                 getPlacedFeature(
@@ -135,7 +141,6 @@ public class DDBiomeModifiers {
                         new MobSpawnSettings.SpawnerData(DDEntityTypes.GLOWSHROOM_MONSTER.get(), 200, 1, 2)
                 )
         ));
-
     }
 
     @SafeVarargs

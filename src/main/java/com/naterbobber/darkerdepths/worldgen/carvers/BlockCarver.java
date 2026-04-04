@@ -14,13 +14,11 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.CarvingMask;
 import net.minecraft.world.level.chunk.ChunkAccess;
 import net.minecraft.world.level.levelgen.Aquifer;
-import net.minecraft.world.level.levelgen.DensityFunction;
 import net.minecraft.world.level.levelgen.carver.CarverConfiguration;
 import net.minecraft.world.level.levelgen.carver.CarvingContext;
 import net.minecraft.world.level.levelgen.carver.WorldCarver;
 import org.apache.commons.lang3.mutable.MutableBoolean;
 
-import javax.annotation.Nullable;
 import java.util.function.Function;
 
 public class BlockCarver extends WorldCarver<BlockCarverConfiguration> {
@@ -48,6 +46,11 @@ public class BlockCarver extends WorldCarver<BlockCarverConfiguration> {
             BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
             BlockPos.MutableBlockPos blockpos$mutableblockpos1 = new BlockPos.MutableBlockPos();
 
+            // Calculate the normalized distance of 1 block space to check neighbors
+            double dx = 1.0 / Math.max(0.001, horizontalRadius);
+            double dy = 1.0 / Math.max(0.001, verticalRadius);
+            double dz = 1.0 / Math.max(0.001, horizontalRadius);
+
             for(int j2 = k; j2 <= l; ++j2) {
                 int k2 = chunkpos.getBlockX(j2);
                 double d3 = ((double)k2 + (double)0.5F - x) / horizontalRadius;
@@ -61,9 +64,17 @@ public class BlockCarver extends WorldCarver<BlockCarverConfiguration> {
                         for(int j3 = k1; j3 > i1; --j3) {
                             double d5 = ((double)j3 - (double)0.5F - y) / verticalRadius;
                             if (!skipChecker.shouldSkip(context, d3, d5, d4, j3) && (!carvingMask.get(j2, j3, l2) || isDebugEnabled(config))) {
-//                                carvingMask.set(j2, j3, l2);
+
+                                boolean isBorder =
+                                        skipChecker.shouldSkip(context, d3 + dx, d5, d4, j3) ||
+                                                skipChecker.shouldSkip(context, d3 - dx, d5, d4, j3) ||
+                                                skipChecker.shouldSkip(context, d3, d5 + dy, d4, j3 + 1) ||
+                                                skipChecker.shouldSkip(context, d3, d5 - dy, d4, j3 - 1) ||
+                                                skipChecker.shouldSkip(context, d3, d5, d4 + dz, j3) ||
+                                                skipChecker.shouldSkip(context, d3, d5, d4 - dz, j3);
+
                                 blockpos$mutableblockpos.set(k2, j3, i3);
-                                flag |= this.carveBlock(context, config, chunk, biomeAccessor, carvingMask, blockpos$mutableblockpos, blockpos$mutableblockpos1, aquifer, mutableboolean);
+                                flag |= this.carveCustomBlock(context, config, chunk, biomeAccessor, carvingMask, blockpos$mutableblockpos, blockpos$mutableblockpos1, aquifer, mutableboolean, isBorder);
                             }
                         }
                     }
@@ -78,6 +89,11 @@ public class BlockCarver extends WorldCarver<BlockCarverConfiguration> {
 
     @Override
     protected boolean carveBlock(CarvingContext context, BlockCarverConfiguration config, ChunkAccess chunk, Function<BlockPos, Holder<Biome>> biomeGetter, CarvingMask carvingMask, BlockPos.MutableBlockPos pos, BlockPos.MutableBlockPos checkPos, Aquifer aquifer, MutableBoolean reachedSurface) {
+        // Reroute the standard method to ours with isBorder = false as a fallback
+        return this.carveCustomBlock(context, config, chunk, biomeGetter, carvingMask, pos, checkPos, aquifer, reachedSurface, false);
+    }
+
+    protected boolean carveCustomBlock(CarvingContext context, BlockCarverConfiguration config, ChunkAccess chunk, Function<BlockPos, Holder<Biome>> biomeGetter, CarvingMask carvingMask, BlockPos.MutableBlockPos pos, BlockPos.MutableBlockPos checkPos, Aquifer aquifer, MutableBoolean reachedSurface, boolean isBorder) {
         BlockState blockstate = chunk.getBlockState(pos);
         if (blockstate.is(Blocks.GRASS_BLOCK) || blockstate.is(Blocks.MYCELIUM)) {
             reachedSurface.setTrue();
@@ -87,34 +103,42 @@ public class BlockCarver extends WorldCarver<BlockCarverConfiguration> {
             return false;
         }
 
-        if (!this.canReplaceBlock(config, blockstate) && !isDebugEnabled(config)) {
+        boolean canReplace = this.canReplaceBlock(config, blockstate)
+                || blockstate.is(config.placeableBlock)
+                || blockstate.is(config.borderBlock);
+
+        if (!canReplace && !isDebugEnabled(config)) {
             return false;
-        } else {
-            BlockState blockstate1 = config.placeableBlock.defaultBlockState();
-            if (blockstate1 == null) {
-                return false;
-            } else {
-                chunk.setBlockState(pos, blockstate1, false);
-                if (aquifer.shouldScheduleFluidUpdate() && !blockstate1.getFluidState().isEmpty()) {
-                    chunk.markPosForPostprocessing(pos);
-                }
+        }
 
-                if (reachedSurface.isTrue()) {
-                    checkPos.setWithOffset(pos, Direction.DOWN);
-                    if (chunk.getBlockState(checkPos).is(Blocks.DIRT)) {
-                        context.topMaterial(biomeGetter, chunk, checkPos, !blockstate1.getFluidState().isEmpty()).ifPresent((p_284918_) -> {
-                            chunk.setBlockState(checkPos, p_284918_, false);
-                            if (!p_284918_.getFluidState().isEmpty()) {
-                                chunk.markPosForPostprocessing(checkPos);
-                            }
+        if (isBorder && blockstate.is(config.placeableBlock)) {
+            return false;
+        }
 
-                        });
+        BlockState blockstate1 = isBorder ? config.borderBlock.defaultBlockState() : config.placeableBlock.defaultBlockState();
+
+        if (blockstate1 == null) {
+            return false;
+        }
+
+        chunk.setBlockState(pos, blockstate1, false);
+        if (aquifer.shouldScheduleFluidUpdate() && !blockstate1.getFluidState().isEmpty()) {
+            chunk.markPosForPostprocessing(pos);
+        }
+
+        if (reachedSurface.isTrue()) {
+            checkPos.setWithOffset(pos, Direction.DOWN);
+            if (chunk.getBlockState(checkPos).is(Blocks.DIRT)) {
+                context.topMaterial(biomeGetter, chunk, checkPos, !blockstate1.getFluidState().isEmpty()).ifPresent((p_284918_) -> {
+                    chunk.setBlockState(checkPos, p_284918_, false);
+                    if (!p_284918_.getFluidState().isEmpty()) {
+                        chunk.markPosForPostprocessing(checkPos);
                     }
-                }
-
-                return true;
+                });
             }
         }
+
+        return true;
     }
 
     private static boolean isDebugEnabled(CarverConfiguration config) {
@@ -144,13 +168,14 @@ public class BlockCarver extends WorldCarver<BlockCarverConfiguration> {
                 float f3 = (random.nextFloat() - 0.5F) / 4.0F;
                 float f2 = this.getThickness(random);
                 int i1 = i - random.nextInt(i / 4);
-                int j1 = 0;
+
                 this.createTunnel(context, config, chunk, biomeAccessor, random.nextLong(), aquifer, d0, d1, d2, d3, d4, f2, f, f3, 0, i1, this.getYScale(), carvingMask, worldcarver$carveskipchecker);
             }
         }
 
         return true;
     }
+
     protected int getCaveBound() {
         return 15;
     }
@@ -208,7 +233,6 @@ public class BlockCarver extends WorldCarver<BlockCarverConfiguration> {
                 this.carveEllipsoid(context, config, chunk, biomeAccessor, aquifer, x, y, z, d0 * horizontalRadiusMultiplier, d1 * verticalRadiusMultiplier, carvingMask, skipChecker);
             }
         }
-
     }
 
     private static boolean shouldSkip(double relative, double relativeY, double relativeZ, double minrelativeY) {

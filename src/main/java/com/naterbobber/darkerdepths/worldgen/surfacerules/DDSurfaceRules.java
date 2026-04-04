@@ -6,6 +6,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.SurfaceRules;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
+import net.minecraft.world.level.levelgen.placement.CaveSurface;
 
 import java.util.List;
 
@@ -34,9 +35,33 @@ public class DDSurfaceRules {
 
     private static final SurfaceRules.RuleSource SANDY_PATTERN_FILL = new RepeatingYPatternRule(SANDY_FILL_LIST);
 
+    private static final SurfaceRules.RuleSource ARID_DEEPSLATE_FILL =
+            SurfaceRules.state(DDBlocks.ARID_DEEPSLATE.get().defaultBlockState());
+    private static final SurfaceRules.RuleSource ARIDROCK =
+            SurfaceRules.state(DDBlocks.ARIDROCK.get().defaultBlockState());
+    private static final SurfaceRules.RuleSource PACKED_MUD =
+            SurfaceRules.state(Blocks.PACKED_MUD.defaultBlockState());
+
     private static final SurfaceRules.RuleSource SANDY_FILL = SurfaceRules.ifTrue(
             SurfaceRules.isBiome(DDResourceKeys.Biomes.SANDY_CATACOMBS),
-            SANDY_PATTERN_FILL
+            SurfaceRules.sequence(
+                    SurfaceRules.ifTrue(
+                            SurfaceRules.stoneDepthCheck(0, false, 0, CaveSurface.FLOOR),
+                            ARIDROCK
+                    ),
+                    SurfaceRules.ifTrue(
+                            SurfaceRules.stoneDepthCheck(3, false, 0, CaveSurface.FLOOR),
+                            PACKED_MUD
+                    ),
+
+                    SurfaceRules.ifTrue(
+                            SurfaceRules.not(SurfaceRules.yBlockCheck(VerticalAnchor.absolute(0), 0)),
+                            SurfaceRules.ifTrue(
+                                    SurfaceRules.stoneDepthCheck(4, false, 0, CaveSurface.FLOOR),
+                                    ARID_DEEPSLATE_FILL
+                            )
+                    )
+            )
     );
 
     private static final SurfaceRules.RuleSource MOLTEN_FILL = SurfaceRules.ifTrue(

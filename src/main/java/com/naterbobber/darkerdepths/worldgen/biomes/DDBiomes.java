@@ -86,6 +86,7 @@ public class DDBiomes {
         BiomeDefaultFeatures.addSurfaceFreezing(biomeBuilder);
         BiomeDefaultFeatures.addPlainGrass(biomeBuilder);
         BiomeDefaultFeatures.addDefaultOres(biomeBuilder);
+        BiomeDefaultFeatures.addDefaultUndergroundVariety(biomeBuilder);
         Music music = Musics.createGameMusic(SoundEvents.MUSIC_BIOME_DRIPSTONE_CAVES);
         int fogColor = DDBiomeFogs.SANDY_CATACOMBS.getIntColor();
 

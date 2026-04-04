@@ -43,6 +43,7 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
                 DDBlocks.SCORCHED_REMAINS_BLOCK.get(),
                 DDBlocks.SCORCHED_REMAINS.get()
         );
+
         this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(
                 DDBlocks.CRYSTAL_HUSK.get(),
                 DDBlocks.LIVING_CRYSTAL.get(),
@@ -228,8 +229,6 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
 
         this.tag(BlockTags.BASE_STONE_OVERWORLD).add(
                 DDBlocks.DARKSLATE.get(),
-                DDBlocks.ARIDROCK.get(),
-                DDBlocks.DUSKROCK.get(),
                 DDBlocks.GRIMESTONE.get()
         );
 

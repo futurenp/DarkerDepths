@@ -59,7 +59,16 @@
       "minecraft:ore_lapis",
       "minecraft:ore_lapis_buried",
       "minecraft:ore_copper",
-      "minecraft:underwater_magma"
+      "minecraft:underwater_magma",
+      "minecraft:ore_dirt",
+      "minecraft:ore_gravel",
+      "minecraft:ore_granite_upper",
+      "minecraft:ore_granite_lower",
+      "minecraft:ore_diorite_upper",
+      "minecraft:ore_diorite_lower",
+      "minecraft:ore_andesite_upper",
+      "minecraft:ore_andesite_lower",
+      "minecraft:ore_tuff"
     ],
     [],
     [
@@ -68,7 +77,8 @@
     ],
     [
       "minecraft:glow_lichen",
-      "minecraft:patch_tall_grass_2"
+      "minecraft:patch_tall_grass_2",
+      "minecraft:glow_lichen"
     ],
     [
       "minecraft:freeze_top_layer"

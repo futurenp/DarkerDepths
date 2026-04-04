@@ -7,6 +7,7 @@ import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.block.Blocks;
@@ -141,7 +142,9 @@ public class DDPlacedFeatures {
                 CountPlacement.of(175),
                 InSquarePlacement.spread(),
                 PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
-                BiomeFilter.biome());
+                EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.solid(), BlockPredicate.matchesTag(BlockTags.AIR), 32),
+                BiomeFilter.biome()
+        );
 
         PlacementUtils.register(context, ARID_BOULDER, lookup.getOrThrow(DDResourceKeys.ConfiguredFeatures.ARID_BOULDER),
                 CountPlacement.of(UniformInt.of(192, 256)),

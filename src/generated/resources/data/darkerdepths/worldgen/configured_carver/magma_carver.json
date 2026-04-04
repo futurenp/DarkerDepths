@@ -1,6 +1,7 @@
 {
   "type": "darkerdepths:block_carver",
   "config": {
+    "border_block": "minecraft:magma_block",
     "debug_settings": {
       "air_state": {
         "Name": "minecraft:crimson_button",

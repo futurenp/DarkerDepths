@@ -28,13 +28,15 @@ public class DDCarvers {
                                 new BlockCarverConfiguration(
                                         1F,
                                         UniformHeight.of(VerticalAnchor.aboveBottom(8), VerticalAnchor.absolute(180)),
-                                        UniformFloat.of(0.1F, 0.9F), VerticalAnchor.aboveBottom(8),
+                                        UniformFloat.of(0.1F, 0.9F),
+                                        VerticalAnchor.aboveBottom(8),
                                         CarverDebugSettings.of(false, Blocks.CRIMSON_BUTTON.defaultBlockState()),
                                         holdergetter.getOrThrow(DDTags.Blocks.CATACOMBS_STRIPE_REPLACEABLE),
-                                        UniformFloat.of(0.5F, 0.8F),
+                                        UniformFloat.of(0.8F, 1.1F),
                                         UniformFloat.of(1.4F, 1.8F),
                                         UniformFloat.of(-1.0F, -0.4F),
-                                        DDBlocks.DUSKROCK.get()
+                                        DDBlocks.DUSKROCK.get(),
+                                        Blocks.PACKED_MUD
                                 )
                         )
         );
@@ -46,7 +48,8 @@ public class DDCarvers {
                                 new BlockCarverConfiguration(
                                         0.65F,
                                         UniformHeight.of(VerticalAnchor.aboveBottom(8), VerticalAnchor.absolute(180)),
-                                        UniformFloat.of(0.1F, 0.9F), VerticalAnchor.aboveBottom(8),
+                                        UniformFloat.of(0.1F, 0.9F),
+                                        VerticalAnchor.aboveBottom(8),
                                         CarverDebugSettings.of(false, Blocks.CRIMSON_BUTTON.defaultBlockState()),
                                         holdergetter.getOrThrow(DDTags.Blocks.MAGMA_STRIPE_REPLACEABLE),
                                         UniformFloat.of(0.4F, 0.5F),
@@ -64,7 +67,8 @@ public class DDCarvers {
                                 new BlockCarverConfiguration(
                                         0.5F,
                                         UniformHeight.of(VerticalAnchor.aboveBottom(8), VerticalAnchor.absolute(180)),
-                                        UniformFloat.of(0.1F, 0.9F), VerticalAnchor.aboveBottom(8),
+                                        UniformFloat.of(0.1F, 0.9F),
+                                        VerticalAnchor.aboveBottom(8),
                                         CarverDebugSettings.of(false, Blocks.CRIMSON_BUTTON.defaultBlockState()),
                                         holdergetter.getOrThrow(DDTags.Blocks.MAGMA_STRIPE_REPLACEABLE),
                                         UniformFloat.of(0.8F, 1.2F),
@@ -82,7 +86,8 @@ public class DDCarvers {
                                 new BlockCarverConfiguration(
                                         0.02F,
                                         UniformHeight.of(VerticalAnchor.aboveBottom(8), VerticalAnchor.absolute(180)),
-                                        UniformFloat.of(0.1F, 0.9F), VerticalAnchor.aboveBottom(8),
+                                        UniformFloat.of(0.1F, 0.9F),
+                                        VerticalAnchor.aboveBottom(8),
                                         CarverDebugSettings.of(false, Blocks.CRIMSON_BUTTON.defaultBlockState()),
                                         holdergetter.getOrThrow(DDTags.Blocks.MAGMA_STRIPE_REPLACEABLE),
                                         UniformFloat.of(0.4F, 0.5F),
