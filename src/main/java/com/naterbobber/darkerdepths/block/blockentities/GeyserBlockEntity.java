@@ -18,6 +18,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
@@ -127,21 +128,28 @@ public class GeyserBlockEntity extends BlockEntity implements HeatableBlock {
 
     private static void sendDirectionalBurstParticles(Level level, BlockPos blockPos, BlockState blockState) {
         var direction = blockState.getValue(BlockStateProperties.FACING);
-        var isUnderWater = level.getFluidState(blockPos.relative(direction)).is(FluidTags.WATER);
         var boosted = blockState.getValue(BOOSTED);
+        var particleContext = ParticleContext.getContext(level.getBlockState(blockPos.relative(direction)));
 
-        if(isUnderWater) {
-            sendParticleType(level, blockPos, ParticleTypes.CLOUD, direction,10, boosted ? 1 : 0.5);
-            sendParticleType(level, blockPos, boosted
-                            ? DDParticleTypes.GEYSER_BURST_SMOKE_BOOSTED.get()
-                            : DDParticleTypes.GEYSER_BURST_SMOKE.get(),
-                    direction, 5, 0.75);
-        } else {
-            sendParticleType(level, blockPos, ParticleTypes.LARGE_SMOKE, direction,5, boosted ? 1 : 0.5);
-            sendParticleType(level, blockPos, boosted
-                            ? DDParticleTypes.GEYSER_BURST_SMOKE_BOOSTED.get()
-                            : DDParticleTypes.GEYSER_BURST_SMOKE.get(),
-                    direction, 5, 1);
+        switch (particleContext) {
+            case AIR -> {
+                sendParticleType(level, blockPos, DDParticleTypes.GEYSER_BURST_SMOKE.get(), direction,5, boosted ? 2 : 1);
+                sendParticleType(level, blockPos, boosted
+                                ? DDParticleTypes.GEYSER_BURST_FLAME_BOOSTED.get()
+                                : DDParticleTypes.GEYSER_BURST_FLAME.get(),
+                        direction, 5, 1);
+            }
+            case WATER -> {
+                sendParticleType(level, blockPos, ParticleTypes.CLOUD, direction,10, boosted ? 1 : 0.5);
+                sendParticleType(level, blockPos, boosted
+                                ? DDParticleTypes.GEYSER_BURST_FLAME_BOOSTED.get()
+                                : DDParticleTypes.GEYSER_BURST_FLAME.get(),
+                        direction, 5, 0.75);
+            }
+            case LAVA -> {
+
+            }
+            case BLOCKED -> {}
         }
     }
 
@@ -247,5 +255,20 @@ public class GeyserBlockEntity extends BlockEntity implements HeatableBlock {
     protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.loadAdditional(tag, registries);
         currentBurstLength = tag.getInt(burstLengthTag);
+    }
+
+    enum ParticleContext {
+        WATER,
+        LAVA,
+        AIR,
+        BLOCKED;
+
+        static ParticleContext getContext(BlockState state) {
+            var fluidState = state.getFluidState();
+            if(fluidState.is(FluidTags.LAVA)) return LAVA;
+            if(fluidState.is(FluidTags.WATER)) return WATER;
+            if(state.isEmpty()) return AIR;
+            return BLOCKED;
+        }
     }
 }

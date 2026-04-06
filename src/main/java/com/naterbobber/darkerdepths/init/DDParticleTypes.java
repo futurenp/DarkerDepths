@@ -31,8 +31,10 @@ public class DDParticleTypes {
             = registerParticle("void_soul_flame_smoke", VoidSoulFlameSmokeParticle.Provider::new, false);
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> GEYSER_BURST_SMOKE
             = registerParticle("geyser_burst_smoke", GeyserBurstSmokeParticle.Provider::new, false);
-    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> GEYSER_BURST_SMOKE_BOOSTED
-            = registerParticle("geyser_burst_smoke_boosted", GeyserBurstSmokeParticle.BoostedProvider::new, false);
+    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> GEYSER_BURST_FLAME
+            = registerParticle("geyser_burst_flame", GeyserBurstFlameParticle.Provider::new, false);
+    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> GEYSER_BURST_FLAME_BOOSTED
+            = registerParticle("geyser_burst_flame_boosted", GeyserBurstFlameParticle.BoostedProvider::new, false);
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> MOLTEN_ASH
             = registerParticle("molten_ash", (spriteSet) -> new ColoredAshParticle.Provider(spriteSet, 1F, 0.4F, 0.25F, ColoredAshParticle.BrightnessBehavior.FADE), false);
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> GLOW_GLIMMER
