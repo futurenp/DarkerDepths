@@ -1,4 +1,4 @@
-package com.naterbobber.darkerdepths.client.particle;
+package com.naterbobber.darkerdepths.client.particle.void_soul;
 
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;

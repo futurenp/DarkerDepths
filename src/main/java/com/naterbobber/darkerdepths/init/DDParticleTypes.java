@@ -2,6 +2,13 @@ package com.naterbobber.darkerdepths.init;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.client.particle.*;
+import com.naterbobber.darkerdepths.client.particle.geyser.GeyserBurstFlameParticle;
+import com.naterbobber.darkerdepths.client.particle.geyser.GeyserBurstMistParticle;
+import com.naterbobber.darkerdepths.client.particle.geyser.GeyserBurstSmokeParticle;
+import com.naterbobber.darkerdepths.client.particle.void_soul.VoidSoulDeathParticle;
+import com.naterbobber.darkerdepths.client.particle.void_soul.VoidSoulFlameParticle;
+import com.naterbobber.darkerdepths.client.particle.void_soul.VoidSoulFlameSmokeParticle;
+import com.naterbobber.darkerdepths.client.particle.void_soul.VoidSoulParticle;
 import net.minecraft.client.particle.ParticleEngine;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.particles.SimpleParticleType;
@@ -31,8 +38,14 @@ public class DDParticleTypes {
             = registerParticle("void_soul_flame_smoke", VoidSoulFlameSmokeParticle.Provider::new, false);
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> GEYSER_BURST_SMOKE
             = registerParticle("geyser_burst_smoke", GeyserBurstSmokeParticle.Provider::new, false);
+    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> GEYSER_BURST_SMOKE_LAVA
+            = registerParticle("geyser_burst_smoke_lava", GeyserBurstSmokeParticle.LavaProvider::new, false);
+    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> GEYSER_BURST_MIST
+            = registerParticle("geyser_burst_mist", GeyserBurstMistParticle.Provider::new, false);
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> GEYSER_BURST_FLAME
             = registerParticle("geyser_burst_flame", GeyserBurstFlameParticle.Provider::new, false);
+    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> SMALL_GEYSER_BURST_FLAME
+            = registerParticle("small_geyser_burst_flame", GeyserBurstFlameParticle.SmallProvider::new, false);
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> GEYSER_BURST_FLAME_BOOSTED
             = registerParticle("geyser_burst_flame_boosted", GeyserBurstFlameParticle.BoostedProvider::new, false);
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> MOLTEN_ASH

@@ -1,4 +1,4 @@
-package com.naterbobber.darkerdepths.client.particle;
+package com.naterbobber.darkerdepths.client.particle.geyser;
 
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
@@ -23,7 +23,7 @@ public class GeyserBurstFlameParticle extends TextureSheetParticle {
         this.yd = ySpeed;
         this.zd = zSpeed;
         this.lifetime = lifetime;
-        this.quadSize = quadsize;
+        this.quadSize = 0.45F;
         this.gravity = 0.035F;
     }
 
@@ -66,6 +66,22 @@ public class GeyserBurstFlameParticle extends TextureSheetParticle {
         @Override
         public @Nullable Particle createParticle(SimpleParticleType simpleParticleType, ClientLevel clientLevel, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
             var particle = normalBurstParticle(clientLevel, x, y, z, xSpeed, ySpeed, zSpeed);
+            particle.pickSprite(this.spriteSet);
+            return particle;
+        }
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public static class SmallProvider implements ParticleProvider<SimpleParticleType> {
+        protected final SpriteSet spriteSet;
+
+        public SmallProvider(SpriteSet spriteSet) {
+            this.spriteSet = spriteSet;
+        }
+
+        @Override
+        public @Nullable Particle createParticle(SimpleParticleType simpleParticleType, ClientLevel clientLevel, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
+            var particle = new GeyserBurstFlameParticle(clientLevel, x, y, z, xSpeed, ySpeed, zSpeed, 5, 0);
             particle.pickSprite(this.spriteSet);
             return particle;
         }

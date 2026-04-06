@@ -21,8 +21,10 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.Mth;
+import net.minecraft.util.ParticleUtils;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -88,14 +90,6 @@ public class GeyserBlockEntity extends BlockEntity implements HeatableBlock {
         return boostColumnLength;
     }
 
-    private static boolean isExposed(Level level, BlockPos blockPos, Direction direction) {
-        var frontState = level.getBlockState(blockPos.relative(direction));
-        var frontFluidState = level.getFluidState(blockPos.relative(direction));
-        return frontState.isAir()
-                || frontFluidState.is(FluidTags.WATER)
-                || frontFluidState.is(FluidTags.LAVA);
-    }
-
     public void clientTick(Level level, BlockPos blockPos, BlockState blockState) {
         if (blockState.getValue(BURSTING)) {
             sendDirectionalBurstParticles(level, blockPos, blockState);
@@ -106,8 +100,8 @@ public class GeyserBlockEntity extends BlockEntity implements HeatableBlock {
         double x = blockPos.getX(), y = blockPos.getY(), z = blockPos.getZ();
 
         if(!blockState.getValue(BURSTING)) {
-            if(level.getRandom().nextFloat() > 0.95F && level.getBlockState(blockPos.above()).isEmpty()) {
-                sendParticleType(level, blockPos, ParticleTypes.CAMPFIRE_COSY_SMOKE, direction,1, 0.04);
+            if(level.getRandom().nextFloat() > 0.94F && ParticleContext.getContext(level.getBlockState(blockPos.relative(direction))) != ParticleContext.BLOCKED) {
+                sendParticleType(level, blockPos, ParticleTypes.CAMPFIRE_COSY_SMOKE, direction,1, 0.05);
             }
         }
 
@@ -135,19 +129,20 @@ public class GeyserBlockEntity extends BlockEntity implements HeatableBlock {
             case AIR -> {
                 sendParticleType(level, blockPos, DDParticleTypes.GEYSER_BURST_SMOKE.get(), direction,5, boosted ? 2 : 1);
                 sendParticleType(level, blockPos, boosted
-                                ? DDParticleTypes.GEYSER_BURST_FLAME_BOOSTED.get()
-                                : DDParticleTypes.GEYSER_BURST_FLAME.get(),
+                                ? DDParticleTypes.GEYSER_BURST_FLAME.get()
+                                : DDParticleTypes.SMALL_GEYSER_BURST_FLAME.get(),
                         direction, 5, 1);
             }
             case WATER -> {
-                sendParticleType(level, blockPos, ParticleTypes.CLOUD, direction,10, boosted ? 1 : 0.5);
+                sendParticleType(level, blockPos, DDParticleTypes.GEYSER_BURST_MIST.get(), direction,10, boosted ? 2 : 1);
+                sendParticleType(level, blockPos, ParticleTypes.SPLASH, direction, 10, boosted ? 2 : 1);
+            }
+            case LAVA -> {
+                sendParticleType(level, blockPos, DDParticleTypes.GEYSER_BURST_SMOKE_LAVA.get(), direction,7, boosted ? 2 : 1);
                 sendParticleType(level, blockPos, boosted
                                 ? DDParticleTypes.GEYSER_BURST_FLAME_BOOSTED.get()
                                 : DDParticleTypes.GEYSER_BURST_FLAME.get(),
-                        direction, 5, 0.75);
-            }
-            case LAVA -> {
-
+                        direction, 5, 1);
             }
             case BLOCKED -> {}
         }
@@ -182,7 +177,7 @@ public class GeyserBlockEntity extends BlockEntity implements HeatableBlock {
     private static void boostEntities(Level level, Direction direction, BlockPos blockPos, int length) {
         double boostSpeed = 0.14;
         boolean boosted = level.getBlockState(blockPos).getValue(BOOSTED);
-        double boost = boostSpeed * direction.getAxisDirection().getStep() * (boosted ? 2 : 1);
+        double boost = boostSpeed * direction.getAxisDirection().getStep() * (boosted ? 1.5 : 1);
 
         var boostArea = AABB.encapsulatingFullBlocks(blockPos, blockPos.relative(direction, length));
         List<Entity> nearbyEntities = level.getEntitiesOfClass(Entity.class, boostArea);
@@ -219,12 +214,13 @@ public class GeyserBlockEntity extends BlockEntity implements HeatableBlock {
     }
 
     public static void setBursting(Level level, BlockState blockState, BlockPos blockPos, boolean value) {
-        if(!isExposed(level, blockPos, blockState.getValue(BlockStateProperties.FACING))) {
+        var frontState = level.getBlockState(blockPos.relative(blockState.getValue(BlockStateProperties.FACING)));
+        if(ParticleContext.getContext(frontState) == ParticleContext.BLOCKED) {
             return;
         }
 
         BlockState newBlockState = blockState.setValue(BURSTING, value).setValue(HEAT_LEVEL, value ? 4 : 0);
-        level.setBlock(blockPos, newBlockState, 3);
+        level.setBlock(blockPos, newBlockState, Block.UPDATE_ALL);
 
         if(value) {
             level.playSound(null, blockPos, SoundEvents.LAVA_EXTINGUISH, SoundSource.BLOCKS, 2.25f, 0.25f);
@@ -236,7 +232,7 @@ public class GeyserBlockEntity extends BlockEntity implements HeatableBlock {
                         blockPos.getX() + 0.5,
                         blockPos.getY() + 0.9,
                         blockPos.getZ() + 0.5,
-                        50,
+                        30,
                         0,
                         0,
                         0,
