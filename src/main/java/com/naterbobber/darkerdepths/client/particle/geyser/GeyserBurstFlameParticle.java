@@ -9,21 +9,20 @@ import org.jetbrains.annotations.Nullable;
 
 @OnlyIn(Dist.CLIENT)
 public class GeyserBurstFlameParticle extends TextureSheetParticle {
-    private static final int NORMAL_LIFETIME = 10;
-    private static final int BOOSTED_LIFETIME = 16;
-    private static final float NORMAL_SIZE = 0.6f;
-    private static final float BOOSTED_SIZE = 0.75f;
+    private static final int NORMAL_LIFETIME = 8;
+    private static final int BOOSTED_LIFETIME = 10;
+    private static final float NORMAL_SIZE = 0.35f;
+    private static final float BOOSTED_SIZE = 0.55f;
+    private final float INITIAL_SIZE;
 
     protected GeyserBurstFlameParticle(ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed, int lifetime, float quadsize) {
         super(level, x, y, z, xSpeed, ySpeed, zSpeed);
-        this.x = x;
-        this.y = y;
-        this.z = z;
-        this.xd = xSpeed;
-        this.yd = ySpeed;
-        this.zd = zSpeed;
-        this.lifetime = lifetime;
-        this.quadSize = 0.45F;
+        xd = xSpeed;
+        yd = ySpeed;
+        zd = zSpeed;
+        this.lifetime = level.getRandom().nextInt(lifetime/2) + lifetime;
+        this.quadSize = quadsize;
+        INITIAL_SIZE = quadsize;
         this.gravity = 0.035F;
     }
 
@@ -37,8 +36,7 @@ public class GeyserBurstFlameParticle extends TextureSheetParticle {
     @Override
     public void tick() {
         super.tick();
-
-        this.scale(0.93F);
+        this.quadSize = Math.min(INITIAL_SIZE, INITIAL_SIZE * (lifetime - age) / lifetime + 0.15F);
     }
 
     @Override
@@ -50,7 +48,7 @@ public class GeyserBurstFlameParticle extends TextureSheetParticle {
     public int getLightColor(float partialTick) {
         var level = (int)(((float)(lifetime - age) / (float)lifetime) * 255F);
         if(level < 100) {
-            level = 100;
+            level = 127;
         }
         return level;
     }
@@ -81,7 +79,7 @@ public class GeyserBurstFlameParticle extends TextureSheetParticle {
 
         @Override
         public @Nullable Particle createParticle(SimpleParticleType simpleParticleType, ClientLevel clientLevel, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
-            var particle = new GeyserBurstFlameParticle(clientLevel, x, y, z, xSpeed, ySpeed, zSpeed, 5, 0);
+            var particle = new GeyserBurstFlameParticle(clientLevel, x, y, z, xSpeed, ySpeed, zSpeed, 4, NORMAL_SIZE);
             particle.pickSprite(this.spriteSet);
             return particle;
         }

@@ -70,7 +70,7 @@ public class GeyserBlockEntity extends BlockEntity implements HeatableBlock {
 
     private static int findColumnLength(Level level, BlockPos blockPos, Direction direction){
         boolean boosted = level.getBlockState(blockPos).getValue(BOOSTED);
-        int boostColumnLength = boosted ? 8 : 6;
+        int boostColumnLength = boosted ? 10 : 6;
         BlockPos relativePosition;
         BlockState relativeState;
         FluidState relativeFluidState;
@@ -100,8 +100,8 @@ public class GeyserBlockEntity extends BlockEntity implements HeatableBlock {
         double x = blockPos.getX(), y = blockPos.getY(), z = blockPos.getZ();
 
         if(!blockState.getValue(BURSTING)) {
-            if(level.getRandom().nextFloat() > 0.94F && ParticleContext.getContext(level.getBlockState(blockPos.relative(direction))) != ParticleContext.BLOCKED) {
-                sendParticleType(level, blockPos, ParticleTypes.CAMPFIRE_COSY_SMOKE, direction,1, 0.05);
+            if(level.getRandom().nextFloat() > 0.95F && ParticleContext.getContext(level.getBlockState(blockPos.relative(direction))) != ParticleContext.BLOCKED) {
+                sendParticleType(level, blockPos, DDParticleTypes.GEYSER_PASSIVE_SMOKE.get(), direction,1, 0.05);
             }
         }
 
@@ -127,18 +127,18 @@ public class GeyserBlockEntity extends BlockEntity implements HeatableBlock {
 
         switch (particleContext) {
             case AIR -> {
-                sendParticleType(level, blockPos, DDParticleTypes.GEYSER_BURST_SMOKE.get(), direction,5, boosted ? 2 : 1);
+                sendParticleType(level, blockPos, DDParticleTypes.GEYSER_BURST_SMOKE.get(), direction,5, boosted ? 1.7 : 1);
                 sendParticleType(level, blockPos, boosted
                                 ? DDParticleTypes.GEYSER_BURST_FLAME.get()
                                 : DDParticleTypes.SMALL_GEYSER_BURST_FLAME.get(),
                         direction, 5, 1);
             }
             case WATER -> {
-                sendParticleType(level, blockPos, DDParticleTypes.GEYSER_BURST_MIST.get(), direction,10, boosted ? 2 : 1);
-                sendParticleType(level, blockPos, ParticleTypes.SPLASH, direction, 10, boosted ? 2 : 1);
+                sendParticleType(level, blockPos, DDParticleTypes.GEYSER_BURST_MIST.get(), direction,10, boosted ? 1.7 : 1);
+                sendParticleType(level, blockPos, ParticleTypes.SPLASH, direction, 10, boosted ? 1.7 : 1);
             }
             case LAVA -> {
-                sendParticleType(level, blockPos, DDParticleTypes.GEYSER_BURST_SMOKE_LAVA.get(), direction,7, boosted ? 2 : 1);
+                sendParticleType(level, blockPos, DDParticleTypes.GEYSER_BURST_SMOKE_LAVA.get(), direction,7, boosted ? 1.7 : 1);
                 sendParticleType(level, blockPos, boosted
                                 ? DDParticleTypes.GEYSER_BURST_FLAME_BOOSTED.get()
                                 : DDParticleTypes.GEYSER_BURST_FLAME.get(),

@@ -5,6 +5,7 @@ import com.naterbobber.darkerdepths.client.particle.*;
 import com.naterbobber.darkerdepths.client.particle.geyser.GeyserBurstFlameParticle;
 import com.naterbobber.darkerdepths.client.particle.geyser.GeyserBurstMistParticle;
 import com.naterbobber.darkerdepths.client.particle.geyser.GeyserBurstSmokeParticle;
+import com.naterbobber.darkerdepths.client.particle.geyser.GeyserPassiveSmokeParticle;
 import com.naterbobber.darkerdepths.client.particle.void_soul.VoidSoulDeathParticle;
 import com.naterbobber.darkerdepths.client.particle.void_soul.VoidSoulFlameParticle;
 import com.naterbobber.darkerdepths.client.particle.void_soul.VoidSoulFlameSmokeParticle;
@@ -36,6 +37,8 @@ public class DDParticleTypes {
             = registerParticle("void_soul_flame", VoidSoulFlameParticle.Provider::new, false);
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> VOID_SOUL_FLAME_SMOKE
             = registerParticle("void_soul_flame_smoke", VoidSoulFlameSmokeParticle.Provider::new, false);
+    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> GEYSER_PASSIVE_SMOKE
+            = registerParticle("geyser_passive_smoke", GeyserPassiveSmokeParticle.Provider::new, false);
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> GEYSER_BURST_SMOKE
             = registerParticle("geyser_burst_smoke", GeyserBurstSmokeParticle.Provider::new, false);
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> GEYSER_BURST_SMOKE_LAVA
