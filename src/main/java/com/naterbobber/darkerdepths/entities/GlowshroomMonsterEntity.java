@@ -11,6 +11,7 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.damagesource.DamageSource;
@@ -148,6 +149,16 @@ public class GlowshroomMonsterEntity extends Monster implements GeoEntity {
         } else {
             super.handleEntityEvent(id);
         }
+    }
+
+    @Override
+    public boolean hurt(DamageSource source, float amount) {
+        if(source.getEntity() != null) {
+            if(source.getEntity().getType().is(EntityTypeTags.UNDEAD)) {
+                amount /= 2;
+            }
+        }
+        return super.hurt(source, amount);
     }
 
     @Override
