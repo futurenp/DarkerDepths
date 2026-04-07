@@ -8,6 +8,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
@@ -100,43 +101,24 @@ public class CorrespondentLayersFeature extends Feature<CorrespondentLayersConfi
         }
     }
 
-
-    //yo this method is ass
-    //redo and implement dynamic array, so the list can be abstractly expanded to place more blocks underneath
     protected boolean placeGround(WorldGenLevel world, CorrespondentLayersConfig config, Predicate<BlockState> predicate, RandomSource random, BlockPos.MutableBlockPos pos, int tries) {
-        for (int i = 0; i < tries; ++i) {
-            BlockState blockstate = config.layers.get(0).getState(random, pos);
-            BlockState belowState = config.layers.get(1).getState(random, pos);
-            BlockState posBelow = world.getBlockState(pos.below());
+        boolean placedAnything = false;
+        for (int depth = 0; depth < config.layers.size(); ++depth) {
 
-            //Check whether the config is aridrocks' config. Redo this system in the future
-            if (blockstate == DDBlocks.ARIDROCK.get().defaultBlockState() && (world.getBlockState(pos).is(DDBlocks.DUSKROCK.get()) || posBelow.is(DDBlocks.DUSKROCK.get()))) continue;
+            BlockPos currentPos = pos.below(depth);
+            BlockState currentState = world.getBlockState(currentPos);
 
-            if (blockstate == DDBlocks.ARIDROCK.get().defaultBlockState() && !(posBelow.is(Blocks.DEEPSLATE) || posBelow.is(Blocks.TUFF))) {
-                belowState = DDBlocks.ARIDROCK.get().defaultBlockState();
+            if (!predicate.test(currentState)) {
+                break;
             }
 
-            if (posBelow.is(Blocks.TUFF) || posBelow.is(Blocks.DEEPSLATE)) {
-                world.setBlock(pos.below(), belowState, 2);
-                world.setBlock(pos, blockstate, 2);
-                if (config.xzReplace) {
-                    for (Direction direction : Direction.Plane.HORIZONTAL) {
-                        if (world.getBlockState(pos.relative(direction)).is(Blocks.DEEPSLATE) && world.getBlockState(pos.relative(direction).above()).canBeReplaced()) {
-                            world.setBlock(pos.relative(direction), DDBlocks.ARID_DEEPSLATE.get().defaultBlockState(), 2);
-                        } else if (world.getBlockState(pos.below().relative(direction)).is(Blocks.DEEPSLATE) && world.getBlockState(pos.relative(direction)).canBeReplaced()) {
-                            world.setBlock(pos.below().relative(direction), DDBlocks.ARIDROCK.get().defaultBlockState(), 2);
-                        }
-                    }
-                }
-            }
-            else if (posBelow.is(BlockTags.BASE_STONE_OVERWORLD)) {
-                belowState = belowState.is(DDBlocks.ARID_DEEPSLATE.get()) ? DDBlocks.ARIDROCK.get().defaultBlockState() : belowState;
-                world.setBlock(pos.below(), belowState, 2);
-                world.setBlock(pos, blockstate, 2);
-            }
+            BlockState newState = config.layers.get(depth).getState(random, currentPos);
+
+            world.setBlock(currentPos, newState, Block.UPDATE_CLIENTS);
+            placedAnything = true;
         }
 
-        return true;
+        return placedAnything;
     }
 
 }

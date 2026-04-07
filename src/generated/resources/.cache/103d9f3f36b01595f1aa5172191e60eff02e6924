@@ -1,4 +1,4 @@
-// 1.21.1	2026-04-06T21:10:46.1408413	Registries
+// 1.21.1	2026-04-06T22:19:58.3127678	Registries
 c4ee168e7bc25f3368a39009dc20c9876da3354f data/darkerdepths/damage_type/soul_binding_damage.json
 67449d45b04557a6ff85e2e4fb14a19e83a15a27 data/darkerdepths/enchantment/quick_dash.json
 efd3542a868f364e528e55ec4c13c3d5e8a423f0 data/darkerdepths/enchantment/swift_strike.json
@@ -39,7 +39,7 @@ b55f8ac2268c385fbd130e4461a2c9cce4e3e18b data/darkerdepths/worldgen/configured_f
 a65b97fb2ae68992a33661bdf8c0f32497778e36 data/darkerdepths/worldgen/configured_feature/geyser_placement.json
 8108749c1f2f7ac083b8c8284c14cb7bc03f46c7 data/darkerdepths/worldgen/configured_feature/glimmering_vines.json
 df0147c3dcc8430ef031ee46632e49ef135b2dfc data/darkerdepths/worldgen/configured_feature/glowshroom_patch.json
-70cef4e3d68a004ab9d76a88abcd6dbe46204f7f data/darkerdepths/worldgen/configured_feature/grime_surface.json
+abb2bd3d151eca751ca36f8a4d5a7f0a51858bd5 data/darkerdepths/worldgen/configured_feature/grime_surface.json
 5e9fa471e157d8749f052ddcc9bd4a5f4e5658ef data/darkerdepths/worldgen/configured_feature/grime_vegetation.json
 6141e88a16d9a082a45fe97b005fbba81c6deafb data/darkerdepths/worldgen/configured_feature/huge_glowshroom.json
 6141e88a16d9a082a45fe97b005fbba81c6deafb data/darkerdepths/worldgen/configured_feature/huge_glowshroom_planted.json

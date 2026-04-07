@@ -266,6 +266,11 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
                 Blocks.PACKED_MUD
         );
 
+        this.tag(DDTags.Blocks.GRIME_GROUND).add(
+                DDBlocks.GRIMESTONE.get(),
+                DDBlocks.MOSSY_GRIMESTONE.get()
+        ).addTag(BlockTags.BASE_STONE_OVERWORLD);
+
         this.tag(DDTags.Blocks.HUGE_GLOWSHROOM_GROWABLE).add(
             DDBlocks.MOSSY_GRIMESTONE.get(),
             DDBlocks.GLOWSHROOM_BLOCK.get()

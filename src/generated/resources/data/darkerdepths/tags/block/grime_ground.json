@@ -1,8 +1,7 @@
 {
   "values": [
-    "darkerdepths:aridrock",
     "darkerdepths:grimestone",
     "darkerdepths:mossy_grimestone",
-    "darkerdepths:duskrock"
+    "#minecraft:base_stone_overworld"
   ]
 }

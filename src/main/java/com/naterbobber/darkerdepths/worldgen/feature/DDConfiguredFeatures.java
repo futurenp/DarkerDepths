@@ -294,9 +294,11 @@ public class DDConfiguredFeatures {
         );
 
         FeatureUtils.register(context, GRIME_SURFACE, DDFeatures.CORRESPONDENT_LAYER.get(), new CorrespondentLayersConfig(
-                BlockTags.LUSH_GROUND_REPLACEABLE,
+                DDTags.Blocks.GRIME_GROUND,
                 List.of(
-                        BlockStateProvider.simple(DDBlocks.MOSSY_GRIMESTONE.get())
+                        BlockStateProvider.simple(DDBlocks.MOSSY_GRIMESTONE.get()),
+                        BlockStateProvider.simple(DDBlocks.GRIMESTONE.get()),
+                        BlockStateProvider.simple(Blocks.TUFF)
                 ),
                 PlacementUtils.inlinePlaced(lookup.getOrThrow(GRIME_VEGETATION)),
                 CaveSurface.FLOOR,
