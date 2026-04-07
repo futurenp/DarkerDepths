@@ -3,37 +3,11 @@ package com.naterbobber.darkerdepths.worldgen.surfacerules;
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import com.naterbobber.darkerdepths.util.DDResourceKeys;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.SurfaceRules;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
 import net.minecraft.world.level.levelgen.placement.CaveSurface;
 
-import java.util.List;
-
 public class DDSurfaceRules {
-
-    private static final List<BlockState> SANDY_FILL_LIST = List.of(
-            DDBlocks.ARIDROCK.get().defaultBlockState(),
-            Blocks.PACKED_MUD.defaultBlockState(),
-            DDBlocks.ARIDROCK.get().defaultBlockState(),
-            DDBlocks.ARIDROCK.get().defaultBlockState(),
-            Blocks.PACKED_MUD.defaultBlockState(),
-            Blocks.PACKED_MUD.defaultBlockState(),
-            DDBlocks.DUSKROCK.get().defaultBlockState(),
-            DDBlocks.DUSKROCK.get().defaultBlockState(),
-            Blocks.PACKED_MUD.defaultBlockState(),
-            Blocks.PACKED_MUD.defaultBlockState(),
-            DDBlocks.ARIDROCK.get().defaultBlockState(),
-            Blocks.PACKED_MUD.defaultBlockState(),
-            Blocks.PACKED_MUD.defaultBlockState(),
-            DDBlocks.DUSKROCK.get().defaultBlockState(),
-            Blocks.PACKED_MUD.defaultBlockState(),
-            Blocks.PACKED_MUD.defaultBlockState(),
-            DDBlocks.ARIDROCK.get().defaultBlockState(),
-            DDBlocks.ARIDROCK.get().defaultBlockState()
-    );
-
-    private static final SurfaceRules.RuleSource SANDY_PATTERN_FILL = new RepeatingYPatternRule(SANDY_FILL_LIST);
 
     private static final SurfaceRules.RuleSource ARID_DEEPSLATE_FILL =
             SurfaceRules.state(DDBlocks.ARID_DEEPSLATE.get().defaultBlockState());
@@ -70,12 +44,12 @@ public class DDSurfaceRules {
             )
     );
 
-    private static final SurfaceRules.RuleSource MOLTEN_FILL = SurfaceRules.ifTrue(
+    public static final SurfaceRules.RuleSource MOLTEN_FILL = SurfaceRules.ifTrue(
             SurfaceRules.isBiome(DDResourceKeys.Biomes.MOLTEN_CAVERN),
             SurfaceRules.state(DDBlocks.DARKSLATE.get().defaultBlockState())
     );
 
-    private static final SurfaceRules.RuleSource GLOWSHROOM_FILL = SurfaceRules.ifTrue(
+    public static final SurfaceRules.RuleSource GLOWSHROOM_FILL = SurfaceRules.ifTrue(
             SurfaceRules.isBiome(DDResourceKeys.Biomes.GLOWSHROOM_FOREST),
             SurfaceRules.sequence(
                     SurfaceRules.ifTrue(

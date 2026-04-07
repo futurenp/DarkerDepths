@@ -228,8 +228,7 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
         );
 
         this.tag(BlockTags.BASE_STONE_OVERWORLD).add(
-                DDBlocks.DARKSLATE.get(),
-                DDBlocks.GRIMESTONE.get()
+                DDBlocks.DARKSLATE.get()
         );
 
         this.tag(BlockTags.DEEPSLATE_ORE_REPLACEABLES).add(
@@ -311,6 +310,13 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
                 DDBlocks.GLOWSPURS.get(),
                 DDBlocks.GLIMMERING_VINES.get(),
                 DDBlocks.GLIMMERING_VINE_PLANT.get()
+        );
+
+        this.tag(BlockTags.LUSH_GROUND_REPLACEABLE).add(
+                DDBlocks.ARIDROCK.get(),
+                DDBlocks.GRIMESTONE.get(),
+                DDBlocks.MOSSY_GRIMESTONE.get(),
+                DDBlocks.DUSKROCK.get()
         );
 
         this.tag(BlockTags.SWORD_EFFICIENT).add(

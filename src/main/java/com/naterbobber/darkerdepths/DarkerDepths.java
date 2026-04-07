@@ -71,18 +71,20 @@ public class DarkerDepths {
             throw new IllegalStateException("Missing Worldgen API! Install TerraBlender or Biolith.");
         }
 
-        if (hasBoth) {
-            if(DDConfig.CONFIG.PRIORITIZE_TERRABLENDER.get()) {
-                safeInitTerrablender(event);
-            } else {
-                safeInitBiolith(event);
-            }
-        } else if(hasTerrablender) {
-            safeInitTerrablender(event);
-        }
-        else {
-            safeInitBiolith(event);
-        }
+
+        safeInitTerrablender(event);
+//        if (hasBoth) {
+//            if(DDConfig.CONFIG.PRIORITIZE_TERRABLENDER.get()) {
+//                safeInitTerrablender(event);
+//            } else {
+//                safeInitBiolith(event);
+//            }
+//        } else if(hasTerrablender) {
+//            safeInitTerrablender(event);
+//        }
+//        else {
+//            safeInitBiolith(event);
+//        }
     }
 
     private void safeInitBiolith(FMLCommonSetupEvent event) {

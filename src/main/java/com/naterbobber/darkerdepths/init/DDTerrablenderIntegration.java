@@ -14,5 +14,7 @@ public class DDTerrablenderIntegration {
                 DDConfig.CONFIG.OVERWORLD_BIOME_WEIGHT_TERRABLENDER.get()));
 
         SurfaceRuleManager.addSurfaceRules(SurfaceRuleManager.RuleCategory.OVERWORLD, DarkerDepths.MOD_ID, DDSurfaceRules.makeRules());
+//        SurfaceRuleManager.addSurfaceRules(SurfaceRuleManager.RuleCategory.OVERWORLD, DarkerDepths.MOD_ID, DDSurfaceRules.GLOWSHROOM_FILL);
+
     }
 }
