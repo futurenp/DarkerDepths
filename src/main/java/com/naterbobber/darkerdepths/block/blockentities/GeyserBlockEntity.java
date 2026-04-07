@@ -100,7 +100,7 @@ public class GeyserBlockEntity extends BlockEntity implements HeatableBlock {
         double x = blockPos.getX(), y = blockPos.getY(), z = blockPos.getZ();
 
         if(!blockState.getValue(BURSTING)) {
-            if(level.getRandom().nextFloat() > 0.95F && ParticleContext.getContext(level.getBlockState(blockPos.relative(direction))) != ParticleContext.BLOCKED) {
+            if(level.getRandom().nextFloat() > 0.925F && ParticleContext.getContext(level.getBlockState(blockPos.relative(direction))) != ParticleContext.BLOCKED) {
                 sendParticleType(level, blockPos, DDParticleTypes.GEYSER_PASSIVE_SMOKE.get(), direction,1, 0.05);
             }
         }

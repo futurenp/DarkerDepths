@@ -1,6 +1,7 @@
 package com.naterbobber.darkerdepths.worldgen.feature.features;
 
 import com.mojang.serialization.Codec;
+import com.naterbobber.darkerdepths.block.DDBlockStateProperties;
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.WorldGenLevel;
@@ -22,7 +23,7 @@ public class GeyserFeature extends Feature<SimpleBlockConfiguration> {
         if ((world.getBlockState(blockPos.above()).is(Blocks.LAVA) || world.getBlockState(blockPos.above()).is(Blocks.WATER))
                 && world.getBlockState(blockPos).canOcclude()
                 && world.getBlockState(blockPos.below()).canOcclude()){
-            this.setBlock(world, blockPos, DDBlocks.GEYSER.get().defaultBlockState());
+            this.setBlock(world, blockPos, DDBlocks.GEYSER.get().defaultBlockState().setValue(DDBlockStateProperties.PROVIDES_ASH, true));
             this.setBlock(world, blockPos.below(), DDBlocks.SCORCHED_REMAINS_BLOCK.get().defaultBlockState());
             return true;
         } else {
