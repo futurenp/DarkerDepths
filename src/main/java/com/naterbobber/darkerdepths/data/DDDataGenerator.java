@@ -45,6 +45,7 @@ public class DDDataGenerator {
         dataGenerator.addProvider(server, new DDFluidTagsProvider(packOutput, registryLookup, existingFileHelper));
         dataGenerator.addProvider(server, new DDItemTagsProvider(packOutput, registryLookup, blockTagsProvider.contentsGetter(), existingFileHelper));
         dataGenerator.addProvider(server, new DDBiomeTagsProvider(packOutput, registryLookup, existingFileHelper));
+        dataGenerator.addProvider(server, new DDEntityTypeTagsProvider(packOutput, registryLookup, existingFileHelper));
         dataGenerator.addProvider(server, new DDDamageTypeTagsProvider(packOutput, registryLookup, existingFileHelper));
         dataGenerator.addProvider(server, new DDEnchantmentTagsProvider(packOutput, registryLookup));
     }

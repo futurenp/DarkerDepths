@@ -9,6 +9,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
@@ -80,5 +81,12 @@ public class DDTags {
         public static final TagKey<Biome> HAS_ROPE_MINE_DESERT = TAGS.create("has_structure/rope_mine_desert");
         public static final TagKey<Biome> HAS_PETRIFIED_MINESHAFT = TAGS.create("has_structure/petrified_mineshaft");
         public static final TagKey<Biome> CATACOMBS = TAGS.create("has_structure/catacombs");
+    }
+
+    public static class EntityTypes {
+        private static final TagFactory<EntityType<?>> TAGS = make(Registries.ENTITY_TYPE);
+
+        public static final TagKey<EntityType<?>> GLOWSHROOM_MONSTER_TARGET = TAGS.create("glowshroom_monster_target");
+        public static final TagKey<EntityType<?>> VOID_SOUL = TAGS.create("void_soul");
     }
 }

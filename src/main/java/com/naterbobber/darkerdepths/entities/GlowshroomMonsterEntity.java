@@ -4,6 +4,7 @@ import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.entities.goals.AttackMemoryTargetGoal;
 import com.naterbobber.darkerdepths.entities.control.ConfigurableMoveControl;
 import com.naterbobber.darkerdepths.init.DDSoundEvents;
+import com.naterbobber.darkerdepths.util.DDTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -86,11 +87,12 @@ public class GlowshroomMonsterEntity extends Monster implements GeoEntity {
         this.targetSelector.addGoal(2, new HurtByTargetGoal(this));
         this.targetSelector.addGoal(4, new AttackMemoryTargetGoal<>(this, Player.class, 300, true));
         this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(
-                this, Mob.class, 10, false, false, (entity) ->
-                !(entity instanceof Creeper) &&
-                        !(entity instanceof GlowshroomMonsterEntity) &&
-                        !(entity instanceof Bat) &&
-                        !(entity instanceof VoidSoulEntity)
+                this,
+                LivingEntity.class,
+                10,
+                false,
+                false,
+                (entity) -> entity.getType().is(DDTags.EntityTypes.GLOWSHROOM_MONSTER_TARGET)
         ));
     }
 
