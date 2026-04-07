@@ -1,0 +1,9 @@
+{
+  "parent": "darkerdepths:block/cube_unique_top_bottom",
+  "textures": {
+    "bottom": "minecraft:block/deepslate_top",
+    "side": "darkerdepths:block/arid_deepslate",
+    "top": "darkerdepths:block/arid_deepslate_top",
+    "particle": "minecraft:block/deepslate_top"
+  }
+}
