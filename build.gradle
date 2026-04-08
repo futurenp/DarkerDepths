@@ -95,8 +95,8 @@ repositories {
 
 dependencies {
     implementation("software.bernie.geckolib:geckolib-neoforge-${project.minecraft_version}:4.8.4")
-    compileOnly("com.terraformersmc:biolith-neoforge:${project.biolith_version}")
-    implementation("com.github.glitchfiend:TerraBlender-neoforge:${project.minecraft_version}-${project.terrablender_version}")
+    implementation("com.terraformersmc:biolith-neoforge:${project.biolith_version}")
+    compileOnly("com.github.glitchfiend:TerraBlender-neoforge:${project.minecraft_version}-${project.terrablender_version}")
 
 //    compileOnly "maven.modrinth:no-mans-land:h56TqJQD"
 //    compileOnly "maven.modrinth:biolith:byVGeYWw"

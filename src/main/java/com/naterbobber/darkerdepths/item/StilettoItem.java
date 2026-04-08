@@ -20,6 +20,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.EnchantmentInstance;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -33,7 +34,7 @@ public class StilettoItem extends SwordItem {
     public static final StilettoTier STILETTO = new StilettoTier();
 
     public StilettoItem(Item.Properties properties) {
-        super(STILETTO, properties.component(DataComponents.TOOL, createToolProperties()));
+        super(STILETTO, properties);
     }
 
     @Override

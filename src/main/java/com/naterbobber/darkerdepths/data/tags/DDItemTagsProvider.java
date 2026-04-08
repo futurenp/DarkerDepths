@@ -8,6 +8,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
@@ -47,6 +48,12 @@ public class DDItemTagsProvider extends ItemTagsProvider {
         this.tag(DDTags.Items.STILETTO_ENCHANTABLE).add(DDItems.STILETTO.get());
         this.tag(ItemTags.SWORD_ENCHANTABLE).add(DDItems.STILETTO.get());
         this.tag(ItemTags.SHARP_WEAPON_ENCHANTABLE).add(DDItems.STILETTO.get());
+
+        this.tag(ItemTags.DURABILITY_ENCHANTABLE).add(
+                DDItems.STILETTO.get(),
+                DDItems.GLOWSHROOM_CAP.get()
+        );
+
         this.tag(ItemTags.PLANKS).add(DDBlocks.PETRIFIED_PLANKS.get().asItem());
         this.tag(ItemTags.BEACON_PAYMENT_ITEMS).add(DDItems.FORSAKEN_BRONZE_INGOT.get());
 
