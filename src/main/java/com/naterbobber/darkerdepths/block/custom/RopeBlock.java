@@ -13,12 +13,7 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.block.AirBlock;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.BucketPickup;
-import net.minecraft.world.level.block.LiquidBlockContainer;
-import net.minecraft.world.level.block.RenderShape;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -35,26 +30,38 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Optional;
 
 public class RopeBlock extends Block implements BucketPickup, LiquidBlockContainer {
-    public static final EnumProperty<RopeBlock.RopePart> PART = DDBlockStateProperties.PART;
-    public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
+    private static final EnumProperty<RopeBlock.RopePart> PART = DDBlockStateProperties.PART;
+    private static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
+    private static final VoxelShape BOTTOM_SHAPE = Block.box(6.0F, 8.0F, 6.0F, 10.0F, 16.0F, 10.0F);
+    private static final VoxelShape MIDDLE_SHAPE = Block.box(6.0F, 0.0F, 6.0F, 10.0F, 16.0F, 10.0F);
+    private static final VoxelShape TOP_SHAPE = Shapes.or(Block.box(6.0F, 0.0F, 6.0F, 10.0F, 15.0F, 10.0F), Block.box(7.0F, 12.0F, 11.0F, 9.0F, 16.0F, 13.0F), Block.box(7.0F, 12.0F, 3.0F, 9.0F, 16.0F, 5.0F), Block.box(7.0F, 12.0F, 5.0F, 9.0F, 14.0F, 11.0F));
+    private static final VoxelShape BOTTOM_COLLISION_SHAPE = Block.box(7.0F, 8.0F, 7.0F, 9.0F, 16.0F, 9.0F);
+    private static final VoxelShape MIDDLE_COLLISION_SHAPE = Block.box(7.0F, 0.0F, 7.0F, 9.0F, 16.0F, 9.0F);
 
-    public RopeBlock(Properties properties) {
+public RopeBlock(Properties properties) {
         super(properties);
         this.registerDefaultState(this.stateDefinition.any().setValue(PART, RopePart.MIDDLE).setValue(WATERLOGGED, false));
     }
 
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter p_60556_, BlockPos p_60557_, CollisionContext p_60558_) {
-        if (state.getValue(PART) == RopePart.BOTTOM) {
-            return Block.box(6.0F, 8.0F, 6.0F, 10.0F, 16.0F, 10.0F);
-        } else if (state.getValue(PART) == RopePart.MIDDLE) {
-            return Block.box(6.0F, 0.0F, 6.0F, 10.0F, 16.0F, 10.0F);
-        } else return Shapes.or(Block.box(6.0F, 0.0F, 6.0F, 10.0F, 15.0F, 10.0F), Block.box(7.0F, 12.0F, 11.0F, 9.0F, 16.0F, 13.0F), Block.box(7.0F, 12.0F, 3.0F, 9.0F, 16.0F, 5.0F), Block.box(7.0F, 12.0F, 5.0F, 9.0F, 14.0F, 11.0F));
+        switch(state.getValue(PART)) {
+            case RopePart.BOTTOM -> {
+                return BOTTOM_SHAPE;
+            }
+            case RopePart.TOP -> {
+                return TOP_SHAPE;
+            }
+            default -> {
+                return MIDDLE_SHAPE;
+            }
+        }
     }
 
     @Override
     public boolean canSurvive(BlockState state, LevelReader worldIn, BlockPos pos) {
-        return (worldIn.getBlockState(pos.above()).isFaceSturdy(worldIn, pos, Direction.DOWN) || worldIn.getBlockState(pos.above()).getBlock() instanceof RopeBlock) && !(worldIn.getBlockState(pos.above()).getBlock() instanceof AirBlock);
+        return (Block.canSupportCenter(worldIn, pos.relative(Direction.UP), Direction.DOWN)
+                || worldIn.getBlockState(pos.above()).getBlock() instanceof RopeBlock);
     }
 
     @Nullable
@@ -65,11 +72,17 @@ public class RopeBlock extends Block implements BucketPickup, LiquidBlockContain
         if (state != null) {
             if (isRopeBottom(context.getLevel(), context.getClickedPos())) {
                 state = state.setValue(PART, RopePart.BOTTOM);
-            } else if (isRopeTop(context.getLevel(), context.getClickedPos())) {
-                state = state.setValue(PART, RopePart.TOP);
             }
         } else return null;
         return state.setValue(WATERLOGGED, water);
+    }
+
+    @Override
+    protected VoxelShape getCollisionShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+        if (state.getValue(PART) == RopePart.BOTTOM) {
+            return BOTTOM_COLLISION_SHAPE;
+        }
+        return MIDDLE_COLLISION_SHAPE;
     }
 
     @Override
@@ -85,9 +98,17 @@ public class RopeBlock extends Block implements BucketPickup, LiquidBlockContain
         }
         if (isRopeBottom(worldIn, currentPos)) {
             stateIn = stateIn.setValue(PART, RopePart.BOTTOM);
-        } else if (isRopeTop(worldIn, currentPos)) {
-            stateIn = stateIn.setValue(PART, RopePart.TOP);
-        } else {
+        }
+        else if (isRopeTop(worldIn, currentPos)) {
+            if (!(worldIn.getBlockState(currentPos.above()).isFaceSturdy(worldIn, currentPos, Direction.DOWN))
+                    && (Block.canSupportCenter(worldIn, currentPos.relative(Direction.UP), Direction.DOWN))) {
+                stateIn = stateIn.setValue(PART, RopePart.MIDDLE);
+            }
+            else {
+                stateIn = stateIn.setValue(PART, RopePart.TOP);
+            }
+        }
+        else {
             stateIn = stateIn.setValue(PART, RopePart.MIDDLE);
         }
         return canSurvive(stateIn, worldIn, currentPos) ? super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos) : Blocks.AIR.defaultBlockState();

@@ -29,6 +29,7 @@ import net.minecraft.world.level.levelgen.structure.pools.StructurePoolElement;
 import net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool;
 import net.minecraft.world.level.levelgen.structure.structures.JigsawStructure;
 import net.minecraft.world.level.levelgen.structure.structures.MineshaftStructure;
+import net.minecraft.world.level.levelgen.structure.templatesystem.LiquidSettings;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProcessorList;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -64,7 +65,7 @@ public class DDStructures {
                 80,
                 List.of(),
                 JigsawStructure.DEFAULT_DIMENSION_PADDING,
-                JigsawStructure.DEFAULT_LIQUID_SETTINGS
+                LiquidSettings.IGNORE_WATERLOGGING
         ));
 
         Structure.StructureSettings desertSettings = new Structure.StructureSettings(
@@ -85,7 +86,7 @@ public class DDStructures {
                 80,
                 List.of(),
                 JigsawStructure.DEFAULT_DIMENSION_PADDING,
-                JigsawStructure.DEFAULT_LIQUID_SETTINGS
+                LiquidSettings.IGNORE_WATERLOGGING
         ));
 
         Structure.StructureSettings catacombs = new Structure.StructureSettings(
@@ -106,7 +107,7 @@ public class DDStructures {
                 116,
                 List.of(),
                 JigsawStructure.DEFAULT_DIMENSION_PADDING,
-                JigsawStructure.DEFAULT_LIQUID_SETTINGS
+                LiquidSettings.IGNORE_WATERLOGGING
         ));
 
         context.register(DDResourceKeys.Structures.PETRIFIED_MINESHAFT, new DDMineshaftStructure(

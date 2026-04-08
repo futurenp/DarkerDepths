@@ -329,7 +329,7 @@ public class DDBlocks {
     public static final DeferredBlock<GlowshroomLanternBlock> GLOWSHROOM_LANTERN = registerBlock("glowshroom_lantern",
             () -> new GlowshroomLanternBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LANTERN)));
     public static final DeferredBlock<RopeBlock> ROPE = registerNoTabBlock("rope",
-            () -> new RopeBlock(blockProperties(0.1f, SoundType.WOOL, false)));
+            () -> new RopeBlock(blockProperties(0.1f, SoundType.WOOL, false).noOcclusion()));
 
 
     public static final DeferredBlock<MobPlacerBlock> MOB_PLACER = registerNoTabBlock("mob_placer",
