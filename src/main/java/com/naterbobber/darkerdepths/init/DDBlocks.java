@@ -331,6 +331,13 @@ public class DDBlocks {
     public static final DeferredBlock<RopeBlock> ROPE = registerNoTabBlock("rope",
             () -> new RopeBlock(blockProperties(0.1f, SoundType.WOOL, false).noOcclusion()));
 
+    public static final DeferredBlock<Block> PURPLE_CHALK = registerBlock("purple_chalk",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.CALCITE)));
+    public static final DeferredBlock<Block> BLUE_CHALK = registerBlock("blue_chalk",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.CALCITE)));
+    public static final DeferredBlock<Block> VIOLET_CHALK = registerBlock("violet_chalk",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.CALCITE)));
+
 
     public static final DeferredBlock<MobPlacerBlock> MOB_PLACER = registerNoTabBlock("mob_placer",
             () -> new MobPlacerBlock(Block.Properties.ofFullCopy(Blocks.BEDROCK)));

@@ -25,6 +25,7 @@ public class DDBiomes {
         context.register(MOLTEN_CAVERN, createMoltenCavern(holdergetter, holdergetter1));
         context.register(SANDY_CATACOMBS, createSandyCatacombs(holdergetter, holdergetter1));
         context.register(GLOWSHROOM_FOREST, createGlowshroomForest(holdergetter, holdergetter1));
+        context.register(CHALK_CAVES, createChalkCaves(holdergetter, holdergetter1));
     }
 
     public static Biome createGlowshroomForest(HolderGetter<PlacedFeature> holderGetter, HolderGetter<ConfiguredWorldCarver<?>> holderGetter1) {
@@ -91,6 +92,29 @@ public class DDBiomes {
         BiomeDefaultFeatures.addDefaultOres(biomeBuilder);
         Music music = Musics.createGameMusic(SoundEvents.MUSIC_BIOME_DRIPSTONE_CAVES);
         int fogColor = DDBiomeFogs.SANDY_CATACOMBS.getIntColor();
+
+        return new DDBiomeBuilder(biomeBuilder)
+                .precipitation(false)
+                .music(music)
+                .waterColor(4169409)
+                .waterFogColor(341062)
+                .grassColor(11976546)
+                .fogColor(fogColor)
+                .build();
+    }
+
+    public static Biome createChalkCaves(HolderGetter<PlacedFeature> holderGetter, HolderGetter<ConfiguredWorldCarver<?>> holderGetter1) {
+        BiomeGenerationSettings.Builder biomeBuilder = new BiomeGenerationSettings.Builder(holderGetter, holderGetter1);
+        biomeBuilder.addCarver(GenerationStep.Carving.AIR, DDResourceKeys.ConfiguredWorldCarvers.VIOLET_CHALK_CARVER);
+        biomeBuilder.addCarver(GenerationStep.Carving.AIR, DDResourceKeys.ConfiguredWorldCarvers.CHALK_CARVER);
+        BiomeDefaultFeatures.addDefaultCarversAndLakes(biomeBuilder);
+        BiomeDefaultFeatures.addDefaultCrystalFormations(biomeBuilder);
+        BiomeDefaultFeatures.addDefaultMonsterRoom(biomeBuilder);
+        BiomeDefaultFeatures.addDefaultSprings(biomeBuilder);
+        BiomeDefaultFeatures.addSurfaceFreezing(biomeBuilder);
+        BiomeDefaultFeatures.addDefaultOres(biomeBuilder);
+        Music music = Musics.createGameMusic(SoundEvents.MUSIC_BIOME_DRIPSTONE_CAVES);
+        int fogColor = DDBiomeFogs.CHALK_CAVES.getIntColor();
 
         return new DDBiomeBuilder(biomeBuilder)
                 .precipitation(false)

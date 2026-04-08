@@ -27,6 +27,7 @@ public class DDBiomeModifiers {
         registerMoltenCavern(context);
         registerSandyCatacombs(context);
         registerGlowshroomForest(context);
+        registerChalkCaves(context);
     }
 
     private static void registerMoltenCavern(BootstrapContext<BiomeModifier> context) {
@@ -148,6 +149,24 @@ public class DDBiomeModifiers {
                         new MobSpawnSettings.SpawnerData(DDEntityTypes.GLOWSHROOM_MONSTER.get(), 120, 1, 2)
                 )
         ));
+    }
+
+    private static void registerChalkCaves(BootstrapContext<BiomeModifier> context) {
+        context.register(ADD_CHALK_CAVES_RAW_GENERATION, new BiomeModifiers.AddFeaturesBiomeModifier(
+                getBiome(context, CHALK_CAVES),
+                getPlacedFeature(
+                        context,
+                        CHALK_PILLAR
+                ),
+                GenerationStep.Decoration.RAW_GENERATION)
+        );
+        context.register(ADD_CHALK_CAVES_UNDERGROUND_DECORATION, new BiomeModifiers.AddFeaturesBiomeModifier(
+                getBiome(context, CHALK_CAVES),
+                getPlacedFeature(
+                        context
+                ),
+                GenerationStep.Decoration.UNDERGROUND_DECORATION)
+        );
     }
 
     @SafeVarargs

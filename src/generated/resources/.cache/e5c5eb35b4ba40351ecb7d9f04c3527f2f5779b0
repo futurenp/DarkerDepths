@@ -1,4 +1,4 @@
-// 1.21.1	2026-03-16T20:36:31.2338801	Advancements
+// 1.21.1	2026-04-08T16:37:50.4769539	Advancements
 46ff37f49187a8b414bf876ea03f29f30c56c447 data/darkerdepths/advancement/activities/bottle_void_soul.json
 27716b9ab5681d55bac8f867576e43559f229095 data/darkerdepths/advancement/activities/elytra_boosted_by_geyser.json
 43400a6772799039f23f7702930be2f0d4ed47c9 data/darkerdepths/advancement/activities/insert_diamond_into_crystal_husk.json
@@ -7,6 +7,7 @@ f47d893dccd625f12eb5f08f84a0113d3a6bd5c9 data/darkerdepths/advancement/activitie
 fcd0a5f6a0ff0258e8a4cfc559c8398dae033113 data/darkerdepths/advancement/activities/set_death_anchor.json
 a69eb017d4bed85020fe9746da9e6c7832e9210e data/darkerdepths/advancement/activities/use_crystal_melon.json
 740af7d163c6aedac99ea59c49a5c7c2be7fc90f data/darkerdepths/advancement/story/root.json
+e65b07055604cf244456a10c51334f6abd1619ea data/darkerdepths/advancement/visited/chalk_caves.json
 8b8b61f213fad7849f8f16cc31d3ef1e67cecc70 data/darkerdepths/advancement/visited/glowshroom_forest.json
 1100f0df63e683db634d8587e7d81d4187912963 data/darkerdepths/advancement/visited/molten_cavern.json
 51e981482e80914efc3749fd11b28fe317a81207 data/darkerdepths/advancement/visited/sandy_catacombs.json

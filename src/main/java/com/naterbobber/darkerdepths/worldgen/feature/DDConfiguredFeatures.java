@@ -339,5 +339,19 @@ public class DDConfiguredFeatures {
                 BlockPredicate.ONLY_IN_AIR_PREDICATE,
                 true)
         );
+
+        FeatureUtils.register(context, CHALK_PILLAR,
+                DDFeatures.CHALK_PILLAR.get(),
+                new LargeDripstoneConfiguration(
+                        30,
+                        UniformInt.of(1, 6),
+                        UniformFloat.of(0.8F, 2.5F),
+                        0.2F,
+                        UniformFloat.of(0.3F, 0.9F),
+                        UniformFloat.of(0.4F, 1.0F),
+                        UniformFloat.of(0.0F, 0.3F),
+                        4,
+                        0.6F)
+        );
     }
 }

@@ -1,4 +1,4 @@
-// 1.21.1	2026-04-04T17:24:22.7981126	Loot Tables
+// 1.21.1	2026-04-08T16:59:35.4042601	Loot Tables
 69a68443e41c0ea8610b4ece66b6a6a3bff163d0 data/darkerdepths/loot_table/archaeology/catacombs/standard.json
 b26089f15d136d6d0b9b7870fd170249ec0473de data/darkerdepths/loot_table/blocks/amber_block.json
 7b8aa851d67ec8c45ab85ef504b99c843fe25237 data/darkerdepths/loot_table/blocks/amber_cluster.json
@@ -16,6 +16,7 @@ eb687ae260549b7408d2442cfcff598fa5f8cd93 data/darkerdepths/loot_table/blocks/ari
 30a512fc2fd074ff974e50e554cbad6458e2c0cf data/darkerdepths/loot_table/blocks/arid_deepslate.json
 2e8c618bfdf19b67ab78d3825575071ce68de407 data/darkerdepths/loot_table/blocks/ash.json
 a4818c29487edb69b0edcf009ab34bba657d4e73 data/darkerdepths/loot_table/blocks/ash_block.json
+0428e05eb72ec12a86f448538dacb9ca3c1c83e9 data/darkerdepths/loot_table/blocks/blue_chalk.json
 730751e7e8581c9c058abe7d7516a5e6e7e2154c data/darkerdepths/loot_table/blocks/chiseled_aridrock_bricks.json
 789074ac815e47bfa99229ca12e299b33ac9dcca data/darkerdepths/loot_table/blocks/chiseled_darkslate_bricks.json
 c228b89d442655a24c9b7ed2ce9244ae7f4a6972 data/darkerdepths/loot_table/blocks/chiseled_duskrock_bricks.json
@@ -116,6 +117,7 @@ fe059856640a25089c636995846ea437470fb7aa data/darkerdepths/loot_table/blocks/pol
 793fdb9c828b86ed488dba06e02aa072ecfa9d1b data/darkerdepths/loot_table/blocks/polished_grimestone_vertical_slab.json
 8922d9f85b23a010d622ef18ca952fee281ba77c data/darkerdepths/loot_table/blocks/porous_petrified_log.json
 ef5a93dd3fc952fa55133f527a66924c6f3442b2 data/darkerdepths/loot_table/blocks/potted_glowshroom.json
+91163c3368501a781046d636d19e3fb74acd24a8 data/darkerdepths/loot_table/blocks/purple_chalk.json
 1096585c0434e9226c2073650caa0e4a6d6b1a00 data/darkerdepths/loot_table/blocks/rope.json
 5c8dd518dd317527b563a17e0f56a5aded0ec97e data/darkerdepths/loot_table/blocks/scorched_remains.json
 4c6a5932e9a66284687cd6b49e4c481dad11c60a data/darkerdepths/loot_table/blocks/scorched_remains_block.json
@@ -127,6 +129,7 @@ c8ab1a1d08b4cf5a687e5cdd0588d2d6583250cc data/darkerdepths/loot_table/blocks/str
 88d80c5a345eb8dee7babe06a1c67734d191c191 data/darkerdepths/loot_table/blocks/tomb.json
 9ddc910d70ac38d8f64c0f9087ea9073a21eee14 data/darkerdepths/loot_table/blocks/trimmed_petrified_planks.json
 4e374b4b4c2af8beda4eae1edec198264d679a7f data/darkerdepths/loot_table/blocks/vertical_petrified_planks.json
+4a3db1b0f8c2d9782f497ddf9e85bc07d488c7c5 data/darkerdepths/loot_table/blocks/violet_chalk.json
 ee1dd3c3196e5fc8b810c14aca398d0e65544ee9 data/darkerdepths/loot_table/blocks/void_soul_jar.json
 d830b6d68273d586a749701e795650fb22662af5 data/darkerdepths/loot_table/blocks/void_soul_torch.json
 922215f9c8707c8544a64d05b9e51ac9ae1e8dab data/darkerdepths/loot_table/chests/catacombs/standard.json

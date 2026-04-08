@@ -207,5 +207,11 @@ public class DDPlacedFeatures {
                         BlockPredicate.ONLY_IN_AIR_PREDICATE, 12),
                 RandomOffsetPlacement.vertical(ConstantInt.of(-1)),
                 BiomeFilter.biome());
+
+        PlacementUtils.register(context, CHALK_PILLAR, lookup.getOrThrow(DDResourceKeys.ConfiguredFeatures.CHALK_PILLAR),
+                CountPlacement.of(UniformInt.of(48, 88)),
+                InSquarePlacement.spread(),
+                PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
+                BiomeFilter.biome());
     }
 }

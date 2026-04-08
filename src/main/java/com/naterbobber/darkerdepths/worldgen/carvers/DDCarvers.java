@@ -6,7 +6,6 @@ import com.naterbobber.darkerdepths.util.DDTags;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.util.valueproviders.UniformFloat;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -94,6 +93,45 @@ public class DDCarvers {
                                         UniformFloat.of(1.2F, 1.5F),
                                         UniformFloat.of(-1.0F, -0.4F),
                                         Blocks.MAGMA_BLOCK
+                                )
+                        )
+        );
+
+        context.register(
+                CHALK_CARVER,
+                DDWorldCarvers.BLOCK_CARVER.get()
+                        .configured(
+                                new BlockCarverConfiguration(
+                                        1F,
+                                        UniformHeight.of(VerticalAnchor.aboveBottom(8), VerticalAnchor.absolute(180)),
+                                        UniformFloat.of(0.1F, 0.9F),
+                                        VerticalAnchor.aboveBottom(8),
+                                        CarverDebugSettings.of(false, Blocks.CRIMSON_BUTTON.defaultBlockState()),
+                                        holdergetter.getOrThrow(DDTags.Blocks.CHALK_STRIPE_REPLACEABLE),
+                                        UniformFloat.of(1.2F, 2.0F),
+                                        UniformFloat.of(1.4F, 1.8F),
+                                        UniformFloat.of(-1.0F, -0.4F),
+                                        Blocks.CALCITE,
+                                        DDBlocks.PURPLE_CHALK.get()
+                                )
+                        )
+        );
+
+        context.register(
+                VIOLET_CHALK_CARVER,
+                DDWorldCarvers.BLOCK_CARVER.get()
+                        .configured(
+                                new BlockCarverConfiguration(
+                                        1F,
+                                        UniformHeight.of(VerticalAnchor.aboveBottom(8), VerticalAnchor.absolute(180)),
+                                        UniformFloat.of(0.1F, 0.9F),
+                                        VerticalAnchor.aboveBottom(8),
+                                        CarverDebugSettings.of(false, Blocks.CRIMSON_BUTTON.defaultBlockState()),
+                                        holdergetter.getOrThrow(DDTags.Blocks.CHALK_STRIPE_REPLACEABLE),
+                                        UniformFloat.of(1.2F, 2.0F),
+                                        UniformFloat.of(1.4F, 1.8F),
+                                        UniformFloat.of(-1.0F, -0.4F),
+                                        DDBlocks.VIOLET_CHALK.get()
                                 )
                         )
         );

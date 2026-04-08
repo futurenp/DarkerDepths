@@ -1,0 +1,65 @@
+{
+  "type": "darkerdepths:block_carver",
+  "config": {
+    "border_block": "darkerdepths:violet_chalk",
+    "debug_settings": {
+      "air_state": {
+        "Name": "minecraft:crimson_button",
+        "Properties": {
+          "face": "wall",
+          "facing": "north",
+          "powered": "false"
+        }
+      },
+      "barrier_state": {
+        "Name": "minecraft:glass"
+      },
+      "lava_state": {
+        "Name": "minecraft:orange_stained_glass"
+      },
+      "water_state": {
+        "Name": "minecraft:candle",
+        "Properties": {
+          "candles": "1",
+          "lit": "false",
+          "waterlogged": "false"
+        }
+      }
+    },
+    "floor_level": {
+      "type": "minecraft:uniform",
+      "max_exclusive": -0.4,
+      "min_inclusive": -1.0
+    },
+    "horizontal_radius_multiplier": {
+      "type": "minecraft:uniform",
+      "max_exclusive": 2.0,
+      "min_inclusive": 1.2
+    },
+    "lava_level": {
+      "above_bottom": 8
+    },
+    "placeable": "darkerdepths:violet_chalk",
+    "probability": 1.0,
+    "replaceable": "#darkerdepths:chalk_stripe_replaceable",
+    "vertical_radius_multiplier": {
+      "type": "minecraft:uniform",
+      "max_exclusive": 1.8,
+      "min_inclusive": 1.4
+    },
+    "y": {
+      "type": "minecraft:uniform",
+      "max_inclusive": {
+        "absolute": 180
+      },
+      "min_inclusive": {
+        "above_bottom": 8
+      }
+    },
+    "yScale": {
+      "type": "minecraft:uniform",
+      "max_exclusive": 0.9,
+      "min_inclusive": 0.1
+    }
+  }
+}

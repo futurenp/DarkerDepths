@@ -26,6 +26,7 @@ public class DDResourceKeys {
         public static final ResourceKey<Biome> MOLTEN_CAVERN = createKey("molten_cavern");
         public static final ResourceKey<Biome> SANDY_CATACOMBS = createKey("sandy_catacombs");
         public static final ResourceKey<Biome> GLOWSHROOM_FOREST = createKey("glowshroom_forest");
+        public static final ResourceKey<Biome> CHALK_CAVES = createKey("chalk_caves");
 
         public static ResourceKey<Biome> createKey(String name) {
             ResourceKey<Biome> key = ResourceKey.create(Registries.BIOME, DarkerDepths.id(name));
@@ -48,6 +49,9 @@ public class DDResourceKeys {
         public static final ResourceKey<BiomeModifier> ADD_GLOWSHROOM_FOREST_VEGETAL_FEATURES = createKey("add_glowshroom_forest_vegetal_features");
         public static final ResourceKey<BiomeModifier> ADD_GLOWSHROOM_FOREST_UNDERGROUND_DECORATION = createKey("add_glowshroom_forest_underground_decoration");
         public static final ResourceKey<BiomeModifier> ADD_GLOWSHROOM_FOREST_SPAWNS = createKey("add_glowshroom_forest_spawns");
+        public static final ResourceKey<BiomeModifier> ADD_CHALK_CAVES_RAW_GENERATION = createKey("add_chalk_caves_raw_generation");
+        public static final ResourceKey<BiomeModifier> ADD_CHALK_CAVES_UNDERGROUND_DECORATION = createKey("add_chalk_caves_underground_decoration");
+
 
         private static ResourceKey<BiomeModifier> createKey(String name) {
             return ResourceKey.create(NeoForgeRegistries.Keys.BIOME_MODIFIERS, DarkerDepths.id(name));
@@ -61,6 +65,7 @@ public class DDResourceKeys {
         public static final ResourceKey<ConfiguredFeature<?, ?>> AMBERS_PLACEMENT = createKey("amber_placement");
         public static final ResourceKey<ConfiguredFeature<?, ?>> MOLTEN_SPRING = createKey("molten_spring");
         public static final ResourceKey<ConfiguredFeature<?, ?>> LARGE_MOLTEN_PILLAR = createKey("large_molten_pillar");
+        public static final ResourceKey<ConfiguredFeature<?, ?>> CHALK_PILLAR = createKey("chalk_pillar");
         public static final ResourceKey<ConfiguredFeature<?, ?>> SCORCHER_PLACER = createKey("scorcher_placer");
         public static final ResourceKey<ConfiguredFeature<?, ?>> ASH_PLACEMENTS = createKey("ash_placement");
         public static final ResourceKey<ConfiguredFeature<?, ?>> GEYSER_PLACEMENT = createKey("geyser_placement");
@@ -116,6 +121,7 @@ public class DDResourceKeys {
         public static final ResourceKey<PlacedFeature> DUSKROCK_STRIPE = createKey("duskrock_stripe");
         public static final ResourceKey<PlacedFeature> GLIMMERING_VINES = createKey("glimmering_vines");
         public static final ResourceKey<PlacedFeature> PETRIFIED_ROOTS = createKey("petrified_roots");
+        public static final ResourceKey<PlacedFeature> CHALK_PILLAR = createKey("chalk_pillar");
         public static final ResourceKey<PlacedFeature> CRYSTAL_HUSK_ORE = createKey("crystal_husk_ore");
         public static final ResourceKey<PlacedFeature> DUSKROCK_ORE = createKey("duskrock_ore");
         public static final ResourceKey<PlacedFeature> SCORCHED_REMAINS_PILE = createKey("scorched_remains_pile");
@@ -174,6 +180,9 @@ public class DDResourceKeys {
         public static final ResourceKey<ConfiguredWorldCarver<?>> MAGMA_CARVER = createKey("magma_carver");
         public static final ResourceKey<ConfiguredWorldCarver<?>> TUFF_CARVER = createKey("tuff_carver");
         public static final ResourceKey<ConfiguredWorldCarver<?>> MAGMA_LINE_CARVER = createKey("magma_line_carver");
+        public static final ResourceKey<ConfiguredWorldCarver<?>> CHALK_CARVER = createKey("chalk_carver");
+        public static final ResourceKey<ConfiguredWorldCarver<?>> VIOLET_CHALK_CARVER = createKey("violet_chalk_carver");
+
 
         private static ResourceKey<ConfiguredWorldCarver<?>> createKey(String pName) {
             return ResourceKey.create(Registries.CONFIGURED_CARVER, DarkerDepths.id(pName));

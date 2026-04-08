@@ -11,6 +11,10 @@
     {
       "id": "darkerdepths:glowshroom_forest",
       "required": false
+    },
+    {
+      "id": "darkerdepths:chalk_caves",
+      "required": false
     }
   ]
 }

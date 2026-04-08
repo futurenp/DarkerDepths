@@ -1,0 +1,40 @@
+{
+  "parent": "darkerdepths:story/root",
+  "criteria": {
+    "visited_chalk_caves": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "biomes": "darkerdepths:chalk_caves"
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancements.darkerdepths.chalk_caves.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "darkerdepths:grimestone"
+    },
+    "title": {
+      "translate": "advancements.darkerdepths.chalk_caves.title"
+    }
+  },
+  "requirements": [
+    [
+      "visited_chalk_caves"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

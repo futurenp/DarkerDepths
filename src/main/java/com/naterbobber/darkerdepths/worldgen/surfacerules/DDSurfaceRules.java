@@ -49,6 +49,11 @@ public class DDSurfaceRules {
             SurfaceRules.state(DDBlocks.DARKSLATE.get().defaultBlockState())
     );
 
+    public static final SurfaceRules.RuleSource CHALK_FILL = SurfaceRules.ifTrue(
+            SurfaceRules.isBiome(DDResourceKeys.Biomes.CHALK_CAVES),
+            SurfaceRules.state(DDBlocks.BLUE_CHALK.get().defaultBlockState())
+    );
+
     public static final SurfaceRules.RuleSource GLOWSHROOM_FILL = SurfaceRules.ifTrue(
             SurfaceRules.isBiome(DDResourceKeys.Biomes.GLOWSHROOM_FOREST),
             SurfaceRules.sequence(
@@ -83,7 +88,12 @@ public class DDSurfaceRules {
             GLOWSHROOM_FILL
     );
 
+    public static final SurfaceRules.RuleSource CHALK_RULES = SurfaceRules.sequence(
+            BEDROCK_BOTTOM,
+            CHALK_FILL
+    );
+
     public static SurfaceRules.RuleSource makeRules() {
-        return SurfaceRules.sequence(MOLTEN_CAVERN_RULES, SANDY_CATACOMBS_RULES, GLOWSHROOM_RULES, BEDROCK_BOTTOM);
+        return SurfaceRules.sequence(MOLTEN_CAVERN_RULES, SANDY_CATACOMBS_RULES, GLOWSHROOM_RULES, CHALK_RULES, BEDROCK_BOTTOM);
     }
 }

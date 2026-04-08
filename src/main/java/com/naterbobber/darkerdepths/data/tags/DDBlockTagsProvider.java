@@ -250,6 +250,11 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
                 Blocks.TUFF
         );
 
+        this.tag(DDTags.Blocks.CHALK_STRIPE_REPLACEABLE).add(
+                DDBlocks.BLUE_CHALK.get(),
+                DDBlocks.VIOLET_CHALK.get()
+        );
+
         this.tag(BlockTags.OVERWORLD_CARVER_REPLACEABLES).add(
                 DDBlocks.ARIDROCK.get(),
                 DDBlocks.DUSKROCK.get(),
