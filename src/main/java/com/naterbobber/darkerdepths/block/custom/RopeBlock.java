@@ -35,8 +35,8 @@ public class RopeBlock extends Block implements BucketPickup, LiquidBlockContain
     private static final VoxelShape BOTTOM_SHAPE = Block.box(6.0F, 8.0F, 6.0F, 10.0F, 16.0F, 10.0F);
     private static final VoxelShape MIDDLE_SHAPE = Block.box(6.0F, 0.0F, 6.0F, 10.0F, 16.0F, 10.0F);
     private static final VoxelShape TOP_SHAPE = Shapes.or(Block.box(6.0F, 0.0F, 6.0F, 10.0F, 15.0F, 10.0F), Block.box(7.0F, 12.0F, 11.0F, 9.0F, 16.0F, 13.0F), Block.box(7.0F, 12.0F, 3.0F, 9.0F, 16.0F, 5.0F), Block.box(7.0F, 12.0F, 5.0F, 9.0F, 14.0F, 11.0F));
-    private static final VoxelShape BOTTOM_COLLISION_SHAPE = Block.box(7.0F, 8.0F, 7.0F, 9.0F, 16.0F, 9.0F);
-    private static final VoxelShape MIDDLE_COLLISION_SHAPE = Block.box(7.0F, 0.0F, 7.0F, 9.0F, 16.0F, 9.0F);
+    private static final VoxelShape BOTTOM_COLLISION_SHAPE = Block.box(7.5F, 8.0F, 7.5F, 8.5F, 16.0F, 8.5F);
+    private static final VoxelShape MIDDLE_COLLISION_SHAPE = Block.box(7.5F, 0.0F, 7.5F, 8.5F, 16.0F, 8.5F);
 
 public RopeBlock(Properties properties) {
         super(properties);
