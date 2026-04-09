@@ -61,6 +61,7 @@ public class DDTags {
         public static final TagKey<Block> LOW_HEAT = TAGS.create("low_heat");
         public static final TagKey<Block> HEAT_PROVIDER = TAGS.create("heat_provider");
         public static final TagKey<Block> GRIME_GROUND = TAGS.create("grime_ground");
+        public static final TagKey<Block> AIR = TAGS.create("air");
     }
 
     public static class Fluids {

@@ -2,16 +2,14 @@ package com.naterbobber.darkerdepths.init;
 
 import com.mojang.datafixers.util.Pair;
 import com.naterbobber.darkerdepths.DarkerDepths;
-import com.naterbobber.darkerdepths.data.tags.DDBiomeTagsProvider;
 import com.naterbobber.darkerdepths.util.DDTags;
-import com.naterbobber.darkerdepths.worldgen.DDProcessorLists;
+import com.naterbobber.darkerdepths.worldgen.structures.processors.DDProcessorLists;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.data.worldgen.Pools;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.random.WeightedRandomList;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.biome.Biome;

@@ -1,16 +1,13 @@
 package com.naterbobber.darkerdepths.data.tags;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
+import com.naterbobber.darkerdepths.util.DDResourceKeys;
 import com.naterbobber.darkerdepths.util.DDTags;
-import com.naterbobber.darkerdepths.worldgen.DDBiomes;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.BiomeTagsProvider;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BiomeTags;
-import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Biomes;
 import net.minecraftforge.common.Tags;
@@ -27,13 +24,13 @@ public class DDBiomeTagsProvider extends BiomeTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider provider) {
-        DDBiomes.BIOMES.stream().forEach(this::addDefaultOverworldBiomeTags);
+        DDResourceKeys.Biomes.BIOMES.stream().forEach(this::addDefaultOverworldBiomeTags);
 
-        this.tag(Tags.Biomes.IS_HOT_OVERWORLD).addOptional(DDBiomes.MOLTEN_CAVERN.location());
-        this.tag(Tags.Biomes.IS_DRY_OVERWORLD).addOptional(DDBiomes.SANDY_CATACOMBS.location());
-        this.tag(Tags.Biomes.IS_COLD_OVERWORLD).addOptional(DDBiomes.GLOWSHROOM_FOREST.location());
+        this.tag(Tags.Biomes.IS_HOT_OVERWORLD).addOptional(DDResourceKeys.Biomes.MOLTEN_CAVERN.location());
+        this.tag(Tags.Biomes.IS_DRY_OVERWORLD).addOptional(DDResourceKeys.Biomes.SANDY_CATACOMBS.location());
+        this.tag(Tags.Biomes.IS_COLD_OVERWORLD).addOptional(DDResourceKeys.Biomes.GLOWSHROOM_FOREST.location());
 
-        this.tag(DDTags.Biomes.CATACOMBS).addOptional(DDBiomes.SANDY_CATACOMBS.location());
+        this.tag(DDTags.Biomes.CATACOMBS).addOptional(DDResourceKeys.Biomes.SANDY_CATACOMBS.location());
 
         this.tag(DDTags.Biomes.HAS_ROPE_MINE_FOREST).add(
                 Biomes.PLAINS,
