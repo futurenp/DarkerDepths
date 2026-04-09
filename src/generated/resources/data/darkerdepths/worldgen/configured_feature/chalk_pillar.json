@@ -9,8 +9,8 @@
     "floor_to_ceiling_search_range": 30,
     "height_scale": {
       "type": "minecraft:uniform",
-      "max_exclusive": 3.0,
-      "min_inclusive": 0.6
+      "max_exclusive": 2.5,
+      "min_inclusive": 0.8
     },
     "max_column_radius_to_cave_height_ratio": 0.2,
     "min_bluntness_for_wind": 0.6,

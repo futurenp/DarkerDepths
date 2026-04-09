@@ -6,6 +6,7 @@ import com.naterbobber.darkerdepths.util.DDTags;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.util.valueproviders.ConstantFloat;
 import net.minecraft.util.valueproviders.UniformFloat;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -135,5 +136,22 @@ public class DDCarvers {
                                 )
                         )
         );
+
+        context.register(
+                CHALK_RIVER_CARVER,
+                DDWorldCarvers.CHALK_RIVER_CARVER.get()
+                        .configured(
+                                new ChalkRiverConfiguration(
+                                        1F,
+                                        UniformHeight.of(VerticalAnchor.aboveBottom(8), VerticalAnchor.absolute(180)),
+                                        ConstantFloat.of(1.0F),
+                                        VerticalAnchor.aboveBottom(16),
+                                        CarverDebugSettings.of(false, Blocks.CRIMSON_BUTTON.defaultBlockState()),
+                                        holdergetter.getOrThrow(DDTags.Blocks.CHALK_RIVER_REPLACEABLE),
+                                        50,
+                                        0.05
+                                        )
+                                )
+                        );
     }
 }

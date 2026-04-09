@@ -182,6 +182,7 @@ public class DDResourceKeys {
         public static final ResourceKey<ConfiguredWorldCarver<?>> MAGMA_LINE_CARVER = createKey("magma_line_carver");
         public static final ResourceKey<ConfiguredWorldCarver<?>> CHALK_CARVER = createKey("chalk_carver");
         public static final ResourceKey<ConfiguredWorldCarver<?>> VIOLET_CHALK_CARVER = createKey("violet_chalk_carver");
+        public static final ResourceKey<ConfiguredWorldCarver<?>> CHALK_RIVER_CARVER = createKey("chalk_river_carver");
 
 
         private static ResourceKey<ConfiguredWorldCarver<?>> createKey(String pName) {

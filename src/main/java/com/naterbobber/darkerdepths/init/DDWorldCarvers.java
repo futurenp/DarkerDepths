@@ -15,5 +15,6 @@ public class DDWorldCarvers {
     public static final DeferredHolder<WorldCarver<?>, SurfaceCrawlerCarver> SURFACE_CRAWLER_CARVER = WORLD_CARVERS.register("surface_crawler_carver", () -> new SurfaceCrawlerCarver(BlockCarverConfiguration.CODEC));
     public static final DeferredHolder<WorldCarver<?>, SurfaceLineCarver> SURFACE_LINE_CARVER = WORLD_CARVERS.register("surface_line_carver", () -> new SurfaceLineCarver(BlockCarverConfiguration.CODEC));
     public static final DeferredHolder<WorldCarver<?>, CurtainCarver> CURTAIN_CARVER = WORLD_CARVERS.register("curtain_carver", () -> new CurtainCarver(BlockCarverConfiguration.CODEC));
+    public static final DeferredHolder<WorldCarver<?>, ChalkRiverCarver> CHALK_RIVER_CARVER = WORLD_CARVERS.register("chalk_river_carver", () -> new ChalkRiverCarver(ChalkRiverConfiguration.CODEC));
 
 }

@@ -1,10 +1,10 @@
-// 1.21.1	2026-04-08T16:59:35.4084899	Tags for minecraft:block mod id darkerdepths
+// 1.21.1	2026-04-08T21:24:01.9515726	Tags for minecraft:block mod id darkerdepths
 0163428a12a8c0cf1e5c527b85275a53bd3d364b data/blueprint/tags/block/wooden_bookshelves.json
 0163428a12a8c0cf1e5c527b85275a53bd3d364b data/c/tags/block/bookshelves.json
 9cb44c49895785a868a717fe96a0e3ce7e215187 data/c/tags/block/storage_blocks.json
 cdf1f2b4de9ac0ed3806ea430d70efacdb79e789 data/darkerdepths/tags/block/arid_ground.json
 181d681754f4c0e7a57a1290e49f2ac737dcb80a data/darkerdepths/tags/block/catacombs_stripe_replaceable.json
-bdba83d8b3c3b4a7b2e8834d1506a0c0d3e6b0c5 data/darkerdepths/tags/block/chalk_stripe_replaceable.json
+7aae22a94ea18aab9c7b3af0e61af50439c9502a data/darkerdepths/tags/block/chalk_stripe_replaceable.json
 6e8a8f5878ba07b54132671990b8070097a4ca96 data/darkerdepths/tags/block/geyser_ash_providers.json
 f0f92c5f0b5c5412980a4ca8436b4cb180919deb data/darkerdepths/tags/block/geyser_boosters.json
 f485153c7053cb8be9fd066d1743332b9238b48f data/darkerdepths/tags/block/geyser_bypasses.json

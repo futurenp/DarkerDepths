@@ -1,0 +1,46 @@
+{
+  "type": "darkerdepths:chalk_river_carver",
+  "config": {
+    "debug_settings": {
+      "air_state": {
+        "Name": "minecraft:crimson_button",
+        "Properties": {
+          "face": "wall",
+          "facing": "north",
+          "powered": "false"
+        }
+      },
+      "barrier_state": {
+        "Name": "minecraft:glass"
+      },
+      "lava_state": {
+        "Name": "minecraft:orange_stained_glass"
+      },
+      "water_state": {
+        "Name": "minecraft:candle",
+        "Properties": {
+          "candles": "1",
+          "lit": "false",
+          "waterlogged": "false"
+        }
+      }
+    },
+    "lava_level": {
+      "above_bottom": 16
+    },
+    "probability": 1.0,
+    "replaceable": "#darkerdepths:chalk_river_replaceable",
+    "slope": 0.05,
+    "start_y": 50,
+    "y": {
+      "type": "minecraft:uniform",
+      "max_inclusive": {
+        "absolute": 180
+      },
+      "min_inclusive": {
+        "above_bottom": 8
+      }
+    },
+    "yScale": 1.0
+  }
+}

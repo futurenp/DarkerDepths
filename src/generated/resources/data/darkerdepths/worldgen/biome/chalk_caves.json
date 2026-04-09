@@ -3,6 +3,7 @@
     "air": [
       "darkerdepths:violet_chalk_carver",
       "darkerdepths:chalk_carver",
+      "darkerdepths:chalk_river_carver",
       "minecraft:cave",
       "minecraft:cave_extra_underground",
       "minecraft:canyon"
@@ -67,7 +68,9 @@
       "minecraft:spring_water",
       "minecraft:spring_lava"
     ],
-    [],
+    [
+      "minecraft:glow_lichen"
+    ],
     [
       "minecraft:freeze_top_layer"
     ]

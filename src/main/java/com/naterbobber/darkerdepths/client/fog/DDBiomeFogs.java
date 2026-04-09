@@ -32,8 +32,8 @@ public class DDBiomeFogs {
 
     public static final BiomeFog CHALK_CAVES = create(DDResourceKeys.Biomes.CHALK_CAVES,
             Color.ofRGB(0.28F, 0.26F, 0.3F),
-            DDConfig.CONFIG.SANDY_CATACOMBS_FOG_MIN,
-            DDConfig.CONFIG.GLOWSHROOM_FOREST_FOG_MAX
+            () -> -16,
+            () -> 72
     );
 
     private static BiomeFog create(ResourceKey<Biome> biome, Color color, Supplier<Integer> minDist, Supplier<Integer> maxDist) {
