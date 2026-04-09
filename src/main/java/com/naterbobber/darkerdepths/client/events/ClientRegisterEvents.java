@@ -1,10 +1,11 @@
-package com.naterbobber.darkerdepths.events.client;
+package com.naterbobber.darkerdepths.client.events;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
+import com.naterbobber.darkerdepths.client.particle.ColoredAshParticle;
 import com.naterbobber.darkerdepths.client.particle.DrippingParticle;
-import com.naterbobber.darkerdepths.client.particle.VoidSoulFlameParticle;
-import com.naterbobber.darkerdepths.client.particle.VoidSoulFlameSmokeParticle;
-import com.naterbobber.darkerdepths.client.particle.VoidSoulParticle;
+import com.naterbobber.darkerdepths.client.particle.ScorcherSearchlightParticle;
+import com.naterbobber.darkerdepths.client.particle.void_soul.*;
+import com.naterbobber.darkerdepths.client.particle.geyser.*;
 import com.naterbobber.darkerdepths.client.render.renderers.*;
 import com.naterbobber.darkerdepths.init.*;
 import net.minecraft.client.Minecraft;
@@ -37,6 +38,7 @@ public class ClientRegisterEvents {
         event.registerEntityRenderer(DDEntityTypes.BODY_SNATCHER.get(), BodySnatcherRenderer::new);
         event.registerEntityRenderer(DDEntityTypes.VOID_SOUL_KNIGHT.get(), VoidSoulKnightRenderer::new);
         event.registerEntityRenderer(DDEntityTypes.VOID_SOUL.get(), VoidSoulRenderer::new);
+        event.registerEntityRenderer(DDEntityTypes.SCORCHER.get(), ScorcherRenderer::new);
         event.registerBlockEntityRenderer(DDBlockEntityTypes.TOMB.get(), TombBlockEntityRenderer::new);
         event.registerBlockEntityRenderer(DDBlockEntityTypes.PARANOIA_ALTAR.get(), ParanoiaAltarBlockEntityRenderer::new);
         event.registerBlockEntityRenderer(DDBlockEntityTypes.VOID_SOUL_JAR.get(), VoidSoulJarBlockEntityRenderer::new);
@@ -48,16 +50,39 @@ public class ClientRegisterEvents {
         event.registerLayerDefinition(new ModelLayerLocation(DarkerDepths.id("chest_boat/petrified"), "main"), ChestBoatModel::createBodyModel);
     }
 
-    @SubscribeEvent(priority = EventPriority.LOWEST)
+
+    @SubscribeEvent
     public static void registerParticles(RegisterParticleProvidersEvent event) {
-        ParticleEngine engine = Minecraft.getInstance().particleEngine;
-        engine.register(DDParticleTypes.DRIPPING_AMBER.get(), DrippingParticle.DrippingAmberFactory::new);
-        engine.register(DDParticleTypes.FALLING_AMBER.get(), DrippingParticle.FallingAmberFactory::new);
-        engine.register(DDParticleTypes.LANDING_AMBER.get(), DrippingParticle.LandingAmberFactory::new);
-        engine.register(DDParticleTypes.VOID_SOUL.get(), VoidSoulParticle.VoidSoulFactory::new);
-        engine.register(DDParticleTypes.VOID_SOUL_FLAME.get(), VoidSoulFlameParticle.VoidSoulFlameFactory::new);
-        engine.register(DDParticleTypes.VOID_SOUL_FLAME_SMOKE.get(), VoidSoulFlameSmokeParticle.VoidSoulFlameSmokeFactory::new);
+        // Amber
+        event.registerSpriteSet(DDParticleTypes.DRIPPING_AMBER.get(), DrippingParticle.DrippingAmberProvider::new);
+        event.registerSpriteSet(DDParticleTypes.FALLING_AMBER.get(), DrippingParticle.FallingAmberProvider::new);
+        event.registerSpriteSet(DDParticleTypes.LANDING_AMBER.get(), DrippingParticle.LandingAmberProvider::new);
+
+        // Void Soul
+        event.registerSpriteSet(DDParticleTypes.VOID_SOUL.get(), VoidSoulParticle.Provider::new);
+        event.registerSpriteSet(DDParticleTypes.VOID_SOUL_FLAME.get(), VoidSoulFlameParticle.Provider::new);
+        event.registerSpriteSet(DDParticleTypes.VOID_SOUL_FLAME_SMOKE.get(), VoidSoulFlameSmokeParticle.Provider::new);
+        event.registerSpriteSet(DDParticleTypes.VOID_SOUL_DEATH.get(), VoidSoulDeathParticle.Provider::new);
+
+        // Geyser
+        event.registerSpriteSet(DDParticleTypes.GEYSER_PASSIVE_SMOKE.get(), GeyserPassiveSmokeParticle.Provider::new);
+        event.registerSpriteSet(DDParticleTypes.GEYSER_BURST_SMOKE.get(), GeyserBurstSmokeParticle.Provider::new);
+        event.registerSpriteSet(DDParticleTypes.GEYSER_BURST_SMOKE_LAVA.get(), GeyserBurstSmokeParticle.LavaProvider::new);
+        event.registerSpriteSet(DDParticleTypes.GEYSER_BURST_MIST.get(), GeyserBurstMistParticle.Provider::new);
+        event.registerSpriteSet(DDParticleTypes.GEYSER_BURST_FLAME.get(), GeyserBurstFlameParticle.Provider::new);
+        event.registerSpriteSet(DDParticleTypes.SMALL_GEYSER_BURST_FLAME.get(), GeyserBurstFlameParticle.SmallProvider::new);
+        event.registerSpriteSet(DDParticleTypes.GEYSER_BURST_FLAME_BOOSTED.get(), GeyserBurstFlameParticle.BoostedProvider::new);
+
+        // Misc
+        event.registerSpriteSet(DDParticleTypes.MOLTEN_ASH.get(),
+                (spriteSet) -> new ColoredAshParticle.Provider(spriteSet, 1F, 0.4F, 0.25F, ColoredAshParticle.BrightnessBehavior.FADE));
+        event.registerSpriteSet(DDParticleTypes.GLOW_GLIMMER.get(),
+                (spriteSet) -> new ColoredAshParticle.Provider(spriteSet, 0.25F, 1F, 0.55F, ColoredAshParticle.BrightnessBehavior.FULL_BRIGHT));
+
+        event.registerSpriteSet(DDParticleTypes.SCORCHER_SEARCHLIGHT.get(), ScorcherSearchlightParticle.Provider::new);
     }
 
 
 }
+
+

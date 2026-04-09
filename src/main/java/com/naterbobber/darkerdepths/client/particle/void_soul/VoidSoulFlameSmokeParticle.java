@@ -1,4 +1,4 @@
-package com.naterbobber.darkerdepths.client.particle;
+package com.naterbobber.darkerdepths.client.particle.void_soul;
 
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.ParticleProvider;
@@ -11,13 +11,14 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 
 @OnlyIn(Dist.CLIENT)
-public class VoidSoulFlameParticle extends TextureSheetParticle {
-    protected VoidSoulFlameParticle(ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
+public class VoidSoulFlameSmokeParticle extends TextureSheetParticle {
+    protected VoidSoulFlameSmokeParticle(ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
         super(level, x, y, z, xSpeed, ySpeed, zSpeed);
 
         double randomRange = 0.025;
         this.x += (Math.random() * randomRange - randomRange/2);
         this.z += (Math.random() * randomRange - randomRange/2);
+        this.y -= .02f;
         this.quadSize *= 2f + (this.random.nextFloat()/2);
         this.lifetime = 20;
         this.gravity = 0.0F;
@@ -46,16 +47,16 @@ public class VoidSoulFlameParticle extends TextureSheetParticle {
     public ParticleRenderType getRenderType(){ return ParticleRenderType.PARTICLE_SHEET_LIT; }
 
     @OnlyIn(Dist.CLIENT)
-    public static class VoidSoulFlameFactory implements ParticleProvider<SimpleParticleType> {
+    public static class Provider implements ParticleProvider<SimpleParticleType> {
         private final SpriteSet spriteSet;
 
-        public VoidSoulFlameFactory(SpriteSet spriteSet) {
+        public Provider(SpriteSet spriteSet) {
             this.spriteSet = spriteSet;
         }
 
         @Override
         public TextureSheetParticle createParticle(SimpleParticleType type, ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
-            VoidSoulFlameParticle particle = new VoidSoulFlameParticle(level, x, y, z, xSpeed, ySpeed, zSpeed);
+            VoidSoulFlameSmokeParticle particle = new VoidSoulFlameSmokeParticle(level, x, y, z, xSpeed, ySpeed, zSpeed);
             particle.pickSprite(this.spriteSet);
             return particle;
         }

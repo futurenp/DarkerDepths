@@ -1,4 +1,4 @@
-package com.naterbobber.darkerdepths.events.client;
+package com.naterbobber.darkerdepths.client.events;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.client.ClientDeathAnchorAnimationOverlay;

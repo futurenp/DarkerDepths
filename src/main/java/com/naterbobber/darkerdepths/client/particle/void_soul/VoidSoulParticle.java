@@ -1,4 +1,4 @@
-package com.naterbobber.darkerdepths.client.particle;
+package com.naterbobber.darkerdepths.client.particle.void_soul;
 
 import com.naterbobber.darkerdepths.init.DDParticleTypes;
 import net.minecraft.client.multiplayer.ClientLevel;
@@ -120,10 +120,10 @@ public class VoidSoulParticle extends TextureSheetParticle {
 
     // Fixed the factory class name and reference
     @OnlyIn(Dist.CLIENT)
-    public static class VoidSoulFactory implements ParticleProvider<SimpleParticleType> {
+    public static class Provider implements ParticleProvider<SimpleParticleType> {
         private final SpriteSet spriteSet;
 
-        public VoidSoulFactory(SpriteSet spriteSet) {
+        public Provider(SpriteSet spriteSet) {
             this.spriteSet = spriteSet;
         }
 

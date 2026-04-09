@@ -1,4 +1,4 @@
-package com.naterbobber.darkerdepths.events.client;
+package com.naterbobber.darkerdepths.client.events;
 
 import com.mojang.blaze3d.shaders.FogShape;
 import com.naterbobber.darkerdepths.client.DynamicLightHandler;
