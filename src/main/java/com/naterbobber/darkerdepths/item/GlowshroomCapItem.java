@@ -80,12 +80,12 @@ public class GlowshroomCapItem extends ArmorItem implements GeoItem {
     private static class GlowshroomArmorMaterial implements ArmorMaterial {
         @Override
         public int getDurabilityForType(Type type) {
-            return 13 * 12;
+            return 88;
         }
 
         @Override
         public int getDefenseForType(Type type) {
-            return 1;
+            return 0;
         }
 
         @Override
