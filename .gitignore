@@ -105,6 +105,12 @@ build/
 
 # Ignore Gradle GUI config
 gradle-app.setting
+# other
+eclipse
+.factorypath
+run
+runs
+run-data
 
 # Cache of project
 .gradletasknamecache
