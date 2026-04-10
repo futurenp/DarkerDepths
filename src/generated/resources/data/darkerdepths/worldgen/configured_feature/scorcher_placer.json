@@ -1,0 +1,8 @@
+{
+  "type": "darkerdepths:scorcher_placer",
+  "config": {
+    "base_radius": 1,
+    "max_height": 7,
+    "min_height": 4
+  }
+}

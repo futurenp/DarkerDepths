@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_ash_block": {
+    "has_lava_bucket": {
       "conditions": {
         "items": [
           {
@@ -22,7 +22,7 @@
   },
   "requirements": [
     [
-      "has_ash_block",
+      "has_lava_bucket",
       "has_the_recipe"
     ]
   ],

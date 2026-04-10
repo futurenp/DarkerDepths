@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "darkerdepths:block/grimestone_pillar_end",
+    "side": "darkerdepths:block/grimestone_pillar_side_upper"
+  }
+}

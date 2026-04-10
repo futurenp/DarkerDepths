@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_polished_duskrock": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "darkerdepths:polished_duskrock"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "darkerdepths:duskrock_pillar"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_polished_duskrock",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "darkerdepths:duskrock_pillar"
+    ]
+  },
+  "sends_telemetry_event": false
+}

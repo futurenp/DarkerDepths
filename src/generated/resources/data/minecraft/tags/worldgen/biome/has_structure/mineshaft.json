@@ -1,14 +1,6 @@
 {
   "values": [
     {
-      "id": "darkerdepths:molten_cavern",
-      "required": false
-    },
-    {
-      "id": "darkerdepths:sandy_catacombs",
-      "required": false
-    },
-    {
       "id": "darkerdepths:glowshroom_forest",
       "required": false
     }

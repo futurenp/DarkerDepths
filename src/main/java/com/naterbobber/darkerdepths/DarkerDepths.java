@@ -50,6 +50,7 @@ public class DarkerDepths {
         DDStructureProcessorTypes.STRUCTURE_PROCESSORS.register(modEventBus);
         DDActivities.ACTIVITIES.register(modEventBus);
         DDMemoryModuleTypes.MEMORY_MODULE_TYPES.register(modEventBus);
+        DDWorldCarvers.WORLD_CARVERS.register(modEventBus);
 
         eventBus.register(this);
         eventBus.register(new LivingEvents());

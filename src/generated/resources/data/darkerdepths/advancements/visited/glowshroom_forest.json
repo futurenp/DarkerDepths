@@ -1,0 +1,42 @@
+{
+  "parent": "darkerdepths:story/root",
+  "criteria": {
+    "visited_glowshroom_forest": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "biome": "darkerdepths:glowshroom_forest"
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancements.darkerdepths.glowshroom_forest.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "darkerdepths:grimestone"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.darkerdepths.glowshroom_forest.title"
+    }
+  },
+  "requirements": [
+    [
+      "visited_glowshroom_forest"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

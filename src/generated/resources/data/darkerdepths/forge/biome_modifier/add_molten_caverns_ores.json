@@ -2,8 +2,9 @@
   "type": "forge:add_features",
   "biomes": "darkerdepths:molten_cavern",
   "features": [
-    "darkerdepths:magma_ore",
-    "darkerdepths:dead_living_crystal_ore"
+    "darkerdepths:magma_disk",
+    "darkerdepths:crystal_husk_ore",
+    "darkerdepths:scorched_remains_pile"
   ],
   "step": "underground_ores"
 }

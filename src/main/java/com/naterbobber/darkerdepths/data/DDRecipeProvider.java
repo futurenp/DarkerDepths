@@ -271,7 +271,6 @@ public class DDRecipeProvider extends RecipeProvider {
 
         hangingSignBlock(recipeConsumer, DDItems.PETRIFIED_HANGING_SIGN.get(), DDBlocks.STRIPPED_PETRIFIED_LOG.get().asItem(), Items.CHAIN);
         bookshelfBlock(recipeConsumer, DDBlocks.PETRIFIED_BOOKSHELF.get().asItem(), DDBlocks.PETRIFIED_PLANKS.get().asItem());
-        boardsBlock(recipeConsumer, DDBlocks.PETRIFIED_BOARDS.get().asItem(), DDBlocks.PETRIFIED_PLANKS.get().asItem(), DDBlocks.PETRIFIED_SLAB.get().asItem());
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, DDItems.GLOW_GRIME.get())
                 .requires(DDBlocks.GLOWSHROOM.get())

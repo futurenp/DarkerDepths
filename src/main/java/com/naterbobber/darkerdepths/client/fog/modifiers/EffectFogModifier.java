@@ -25,13 +25,13 @@ public class EffectFogModifier implements FogModifier {
 
         return paranoiaFactor > 0.0f
                 || player.hasEffect(MobEffects.BLINDNESS)
-                || player.hasEffect(DDMobEffects.PARANOIA);
+                || player.hasEffect(DDMobEffects.PARANOIA.get());
     }
 
     @Override
     public void tick(LocalPlayer player) {
         float step = 1.0f / (TRANSITION_SECONDS * 20.0f);
-        if (player.hasEffect(DDMobEffects.PARANOIA) && !player.isInFluidType()) {
+        if (player.hasEffect(DDMobEffects.PARANOIA.get()) && !player.isInFluidType()) {
             paranoiaFactor += step;
         } else {
             paranoiaFactor -= step;

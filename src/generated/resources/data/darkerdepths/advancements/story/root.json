@@ -1,0 +1,30 @@
+{
+  "criteria": {
+    "auto_grant": {
+      "conditions": {},
+      "trigger": "minecraft:tick"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "background": "darkerdepths:textures/block/duskrock.png",
+    "description": {
+      "translate": "advancements.darkerdepths.parent.description"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "darkerdepths:glowshroom"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.darkerdepths.parent.title"
+    }
+  },
+  "requirements": [
+    [
+      "auto_grant"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

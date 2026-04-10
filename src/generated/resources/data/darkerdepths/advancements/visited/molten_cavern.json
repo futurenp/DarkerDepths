@@ -1,0 +1,42 @@
+{
+  "parent": "darkerdepths:story/root",
+  "criteria": {
+    "visited_molten_cavern": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "biome": "darkerdepths:molten_cavern"
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancements.darkerdepths.molten_cavern.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "darkerdepths:darkslate"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.darkerdepths.molten_cavern.title"
+    }
+  },
+  "requirements": [
+    [
+      "visited_molten_cavern"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

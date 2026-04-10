@@ -1,8 +1,6 @@
-// 1.20.1	2026-02-17T23:22:33.072565	Tags for minecraft:item mod id darkerdepths
-77d40b9f5df576ef39fca8a026be11021c8a8225 data/darkerdepths/tags/items/ingots/forsaken_bronze.json
+// 1.20.1	2026-04-09T23:48:28.2958185	Tags for minecraft:item mod id darkerdepths
 2540ebbb453039c1d5bb73ab2a126a913addf113 data/darkerdepths/tags/items/petrified_logs.json
 77d40b9f5df576ef39fca8a026be11021c8a8225 data/forge/tags/items/ingots.json
-77d40b9f5df576ef39fca8a026be11021c8a8225 data/forge/tags/items/ingots/forsaken_bronze.json
 116ee09228695a95ad2997abfb4a0d5492fb61d5 data/forge/tags/items/ropes.json
 9cb44c49895785a868a717fe96a0e3ce7e215187 data/forge/tags/items/storage_blocks.json
 77d40b9f5df576ef39fca8a026be11021c8a8225 data/minecraft/tags/items/beacon_payment_items.json

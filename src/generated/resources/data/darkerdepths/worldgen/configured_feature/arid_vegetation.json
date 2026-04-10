@@ -1,8 +1,8 @@
 {
-  "type": "minecraft:simple_block",
+  "type": "darkerdepths:random_floor_placement",
   "config": {
-    "to_place": {
-      "type": "minecraft:weighted_state_provider",
+    "placement_count": 7,
+    "state_provider": {
       "entries": [
         {
           "data": {
@@ -14,9 +14,17 @@
           "data": {
             "Name": "minecraft:air"
           },
-          "weight": 50
+          "weight": 2
         }
       ]
-    }
+    },
+    "tries": 15,
+    "valid_floor_blocks": [
+      "darkerdepths:aridrock",
+      "darkerdepths:duskrock",
+      "minecraft:packed_mud"
+    ],
+    "xz_radius": 4,
+    "y_height": 3
   }
 }

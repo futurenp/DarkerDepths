@@ -1,16 +1,20 @@
 {
-  "type": "minecraft:simple_block",
+  "type": "darkerdepths:random_floor_placement",
   "config": {
-    "to_place": {
-      "type": "minecraft:weighted_state_provider",
+    "placement_count": 1,
+    "state_provider": {
       "entries": [
         {
           "data": {
-            "Name": "minecraft:air"
+            "Name": "darkerdepths:scorched_remains"
           },
-          "weight": 60
+          "weight": 1
         }
       ]
-    }
+    },
+    "tries": 10,
+    "valid_floor_blocks": "darkerdepths:darkslate",
+    "xz_radius": 4,
+    "y_height": 2
   }
 }

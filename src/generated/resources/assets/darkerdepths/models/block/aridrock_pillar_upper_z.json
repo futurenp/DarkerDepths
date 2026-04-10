@@ -1,0 +1,50 @@
+{
+  "parent": "minecraft:block/block",
+  "elements": [
+    {
+      "faces": {
+        "down": {
+          "rotation": 270,
+          "texture": "#side"
+        },
+        "east": {
+          "texture": "#side",
+          "uv": [
+            16.0,
+            0.0,
+            0.0,
+            16.0
+          ]
+        },
+        "north": {
+          "texture": "#end"
+        },
+        "south": {
+          "texture": "#end"
+        },
+        "up": {
+          "rotation": 90,
+          "texture": "#side"
+        },
+        "west": {
+          "texture": "#side"
+        }
+      },
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ]
+    }
+  ],
+  "textures": {
+    "end": "darkerdepths:block/aridrock_pillar_end",
+    "particle": "darkerdepths:block/aridrock_pillar_side_upper_horizontal",
+    "side": "darkerdepths:block/aridrock_pillar_side_upper_horizontal"
+  }
+}

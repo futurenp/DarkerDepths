@@ -7,7 +7,11 @@
     "ground_state": {
       "type": "minecraft:simple_state_provider",
       "state": {
-        "Name": "darkerdepths:ash_block"
+        "Name": "darkerdepths:darkslate",
+        "Properties": {
+          "axis": "y",
+          "heat_level": "0"
+        }
       }
     },
     "replaceable": "#minecraft:base_stone_overworld",

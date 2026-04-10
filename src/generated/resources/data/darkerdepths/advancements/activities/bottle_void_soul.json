@@ -1,0 +1,45 @@
+{
+  "parent": "darkerdepths:visited/sandy_catacombs",
+  "criteria": {
+    "bottle_void_soul": {
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "darkerdepths:void_soul"
+            }
+          }
+        ],
+        "item": {
+          "items": [
+            "minecraft:glass_bottle"
+          ]
+        }
+      },
+      "trigger": "minecraft:player_interacted_with_entity"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.darkerdepths.bottle_void_soul.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "darkerdepths:void_soul_jar"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.darkerdepths.bottle_void_soul.title"
+    }
+  },
+  "requirements": [
+    [
+      "bottle_void_soul"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

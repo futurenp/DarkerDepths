@@ -1,13 +1,17 @@
 {
-  "type": "minecraft:simple_block",
+  "type": "darkerdepths:geyser_under_fluid",
   "config": {
     "to_place": {
       "type": "minecraft:simple_state_provider",
       "state": {
         "Name": "darkerdepths:geyser",
         "Properties": {
+          "boosted": "false",
+          "bursting": "false",
           "facing": "up",
-          "powered": "false"
+          "heat_level": "0",
+          "powered": "false",
+          "provides_ash": "false"
         }
       }
     }

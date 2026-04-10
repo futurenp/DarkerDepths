@@ -43,7 +43,6 @@ public class DDBlockStateProvider extends BlockStateProvider {
         add(this::woodBlockWithItem, DDBlocks.PETRIFIED_WOOD, DDBlocks.PETRIFIED_LOG);
         add(this::woodBlockWithItem, DDBlocks.STRIPPED_PETRIFIED_WOOD, DDBlocks.STRIPPED_PETRIFIED_LOG);
         add(this::columnBlockWithItem, DDBlocks.PETRIFIED_BOOKSHELF, DDBlocks.PETRIFIED_PLANKS);
-        add(this::woodBlockWithItem, DDBlocks.PETRIFIED_BOARDS, DDBlocks.PETRIFIED_BOARDS);
         add(this::geyserBlock, DDBlocks.GEYSER);
         add(this::crystalHuskBlock, DDBlocks.CRYSTAL_HUSK);
         add(this::livingCrystalBlock, DDBlocks.LIVING_CRYSTAL);
@@ -201,7 +200,7 @@ public class DDBlockStateProvider extends BlockStateProvider {
     }
 
     private void spawnEggItem(RegistryObject<Item> item) {
-        itemModels().withExistingParent(item.getId().getPath(), modLoc("item/template_spawn_egg"));
+        itemModels().withExistingParent(item.getId().getPath(), ResourceLocation.tryBuild("minecraft", "item/template_spawn_egg"));
     }
 
     private void simpleBlockWithItem(RegistryObject<Block> block) {

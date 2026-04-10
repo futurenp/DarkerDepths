@@ -1,0 +1,42 @@
+{
+  "parent": "darkerdepths:visited/sandy_catacombs",
+  "criteria": {
+    "visited_catacombs": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structure": "darkerdepths:catacombs"
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.darkerdepths.catacombs.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "darkerdepths:void_soul_requiem"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.darkerdepths.catacombs.title"
+    }
+  },
+  "requirements": [
+    [
+      "visited_catacombs"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

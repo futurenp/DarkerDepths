@@ -1,32 +1,22 @@
 {
-  "type": "darkerdepths:correspondent_layer",
+  "type": "minecraft:vegetation_patch",
   "config": {
     "depth": 1,
     "extra_bottom_block_chance": 0.0,
     "extra_edge_column_chance": 0.3,
-    "layers": [
-      {
-        "type": "minecraft:simple_state_provider",
-        "state": {
-          "Name": "darkerdepths:darkslate",
-          "Properties": {
-            "axis": "y"
-          }
-        }
-      },
-      {
-        "type": "minecraft:simple_state_provider",
-        "state": {
-          "Name": "darkerdepths:darkslate",
-          "Properties": {
-            "axis": "y"
-          }
+    "ground_state": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "darkerdepths:darkslate",
+        "Properties": {
+          "axis": "y",
+          "heat_level": "0"
         }
       }
-    ],
-    "replaceable": "#minecraft:lush_ground_replaceable",
+    },
+    "replaceable": "#darkerdepths:air",
     "surface": "floor",
-    "vegetation_chance": 0.8,
+    "vegetation_chance": 0.0,
     "vegetation_feature": {
       "feature": "darkerdepths:darkslate_vegetation",
       "placement": []
@@ -38,7 +28,6 @@
         "max_inclusive": 7,
         "min_inclusive": 4
       }
-    },
-    "xz_replace": false
+    }
   }
 }

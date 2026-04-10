@@ -1,0 +1,64 @@
+{
+  "variants": {
+    "crystal_growth_level=0,heat_level=0": {
+      "model": "darkerdepths:block/crystal_husk"
+    },
+    "crystal_growth_level=0,heat_level=1": {
+      "model": "darkerdepths:block/crystal_husk_heat_1"
+    },
+    "crystal_growth_level=0,heat_level=2": {
+      "model": "darkerdepths:block/crystal_husk_heat_2"
+    },
+    "crystal_growth_level=0,heat_level=3": {
+      "model": "darkerdepths:block/crystal_husk_heat_2"
+    },
+    "crystal_growth_level=0,heat_level=4": {
+      "model": "darkerdepths:block/crystal_husk_heat_2"
+    },
+    "crystal_growth_level=1,heat_level=0": {
+      "model": "darkerdepths:block/crystal_husk_growth_1"
+    },
+    "crystal_growth_level=1,heat_level=1": {
+      "model": "darkerdepths:block/crystal_husk_growth_1_heat_1"
+    },
+    "crystal_growth_level=1,heat_level=2": {
+      "model": "darkerdepths:block/crystal_husk_growth_1_heat_2"
+    },
+    "crystal_growth_level=1,heat_level=3": {
+      "model": "darkerdepths:block/crystal_husk_growth_1_heat_2"
+    },
+    "crystal_growth_level=1,heat_level=4": {
+      "model": "darkerdepths:block/crystal_husk_growth_1_heat_2"
+    },
+    "crystal_growth_level=2,heat_level=0": {
+      "model": "darkerdepths:block/crystal_husk_growth_2"
+    },
+    "crystal_growth_level=2,heat_level=1": {
+      "model": "darkerdepths:block/crystal_husk_growth_2_heat_1"
+    },
+    "crystal_growth_level=2,heat_level=2": {
+      "model": "darkerdepths:block/crystal_husk_growth_2_heat_2"
+    },
+    "crystal_growth_level=2,heat_level=3": {
+      "model": "darkerdepths:block/crystal_husk_growth_2_heat_2"
+    },
+    "crystal_growth_level=2,heat_level=4": {
+      "model": "darkerdepths:block/crystal_husk_growth_2_heat_2"
+    },
+    "crystal_growth_level=3,heat_level=0": {
+      "model": "darkerdepths:block/crystal_husk_growth_3"
+    },
+    "crystal_growth_level=3,heat_level=1": {
+      "model": "darkerdepths:block/crystal_husk_growth_3_heat_1"
+    },
+    "crystal_growth_level=3,heat_level=2": {
+      "model": "darkerdepths:block/crystal_husk_growth_3_heat_2"
+    },
+    "crystal_growth_level=3,heat_level=3": {
+      "model": "darkerdepths:block/crystal_husk_growth_3_heat_2"
+    },
+    "crystal_growth_level=3,heat_level=4": {
+      "model": "darkerdepths:block/crystal_husk_growth_3_heat_2"
+    }
+  }
+}

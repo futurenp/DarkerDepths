@@ -46,40 +46,13 @@
         "Properties": {
           "axis": "y"
         }
-      },
-      {
-        "Name": "minecraft:packed_mud"
-      },
-      {
-        "Name": "minecraft:packed_mud"
-      },
-      {
-        "Name": "darkerdepths:duskrock"
-      },
-      {
-        "Name": "minecraft:packed_mud"
-      },
-      {
-        "Name": "minecraft:packed_mud"
-      },
-      {
-        "Name": "darkerdepths:aridrock",
-        "Properties": {
-          "axis": "y"
-        }
-      },
-      {
-        "Name": "darkerdepths:aridrock",
-        "Properties": {
-          "axis": "y"
-        }
       }
     ],
     "radius": {
       "type": "minecraft:uniform",
       "value": {
-        "max_inclusive": 7,
-        "min_inclusive": 6
+        "max_inclusive": 10,
+        "min_inclusive": 8
       }
     },
     "target": [
@@ -101,7 +74,8 @@
       {
         "Name": "darkerdepths:darkslate",
         "Properties": {
-          "axis": "y"
+          "axis": "y",
+          "heat_level": "0"
         }
       },
       {
@@ -111,13 +85,7 @@
         }
       },
       {
-        "Name": "darkerdepths:arid_deepslate",
-        "Properties": {
-          "axis": "y"
-        }
-      },
-      {
-        "Name": "darkerdepths:duskrock"
+        "Name": "darkerdepths:arid_deepslate"
       },
       {
         "Name": "minecraft:gravel"

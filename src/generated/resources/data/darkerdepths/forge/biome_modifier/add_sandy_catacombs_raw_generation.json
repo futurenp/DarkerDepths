@@ -1,9 +1,6 @@
 {
   "type": "forge:add_features",
   "biomes": "darkerdepths:sandy_catacombs",
-  "features": [
-    "darkerdepths:arid_boulder",
-    "darkerdepths:duskrock_ore"
-  ],
+  "features": "darkerdepths:arid_boulder",
   "step": "raw_generation"
 }

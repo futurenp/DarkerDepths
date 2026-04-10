@@ -71,6 +71,9 @@
     "darkerdepths:crystal_melon",
     "darkerdepths:forsaken_bronze_block",
     "darkerdepths:aridrock_pillar",
+    "darkerdepths:grimestone_pillar",
+    "darkerdepths:duskrock_pillar",
+    "darkerdepths:darkslate_pillar",
     "darkerdepths:aridrock_vertical_slab",
     "darkerdepths:aridrock_bricks_vertical_slab",
     "darkerdepths:darkslate_vertical_slab",
@@ -82,6 +85,7 @@
     "darkerdepths:polished_aridrock_vertical_slab",
     "darkerdepths:polished_darkslate_vertical_slab",
     "darkerdepths:polished_grimestone_vertical_slab",
+    "darkerdepths:magma_pad",
     "darkerdepths:petrified_planks",
     "darkerdepths:petrified_slab",
     "darkerdepths:petrified_vertical_slab",
@@ -102,6 +106,7 @@
     "darkerdepths:stripped_petrified_log",
     "darkerdepths:petrified_wood",
     "darkerdepths:stripped_petrified_wood",
-    "darkerdepths:porous_petrified_log"
+    "darkerdepths:porous_petrified_log",
+    "darkerdepths:petrified_bookshelf"
   ]
 }

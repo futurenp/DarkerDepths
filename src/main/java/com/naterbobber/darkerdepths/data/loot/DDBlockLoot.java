@@ -44,8 +44,8 @@ public class DDBlockLoot extends BlockLootSubProvider {
     protected void generate() {
         add(DDBlocks.PETRIFIED_WALL_SIGN.get(), block -> createSingleItemTable(DDItems.PETRIFIED_SIGN.get()));
         add(DDBlocks.PETRIFIED_WALL_HANGING_SIGN.get(), block -> createSingleItemTable(DDItems.PETRIFIED_HANGING_SIGN.get()));
-        skipBlock(DDBlocks.MOB_PLACER.get());
-        skipBlock(DDBlocks.SCORCHER_LIGHT_BLOCK.get());
+        add(DDBlocks.MOB_PLACER.get(), LootTable.lootTable());
+        add(DDBlocks.SCORCHER_LIGHT_BLOCK.get(), LootTable.lootTable());
         add(DDBlocks.MOSSY_GRIMESTONE.get(), block -> createSingleItemTableWithSilkTouch(DDBlocks.MOSSY_GRIMESTONE.get(), DDBlocks.GRIMESTONE.get().asItem()));
         add(DDBlocks.ARID_DEEPSLATE.get(), block -> createSingleItemTableWithSilkTouch(DDBlocks.ARID_DEEPSLATE.get(), Blocks.DEEPSLATE.asItem()));
         add(DDBlocks.AMBER_CLUSTER.get(), block -> createSingleItemTableWithSilkTouch(DDBlocks.AMBER_CLUSTER.get(), DDItems.AMBER.get()));

@@ -1,7 +1,19 @@
 {
   "variants": {
-    "": {
+    "heat_level=0": {
       "model": "darkerdepths:block/living_crystal"
+    },
+    "heat_level=1": {
+      "model": "darkerdepths:block/living_crystal_heat_1"
+    },
+    "heat_level=2": {
+      "model": "darkerdepths:block/living_crystal_heat_2"
+    },
+    "heat_level=3": {
+      "model": "darkerdepths:block/living_crystal_heat_2"
+    },
+    "heat_level=4": {
+      "model": "darkerdepths:block/living_crystal_heat_2"
     }
   }
 }

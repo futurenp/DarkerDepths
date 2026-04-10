@@ -1,0 +1,51 @@
+{
+  "parent": "darkerdepths:visited/molten_cavern",
+  "criteria": {
+    "insert_diamond_into_crystal_husk": {
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "block": {
+                "blocks": [
+                  "darkerdepths:dead_living_crystal"
+                ]
+              }
+            }
+          },
+          {
+            "condition": "minecraft:match_tool",
+            "predicate": {
+              "items": [
+                "minecraft:diamond"
+              ]
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:item_used_on_block"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.darkerdepths.insert_diamond_into_crystal_husk.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "darkerdepths:living_crystal"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.darkerdepths.insert_diamond_into_crystal_husk.title"
+    }
+  },
+  "requirements": [
+    [
+      "insert_diamond_into_crystal_husk"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,241 @@
+{
+  "parent": "minecraft:block/block",
+  "elements": [
+    {
+      "faces": {
+        "down": {
+          "cullface": "down",
+          "texture": "#base_end"
+        },
+        "east": {
+          "cullface": "east",
+          "texture": "#base_side"
+        },
+        "north": {
+          "cullface": "north",
+          "texture": "#base_side"
+        },
+        "south": {
+          "cullface": "south",
+          "texture": "#base_side"
+        },
+        "up": {
+          "cullface": "up",
+          "texture": "#base_end"
+        },
+        "west": {
+          "cullface": "west",
+          "texture": "#base_side"
+        }
+      },
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ]
+    },
+    {
+      "faces": {
+        "down": {
+          "cullface": "down",
+          "texture": "#glow_end"
+        },
+        "east": {
+          "cullface": "east",
+          "texture": "#glow_side"
+        },
+        "north": {
+          "cullface": "north",
+          "texture": "#glow_side"
+        },
+        "south": {
+          "cullface": "south",
+          "texture": "#glow_side"
+        },
+        "up": {
+          "cullface": "up",
+          "texture": "#glow_end"
+        },
+        "west": {
+          "cullface": "west",
+          "texture": "#glow_side"
+        }
+      },
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ]
+    },
+    {
+      "faces": {
+        "down": {
+          "cullface": "down",
+          "texture": "#base_end"
+        },
+        "east": {
+          "cullface": "east",
+          "texture": "#base_side"
+        },
+        "north": {
+          "cullface": "north",
+          "texture": "#base_side"
+        },
+        "south": {
+          "cullface": "south",
+          "texture": "#base_side"
+        },
+        "up": {
+          "cullface": "up",
+          "texture": "#base_end"
+        },
+        "west": {
+          "cullface": "west",
+          "texture": "#base_side"
+        }
+      },
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ]
+    },
+    {
+      "faces": {
+        "down": {
+          "cullface": "down",
+          "texture": "#glow_end"
+        },
+        "east": {
+          "cullface": "east",
+          "texture": "#glow_side"
+        },
+        "north": {
+          "cullface": "north",
+          "texture": "#glow_side"
+        },
+        "south": {
+          "cullface": "south",
+          "texture": "#glow_side"
+        },
+        "up": {
+          "cullface": "up",
+          "texture": "#glow_end"
+        },
+        "west": {
+          "cullface": "west",
+          "texture": "#glow_side"
+        }
+      },
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ]
+    },
+    {
+      "faces": {
+        "down": {
+          "cullface": "down",
+          "texture": "#base_end"
+        },
+        "east": {
+          "cullface": "east",
+          "texture": "#base_side"
+        },
+        "north": {
+          "cullface": "north",
+          "texture": "#base_side"
+        },
+        "south": {
+          "cullface": "south",
+          "texture": "#base_side"
+        },
+        "up": {
+          "cullface": "up",
+          "texture": "#base_end"
+        },
+        "west": {
+          "cullface": "west",
+          "texture": "#base_side"
+        }
+      },
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ]
+    },
+    {
+      "faces": {
+        "down": {
+          "cullface": "down",
+          "texture": "#glow_end"
+        },
+        "east": {
+          "cullface": "east",
+          "texture": "#glow_side"
+        },
+        "north": {
+          "cullface": "north",
+          "texture": "#glow_side"
+        },
+        "south": {
+          "cullface": "south",
+          "texture": "#glow_side"
+        },
+        "up": {
+          "cullface": "up",
+          "texture": "#glow_end"
+        },
+        "west": {
+          "cullface": "west",
+          "texture": "#glow_side"
+        }
+      },
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ]
+    }
+  ],
+  "render_type": "minecraft:translucent",
+  "textures": {
+    "base_end": "darkerdepths:block/darkslate_heat_level_4_top",
+    "base_side": "darkerdepths:block/darkslate_heat_level_4",
+    "glow_end": "darkerdepths:block/darkslate_heat_level_4_top_glow",
+    "glow_side": "darkerdepths:block/darkslate_heat_level_4_glow",
+    "particle": "darkerdepths:block/darkslate_heat_level_4"
+  }
+}
