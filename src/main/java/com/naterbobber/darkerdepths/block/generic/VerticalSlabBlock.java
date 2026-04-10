@@ -1,5 +1,6 @@
 package com.naterbobber.darkerdepths.block.generic;
 
+import com.naterbobber.darkerdepths.block.DDBlockStateProperties;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.FluidTags;
@@ -30,7 +31,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public class VerticalSlabBlock extends Block implements SimpleWaterloggedBlock {
-    public static final EnumProperty<VerticalSlabType> TYPE = EnumProperty.create("type", VerticalSlabType.class);
+    public static final EnumProperty<VerticalSlabType> TYPE = DDBlockStateProperties.TYPE;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
     public VerticalSlabBlock(Properties properties) {

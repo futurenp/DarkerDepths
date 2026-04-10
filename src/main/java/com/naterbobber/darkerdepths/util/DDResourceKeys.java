@@ -125,6 +125,7 @@ public class DDResourceKeys {
         }
     }
 
+    //todo \/
     public static class Structures {
         public static final ResourceKey<Structure> ROPE_MINE_FOREST = createKey("rope_mine_forest");
         public static final ResourceKey<Structure> ROPE_MINE_DESERT = createKey("rope_mine_desert");
