@@ -2,6 +2,7 @@ package com.naterbobber.darkerdepths.init;
 
 import com.google.common.collect.Maps;
 import com.naterbobber.darkerdepths.entities.VoidSoulEntity;
+import com.naterbobber.darkerdepths.events.FuelRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
@@ -38,6 +39,9 @@ public class DDVanillaIntegration {
         registerCompostable(0.3F, DDBlocks.MOSSY_SPROUTS.get().asItem());
         registerCompostable(0.2F,  DDBlocks.PETRIFIED_ROOTS.get().asItem());
         registerDispenserBehaviors();
+
+        registerFuel(DDBlocks.SCORCHED_REMAINS_BLOCK.get().asItem(), 4800);
+        registerFuel(DDBlocks.SCORCHED_REMAINS.get().asItem(), 2000);
     }
 
     private static void registerStrippable(Block unstrippedBlock, Block strippedBlock) {
@@ -48,6 +52,10 @@ public class DDVanillaIntegration {
     private static void registerFlammables(Block block, int encouragement, int flammability) {
         FireBlock fireBlock = (FireBlock) Blocks.FIRE;
         fireBlock.setFlammable(block, encouragement, flammability);
+    }
+
+    private static void registerFuel(Item item, int burnTime) {
+        FuelRegistry.register(item, burnTime);
     }
 
     private static void registerCompostable(float chance, Item item) {
