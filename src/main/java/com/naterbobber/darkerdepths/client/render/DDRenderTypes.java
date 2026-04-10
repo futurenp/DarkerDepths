@@ -44,4 +44,20 @@ public class DDRenderTypes extends RenderType {
                 true,
                 state);
     }
+
+    public static RenderType EMISSIVE_TRANSPARENT (ResourceLocation textureLocation) {
+        CompositeState state = CompositeState.builder()
+                .setShaderState(RENDERTYPE_EYES_SHADER)
+                .setTransparencyState(TRANSLUCENT_TRANSPARENCY)
+                .setTextureState(new TextureStateShard(textureLocation, false, false))
+                .createCompositeState(false);
+
+        return create("emissive_transparent",
+                DefaultVertexFormat.NEW_ENTITY,
+                VertexFormat.Mode.QUADS,
+                256,
+                false,
+                true,
+                state);
+    }
 }

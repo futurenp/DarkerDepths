@@ -1,7 +1,7 @@
 package com.naterbobber.darkerdepths.util;
 
 import com.google.common.collect.Multimap;
-import com.naterbobber.darkerdepths.config.DDConfigs;
+import com.naterbobber.darkerdepths.config.DDConfig;
 import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
@@ -32,10 +32,10 @@ public class SuperchargeHelper {
 
 
     public static void applyUpgrades(ItemStack tool, Level level) {
-        int superchargeMinutes = DDConfigs.SUPERCHARGE_MINUTES.get();
-        int digSpeedBuff = DDConfigs.SUPERCHARGE_DIG_SPEED.get();
-        int attackSpeedBuff = DDConfigs.SUPERCHARGE_ATTACK_SPEED.get();
-        int attackDamageBuff = DDConfigs.SUPERCHARGE_ATTACK_DAMAGE.get();
+        int superchargeMinutes = DDConfig.SUPERCHARGE_DURATION.get();
+        int digSpeedBuff = DDConfig.SUPERCHARGE_DIG_SPEED.get();
+        int attackSpeedBuff = DDConfig.SUPERCHARGE_ATTACK_SPEED.get();
+        int attackDamageBuff = DDConfig.SUPERCHARGE_ATTACK_DAMAGE.get();
 
         if (tool.isEmpty() || level.isClientSide) {
             return;
@@ -70,7 +70,7 @@ public class SuperchargeHelper {
         upgradeTag.putBoolean(TAG_HAD_MODIFIERS, hadExistingModifiers);
         mainTag.put(TAG_UPGRADE_MAIN, upgradeTag);
 
-        if(DDConfigs.SUPERCHARGE_UNBREAKABLE.get()){
+        if(DDConfig.SUPERCHARGE_UNBREAKABLE.get()){
             mainTag.putBoolean("Unbreakable", true);
         }
 

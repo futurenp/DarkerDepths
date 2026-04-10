@@ -1,6 +1,6 @@
 package com.naterbobber.darkerdepths;
 
-import com.naterbobber.darkerdepths.config.DDConfigs;
+import com.naterbobber.darkerdepths.config.DDConfig;
 import com.naterbobber.darkerdepths.init.DDMemoryModuleTypes;
 import com.naterbobber.darkerdepths.init.DDActivities;
 import com.naterbobber.darkerdepths.events.MiscEvents;
@@ -28,7 +28,7 @@ public class DarkerDepths {
     public static final String MOD_ID = "darkerdepths";
 
     public DarkerDepths() {
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, DDConfigs.SPEC, "darkerdepths-common.toml");
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, DDConfig.SPEC, "darkerdepths-common.toml");
         GeckoLib.initialize();
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         IEventBus eventBus = MinecraftForge.EVENT_BUS;

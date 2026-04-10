@@ -1,7 +1,7 @@
 package com.naterbobber.darkerdepths.events;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
-import com.naterbobber.darkerdepths.config.DDConfigs;
+import com.naterbobber.darkerdepths.config.DDConfig;
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import com.naterbobber.darkerdepths.util.SuperchargeHelper;
 import net.minecraft.ChatFormatting;
@@ -58,9 +58,9 @@ public class PlayerEvents {
 
     @SubscribeEvent
     public static void onItemTooltip(ItemTooltipEvent event) {
-        int digSpeedBuff = DDConfigs.SUPERCHARGE_DIG_SPEED.get();
-        int attackSpeedBuff = DDConfigs.SUPERCHARGE_ATTACK_SPEED.get();
-        int attackDamageBuff = DDConfigs.SUPERCHARGE_ATTACK_DAMAGE.get();
+        int digSpeedBuff = DDConfig.SUPERCHARGE_DIG_SPEED.get();
+        int attackSpeedBuff = DDConfig.SUPERCHARGE_ATTACK_SPEED.get();
+        int attackDamageBuff = DDConfig.SUPERCHARGE_ATTACK_DAMAGE.get();
         ItemStack stack = event.getItemStack();
         Player player = event.getEntity();
 
@@ -73,7 +73,7 @@ public class PlayerEvents {
         event.getToolTip().add(Component.literal(" +"+ digSpeedBuff +"% Dig Speed").withStyle(ChatFormatting.GRAY));
         event.getToolTip().add(Component.literal(" +"+ attackSpeedBuff +"% Attack Damage").withStyle(ChatFormatting.GRAY));
         event.getToolTip().add(Component.literal(" +"+ attackDamageBuff +"% Attack Speed").withStyle(ChatFormatting.GRAY));
-        if(DDConfigs.SUPERCHARGE_UNBREAKABLE.get()){
+        if(DDConfig.SUPERCHARGE_UNBREAKABLE.get()){
             event.getToolTip().add(Component.literal("Unbreakable").withStyle(ChatFormatting.BLUE));
         }
 
@@ -107,7 +107,7 @@ public class PlayerEvents {
         if (isSuperchargedAndNotExpired(heldItem, level)) {
 
             float currentSpeed = event.getNewSpeed();
-            event.setNewSpeed(currentSpeed * (1F + (DDConfigs.SUPERCHARGE_DIG_SPEED.get()) / 100F));
+            event.setNewSpeed(currentSpeed * (1F + (DDConfig.SUPERCHARGE_DIG_SPEED.get()) / 100F));
         }
     }
 

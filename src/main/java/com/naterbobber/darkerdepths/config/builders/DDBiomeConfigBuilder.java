@@ -1,8 +1,8 @@
-package com.naterbobber.darkerdepths.config;
+package com.naterbobber.darkerdepths.config.builders;
 
 import net.minecraftforge.common.ForgeConfigSpec;
 
-public record DDBiomeConfig(
+public record DDBiomeConfigBuilder(
         ForgeConfigSpec.DoubleValue tempMin, ForgeConfigSpec.DoubleValue tempMax,
         ForgeConfigSpec.DoubleValue humidityMin, ForgeConfigSpec.DoubleValue humidityMax,
         ForgeConfigSpec.DoubleValue continentalnessMin, ForgeConfigSpec.DoubleValue continentalnessMax,
@@ -11,7 +11,7 @@ public record DDBiomeConfig(
         ForgeConfigSpec.DoubleValue depthMin, ForgeConfigSpec.DoubleValue depthMax,
         ForgeConfigSpec.DoubleValue offset) {
 
-    public static DDBiomeConfig create(ForgeConfigSpec.Builder builder, String biomeName, Defaults defaults) {
+    public static DDBiomeConfigBuilder create(ForgeConfigSpec.Builder builder, String biomeName, Defaults defaults) {
         builder.comment("Climate parameters for the " + biomeName + " biome.").push(biomeName);
 
         var tempMin = builder.defineInRange("temperature_min", defaults.tempMin, -2.0, 2.0);
@@ -36,7 +36,7 @@ public record DDBiomeConfig(
 
         builder.pop();
 
-        return new DDBiomeConfig(tempMin, tempMax, humidityMin, humidityMax, continentalnessMin, continentalnessMax,
+        return new DDBiomeConfigBuilder(tempMin, tempMax, humidityMin, humidityMax, continentalnessMin, continentalnessMax,
                 erosionMin, erosionMax, weirdnessMin, weirdnessMax, depthMin, depthMax, offset);
     }
 
