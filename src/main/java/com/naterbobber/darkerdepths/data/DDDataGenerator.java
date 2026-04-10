@@ -3,12 +3,8 @@ package com.naterbobber.darkerdepths.data;
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.data.assets.DDBlockStateProvider;
 import com.naterbobber.darkerdepths.data.assets.DDLanguageProviderENUS;
-import com.naterbobber.darkerdepths.data.loot.DDBlockLoot;
 import com.naterbobber.darkerdepths.data.loot.DDLootTableProvider;
-import com.naterbobber.darkerdepths.data.tags.DDBiomeTagsProvider;
-import com.naterbobber.darkerdepths.data.tags.DDBlockTagsProvider;
-import com.naterbobber.darkerdepths.data.tags.DDDamageTypeTagsProvider;
-import com.naterbobber.darkerdepths.data.tags.DDItemTagsProvider;
+import com.naterbobber.darkerdepths.data.tags.*;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
@@ -40,12 +36,15 @@ public class DDDataGenerator {
         dataGenerator.addProvider(client, new DDBlockStateProvider(packOutput, existingFileHelper));
         dataGenerator.addProvider(client, new DDLanguageProviderENUS(packOutput));
 
+        dataGenerator.addProvider(server, new DDAdvancementProvider(packOutput, registryLookup, existingFileHelper));
         dataGenerator.addProvider(server, new DDRecipeProvider(packOutput));
         dataGenerator.addProvider(server, new DDLootTableProvider(packOutput));
 
         DDBlockTagsProvider blockTagsProvider = dataGenerator.addProvider(server, new DDBlockTagsProvider(packOutput, registryLookup, existingFileHelper));
+        dataGenerator.addProvider(server, new DDFluidTagsProvider(packOutput, registryLookup, existingFileHelper));
         dataGenerator.addProvider(server, new DDItemTagsProvider(packOutput, registryLookup, blockTagsProvider.contentsGetter(), existingFileHelper));
-
         dataGenerator.addProvider(server, new DDBiomeTagsProvider(packOutput, registryLookup, existingFileHelper));
-        dataGenerator.addProvider(server, new DDDamageTypeTagsProvider(packOutput, registryLookup, existingFileHelper));}
+        dataGenerator.addProvider(server, new DDEntityTypeTagsProvider(packOutput, registryLookup, existingFileHelper));
+        dataGenerator.addProvider(server, new DDDamageTypeTagsProvider(packOutput, registryLookup, existingFileHelper));
+    }
 }

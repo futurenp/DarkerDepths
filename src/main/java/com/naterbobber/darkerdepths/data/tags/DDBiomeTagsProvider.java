@@ -24,7 +24,7 @@ public class DDBiomeTagsProvider extends BiomeTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider provider) {
-        DDResourceKeys.Biomes.BIOMES.stream().forEach(this::addDefaultOverworldBiomeTags);
+        DDResourceKeys.Biomes.BIOMES.forEach(this::addDefaultOverworldBiomeTags);
 
         this.tag(Tags.Biomes.IS_HOT_OVERWORLD).addOptional(DDResourceKeys.Biomes.MOLTEN_CAVERN.location());
         this.tag(Tags.Biomes.IS_DRY_OVERWORLD).addOptional(DDResourceKeys.Biomes.SANDY_CATACOMBS.location());
@@ -41,13 +41,19 @@ public class DDBiomeTagsProvider extends BiomeTagsProvider {
                 Biomes.MANGROVE_SWAMP);
 
         this.tag(DDTags.Biomes.HAS_ROPE_MINE_DESERT).add(Biomes.DESERT);
+
+        this.tag(BiomeTags.HAS_MINESHAFT).addOptional(DDResourceKeys.Biomes.GLOWSHROOM_FOREST.location());
+
+        this.tag(DDTags.Biomes.HAS_PETRIFIED_MINESHAFT).addOptional(DDResourceKeys.Biomes.MOLTEN_CAVERN.location());
+        this.tag(DDTags.Biomes.HAS_PETRIFIED_MINESHAFT).addOptional(DDResourceKeys.Biomes.SANDY_CATACOMBS.location());
+
     }
 
     private void addDefaultOverworldBiomeTags(ResourceKey<Biome> biome) {
-        this.tag(BiomeTags.HAS_MINESHAFT).addOptional(biome.location());
         this.tag(BiomeTags.HAS_RUINED_PORTAL_STANDARD).addOptional(biome.location());
         this.tag(BiomeTags.STRONGHOLD_BIASED_TO).addOptional(biome.location());
         this.tag(BiomeTags.IS_OVERWORLD).addOptional(biome.location());
         this.tag(Tags.Biomes.IS_UNDERGROUND).addOptional(biome.location());
+        this.tag(Tags.Biomes.IS_CAVE).addOptional(biome.location());
     }
 }

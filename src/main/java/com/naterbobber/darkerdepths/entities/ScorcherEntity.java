@@ -6,6 +6,7 @@ import com.mojang.serialization.Dynamic;
 import com.naterbobber.darkerdepths.client.fog.modifiers.ScorcherFlashModifier;
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import com.naterbobber.darkerdepths.init.DDParticleTypes;
+import com.naterbobber.darkerdepths.network.DDNetwork;
 import com.naterbobber.darkerdepths.network.ScorcherFlashPacket;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -40,12 +41,13 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
-import net.neoforged.neoforge.fluids.FluidType;
-import net.neoforged.neoforge.network.PacketDistributor;
+import net.minecraftforge.fluids.FluidType;
+import net.minecraftforge.network.PacketDistributor;
 import software.bernie.geckolib.animatable.GeoEntity;
-import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.animation.*;
-import software.bernie.geckolib.animation.AnimationState;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.core.animation.*;
+import software.bernie.geckolib.core.animation.AnimationState;
+import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 import javax.annotation.Nullable;
@@ -86,9 +88,6 @@ public class ScorcherEntity extends Mob implements GeoEntity {
 
     @Override
     public boolean canBeCollidedWith() { return false; }
-
-    @Override
-    protected void clampHeadRotationToBody() {}
 
     @Override
     protected Brain.Provider<ScorcherEntity> brainProvider() {
@@ -135,7 +134,7 @@ public class ScorcherEntity extends Mob implements GeoEntity {
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
         controllerRegistrar.add(new AnimationController<>(this, "baseController", 5, this::basePredicate));
-        controllerRegistrar.add(new AnimationController<>(this, "shake_controller", state -> PlayState.STOP)
+        controllerRegistrar.add(new AnimationController<>(this, "shake_controller", 0, state -> PlayState.STOP)
                 .triggerableAnim("attack", SHAKE_ANIM));
     }
 
@@ -146,18 +145,17 @@ public class ScorcherEntity extends Mob implements GeoEntity {
         return event.setAndContinue(IDLE_ANIM);
     }
 
-
     @Override
     public AnimatableInstanceCache getAnimatableInstanceCache() {
         return geoCache;
     }
 
     @Override
-    protected void defineSynchedData(SynchedEntityData.Builder builder) {
-        super.defineSynchedData(builder);
-        builder.define(DATA_STARED_AT, false);
-        builder.define(DATA_SHAKING, false);
-        builder.define(DATA_TARGET_ID, 0);
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+        this.entityData.define(DATA_STARED_AT, false);
+        this.entityData.define(DATA_SHAKING, false);
+        this.entityData.define(DATA_TARGET_ID, 0);
     }
 
     public void setScorcherTarget(LivingEntity target) {
@@ -231,9 +229,9 @@ public class ScorcherEntity extends Mob implements GeoEntity {
 
     @Override
     public void die(DamageSource damageSource) {
-        var state = this.level().getBlockState(getOnPos().above());
+        var state = this.level().getBlockState(this.blockPosition());
         if(state.is(DDBlocks.SCORCHER_LIGHT_BLOCK.get())) {
-            this.level().setBlock(getOnPos().above(), Blocks.AIR.defaultBlockState(), 3);
+            this.level().setBlock(this.blockPosition(), Blocks.AIR.defaultBlockState(), 3);
         }
 
         if (this.level() instanceof ServerLevel serverLevel) {
@@ -318,10 +316,10 @@ public class ScorcherEntity extends Mob implements GeoEntity {
                 spawnSearchlightParticles();
             }
 
-            var state = this.level().getBlockState(getOnPos().above());
-            if((state.is(BlockTags.REPLACEABLE) || state.is(BlockTags.AIR) && !state.is(DDBlocks.SCORCHER_LIGHT_BLOCK.get())) && this.isAlive()) {
+            var state = this.level().getBlockState(this.blockPosition());
+            if((state.is(BlockTags.REPLACEABLE) || state.isAir() && !state.is(DDBlocks.SCORCHER_LIGHT_BLOCK.get())) && this.isAlive()) {
                 var lightState = DDBlocks.SCORCHER_LIGHT_BLOCK.get().defaultBlockState().setValue(BlockStateProperties.LEVEL, 10);
-                this.level().setBlock(getOnPos().above(), lightState, 3);
+                this.level().setBlock(this.blockPosition(), lightState, 3);
             }
         }
     }
@@ -391,12 +389,8 @@ public class ScorcherEntity extends Mob implements GeoEntity {
             double threshold = 1.0D - (0.1D / Math.max(distance, 1.0D));
 
             if (dotProduct > threshold && player.hasLineOfSight(this)) {
-
                 if (player instanceof ServerPlayer serverPlayer) {
-                    PacketDistributor.sendToPlayer(
-                            serverPlayer,
-                            new ScorcherFlashPacket(40)
-                    );
+                     DDNetwork.INSTANCE.send(PacketDistributor.PLAYER.with(() -> serverPlayer), new ScorcherFlashPacket(40));
                 }
 
             }
@@ -623,11 +617,11 @@ public class ScorcherEntity extends Mob implements GeoEntity {
                 EquipmentSlot slot = hand == InteractionHand.MAIN_HAND ?
                         EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND;
 
-                shield.hurtAndBreak(shieldDamage, this.target, slot);
+                shield.hurtAndBreak(shieldDamage, this.target, (p) -> p.broadcastBreakEvent(slot));
 
                 this.target.level().playSound(null, this.target.blockPosition(), SoundEvents.SHIELD_BLOCK, SoundSource.PLAYERS, 1.0F, 0.8F + entity.getRandom().nextFloat() * 0.4F);
             } else {
-                this.target.hurt(entity.damageSources().mobAttack(entity), damage);
+                this.target.hurt(entity.level().damageSources().mobAttack(entity), damage);
             }
         }
 

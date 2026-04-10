@@ -44,13 +44,12 @@ public class DDItemTagsProvider extends ItemTagsProvider {
                 DDBlocks.STRIPPED_PETRIFIED_LOG.get().asItem(),
                 DDBlocks.STRIPPED_PETRIFIED_WOOD.get().asItem()
         );
+
         this.tag(ItemTags.PLANKS).add(DDBlocks.PETRIFIED_PLANKS.get().asItem());
         this.tag(ItemTags.BEACON_PAYMENT_ITEMS).add(DDItems.FORSAKEN_BRONZE_INGOT.get());
 
         this.tag(DDTags.Items.ROPES).add(DDItems.ROPE.get());
         this.tag(Tags.Items.INGOTS).add(DDItems.FORSAKEN_BRONZE_INGOT.get());
-        this.tag(DDTags.Items.FORSAKEN_BRONZE_INGOT).add(DDItems.FORSAKEN_BRONZE_INGOT.get());
-        this.tag(DDTags.Items.FORSAKEN_BRONZE_INGOT_FORGE).add(DDItems.FORSAKEN_BRONZE_INGOT.get());
 
         this.copy(Tags.Blocks.STORAGE_BLOCKS, Tags.Items.STORAGE_BLOCKS);
     }

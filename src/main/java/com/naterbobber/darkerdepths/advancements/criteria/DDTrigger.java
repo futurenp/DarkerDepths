@@ -27,6 +27,10 @@ public class DDTrigger extends SimpleCriterionTrigger<DDTrigger.TriggerInstance>
         return id;
     }
 
+    public TriggerInstance instance() {
+        return new TriggerInstance(this.id, ContextAwarePredicate.ANY);
+    }
+
     public static class TriggerInstance extends AbstractCriterionTriggerInstance {
 
         public TriggerInstance(ResourceLocation resourceLocation, ContextAwarePredicate composite) {

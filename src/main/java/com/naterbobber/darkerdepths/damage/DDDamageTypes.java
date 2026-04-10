@@ -1,15 +1,11 @@
-package com.naterbobber.darkerdepths.init;
+package com.naterbobber.darkerdepths.damage;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
-import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.damagesource.DamageScaling;
 import net.minecraft.world.damagesource.DamageType;
-import net.minecraft.world.level.biome.Biome;
-import net.minecraft.world.level.levelgen.carver.ConfiguredWorldCarver;
-import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 
 public class DDDamageTypes {
 

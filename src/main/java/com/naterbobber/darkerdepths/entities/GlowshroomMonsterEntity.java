@@ -4,6 +4,7 @@ import com.naterbobber.darkerdepths.entities.goals.AttackMemoryTargetGoal;
 import com.naterbobber.darkerdepths.entities.control.ConfigurableMoveControl;
 import com.naterbobber.darkerdepths.entities.goals.ConfigurableReachMeleeAttackGoal;
 import com.naterbobber.darkerdepths.init.DDSoundEvents;
+import com.naterbobber.darkerdepths.util.DDTags;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -16,13 +17,10 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.ai.goal.MoveTowardsTargetGoal;
 import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
-import net.minecraft.world.entity.ambient.Bat;
-import net.minecraft.world.entity.monster.Creeper;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
@@ -41,6 +39,9 @@ public class GlowshroomMonsterEntity extends Monster implements GeoEntity {
     protected static final RawAnimation IDLE = RawAnimation.begin().thenLoop("idle");
     protected static final RawAnimation ROAR = RawAnimation.begin().thenLoop("roar");
     protected static final RawAnimation WALK = RawAnimation.begin().thenLoop("move.walk");
+    protected static final RawAnimation RUN = RawAnimation.begin().thenLoop("move.run");
+    private static final EntityDataAccessor<Boolean> HAS_TARGET =
+            SynchedEntityData.defineId(GlowshroomMonsterEntity.class, EntityDataSerializers.BOOLEAN);
 
     private static final EntityDataAccessor<Boolean> ATTACKING =
             SynchedEntityData.defineId(GlowshroomMonsterEntity.class, EntityDataSerializers.BOOLEAN);
@@ -72,17 +73,28 @@ public class GlowshroomMonsterEntity extends Monster implements GeoEntity {
         this.targetSelector.addGoal(2, new HurtByTargetGoal(this));
         this.targetSelector.addGoal(4, new AttackMemoryTargetGoal<>(this, Player.class, 300, true));
         this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(
-                this, Mob.class, 10, false, false, (entity) ->
-                !(entity instanceof Creeper) &&
-                !(entity instanceof GlowshroomMonsterEntity) &&
-                !(entity instanceof Bat) &&
-                !(entity instanceof VoidSoulEntity)
-        ));
+                this,
+                LivingEntity.class,
+                10,
+                false,
+                false,
+                (entity) -> entity.getType().is(DDTags.EntityTypes.GLOWSHROOM_MONSTER_TARGET)));
     }
 
     @Override
     public void aiStep() {
         super.aiStep();
+
+
+        if(level().isClientSide) {
+            return;
+        }
+
+        if (!this.level().isClientSide && this.isAlive() && this.tickCount % 20 == 0) {
+            this.heal(1.0F);
+        }
+
+        setHasTarget(getTarget() != null);
 
         if (this.getAttackTick() > 0) {
             this.setAttackTick(this.getAttackTick() - 1);
@@ -96,7 +108,9 @@ public class GlowshroomMonsterEntity extends Monster implements GeoEntity {
             this.damageDelay--;
         }
 
-        if(this.attackTarget == null) return;
+        if(this.attackTarget == null) {
+            return;
+        }
 
         if(!this.attackTarget.isAlive() || !this.isAlive()) {
             this.attackTarget = null;
@@ -106,7 +120,7 @@ public class GlowshroomMonsterEntity extends Monster implements GeoEntity {
         if(this.damageDelay == 0) {
             if (this.distanceToSqr(this.attackTarget) < 16) {
                 this.attackTarget.hurt(this.level().damageSources().mobAttack(this), (float) this.getAttributeValue(Attributes.ATTACK_DAMAGE));
-                this.playSound(SoundEvents.GENERIC_EXPLODE, 1.0f, 1.5f);
+                this.playSound(SoundEvents.GENERIC_EXPLODE, 1.5f, 1.5f);
             }
 
             this.attackTarget = null;
@@ -120,6 +134,17 @@ public class GlowshroomMonsterEntity extends Monster implements GeoEntity {
         } else {
             super.handleEntityEvent(id);
         }
+    }
+
+
+    @Override
+    public boolean hurt(DamageSource source, float amount) {
+        if(source.getEntity() != null) {
+            if(source.getEntity().getType().is(DDTags.EntityTypes.GLOWSHROOM_MONSTER_TARGET)) {
+                amount /= 2;
+            }
+        }
+        return super.hurt(source, amount);
     }
 
     @Override
@@ -164,11 +189,15 @@ public class GlowshroomMonsterEntity extends Monster implements GeoEntity {
     }
 
     protected <E extends GlowshroomMonsterEntity> PlayState predicate(final AnimationState<E> event) {
-        if (event.isMoving()) {
-            return event.setAndContinue(WALK);
+        if (!event.isMoving()) {
+            return event.setAndContinue(IDLE);
         }
 
-        return event.setAndContinue(IDLE);
+        if(this.hasTarget()) {
+            return event.setAndContinue(RUN);
+        } else {
+            return event.setAndContinue(WALK);
+        }
     }
 
     protected <E extends GlowshroomMonsterEntity> PlayState attackPredicate(final AnimationState<E> event) {
@@ -193,6 +222,7 @@ public class GlowshroomMonsterEntity extends Monster implements GeoEntity {
         super.defineSynchedData();
         this.entityData.define(ATTACKING, false);
         this.entityData.define(ATTACK_TICK, 0);
+        this.entityData.define(HAS_TARGET, false);
     }
 
     public int getAttackTick() { return this.entityData.get(ATTACK_TICK); }
@@ -206,5 +236,13 @@ public class GlowshroomMonsterEntity extends Monster implements GeoEntity {
 
     public void setAttacking(boolean attacking) {
         this.entityData.set(ATTACKING, attacking);
+    }
+
+    public boolean hasTarget() {
+        return this.entityData.get(HAS_TARGET);
+    }
+
+    public void setHasTarget(boolean value) {
+        this.entityData.set(HAS_TARGET, value);
     }
 }

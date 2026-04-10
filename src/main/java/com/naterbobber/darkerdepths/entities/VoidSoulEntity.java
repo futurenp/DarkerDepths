@@ -3,6 +3,7 @@ package com.naterbobber.darkerdepths.entities;
 import com.naterbobber.darkerdepths.entities.goals.ConfigurableRandomFlyingGoal;
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import com.naterbobber.darkerdepths.init.DDItems;
+import com.naterbobber.darkerdepths.init.DDParticleTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
@@ -163,17 +164,17 @@ public class VoidSoulEntity extends PathfinderMob implements GeoEntity {
         if (!this.level().isClientSide()) {
             ServerLevel serverLevel = (ServerLevel) this.level();
             if(!isCaptured) {
-                ParticleOptions particle = ParticleTypes.LARGE_SMOKE;
+                ParticleOptions particle = DDParticleTypes.VOID_SOUL_DEATH.get();
                 serverLevel.sendParticles(
                         particle,
                         this.getX(),
                         this.getY(0.5),
                         this.getZ(),
-                        30,
+                        20,
                         this.getBbWidth() / 2.0,
                         this.getBbHeight() / 2.0,
                         this.getBbWidth() / 2.0,
-                        0.05
+                        0.04
                 );
 
                 if(experienceDrop > 0){

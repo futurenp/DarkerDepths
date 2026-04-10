@@ -32,16 +32,20 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
         generateNeedsToolTags();
         generateModTags();
         generateWoodenTags();
+        generateCompatTags();
     }
 
     private void generateMinableTags() {
         this.tag(BlockTags.MINEABLE_WITH_HOE).add(
                 DDBlocks.GLOWSHROOM_BLOCK.get(),
                 DDBlocks.GLOWSHROOM_STEM.get(),
-                DDBlocks.GLOWSHROOM_HEART.get()
+                DDBlocks.GLOWSHROOM_HEART.get(),
+                DDBlocks.SCORCHED_REMAINS_BLOCK.get(),
+                DDBlocks.SCORCHED_REMAINS.get()
         );
+
         this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(
-                DDBlocks.DEAD_LIVING_CRYSTAL.get(),
+                DDBlocks.CRYSTAL_HUSK.get(),
                 DDBlocks.LIVING_CRYSTAL.get(),
                 DDBlocks.DARKSLATE.get(),
                 DDBlocks.ARIDROCK.get(),
@@ -112,6 +116,9 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
                 DDBlocks.CRYSTAL_MELON.get(),
                 DDBlocks.FORSAKEN_BRONZE_BLOCK.get(),
                 DDBlocks.ARIDROCK_PILLAR.get(),
+                DDBlocks.GRIMESTONE_PILLAR.get(),
+                DDBlocks.DUSKROCK_PILLAR.get(),
+                DDBlocks.DARKSLATE_PILLAR.get(),
                 DDBlocks.ARIDROCK_VERTICAL_SLAB.get(),
                 DDBlocks.ARIDROCK_BRICKS_VERTICAL_SLAB.get(),
                 DDBlocks.DARKSLATE_VERTICAL_SLAB.get(),
@@ -122,7 +129,8 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
                 DDBlocks.GRIMESTONE_BRICKS_VERTICAL_SLAB.get(),
                 DDBlocks.POLISHED_ARIDROCK_VERTICAL_SLAB.get(),
                 DDBlocks.POLISHED_DARKSLATE_VERTICAL_SLAB.get(),
-                DDBlocks.POLISHED_GRIMESTONE_VERTICAL_SLAB.get()
+                DDBlocks.POLISHED_GRIMESTONE_VERTICAL_SLAB.get(),
+                DDBlocks.MAGMA_PAD.get()
         );
 
         this.tag(BlockTags.MINEABLE_WITH_SHOVEL).add(
@@ -151,7 +159,8 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
                 DDBlocks.STRIPPED_PETRIFIED_LOG.get(),
                 DDBlocks.PETRIFIED_WOOD.get(),
                 DDBlocks.STRIPPED_PETRIFIED_WOOD.get(),
-                DDBlocks.POROUS_PETRIFIED_LOG.get()
+                DDBlocks.POROUS_PETRIFIED_LOG.get(),
+                DDBlocks.PETRIFIED_BOOKSHELF.get()
         );
 
         PETRIFIED.forEach(block -> {
@@ -164,7 +173,7 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
         this.tag(BlockTags.NEEDS_STONE_TOOL).add(
                 DDBlocks.GEYSER.get(),
                 DDBlocks.LIVING_CRYSTAL.get(),
-                DDBlocks.DEAD_LIVING_CRYSTAL.get(),
+                DDBlocks.CRYSTAL_HUSK.get(),
                 DDBlocks.STONE_MELON.get(),
                 DDBlocks.GLOWSHROOM_LAMP.get(),
                 DDBlocks.TOMB.get()
@@ -179,6 +188,7 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
 
     private void generateModTags() {
         this.tag(DDTags.Blocks.GEYSER_BOOSTERS).add(Blocks.MAGMA_BLOCK);
+        this.tag(DDTags.Blocks.GEYSER_ASH_PROVIDERS).add(DDBlocks.SCORCHED_REMAINS_BLOCK.get());
 
         this.tag(DDTags.Blocks.GEYSER_BYPASSES).add(
                         Blocks.SNOW,
@@ -189,7 +199,8 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
                         DDBlocks.GLOWSPURS.get(),
                         DDBlocks.GLIMMERING_VINES.get(),
                         DDBlocks.GLIMMERING_VINE_PLANT.get(),
-                        DDBlocks.DRY_SPROUTS.get()
+                        DDBlocks.DRY_SPROUTS.get(),
+                        DDBlocks.SCORCHER_LIGHT_BLOCK.get()
                 )
                 .addTag(BlockTags.WOOL_CARPETS)
                 .addTag(BlockTags.ALL_SIGNS)
@@ -202,9 +213,6 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
                 .addTag(BlockTags.CORAL_PLANTS)
                 .addTag(BlockTags.FENCES)
                 .addTag(BlockTags.FENCE_GATES)
-                .addTag(BlockTags.REPLACEABLE_BY_TREES)
-                .addTag(BlockTags.LUSH_GROUND_REPLACEABLE)
-                .addTag(BlockTags.REPLACEABLE_BY_TREES)
                 .addTag(BlockTags.REPLACEABLE)
                 .addTag(BlockTags.BUTTONS)
                 .addTag(BlockTags.LEAVES)
@@ -218,11 +226,53 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
         );
 
         this.tag(BlockTags.BASE_STONE_OVERWORLD).add(
+                DDBlocks.DARKSLATE.get()
+        );
+
+        this.tag(BlockTags.DEEPSLATE_ORE_REPLACEABLES).add(
                 DDBlocks.DARKSLATE.get(),
+                DDBlocks.GRIMESTONE.get(),
                 DDBlocks.ARIDROCK.get(),
                 DDBlocks.DUSKROCK.get(),
-                DDBlocks.GRIMESTONE.get()
+                Blocks.PACKED_MUD,
+                DDBlocks.MOSSY_GRIMESTONE.get()
         );
+
+        this.tag(DDTags.Blocks.CATACOMBS_STRIPE_REPLACEABLE).add(
+                DDBlocks.ARIDROCK.get(),
+                Blocks.PACKED_MUD
+        );
+
+        this.tag(DDTags.Blocks.MAGMA_STRIPE_REPLACEABLE).add(
+                DDBlocks.DARKSLATE.get(),
+                Blocks.TUFF
+        );
+
+        this.tag(BlockTags.OVERWORLD_CARVER_REPLACEABLES).add(
+                DDBlocks.ARIDROCK.get(),
+                DDBlocks.DUSKROCK.get(),
+                DDBlocks.ARID_DEEPSLATE.get(),
+                Blocks.PACKED_MUD,
+                Blocks.MAGMA_BLOCK,
+                DDBlocks.GRIMESTONE.get(),
+                DDBlocks.MOSSY_GRIMESTONE.get()
+        );
+
+        this.tag(DDTags.Blocks.ARID_GROUND).add(
+                DDBlocks.ARIDROCK.get(),
+                DDBlocks.DUSKROCK.get(),
+                Blocks.PACKED_MUD
+        );
+
+        this.tag(DDTags.Blocks.GRIME_GROUND).add(
+                DDBlocks.GRIMESTONE.get(),
+                DDBlocks.MOSSY_GRIMESTONE.get()
+        ).addTag(BlockTags.BASE_STONE_OVERWORLD);
+
+        this.tag(DDTags.Blocks.HUGE_GLOWSHROOM_GROWABLE).add(
+                DDBlocks.MOSSY_GRIMESTONE.get(),
+                DDBlocks.GLOWSHROOM_BLOCK.get()
+        ).addTag(BlockTags.BASE_STONE_OVERWORLD);
 
         this.tag(BlockTags.PLANKS).add(
                 DDBlocks.PETRIFIED_PLANKS.get()
@@ -243,35 +293,79 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
                 DDBlocks.POROUS_PETRIFIED_LOG.get()
         );
 
+        this.tag(BlockTags.ENCHANTMENT_POWER_PROVIDER).add(
+                DDBlocks.PETRIFIED_BOOKSHELF.get()
+        );
+
         this.tag(Tags.Blocks.STORAGE_BLOCKS)
                 .add(DDBlocks.FORSAKEN_BRONZE_BLOCK.get());
 
-        this.tag(DDTags.Blocks.STRIPPED_LOGS).add(
-                Blocks.STRIPPED_ACACIA_LOG,
-                Blocks.STRIPPED_BAMBOO_BLOCK,
-                Blocks.STRIPPED_BIRCH_LOG,
-                Blocks.STRIPPED_CHERRY_LOG,
-                Blocks.STRIPPED_DARK_OAK_LOG,
-                Blocks.STRIPPED_JUNGLE_LOG,
-                Blocks.STRIPPED_MANGROVE_LOG,
-                Blocks.STRIPPED_OAK_LOG,
-                Blocks.STRIPPED_SPRUCE_LOG,
-                Blocks.STRIPPED_CRIMSON_STEM,
-                Blocks.STRIPPED_WARPED_STEM
+        this.tag(Tags.Blocks.BOOKSHELVES).add(
+                DDBlocks.PETRIFIED_BOOKSHELF.get()
         );
 
-        this.tag(DDTags.Blocks.STRIPPED_WOODS).add(
-                Blocks.STRIPPED_ACACIA_WOOD,
-                Blocks.STRIPPED_BIRCH_WOOD,
-                Blocks.STRIPPED_CHERRY_WOOD,
-                Blocks.STRIPPED_DARK_OAK_WOOD,
-                Blocks.STRIPPED_JUNGLE_WOOD,
-                Blocks.STRIPPED_MANGROVE_WOOD,
-                Blocks.STRIPPED_OAK_WOOD,
-                Blocks.STRIPPED_SPRUCE_WOOD,
-                Blocks.STRIPPED_CRIMSON_HYPHAE,
-                Blocks.STRIPPED_WARPED_HYPHAE
+        this.tag(BlockTags.REPLACEABLE).add(
+                DDBlocks.SCORCHED_REMAINS.get(),
+                DDBlocks.DRY_SPROUTS.get(),
+                DDBlocks.PETRIFIED_ROOTS.get(),
+                DDBlocks.PETRIFIED_ROOTS_PLANT.get(),
+                DDBlocks.MOSSY_SPROUTS.get(),
+                DDBlocks.GLOWSPURS.get(),
+                DDBlocks.GLIMMERING_VINES.get(),
+                DDBlocks.GLIMMERING_VINE_PLANT.get()
         );
+
+        this.tag(BlockTags.LUSH_GROUND_REPLACEABLE).add(
+                DDBlocks.ARIDROCK.get(),
+                DDBlocks.GRIMESTONE.get(),
+                DDBlocks.MOSSY_GRIMESTONE.get(),
+                DDBlocks.DUSKROCK.get()
+        );
+
+        this.tag(BlockTags.SWORD_EFFICIENT).add(
+                DDBlocks.SCORCHED_REMAINS.get(),
+                DDBlocks.DRY_SPROUTS.get(),
+                DDBlocks.PETRIFIED_ROOTS.get(),
+                DDBlocks.PETRIFIED_ROOTS_PLANT.get(),
+                DDBlocks.MOSSY_SPROUTS.get(),
+                DDBlocks.GLOWSPURS.get(),
+                DDBlocks.GLIMMERING_VINES.get(),
+                DDBlocks.GLIMMERING_VINE_PLANT.get()
+        );
+
+        this.tag(DDTags.Blocks.VERY_HIGH_HEAT).add(
+                Blocks.LAVA
+        );
+
+        this.tag(DDTags.Blocks.HIGH_HEAT).add(
+                DDBlocks.SCORCHER_LIGHT_BLOCK.get(),
+                Blocks.MAGMA_BLOCK,
+                Blocks.LAVA_CAULDRON
+        );
+
+        this.tag(DDTags.Blocks.MEDIUM_HEAT).add(
+                Blocks.SOUL_FIRE,
+                Blocks.SOUL_CAMPFIRE
+        );
+
+        this.tag(DDTags.Blocks.LOW_HEAT).add(
+                Blocks.FIRE,
+                Blocks.CAMPFIRE,
+                DDBlocks.SCORCHED_REMAINS_BLOCK.get()
+        );
+
+        this.tag(DDTags.Blocks.HEATABLE).add(
+                DDBlocks.DARKSLATE.get(),
+                DDBlocks.CRYSTAL_HUSK.get(),
+                DDBlocks.LIVING_CRYSTAL.get(),
+                DDBlocks.GEYSER.get()
+        );
+
+        this.tag(DDTags.Blocks.HEAT_PROVIDER)
+                .addOptionalTag(DDTags.Blocks.VERY_HIGH_HEAT.location())
+                .addOptionalTag(DDTags.Blocks.HIGH_HEAT.location())
+                .addOptionalTag(DDTags.Blocks.MEDIUM_HEAT.location())
+                .addOptionalTag(DDTags.Blocks.LOW_HEAT.location());
     }
 
     private void generateWoodenTags() {
@@ -301,6 +395,16 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
 
         this.tag(BlockTags.WOODEN_FENCES).add(
                 DDBlocks.PETRIFIED_FENCE.get()
+        );
+    }
+
+    private void generateCompatTags() {
+        this.tag(DDTags.Blocks.WOODEN_BOOKSHELVES).add(
+                DDBlocks.PETRIFIED_BOOKSHELF.get()
+        );
+
+        this.tag(DDTags.Blocks.VERTICAL_PLANKS).add(
+                DDBlocks.VERTICAL_PETRIFIED_PLANKS.get()
         );
     }
 

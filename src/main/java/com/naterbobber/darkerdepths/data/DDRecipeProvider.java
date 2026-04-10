@@ -7,13 +7,7 @@ import com.naterbobber.darkerdepths.init.DDItems;
 import com.naterbobber.darkerdepths.util.DDTags;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
-import net.minecraft.data.recipes.FinishedRecipe;
-import net.minecraft.data.recipes.RecipeCategory;
-import net.minecraft.data.recipes.RecipeProvider;
-import net.minecraft.data.recipes.ShapedRecipeBuilder;
-import net.minecraft.data.recipes.ShapelessRecipeBuilder;
-import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
-import net.minecraft.data.recipes.SingleItemRecipeBuilder;
+import net.minecraft.data.recipes.*;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.AbstractCookingRecipe;
@@ -22,7 +16,6 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.Tags;
-import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.List;
 import java.util.function.Consumer;
@@ -34,74 +27,77 @@ public class DDRecipeProvider extends RecipeProvider {
     }
 
     @Override
-    protected void buildRecipes(Consumer<FinishedRecipe> consumer) {
-        twoXtwo(consumer, DDBlocks.POLISHED_DARKSLATE.get(), DDBlocks.DARKSLATE.get().asItem(), 4);
-        twoXtwo(consumer, DDBlocks.POLISHED_ARIDROCK.get(), DDBlocks.ARIDROCK.get().asItem(), 4);
-        twoXtwo(consumer, DDBlocks.POLISHED_DUSKROCK.get(), DDBlocks.DUSKROCK.get().asItem(), 4);
-        twoXtwo(consumer, DDBlocks.POLISHED_GRIMESTONE.get(), DDBlocks.GRIMESTONE.get().asItem(), 4);
-        twoXtwo(consumer, DDBlocks.DARKSLATE_BRICKS.get(), DDBlocks.POLISHED_DARKSLATE.get().asItem(), 4);
-        twoXtwo(consumer, DDBlocks.ARIDROCK_BRICKS.get(), DDBlocks.POLISHED_ARIDROCK.get().asItem(), 4);
-        twoXtwo(consumer, DDBlocks.DUSKROCK_BRICKS.get(), DDBlocks.POLISHED_DUSKROCK.get().asItem(), 4);
-        twoXtwo(consumer, DDBlocks.GRIMESTONE_BRICKS.get(), DDBlocks.POLISHED_GRIMESTONE.get().asItem(), 4);
+    protected void buildRecipes(Consumer<FinishedRecipe> recipeConsumer) {
+        twoXtwo(recipeConsumer, DDBlocks.POLISHED_DARKSLATE.get(), DDBlocks.DARKSLATE.get().asItem(), 4);
+        twoXtwo(recipeConsumer, DDBlocks.POLISHED_ARIDROCK.get(), DDBlocks.ARIDROCK.get().asItem(), 4);
+        twoXtwo(recipeConsumer, DDBlocks.POLISHED_DUSKROCK.get(), DDBlocks.DUSKROCK.get().asItem(), 4);
+        twoXtwo(recipeConsumer, DDBlocks.POLISHED_GRIMESTONE.get(), DDBlocks.GRIMESTONE.get().asItem(), 4);
+        twoXtwo(recipeConsumer, DDBlocks.DARKSLATE_BRICKS.get(), DDBlocks.POLISHED_DARKSLATE.get().asItem(), 4);
+        twoXtwo(recipeConsumer, DDBlocks.ARIDROCK_BRICKS.get(), DDBlocks.POLISHED_ARIDROCK.get().asItem(), 4);
+        twoXtwo(recipeConsumer, DDBlocks.DUSKROCK_BRICKS.get(), DDBlocks.POLISHED_DUSKROCK.get().asItem(), 4);
+        twoXtwo(recipeConsumer, DDBlocks.GRIMESTONE_BRICKS.get(), DDBlocks.POLISHED_GRIMESTONE.get().asItem(), 4);
 
-        stairsBlock(consumer, DDBlocks.DARKSLATE_STAIRS.get(), DDBlocks.DARKSLATE.get().asItem());
-        stairsBlock(consumer, DDBlocks.ARIDROCK_STAIRS.get(), DDBlocks.ARIDROCK.get().asItem());
-        stairsBlock(consumer, DDBlocks.DUSKROCK_STAIRS.get(), DDBlocks.DUSKROCK.get().asItem());
-        stairsBlock(consumer, DDBlocks.GRIMESTONE_STAIRS.get(), DDBlocks.GRIMESTONE.get().asItem());
-        stairsBlock(consumer, DDBlocks.POLISHED_DARKSLATE_STAIRS.get(), DDBlocks.POLISHED_DARKSLATE.get().asItem());
-        stairsBlock(consumer, DDBlocks.POLISHED_ARIDROCK_STAIRS.get(), DDBlocks.POLISHED_ARIDROCK.get().asItem());
-        stairsBlock(consumer, DDBlocks.POLISHED_DUSKROCK_STAIRS.get(), DDBlocks.POLISHED_DUSKROCK.get().asItem());
-        stairsBlock(consumer, DDBlocks.POLISHED_GRIMESTONE_STAIRS.get(), DDBlocks.POLISHED_GRIMESTONE.get().asItem());
-        stairsBlock(consumer, DDBlocks.DARKSLATE_BRICKS_STAIRS.get(), DDBlocks.DARKSLATE_BRICKS.get().asItem());
-        stairsBlock(consumer, DDBlocks.ARIDROCK_BRICKS_STAIRS.get(), DDBlocks.ARIDROCK_BRICKS.get().asItem());
-        stairsBlock(consumer, DDBlocks.DUSKROCK_BRICKS_STAIRS.get(), DDBlocks.DUSKROCK_BRICKS.get().asItem());
-        stairsBlock(consumer, DDBlocks.GRIMESTONE_BRICKS_STAIRS.get(), DDBlocks.GRIMESTONE_BRICKS.get().asItem());
-        stairsBlock(consumer, DDBlocks.PETRIFIED_STAIRS.get(), DDBlocks.PETRIFIED_PLANKS.get().asItem());
+        stairsBlock(recipeConsumer, DDBlocks.DARKSLATE_STAIRS.get(), DDBlocks.DARKSLATE.get().asItem());
+        stairsBlock(recipeConsumer, DDBlocks.ARIDROCK_STAIRS.get(), DDBlocks.ARIDROCK.get().asItem());
+        stairsBlock(recipeConsumer, DDBlocks.DUSKROCK_STAIRS.get(), DDBlocks.DUSKROCK.get().asItem());
+        stairsBlock(recipeConsumer, DDBlocks.GRIMESTONE_STAIRS.get(), DDBlocks.GRIMESTONE.get().asItem());
+        stairsBlock(recipeConsumer, DDBlocks.POLISHED_DARKSLATE_STAIRS.get(), DDBlocks.POLISHED_DARKSLATE.get().asItem());
+        stairsBlock(recipeConsumer, DDBlocks.POLISHED_ARIDROCK_STAIRS.get(), DDBlocks.POLISHED_ARIDROCK.get().asItem());
+        stairsBlock(recipeConsumer, DDBlocks.POLISHED_DUSKROCK_STAIRS.get(), DDBlocks.POLISHED_DUSKROCK.get().asItem());
+        stairsBlock(recipeConsumer, DDBlocks.POLISHED_GRIMESTONE_STAIRS.get(), DDBlocks.POLISHED_GRIMESTONE.get().asItem());
+        stairsBlock(recipeConsumer, DDBlocks.DARKSLATE_BRICKS_STAIRS.get(), DDBlocks.DARKSLATE_BRICKS.get().asItem());
+        stairsBlock(recipeConsumer, DDBlocks.ARIDROCK_BRICKS_STAIRS.get(), DDBlocks.ARIDROCK_BRICKS.get().asItem());
+        stairsBlock(recipeConsumer, DDBlocks.DUSKROCK_BRICKS_STAIRS.get(), DDBlocks.DUSKROCK_BRICKS.get().asItem());
+        stairsBlock(recipeConsumer, DDBlocks.GRIMESTONE_BRICKS_STAIRS.get(), DDBlocks.GRIMESTONE_BRICKS.get().asItem());
+        stairsBlock(recipeConsumer, DDBlocks.PETRIFIED_STAIRS.get(), DDBlocks.PETRIFIED_PLANKS.get().asItem());
 
-        slabBlock(consumer, DDBlocks.DARKSLATE_SLAB.get(), DDBlocks.DARKSLATE.get().asItem());
-        slabBlock(consumer, DDBlocks.ARIDROCK_SLAB.get(), DDBlocks.ARIDROCK.get().asItem());
-        slabBlock(consumer, DDBlocks.DUSKROCK_SLAB.get(), DDBlocks.DUSKROCK.get().asItem());
-        slabBlock(consumer, DDBlocks.GRIMESTONE_SLAB.get(), DDBlocks.GRIMESTONE.get().asItem());
-        slabBlock(consumer, DDBlocks.POLISHED_DARKSLATE_SLAB.get(), DDBlocks.POLISHED_DARKSLATE.get().asItem());
-        slabBlock(consumer, DDBlocks.POLISHED_ARIDROCK_SLAB.get(), DDBlocks.POLISHED_ARIDROCK.get().asItem());
-        slabBlock(consumer, DDBlocks.POLISHED_DUSKROCK_SLAB.get(), DDBlocks.POLISHED_DUSKROCK.get().asItem());
-        slabBlock(consumer, DDBlocks.POLISHED_GRIMESTONE_SLAB.get(), DDBlocks.POLISHED_GRIMESTONE.get().asItem());
-        slabBlock(consumer, DDBlocks.DARKSLATE_BRICKS_SLAB.get(), DDBlocks.DARKSLATE_BRICKS.get().asItem());
-        slabBlock(consumer, DDBlocks.ARIDROCK_BRICKS_SLAB.get(), DDBlocks.ARIDROCK_BRICKS.get().asItem());
-        slabBlock(consumer, DDBlocks.DUSKROCK_BRICKS_SLAB.get(), DDBlocks.DUSKROCK_BRICKS.get().asItem());
-        slabBlock(consumer, DDBlocks.GRIMESTONE_BRICKS_SLAB.get(), DDBlocks.GRIMESTONE_BRICKS.get().asItem());
-        slabBlock(consumer, DDBlocks.PETRIFIED_SLAB.get(), DDBlocks.PETRIFIED_PLANKS.get().asItem());
+        slabBlock(recipeConsumer, DDBlocks.DARKSLATE_SLAB.get(), DDBlocks.DARKSLATE.get().asItem());
+        slabBlock(recipeConsumer, DDBlocks.ARIDROCK_SLAB.get(), DDBlocks.ARIDROCK.get().asItem());
+        slabBlock(recipeConsumer, DDBlocks.DUSKROCK_SLAB.get(), DDBlocks.DUSKROCK.get().asItem());
+        slabBlock(recipeConsumer, DDBlocks.GRIMESTONE_SLAB.get(), DDBlocks.GRIMESTONE.get().asItem());
+        slabBlock(recipeConsumer, DDBlocks.POLISHED_DARKSLATE_SLAB.get(), DDBlocks.POLISHED_DARKSLATE.get().asItem());
+        slabBlock(recipeConsumer, DDBlocks.POLISHED_ARIDROCK_SLAB.get(), DDBlocks.POLISHED_ARIDROCK.get().asItem());
+        slabBlock(recipeConsumer, DDBlocks.POLISHED_DUSKROCK_SLAB.get(), DDBlocks.POLISHED_DUSKROCK.get().asItem());
+        slabBlock(recipeConsumer, DDBlocks.POLISHED_GRIMESTONE_SLAB.get(), DDBlocks.POLISHED_GRIMESTONE.get().asItem());
+        slabBlock(recipeConsumer, DDBlocks.DARKSLATE_BRICKS_SLAB.get(), DDBlocks.DARKSLATE_BRICKS.get().asItem());
+        slabBlock(recipeConsumer, DDBlocks.ARIDROCK_BRICKS_SLAB.get(), DDBlocks.ARIDROCK_BRICKS.get().asItem());
+        slabBlock(recipeConsumer, DDBlocks.DUSKROCK_BRICKS_SLAB.get(), DDBlocks.DUSKROCK_BRICKS.get().asItem());
+        slabBlock(recipeConsumer, DDBlocks.GRIMESTONE_BRICKS_SLAB.get(), DDBlocks.GRIMESTONE_BRICKS.get().asItem());
+        slabBlock(recipeConsumer, DDBlocks.PETRIFIED_SLAB.get(), DDBlocks.PETRIFIED_PLANKS.get().asItem());
 
-        pillarBlock(consumer, DDBlocks.ARIDROCK_PILLAR.get(), DDBlocks.POLISHED_ARIDROCK.get().asItem());
+        pillarBlock(recipeConsumer, DDBlocks.ARIDROCK_PILLAR.get(), DDBlocks.POLISHED_ARIDROCK.get().asItem());
+        pillarBlock(recipeConsumer, DDBlocks.GRIMESTONE_PILLAR.get(), DDBlocks.POLISHED_GRIMESTONE.get().asItem());
+        pillarBlock(recipeConsumer, DDBlocks.DARKSLATE_PILLAR.get(), DDBlocks.POLISHED_DARKSLATE.get().asItem());
+        pillarBlock(recipeConsumer, DDBlocks.DUSKROCK_PILLAR.get(), DDBlocks.POLISHED_DUSKROCK.get().asItem());
 
-        wallBlock(consumer, DDBlocks.DARKSLATE_WALL.get(), DDBlocks.DARKSLATE.get().asItem());
-        wallBlock(consumer, DDBlocks.ARIDROCK_WALL.get(), DDBlocks.ARIDROCK.get().asItem());
-        wallBlock(consumer, DDBlocks.DUSKROCK_WALL.get(), DDBlocks.DUSKROCK.get().asItem());
-        wallBlock(consumer, DDBlocks.GRIMESTONE_WALL.get(), DDBlocks.GRIMESTONE.get().asItem());
-        wallBlock(consumer, DDBlocks.DARKSLATE_BRICKS_WALL.get(), DDBlocks.DARKSLATE_BRICKS.get().asItem());
-        wallBlock(consumer, DDBlocks.ARIDROCK_BRICKS_WALL.get(), DDBlocks.ARIDROCK_BRICKS.get().asItem());
-        wallBlock(consumer, DDBlocks.DUSKROCK_BRICKS_WALL.get(), DDBlocks.DUSKROCK_BRICKS.get().asItem());
-        wallBlock(consumer, DDBlocks.GRIMESTONE_BRICKS_WALL.get(), DDBlocks.GRIMESTONE_BRICKS.get().asItem());
+        wallBlock(recipeConsumer, DDBlocks.DARKSLATE_WALL.get(), DDBlocks.DARKSLATE.get().asItem());
+        wallBlock(recipeConsumer, DDBlocks.ARIDROCK_WALL.get(), DDBlocks.ARIDROCK.get().asItem());
+        wallBlock(recipeConsumer, DDBlocks.DUSKROCK_WALL.get(), DDBlocks.DUSKROCK.get().asItem());
+        wallBlock(recipeConsumer, DDBlocks.GRIMESTONE_WALL.get(), DDBlocks.GRIMESTONE.get().asItem());
+        wallBlock(recipeConsumer, DDBlocks.DARKSLATE_BRICKS_WALL.get(), DDBlocks.DARKSLATE_BRICKS.get().asItem());
+        wallBlock(recipeConsumer, DDBlocks.ARIDROCK_BRICKS_WALL.get(), DDBlocks.ARIDROCK_BRICKS.get().asItem());
+        wallBlock(recipeConsumer, DDBlocks.DUSKROCK_BRICKS_WALL.get(), DDBlocks.DUSKROCK_BRICKS.get().asItem());
+        wallBlock(recipeConsumer, DDBlocks.GRIMESTONE_BRICKS_WALL.get(), DDBlocks.GRIMESTONE_BRICKS.get().asItem());
 
-        oreSmelting(consumer, ImmutableList.of(DDBlocks.DARKSLATE_BRICKS.get()), RecipeCategory.BUILDING_BLOCKS, DDBlocks.CRACKED_DARKSLATE_BRICKS.get(), 0.1F, 200, "cracked_darkslate_bricks");
-        oreSmelting(consumer, ImmutableList.of(DDBlocks.ARIDROCK_BRICKS.get()), RecipeCategory.BUILDING_BLOCKS, DDBlocks.CRACKED_ARIDROCK_BRICKS.get(), 0.1F, 200, "cracked_aridrock_bricks");
-        oreSmelting(consumer, ImmutableList.of(DDBlocks.DUSKROCK_BRICKS.get()), RecipeCategory.BUILDING_BLOCKS, DDBlocks.CRACKED_DUSKROCK_BRICKS.get(), 0.1F, 200, "cracked_limestone_bricks");
-        oreSmelting(consumer, ImmutableList.of(DDBlocks.GRIMESTONE_BRICKS.get()), RecipeCategory.BUILDING_BLOCKS, DDBlocks.CRACKED_GRIMESTONE_BRICKS.get(), 0.1F, 200, "cracked_grimestone_bricks");
+        oreSmelting(recipeConsumer, ImmutableList.of(DDBlocks.DARKSLATE_BRICKS.get()), RecipeCategory.BUILDING_BLOCKS, DDBlocks.CRACKED_DARKSLATE_BRICKS.get(), 0.1F, 200, "cracked_darkslate_bricks");
+        oreSmelting(recipeConsumer, ImmutableList.of(DDBlocks.ARIDROCK_BRICKS.get()), RecipeCategory.BUILDING_BLOCKS, DDBlocks.CRACKED_ARIDROCK_BRICKS.get(), 0.1F, 200, "cracked_aridrock_bricks");
+        oreSmelting(recipeConsumer, ImmutableList.of(DDBlocks.DUSKROCK_BRICKS.get()), RecipeCategory.BUILDING_BLOCKS, DDBlocks.CRACKED_DUSKROCK_BRICKS.get(), 0.1F, 200, "cracked_limestone_bricks");
+        oreSmelting(recipeConsumer, ImmutableList.of(DDBlocks.GRIMESTONE_BRICKS.get()), RecipeCategory.BUILDING_BLOCKS, DDBlocks.CRACKED_GRIMESTONE_BRICKS.get(), 0.1F, 200, "cracked_grimestone_bricks");
 
 
 
-        fenceBlock(consumer, DDBlocks.PETRIFIED_FENCE.get(), DDBlocks.PETRIFIED_PLANKS.get().asItem());
+        fenceBlock(recipeConsumer, DDBlocks.PETRIFIED_FENCE.get(), DDBlocks.PETRIFIED_PLANKS.get().asItem());
 
-        chiseled(consumer, DDBlocks.DARKSLATE_BRICKS_SLAB.get().asItem(), DDBlocks.CHISELED_DARKSLATE_BRICKS.get().asItem());
-        chiseled(consumer, DDBlocks.ARIDROCK_BRICKS_SLAB.get().asItem(), DDBlocks.CHISELED_ARIDROCK_BRICKS.get().asItem());
-        chiseled(consumer, DDBlocks.DUSKROCK_BRICKS_SLAB.get().asItem(), DDBlocks.CHISELED_DUSKROCK_BRICKS.get().asItem());
-        chiseled(consumer, DDBlocks.GRIMESTONE_BRICKS_SLAB.get().asItem(), DDBlocks.CHISELED_GRIMESTONE_BRICKS.get().asItem());
+        chiseled(recipeConsumer, DDBlocks.DARKSLATE_BRICKS_SLAB.get().asItem(), DDBlocks.CHISELED_DARKSLATE_BRICKS.get().asItem());
+        chiseled(recipeConsumer, DDBlocks.ARIDROCK_BRICKS_SLAB.get().asItem(), DDBlocks.CHISELED_ARIDROCK_BRICKS.get().asItem());
+        chiseled(recipeConsumer, DDBlocks.DUSKROCK_BRICKS_SLAB.get().asItem(), DDBlocks.CHISELED_DUSKROCK_BRICKS.get().asItem());
+        chiseled(recipeConsumer, DDBlocks.GRIMESTONE_BRICKS_SLAB.get().asItem(), DDBlocks.CHISELED_GRIMESTONE_BRICKS.get().asItem());
 
-        threeXthree(consumer, DDBlocks.AMBER_BLOCK.get(), DDItems.AMBER.get());
-        threeXthree(consumer, DDBlocks.FORSAKEN_BRONZE_BLOCK.get(), DDItems.FORSAKEN_BRONZE_INGOT.get());
+        threeXthree(recipeConsumer, DDBlocks.AMBER_BLOCK.get(), DDItems.AMBER.get());
+        threeXthree(recipeConsumer, DDBlocks.FORSAKEN_BRONZE_BLOCK.get(), DDItems.FORSAKEN_BRONZE_INGOT.get());
 
-        shaplessOne(consumer, DDItems.AMBER.get(), DDBlocks.AMBER_BLOCK.get().asItem(), 9);
-        shaplessOne(consumer, DDItems.FORSAKEN_BRONZE_INGOT.get(), DDBlocks.FORSAKEN_BRONZE_BLOCK.get().asItem(), 9);
+        shaplessOne(recipeConsumer, DDItems.AMBER.get(), DDBlocks.AMBER_BLOCK.get().asItem(), 9);
+        shaplessOne(recipeConsumer, DDItems.FORSAKEN_BRONZE_INGOT.get(), DDBlocks.FORSAKEN_BRONZE_BLOCK.get().asItem(), 9);
 
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.BUILDING_BLOCKS, DDBlocks.POROUS_PETRIFIED_LOG.get())
@@ -110,7 +106,7 @@ public class DDRecipeProvider extends RecipeProvider {
                 .pattern("###")
                 .pattern("#C#")
                 .pattern("###")
-                .unlockedBy("has_amber", has(DDItems.AMBER.get())).save(consumer);
+                .unlockedBy("has_amber", has(DDItems.AMBER.get())).save(recipeConsumer);
 
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.BUILDING_BLOCKS, DDBlocks.ARIDROCK.get(), 4)
@@ -118,7 +114,7 @@ public class DDRecipeProvider extends RecipeProvider {
                 .define('C', Blocks.SAND)
                 .pattern("#C")
                 .pattern("C#")
-                .unlockedBy("has_cobblestone", has(Blocks.COBBLESTONE)).save(consumer);
+                .unlockedBy("has_cobblestone", has(Blocks.COBBLESTONE)).save(recipeConsumer);
 
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.BUILDING_BLOCKS, DDBlocks.DUSKROCK.get(), 4)
@@ -126,7 +122,7 @@ public class DDRecipeProvider extends RecipeProvider {
                 .define('C', DDBlocks.ARIDROCK.get())
                 .pattern("#C")
                 .pattern("C#")
-                .unlockedBy("has_aridrock", has(DDBlocks.ARIDROCK.get())).save(consumer);
+                .unlockedBy("has_aridrock", has(DDBlocks.ARIDROCK.get())).save(recipeConsumer);
 
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.BUILDING_BLOCKS, DDBlocks.DARKSLATE.get(), 4)
@@ -134,7 +130,7 @@ public class DDRecipeProvider extends RecipeProvider {
                 .define('C', Blocks.BLACKSTONE)
                 .pattern("#C")
                 .pattern("C#")
-                .unlockedBy("has_cobbled_deepslate", has(Blocks.COBBLED_DEEPSLATE)).save(consumer);
+                .unlockedBy("has_cobbled_deepslate", has(Blocks.COBBLED_DEEPSLATE)).save(recipeConsumer);
 
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.BUILDING_BLOCKS, DDBlocks.GRIMESTONE.get(), 4)
@@ -142,7 +138,7 @@ public class DDRecipeProvider extends RecipeProvider {
                 .define('C', Blocks.COBBLESTONE)
                 .pattern("#C")
                 .pattern("C#")
-                .unlockedBy("has_glow_grime", has(DDItems.GLOW_GRIME.get())).save(consumer);
+                .unlockedBy("has_glow_grime", has(DDItems.GLOW_GRIME.get())).save(recipeConsumer);
 
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.BUILDING_BLOCKS, DDBlocks.GLOWSHROOM_BLOCK.get(), 2)
@@ -150,7 +146,7 @@ public class DDRecipeProvider extends RecipeProvider {
                 .pattern("###")
                 .pattern("# #")
                 .pattern("###")
-                .unlockedBy("has_glow_grime", has(DDItems.GLOW_GRIME.get())).save(consumer);
+                .unlockedBy("has_glow_grime", has(DDItems.GLOW_GRIME.get())).save(recipeConsumer);
 
 //        ShapedRecipeBuilder
 //                .shaped(RecipeCategory.TOOLS, DDItems.QUICKROPE.get())
@@ -160,7 +156,7 @@ public class DDRecipeProvider extends RecipeProvider {
 //                .pattern(" # ")
 //                .pattern("GCG")
 //                .pattern(" # ")
-//                .unlockedBy("has_rope", has(DDItems.ROPE.get())).save(consumer);
+//                .unlockedBy("has_rope", has(DDItems.ROPE.get())).save(recipeConsumer);
 
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.DECORATIONS, DDBlocks.GLOWSHROOM_LANTERN.get())
@@ -170,7 +166,7 @@ public class DDRecipeProvider extends RecipeProvider {
                 .pattern("#C#")
                 .pattern("###")
                 .unlockedBy("has_glow_grime", has(DDItems.GLOW_GRIME.get()))
-                .save(consumer);
+                .save(recipeConsumer);
 
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.DECORATIONS, DDBlocks.GLOWSHROOM_LAMP.get())
@@ -181,18 +177,18 @@ public class DDRecipeProvider extends RecipeProvider {
                 .pattern("RGR")
                 .pattern("#R#")
                 .unlockedBy("has_glow_grime", has(DDItems.GLOW_GRIME.get()))
-                .save(consumer);
+                .save(recipeConsumer);
 
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.BUILDING_BLOCKS, DDBlocks.GEYSER.get().asItem())
-                .define('#', DDBlocks.ASH_BLOCK.get().asItem())
-                .define('S', DDBlocks.DARKSLATE.get().asItem())
-                .define('A', Items.LAVA_BUCKET)
-                .pattern("###")
-                .pattern("SAS")
-                .pattern("SSS")
-                .unlockedBy("has_ash_block", has(Items.LAVA_BUCKET))
-                .save(consumer);
+                .define('D', DDBlocks.DARKSLATE.get().asItem())
+                .define('M', Blocks.MAGMA_BLOCK)
+                .define('L', Items.LAVA_BUCKET)
+                .pattern("MMM")
+                .pattern("DLD")
+                .pattern("DDD")
+                .unlockedBy("has_lava_bucket", has(Items.LAVA_BUCKET))
+                .save(recipeConsumer);
 
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.BUILDING_BLOCKS, DDBlocks.PETRIFIED_FENCE_GATE.get().asItem())
@@ -201,11 +197,11 @@ public class DDRecipeProvider extends RecipeProvider {
                 .pattern("#W#")
                 .pattern("#W#")
                 .unlockedBy("has_planks", has(DDBlocks.PETRIFIED_PLANKS.get().asItem()))
-                .save(consumer);
+                .save(recipeConsumer);
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, DDBlocks.PETRIFIED_BUTTON.get())
                 .requires(DDBlocks.PETRIFIED_PLANKS.get().asItem())
-                .unlockedBy("has_planks", has(DDBlocks.PETRIFIED_PLANKS.get())).save(consumer);
+                .unlockedBy("has_planks", has(DDBlocks.PETRIFIED_PLANKS.get())).save(recipeConsumer);
 
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.DECORATIONS, DDItems.PETRIFIED_SIGN.get(), 3)
@@ -216,14 +212,14 @@ public class DDRecipeProvider extends RecipeProvider {
                 .pattern("###")
                 .pattern(" X ")
                 .unlockedBy("has_planks", has(DDBlocks.PETRIFIED_PLANKS.get()))
-                .save(consumer);
+                .save(recipeConsumer);
 
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.REDSTONE, DDBlocks.PETRIFIED_PRESSURE_PLATE.get())
                 .define('#', DDBlocks.PETRIFIED_PLANKS.get())
                 .pattern("##")
                 .unlockedBy("has_planks", has(DDBlocks.PETRIFIED_PLANKS.get()))
-                .save(consumer);
+                .save(recipeConsumer);
 
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.REDSTONE, DDBlocks.PETRIFIED_DOOR.get(), 3)
@@ -232,7 +228,7 @@ public class DDRecipeProvider extends RecipeProvider {
                 .pattern("##")
                 .pattern("##")
                 .pattern("##")
-                .unlockedBy("has_planks", has(DDBlocks.PETRIFIED_PLANKS.get())).save(consumer);
+                .unlockedBy("has_planks", has(DDBlocks.PETRIFIED_PLANKS.get())).save(recipeConsumer);
 
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.REDSTONE, DDBlocks.PETRIFIED_TRAPDOOR.get(), 2)
@@ -240,13 +236,13 @@ public class DDRecipeProvider extends RecipeProvider {
                 .define('#', DDBlocks.PETRIFIED_PLANKS.get())
                 .pattern("###")
                 .pattern("###")
-                .unlockedBy("has_planks", has(DDBlocks.PETRIFIED_PLANKS.get())).save(consumer);
+                .unlockedBy("has_planks", has(DDBlocks.PETRIFIED_PLANKS.get())).save(recipeConsumer);
 
         ShapelessRecipeBuilder
                 .shapeless(RecipeCategory.BUILDING_BLOCKS, DDBlocks.PETRIFIED_PLANKS.get(), 4)
                 .requires(DDTags.Items.PETRIFIED_LOGS)
                 .group("planks")
-                .unlockedBy("has_logs", has(DDTags.Items.PETRIFIED_LOGS)).save(consumer);
+                .unlockedBy("has_logs", has(DDTags.Items.PETRIFIED_LOGS)).save(recipeConsumer);
 
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.BUILDING_BLOCKS, DDBlocks.PETRIFIED_WOOD.get(), 3)
@@ -254,7 +250,7 @@ public class DDRecipeProvider extends RecipeProvider {
                 .define('#', DDBlocks.PETRIFIED_LOG.get())
                 .pattern("##")
                 .pattern("##")
-                .unlockedBy("has_log", has(DDBlocks.PETRIFIED_LOG.get())).save(consumer);
+                .unlockedBy("has_log", has(DDBlocks.PETRIFIED_LOG.get())).save(recipeConsumer);
 
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.BUILDING_BLOCKS, DDBlocks.STRIPPED_PETRIFIED_WOOD.get(), 3)
@@ -262,44 +258,55 @@ public class DDRecipeProvider extends RecipeProvider {
                 .define('#', DDBlocks.STRIPPED_PETRIFIED_LOG.get())
                 .pattern("##")
                 .pattern("##")
-                .unlockedBy("has_log", has(DDBlocks.STRIPPED_PETRIFIED_LOG.get())).save(consumer);
+                .unlockedBy("has_log", has(DDBlocks.STRIPPED_PETRIFIED_LOG.get())).save(recipeConsumer);
 
-        hangingSignBlock(consumer, DDItems.PETRIFIED_HANGING_SIGN.get(), DDBlocks.STRIPPED_PETRIFIED_LOG.get().asItem(), Items.CHAIN);
+        ShapedRecipeBuilder
+                .shaped(RecipeCategory.DECORATIONS, DDBlocks.MAGMA_PAD.get(), 4)
+                .define('D', DDBlocks.DARKSLATE.get())
+                .define('M', Blocks.MAGMA_BLOCK)
+                .pattern(" D ")
+                .pattern("DMD")
+                .pattern(" D ")
+                .unlockedBy("has_darkslate", has(DDBlocks.DARKSLATE.get())).save(recipeConsumer);
+
+        hangingSignBlock(recipeConsumer, DDItems.PETRIFIED_HANGING_SIGN.get(), DDBlocks.STRIPPED_PETRIFIED_LOG.get().asItem(), Items.CHAIN);
+        bookshelfBlock(recipeConsumer, DDBlocks.PETRIFIED_BOOKSHELF.get().asItem(), DDBlocks.PETRIFIED_PLANKS.get().asItem());
+        boardsBlock(recipeConsumer, DDBlocks.PETRIFIED_BOARDS.get().asItem(), DDBlocks.PETRIFIED_PLANKS.get().asItem(), DDBlocks.PETRIFIED_SLAB.get().asItem());
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, DDItems.GLOW_GRIME.get())
                 .requires(DDBlocks.GLOWSHROOM.get())
                 .unlockedBy("has_glowshroom", has(DDBlocks.GLOWSHROOM.get()))
-                .save(consumer);
+                .save(recipeConsumer);
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, DDItems.GLOW_GRIME.get(), 2)
                 .requires(DDBlocks.GLOWSHROOM_BLOCK.get())
                 .unlockedBy("has_glowshroom_block", has(DDBlocks.GLOWSHROOM_BLOCK.get()))
-                .save(consumer, DarkerDepths.id("glow_grime_from_glowshroom_block"));
+                .save(recipeConsumer, DarkerDepths.id("glow_grime_from_glowshroom_block"));
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.GLOW_INK_SAC, 2)
                 .requires(DDItems.GLOW_GRIME.get())
                 .requires(Items.INK_SAC)
                 .unlockedBy("has_glow_grime", has(DDItems.GLOW_GRIME.get()))
-                .save(consumer, DarkerDepths.id("glow_ink_sac_from_glow_grime"));
+                .save(recipeConsumer, DarkerDepths.id("glow_ink_sac_from_glow_grime"));
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.SLIME_BALL)
                 .requires(DDItems.GLOW_GRIME.get())
                 .requires(Items.CLAY_BALL)
                 .unlockedBy("has_glow_grime", has(DDItems.GLOW_GRIME.get()))
-                .save(consumer, DarkerDepths.id("slime_ball_from_glow_grime"));
+                .save(recipeConsumer, DarkerDepths.id("slime_ball_from_glow_grime"));
 
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.MISC, DDItems.PETRIFIED_BOAT.get())
                 .define('#', DDBlocks.PETRIFIED_PLANKS.get().asItem())
                 .pattern("# #")
                 .pattern("###")
-                .unlockedBy("has_petrified_planks", has(DDBlocks.PETRIFIED_PLANKS.get())).save(consumer);
+                .unlockedBy("has_petrified_planks", has(DDBlocks.PETRIFIED_PLANKS.get())).save(recipeConsumer);
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, DDItems.PETRIFIED_CHEST_BOAT.get())
                 .requires(DDItems.PETRIFIED_BOAT.get())
                 .requires(Tags.Items.CHESTS_WOODEN)
                 .unlockedBy("has_petrified_planks", has(DDBlocks.PETRIFIED_PLANKS.get()))
-                .save(consumer);
+                .save(recipeConsumer);
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, DDItems.FORSAKEN_BRONZE_INGOT.get())
                 .requires(DDItems.FORSAKEN_BRONZE_SCRAP.get())
@@ -308,105 +315,125 @@ public class DDRecipeProvider extends RecipeProvider {
                 .requires(Items.COPPER_INGOT)
                 .requires(Items.COPPER_INGOT)
                 .unlockedBy("has_forsaken_bronze_scrap", has(DDItems.FORSAKEN_BRONZE_SCRAP.get()))
-                .save(consumer,DarkerDepths.id("forsaken_bronze_ingot_from_scrap"));
+                .save(recipeConsumer,DarkerDepths.id("forsaken_bronze_ingot_from_scrap"));
 
-        stonecutterResultFromBase(consumer, DDBlocks.DARKSLATE_STAIRS.get(), DDBlocks.DARKSLATE.get());
-        stonecutterResultFromBase(consumer, DDBlocks.ARIDROCK_STAIRS.get(), DDBlocks.ARIDROCK.get());
-        stonecutterResultFromBase(consumer, DDBlocks.DUSKROCK_STAIRS.get(), DDBlocks.DUSKROCK.get());
-        stonecutterResultFromBase(consumer, DDBlocks.GRIMESTONE_STAIRS.get(), DDBlocks.GRIMESTONE.get());
-        stonecutterResultFromBase(consumer, DDBlocks.DARKSLATE_SLAB.get(), DDBlocks.DARKSLATE.get(), 2);
-        stonecutterResultFromBase(consumer, DDBlocks.ARIDROCK_SLAB.get(), DDBlocks.ARIDROCK.get(), 2);
-        stonecutterResultFromBase(consumer, DDBlocks.DUSKROCK_SLAB.get(), DDBlocks.DUSKROCK.get(), 2);
-        stonecutterResultFromBase(consumer, DDBlocks.GRIMESTONE_SLAB.get(), DDBlocks.GRIMESTONE.get(), 2);
-        stonecutterResultFromBase(consumer, DDBlocks.DARKSLATE_WALL.get(), DDBlocks.DARKSLATE.get());
-        stonecutterResultFromBase(consumer, DDBlocks.ARIDROCK_WALL.get(), DDBlocks.ARIDROCK.get());
-        stonecutterResultFromBase(consumer, DDBlocks.DUSKROCK_WALL.get(), DDBlocks.DUSKROCK.get());
-        stonecutterResultFromBase(consumer, DDBlocks.GRIMESTONE_WALL.get(), DDBlocks.GRIMESTONE.get());
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, DDBlocks.SCORCHED_REMAINS.get())
+                .requires(Items.ROTTEN_FLESH)
+                .requires(Items.CHARCOAL)
+                .unlockedBy("has_rotten_flesh", has(Items.ROTTEN_FLESH))
+                .save(recipeConsumer);
 
-        stonecutterResultFromBase(consumer, DDBlocks.POLISHED_DARKSLATE.get(), DDBlocks.DARKSLATE.get());
-        stonecutterResultFromBase(consumer, DDBlocks.POLISHED_ARIDROCK.get(), DDBlocks.ARIDROCK.get());
-        stonecutterResultFromBase(consumer, DDBlocks.POLISHED_DUSKROCK.get(), DDBlocks.DUSKROCK.get());
-        stonecutterResultFromBase(consumer, DDBlocks.POLISHED_GRIMESTONE.get(), DDBlocks.GRIMESTONE.get());
-        stonecutterResultFromBase(consumer, DDBlocks.POLISHED_DARKSLATE_STAIRS.get(), DDBlocks.DARKSLATE.get());
-        stonecutterResultFromBase(consumer, DDBlocks.POLISHED_ARIDROCK_STAIRS.get(), DDBlocks.ARIDROCK.get());
-        stonecutterResultFromBase(consumer, DDBlocks.POLISHED_DUSKROCK_STAIRS.get(), DDBlocks.DUSKROCK.get());
-        stonecutterResultFromBase(consumer, DDBlocks.POLISHED_GRIMESTONE_STAIRS.get(), DDBlocks.GRIMESTONE.get());
-        stonecutterResultFromBase(consumer, DDBlocks.POLISHED_DARKSLATE_SLAB.get(), DDBlocks.DARKSLATE.get(), 2);
-        stonecutterResultFromBase(consumer, DDBlocks.POLISHED_ARIDROCK_SLAB.get(), DDBlocks.ARIDROCK.get(), 2);
-        stonecutterResultFromBase(consumer, DDBlocks.POLISHED_DUSKROCK_SLAB.get(), DDBlocks.DUSKROCK.get(), 2);
-        stonecutterResultFromBase(consumer, DDBlocks.POLISHED_GRIMESTONE_SLAB.get(), DDBlocks.GRIMESTONE.get(), 2);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, DDBlocks.SCORCHED_REMAINS_BLOCK.get())
+                .requires(Items.ROTTEN_FLESH)
+                .requires(Items.CHARCOAL)
+                .requires(Items.ROTTEN_FLESH)
+                .requires(Items.CHARCOAL)
+                .unlockedBy("has_rotten_flesh", has(Items.ROTTEN_FLESH))
+                .save(recipeConsumer);
 
-        stonecutterResultFromBase(consumer, DDBlocks.POLISHED_DARKSLATE_STAIRS.get(), DDBlocks.POLISHED_DARKSLATE.get());
-        stonecutterResultFromBase(consumer, DDBlocks.POLISHED_ARIDROCK_STAIRS.get(), DDBlocks.POLISHED_ARIDROCK.get());
-        stonecutterResultFromBase(consumer, DDBlocks.POLISHED_DUSKROCK_STAIRS.get(), DDBlocks.POLISHED_DUSKROCK.get());
-        stonecutterResultFromBase(consumer, DDBlocks.POLISHED_GRIMESTONE_STAIRS.get(), DDBlocks.POLISHED_GRIMESTONE.get());
-        stonecutterResultFromBase(consumer, DDBlocks.POLISHED_DARKSLATE_SLAB.get(), DDBlocks.POLISHED_DARKSLATE.get(), 2);
-        stonecutterResultFromBase(consumer, DDBlocks.POLISHED_ARIDROCK_SLAB.get(), DDBlocks.POLISHED_ARIDROCK.get(), 2);
-        stonecutterResultFromBase(consumer, DDBlocks.POLISHED_DUSKROCK_SLAB.get(), DDBlocks.POLISHED_DUSKROCK.get(), 2);
-        stonecutterResultFromBase(consumer, DDBlocks.POLISHED_GRIMESTONE_SLAB.get(), DDBlocks.POLISHED_GRIMESTONE.get(), 2);
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.DARKSLATE_STAIRS.get(), DDBlocks.DARKSLATE.get());
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.ARIDROCK_STAIRS.get(), DDBlocks.ARIDROCK.get());
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.DUSKROCK_STAIRS.get(), DDBlocks.DUSKROCK.get());
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.GRIMESTONE_STAIRS.get(), DDBlocks.GRIMESTONE.get());
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.DARKSLATE_SLAB.get(), DDBlocks.DARKSLATE.get(), 2);
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.ARIDROCK_SLAB.get(), DDBlocks.ARIDROCK.get(), 2);
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.DUSKROCK_SLAB.get(), DDBlocks.DUSKROCK.get(), 2);
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.GRIMESTONE_SLAB.get(), DDBlocks.GRIMESTONE.get(), 2);
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.DARKSLATE_WALL.get(), DDBlocks.DARKSLATE.get());
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.ARIDROCK_WALL.get(), DDBlocks.ARIDROCK.get());
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.DUSKROCK_WALL.get(), DDBlocks.DUSKROCK.get());
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.GRIMESTONE_WALL.get(), DDBlocks.GRIMESTONE.get());
 
-        stonecutterResultFromBase(consumer, DDBlocks.DARKSLATE_BRICKS.get(), DDBlocks.DARKSLATE.get());
-        stonecutterResultFromBase(consumer, DDBlocks.ARIDROCK_BRICKS.get(), DDBlocks.ARIDROCK.get());
-        stonecutterResultFromBase(consumer, DDBlocks.DUSKROCK_BRICKS.get(), DDBlocks.DUSKROCK.get());
-        stonecutterResultFromBase(consumer, DDBlocks.GRIMESTONE_BRICKS.get(), DDBlocks.GRIMESTONE.get());
-        stonecutterResultFromBase(consumer, DDBlocks.DARKSLATE_BRICKS_STAIRS.get(), DDBlocks.DARKSLATE.get());
-        stonecutterResultFromBase(consumer, DDBlocks.ARIDROCK_BRICKS_STAIRS.get(), DDBlocks.ARIDROCK.get());
-        stonecutterResultFromBase(consumer, DDBlocks.DUSKROCK_BRICKS_STAIRS.get(), DDBlocks.DUSKROCK.get());
-        stonecutterResultFromBase(consumer, DDBlocks.GRIMESTONE_BRICKS_STAIRS.get(), DDBlocks.GRIMESTONE.get());
-        stonecutterResultFromBase(consumer, DDBlocks.DARKSLATE_BRICKS_SLAB.get(), DDBlocks.DARKSLATE.get(), 2);
-        stonecutterResultFromBase(consumer, DDBlocks.ARIDROCK_BRICKS_SLAB.get(), DDBlocks.ARIDROCK.get(), 2);
-        stonecutterResultFromBase(consumer, DDBlocks.DUSKROCK_BRICKS_SLAB.get(), DDBlocks.DUSKROCK.get(), 2);
-        stonecutterResultFromBase(consumer, DDBlocks.GRIMESTONE_BRICKS_SLAB.get(), DDBlocks.GRIMESTONE.get(), 2);
-        stonecutterResultFromBase(consumer, DDBlocks.DARKSLATE_BRICKS_WALL.get(), DDBlocks.DARKSLATE.get());
-        stonecutterResultFromBase(consumer, DDBlocks.ARIDROCK_BRICKS_WALL.get(), DDBlocks.ARIDROCK.get());
-        stonecutterResultFromBase(consumer, DDBlocks.DUSKROCK_BRICKS_WALL.get(), DDBlocks.DUSKROCK.get());
-        stonecutterResultFromBase(consumer, DDBlocks.GRIMESTONE_BRICKS_WALL.get(), DDBlocks.GRIMESTONE.get());
-        stonecutterResultFromBase(consumer, DDBlocks.CHISELED_DARKSLATE_BRICKS.get(), DDBlocks.DARKSLATE.get());
-        stonecutterResultFromBase(consumer, DDBlocks.CHISELED_ARIDROCK_BRICKS.get(), DDBlocks.ARIDROCK.get());
-        stonecutterResultFromBase(consumer, DDBlocks.CHISELED_DUSKROCK_BRICKS.get(), DDBlocks.DUSKROCK.get());
-        stonecutterResultFromBase(consumer, DDBlocks.CHISELED_GRIMESTONE_BRICKS.get(), DDBlocks.GRIMESTONE.get());
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.POLISHED_DARKSLATE.get(), DDBlocks.DARKSLATE.get());
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.POLISHED_ARIDROCK.get(), DDBlocks.ARIDROCK.get());
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.POLISHED_DUSKROCK.get(), DDBlocks.DUSKROCK.get());
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.POLISHED_GRIMESTONE.get(), DDBlocks.GRIMESTONE.get());
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.POLISHED_DARKSLATE_STAIRS.get(), DDBlocks.DARKSLATE.get());
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.POLISHED_ARIDROCK_STAIRS.get(), DDBlocks.ARIDROCK.get());
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.POLISHED_DUSKROCK_STAIRS.get(), DDBlocks.DUSKROCK.get());
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.POLISHED_GRIMESTONE_STAIRS.get(), DDBlocks.GRIMESTONE.get());
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.POLISHED_DARKSLATE_SLAB.get(), DDBlocks.DARKSLATE.get(), 2);
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.POLISHED_ARIDROCK_SLAB.get(), DDBlocks.ARIDROCK.get(), 2);
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.POLISHED_DUSKROCK_SLAB.get(), DDBlocks.DUSKROCK.get(), 2);
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.POLISHED_GRIMESTONE_SLAB.get(), DDBlocks.GRIMESTONE.get(), 2);
 
-        stonecutterResultFromBase(consumer, DDBlocks.ARIDROCK_PILLAR.get(), DDBlocks.ARIDROCK.get());
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.POLISHED_DARKSLATE_STAIRS.get(), DDBlocks.POLISHED_DARKSLATE.get());
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.POLISHED_ARIDROCK_STAIRS.get(), DDBlocks.POLISHED_ARIDROCK.get());
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.POLISHED_DUSKROCK_STAIRS.get(), DDBlocks.POLISHED_DUSKROCK.get());
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.POLISHED_GRIMESTONE_STAIRS.get(), DDBlocks.POLISHED_GRIMESTONE.get());
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.POLISHED_DARKSLATE_SLAB.get(), DDBlocks.POLISHED_DARKSLATE.get(), 2);
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.POLISHED_ARIDROCK_SLAB.get(), DDBlocks.POLISHED_ARIDROCK.get(), 2);
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.POLISHED_DUSKROCK_SLAB.get(), DDBlocks.POLISHED_DUSKROCK.get(), 2);
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.POLISHED_GRIMESTONE_SLAB.get(), DDBlocks.POLISHED_GRIMESTONE.get(), 2);
 
-        stonecutterResultFromBase(consumer, DDBlocks.DARKSLATE_BRICKS.get(), DDBlocks.POLISHED_DARKSLATE.get());
-        stonecutterResultFromBase(consumer, DDBlocks.ARIDROCK_BRICKS.get(), DDBlocks.POLISHED_ARIDROCK.get());
-        stonecutterResultFromBase(consumer, DDBlocks.DUSKROCK_BRICKS.get(), DDBlocks.POLISHED_DUSKROCK.get());
-        stonecutterResultFromBase(consumer, DDBlocks.GRIMESTONE_BRICKS.get(), DDBlocks.POLISHED_GRIMESTONE.get());
-        stonecutterResultFromBase(consumer, DDBlocks.DARKSLATE_BRICKS_STAIRS.get(), DDBlocks.POLISHED_DARKSLATE.get());
-        stonecutterResultFromBase(consumer, DDBlocks.ARIDROCK_BRICKS_STAIRS.get(), DDBlocks.POLISHED_ARIDROCK.get());
-        stonecutterResultFromBase(consumer, DDBlocks.DUSKROCK_BRICKS_STAIRS.get(), DDBlocks.POLISHED_DUSKROCK.get());
-        stonecutterResultFromBase(consumer, DDBlocks.GRIMESTONE_BRICKS_STAIRS.get(), DDBlocks.POLISHED_GRIMESTONE.get());
-        stonecutterResultFromBase(consumer, DDBlocks.DARKSLATE_BRICKS_SLAB.get(), DDBlocks.POLISHED_DARKSLATE.get(), 2);
-        stonecutterResultFromBase(consumer, DDBlocks.ARIDROCK_BRICKS_SLAB.get(), DDBlocks.POLISHED_ARIDROCK.get(), 2);
-        stonecutterResultFromBase(consumer, DDBlocks.DUSKROCK_BRICKS_SLAB.get(), DDBlocks.POLISHED_DUSKROCK.get(), 2);
-        stonecutterResultFromBase(consumer, DDBlocks.GRIMESTONE_BRICKS_SLAB.get(), DDBlocks.POLISHED_GRIMESTONE.get(), 2);
-        stonecutterResultFromBase(consumer, DDBlocks.DARKSLATE_BRICKS_WALL.get(), DDBlocks.POLISHED_DARKSLATE.get());
-        stonecutterResultFromBase(consumer, DDBlocks.ARIDROCK_BRICKS_WALL.get(), DDBlocks.POLISHED_ARIDROCK.get());
-        stonecutterResultFromBase(consumer, DDBlocks.DUSKROCK_BRICKS_WALL.get(), DDBlocks.POLISHED_DUSKROCK.get());
-        stonecutterResultFromBase(consumer, DDBlocks.GRIMESTONE_BRICKS_WALL.get(), DDBlocks.POLISHED_GRIMESTONE.get());
-        stonecutterResultFromBase(consumer, DDBlocks.CHISELED_DARKSLATE_BRICKS.get(), DDBlocks.POLISHED_DARKSLATE.get());
-        stonecutterResultFromBase(consumer, DDBlocks.CHISELED_ARIDROCK_BRICKS.get(), DDBlocks.POLISHED_ARIDROCK.get());
-        stonecutterResultFromBase(consumer, DDBlocks.CHISELED_DUSKROCK_BRICKS.get(), DDBlocks.POLISHED_DUSKROCK.get());
-        stonecutterResultFromBase(consumer, DDBlocks.CHISELED_GRIMESTONE_BRICKS.get(), DDBlocks.POLISHED_GRIMESTONE.get());
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.DARKSLATE_BRICKS.get(), DDBlocks.DARKSLATE.get());
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.ARIDROCK_BRICKS.get(), DDBlocks.ARIDROCK.get());
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.DUSKROCK_BRICKS.get(), DDBlocks.DUSKROCK.get());
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.GRIMESTONE_BRICKS.get(), DDBlocks.GRIMESTONE.get());
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.DARKSLATE_BRICKS_STAIRS.get(), DDBlocks.DARKSLATE.get());
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.ARIDROCK_BRICKS_STAIRS.get(), DDBlocks.ARIDROCK.get());
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.DUSKROCK_BRICKS_STAIRS.get(), DDBlocks.DUSKROCK.get());
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.GRIMESTONE_BRICKS_STAIRS.get(), DDBlocks.GRIMESTONE.get());
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.DARKSLATE_BRICKS_SLAB.get(), DDBlocks.DARKSLATE.get(), 2);
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.ARIDROCK_BRICKS_SLAB.get(), DDBlocks.ARIDROCK.get(), 2);
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.DUSKROCK_BRICKS_SLAB.get(), DDBlocks.DUSKROCK.get(), 2);
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.GRIMESTONE_BRICKS_SLAB.get(), DDBlocks.GRIMESTONE.get(), 2);
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.DARKSLATE_BRICKS_WALL.get(), DDBlocks.DARKSLATE.get());
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.ARIDROCK_BRICKS_WALL.get(), DDBlocks.ARIDROCK.get());
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.DUSKROCK_BRICKS_WALL.get(), DDBlocks.DUSKROCK.get());
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.GRIMESTONE_BRICKS_WALL.get(), DDBlocks.GRIMESTONE.get());
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.CHISELED_DARKSLATE_BRICKS.get(), DDBlocks.DARKSLATE.get());
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.CHISELED_ARIDROCK_BRICKS.get(), DDBlocks.ARIDROCK.get());
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.CHISELED_DUSKROCK_BRICKS.get(), DDBlocks.DUSKROCK.get());
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.CHISELED_GRIMESTONE_BRICKS.get(), DDBlocks.GRIMESTONE.get());
 
-        stonecutterResultFromBase(consumer, DDBlocks.DARKSLATE_BRICKS_STAIRS.get(), DDBlocks.DARKSLATE_BRICKS.get());
-        stonecutterResultFromBase(consumer, DDBlocks.ARIDROCK_BRICKS_STAIRS.get(), DDBlocks.ARIDROCK_BRICKS.get());
-        stonecutterResultFromBase(consumer, DDBlocks.DUSKROCK_BRICKS_STAIRS.get(), DDBlocks.DUSKROCK_BRICKS.get());
-        stonecutterResultFromBase(consumer, DDBlocks.GRIMESTONE_BRICKS_STAIRS.get(), DDBlocks.GRIMESTONE_BRICKS.get());
-        stonecutterResultFromBase(consumer, DDBlocks.DARKSLATE_BRICKS_SLAB.get(), DDBlocks.DARKSLATE_BRICKS.get(), 2);
-        stonecutterResultFromBase(consumer, DDBlocks.ARIDROCK_BRICKS_SLAB.get(), DDBlocks.ARIDROCK_BRICKS.get(), 2);
-        stonecutterResultFromBase(consumer, DDBlocks.DUSKROCK_BRICKS_SLAB.get(), DDBlocks.DUSKROCK_BRICKS.get(), 2);
-        stonecutterResultFromBase(consumer, DDBlocks.GRIMESTONE_BRICKS_SLAB.get(), DDBlocks.GRIMESTONE_BRICKS.get(), 2);
-        stonecutterResultFromBase(consumer, DDBlocks.DARKSLATE_BRICKS_WALL.get(), DDBlocks.DARKSLATE_BRICKS.get());
-        stonecutterResultFromBase(consumer, DDBlocks.ARIDROCK_BRICKS_WALL.get(), DDBlocks.ARIDROCK_BRICKS.get());
-        stonecutterResultFromBase(consumer, DDBlocks.DUSKROCK_BRICKS_WALL.get(), DDBlocks.DUSKROCK_BRICKS.get());
-        stonecutterResultFromBase(consumer, DDBlocks.GRIMESTONE_BRICKS_WALL.get(), DDBlocks.GRIMESTONE_BRICKS.get());
-        stonecutterResultFromBase(consumer, DDBlocks.CHISELED_DARKSLATE_BRICKS.get(), DDBlocks.DARKSLATE_BRICKS.get());
-        stonecutterResultFromBase(consumer, DDBlocks.CHISELED_ARIDROCK_BRICKS.get(), DDBlocks.ARIDROCK_BRICKS.get());
-        stonecutterResultFromBase(consumer, DDBlocks.CHISELED_DUSKROCK_BRICKS.get(), DDBlocks.DUSKROCK_BRICKS.get());
-        stonecutterResultFromBase(consumer, DDBlocks.CHISELED_GRIMESTONE_BRICKS.get(), DDBlocks.GRIMESTONE_BRICKS.get());
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.ARIDROCK_PILLAR.get(), DDBlocks.ARIDROCK.get());
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.GRIMESTONE_PILLAR.get(), DDBlocks.GRIMESTONE.get());
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.DARKSLATE_PILLAR.get(), DDBlocks.DARKSLATE.get());
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.DUSKROCK_PILLAR.get(), DDBlocks.DUSKROCK.get());
 
-        stonecutterResultFromBase(consumer, DDBlocks.ARIDROCK_PILLAR.get(), DDBlocks.POLISHED_ARIDROCK.get());
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.DARKSLATE_BRICKS.get(), DDBlocks.POLISHED_DARKSLATE.get());
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.ARIDROCK_BRICKS.get(), DDBlocks.POLISHED_ARIDROCK.get());
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.DUSKROCK_BRICKS.get(), DDBlocks.POLISHED_DUSKROCK.get());
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.GRIMESTONE_BRICKS.get(), DDBlocks.POLISHED_GRIMESTONE.get());
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.DARKSLATE_BRICKS_STAIRS.get(), DDBlocks.POLISHED_DARKSLATE.get());
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.ARIDROCK_BRICKS_STAIRS.get(), DDBlocks.POLISHED_ARIDROCK.get());
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.DUSKROCK_BRICKS_STAIRS.get(), DDBlocks.POLISHED_DUSKROCK.get());
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.GRIMESTONE_BRICKS_STAIRS.get(), DDBlocks.POLISHED_GRIMESTONE.get());
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.DARKSLATE_BRICKS_SLAB.get(), DDBlocks.POLISHED_DARKSLATE.get(), 2);
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.ARIDROCK_BRICKS_SLAB.get(), DDBlocks.POLISHED_ARIDROCK.get(), 2);
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.DUSKROCK_BRICKS_SLAB.get(), DDBlocks.POLISHED_DUSKROCK.get(), 2);
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.GRIMESTONE_BRICKS_SLAB.get(), DDBlocks.POLISHED_GRIMESTONE.get(), 2);
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.DARKSLATE_BRICKS_WALL.get(), DDBlocks.POLISHED_DARKSLATE.get());
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.ARIDROCK_BRICKS_WALL.get(), DDBlocks.POLISHED_ARIDROCK.get());
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.DUSKROCK_BRICKS_WALL.get(), DDBlocks.POLISHED_DUSKROCK.get());
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.GRIMESTONE_BRICKS_WALL.get(), DDBlocks.POLISHED_GRIMESTONE.get());
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.CHISELED_DARKSLATE_BRICKS.get(), DDBlocks.POLISHED_DARKSLATE.get());
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.CHISELED_ARIDROCK_BRICKS.get(), DDBlocks.POLISHED_ARIDROCK.get());
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.CHISELED_DUSKROCK_BRICKS.get(), DDBlocks.POLISHED_DUSKROCK.get());
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.CHISELED_GRIMESTONE_BRICKS.get(), DDBlocks.POLISHED_GRIMESTONE.get());
+
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.DARKSLATE_BRICKS_STAIRS.get(), DDBlocks.DARKSLATE_BRICKS.get());
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.ARIDROCK_BRICKS_STAIRS.get(), DDBlocks.ARIDROCK_BRICKS.get());
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.DUSKROCK_BRICKS_STAIRS.get(), DDBlocks.DUSKROCK_BRICKS.get());
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.GRIMESTONE_BRICKS_STAIRS.get(), DDBlocks.GRIMESTONE_BRICKS.get());
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.DARKSLATE_BRICKS_SLAB.get(), DDBlocks.DARKSLATE_BRICKS.get(), 2);
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.ARIDROCK_BRICKS_SLAB.get(), DDBlocks.ARIDROCK_BRICKS.get(), 2);
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.DUSKROCK_BRICKS_SLAB.get(), DDBlocks.DUSKROCK_BRICKS.get(), 2);
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.GRIMESTONE_BRICKS_SLAB.get(), DDBlocks.GRIMESTONE_BRICKS.get(), 2);
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.DARKSLATE_BRICKS_WALL.get(), DDBlocks.DARKSLATE_BRICKS.get());
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.ARIDROCK_BRICKS_WALL.get(), DDBlocks.ARIDROCK_BRICKS.get());
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.DUSKROCK_BRICKS_WALL.get(), DDBlocks.DUSKROCK_BRICKS.get());
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.GRIMESTONE_BRICKS_WALL.get(), DDBlocks.GRIMESTONE_BRICKS.get());
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.CHISELED_DARKSLATE_BRICKS.get(), DDBlocks.DARKSLATE_BRICKS.get());
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.CHISELED_ARIDROCK_BRICKS.get(), DDBlocks.ARIDROCK_BRICKS.get());
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.CHISELED_DUSKROCK_BRICKS.get(), DDBlocks.DUSKROCK_BRICKS.get());
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.CHISELED_GRIMESTONE_BRICKS.get(), DDBlocks.GRIMESTONE_BRICKS.get());
+
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.ARIDROCK_PILLAR.get(), DDBlocks.POLISHED_ARIDROCK.get());
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.GRIMESTONE_PILLAR.get(), DDBlocks.POLISHED_GRIMESTONE.get());
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.DARKSLATE_PILLAR.get(), DDBlocks.POLISHED_DARKSLATE.get());
+        stonecutterResultFromBase(recipeConsumer, DDBlocks.DUSKROCK_PILLAR.get(), DDBlocks.POLISHED_DUSKROCK.get());
 
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.DECORATIONS, DDItems.ROPE.get(), 12)
@@ -415,7 +442,7 @@ public class DDRecipeProvider extends RecipeProvider {
                 .pattern(" ##")
                 .pattern("#G#")
                 .pattern("## ")
-                .unlockedBy("has_string", has(Items.STRING)).save(consumer);
+                .unlockedBy("has_string", has(Items.STRING)).save(recipeConsumer);
 
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.MISC, DDItems.VOID_SOUL_REQUIEM.get(), 1)
@@ -424,7 +451,7 @@ public class DDRecipeProvider extends RecipeProvider {
                 .pattern(" B ")
                 .pattern("BAB")
                 .pattern(" B ")
-                .unlockedBy("has_amber", has(DDItems.AMBER.get())).save(consumer);
+                .unlockedBy("has_amber", has(DDItems.AMBER.get())).save(recipeConsumer);
 
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.MISC, DDItems.VOID_SOUL_TORCH.get(), 4)
@@ -434,7 +461,7 @@ public class DDRecipeProvider extends RecipeProvider {
                 .pattern("B")
                 .pattern("C")
                 .pattern("A")
-                .unlockedBy("has_void_soul_jar", has(DDItems.AMBER.get())).save(consumer);
+                .unlockedBy("has_void_soul_jar", has(DDItems.AMBER.get())).save(recipeConsumer);
 
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.MISC, DDBlocks.DEATH_ANCHOR.get().asItem())
@@ -446,7 +473,7 @@ public class DDRecipeProvider extends RecipeProvider {
                 .pattern("DRD")
                 .pattern("DOD")
                 .unlockedBy("has_forsaken_bronze_ingot", has(DDItems.FORSAKEN_BRONZE_INGOT.get()))
-                .save(consumer);
+                .save(recipeConsumer);
 
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.MISC, DDBlocks.TOMB.get().asItem())
@@ -457,7 +484,7 @@ public class DDRecipeProvider extends RecipeProvider {
                 .pattern("DDD")
                 .pattern("SSS")
                 .unlockedBy("has_forsaken_bronze_ingot", has(DDItems.FORSAKEN_BRONZE_INGOT.get()))
-                .save(consumer);
+                .save(recipeConsumer);
 
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.COMBAT, DDItems.STILETTO.get())
@@ -467,7 +494,7 @@ public class DDRecipeProvider extends RecipeProvider {
                 .pattern("B")
                 .pattern("S")
                 .unlockedBy("has_forsaken_bronze_ingot", has(DDItems.FORSAKEN_BRONZE_INGOT.get()))
-                .save(consumer);
+                .save(recipeConsumer);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, DDBlocks.SKULL_WALL.get(), 4)
                 .define('#', DDBlocks.ARIDROCK.get())
@@ -475,17 +502,19 @@ public class DDRecipeProvider extends RecipeProvider {
                 .pattern(" # ")
                 .pattern("#X#")
                 .pattern(" # ")
-                .unlockedBy("has_aridrock", has(DDBlocks.ARIDROCK.get())).save(consumer);
+                .unlockedBy("has_aridrock", has(DDBlocks.ARIDROCK.get())).save(recipeConsumer);
+
     }
 
-    protected static void stonecutterResultFromBase(Consumer<FinishedRecipe> consumer, ItemLike result, ItemLike ingredient) {
-        stonecutterResultFromBase(consumer, result, ingredient, 1);
+
+    protected static void stonecutterResultFromBase(Consumer<FinishedRecipe> recipeConsumer, ItemLike result, ItemLike ingredient) {
+        stonecutterResultFromBase(recipeConsumer, result, ingredient, 1);
     }
 
-    protected static void stonecutterResultFromBase(Consumer<FinishedRecipe> consumer, ItemLike result, ItemLike ingredient, int count) {
+    protected static void stonecutterResultFromBase(Consumer<FinishedRecipe> recipeConsumer, ItemLike result, ItemLike ingredient, int count) {
         SingleItemRecipeBuilder.stonecutting(Ingredient.of(ingredient), RecipeCategory.BUILDING_BLOCKS, result, count)
                 .unlockedBy(getHasName(ingredient), has(ingredient))
-                .save(consumer, DarkerDepths.id(getConversionRecipeName(result, ingredient) + "_stonecutting"));
+                .save(recipeConsumer, DarkerDepths.id(getConversionRecipeName(result, ingredient) + "_stonecutting"));
     }
 
     protected static String getConversionRecipeName(ItemLike result, ItemLike ingredient) {
@@ -493,86 +522,116 @@ public class DDRecipeProvider extends RecipeProvider {
     }
 
     protected static String getItemName(ItemLike item) {
-        return ForgeRegistries.ITEMS.getKey(item.asItem()).getPath();
+        return BuiltInRegistries.ITEM.getKey(item.asItem()).getPath();
     }
 
-    private void chiseled(Consumer<FinishedRecipe> consumer, Item slab, Item result) {
+    private void chiseled(Consumer<FinishedRecipe> recipeConsumer, Item slab, Item result) {
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, result)
                 .define('#', slab)
                 .pattern("#")
                 .pattern("#")
                 .unlockedBy("has_" + BuiltInRegistries.ITEM.getKey(slab).getPath(), has(slab))
-                .save(consumer);
+                .save(recipeConsumer);
     }
 
-    private void wallBlock(Consumer<FinishedRecipe> consumer, ItemLike result, Item item) {
+    private void wallBlock(Consumer<FinishedRecipe> recipeConsumer, ItemLike result, Item item) {
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.BUILDING_BLOCKS, result, 6)
                 .define('#', item)
                 .pattern("###")
                 .pattern("###")
-                .unlockedBy("has_" + BuiltInRegistries.ITEM.getKey(item).getPath(), has(item)).save(consumer);
+                .unlockedBy("has_" + BuiltInRegistries.ITEM.getKey(item).getPath(), has(item)).save(recipeConsumer);
     }
 
-    private void twoXtwo(Consumer<FinishedRecipe> consumer, ItemLike result, Item item, int count) {
+    private void twoXtwo(Consumer<FinishedRecipe> recipeConsumer, ItemLike result, Item item, int count) {
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.BUILDING_BLOCKS, result, count)
                 .define('S', item)
                 .pattern("SS")
                 .pattern("SS")
-                .unlockedBy("has_" + BuiltInRegistries.ITEM.getKey(item).getPath(), has(item)).save(consumer);
+                .unlockedBy("has_" + BuiltInRegistries.ITEM.getKey(item).getPath(), has(item)).save(recipeConsumer);
     }
 
-    
 
-    private void threeXthree(Consumer<FinishedRecipe> consumer, ItemLike result, Item item) {
+
+    private void threeXthree(Consumer<FinishedRecipe> recipeConsumer, ItemLike result, Item item) {
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.BUILDING_BLOCKS, result)
                 .define('S', item)
                 .pattern("SSS")
                 .pattern("SSS")
                 .pattern("SSS")
-                .unlockedBy("has_" + BuiltInRegistries.ITEM.getKey(item).getPath(), has(item)).save(consumer);
+                .unlockedBy("has_" + BuiltInRegistries.ITEM.getKey(item).getPath(), has(item)).save(recipeConsumer);
     }
 
-    private void stairsBlock(Consumer<FinishedRecipe> consumer, ItemLike result, Item item) {
+    private void stairsBlock(Consumer<FinishedRecipe> recipeConsumer, ItemLike result, Item item) {
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.BUILDING_BLOCKS, result, 4)
                 .define('#', item)
                 .pattern("#  ")
                 .pattern("## ")
                 .pattern("###")
-                .unlockedBy("has_" + BuiltInRegistries.ITEM.getKey(item).getPath(), has(item)).save(consumer);
+                .unlockedBy("has_" + BuiltInRegistries.ITEM.getKey(item).getPath(), has(item)).save(recipeConsumer);
     }
 
-    private void fenceBlock(Consumer<FinishedRecipe> consumer, ItemLike result, Item item) {
+    private void fenceBlock(Consumer<FinishedRecipe> recipeConsumer, ItemLike result, Item item) {
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.BUILDING_BLOCKS, result, 3)
                 .define('#', item)
                 .define('S', Items.STICK)
                 .pattern("#S#")
                 .pattern("#S#")
-                .unlockedBy("has_" + BuiltInRegistries.ITEM.getKey(item).getPath(), has(item)).save(consumer);
+                .unlockedBy("has_" + BuiltInRegistries.ITEM.getKey(item).getPath(), has(item)).save(recipeConsumer);
     }
 
-    private void slabBlock(Consumer<FinishedRecipe> consumer, ItemLike result, Item item) {
+    private void slabBlock(Consumer<FinishedRecipe> recipeConsumer, ItemLike result, Item item) {
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.BUILDING_BLOCKS, result, 6)
                 .define('#', item)
                 .pattern("###")
-                .unlockedBy("has_" + BuiltInRegistries.ITEM.getKey(item).getPath(), has(item)).save(consumer);
+                .unlockedBy("has_" + BuiltInRegistries.ITEM.getKey(item).getPath(), has(item)).save(recipeConsumer);
     }
 
-    private void pillarBlock(Consumer<FinishedRecipe> consumer, ItemLike result, Item item) {
+    private void pillarBlock(Consumer<FinishedRecipe> recipeConsumer, ItemLike result, Item item) {
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.BUILDING_BLOCKS, result, 2)
                 .define('#', item)
                 .pattern("#")
                 .pattern("#")
-                .unlockedBy("has_" + BuiltInRegistries.ITEM.getKey(item).getPath(), has(item)).save(consumer);
+                .unlockedBy("has_" + BuiltInRegistries.ITEM.getKey(item).getPath(), has(item)).save(recipeConsumer);
     }
 
-    private void hangingSignBlock(Consumer<FinishedRecipe> consumer, ItemLike result, Item strippedLog, Item chain) {
+    private void trimmedPlanksBlock(Consumer<FinishedRecipe> recipeConsumer, ItemLike result, Item planks) {
+        ShapedRecipeBuilder
+                .shaped(RecipeCategory.BUILDING_BLOCKS, result, 3)
+                .define('#', planks)
+                .pattern("#")
+                .pattern("#")
+                .pattern("#")
+                .unlockedBy("has_" + BuiltInRegistries.ITEM.getKey(planks).getPath(), has(planks)).save(recipeConsumer);
+    }
+
+    private void bookshelfBlock(Consumer<FinishedRecipe> recipeConsumer, ItemLike result, Item planks) {
+        ShapedRecipeBuilder
+                .shaped(RecipeCategory.BUILDING_BLOCKS, result, 1)
+                .define('#', planks)
+                .define('b', Items.BOOK)
+                .pattern("###")
+                .pattern("bbb")
+                .pattern("###")
+                .unlockedBy("has_" + BuiltInRegistries.ITEM.getKey(planks).getPath(), has(planks)).save(recipeConsumer);
+    }
+
+    private void boardsBlock(Consumer<FinishedRecipe> recipeConsumer, ItemLike result, Item planks, Item slab) {
+        ShapedRecipeBuilder
+                .shaped(RecipeCategory.BUILDING_BLOCKS, result, 1)
+                .define('#', slab)
+                .pattern("#")
+                .pattern("#")
+                .unlockedBy("has_" + BuiltInRegistries.ITEM.getKey(planks).getPath(), has(planks)).save(recipeConsumer);
+    }
+
+    private void hangingSignBlock(Consumer<FinishedRecipe> recipeConsumer, ItemLike result, Item strippedLog, Item chain) {
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.BUILDING_BLOCKS, result, 6)
                 .define('#', strippedLog)
@@ -580,7 +639,7 @@ public class DDRecipeProvider extends RecipeProvider {
                 .pattern("! !")
                 .pattern("###")
                 .pattern("###")
-                .unlockedBy("has_" + BuiltInRegistries.ITEM.getKey(strippedLog).getPath(), has(strippedLog)).save(consumer);
+                .unlockedBy("has_" + BuiltInRegistries.ITEM.getKey(strippedLog).getPath(), has(strippedLog)).save(recipeConsumer);
     }
 
     protected static void oreSmelting(Consumer<FinishedRecipe> consumer, List<ItemLike> items, RecipeCategory recipeCategory, ItemLike p_176594_, float p_176595_, int p_176596_, String p_176597_) {
@@ -601,10 +660,10 @@ public class DDRecipeProvider extends RecipeProvider {
         }
     }
 
-    private void shaplessOne(Consumer<FinishedRecipe> consumer, Item result, Item item, int count) {
+    private void shaplessOne(Consumer<FinishedRecipe> recipeConsumer, Item result, Item item, int count) {
         ShapelessRecipeBuilder
                 .shapeless(RecipeCategory.MISC, result, count)
                 .requires(item)
-                .unlockedBy("has_" + BuiltInRegistries.ITEM.getKey(item).getPath(), has(item)).save(consumer);
+                .unlockedBy("has_" + BuiltInRegistries.ITEM.getKey(item).getPath(), has(item)).save(recipeConsumer);
     }
 }

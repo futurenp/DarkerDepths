@@ -1,6 +1,7 @@
 package com.naterbobber.darkerdepths.entities;
 
 import com.naterbobber.darkerdepths.init.DDEntityTypes;
+import com.naterbobber.darkerdepths.init.DDParticleTypes;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -35,7 +36,7 @@ public abstract class VoidSoulMonster extends Monster {
     public void die(DamageSource pDamageSource) {
         if (!this.level().isClientSide()) {
             ServerLevel serverLevel = (ServerLevel) this.level();
-            ParticleOptions particle = ParticleTypes.LARGE_SMOKE;
+            ParticleOptions particle = DDParticleTypes.VOID_SOUL_DEATH.get();
             serverLevel.sendParticles(
                     particle,
                     this.getX(),
@@ -45,7 +46,7 @@ public abstract class VoidSoulMonster extends Monster {
                     this.getBbWidth() / 2.0,
                     this.getBbHeight() / 2.0,
                     this.getBbWidth() / 2.0,
-                    0.05
+                    0.04
             );
             VoidSoulEntity voidSoulEntity = DDEntityTypes.VOID_SOUL.get().create(serverLevel);
             if (voidSoulEntity != null) {

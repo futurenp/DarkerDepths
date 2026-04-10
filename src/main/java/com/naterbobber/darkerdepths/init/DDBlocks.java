@@ -68,8 +68,6 @@ public class DDBlocks {
 
     public static final RegistryObject<Block> PETRIFIED_PLANKS = registerBlock("petrified_planks",
             () -> new Block(PETRIFIED_PLANKS_PROPERTIES));
-    public static final RegistryObject<RotatedPillarBlock> PETRIFIED_BOARDS = registerCompatBlock(List.of(), "petrified_boards",
-            () -> new RotatedPillarBlock(PETRIFIED_PLANKS_PROPERTIES));
     public static final RegistryObject<Block> VERTICAL_PETRIFIED_PLANKS = registerCompatBlock(List.of(DDCompat.QUARK), "vertical_petrified_planks",
             () -> new Block(PETRIFIED_PLANKS_PROPERTIES));
 

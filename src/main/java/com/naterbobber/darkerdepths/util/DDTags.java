@@ -45,6 +45,7 @@ public class DDTags {
         public static final TagKey<Block> GEYSER_BYPASSES = TAGS.create("geyser_bypasses");
         public static final TagKey<Block> HUSKS_SPAWNABLE_ON = TAGS.create("husks_spawnable_on");
         public static final TagKey<Block> VERTICAL_PLANKS = TAGS.create("vertical_planks", DDCompat.QUARK);
+        public static final TagKey<Block> WOODEN_BOOKSHELVES = TAGS.create("wooden_bookshelves", DDCompat.QUARK);
         public static final TagKey<Block> VERTICAL_SLAB = TAGS.create("vertical_slab", DDCompat.QUARK);
         public static final TagKey<Block> STRIPPED_LOGS = TAGS.create("stripped_logs");
         public static final TagKey<Block> STRIPPED_WOODS = TAGS.create("stripped_woods");
@@ -80,6 +81,7 @@ public class DDTags {
 
         public static final TagKey<Biome> HAS_ROPE_MINE_FOREST = TAGS.create("has_structure/rope_mine_forest");
         public static final TagKey<Biome> HAS_ROPE_MINE_DESERT = TAGS.create("has_structure/rope_mine_desert");
+        public static final TagKey<Biome> HAS_PETRIFIED_MINESHAFT = TAGS.create("has_structure/petrified_mineshaft");
         public static final TagKey<Biome> CATACOMBS = TAGS.create("has_structure/catacombs");
     }
 
