@@ -1,5 +1,6 @@
 package com.naterbobber.darkerdepths.client.render.renderers;
 
+import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.client.models.ScorcherModel;
 import com.naterbobber.darkerdepths.client.render.DDRenderTypes;
 import com.naterbobber.darkerdepths.entities.ScorcherEntity;

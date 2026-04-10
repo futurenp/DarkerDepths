@@ -28,7 +28,6 @@ public class DDConfig {
     public static final ForgeConfigSpec.ConfigValue<Integer> GLOWSHROOM_FOREST_FOG_MIN;
     public static final ForgeConfigSpec.ConfigValue<Integer> GLOWSHROOM_FOREST_FOG_MAX;
 
-    public static final ForgeConfigSpec.ConfigValue<Boolean> PRIORITIZE_TERRABLENDER;
     public static final ForgeConfigSpec.ConfigValue<Boolean> USE_DEFAULTS_TERRABLENDER;
     public static final ForgeConfigSpec.ConfigValue<Integer> OVERWORLD_BIOME_WEIGHT_TERRABLENDER;
     public static final ForgeConfigSpec.ConfigValue<Boolean> DISABLE_HEATABLE_BLOCK_BAKING;
@@ -36,13 +35,6 @@ public class DDConfig {
 
 
     static {
-        BUILDER.push("Biome Provider");
-        PRIORITIZE_TERRABLENDER = BUILDER
-                .comment("If Terrablender and Biolith are installed at the same time, Terrablender is used by default. Set this to false to use Biolith.")
-                .comment("If only one is installed, Darker Depths will use whichever is available.")
-                .define("prioritize_terrablender", true);
-        BUILDER.pop();
-
         BUILDER.push("Biome Parameters");
         BUILDER.push("Terrablender");
         OVERWORLD_BIOME_WEIGHT_TERRABLENDER = BUILDER.comment("Darker Depths Terrablender region weight").defineInRange("weight", 4, 0, Integer.MAX_VALUE);
@@ -50,7 +42,6 @@ public class DDConfig {
                 .comment("Biome parameters are set to much more lenient values for Terrablender due to regions. To disable the defaults and use the config parameters, set this to false.")
                 .define("use_default_biome_params_terrablender", true);
         BUILDER.pop();
-        BUILDER.comment("These values will only be used when using biolith unless defaults for Terrablender are turned off.");
         var sandyCatacombsDefaults = new DDBiomeConfigBuilder.Defaults(
                 0.5, 0.9,
                 -0.8, -0.1,

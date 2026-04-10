@@ -13,6 +13,7 @@ import net.minecraft.nbt.ListTag;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlaceSettings;
@@ -51,7 +52,7 @@ public class TombProcessor extends StructureProcessor {
 
             BlockState tombState = DDBlocks.TOMB.get().defaultBlockState()
                     .setValue(TombBlock.PART, TombBlock.Part.FRONT_CENTER)
-                    .setValue(BlockStateProperties.FACING, facing)
+                    .setValue(HorizontalDirectionalBlock.FACING, facing)
                     .setValue(DDBlockStateProperties.INHABITED, true)
                     .setValue(BlockStateProperties.WATERLOGGED, level.getFluidState(worldPos).getType() == Fluids.WATER);
 

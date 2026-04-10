@@ -4,6 +4,7 @@ import com.mojang.serialization.Codec;
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Blocks;
@@ -31,26 +32,57 @@ public class LavaVegetationPatchFeature extends VegetationPatchFeature {
         BlockPos.MutableBlockPos mutable = new BlockPos.MutableBlockPos();
         Iterator<BlockPos> posIterator = landGroundPatch.iterator();
 
-        BlockPos positions;
+        BlockPos position;
         while (posIterator.hasNext()) {
-            positions = posIterator.next();
-            if (!isExposed(world, positions, mutable)) {
-                lavaGroundPatch.add(positions);
+            position = posIterator.next();
+
+            if(isOdd(position)) {
+                continue;
             }
+
+            if(isExposed(world, position, mutable)) {
+                continue;
+            }
+
+            if(isExposedCorner(world, position, mutable)) {
+                continue;
+            }
+
+            lavaGroundPatch.add(position);
         }
 
         posIterator = lavaGroundPatch.iterator();
 
         while (posIterator.hasNext()) {
-            positions = posIterator.next();
-            world.setBlock(positions, Blocks.LAVA.defaultBlockState(), 2);
+            position = posIterator.next();
+            world.setBlock(position, Blocks.LAVA.defaultBlockState(), 2);
         }
 
         return lavaGroundPatch;
     }
 
     private static boolean isExposed(WorldGenLevel world, BlockPos pos, BlockPos.MutableBlockPos mutable) {
-        return isExposedDirection(world, pos, mutable, Direction.NORTH) || isExposedDirection(world, pos, mutable, Direction.EAST) || isExposedDirection(world, pos, mutable, Direction.SOUTH) || isExposedDirection(world, pos, mutable, Direction.WEST) || isExposedDirection(world, pos, mutable, Direction.DOWN);
+        return isExposedDirection(world, pos, mutable, Direction.NORTH)
+                || isExposedDirection(world, pos, mutable, Direction.EAST)
+                || isExposedDirection(world, pos, mutable, Direction.SOUTH)
+                || isExposedDirection(world, pos, mutable, Direction.WEST)
+                || isExposedDirection(world, pos, mutable, Direction.DOWN);
+    }
+
+    private static boolean isExposedCorner(WorldGenLevel world, BlockPos pos, BlockPos.MutableBlockPos mutable) {
+        return isExposedPosition(world, pos, mutable, 1, 1)
+                || isExposedPosition(world, pos, mutable, 1, -1)
+                || isExposedPosition(world, pos, mutable, -1, -1)
+                || isExposedPosition(world, pos, mutable, -1, 1);
+    }
+
+    private static boolean isOdd(BlockPos pos) {
+        return pos.getY() % 2 != 0;
+    }
+
+    private static boolean isExposedPosition(WorldGenLevel world, BlockPos pos, BlockPos.MutableBlockPos mutable, int x, int z) {
+        mutable.setWithOffset(pos, x, 0, z);
+        return world.getBlockState(mutable).isAir() || world.getBlockState(mutable).is(BlockTags.REPLACEABLE);
     }
 
     private static boolean isExposedDirection(WorldGenLevel world, BlockPos pos, BlockPos.MutableBlockPos mutable, Direction direction) {
@@ -60,10 +92,10 @@ public class LavaVegetationPatchFeature extends VegetationPatchFeature {
 
     @Override
     protected boolean placeVegetation(WorldGenLevel world, VegetationPatchConfiguration config, ChunkGenerator generator, RandomSource random, BlockPos pos) {
-//        if (random.nextFloat() < 0.1F) {
-//            world.setBlock(pos.above(), DDBlocks.MAGMA_PAD.get().defaultBlockState().setValue(BlockStateProperties.HORIZONTAL_FACING, Direction.Plane.HORIZONTAL.getRandomDirection(random)), 2);
-//            return true;
-//        }
+        if (random.nextFloat() < 0.1F) {
+            world.setBlock(pos.above(), DDBlocks.MAGMA_PAD.get().defaultBlockState().setValue(BlockStateProperties.HORIZONTAL_FACING, Direction.Plane.HORIZONTAL.getRandomDirection(random)), 2);
+            return true;
+        }
         return random.nextFloat() < 0.035F && super.placeVegetation(world, config, generator, random, pos.below(2));
     }
 }

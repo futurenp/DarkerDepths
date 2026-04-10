@@ -7,6 +7,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource; // Re-import RandomSource if placeCluster uses it
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.Feature;
@@ -49,11 +50,11 @@ public class CatacombsLavaLiningFeature extends Feature<NoneFeatureConfiguration
                                     )) {
 
 
-                                world.setBlock(adjacentPos, DDBlocks.DARKSLATE.get().defaultBlockState(), 2);
+                                world.setBlock(adjacentPos, Blocks.SMOOTH_BASALT.defaultBlockState(), Block.UPDATE_CLIENTS);
                                 blocksPlaced++;
 
                                 if(world.getBlockState(adjacentPos.above()).is(DDBlocks.DRY_SPROUTS.get())){
-                                    world.setBlock(adjacentPos.above(), Blocks.AIR.defaultBlockState(), 2);
+                                    world.setBlock(adjacentPos.above(), Blocks.AIR.defaultBlockState(), Block.UPDATE_CLIENTS);
                                 }
 
                                 placeCluster(world, adjacentPos, random);
@@ -68,7 +69,6 @@ public class CatacombsLavaLiningFeature extends Feature<NoneFeatureConfiguration
 
     public void placeCluster(WorldGenLevel world, BlockPos centerPos, RandomSource random){
         int clusterRadius = 1 + random.nextInt(2);
-        int replacedCount = 0;
 
         for (int x = -clusterRadius; x <= clusterRadius; x++) {
             for (int y = -clusterRadius; y <= clusterRadius; y++) {
@@ -86,7 +86,6 @@ public class CatacombsLavaLiningFeature extends Feature<NoneFeatureConfiguration
                                 )) {
 
                             world.setBlock(currentClusterPos, DDBlocks.DUSKROCK.get().defaultBlockState(), 2);
-                            replacedCount++;
                         }
                     }
                 }

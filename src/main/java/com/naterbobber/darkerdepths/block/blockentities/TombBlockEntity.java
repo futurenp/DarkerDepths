@@ -15,6 +15,7 @@ import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -243,7 +244,7 @@ public class TombBlockEntity extends BlockEntity implements GeoBlockEntity, Cont
         BlockState state = this.getBlockState();
 
         if (state.getBlock() instanceof TombBlock) {
-            Direction facing = state.getValue(BlockStateProperties.FACING);
+            Direction facing = state.getValue(HorizontalDirectionalBlock.FACING);
 
             return switch (facing) {
                 case SOUTH -> new AABB(pos.offset(-2, -8, -1), pos.offset(3, 3, 8));

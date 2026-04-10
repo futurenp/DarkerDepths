@@ -60,6 +60,7 @@ public class DarkerDepths {
     private void commonSetup(final FMLCommonSetupEvent event) {
         DDNetwork.init();
         event.enqueueWork(DDVanillaIntegration::init);
+        event.enqueueWork(DDTerrablenderIntegration::init);
     }
 
     private void clientSetup(final FMLClientSetupEvent event) {
