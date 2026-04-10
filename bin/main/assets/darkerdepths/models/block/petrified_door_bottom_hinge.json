@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/door_bottom_rh",
-  "textures": {
-    "top": "darkerdepths:block/petrified_door_top",
-    "bottom": "darkerdepths:block/petrified_door_bottom"
-  }
-}

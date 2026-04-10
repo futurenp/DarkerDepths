@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/button_inventory",
-  "textures": {
-    "texture": "darkerdepths:block/petrified_planks"
-  }
-}

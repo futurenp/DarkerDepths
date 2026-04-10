@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/stairs",
-  "textures": {
-    "bottom": "darkerdepths:block/petrified_planks",
-    "top": "darkerdepths:block/petrified_planks",
-    "side": "darkerdepths:block/petrified_planks"
-  }
-}
