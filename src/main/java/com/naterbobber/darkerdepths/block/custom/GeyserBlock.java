@@ -1,7 +1,9 @@
 package com.naterbobber.darkerdepths.block.custom;
 
+import com.naterbobber.darkerdepths.block.DDBlockStateProperties;
 import com.naterbobber.darkerdepths.block.blockentities.GeyserBlockEntity;
 import com.naterbobber.darkerdepths.init.DDBlockEntityTypes;
+import com.naterbobber.darkerdepths.util.DDTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
@@ -13,12 +15,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.block.BaseEntityBlock;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.Mirror;
-import net.minecraft.world.level.block.RenderShape;
-import net.minecraft.world.level.block.Rotation;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -27,15 +24,27 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import org.jetbrains.annotations.Nullable;
 
 public class GeyserBlock extends BaseEntityBlock {
     public static final DirectionProperty FACING = BlockStateProperties.FACING;
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
+    public static final BooleanProperty BURSTING = DDBlockStateProperties.BURSTING;
+    private static final IntegerProperty HEAT_LEVEL = DDBlockStateProperties.HEAT_LEVEL;
+    private static final BooleanProperty BOOSTED = DDBlockStateProperties.BOOSTED;
+    private static final BooleanProperty ASH_PROVIDER = DDBlockStateProperties.PROVIDES_ASH;
 
     public GeyserBlock(Properties properties) {
         super(properties);
-        this.registerDefaultState(this.stateDefinition.any().setValue(POWERED, false).setValue(FACING, Direction.UP));
+        this.registerDefaultState(this.stateDefinition.any()
+                .setValue(POWERED, false)
+                .setValue(FACING, Direction.UP)
+                .setValue(BURSTING, false)
+                .setValue(HEAT_LEVEL, 0)
+                .setValue(BOOSTED, false)
+                .setValue(ASH_PROVIDER, false)
+        );
     }
 
     @Override
@@ -51,7 +60,11 @@ public class GeyserBlock extends BaseEntityBlock {
     @Nullable
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
-        return this.defaultBlockState().setValue(POWERED, context.getLevel().hasNeighborSignal(context.getClickedPos())).setValue(FACING, context.getClickedFace());
+        return this.defaultBlockState()
+                .setValue(POWERED, context.getLevel().hasNeighborSignal(context.getClickedPos()))
+                .setValue(FACING, context.getClickedFace())
+                .setValue(BOOSTED, checkModifier(context).isBoosted())
+                .setValue(ASH_PROVIDER, checkModifier(context).isAshProvider());
     }
 
     @Nullable
@@ -64,24 +77,36 @@ public class GeyserBlock extends BaseEntityBlock {
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level worldIn, BlockState state, BlockEntityType<T> blockEntityType) {
         if (worldIn.isClientSide) {
-            return !state.getValue(POWERED) ? createTickerHelper(blockEntityType, DDBlockEntityTypes.GEYSER.get(), GeyserBlockEntity::geyserTick) : null;
+            return createTickerHelper(blockEntityType, DDBlockEntityTypes.GEYSER.get(), (level, pos, blockState, blockEntity) -> blockEntity.clientTick(level, pos, blockState));
         } else {
-            return createTickerHelper(blockEntityType, DDBlockEntityTypes.GEYSER.get(), GeyserBlockEntity::geyserTick);
+            return createTickerHelper(blockEntityType, DDBlockEntityTypes.GEYSER.get(), (level, pos, blockState, blockEntity) -> blockEntity.tick(level, pos, blockState));
         }
     }
 
     @Override
-    public void neighborChanged(BlockState state, Level worldIn, BlockPos pos, Block p_60512_, BlockPos p_60513_, boolean p_60514_) {
-        if (!worldIn.isClientSide()) {
-            boolean isPowered = state.getValue(POWERED);
-            if (isPowered != worldIn.hasNeighborSignal(pos)) {
-                if (isPowered) {
-                    worldIn.scheduleTick(pos, this, 4);
-                } else {
-                    worldIn.setBlock(pos, state.cycle(POWERED), 2);
-                }
+    public void neighborChanged(BlockState state, Level worldIn, BlockPos pos, Block block, BlockPos fromPos, boolean p_60514_) {
+        if (worldIn.isClientSide()) return;
+
+        boolean isPowered = state.getValue(POWERED);
+        if (isPowered != worldIn.hasNeighborSignal(pos)) {
+            if (isPowered) {
+                worldIn.scheduleTick(pos, this, 4);
+            } else {
+                worldIn.setBlock(pos, state.cycle(POWERED), 2);
             }
         }
+
+        var currentModifier = checkModifier(worldIn, pos, state.getValue(FACING));
+
+        if(state.getValue(BOOSTED) == currentModifier.isBoosted() && state.getValue(ASH_PROVIDER) == currentModifier.isAshProvider()) {
+            return;
+        }
+
+        var newBlockState = state
+                .setValue(BOOSTED, currentModifier.isBoosted())
+                .setValue(ASH_PROVIDER, currentModifier.isAshProvider());
+
+        worldIn.setBlock(pos, newBlockState, 3);
     }
 
     @Override
@@ -89,99 +114,25 @@ public class GeyserBlock extends BaseEntityBlock {
         if (state.getValue(POWERED)) {
             if (!worldIn.hasNeighborSignal(pos)) {
                 worldIn.setBlock(pos, state.cycle(POWERED), 2);
-            } else {
 
+                var newState = worldIn.getBlockState(pos);
+                if(!state.getValue(BURSTING)) {
+                    GeyserBlockEntity.setBursting(worldIn, newState, pos, true);
+                }
             }
         }
     }
 
     @Override
     public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, RandomSource rand) {
-        if (!stateIn.getValue(POWERED)) {
-            this.addParticle(worldIn, rand, pos, stateIn.getValue(FACING));
-        }
-    }
+        double x = pos.getX(), y = pos.getY() + 1, z = pos.getZ();
+        float lavaSpeed = 2;
 
-    private void addParticle(Level worldIn, RandomSource rand, BlockPos pos, Direction facing) {
-        BlockPos frontState = null;
-
-        double x = pos.getX(), y = pos.getY(), z = pos.getZ();
-        double xSpeed = 0, ySpeed = 0, zSpeed = 0;
-        double speed = 0.07;
-        float lavaSpeedX = 2, lavaSpeedY = 2, lavaSpeedZ = 2, lavaSpeedFront = 2000;
-
-        switch (facing) {
-            case UP:
-                frontState = pos.above();
-                ySpeed = speed;
-                x += 0.5;
-                z += 0.5;
-                lavaSpeedY = lavaSpeedFront;
-                break;
-            case DOWN:
-                frontState = pos.below();
-                ySpeed = -speed;
-                x += 0.5;
-                z += 0.5;
-                lavaSpeedY = -lavaSpeedFront;
-                break;
-            case NORTH:
-                frontState = pos.north();
-                zSpeed = -speed;
-                y += 0.5;
-                x += 0.5;
-                lavaSpeedZ = lavaSpeedFront;
-                break;
-            case EAST:
-                frontState = pos.east();
-                xSpeed = speed;
-                y += 0.5;
-                x += 0.5;
-                z += 0.5;
-                lavaSpeedX = lavaSpeedFront;
-                break;
-            case SOUTH:
-                frontState = pos.south();
-                zSpeed = speed;
-                y += 0.5;
-                x += 0.5;
-                z += 0.5;
-                lavaSpeedZ = -lavaSpeedFront;
-                break;
-            case WEST:
-                frontState = pos.west();
-                xSpeed = -speed;
-                y += 0.5;
-                z += 0.5;
-                lavaSpeedX = -lavaSpeedFront;
-                break;
-        }
-
-        boolean waterlogged = worldIn.getBlockState(frontState).is(Blocks.WATER);
-
-        if (waterlogged) {
-            for (int i = 1; i < 7; i++) {
-                if (worldIn.isEmptyBlock(pos.above(i))) {
-                    worldIn.addParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE, x, y, z, xSpeed, ySpeed, zSpeed);
-                }
-            }
-            worldIn.addAlwaysVisibleParticle(ParticleTypes.BUBBLE_COLUMN_UP, x, y, z, xSpeed, ySpeed/2, zSpeed);
-            worldIn.addAlwaysVisibleParticle(ParticleTypes.BUBBLE_COLUMN_UP, x + (double)rand.nextFloat(), y + (double)rand.nextFloat(), z + (double)rand.nextFloat(), xSpeed, ySpeed/2, zSpeed);
-            if (rand.nextInt(200) == 0) {
-                worldIn.playLocalSound(x, y, z, SoundEvents.BUBBLE_COLUMN_UPWARDS_AMBIENT, SoundSource.BLOCKS, 0.2F + rand.nextFloat() * 0.2F, 0.9F + rand.nextFloat() * 0.15F, false);
-            }
-        } else {
-            worldIn.addParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE, x, y, z, xSpeed, ySpeed, zSpeed);
-            if (rand.nextInt(5) == 0) {
-                for (int i = 0; i < rand.nextInt(1) + 1; i++) {
-                    worldIn.addParticle(ParticleTypes.LAVA, x, y, z, rand.nextFloat() / lavaSpeedX, rand.nextFloat() / lavaSpeedY, rand.nextFloat() / lavaSpeedZ);
-                }
+        if (rand.nextInt(5) == 0) {
+            for (int i = 0; i < rand.nextInt(1) + 1; i++) {
+                worldIn.addParticle(ParticleTypes.LAVA, x, y, z, rand.nextFloat() / lavaSpeed, rand.nextFloat() / lavaSpeed, rand.nextFloat() / lavaSpeed);
             }
         }
-
-
-
-
     }
 
     @Override
@@ -189,21 +140,43 @@ public class GeyserBlock extends BaseEntityBlock {
         if (facing == Direction.UP && facingState.is(Blocks.WATER)) {
             worldIn.scheduleTick(currentPos, this, 20);
         }
+
         return super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
     }
 
     @Override
-    public void randomTick(BlockState p_60551_, ServerLevel worldIn, BlockPos pos, RandomSource rand) {
+    public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand) {
         BlockPos blockpos = pos.above();
-        if (worldIn.getFluidState(pos).is(FluidTags.WATER)) {
-            worldIn.playSound(null, pos, SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 0.5F, 2.6F + (worldIn.random.nextFloat() - worldIn.random.nextFloat()) * 0.8F);
-            worldIn.sendParticles(ParticleTypes.LARGE_SMOKE, (double)blockpos.getX() + 0.5D, (double)blockpos.getY() + 0.25D, (double)blockpos.getZ() + 0.5D, 8, 0.5D, 0.25D, 0.5D, 0.0D);
+        if (level.getFluidState(pos).is(FluidTags.WATER)) {
+            level.playSound(null, pos, SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 0.5F, 2.6F + (level.random.nextFloat() - level.random.nextFloat()) * 0.8F);
+            level.sendParticles(ParticleTypes.LARGE_SMOKE, (double)blockpos.getX() + 0.5D, (double)blockpos.getY() + 0.25D, (double)blockpos.getZ() + 0.5D, 8, 0.5D, 0.25D, 0.5D, 0.0D);
+        }
+
+        if(!state.getValue(BURSTING) && !state.getValue(POWERED)) {
+            GeyserBlockEntity.setBursting(level, state, pos, true);
         }
     }
 
     @Override
-    public void onPlace(BlockState p_60566_, Level worldIn, BlockPos pos, BlockState p_60569_, boolean p_60570_) {
-        worldIn.scheduleTick(pos, this, 1);
+    public void onPlace(BlockState blockState, Level level, BlockPos blockPos, BlockState oldState, boolean movedByPiston) {
+        level.scheduleTick(blockPos, this, 1);
+    }
+
+    private static Modifier checkModifier(BlockPlaceContext context) { {
+        return checkModifier(context.getLevel(), context.getClickedPos(), context.getClickedFace());
+    }}
+
+    private static Modifier checkModifier(Level level, BlockPos blockPos, Direction direction) {
+        var bottomPos = blockPos.relative(direction.getOpposite());
+        var blockState = level.getBlockState(bottomPos);
+
+        if(blockState.is(DDTags.Blocks.GEYSER_BOOSTERS)) {
+            return Modifier.BOOST;
+        } else if (blockState.is(DDTags.Blocks.GEYSER_ASH_PROVIDERS)) {
+            return Modifier.ASH;
+        } else {
+            return Modifier.NONE;
+        }
     }
 
     @Override
@@ -213,7 +186,21 @@ public class GeyserBlock extends BaseEntityBlock {
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(POWERED, FACING);
+        builder.add(POWERED, FACING, BURSTING, HEAT_LEVEL, BOOSTED, ASH_PROVIDER);
+    }
+
+    private enum Modifier {
+        BOOST,
+        ASH,
+        NONE;
+
+        private boolean isBoosted() {
+            return this == BOOST;
+        }
+
+        private boolean isAshProvider() {
+            return this == ASH;
+        }
     }
 
 }

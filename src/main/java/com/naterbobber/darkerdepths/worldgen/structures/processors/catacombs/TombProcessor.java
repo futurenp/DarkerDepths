@@ -1,6 +1,7 @@
 package com.naterbobber.darkerdepths.worldgen.structures.processors.catacombs;
 
 import com.mojang.serialization.Codec;
+import com.naterbobber.darkerdepths.block.DDBlockStateProperties;
 import com.naterbobber.darkerdepths.block.custom.TombBlock;
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import com.naterbobber.darkerdepths.init.DDItems;
@@ -50,9 +51,9 @@ public class TombProcessor extends StructureProcessor {
 
             BlockState tombState = DDBlocks.TOMB.get().defaultBlockState()
                     .setValue(TombBlock.PART, TombBlock.Part.FRONT_CENTER)
-                    .setValue(TombBlock.FACING, facing)
-                    .setValue(TombBlock.INHABITED, true)
-                    .setValue(TombBlock.WATERLOGGED, level.getFluidState(worldPos).getType() == Fluids.WATER);
+                    .setValue(BlockStateProperties.FACING, facing)
+                    .setValue(DDBlockStateProperties.INHABITED, true)
+                    .setValue(BlockStateProperties.WATERLOGGED, level.getFluidState(worldPos).getType() == Fluids.WATER);
 
             // Create NBT with the forsaken bronze scrap item
             CompoundTag nbt = new CompoundTag();

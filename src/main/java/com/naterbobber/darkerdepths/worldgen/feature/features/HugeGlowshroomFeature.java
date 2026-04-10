@@ -1,6 +1,7 @@
 package com.naterbobber.darkerdepths.worldgen.feature.features;
 
 import com.mojang.serialization.Codec;
+import com.naterbobber.darkerdepths.block.DDBlockStateProperties;
 import com.naterbobber.darkerdepths.block.custom.GlowshroomBlock;
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import com.naterbobber.darkerdepths.util.DDTags;
@@ -13,6 +14,7 @@ import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
@@ -120,9 +122,9 @@ public class HugeGlowshroomFeature extends Feature<NoneFeatureConfiguration> {
                                 int blockStateRandom = (int) (Math.random() * 3 + 1);
                                 if (glowshroomRandom == 0) {
                                     if(world.getBlockState(capPos).is(Blocks.WATER)){
-                                        this.setBlock(world, capPos, DDBlocks.GLOWSHROOM.get().defaultBlockState().setValue(GlowshroomBlock.GLOWSHROOM_CLUSTERS, blockStateRandom).setValue(GlowshroomBlock.WATERLOGGED, true));
+                                        this.setBlock(world, capPos, DDBlocks.GLOWSHROOM.get().defaultBlockState().setValue(DDBlockStateProperties.GLOWSHROOM_CLUSTERS, blockStateRandom).setValue(BlockStateProperties.WATERLOGGED, true));
                                     } else {
-                                        this.setBlock(world, capPos, DDBlocks.GLOWSHROOM.get().defaultBlockState().setValue(GlowshroomBlock.GLOWSHROOM_CLUSTERS, blockStateRandom));
+                                        this.setBlock(world, capPos, DDBlocks.GLOWSHROOM.get().defaultBlockState().setValue(DDBlockStateProperties.GLOWSHROOM_CLUSTERS, blockStateRandom));
                                     }
                                 }
                                 break;
@@ -226,9 +228,9 @@ public class HugeGlowshroomFeature extends Feature<NoneFeatureConfiguration> {
                                 int blockStateRandom = (int) (Math.random() * 3 + 1);
                                 if (glowshroomRandom == 0) {
                                     if(world.getBlockState(capPos).is(Blocks.WATER)){
-                                        this.setBlock(world, capPos, DDBlocks.GLOWSHROOM.get().defaultBlockState().setValue(GlowshroomBlock.GLOWSHROOM_CLUSTERS, blockStateRandom).setValue(GlowshroomBlock.WATERLOGGED, true));
+                                        this.setBlock(world, capPos, DDBlocks.GLOWSHROOM.get().defaultBlockState().setValue(DDBlockStateProperties.GLOWSHROOM_CLUSTERS, blockStateRandom).setValue(BlockStateProperties.WATERLOGGED, true));
                                     } else {
-                                        this.setBlock(world, capPos, DDBlocks.GLOWSHROOM.get().defaultBlockState().setValue(GlowshroomBlock.GLOWSHROOM_CLUSTERS, blockStateRandom));
+                                        this.setBlock(world, capPos, DDBlocks.GLOWSHROOM.get().defaultBlockState().setValue(DDBlockStateProperties.GLOWSHROOM_CLUSTERS, blockStateRandom));
                                     }
                                 }
                                 break;

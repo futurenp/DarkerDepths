@@ -1,5 +1,6 @@
 package com.naterbobber.darkerdepths.block.blockentities;
 
+import com.naterbobber.darkerdepths.block.DDBlockStateProperties;
 import com.naterbobber.darkerdepths.block.custom.TombBlock;
 import com.naterbobber.darkerdepths.init.DDBlockEntityTypes;
 import net.minecraft.core.BlockPos;
@@ -16,6 +17,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.phys.AABB;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoBlockEntity;
@@ -178,7 +180,7 @@ public class TombBlockEntity extends BlockEntity implements GeoBlockEntity, Cont
     }
 
     public boolean isInhabited() {
-        return this.getBlockState().getValue(TombBlock.INHABITED);
+        return this.getBlockState().getValue(DDBlockStateProperties.INHABITED);
     }
 
     private void startAnimation() {
@@ -241,7 +243,7 @@ public class TombBlockEntity extends BlockEntity implements GeoBlockEntity, Cont
         BlockState state = this.getBlockState();
 
         if (state.getBlock() instanceof TombBlock) {
-            Direction facing = state.getValue(TombBlock.FACING);
+            Direction facing = state.getValue(BlockStateProperties.FACING);
 
             return switch (facing) {
                 case SOUTH -> new AABB(pos.offset(-2, -8, -1), pos.offset(3, 3, 8));

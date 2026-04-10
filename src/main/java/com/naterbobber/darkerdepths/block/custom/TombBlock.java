@@ -1,5 +1,6 @@
 package com.naterbobber.darkerdepths.block.custom;
 
+import com.naterbobber.darkerdepths.block.DDBlockStateProperties;
 import com.naterbobber.darkerdepths.block.blockentities.TombBlockEntity;
 import com.naterbobber.darkerdepths.init.DDBlockEntityTypes;
 import com.naterbobber.darkerdepths.init.DDBlocks;
@@ -38,9 +39,9 @@ import org.jetbrains.annotations.Nullable;
 import java.util.*;
 
 public class TombBlock extends BaseEntityBlock implements SimpleWaterloggedBlock {
-    public static final BooleanProperty INHABITED = BooleanProperty.create("inhabited");
-    public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
-    public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
+    private static final BooleanProperty INHABITED = DDBlockStateProperties.INHABITED;
+    private static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
+    private static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     private record MultiblockPartData(BlockPos pos, BlockState state) {}
     private static final VoxelShape CORNER_PART = Shapes.or(
             Block.box(2, 0, 5, 16, 3, 16),

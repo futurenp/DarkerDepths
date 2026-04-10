@@ -1,5 +1,6 @@
 package com.naterbobber.darkerdepths.data.loot;
 
+import com.naterbobber.darkerdepths.block.DDBlockStateProperties;
 import com.naterbobber.darkerdepths.block.custom.AshBlock;
 import com.naterbobber.darkerdepths.block.custom.GlowshroomBlock;
 import com.naterbobber.darkerdepths.block.generic.VerticalSlabBlock;
@@ -43,7 +44,7 @@ public class DDBlockLoot extends BlockLootSubProvider {
         add(DDBlocks.AMBER_CLUSTER.get(), block -> createSingleItemTableWithSilkTouch(DDBlocks.AMBER_CLUSTER.get(), DDItems.AMBER.get()));
         add(DDBlocks.GLIMMERING_VINES.get(), block -> createShearsOrChanceBreakLoot(DDBlocks.GLIMMERING_VINES.get(), DDItems.GLOW_GRIME.get(), 0.3F));
         add(DDBlocks.GLIMMERING_VINE_PLANT.get(), block -> createShearsOrChanceBreakLoot(DDBlocks.GLIMMERING_VINES.get(), DDItems.GLOW_GRIME.get(), 0.3F));
-        add(DDBlocks.GLOWSHROOM.get(), block -> createStageBasedLoot(DDBlocks.GLOWSHROOM.get(), GlowshroomBlock.GLOWSHROOM_CLUSTERS));
+        add(DDBlocks.GLOWSHROOM.get(), block -> createStageBasedLoot(DDBlocks.GLOWSHROOM.get(), DDBlockStateProperties.GLOWSHROOM_CLUSTERS));
         add(DDBlocks.ASH.get(), block -> createStageBasedLoot(DDBlocks.ASH.get(), AshBlock.LAYERS));
         add(DDBlocks.POROUS_PETRIFIED_LOG.get(), block -> createSingleItemTableWithSilkTouch(DDBlocks.POROUS_PETRIFIED_LOG.get(), DDItems.AMBER.get(), UniformGenerator.between(2F, 5F)));
 //        add(DDBlocks.PETRIFIED_BOOKSHELF.get(), block -> createSingleItemTableWithSilkTouch(DDBlocks.PETRIFIED_BOOKSHELF.get(), Items.BOOK, ConstantValue.exactly(3.0F)));

@@ -179,7 +179,7 @@ public class GeyserBlockEntity extends BlockEntity implements HeatableBlock {
         boolean boosted = level.getBlockState(blockPos).getValue(BOOSTED);
         double boost = boostSpeed * direction.getAxisDirection().getStep() * (boosted ? 1.5 : 1);
 
-        var boostArea = AABB.encapsulatingFullBlocks(blockPos, blockPos.relative(direction, length));
+        var boostArea = new AABB(blockPos, blockPos.relative(direction, length));
         List<Entity> nearbyEntities = level.getEntitiesOfClass(Entity.class, boostArea);
 
         for (Entity entity : nearbyEntities) {
@@ -187,7 +187,7 @@ public class GeyserBlockEntity extends BlockEntity implements HeatableBlock {
 
             if(entity instanceof ServerPlayer player && player.isFallFlying()) {
                 boost *= 2;
-                DDCriteria.GEYSER_ELYTRA_BOOST.get().trigger(player);
+                DDCriteria.GEYSER_ELYTRA_BOOST.trigger(player);
             }
 
             double xBooster = direction.getAxis() == Direction.Axis.X ? boost : 0.0D;

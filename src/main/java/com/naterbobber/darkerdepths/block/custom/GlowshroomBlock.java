@@ -37,8 +37,8 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
 public class GlowshroomBlock extends Block implements BonemealableBlock, SimpleWaterloggedBlock {
-    public static final IntegerProperty GLOWSHROOM_CLUSTERS = DDBlockStateProperties.GLOWSHROOM_CLUSTERS;
-    public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
+    private static final IntegerProperty GLOWSHROOM_CLUSTERS = DDBlockStateProperties.GLOWSHROOM_CLUSTERS;
+    private static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     protected static final VoxelShape SHAPE_1 = Block.box(5.0D, 0.0D, 5.0D, 11.0D, 9.0D, 11.0D);
     protected static final VoxelShape SHAPE_2 = Block.box(3.0D, 0.0D, 3.0D, 13.0D, 9.0D, 13.0D);
     protected static final VoxelShape SHAPE_3 = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 10.0D, 14.0D);

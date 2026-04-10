@@ -2,8 +2,12 @@ package com.naterbobber.darkerdepths.block.custom;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.tags.FluidTags;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
@@ -22,7 +26,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class MagmaPadBlock extends Block {
     private static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
-    protected static final VoxelShape AABB = Block.box(1.0D, 0.0D, 1.0D, 15.0D, 1.5D, 15.0D);
+    protected static final VoxelShape AABB = Block.box(1.0D, -2D, 1.0D, 15.0D, -1D, 15.0D);
 
     public MagmaPadBlock(Properties properties) {
         super(properties);
@@ -32,6 +36,23 @@ public class MagmaPadBlock extends Block {
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(FACING);
+    }
+
+    @Override
+    public void stepOn(Level level, BlockPos pos, BlockState state, Entity entity) {
+        if (!entity.isSteppingCarefully() && entity instanceof LivingEntity) {
+            entity.hurt(level.damageSources().hotFloor(), 1.0F);
+        }
+
+        super.stepOn(level, pos, state, entity);
+    }
+
+    @Override
+    public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
+        if (!entity.isSteppingCarefully() && entity instanceof LivingEntity && entity.onGround() && entity.blockPosition().asLong() == BlockPos.offset(pos.asLong(), 0, -1, 0)) {
+            entity.hurt(level.damageSources().hotFloor(), 1.0F);
+        }
+        super.entityInside(state, level, pos, entity);
     }
 
     @Override
@@ -48,7 +69,7 @@ public class MagmaPadBlock extends Block {
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext ctx) {
         BlockState blockstate = super.getStateForPlacement(ctx);
-        return blockstate != null ? blockstate.setValue(FACING, ctx.getHorizontalDirection().getOpposite()) : null;
+        return blockstate != null ? blockstate.setValue(FACING, ctx.getHorizontalDirection()) : null;
     }
 
     @Override
@@ -58,8 +79,9 @@ public class MagmaPadBlock extends Block {
 
     @Override
     public boolean canSurvive(BlockState blockState, LevelReader level, BlockPos pos) {
-        FluidState fluidState = level.getFluidState(pos.below());
-        return level.getBlockState(pos.below()).isFaceSturdy(level, pos.below(), Direction.UP) || fluidState.is(Fluids.LAVA) && fluidState.isSource();
+        FluidState belowState = level.getFluidState(pos.below());
+        FluidState fluidState = level.getFluidState(pos);
+        return belowState.is(FluidTags.LAVA) && belowState.isSource() && fluidState.is(Fluids.EMPTY);
     }
 
     @Override

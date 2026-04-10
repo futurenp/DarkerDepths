@@ -1,6 +1,8 @@
 package com.naterbobber.darkerdepths.block.custom;
 
 import com.naterbobber.darkerdepths.block.blockentities.ParanoiaAltarBlockEntity;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import com.naterbobber.darkerdepths.init.DDBlockEntityTypes;
@@ -72,7 +74,15 @@ public class ParanoiaAltarBlock extends BaseEntityBlock  {
         if (itemStack.is(DDItems.VOID_SOUL_REQUIEM.get()) && state.getValue(LOCKED)) {
             level.setBlock(blockPos, state.setValue(LOCKED, false), 2);
             level.playSound(null, blockPos, SoundEvents.RESPAWN_ANCHOR_SET_SPAWN, SoundSource.BLOCKS, 1F, 2.0F);
-
+            if(level instanceof ServerLevel serverLevel) {
+                for(int i = 0; i < 10; i++) {
+                    var rand = level.getRandom();
+                    var x = blockPos.getX() + rand.nextDouble();
+                    var y = blockPos.getY() + rand.nextDouble();
+                    var z = blockPos.getZ() + rand.nextDouble();
+                    serverLevel.sendParticles(ParticleTypes.SMOKE, x, y, z, 5, 0, 1, 0, 0.05);
+                }
+            }
             if (!player.getAbilities().instabuild) itemStack.shrink(1);
 
             return InteractionResult.SUCCESS;

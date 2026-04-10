@@ -3,6 +3,7 @@ package com.naterbobber.darkerdepths.init;
 import com.google.common.collect.Maps;
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.block.DDBlockSetTypes;
+import com.naterbobber.darkerdepths.block.DDBlockStateProperties;
 import com.naterbobber.darkerdepths.block.custom.*;
 import com.naterbobber.darkerdepths.block.generic.*;
 import com.naterbobber.darkerdepths.compat.CompatID;
@@ -341,7 +342,7 @@ public class DDBlocks {
     public static final RegistryObject<Block> GLOWSHROOM_HEART = registerBlock("glowshroom_heart",
             () -> new Block(BlockBehaviour.Properties.of().strength(2.0f, 3.0f).sound(SoundType.SHROOMLIGHT).lightLevel(value -> 15)));
     public static final RegistryObject<GlowshroomBlock> GLOWSHROOM = registerBlock("glowshroom",
-            () -> new GlowshroomBlock(BlockBehaviour.Properties.of().strength(0.0F, 1.0F).sound(SoundType.SLIME_BLOCK).lightLevel((state) -> 3 + (2 * state.getValue(GlowshroomBlock.GLOWSHROOM_CLUSTERS))).noCollission()));
+            () -> new GlowshroomBlock(BlockBehaviour.Properties.of().strength(0.0F, 1.0F).sound(SoundType.SLIME_BLOCK).lightLevel((state) -> 3 + (2 * state.getValue(DDBlockStateProperties.GLOWSHROOM_CLUSTERS))).noCollission()));
     public static final RegistryObject<FlowerPotBlock> POTTED_GLOWSHROOM = registerNoTabBlock("potted_glowshroom",
             () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, GLOWSHROOM, BlockBehaviour.Properties.of().instabreak().noOcclusion()));
     public static final RegistryObject<GlowspursBlock> GLOWSPURS = registerBlock("glowspurs",

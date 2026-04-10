@@ -1,5 +1,6 @@
 package com.naterbobber.darkerdepths.block.custom;
 
+import com.naterbobber.darkerdepths.block.DDBlockStateProperties;
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -69,7 +70,7 @@ public class MossyGrimestoneBlock extends Block implements BonemealableBlock {
             if (blockstate2.isAir()) {
                 BlockState blockstate1;
                 if (rand.nextInt(10) == 0) {
-                    blockstate1 = DDBlocks.GLOWSHROOM.get().defaultBlockState().setValue(GlowshroomBlock.GLOWSHROOM_CLUSTERS, Mth.nextInt(rand, 1, 3));
+                    blockstate1 = DDBlocks.GLOWSHROOM.get().defaultBlockState().setValue(DDBlockStateProperties.GLOWSHROOM_CLUSTERS, Mth.nextInt(rand, 1, 3));
                 } else {
                     blockstate1 = DDBlocks.MOSSY_SPROUTS.get().defaultBlockState();
                 }

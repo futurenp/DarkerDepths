@@ -1,10 +1,13 @@
 package com.naterbobber.darkerdepths.block.custom;
 
 import com.naterbobber.darkerdepths.init.DDBlocks;
+import com.naterbobber.darkerdepths.init.DDParticleTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.util.ParticleUtils;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.GrowingPlantHeadBlock;
@@ -43,5 +46,13 @@ public class GlimmeringVinesBlock extends GrowingPlantHeadBlock {
     @Override
     protected Block getBodyBlock() {
         return DDBlocks.GLIMMERING_VINE_PLANT.get();
+    }
+
+    @Override
+    public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
+        if(random.nextFloat() > 0.15F) {
+            return;
+        }
+        ParticleUtils.spawnParticleBelow(level, pos, random, DDParticleTypes.GLOW_GLIMMER.get());
     }
 }
