@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "top=false,waterlogged=false": {
+      "model": "darkerdepths:block/chalk_pillar"
+    },
+    "top=false,waterlogged=true": {
+      "model": "darkerdepths:block/chalk_pillar"
+    },
+    "top=true,waterlogged=false": {
+      "model": "darkerdepths:block/chalk_pillar_top"
+    },
+    "top=true,waterlogged=true": {
+      "model": "darkerdepths:block/chalk_pillar_top"
+    }
+  }
+}

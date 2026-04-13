@@ -1,4 +1,4 @@
-// 1.21.1	2026-04-08T16:59:35.4042601	Loot Tables
+// 1.21.1	2026-04-13T12:12:01.7925381	Loot Tables
 69a68443e41c0ea8610b4ece66b6a6a3bff163d0 data/darkerdepths/loot_table/archaeology/catacombs/standard.json
 b26089f15d136d6d0b9b7870fd170249ec0473de data/darkerdepths/loot_table/blocks/amber_block.json
 7b8aa851d67ec8c45ab85ef504b99c843fe25237 data/darkerdepths/loot_table/blocks/amber_cluster.json
@@ -17,6 +17,7 @@ eb687ae260549b7408d2442cfcff598fa5f8cd93 data/darkerdepths/loot_table/blocks/ari
 2e8c618bfdf19b67ab78d3825575071ce68de407 data/darkerdepths/loot_table/blocks/ash.json
 a4818c29487edb69b0edcf009ab34bba657d4e73 data/darkerdepths/loot_table/blocks/ash_block.json
 0428e05eb72ec12a86f448538dacb9ca3c1c83e9 data/darkerdepths/loot_table/blocks/blue_chalk.json
+83aaba50a504a3e4f23c5907d4840dc8a1bb6b69 data/darkerdepths/loot_table/blocks/chalk_pillar.json
 730751e7e8581c9c058abe7d7516a5e6e7e2154c data/darkerdepths/loot_table/blocks/chiseled_aridrock_bricks.json
 789074ac815e47bfa99229ca12e299b33ac9dcca data/darkerdepths/loot_table/blocks/chiseled_darkslate_bricks.json
 c228b89d442655a24c9b7ed2ce9244ae7f4a6972 data/darkerdepths/loot_table/blocks/chiseled_duskrock_bricks.json

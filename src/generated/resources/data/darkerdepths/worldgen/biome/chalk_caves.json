@@ -1,8 +1,6 @@
 {
   "carvers": {
     "air": [
-      "darkerdepths:violet_chalk_carver",
-      "darkerdepths:chalk_carver",
       "minecraft:cave",
       "minecraft:cave_extra_underground",
       "minecraft:canyon"

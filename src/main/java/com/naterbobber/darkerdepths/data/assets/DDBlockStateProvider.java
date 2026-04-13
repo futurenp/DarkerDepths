@@ -3,6 +3,7 @@ package com.naterbobber.darkerdepths.data.assets;
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.block.DDBlockStateProperties;
 import com.naterbobber.darkerdepths.block.blockstates.PillarState;
+import com.naterbobber.darkerdepths.block.custom.ChalkPillarBlock;
 import com.naterbobber.darkerdepths.block.custom.DarkslateBlock;
 import com.naterbobber.darkerdepths.block.generic.*;
 import com.naterbobber.darkerdepths.init.DDBlocks;
@@ -47,6 +48,7 @@ public class DDBlockStateProvider extends BlockStateProvider {
         add(this::geyserBlock, DDBlocks.GEYSER);
         add(this::crystalHuskBlock, DDBlocks.CRYSTAL_HUSK);
         add(this::livingCrystalBlock, DDBlocks.LIVING_CRYSTAL);
+        add(this::chalkPillarBlock, DDBlocks.CHALK_PILLAR);
 
         skipBlock(
                 DDBlocks.VOID_SOUL_JAR,
@@ -243,6 +245,35 @@ public class DDBlockStateProvider extends BlockStateProvider {
         } else {
             logBlockWithItem(blockHolder);
         }
+    }
+
+    private void chalkPillarBlock(DeferredHolder<Block, ? extends Block> holder) {
+        var block = holder.get();
+        // Generate the cross model for the normal pillar (top=false)
+        ModelFile baseModel = models().cross(
+                "chalk_pillar",
+                modLoc("block/chalk_pillar") // Ensure this texture exists in assets/modid/textures/block/
+        ).renderType("cutout");
+
+        // Generate the cross model for the top of the pillar (top=true)
+        ModelFile topModel = models().cross(
+                "chalk_pillar_top",
+                modLoc("block/chalk_pillar_top") // Ensure this texture exists in assets/modid/textures/block/
+        ).renderType("cutout");
+
+        // Build the blockstates
+        getVariantBuilder(block).forAllStates(state -> {
+            boolean isTop = state.getValue(ChalkPillarBlock.TOP);
+
+            // This automatically handles all combinations of properties (including waterlogged)
+            // while only swapping the model based on the TOP property.
+            return ConfiguredModel.builder()
+                    .modelFile(isTop ? topModel : baseModel)
+                    .build();
+        });
+
+        itemModels().withExistingParent(holder.getId().getPath(), "item/generated")
+                .texture("layer0", holder.getId().getNamespace() + ":block/" +  holder.getId().getPath() + "_top");
     }
 
     public void darkslateBlockWithItem(DeferredHolder<Block, ? extends Block> blockHolder, IntegerProperty property) {

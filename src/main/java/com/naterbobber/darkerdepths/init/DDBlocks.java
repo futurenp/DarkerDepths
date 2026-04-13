@@ -337,6 +337,8 @@ public class DDBlocks {
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.CALCITE)));
     public static final DeferredBlock<Block> VIOLET_CHALK = registerBlock("violet_chalk",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.CALCITE)));
+    public static final DeferredBlock<ChalkPillarBlock> CHALK_PILLAR = registerBlock("chalk_pillar",
+            () -> new ChalkPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CALCITE)));
 
 
     public static final DeferredBlock<MobPlacerBlock> MOB_PLACER = registerNoTabBlock("mob_placer",

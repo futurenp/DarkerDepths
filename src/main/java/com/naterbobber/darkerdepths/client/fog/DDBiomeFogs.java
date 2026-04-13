@@ -32,7 +32,7 @@ public class DDBiomeFogs {
 
     public static final BiomeFog CHALK_CAVES = create(DDResourceKeys.Biomes.CHALK_CAVES,
             Color.ofRGB(0.28F, 0.26F, 0.3F),
-            () -> -16,
+            () -> 0,
             () -> 72
     );
 

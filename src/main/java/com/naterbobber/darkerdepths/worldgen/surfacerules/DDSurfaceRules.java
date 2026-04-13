@@ -66,21 +66,44 @@ public class DDSurfaceRules {
     public static final SurfaceRules.RuleSource CHALK_FILL = SurfaceRules.ifTrue(
             SurfaceRules.isBiome(DDResourceKeys.Biomes.CHALK_CAVES),
             SurfaceRules.sequence(
-                    SurfaceRules.ifTrue(
-                            new AxisNoiseConditionSource(DDResourceKeys.Noises.CHALK, -0.15, 0.15, true, true, true),
+                    SurfaceRules.ifTrue(new AxisNoiseConditionSource(DDResourceKeys.Noises.CHALK, -0.18, 0.18, true, true, true),
                             SurfaceRules.sequence(
-                                    // Inner Noise -> Violet Chalk
                                     SurfaceRules.ifTrue(
-                                            new AxisNoiseConditionSource(DDResourceKeys.Noises.INNER_CHALK, -0.05, 0.05, true, true, true),
-                                            VIOLET_CHALK
+                                            new AxisNoiseConditionSource(DDResourceKeys.Noises.CHALK, -0.15, 0.15, true, true, true),
+                                            SurfaceRules.sequence(
+                                                    SurfaceRules.ifTrue(
+                                                            new AxisNoiseConditionSource(DDResourceKeys.Noises.CHALK, -0.08, 0.08, true, true, true),
+                                                            SurfaceRules.sequence(
+                                                                    SurfaceRules.ifTrue(
+                                                                            new AxisNoiseConditionSource(DDResourceKeys.Noises.CHALK, -0.06, 0.06, true, true, true),
+                                                                            SurfaceRules.sequence(
+                                                                                    SurfaceRules.ifTrue(
+                                                                                            new AxisNoiseConditionSource(DDResourceKeys.Noises.INNERMOST_CHALK, -0.15, 0.15, true, true, true),
+                                                                                            CALCITE
+                                                                                    ),
+                                                                                    PURPLE_CHALK
+                                                                            )
+                                                                    ),
+                                                                    BLUE_CHALK
+                                                            )
+
+                                                    ),
+                                                    SurfaceRules.sequence(
+                                                            SurfaceRules.ifTrue(
+                                                                    new AxisNoiseConditionSource(DDResourceKeys.Noises.INNER_CHALK, -0.16, 0.16, true, true, true),
+                                                                    VIOLET_CHALK
+                                                            ),
+                                                            BLUE_CHALK
+                                                    )
+                                            )
                                     ),
-                                    // Fallback -> Blue Chalk
                                     BLUE_CHALK
                             )
                     ),
+
                     SurfaceRules.sequence(
                             SurfaceRules.ifTrue(
-                                    new AxisNoiseConditionSource(DDResourceKeys.Noises.INNER_CHALK, -0.05, 0.05, true, true, true),
+                                    new AxisNoiseConditionSource(DDResourceKeys.Noises.INNERMOST_CHALK, -0.15, 0.15, true, true, true),
                                     CALCITE
                             ),
                             PURPLE_CHALK

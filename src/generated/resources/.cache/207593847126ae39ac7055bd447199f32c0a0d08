@@ -1,4 +1,4 @@
-// 1.21.1	2026-04-08T16:59:35.4129787	Block States: darkerdepths
+// 1.21.1	2026-04-13T12:32:09.8378358	Block States: darkerdepths
 2a9859a7500ed9a1940849e5db8741eb4e132509 assets/darkerdepths/blockstates/amber_block.json
 c13ff2deecd0684f70c52eb2bf4013ff009056cb assets/darkerdepths/blockstates/aridrock.json
 665632eb3766609df42f994531d5627b486d66f6 assets/darkerdepths/blockstates/aridrock_bricks.json
@@ -11,6 +11,7 @@ c6bfba312b070c0e9d8d981c48e96d8c424fc4ae assets/darkerdepths/blockstates/aridroc
 77afffb748f95d025cf48620faa5c58a8b93ff01 assets/darkerdepths/blockstates/aridrock_wall.json
 a44b9bd72e8428af517a21c5ab7282f235a6e1d2 assets/darkerdepths/blockstates/ash_block.json
 137957e788203da87859121c4042e6d949a89e8f assets/darkerdepths/blockstates/blue_chalk.json
+98b4434e0c2f739ba3a4e9ad91cb34dd50bc2640 assets/darkerdepths/blockstates/chalk_pillar.json
 9892b7da9d396106c88a42feb8d9479595cae3b3 assets/darkerdepths/blockstates/chiseled_aridrock_bricks.json
 ac6498cdbee67120105d2a79e6ade627a0765562 assets/darkerdepths/blockstates/chiseled_darkslate_bricks.json
 7123483cbd4da9501911e22ea02e57411ac79e37 assets/darkerdepths/blockstates/chiseled_duskrock_bricks.json
@@ -122,6 +123,8 @@ e9a13f7a014d756371585e003a784a1b3fd9caef assets/darkerdepths/models/block/aridro
 c88826e1b8b80528155da29fb7872af6bd4d6fb9 assets/darkerdepths/models/block/aridrock_wall_side_tall.json
 07f269f9750ea6ba09b17419fd9f3bf710bca701 assets/darkerdepths/models/block/ash_block.json
 ccb54f3bfe9f967a3ecc41a70f30be3575376633 assets/darkerdepths/models/block/blue_chalk.json
+aee4baf406f81718326b7cf102b45a15ee81b683 assets/darkerdepths/models/block/chalk_pillar.json
+0c995972375dbb681a60f9d8b9d7245e750e5a7a assets/darkerdepths/models/block/chalk_pillar_top.json
 bf8364ec68f71e9bc476474a4afbb9e224d6d6f4 assets/darkerdepths/models/block/chiseled_aridrock_bricks.json
 b605a6c9dd733d3c888cf3d4f94a9317c6014260 assets/darkerdepths/models/block/chiseled_darkslate_bricks.json
 9f87d7a909bc892f3901f309f2523b7651ea25ba assets/darkerdepths/models/block/chiseled_duskrock_bricks.json
@@ -340,6 +343,7 @@ c1c2078aa415379539acd1130017efa17603b678 assets/darkerdepths/models/item/aridroc
 a3c512cec6db077b0a22e0dd12bd2571808f4308 assets/darkerdepths/models/item/ash_block.json
 b72a95a1bb7728812b61990df96a5f72233c991f assets/darkerdepths/models/item/blue_chalk.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/darkerdepths/models/item/body_snatcher_spawn_egg.json
+7e3e618c89705041a13aa82a673733112072f11d assets/darkerdepths/models/item/chalk_pillar.json
 c9cfabd2bf1d396abcd44c9373fbca3b49806d1e assets/darkerdepths/models/item/chiseled_aridrock_bricks.json
 9ad7889a8358d3b0c6746f71feba66725d886763 assets/darkerdepths/models/item/chiseled_darkslate_bricks.json
 11f7e79cfd62d8b86743245f7c7409c97e0606f4 assets/darkerdepths/models/item/chiseled_duskrock_bricks.json

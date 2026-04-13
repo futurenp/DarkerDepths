@@ -227,6 +227,7 @@ public class DDResourceKeys {
     public static class Noises {
         public static final ResourceKey<NormalNoise.NoiseParameters> CHALK = createKey("chalk");
         public static final ResourceKey<NormalNoise.NoiseParameters> INNER_CHALK = createKey("inner_chalk");
+        public static final ResourceKey<NormalNoise.NoiseParameters> INNERMOST_CHALK = createKey("innermost_chalk");
 
         private static ResourceKey<NormalNoise.NoiseParameters> createKey(String name) {
             return ResourceKey.create(Registries.NOISE, DarkerDepths.id(name));
