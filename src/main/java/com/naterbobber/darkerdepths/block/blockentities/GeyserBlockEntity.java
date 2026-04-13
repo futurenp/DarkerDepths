@@ -175,26 +175,43 @@ public class GeyserBlockEntity extends BlockEntity implements HeatableBlock {
     }
 
     private static void boostEntities(Level level, Direction direction, BlockPos blockPos, int length) {
-        double boostSpeed = 0.14;
         boolean boosted = level.getBlockState(blockPos).getValue(BOOSTED);
-        double boost = boostSpeed * direction.getAxisDirection().getStep() * (boosted ? 1.5 : 1);
 
-        var boostArea = new AABB(blockPos, blockPos.relative(direction, length));
+        AABB boostArea = new AABB(blockPos).expandTowards(
+                direction.getStepX() * length,
+                direction.getStepY() * length,
+                direction.getStepZ() * length
+        );
+
         List<Entity> nearbyEntities = level.getEntitiesOfClass(Entity.class, boostArea);
 
         for (Entity entity : nearbyEntities) {
             Vec3 motion = entity.getDeltaMovement();
 
+            double baseBoostSpeed = 0.14;
+            double maxSpeed = boosted ? 1.5 : 0.8;
+
+            double currentEntityBoost = baseBoostSpeed * direction.getAxisDirection().getStep() * (boosted ? 1.5 : 1);
+
             if(entity instanceof ServerPlayer player && player.isFallFlying()) {
-                boost *= 2;
+                currentEntityBoost *= 2;
+                maxSpeed *= 2;
                 DDCriteria.GEYSER_ELYTRA_BOOST.trigger(player);
             }
 
-            double xBooster = direction.getAxis() == Direction.Axis.X ? boost : 0.0D;
-            double yBooster = direction.getAxis() == Direction.Axis.Y ? boost : 0.0D;
-            double zBooster = direction.getAxis() == Direction.Axis.Z ? boost : 0.0D;
+            double xBooster = direction.getAxis() == Direction.Axis.X ? currentEntityBoost : 0.0D;
+            double yBooster = direction.getAxis() == Direction.Axis.Y ? currentEntityBoost : 0.0D;
+            double zBooster = direction.getAxis() == Direction.Axis.Z ? currentEntityBoost : 0.0D;
 
-            entity.setDeltaMovement(motion.x + xBooster, motion.y + yBooster, motion.z + zBooster);
+            double newX = motion.x + xBooster;
+            double newY = motion.y + yBooster;
+            double newZ = motion.z + zBooster;
+
+            if (direction.getAxis() == Direction.Axis.X) newX = Mth.clamp(newX, -maxSpeed, maxSpeed);
+            if (direction.getAxis() == Direction.Axis.Y) newY = Mth.clamp(newY, -maxSpeed, maxSpeed);
+            if (direction.getAxis() == Direction.Axis.Z) newZ = Mth.clamp(newZ, -maxSpeed, maxSpeed);
+
+            entity.setDeltaMovement(newX, newY, newZ);
             entity.fallDistance = 0.0F;
 
             if (entity instanceof ServerPlayer serverPlayer) {
