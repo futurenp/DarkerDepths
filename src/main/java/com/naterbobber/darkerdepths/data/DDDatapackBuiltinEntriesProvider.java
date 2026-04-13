@@ -34,7 +34,8 @@ public class DDDatapackBuiltinEntriesProvider extends DatapackBuiltinEntriesProv
             .add(Registries.PROCESSOR_LIST, DDProcessorLists::bootstrap)
             .add(Registries.CONFIGURED_CARVER, DDCarvers::bootstrap)
             .add(Registries.ENCHANTMENT, DDEnchantments::bootstrap)
-            .add(Registries.DAMAGE_TYPE, DDDamageTypes::bootstrap);
+            .add(Registries.DAMAGE_TYPE, DDDamageTypes::bootstrap)
+            .add(Registries.NOISE, DDNoiseData::bootstrap);
 
     public DDDatapackBuiltinEntriesProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
         super(output, registries, BUILDER, Set.of(DarkerDepths.MOD_ID));

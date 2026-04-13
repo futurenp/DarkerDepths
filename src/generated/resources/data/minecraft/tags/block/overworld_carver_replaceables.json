@@ -6,6 +6,9 @@
     "minecraft:packed_mud",
     "minecraft:magma_block",
     "darkerdepths:grimestone",
-    "darkerdepths:mossy_grimestone"
+    "darkerdepths:mossy_grimestone",
+    "darkerdepths:purple_chalk",
+    "darkerdepths:violet_chalk",
+    "darkerdepths:blue_chalk"
   ]
 }

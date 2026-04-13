@@ -41,7 +41,7 @@
     },
     "placeable": "darkerdepths:violet_chalk",
     "probability": 1.0,
-    "replaceable": "#darkerdepths:chalk_stripe_replaceable",
+    "replaceable": "#darkerdepths:blue_chalk_stripe_replaceable",
     "vertical_radius_multiplier": {
       "type": "minecraft:uniform",
       "max_exclusive": 1.8,

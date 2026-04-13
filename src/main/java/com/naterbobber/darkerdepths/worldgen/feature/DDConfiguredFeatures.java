@@ -20,6 +20,7 @@ import net.minecraft.util.random.SimpleWeightedRandomList;
 import net.minecraft.util.valueproviders.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.MultifaceBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
@@ -352,6 +353,35 @@ public class DDConfiguredFeatures {
                         UniformFloat.of(0.0F, 0.3F),
                         4,
                         0.6F)
+        );
+
+        MultifaceBlock multifaceblock = (MultifaceBlock)Blocks.GLOW_LICHEN;
+        FeatureUtils.register(
+                context,
+                DD_GLOW_LICHEN,
+                Feature.MULTIFACE_GROWTH,
+                new MultifaceGrowthConfiguration(
+                        multifaceblock,
+                        20,
+                        false,
+                        true,
+                        true,
+                        0.5F,
+                        HolderSet.direct(
+                                Block::builtInRegistryHolder,
+                                Blocks.STONE,
+                                Blocks.ANDESITE,
+                                Blocks.DIORITE,
+                                Blocks.GRANITE,
+                                Blocks.DRIPSTONE_BLOCK,
+                                Blocks.CALCITE,
+                                Blocks.TUFF,
+                                Blocks.DEEPSLATE,
+                                DDBlocks.BLUE_CHALK.get(),
+                                DDBlocks.PURPLE_CHALK.get(),
+                                DDBlocks.VIOLET_CHALK.get()
+                        )
+                )
         );
     }
 }

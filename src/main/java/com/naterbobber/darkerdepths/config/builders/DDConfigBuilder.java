@@ -21,6 +21,7 @@ public class DDConfigBuilder {
     public final DDBiomeConfigBuilder SANDY_CATACOMBS_CLIMATE;
     public final DDBiomeConfigBuilder GLOWSHROOM_FOREST_CLIMATE;
     public final DDBiomeConfigBuilder MOLTEN_CAVERN_CLIMATE;
+    public final DDBiomeConfigBuilder CHALK_CAVES_CLIMATE;
     public final ModConfigSpec.BooleanValue PRIORITIZE_TERRABLENDER;
     public final ModConfigSpec.BooleanValue USE_DEFAULTS_TERRABLENDER;
     public final ModConfigSpec.IntValue OVERWORLD_BIOME_WEIGHT_TERRABLENDER;
@@ -75,6 +76,17 @@ public class DDConfigBuilder {
                 0.0
         );
         MOLTEN_CAVERN_CLIMATE = DDBiomeConfigBuilder.create(builder, "molten_cavern", moltenCavernDefaults);
+
+        var chalkCavesDefaults = new DDBiomeConfigBuilder.Defaults(
+                -1.0, 0.25,
+                -0.4, 0.4,
+                -0.25, 0.5,
+                -0.4, 0.4,
+                -1.0, 1.0,
+                0.8, 1.5,
+                0.0
+        );
+        CHALK_CAVES_CLIMATE = DDBiomeConfigBuilder.create(builder, "molten_cavern", chalkCavesDefaults);
         builder.pop();
 
         builder.push("Biome Fog");

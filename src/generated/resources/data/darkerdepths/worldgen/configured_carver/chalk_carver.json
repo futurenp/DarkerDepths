@@ -41,7 +41,7 @@
     },
     "placeable": "minecraft:calcite",
     "probability": 1.0,
-    "replaceable": "#darkerdepths:chalk_stripe_replaceable",
+    "replaceable": "#darkerdepths:purple_chalk_stripe_replaceable",
     "vertical_radius_multiplier": {
       "type": "minecraft:uniform",
       "max_exclusive": 1.8,

@@ -2,10 +2,14 @@ package com.naterbobber.darkerdepths.worldgen.surfacerules;
 
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import com.naterbobber.darkerdepths.util.DDResourceKeys;
+import com.naterbobber.darkerdepths.worldgen.surfacerules.conditions.AxisNoiseConditionSource;
+import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.levelgen.Noises;
 import net.minecraft.world.level.levelgen.SurfaceRules;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
 import net.minecraft.world.level.levelgen.placement.CaveSurface;
+import org.checkerframework.checker.units.qual.A;
 
 public class DDSurfaceRules {
 
@@ -21,6 +25,16 @@ public class DDSurfaceRules {
             SurfaceRules.state(DDBlocks.MOSSY_GRIMESTONE.get().defaultBlockState());
     private static final SurfaceRules.RuleSource TUFF =
             SurfaceRules.state(Blocks.TUFF.defaultBlockState());
+    private static final SurfaceRules.RuleSource PURPLE_CHALK =
+            SurfaceRules.state(DDBlocks.PURPLE_CHALK.get().defaultBlockState());
+    private static final SurfaceRules.RuleSource BLUE_CHALK =
+            SurfaceRules.state(DDBlocks.BLUE_CHALK.get().defaultBlockState());
+    private static final SurfaceRules.RuleSource VIOLET_CHALK =
+            SurfaceRules.state(DDBlocks.VIOLET_CHALK.get().defaultBlockState());
+    private static final SurfaceRules.RuleSource CALCITE =
+            SurfaceRules.state(Blocks.CALCITE.defaultBlockState());
+    private static final SurfaceRules.RuleSource AIR =
+            SurfaceRules.state(Blocks.AIR.defaultBlockState());
 
     private static final SurfaceRules.RuleSource SANDY_FILL = SurfaceRules.ifTrue(
             SurfaceRules.isBiome(DDResourceKeys.Biomes.SANDY_CATACOMBS),
@@ -51,7 +65,28 @@ public class DDSurfaceRules {
 
     public static final SurfaceRules.RuleSource CHALK_FILL = SurfaceRules.ifTrue(
             SurfaceRules.isBiome(DDResourceKeys.Biomes.CHALK_CAVES),
-            SurfaceRules.state(DDBlocks.BLUE_CHALK.get().defaultBlockState())
+            SurfaceRules.sequence(
+                    SurfaceRules.ifTrue(
+                            new AxisNoiseConditionSource(DDResourceKeys.Noises.CHALK, -0.15, 0.15, true, true, true),
+                            SurfaceRules.sequence(
+                                    // Inner Noise -> Violet Chalk
+                                    SurfaceRules.ifTrue(
+                                            new AxisNoiseConditionSource(DDResourceKeys.Noises.INNER_CHALK, -0.05, 0.05, true, true, true),
+                                            VIOLET_CHALK
+                                    ),
+                                    // Fallback -> Blue Chalk
+                                    BLUE_CHALK
+                            )
+                    ),
+                    SurfaceRules.sequence(
+                            SurfaceRules.ifTrue(
+                                    new AxisNoiseConditionSource(DDResourceKeys.Noises.INNER_CHALK, -0.05, 0.05, true, true, true),
+                                    CALCITE
+                            ),
+                            PURPLE_CHALK
+                    )
+
+            )
     );
 
     public static final SurfaceRules.RuleSource GLOWSHROOM_FILL = SurfaceRules.ifTrue(

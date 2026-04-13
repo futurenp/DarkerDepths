@@ -31,6 +31,9 @@ public class DDBiolithIntegration {
         BiomePlacement.addOverworld(DDResourceKeys.Biomes.MOLTEN_CAVERN,
                 ClimateParamsUtil.climateParamsFromConfig(DDConfig.CONFIG.MOLTEN_CAVERN_CLIMATE));
 
+        BiomePlacement.addOverworld(DDResourceKeys.Biomes.CHALK_CAVES,
+                ClimateParamsUtil.climateParamsFromConfig(DDConfig.CONFIG.MOLTEN_CAVERN_CLIMATE));
+
         SurfaceGeneration.addOverworldSurfaceRules(
                 DarkerDepths.id("rules/overworld"),
                 DDSurfaceRules.makeRules()

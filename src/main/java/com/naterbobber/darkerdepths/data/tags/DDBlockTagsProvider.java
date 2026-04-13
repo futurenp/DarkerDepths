@@ -262,6 +262,14 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
                 DDBlocks.PURPLE_CHALK.get()
         );
 
+        this.tag(DDTags.Blocks.BLUE_CHALK_STRIPE_REPLACEABLE).add(
+                DDBlocks.BLUE_CHALK.get()
+        );
+
+        this.tag(DDTags.Blocks.PURPLE_CHALK_STRIPE_REPLACEABLE).add(
+                DDBlocks.PURPLE_CHALK.get()
+        );
+
         this.tag(BlockTags.OVERWORLD_CARVER_REPLACEABLES).add(
                 DDBlocks.ARIDROCK.get(),
                 DDBlocks.DUSKROCK.get(),
@@ -269,7 +277,10 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
                 Blocks.PACKED_MUD,
                 Blocks.MAGMA_BLOCK,
                 DDBlocks.GRIMESTONE.get(),
-                DDBlocks.MOSSY_GRIMESTONE.get()
+                DDBlocks.MOSSY_GRIMESTONE.get(),
+                DDBlocks.PURPLE_CHALK.get(),
+                DDBlocks.VIOLET_CHALK.get(),
+                DDBlocks.BLUE_CHALK.get()
         );
 
         this.tag(DDTags.Blocks.ARID_GROUND).add(

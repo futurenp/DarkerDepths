@@ -105,16 +105,17 @@ public class DDBiomes {
 
     public static Biome createChalkCaves(HolderGetter<PlacedFeature> holderGetter, HolderGetter<ConfiguredWorldCarver<?>> holderGetter1) {
         BiomeGenerationSettings.Builder biomeBuilder = new BiomeGenerationSettings.Builder(holderGetter, holderGetter1);
-        biomeBuilder.addCarver(GenerationStep.Carving.AIR, DDResourceKeys.ConfiguredWorldCarvers.VIOLET_CHALK_CARVER);
-        biomeBuilder.addCarver(GenerationStep.Carving.AIR, DDResourceKeys.ConfiguredWorldCarvers.CHALK_CARVER);
-        biomeBuilder.addCarver(GenerationStep.Carving.AIR, DDResourceKeys.ConfiguredWorldCarvers.CHALK_RIVER_CARVER);
+//        biomeBuilder.addCarver(GenerationStep.Carving.AIR, DDResourceKeys.ConfiguredWorldCarvers.VIOLET_CHALK_CARVER);
+//        biomeBuilder.addCarver(GenerationStep.Carving.AIR, DDResourceKeys.ConfiguredWorldCarvers.CHALK_CARVER);
+//        biomeBuilder.addCarver(GenerationStep.Carving.AIR, DDResourceKeys.ConfiguredWorldCarvers.CHALK_RIVER_CARVER);
         BiomeDefaultFeatures.addDefaultCarversAndLakes(biomeBuilder);
         BiomeDefaultFeatures.addDefaultCrystalFormations(biomeBuilder);
         BiomeDefaultFeatures.addDefaultMonsterRoom(biomeBuilder);
-        biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CavePlacements.GLOW_LICHEN);
+//        biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, CavePlacements.GLOW_LICHEN);
         BiomeDefaultFeatures.addDefaultSprings(biomeBuilder);
         BiomeDefaultFeatures.addSurfaceFreezing(biomeBuilder);
         BiomeDefaultFeatures.addDefaultOres(biomeBuilder);
+        biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, DDResourceKeys.PlacedFeatures.DD_GLOW_LICHEN);
         Music music = Musics.createGameMusic(SoundEvents.MUSIC_BIOME_DRIPSTONE_CAVES);
         int fogColor = DDBiomeFogs.CHALK_CAVES.getIntColor();
 

@@ -19,6 +19,7 @@ public class BiomeFogModifier implements FogModifier {
 
     @Override
     public boolean isActive(LocalPlayer player) {
+//        if(true) return false;
         if (!DDConfig.CONFIG.ENABLE_BIOME_FOG.get()) return false;
         if (player.hasEffect(MobEffects.BLINDNESS) || player.hasEffect(DDMobEffects.PARANOIA)) return false;
 
