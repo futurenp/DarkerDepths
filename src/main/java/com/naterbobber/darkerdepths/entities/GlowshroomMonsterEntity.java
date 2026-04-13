@@ -24,6 +24,7 @@ import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.common.ForgeMod;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
@@ -55,6 +56,11 @@ public class GlowshroomMonsterEntity extends Monster implements GeoEntity {
         this.moveControl = new ConfigurableMoveControl(this, 12.0F);
     }
 
+    @Override
+    public float getStepHeight() {
+        return super.getStepHeight();
+    }
+
     public static AttributeSupplier.Builder createAttributes() {
         return Mob.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 40)
@@ -62,7 +68,8 @@ public class GlowshroomMonsterEntity extends Monster implements GeoEntity {
                 .add(Attributes.ATTACK_KNOCKBACK, 2.0)
                 .add(Attributes.ATTACK_DAMAGE, 12)
                 .add(Attributes.KNOCKBACK_RESISTANCE, 0.75)
-                .add(Attributes.FOLLOW_RANGE, 32);
+                .add(Attributes.FOLLOW_RANGE, 32)
+                .add(ForgeMod.STEP_HEIGHT_ADDITION.get(), 1.2);
     }
 
     @Override
