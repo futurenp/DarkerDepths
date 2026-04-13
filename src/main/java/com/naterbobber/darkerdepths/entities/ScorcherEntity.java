@@ -456,7 +456,7 @@ public class ScorcherEntity extends Mob implements GeoEntity {
 
             for (ServerPlayer player : serverLevel.players()) {
                 serverLevel.sendParticles(player, DDParticleTypes.SCORCHER_SEARCHLIGHT.get(), true,
-                        particlePos.x, particlePos.y + 0.15, particlePos.z,
+                        particlePos.x, particlePos.y - 0.15, particlePos.z,
                         0, trajectory.x, trajectory.y, trajectory.z, 0.25);
             }
         }
