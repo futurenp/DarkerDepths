@@ -22,7 +22,7 @@ public class ScorcherLightBlock extends LightBlock {
 
     @Override
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
-        if(pPlayer.getUseItem() == ItemStack.EMPTY) {
+        if(pPlayer.getItemInHand(pHand) == ItemStack.EMPTY) {
             return InteractionResult.CONSUME;
         }
         return super.use(pState, pLevel, pPos, pPlayer, pHand, pHit);

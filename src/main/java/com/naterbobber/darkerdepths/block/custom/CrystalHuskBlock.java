@@ -48,7 +48,7 @@ public class CrystalHuskBlock extends Block implements HeatableBlock {
 
     @Override
     public InteractionResult use(BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand hand, BlockHitResult hitResult) {
-        var stack = player.getUseItem();
+        var stack = player.getItemInHand(hand);
         if (stack.is(Items.DIAMOND) && blockState.getValue(CRYSTAL_GROWTH_LEVEL) == 0) {
             if (!player.getAbilities().instabuild) {
                 stack.shrink(1);
