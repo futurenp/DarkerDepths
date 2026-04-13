@@ -1,0 +1,7 @@
+{
+  "type": "darkerdepths:petrified_mineshaft",
+  "biomes": "#darkerdepths:has_structure/petrified_mineshaft",
+  "mineshaft_type": "petrified",
+  "spawn_overrides": {},
+  "step": "underground_structures"
+}

@@ -1,4 +1,4 @@
-package com.naterbobber.darkerdepths.init;
+package com.naterbobber.darkerdepths.worldgen.structures;
 
 import com.mojang.datafixers.util.Pair;
 import com.naterbobber.darkerdepths.DarkerDepths;
@@ -6,6 +6,7 @@ import com.naterbobber.darkerdepths.util.DDTags;
 import com.naterbobber.darkerdepths.worldgen.structures.processors.DDProcessorLists;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
+import net.minecraft.core.Vec3i;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.data.worldgen.Pools;
@@ -24,6 +25,7 @@ import net.minecraft.world.level.levelgen.structure.StructureType;
 import net.minecraft.world.level.levelgen.structure.TerrainAdjustment;
 import net.minecraft.world.level.levelgen.structure.placement.RandomSpreadStructurePlacement;
 import net.minecraft.world.level.levelgen.structure.placement.RandomSpreadType;
+import net.minecraft.world.level.levelgen.structure.placement.StructurePlacement;
 import net.minecraft.world.level.levelgen.structure.pools.StructurePoolElement;
 import net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool;
 import net.minecraft.world.level.levelgen.structure.structures.JigsawStructure;
@@ -39,29 +41,14 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import static com.naterbobber.darkerdepths.util.DDResourceKeys.StructureSets.*;
+import static com.naterbobber.darkerdepths.util.DDResourceKeys.Structures.*;
+import static com.naterbobber.darkerdepths.util.DDResourceKeys.StructureTemplatePools.*;
+
+
 import static net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool.Projection.RIGID;
 
 public class DDStructures {
-    public static final DeferredRegister<StructureType<?>> STRUCTURE_TYPES =
-            DeferredRegister.create(Registries.STRUCTURE_TYPE, DarkerDepths.MOD_ID);
-
-    public static final RegistryObject<StructureType<JigsawStructure>> DD_JIGSAW_TYPE =
-            STRUCTURE_TYPES.register("dd_jigsaw", () -> () -> JigsawStructure.CODEC);
-
-    public static final ResourceKey<Structure> ROPE_MINE_FOREST = createStructureKey("rope_mine_forest");
-    public static final ResourceKey<StructureSet> ROPE_MINE_FOREST_SET = createStructureSetKey("rope_mine_forest");
-    public static final ResourceKey<StructureTemplatePool> ROPE_MINE_FOREST_POOL = createPoolKey("rope_mine_forest");
-
-    public static final ResourceKey<Structure> ROPE_MINE_DESERT = createStructureKey("rope_mine_desert");
-    public static final ResourceKey<StructureSet> ROPE_MINE_DESERT_SET = createStructureSetKey("rope_mine_desert");
-    public static final ResourceKey<StructureTemplatePool> ROPE_MINE_DESERT_POOL = createPoolKey("rope_mine_desert");
-
-    public static final ResourceKey<Structure> CATACOMBS = createStructureKey("catacombs");
-    public static final ResourceKey<StructureSet> CATACOMBS_SET = createStructureSetKey("catacombs_set");
-    public static final ResourceKey<StructureTemplatePool> CATACOMBS_STARTS_POOL = createPoolKey("catacombs/starts");
-    public static final ResourceKey<StructureTemplatePool> CATACOMBS_HALLS_POOL = createPoolKey("catacombs/halls");
-    public static final ResourceKey<StructureTemplatePool> CATACOMBS_CENTER_EXTENSIONS_POOL = createPoolKey("catacombs/center_extensions");
-    public static final ResourceKey<StructureTemplatePool> CATACOMBS_HALLS_EXTENSIONS = createPoolKey("catacombs/extensions");
 
     public static void bootstrap(BootstapContext<Structure> context) {
         HolderGetter<Biome> biomeGetter = context.lookup(Registries.BIOME);
@@ -124,6 +111,16 @@ public class DDStructures {
                 Optional.empty(),
                 116
         ));
+
+        context.register(PETRIFIED_MINESHAFT, new DDMineshaftStructure(
+                        new Structure.StructureSettings(
+                                biomeGetter.getOrThrow(DDTags.Biomes.HAS_PETRIFIED_MINESHAFT),
+                                Map.of(),
+                                GenerationStep.Decoration.UNDERGROUND_STRUCTURES,
+                                TerrainAdjustment.NONE),
+                        DDMineshaftStructure.Type.PETRIFIED
+                )
+        );
     }
 
     public static void bootstrapStructureSet(BootstapContext<StructureSet> context) {
@@ -147,6 +144,24 @@ public class DDStructures {
                 new StructureSet(
                         structureGetter.getOrThrow(CATACOMBS),
                         new RandomSpreadStructurePlacement(24, 8, RandomSpreadType.LINEAR, 20083232)
+                )
+        );
+
+        context.register(PETRIFIED_MINESHAFT_SET,
+                new StructureSet(
+                        List.of(
+                                StructureSet.entry(structureGetter.getOrThrow(PETRIFIED_MINESHAFT))
+                        ),
+                        new RandomSpreadStructurePlacement(
+                                Vec3i.ZERO,
+                                StructurePlacement.FrequencyReductionMethod.LEGACY_TYPE_3,
+                                0.004F,
+                                0,
+                                Optional.empty(),
+                                1,
+                                0,
+                                RandomSpreadType.LINEAR
+                        )
                 )
         );
     }

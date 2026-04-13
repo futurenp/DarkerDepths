@@ -1,6 +1,7 @@
 {
   "carvers": {
     "air": [
+      "darkerdepths:duskrock_carver",
       "minecraft:cave",
       "minecraft:cave_extra_underground",
       "minecraft:canyon"
@@ -8,7 +9,7 @@
   },
   "downfall": 0.5,
   "effects": {
-    "fog_color": 12638463,
+    "fog_color": -13098726,
     "grass_color": 11976546,
     "mood_sound": {
       "block_search_extent": 8,
@@ -42,6 +43,15 @@
     [],
     [],
     [
+      "minecraft:ore_dirt",
+      "minecraft:ore_gravel",
+      "minecraft:ore_granite_upper",
+      "minecraft:ore_granite_lower",
+      "minecraft:ore_diorite_upper",
+      "minecraft:ore_diorite_lower",
+      "minecraft:ore_andesite_upper",
+      "minecraft:ore_andesite_lower",
+      "minecraft:ore_tuff",
       "minecraft:ore_coal_upper",
       "minecraft:ore_coal_lower",
       "minecraft:ore_iron_upper",
@@ -65,14 +75,13 @@
       "minecraft:spring_lava"
     ],
     [
-      "minecraft:glow_lichen",
-      "minecraft:patch_tall_grass_2"
+      "minecraft:glow_lichen"
     ],
     [
       "minecraft:freeze_top_layer"
     ]
   ],
-  "has_precipitation": true,
+  "has_precipitation": false,
   "spawn_costs": {},
   "spawners": {
     "ambient": [],

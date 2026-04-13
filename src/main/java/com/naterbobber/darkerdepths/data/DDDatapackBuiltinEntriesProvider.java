@@ -2,7 +2,7 @@ package com.naterbobber.darkerdepths.data;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.damage.DDDamageTypes;
-import com.naterbobber.darkerdepths.init.DDStructures;
+import com.naterbobber.darkerdepths.worldgen.structures.DDStructures;
 import com.naterbobber.darkerdepths.worldgen.biomes.DDBiomeModifiers;
 import com.naterbobber.darkerdepths.worldgen.biomes.DDBiomes;
 import com.naterbobber.darkerdepths.worldgen.carvers.DDCarvers;
