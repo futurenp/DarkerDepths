@@ -109,7 +109,7 @@ repositories {
 dependencies {
     minecraft "net.minecraftforge:forge:${project.minecraft_version}-${project.forge_version}"
     annotationProcessor "org.spongepowered:mixin:0.8.5:processor"
-    implementation fg.deobf("com.github.glitchfiend:TerraBlender-forge:${project.minecraft_version}-${project.terrablender_version}")
+    compileOnly fg.deobf("com.github.glitchfiend:TerraBlender-forge:${project.minecraft_version}-${project.terrablender_version}")
     implementation fg.deobf("software.bernie.geckolib:geckolib-forge-${project.minecraft_version}:${project.geckolib_version}")
 }
 

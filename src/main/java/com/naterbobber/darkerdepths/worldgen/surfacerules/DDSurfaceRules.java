@@ -84,6 +84,6 @@ public class DDSurfaceRules {
     );
 
     public static SurfaceRules.RuleSource makeRules() {
-        return SurfaceRules.sequence(MOLTEN_CAVERN_RULES, SANDY_CATACOMBS_RULES, GLOWSHROOM_RULES, BEDROCK_BOTTOM);
+        return SurfaceRules.sequence(MOLTEN_CAVERN_RULES, SANDY_CATACOMBS_RULES, GLOWSHROOM_RULES);
     }
 }

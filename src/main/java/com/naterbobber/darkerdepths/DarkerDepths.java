@@ -1,5 +1,6 @@
 package com.naterbobber.darkerdepths;
 
+import com.naterbobber.darkerdepths.compat.DDCompat;
 import com.naterbobber.darkerdepths.config.DDConfig;
 import com.naterbobber.darkerdepths.init.DDMemoryModuleTypes;
 import com.naterbobber.darkerdepths.init.DDActivities;
@@ -61,7 +62,10 @@ public class DarkerDepths {
     private void commonSetup(final FMLCommonSetupEvent event) {
         DDNetwork.init();
         event.enqueueWork(DDVanillaIntegration::init);
-        event.enqueueWork(DDTerrablenderIntegration::init);
+
+        if(DDCompat.TERRABLENDER.isLoaded()) {
+            event.enqueueWork(DDTerrablenderIntegration::init);
+        }
     }
 
     private void clientSetup(final FMLClientSetupEvent event) {

@@ -1,6 +1,7 @@
 package com.naterbobber.darkerdepths.init;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
+import com.naterbobber.darkerdepths.compat.CompatID;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.*;
@@ -82,7 +83,7 @@ public class DDCreativeModeTabs {
                 .displayItems((itemDisplayParameters, output) -> {
                     for (RegistryObject<Item> item : DDItems.ITEMS.getEntries()) {
 
-                        if (DDBlocks.COMPAT.containsKey(item) && DDBlocks.COMPAT.get(item).stream().noneMatch(modID -> ModList.get().isLoaded(modID.toString()))) {
+                        if (DDBlocks.COMPAT.containsKey(item) && DDBlocks.COMPAT.get(item).stream().noneMatch(CompatID::isLoaded)) {
                             continue;
                         }
 

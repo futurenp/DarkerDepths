@@ -49,7 +49,7 @@ Artist:
 
 [[dependencies.darkerdepths]]
    modId="terrablender"
-   mandatory=true
+   mandatory=false
    versionRange="[3.0.1.10,)"
    ordering="NONE"
    side="BOTH"

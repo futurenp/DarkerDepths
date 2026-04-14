@@ -28,6 +28,7 @@ public class DDConfig {
     public static final ForgeConfigSpec.ConfigValue<Integer> GLOWSHROOM_FOREST_FOG_MIN;
     public static final ForgeConfigSpec.ConfigValue<Integer> GLOWSHROOM_FOREST_FOG_MAX;
 
+    public static final ForgeConfigSpec.ConfigValue<Boolean> DD_BIOME_INJECTION;
     public static final ForgeConfigSpec.ConfigValue<Boolean> USE_DEFAULTS_TERRABLENDER;
     public static final ForgeConfigSpec.ConfigValue<Integer> OVERWORLD_BIOME_WEIGHT_TERRABLENDER;
     public static final ForgeConfigSpec.ConfigValue<Boolean> DISABLE_HEATABLE_BLOCK_BAKING;
@@ -35,7 +36,8 @@ public class DDConfig {
 
 
     static {
-        BUILDER.push("Biome Parameters");
+        BUILDER.push("Biomes");
+        DD_BIOME_INJECTION = BUILDER.comment("Darker Depths biome & surfacerule injection").define("biome_injection", true);
         BUILDER.push("Terrablender");
         OVERWORLD_BIOME_WEIGHT_TERRABLENDER = BUILDER.comment("Darker Depths Terrablender region weight").defineInRange("weight", 4, 0, Integer.MAX_VALUE);
         USE_DEFAULTS_TERRABLENDER = BUILDER

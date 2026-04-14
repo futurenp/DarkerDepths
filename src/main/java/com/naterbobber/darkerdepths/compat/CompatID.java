@@ -1,6 +1,7 @@
 package com.naterbobber.darkerdepths.compat;
 
 import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.fml.ModList;
 
 public class CompatID {
     private final String compatID;
@@ -20,4 +21,9 @@ public class CompatID {
     public ResourceLocation id(String name){
         return new ResourceLocation(compatID, name);
     }
+
+    public boolean isLoaded() {
+        return ModList.get().isLoaded(compatID);
+    }
+
 }
