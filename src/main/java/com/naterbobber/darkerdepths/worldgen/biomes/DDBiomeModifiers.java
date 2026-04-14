@@ -125,6 +125,14 @@ public class DDBiomeModifiers {
     }
 
     private static void registerGlowshroomForest(BootstrapContext<BiomeModifier> context) {
+        context.register(ADD_GLOWSHROOM_FOREST_RAW_GENERATION, new BiomeModifiers.AddFeaturesBiomeModifier(
+                getBiome(context, GLOWSHROOM_FOREST),
+                getPlacedFeature(
+                        context,
+                        GRIMESTONE_CLIFF
+                ),
+                GenerationStep.Decoration.RAW_GENERATION)
+        );
         context.register(ADD_GLOWSHROOM_FOREST_UNDERGROUND_DECORATION, new BiomeModifiers.AddFeaturesBiomeModifier(
                 getBiome(context, GLOWSHROOM_FOREST),
                 getPlacedFeature(

@@ -98,4 +98,9 @@ public class LavaVegetationPatchFeature extends VegetationPatchFeature {
         }
         return random.nextFloat() < 0.035F && super.placeVegetation(world, config, generator, random, pos.below(2));
     }
+
+    @Override
+    protected boolean placeGround(WorldGenLevel level, VegetationPatchConfiguration config, Predicate<BlockState> replaceableblocks, RandomSource random, BlockPos.MutableBlockPos mutablePos, int maxDistance) {
+        return true;
+    }
 }

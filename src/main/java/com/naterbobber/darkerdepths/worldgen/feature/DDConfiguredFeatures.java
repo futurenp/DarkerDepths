@@ -293,6 +293,14 @@ public class DDConfiguredFeatures {
                 UniformInt.of(4, 7), 0.3F, true)
         );
 
+        FeatureUtils.register(context, GRIMESTONE_CLIFF, DDFeatures.CLIFF_PLATEU.get(),
+                new CliffPlateuConfig(
+                        BlockStateProvider.simple(Blocks.TUFF.defaultBlockState()),
+                        4,
+                        6
+                )
+        );
+
         FeatureUtils.register(context, GRIME_SURFACE, DDFeatures.CORRESPONDENT_LAYER.get(), new CorrespondentLayersConfig(
                 DDTags.Blocks.GRIME_GROUND,
                 List.of(

@@ -25,6 +25,7 @@ public class DDFeatures {
     public static final DeferredHolder<Feature<?>, LavaVegetationPatchFeature> LAVA_VEGETATION_PATCH_FEATURE = FEATURES.register("lava_vegetation_patch", () -> new LavaVegetationPatchFeature(VegetationPatchConfiguration.CODEC));
     public static final DeferredHolder<Feature<?>, CorrespondentLayersFeature> CORRESPONDENT_LAYER = FEATURES.register("correspondent_layer", () -> new CorrespondentLayersFeature(CorrespondentLayersConfig.CODEC));
     public static final DeferredHolder<Feature<?>, AridBoulderFeature> ARID_BOULDER = FEATURES.register("arid_boulder", () -> new AridBoulderFeature(NoneFeatureConfiguration.CODEC));
+    public static final DeferredHolder<Feature<?>, CliffPlateuFeature> CLIFF_PLATEU = FEATURES.register("cliff_plateu", () -> new CliffPlateuFeature(CliffPlateuConfig.CODEC));
     public static final DeferredHolder<Feature<?>, CatacombsLavaLiningFeature> CATACOMBS_LAVA_LINING = FEATURES.register("catacombs_lava_lining", () -> new CatacombsLavaLiningFeature(NoneFeatureConfiguration.CODEC));
     public static final DeferredHolder<Feature<?>, LimestoneStripeFeature> DUSKROCK_STRIPE = FEATURES.register("limestone_stripe", () -> new LimestoneStripeFeature(NoneFeatureConfiguration.CODEC));
     public static final DeferredHolder<Feature<?>, GeyserFeature> GEYSER_UNDER_FLUID = FEATURES.register("geyser_under_fluid", () -> new GeyserFeature(SimpleBlockConfiguration.CODEC));

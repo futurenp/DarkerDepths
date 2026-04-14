@@ -14,6 +14,7 @@ import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraft.world.level.levelgen.structure.StructureSet;
 import net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProcessorList;
+import net.minecraft.world.level.levelgen.synth.NormalNoise;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.neoforged.neoforge.common.world.BiomeModifier;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
@@ -47,6 +48,7 @@ public class DDResourceKeys {
         public static final ResourceKey<BiomeModifier> ADD_SANDY_CATACOMBS_UNDERGROUND_DECORATION = createKey("add_sandy_catacombs_underground_decoration");
         public static final ResourceKey<BiomeModifier> ADD_GLOWSHROOM_FOREST_VEGETAL_FEATURES = createKey("add_glowshroom_forest_vegetal_features");
         public static final ResourceKey<BiomeModifier> ADD_GLOWSHROOM_FOREST_UNDERGROUND_DECORATION = createKey("add_glowshroom_forest_underground_decoration");
+        public static final ResourceKey<BiomeModifier> ADD_GLOWSHROOM_FOREST_RAW_GENERATION = createKey("add_glowshroom_forest_raw_generation");
         public static final ResourceKey<BiomeModifier> ADD_GLOWSHROOM_FOREST_SPAWNS = createKey("add_glowshroom_forest_spawns");
 
         private static ResourceKey<BiomeModifier> createKey(String name) {
@@ -87,6 +89,8 @@ public class DDResourceKeys {
         public static final ResourceKey<ConfiguredFeature<?, ?>> CRYSTAL_HUSK_ORE = createKey("crystal_husk_ore");
         public static final ResourceKey<ConfiguredFeature<?, ?>> DUSKROCK_ORE = createKey("duskrock_ore");
         public static final ResourceKey<ConfiguredFeature<?, ?>> SCORCHED_REMAINS_PILE = createKey("scorched_remains_pile");
+        public static final ResourceKey<ConfiguredFeature<?, ?>> GRIMESTONE_CLIFF = createKey("grimestone_cliff");
+
         public static ResourceKey<ConfiguredFeature<?, ?>> createKey(String name) {
             return ResourceKey.create(Registries.CONFIGURED_FEATURE, DarkerDepths.id(name));
         }
@@ -119,6 +123,7 @@ public class DDResourceKeys {
         public static final ResourceKey<PlacedFeature> CRYSTAL_HUSK_ORE = createKey("crystal_husk_ore");
         public static final ResourceKey<PlacedFeature> DUSKROCK_ORE = createKey("duskrock_ore");
         public static final ResourceKey<PlacedFeature> SCORCHED_REMAINS_PILE = createKey("scorched_remains_pile");
+        public static final ResourceKey<PlacedFeature> GRIMESTONE_CLIFF = createKey("grimestone_cliff");
 
         public static ResourceKey<PlacedFeature> createKey(String name) {
             return ResourceKey.create(Registries.PLACED_FEATURE, DarkerDepths.id(name));
@@ -206,6 +211,16 @@ public class DDResourceKeys {
 
         private static ResourceKey<LootTable> createKey(String name) {
             return ResourceKey.create(Registries.LOOT_TABLE, DarkerDepths.id(name));
+        }
+    }
+
+    public static class Noises {
+        public static final ResourceKey<NormalNoise.NoiseParameters> MAGMA = createKey("magma");
+        public static final ResourceKey<NormalNoise.NoiseParameters> TUFF = createKey("tuff");
+        public static final ResourceKey<NormalNoise.NoiseParameters> DUSKROCK = createKey("duskrock");
+
+        private static ResourceKey<NormalNoise.NoiseParameters> createKey(String name) {
+            return ResourceKey.create(Registries.NOISE, DarkerDepths.id(name));
         }
     }
 }

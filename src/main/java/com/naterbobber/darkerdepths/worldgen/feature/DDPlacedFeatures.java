@@ -38,6 +38,18 @@ public class DDPlacedFeatures {
 //                RandomOffsetPlacement.vertical(ConstantInt.of(1)),
                 BiomeFilter.biome());
 
+        PlacementUtils.register(context, GRIMESTONE_CLIFF, lookup.getOrThrow(DDResourceKeys.ConfiguredFeatures.GRIMESTONE_CLIFF),
+                CountPlacement.of(UniformInt.of(32, 48)),
+                InSquarePlacement.spread(),
+                PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
+                EnvironmentScanPlacement.scanningFor(
+                        Direction.DOWN,
+                        BlockPredicate.solid(),
+                        BlockPredicate.matchesTag(BlockTags.AIR),
+                        4
+                ),
+                BiomeFilter.biome());
+
         PlacementUtils.register(context, GLOWSHROOM_PATCH, lookup.getOrThrow(DDResourceKeys.ConfiguredFeatures.GLOWSHROOM_PATCH),
                 CountPlacement.of(UniformInt.of(3, 8)),
                 InSquarePlacement.spread(),

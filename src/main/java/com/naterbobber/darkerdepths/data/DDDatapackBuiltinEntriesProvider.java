@@ -4,6 +4,7 @@ import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.damage.DDDamageTypes;
 import com.naterbobber.darkerdepths.enchantment.DDEnchantments;
 import com.naterbobber.darkerdepths.init.DDStructures;
+import com.naterbobber.darkerdepths.worldgen.DDNoiseData;
 import com.naterbobber.darkerdepths.worldgen.biomes.DDBiomeModifiers;
 import com.naterbobber.darkerdepths.worldgen.biomes.DDBiomes;
 import com.naterbobber.darkerdepths.worldgen.carvers.DDCarvers;
@@ -34,7 +35,9 @@ public class DDDatapackBuiltinEntriesProvider extends DatapackBuiltinEntriesProv
             .add(Registries.PROCESSOR_LIST, DDProcessorLists::bootstrap)
             .add(Registries.CONFIGURED_CARVER, DDCarvers::bootstrap)
             .add(Registries.ENCHANTMENT, DDEnchantments::bootstrap)
-            .add(Registries.DAMAGE_TYPE, DDDamageTypes::bootstrap);
+            .add(Registries.DAMAGE_TYPE, DDDamageTypes::bootstrap)
+            .add(Registries.NOISE, DDNoiseData::bootstrap);
+
 
     public DDDatapackBuiltinEntriesProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
         super(output, registries, BUILDER, Set.of(DarkerDepths.MOD_ID));

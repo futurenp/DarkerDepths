@@ -59,8 +59,8 @@ public class DDBiomes {
         MobSpawnSettings.Builder mobBuilder = new MobSpawnSettings.Builder();
         BiomeDefaultFeatures.commonSpawns(mobBuilder);
         BiomeGenerationSettings.Builder biomeBuilder = new BiomeGenerationSettings.Builder(holderGetter, holderGetter1);
-        biomeBuilder.addCarver(GenerationStep.Carving.AIR, DDResourceKeys.ConfiguredWorldCarvers.MAGMA_CARVER);
-        biomeBuilder.addCarver(GenerationStep.Carving.AIR, DDResourceKeys.ConfiguredWorldCarvers.TUFF_CARVER);
+//        biomeBuilder.addCarver(GenerationStep.Carving.AIR, DDResourceKeys.ConfiguredWorldCarvers.MAGMA_CARVER);
+//        biomeBuilder.addCarver(GenerationStep.Carving.AIR, DDResourceKeys.ConfiguredWorldCarvers.TUFF_CARVER);
         BiomeDefaultFeatures.addDefaultCarversAndLakes(biomeBuilder);
         BiomeDefaultFeatures.addDefaultCrystalFormations(biomeBuilder);
         BiomeDefaultFeatures.addDefaultMonsterRoom(biomeBuilder);
@@ -81,7 +81,6 @@ public class DDBiomes {
 
     public static Biome createSandyCatacombs(HolderGetter<PlacedFeature> holderGetter, HolderGetter<ConfiguredWorldCarver<?>> holderGetter1) {
         BiomeGenerationSettings.Builder biomeBuilder = new BiomeGenerationSettings.Builder(holderGetter, holderGetter1);
-        biomeBuilder.addCarver(GenerationStep.Carving.AIR, DDResourceKeys.ConfiguredWorldCarvers.DUSKROCK_CARVER);
         BiomeDefaultFeatures.addDefaultCarversAndLakes(biomeBuilder);
         BiomeDefaultFeatures.addDefaultUndergroundVariety(biomeBuilder);
         BiomeDefaultFeatures.addDefaultCrystalFormations(biomeBuilder);

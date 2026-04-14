@@ -1,7 +1,6 @@
 {
   "carvers": {
     "air": [
-      "darkerdepths:duskrock_carver",
       "minecraft:cave",
       "minecraft:cave_extra_underground",
       "minecraft:canyon"

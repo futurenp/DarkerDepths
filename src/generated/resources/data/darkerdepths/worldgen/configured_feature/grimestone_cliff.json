@@ -1,0 +1,13 @@
+{
+  "type": "darkerdepths:cliff_plateu",
+  "config": {
+    "height": 6,
+    "main_block": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "minecraft:tuff"
+      }
+    },
+    "xz_radius": 4
+  }
+}

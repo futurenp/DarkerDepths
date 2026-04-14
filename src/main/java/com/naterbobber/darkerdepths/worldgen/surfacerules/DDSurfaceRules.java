@@ -2,6 +2,7 @@ package com.naterbobber.darkerdepths.worldgen.surfacerules;
 
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import com.naterbobber.darkerdepths.util.DDResourceKeys;
+import com.naterbobber.darkerdepths.worldgen.surfacerules.conditions.AxisNoiseConditionSource;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.SurfaceRules;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
@@ -15,23 +16,56 @@ public class DDSurfaceRules {
             SurfaceRules.state(DDBlocks.ARIDROCK.get().defaultBlockState());
     private static final SurfaceRules.RuleSource PACKED_MUD =
             SurfaceRules.state(Blocks.PACKED_MUD.defaultBlockState());
+    private static final SurfaceRules.RuleSource MAGMA =
+            SurfaceRules.state(Blocks.MAGMA_BLOCK.defaultBlockState());
     private static final SurfaceRules.RuleSource GRIMESTONE =
             SurfaceRules.state(DDBlocks.GRIMESTONE.get().defaultBlockState());
+    private static final SurfaceRules.RuleSource DUSKROCK =
+            SurfaceRules.state(DDBlocks.DUSKROCK.get().defaultBlockState());
     private static final SurfaceRules.RuleSource MOSSY_GRIMESTONE =
             SurfaceRules.state(DDBlocks.MOSSY_GRIMESTONE.get().defaultBlockState());
+    private static final SurfaceRules.RuleSource DARKSLATE =
+            SurfaceRules.state(DDBlocks.DARKSLATE.get().defaultBlockState());
     private static final SurfaceRules.RuleSource TUFF =
             SurfaceRules.state(Blocks.TUFF.defaultBlockState());
+
+    private static final SurfaceRules.RuleSource DUSKROCK_NOISE = SurfaceRules.ifTrue(
+            new AxisNoiseConditionSource(DDResourceKeys.Noises.DUSKROCK, -0.15, 0.15, true, true, true),
+            SurfaceRules.sequence(
+                    SurfaceRules.ifTrue(
+                            new AxisNoiseConditionSource(DDResourceKeys.Noises.DUSKROCK, -0.09, 0.09, true, true, true),
+                            DUSKROCK
+                    ),
+                    PACKED_MUD
+            )
+    );
+
+    private static final SurfaceRules.RuleSource MAGMA_NOISE = SurfaceRules.ifTrue(
+            new AxisNoiseConditionSource(DDResourceKeys.Noises.MAGMA, -0.0125, 0.0125, true, true, true),
+            MAGMA
+    );
+
+    private static final SurfaceRules.RuleSource TUFF_NOISE = SurfaceRules.ifTrue(
+            new AxisNoiseConditionSource(DDResourceKeys.Noises.TUFF, -0.075, 0.075, true, true, true),
+            TUFF
+    );
 
     private static final SurfaceRules.RuleSource SANDY_FILL = SurfaceRules.ifTrue(
             SurfaceRules.isBiome(DDResourceKeys.Biomes.SANDY_CATACOMBS),
             SurfaceRules.sequence(
                     SurfaceRules.ifTrue(
                             SurfaceRules.stoneDepthCheck(0, false, 0, CaveSurface.FLOOR),
-                            ARIDROCK
+                            SurfaceRules.sequence(
+                                    DUSKROCK_NOISE,
+                                    ARIDROCK
+                            )
                     ),
                     SurfaceRules.ifTrue(
                             SurfaceRules.stoneDepthCheck(3, false, 0, CaveSurface.FLOOR),
-                            PACKED_MUD
+                            SurfaceRules.sequence(
+                                    DUSKROCK_NOISE,
+                                    PACKED_MUD
+                            )
                     ),
 
                     SurfaceRules.ifTrue(
@@ -46,7 +80,11 @@ public class DDSurfaceRules {
 
     public static final SurfaceRules.RuleSource MOLTEN_FILL = SurfaceRules.ifTrue(
             SurfaceRules.isBiome(DDResourceKeys.Biomes.MOLTEN_CAVERN),
-            SurfaceRules.state(DDBlocks.DARKSLATE.get().defaultBlockState())
+            SurfaceRules.sequence(
+                    MAGMA_NOISE,
+                    TUFF_NOISE,
+                    DARKSLATE
+            )
     );
 
     public static final SurfaceRules.RuleSource GLOWSHROOM_FILL = SurfaceRules.ifTrue(
