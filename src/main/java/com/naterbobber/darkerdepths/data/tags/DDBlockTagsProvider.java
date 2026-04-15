@@ -422,7 +422,7 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
         addType(CeilingHangingSignBlock.class, BlockTags.CEILING_HANGING_SIGNS, BlockTags.ALL_HANGING_SIGNS);
         addType(SignBlock.class, BlockTags.ALL_SIGNS);
         addType(FenceBlock.class, BlockTags.FENCES);
-        addType(FenceGateBlock.class, BlockTags.FENCE_GATES);
+        addType(FenceGateBlock.class, BlockTags.FENCE_GATES, Tags.Blocks.FENCE_GATES, Tags.Blocks.FENCE_GATES_WOODEN);
         addType(VerticalSlabBlock.class, DDTags.Blocks.VERTICAL_SLAB);
     }
 

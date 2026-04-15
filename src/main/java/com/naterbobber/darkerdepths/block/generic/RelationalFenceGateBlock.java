@@ -8,7 +8,7 @@ import net.minecraft.world.level.block.state.properties.WoodType;
 public class RelationalFenceGateBlock extends FenceGateBlock implements IRelationalBlock {
     private final Block baseBlock;
     public RelationalFenceGateBlock(Block baseBlock, WoodType type) {
-        super(BlockBehaviour.Properties.copy(baseBlock), type);
+        super(BlockBehaviour.Properties.copy(baseBlock).forceSolidOn(), type);
         this.baseBlock = baseBlock;
     }
 
