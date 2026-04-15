@@ -434,6 +434,7 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
         addType(FenceBlock.class, BlockTags.FENCES);
         addType(FenceGateBlock.class, BlockTags.FENCE_GATES, Tags.Blocks.FENCE_GATES, Tags.Blocks.FENCE_GATES_WOODEN);
         addType(VerticalSlabBlock.class, DDTags.Blocks.VERTICAL_SLAB);
+        addType(FlowerPotBlock.class, BlockTags.FLOWER_POTS);
     }
 
     @SafeVarargs
