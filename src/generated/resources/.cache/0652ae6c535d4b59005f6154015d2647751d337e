@@ -1,4 +1,4 @@
-// 1.20.1	2026-04-14T20:50:24.461881	Tags for minecraft:block mod id darkerdepths
+// 1.20.1	2026-04-14T21:17:38.3699976	Tags for minecraft:block mod id darkerdepths
 cdf1f2b4de9ac0ed3806ea430d70efacdb79e789 data/darkerdepths/tags/blocks/arid_ground.json
 181d681754f4c0e7a57a1290e49f2ac737dcb80a data/darkerdepths/tags/blocks/catacombs_stripe_replaceable.json
 6e8a8f5878ba07b54132671990b8070097a4ca96 data/darkerdepths/tags/blocks/geyser_ash_providers.json
@@ -15,7 +15,8 @@ a39e015170ad81010779a5d446a2e44c0e8e49d6 data/darkerdepths/tags/blocks/heat_prov
 d8dfe60bd1ae85f7a46defc4a7cc4bf42b5cf87e data/darkerdepths/tags/blocks/medium_heat.json
 db6195d77bd598771b111d12750ba39f41fe35c7 data/darkerdepths/tags/blocks/very_high_heat.json
 0163428a12a8c0cf1e5c527b85275a53bd3d364b data/forge/tags/blocks/bookshelves.json
-5ad70d419543a15211e780d9630b6d60cc3730a3 data/forge/tags/blocks/fence_gates.json
+d46196cd8880069d772cedd2866445ceffda8735 data/forge/tags/blocks/fence_gates.json
+d46196cd8880069d772cedd2866445ceffda8735 data/forge/tags/blocks/fence_gates/wooden.json
 9cb44c49895785a868a717fe96a0e3ce7e215187 data/forge/tags/blocks/storage_blocks.json
 629b5359bc3115f148d4aabf634436db522199d9 data/minecraft/tags/blocks/all_hanging_signs.json
 cf6fc837315dff0c0cf820f01506173a674bc611 data/minecraft/tags/blocks/all_signs.json
@@ -28,6 +29,7 @@ d3b03ea502166dcd0a9352d813cd13e324a97d68 data/minecraft/tags/blocks/ceiling_hang
 0163428a12a8c0cf1e5c527b85275a53bd3d364b data/minecraft/tags/blocks/enchantment_power_provider.json
 f554d471ce51b93b48815f100f6e9e6a04baecf5 data/minecraft/tags/blocks/fences.json
 d46196cd8880069d772cedd2866445ceffda8735 data/minecraft/tags/blocks/fence_gates.json
+326eeb0bc9862f97627f64c9f1ca0d5f90988e31 data/minecraft/tags/blocks/flower_pots.json
 5e277297b74dc60b3a92d2fe9b9fc06fe32cf551 data/minecraft/tags/blocks/logs.json
 915eb0bb37c9f48f77e7b381db8cb2e50e276edb data/minecraft/tags/blocks/lush_ground_replaceable.json
 ac0f87878136cee34623c47bdbbd0d5b93efc4c2 data/minecraft/tags/blocks/mineable/axe.json
