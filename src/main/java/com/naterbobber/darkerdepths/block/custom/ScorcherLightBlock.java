@@ -28,9 +28,4 @@ public class ScorcherLightBlock extends LightBlock {
     protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
         return Shapes.empty();
     }
-
-    @Override
-    public ItemStack getCloneItemStack(BlockGetter pLevel, BlockPos pPos, BlockState pState) {
-        return ItemStack.EMPTY;
-    }
 }
