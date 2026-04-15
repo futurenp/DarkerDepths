@@ -18,13 +18,19 @@ import java.util.List;
 
 public class EmissiveBakedModel extends BakedModelWrapper<BakedModel> {
 
-    public EmissiveBakedModel(BakedModel originalModel) {
+    private final RenderType baseRenderType;
+    private final RenderType glowRenderType;
+
+    public EmissiveBakedModel(BakedModel originalModel, RenderType baseRenderType, RenderType glowRenderType) {
         super(originalModel);
+        this.baseRenderType = baseRenderType;
+        this.glowRenderType = glowRenderType;
     }
 
     @Override
     public @NotNull ChunkRenderTypeSet getRenderTypes(@NotNull BlockState state, @NotNull RandomSource rand, @NotNull ModelData data) {
-        return ChunkRenderTypeSet.of(RenderType.solid(), RenderType.translucent());
+        // Explicitly hardcode the exact passes we are using, just like your original code
+        return ChunkRenderTypeSet.of(this.baseRenderType, this.glowRenderType);
     }
 
     @Override
@@ -33,15 +39,18 @@ public class EmissiveBakedModel extends BakedModelWrapper<BakedModel> {
         List<BakedQuad> newQuads = new ArrayList<>();
 
         for (BakedQuad quad : originalQuads) {
-            boolean isGlow = quad.getSprite().contents().name().getPath().contains("glow");
+            boolean isGlow = quad.getSprite().contents().name().getPath().endsWith("_glow");
 
             if (renderType == null) {
+                // Item rendering
                 newQuads.add(isGlow ? makeFullyBright(quad) : quad);
             }
-            else if (renderType == RenderType.solid() && !isGlow) {
+            else if (!isGlow && renderType == this.baseRenderType) {
+                // Explicitly route base quads to the assigned base pass
                 newQuads.add(quad);
             }
-            else if (renderType == RenderType.translucent() && isGlow) {
+            else if (isGlow && renderType == this.glowRenderType) {
+                // Explicitly route glow quads to the assigned glow pass
                 newQuads.add(makeFullyBright(quad));
             }
         }

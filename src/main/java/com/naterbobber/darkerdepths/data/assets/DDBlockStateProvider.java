@@ -49,6 +49,10 @@ public class DDBlockStateProvider extends BlockStateProvider {
         add(this::livingCrystalBlock, DDBlocks.LIVING_CRYSTAL);
         add(this::airBlock, DDBlocks.SCORCHER_LIGHT_BLOCK);
         add(this::airBlock, DDBlocks.MOB_PLACER);
+        add(this::blockWithGlow, DDBlocks.GLOWSHROOM_PLANKS);
+        add(this::blockWithGlow, DDBlocks.GLOWSHROOM_BLOCK);
+        add(this::crossWithGlow, DDBlocks.GLIMMERING_VINES);
+        add(this::crossWithGlow, DDBlocks.GLIMMERING_VINE_PLANT);
 
         skipBlock(
                 DDBlocks.VOID_SOUL_JAR,
@@ -339,6 +343,96 @@ public class DDBlockStateProvider extends BlockStateProvider {
     public void airBlock(DeferredHolder<Block, ? extends Block> block) {
         ModelFile airModel = models().getExistingFile(mcLoc("block/air"));
         simpleBlock(block.get(), airModel);
+    }
+
+    public void blockWithGlow(DeferredHolder<Block, ? extends Block> block) {
+        var blockName = block.getId().getPath();
+        ResourceLocation texture = modLoc("block/" + blockName);
+        ResourceLocation glowTexture = this.extend(texture, "_glow");
+
+        var modelBuilder = this.models().getBuilder(blockName)
+                .parent(new ModelFile.UncheckedModelFile("minecraft:block/block"))
+                .renderType("minecraft:translucent")
+                .texture("particle", texture)
+                .texture("base", texture)
+                .texture("glow", glowTexture)
+                .element().from(0, 0, 0).to(16, 16, 16)
+                .face(Direction.UP).texture("#base").cullface(Direction.UP).end()
+                .face(Direction.DOWN).texture("#base").cullface(Direction.DOWN).end()
+                .face(Direction.NORTH).texture("#base").cullface(Direction.NORTH).end()
+                .face(Direction.SOUTH).texture("#base").cullface(Direction.SOUTH).end()
+                .face(Direction.EAST).texture("#base").cullface(Direction.EAST).end()
+                .face(Direction.WEST).texture("#base").cullface(Direction.WEST).end()
+                .end()
+                // Glowing overlay cube
+                .element().from(0, 0, 0).to(16, 16, 16)
+                .face(Direction.UP).texture("#glow").cullface(Direction.UP).end()
+                .face(Direction.DOWN).texture("#glow").cullface(Direction.DOWN).end()
+                .face(Direction.NORTH).texture("#glow").cullface(Direction.NORTH).end()
+                .face(Direction.SOUTH).texture("#glow").cullface(Direction.SOUTH).end()
+                .face(Direction.EAST).texture("#glow").cullface(Direction.EAST).end()
+                .face(Direction.WEST).texture("#glow").cullface(Direction.WEST).end()
+                .end();
+
+        var model = ConfiguredModel.builder().modelFile(modelBuilder).build();
+
+        simpleBlock(block.get(), model);
+        simpleBlockItem(block.get(), models().getExistingFile(blockTexture(block.get())));
+    }
+
+    public void crossWithGlow(DeferredHolder<Block, ? extends Block> block) {
+        var blockName = block.getId().getPath();
+        ResourceLocation texture = modLoc("block/" + blockName);
+        ResourceLocation glowTexture = this.extend(texture, "_glow");
+
+        var modelBuilder = this.models().getBuilder(blockName)
+                .parent(new ModelFile.UncheckedModelFile("minecraft:block/block"))
+                .renderType("minecraft:translucent")
+                .texture("particle", texture)
+                .texture("cross", texture)
+                .texture("glow", glowTexture);
+
+        // --- BASE Elements (True 'X' Cross Shape) ---
+
+        // Plane 1: Stretches along X (0 to 16). Broad faces point North/South.
+        modelBuilder.element().from(0, 0, 8).to(16, 16, 8.001f)
+                .rotation().origin(8, 8, 8).axis(Direction.Axis.Y).angle(45f).rescale(true).end()
+                .face(Direction.NORTH).texture("#cross").uvs(0, 0, 16, 16).end()
+                .face(Direction.SOUTH).texture("#cross").uvs(0, 0, 16, 16).end()
+                .end();
+
+        // Plane 2: Stretches along Z (0 to 16). Broad faces point East/West.
+        modelBuilder.element().from(8, 0, 0).to(8.001f, 16, 16)
+                .rotation().origin(8, 8, 8).axis(Direction.Axis.Y).angle(45f).rescale(true).end()
+                .face(Direction.EAST).texture("#cross").uvs(0, 0, 16, 16).end()
+                .face(Direction.WEST).texture("#cross").uvs(0, 0, 16, 16).end()
+                .end();
+
+        // --- GLOWING Elements ---
+
+        // Glow Plane 1 (North/South faces)
+        modelBuilder.element().from(-0.01f, -0.01f, 7.99f).to(16.01f, 16.01f, 8.01f)
+                .rotation().origin(8, 8, 8).axis(Direction.Axis.Y).angle(45f).rescale(true).end()
+                .shade(false)
+                .face(Direction.NORTH).texture("#glow").uvs(0, 0, 16, 16).end()
+                .face(Direction.SOUTH).texture("#glow").uvs(0, 0, 16, 16).end()
+                .end();
+
+        // Glow Plane 2 (East/West faces)
+        modelBuilder.element().from(7.99f, -0.01f, -0.01f).to(8.01f, 16.01f, 16.01f)
+                .rotation().origin(8, 8, 8).axis(Direction.Axis.Y).angle(45f).rescale(true).end()
+                .shade(false)
+                .face(Direction.EAST).texture("#glow").uvs(0, 0, 16, 16).end()
+                .face(Direction.WEST).texture("#glow").uvs(0, 0, 16, 16).end()
+                .end();
+
+        var model = ConfiguredModel.builder().modelFile(modelBuilder).build();
+
+        simpleBlock(block.get(), model);
+
+        // Standard block items for plants should also use the cross model
+        itemModels().withExistingParent(block.getId().getPath(), "item/generated")
+                .texture("layer0", blockTexture(block.get()));
     }
 
     public void crystalHuskBlock(DeferredHolder<Block, ? extends Block> block) {

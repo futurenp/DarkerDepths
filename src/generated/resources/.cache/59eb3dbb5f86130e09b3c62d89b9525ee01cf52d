@@ -1,4 +1,4 @@
-// 1.21.1	2026-04-04T17:24:22.7981126	Loot Tables
+// 1.21.1	2026-04-15T15:50:51.8699111	Loot Tables
 69a68443e41c0ea8610b4ece66b6a6a3bff163d0 data/darkerdepths/loot_table/archaeology/catacombs/standard.json
 b26089f15d136d6d0b9b7870fd170249ec0473de data/darkerdepths/loot_table/blocks/amber_block.json
 7b8aa851d67ec8c45ab85ef504b99c843fe25237 data/darkerdepths/loot_table/blocks/amber_cluster.json
@@ -59,6 +59,7 @@ ecfb3117007cf0c8c49815ccbf0ae3f3ac3ef162 data/darkerdepths/loot_table/blocks/glo
 171618302e0b65405c0ce97a15fae37fe07e422a data/darkerdepths/loot_table/blocks/glowshroom_heart.json
 a5fbd8e2568a07407ad0973cb0817907ff051b18 data/darkerdepths/loot_table/blocks/glowshroom_lamp.json
 ec308a19b46f7125e3a2ac24781806feee4de3b6 data/darkerdepths/loot_table/blocks/glowshroom_lantern.json
+fee34474a92a6c3d4680ed9e32564beefe37e9b4 data/darkerdepths/loot_table/blocks/glowshroom_planks.json
 d63d3891d51e9b403e22f7b21cfa420d57b670d6 data/darkerdepths/loot_table/blocks/glowshroom_stem.json
 52db0d69fae3f72b8f6756aef443027a671277b2 data/darkerdepths/loot_table/blocks/glowspurs.json
 8ea89c71c55ab4f824cabde74b2ce7af5596cac8 data/darkerdepths/loot_table/blocks/grimestone.json

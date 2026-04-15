@@ -1,0 +1,157 @@
+{
+  "parent": "minecraft:block/block",
+  "elements": [
+    {
+      "faces": {
+        "north": {
+          "texture": "#cross"
+        },
+        "south": {
+          "texture": "#cross"
+        }
+      },
+      "from": [
+        0,
+        0,
+        8
+      ],
+      "rotation": {
+        "angle": 45.0,
+        "axis": "y",
+        "origin": [
+          8,
+          8,
+          8
+        ],
+        "rescale": true
+      },
+      "to": [
+        16,
+        16,
+        8.001
+      ]
+    },
+    {
+      "faces": {
+        "east": {
+          "texture": "#cross"
+        },
+        "west": {
+          "texture": "#cross"
+        }
+      },
+      "from": [
+        8,
+        0,
+        0
+      ],
+      "rotation": {
+        "angle": 45.0,
+        "axis": "y",
+        "origin": [
+          8,
+          8,
+          8
+        ],
+        "rescale": true
+      },
+      "to": [
+        8.001,
+        16,
+        16
+      ]
+    },
+    {
+      "faces": {
+        "north": {
+          "texture": "#glow",
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ]
+        },
+        "south": {
+          "texture": "#glow",
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ]
+        }
+      },
+      "from": [
+        -0.01,
+        -0.01,
+        7.99
+      ],
+      "rotation": {
+        "angle": 45.0,
+        "axis": "y",
+        "origin": [
+          8,
+          8,
+          8
+        ],
+        "rescale": true
+      },
+      "shade": false,
+      "to": [
+        16.01,
+        16.01,
+        8.01
+      ]
+    },
+    {
+      "faces": {
+        "east": {
+          "texture": "#glow",
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ]
+        },
+        "west": {
+          "texture": "#glow",
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ]
+        }
+      },
+      "from": [
+        7.99,
+        -0.01,
+        -0.01
+      ],
+      "rotation": {
+        "angle": 45.0,
+        "axis": "y",
+        "origin": [
+          8,
+          8,
+          8
+        ],
+        "rescale": true
+      },
+      "shade": false,
+      "to": [
+        8.01,
+        16.01,
+        16.01
+      ]
+    }
+  ],
+  "render_type": "minecraft:translucent",
+  "textures": {
+    "cross": "darkerdepths:block/glimmering_vines",
+    "glow": "darkerdepths:block/glimmering_vines_glow",
+    "particle": "darkerdepths:block/glimmering_vines"
+  }
+}

@@ -55,6 +55,9 @@ public class DDBlocks {
     public static final BlockBehaviour.Properties FORSAKEN_BRONZE_PROPERTIES =
             blockProperties(8.0f, 15.0f, SoundType.NETHERITE_BLOCK, true);
 
+    public static final BlockBehaviour.Properties GLOWSHROOM_PLANKS_PROPERTIES =
+            blockProperties(1.2f, 1.8f, SoundType.WOOD, true);
+
 
     public static final DeferredBlock<RotatedPillarBlock> STRIPPED_PETRIFIED_LOG = registerBlock("stripped_petrified_log",
             () -> new RotatedPillarBlock(PETRIFIED_LOG_PROPERTIES));
@@ -321,7 +324,7 @@ public class DDBlocks {
     public static final DeferredBlock<SproutsBlock> MOSSY_SPROUTS = registerBlock("mossy_sprouts",
             () -> new SproutsBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SHORT_GRASS).sound(SoundType.WET_GRASS).offsetType(BlockBehaviour.OffsetType.XZ)));
     public static final DeferredBlock<GlimmeringVinesBlock> GLIMMERING_VINES = registerBlock("glimmering_vines",
-            () -> new GlimmeringVinesBlock(BlockBehaviour.Properties.of().noCollission().lightLevel(value -> 8).sound(SoundType.SPORE_BLOSSOM)));
+            () -> new GlimmeringVinesBlock(BlockBehaviour.Properties.of().noCollission().noOcclusion().lightLevel(value -> 11).sound(SoundType.SPORE_BLOSSOM)));
     public static final DeferredBlock<GlimmeringVinePlantBlock> GLIMMERING_VINE_PLANT = registerNoTabBlock("glimmering_vine_plant",
             () -> new GlimmeringVinePlantBlock(BlockBehaviour.Properties.ofFullCopy(GLIMMERING_VINES.get()).sound(SoundType.SPORE_BLOSSOM)));
     public static final DeferredBlock<GlowshroomLampBlock> GLOWSHROOM_LAMP = registerBlock("glowshroom_lamp",
@@ -330,6 +333,8 @@ public class DDBlocks {
             () -> new GlowshroomLanternBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LANTERN)));
     public static final DeferredBlock<RopeBlock> ROPE = registerNoTabBlock("rope",
             () -> new RopeBlock(blockProperties(0.1f, SoundType.WOOL, false).noOcclusion()));
+    public static final DeferredBlock<Block> GLOWSHROOM_PLANKS = registerBlock("glowshroom_planks",
+            () -> new Block(GLOWSHROOM_PLANKS_PROPERTIES));
 
 
     public static final DeferredBlock<MobPlacerBlock> MOB_PLACER = registerNoTabBlock("mob_placer",

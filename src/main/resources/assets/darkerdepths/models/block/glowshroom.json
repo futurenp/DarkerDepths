@@ -1,7 +1,9 @@
 {
+	"format_version": "1.21.11",
 	"credit": "Made with Blockbench",
 	"textures": {
 		"0": "darkerdepths:block/glowshroom",
+		"1": "darkerdepths:block/glowshroom_glow",
 		"particle": "darkerdepths:block/glowshroom"
 	},
 	"elements": [
@@ -30,14 +32,44 @@
 				"up": {"uv": [6, 12, 0, 6], "texture": "#0"},
 				"down": {"uv": [6, 0, 0, 6], "texture": "#0"}
 			}
+		},
+		{
+			"from": [4.98, 3.98, 4.98],
+			"to": [11.02, 9.02, 11.02],
+			"rotation": {"angle": 0, "axis": "y", "origin": [16, 12, 15]},
+			"faces": {
+				"north": {"uv": [6, 0, 12, 5], "texture": "#1"},
+				"east": {"uv": [6, 0, 12, 5], "texture": "#1"},
+				"south": {"uv": [6, 0, 12, 5], "texture": "#1"},
+				"west": {"uv": [6, 0, 12, 5], "texture": "#1"},
+				"up": {"uv": [6, 12, 0, 6], "texture": "#1"},
+				"down": {"uv": [6, 0, 0, 6], "texture": "#1"}
+			}
 		}
 	],
 	"groups": [
 		{
 			"name": "group",
 			"origin": [8, 8, 8],
+			"scope": 0,
 			"color": 0,
-			"children": [0, 1]
+			"children": [
+				0,
+				{
+					"name": "solid",
+					"origin": [16, 12, 15],
+					"scope": 0,
+					"color": 0,
+					"children": [1]
+				},
+				{
+					"name": "glow",
+					"origin": [16, 12, 15],
+					"scope": 0,
+					"color": 0,
+					"children": [2]
+				}
+			]
 		}
 	]
 }

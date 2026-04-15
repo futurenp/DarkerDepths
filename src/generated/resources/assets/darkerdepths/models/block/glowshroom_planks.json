@@ -80,8 +80,8 @@
   ],
   "render_type": "minecraft:translucent",
   "textures": {
-    "base": "darkerdepths:block/glowshroom_block",
-    "glow": "darkerdepths:block/glowshroom_block_glow",
-    "particle": "darkerdepths:block/glowshroom_block"
+    "base": "darkerdepths:block/glowshroom_planks",
+    "glow": "darkerdepths:block/glowshroom_planks_glow",
+    "particle": "darkerdepths:block/glowshroom_planks"
   }
 }
