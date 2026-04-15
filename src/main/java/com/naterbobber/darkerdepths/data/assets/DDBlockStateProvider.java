@@ -47,6 +47,8 @@ public class DDBlockStateProvider extends BlockStateProvider {
         add(this::geyserBlock, DDBlocks.GEYSER);
         add(this::crystalHuskBlock, DDBlocks.CRYSTAL_HUSK);
         add(this::livingCrystalBlock, DDBlocks.LIVING_CRYSTAL);
+        add(this::airBlock, DDBlocks.SCORCHER_LIGHT_BLOCK);
+        add(this::airBlock, DDBlocks.MOB_PLACER);
 
         skipBlock(
                 DDBlocks.VOID_SOUL_JAR,
@@ -74,10 +76,8 @@ public class DDBlockStateProvider extends BlockStateProvider {
                 DDBlocks.VOID_SOUL_TORCH,
                 DDBlocks.WALL_VOID_SOUL_TORCH,
                 DDBlocks.GLOWSHROOM_LANTERN,
-                DDBlocks.MOB_PLACER,
                 DDBlocks.MOSSY_GRIMESTONE,
                 DDBlocks.GLOWSHROOM_LAMP,
-                DDBlocks.SCORCHER_LIGHT_BLOCK,
                 DDBlocks.ARID_DEEPSLATE
         );
 
@@ -334,6 +334,11 @@ public class DDBlockStateProvider extends BlockStateProvider {
         });
 
         simpleBlockItem(block, models().getExistingFile(blockTexture(block)));
+    }
+
+    public void airBlock(DeferredHolder<Block, ? extends Block> block) {
+        ModelFile airModel = models().getExistingFile(mcLoc("block/air"));
+        simpleBlock(block.get(), airModel);
     }
 
     public void crystalHuskBlock(DeferredHolder<Block, ? extends Block> block) {
