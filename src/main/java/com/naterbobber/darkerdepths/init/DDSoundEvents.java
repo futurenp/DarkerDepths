@@ -21,9 +21,9 @@ public class DDSoundEvents {
     public static final DeferredHolder<SoundEvent, SoundEvent> ENTITY_GLOWSHROOM_MONSTER_AMBIENT        = registerSoundEvent("entity.glowshroom_monster.ambient");
     public static final DeferredHolder<SoundEvent, SoundEvent> ENTITY_GLOWSHROOM_MONSTER_HURT           = registerSoundEvent("entity.glowshroom_monster.hurt");
     public static final DeferredHolder<SoundEvent, SoundEvent> ENTITY_GLOWSHROOM_MONSTER_DEATH          = registerSoundEvent("entity.glowshroom_monster.death");
-    public static final DeferredHolder<SoundEvent, SoundEvent> BLOCK_ROPE_BREAK                         = registerSoundEvent("block.rope.break");
-    public static final DeferredHolder<SoundEvent, SoundEvent> BLOCK_ROPE_PLACE                         = registerSoundEvent("block.rope.place");
-    public static final DeferredHolder<SoundEvent, SoundEvent> BLOCK_ROPE_STEP                          = registerSoundEvent("block.rope.step");
+    // public static final DeferredHolder<SoundEvent, SoundEvent> BLOCK_ROPE_BREAK                         = registerSoundEvent("block.rope.break");
+    // public static final DeferredHolder<SoundEvent, SoundEvent> BLOCK_ROPE_PLACE                         = registerSoundEvent("block.rope.place");
+    // public static final DeferredHolder<SoundEvent, SoundEvent> BLOCK_ROPE_STEP                          = registerSoundEvent("block.rope.step");
     public static final DeferredHolder<SoundEvent, SoundEvent> BLOCK_DEATH_ANCHOR_SOUL_BINDING          = registerSoundEvent("block.death_anchor.soul_binding");
 
 
