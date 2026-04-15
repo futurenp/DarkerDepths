@@ -1,7 +1,7 @@
 package com.naterbobber.darkerdepths.init;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
-import com.naterbobber.darkerdepths.enchantment.DDEnchantments;
+import com.naterbobber.darkerdepths.compat.CompatID;
 import com.naterbobber.darkerdepths.util.DDResourceKeys;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
@@ -11,12 +11,10 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentInstance;
 import net.minecraft.world.level.block.Block;
-import net.neoforged.fml.ModList;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -86,7 +84,7 @@ public class DDCreativeModeTabs {
 
         ddCreativeTabBuilder.displayItems((itemDisplayParameters, output) -> {
             for (DeferredHolder<Item, ? extends Item> item : DDItems.ITEMS.getEntries()) {
-                if (DDBlocks.COMPAT.containsKey(item) && DDBlocks.COMPAT.get(item).stream().noneMatch(modID -> ModList.get().isLoaded(modID.toString()))) {
+                if (DDBlocks.COMPAT.containsKey(item) && DDBlocks.COMPAT.get(item).stream().noneMatch(CompatID::isLoaded)) {
                     continue;
                 }
 
