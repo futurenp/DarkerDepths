@@ -62,8 +62,8 @@ public class DarkerDepths {
     }
 
     private void determineWorldGenAPI(FMLCommonSetupEvent event) {
-        boolean hasBiolith = ModList.get().isLoaded(DDCompat.BIOLITH.toString());
-        boolean hasTerrablender = ModList.get().isLoaded(DDCompat.TERRABLENDER.toString());
+        boolean hasBiolith = DDCompat.BIOLITH.isLoaded();
+        boolean hasTerrablender = DDCompat.TERRABLENDER.isLoaded();
         boolean hasBoth = hasBiolith && hasTerrablender;
         boolean hasNone = !hasBiolith && !hasTerrablender;
 
