@@ -8,10 +8,12 @@ import com.naterbobber.darkerdepths.client.fog.modifiers.BiomeFogModifier;
 import com.naterbobber.darkerdepths.client.fog.modifiers.EffectFogModifier;
 import com.naterbobber.darkerdepths.client.fog.modifiers.ScorcherFlashModifier;
 import com.naterbobber.darkerdepths.client.render.EmissiveBakedModel;
+import com.naterbobber.darkerdepths.client.render.EmissiveModelManager;
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import com.naterbobber.darkerdepths.init.DDDataComponents;
 import com.naterbobber.darkerdepths.init.DDItems;
 import com.naterbobber.darkerdepths.init.DDWoodType;
+import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.block.BlockModelShaper;
 import net.minecraft.client.renderer.item.ItemProperties;
@@ -66,51 +68,6 @@ public class ClientSetupEvents {
 
     @SubscribeEvent
     public static void onModifyBakingResult(ModelEvent.ModifyBakingResult event) {
-
-        // Solid Blocks -> Translucent Glow
-        for (BlockState state : DDBlocks.DARKSLATE.get().getStateDefinition().getPossibleStates()) {
-            if (state.hasProperty(DDBlockStateProperties.HEAT_LEVEL) && state.getValue(DDBlockStateProperties.HEAT_LEVEL) >= 2) {
-                ModelResourceLocation targetModel = BlockModelShaper.stateToModelLocation(state);
-                var originalModel = event.getModels().get(targetModel);
-                if (originalModel != null) {
-                    event.getModels().put(targetModel, new EmissiveBakedModel(originalModel, RenderType.solid(), RenderType.translucent()));
-                }
-            }
-        }
-
-        for (BlockState state : DDBlocks.GEYSER.get().getStateDefinition().getPossibleStates()) {
-            if (state.hasProperty(DDBlockStateProperties.BURSTING) && state.getValue(DDBlockStateProperties.BURSTING)) {
-                ModelResourceLocation targetModel = BlockModelShaper.stateToModelLocation(state);
-                var originalModel = event.getModels().get(targetModel);
-                if (originalModel != null) {
-                    event.getModels().put(targetModel, new EmissiveBakedModel(originalModel, RenderType.solid(), RenderType.translucent()));
-                }
-            }
-        }
-
-        applyToAllStates(event, RenderType.solid(), RenderType.translucent(),
-                DDBlocks.GLOWSHROOM_PLANKS,
-                DDBlocks.GLOWSHROOM_BLOCK
-        );
-
-        applyToAllStates(event, RenderType.cutout(), RenderType.cutout(),
-                DDBlocks.GLIMMERING_VINE_PLANT,
-                DDBlocks.GLIMMERING_VINES,
-                DDBlocks.GLOWSHROOM,
-                DDBlocks.POTTED_GLOWSHROOM
-        );
-    }
-
-    @SafeVarargs
-    private static void applyToAllStates(ModelEvent.ModifyBakingResult event, RenderType baseRender, RenderType glowRender, DeferredBlock<? extends Block>... blockHolders) {
-        for (DeferredBlock<? extends Block> holder : blockHolders) {
-            for (BlockState state : holder.get().getStateDefinition().getPossibleStates()) {
-                ModelResourceLocation targetModel = BlockModelShaper.stateToModelLocation(state);
-                var originalModel = event.getModels().get(targetModel);
-                if (originalModel != null) {
-                    event.getModels().put(targetModel, new EmissiveBakedModel(originalModel, baseRender, glowRender));
-                }
-            }
-        }
+        EmissiveModelManager.modify(event);
     }
 }
