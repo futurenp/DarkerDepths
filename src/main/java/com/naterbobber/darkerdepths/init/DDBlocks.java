@@ -57,6 +57,8 @@ public class DDBlocks {
 
     public static final BlockBehaviour.Properties GLOWSHROOM_PLANKS_PROPERTIES =
             blockProperties(1.2f, 1.8f, SoundType.WOOD, true);
+    public static final BlockBehaviour.Properties GLOWSHROOM_STEM_PROPERTIES =
+            blockProperties(1.2f, 1.8f, SoundType.WOOD, true);
 
 
     public static final DeferredBlock<RotatedPillarBlock> STRIPPED_PETRIFIED_LOG = registerBlock("stripped_petrified_log",

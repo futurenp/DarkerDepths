@@ -29,7 +29,6 @@ public class EmissiveBakedModel extends BakedModelWrapper<BakedModel> {
 
     @Override
     public @NotNull ChunkRenderTypeSet getRenderTypes(@NotNull BlockState state, @NotNull RandomSource rand, @NotNull ModelData data) {
-        // Explicitly hardcode the exact passes we are using, just like your original code
         return ChunkRenderTypeSet.of(this.baseRenderType, this.glowRenderType);
     }
 
@@ -42,15 +41,12 @@ public class EmissiveBakedModel extends BakedModelWrapper<BakedModel> {
             boolean isGlow = quad.getSprite().contents().name().getPath().endsWith("_glow");
 
             if (renderType == null) {
-                // Item rendering
                 newQuads.add(isGlow ? makeFullyBright(quad) : quad);
             }
             else if (!isGlow && renderType == this.baseRenderType) {
-                // Explicitly route base quads to the assigned base pass
                 newQuads.add(quad);
             }
             else if (isGlow && renderType == this.glowRenderType) {
-                // Explicitly route glow quads to the assigned glow pass
                 newQuads.add(makeFullyBright(quad));
             }
         }

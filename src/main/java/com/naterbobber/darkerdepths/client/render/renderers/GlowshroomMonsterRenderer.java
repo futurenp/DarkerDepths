@@ -4,6 +4,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.client.models.GlowshroomMonsterModel;
+import com.naterbobber.darkerdepths.client.render.DDRenderTypes;
 import com.naterbobber.darkerdepths.client.render.renderers.layers.DDCustomRenderTypeLayer;
 import com.naterbobber.darkerdepths.entities.GlowshroomMonsterEntity;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -27,7 +28,7 @@ public class GlowshroomMonsterRenderer extends GeoEntityRenderer<GlowshroomMonst
 
     public GlowshroomMonsterRenderer(EntityRendererProvider.Context context) {
         super(context, new GlowshroomMonsterModel());
-        addRenderLayer(new DDCustomRenderTypeLayer<>(this, RenderType.eyes(TEXTURE)));
+        addRenderLayer(new DDCustomRenderTypeLayer<>(this, DDRenderTypes.EMISSIVE_TRANSPARENT(TEXTURE)));
     }
 
 

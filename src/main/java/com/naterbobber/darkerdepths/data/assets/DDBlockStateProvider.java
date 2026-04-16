@@ -392,25 +392,18 @@ public class DDBlockStateProvider extends BlockStateProvider {
                 .texture("cross", texture)
                 .texture("glow", glowTexture);
 
-        // --- BASE Elements (True 'X' Cross Shape) ---
-
-        // Plane 1: Stretches along X (0 to 16). Broad faces point North/South.
         modelBuilder.element().from(0, 0, 8).to(16, 16, 8.001f)
                 .rotation().origin(8, 8, 8).axis(Direction.Axis.Y).angle(45f).rescale(true).end()
                 .face(Direction.NORTH).texture("#cross").uvs(0, 0, 16, 16).end()
                 .face(Direction.SOUTH).texture("#cross").uvs(0, 0, 16, 16).end()
                 .end();
 
-        // Plane 2: Stretches along Z (0 to 16). Broad faces point East/West.
         modelBuilder.element().from(8, 0, 0).to(8.001f, 16, 16)
                 .rotation().origin(8, 8, 8).axis(Direction.Axis.Y).angle(45f).rescale(true).end()
                 .face(Direction.EAST).texture("#cross").uvs(0, 0, 16, 16).end()
                 .face(Direction.WEST).texture("#cross").uvs(0, 0, 16, 16).end()
                 .end();
 
-        // --- GLOWING Elements ---
-
-        // Glow Plane 1 (North/South faces)
         modelBuilder.element().from(-0.01f, -0.01f, 7.99f).to(16.01f, 16.01f, 8.01f)
                 .rotation().origin(8, 8, 8).axis(Direction.Axis.Y).angle(45f).rescale(true).end()
                 .shade(false)
@@ -418,7 +411,6 @@ public class DDBlockStateProvider extends BlockStateProvider {
                 .face(Direction.SOUTH).texture("#glow").uvs(0, 0, 16, 16).end()
                 .end();
 
-        // Glow Plane 2 (East/West faces)
         modelBuilder.element().from(7.99f, -0.01f, -0.01f).to(8.01f, 16.01f, 16.01f)
                 .rotation().origin(8, 8, 8).axis(Direction.Axis.Y).angle(45f).rescale(true).end()
                 .shade(false)
@@ -430,7 +422,6 @@ public class DDBlockStateProvider extends BlockStateProvider {
 
         simpleBlock(block.get(), model);
 
-        // Standard block items for plants should also use the cross model
         itemModels().withExistingParent(block.getId().getPath(), "item/generated")
                 .texture("layer0", blockTexture(block.get()));
     }

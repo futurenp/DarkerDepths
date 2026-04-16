@@ -96,7 +96,8 @@ public class ClientSetupEvents {
         applyToAllStates(event, RenderType.cutout(), RenderType.cutout(),
                 DDBlocks.GLIMMERING_VINE_PLANT,
                 DDBlocks.GLIMMERING_VINES,
-                DDBlocks.GLOWSHROOM
+                DDBlocks.GLOWSHROOM,
+                DDBlocks.POTTED_GLOWSHROOM
         );
     }
 
