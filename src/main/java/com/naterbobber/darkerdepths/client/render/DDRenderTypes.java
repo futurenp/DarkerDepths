@@ -2,6 +2,7 @@ package com.naterbobber.darkerdepths.client.render;
 
 import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import com.mojang.blaze3d.vertex.VertexFormat;
+import net.minecraft.client.renderer.RenderStateShard;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
 
@@ -46,6 +47,24 @@ public class DDRenderTypes extends RenderType {
         CompositeState state = CompositeState.builder()
                 .setShaderState(RENDERTYPE_EYES_SHADER)
                 .setTransparencyState(TRANSLUCENT_TRANSPARENCY)
+                .setTextureState(new TextureStateShard(textureLocation, false, false))
+                .createCompositeState(false);
+
+        return create("emissive_transparent",
+                DefaultVertexFormat.NEW_ENTITY,
+                VertexFormat.Mode.QUADS,
+                256,
+                false,
+                true,
+                state);
+    }
+
+
+    public static RenderType CONFIGURABLE_EMISSIVE_TRANSPARENT (ResourceLocation textureLocation) {
+        CompositeState state = CompositeState.builder()
+                .setTransparencyState(TRANSLUCENT_TRANSPARENCY)
+                .setShaderState(RENDERTYPE_ENTITY_TRANSLUCENT_CULL_SHADER)
+                .setLightmapState(LIGHTMAP)
                 .setTextureState(new TextureStateShard(textureLocation, false, false))
                 .createCompositeState(false);
 

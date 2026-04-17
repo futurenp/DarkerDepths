@@ -7,14 +7,17 @@ import com.naterbobber.darkerdepths.client.models.GlowshroomMonsterModel;
 import com.naterbobber.darkerdepths.client.render.DDRenderTypes;
 import com.naterbobber.darkerdepths.client.render.renderers.layers.DDCustomRenderTypeLayer;
 import com.naterbobber.darkerdepths.entities.GlowshroomMonsterEntity;
+import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.LightLayer;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import org.joml.Vector3d;
@@ -23,12 +26,14 @@ import software.bernie.geckolib.renderer.GeoEntityRenderer;
 
 @OnlyIn(Dist.CLIENT)
 public class GlowshroomMonsterRenderer extends GeoEntityRenderer<GlowshroomMonsterEntity> {
-    private static final ResourceLocation TEXTURE = DarkerDepths.id("textures/entity/glowshroom_monster/glowshroom_monster_glowmask.png");
+    private static final ResourceLocation GLOWSHROOM_TEXTURE = DarkerDepths.id("textures/entity/glowshroom_monster/glowshroom_monster_glowshroom_glowmask.png");
+    private static final ResourceLocation MOSS_TEXTURE = DarkerDepths.id("textures/entity/glowshroom_monster/glowshroom_monster_moss_glowmask.png");
     private int currentTick = -1;
 
     public GlowshroomMonsterRenderer(EntityRendererProvider.Context context) {
         super(context, new GlowshroomMonsterModel());
-        addRenderLayer(new DDCustomRenderTypeLayer<>(this, DDRenderTypes.EMISSIVE_TRANSPARENT(TEXTURE)));
+        addRenderLayer(new DDCustomRenderTypeLayer<>(this, DDRenderTypes.EMISSIVE_TRANSPARENT(GLOWSHROOM_TEXTURE)));
+        addRenderLayer(new DDCustomRenderTypeLayer<>(this, DDRenderTypes.CONFIGURABLE_EMISSIVE_TRANSPARENT(MOSS_TEXTURE), 10));
     }
 
 
@@ -55,7 +60,13 @@ public class GlowshroomMonsterRenderer extends GeoEntityRenderer<GlowshroomMonst
                 }
             });
         }
+    }
 
-        super.renderFinal(poseStack, animatable, model, bufferSource, buffer, partialTick, packedLight, packedOverlay, color);
+    @Override
+    protected int getBlockLightLevel(GlowshroomMonsterEntity entity, BlockPos pos) {
+        if(entity.isOnFire()) return 15;
+        int brightness = entity.level().getBrightness(LightLayer.BLOCK, pos);
+        if(brightness < 3) return 3;
+        return brightness;
     }
 }
