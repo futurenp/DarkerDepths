@@ -60,6 +60,7 @@ public class DDConfiguredFeatures {
         HolderGetter<ConfiguredFeature<?, ?>> lookup = context.lookup(Registries.CONFIGURED_FEATURE);
         FeatureUtils.register(context, GLOWSHROOM_PATCH, DDFeatures.RANDOM_GLOWSHROOM_PATCHES.get(), FeatureConfiguration.NONE);
         FeatureUtils.register(context, HUGE_GLOWSHROOM, DDFeatures.HUGE_GLOWSHROOM.get(), FeatureConfiguration.NONE);
+        FeatureUtils.register(context, SMUSHED_GLOWSHROOM, DDFeatures.SMUSHED_GLOWSHROOM.get(), FeatureConfiguration.NONE);
         FeatureUtils.register(context, HUGE_GLOWSHROOM_PLANTED, DDFeatures.HUGE_GLOWSHROOM.get(), FeatureConfiguration.NONE);
         FeatureUtils.register(context, AMBERS_PLACEMENT, DDFeatures.GEMSTONE.get(), FeatureConfiguration.NONE);
         FeatureUtils.register(context, ARID_BOULDER, DDFeatures.ARID_BOULDER.get(), FeatureConfiguration.NONE);
@@ -317,9 +318,8 @@ public class DDConfiguredFeatures {
         FeatureUtils.register(context, GLIMMERING_VINES, Feature.BLOCK_COLUMN, new BlockColumnConfiguration(
                 List.of(BlockColumnConfiguration.layer(
                                 new WeightedListInt(SimpleWeightedRandomList.<IntProvider>builder()
-                                        .add(UniformInt.of(0, 10), 2)
-                                        .add(UniformInt.of(0, 2), 3)
-                                        .add(UniformInt.of(0, 5), 10)
+                                        .add(UniformInt.of(2, 5), 2)
+                                        .add(UniformInt.of(0, 2), 10)
                                         .build()),
                                 BlockStateProvider.simple(DDBlocks.GLIMMERING_VINE_PLANT.get().defaultBlockState())
                         ),

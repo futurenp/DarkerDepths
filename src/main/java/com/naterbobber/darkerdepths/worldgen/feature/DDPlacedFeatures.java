@@ -35,7 +35,18 @@ public class DDPlacedFeatures {
                         BlockPredicate.matchesTag(BlockTags.AIR),
                         4
                 ),
-//                RandomOffsetPlacement.vertical(ConstantInt.of(1)),
+                BiomeFilter.biome());
+
+        PlacementUtils.register(context, SMUSHED_GLOWSHROOM, lookup.getOrThrow(DDResourceKeys.ConfiguredFeatures.SMUSHED_GLOWSHROOM),
+                CountPlacement.of(UniformInt.of(32, 48)),
+                InSquarePlacement.spread(),
+                PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
+                EnvironmentScanPlacement.scanningFor(
+                        Direction.DOWN,
+                        BlockPredicate.matchesBlocks(Direction.DOWN.getNormal(), DDBlocks.MOSSY_GRIMESTONE.get()),
+                        BlockPredicate.matchesTag(BlockTags.AIR),
+                        4
+                ),
                 BiomeFilter.biome());
 
         PlacementUtils.register(context, GRIMESTONE_CLIFF, lookup.getOrThrow(DDResourceKeys.ConfiguredFeatures.GRIMESTONE_CLIFF),

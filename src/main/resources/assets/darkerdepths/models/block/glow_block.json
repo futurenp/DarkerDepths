@@ -1,0 +1,82 @@
+{
+  "parent": "minecraft:block/block",
+  "elements": [
+    {
+      "faces": {
+        "down": {
+          "cullface": "down",
+          "texture": "#base"
+        },
+        "east": {
+          "cullface": "east",
+          "texture": "#base"
+        },
+        "north": {
+          "cullface": "north",
+          "texture": "#base"
+        },
+        "south": {
+          "cullface": "south",
+          "texture": "#base"
+        },
+        "up": {
+          "cullface": "up",
+          "texture": "#base"
+        },
+        "west": {
+          "cullface": "west",
+          "texture": "#base"
+        }
+      },
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ]
+    },
+    {
+      "faces": {
+        "down": {
+          "cullface": "down",
+          "texture": "#glow"
+        },
+        "east": {
+          "cullface": "east",
+          "texture": "#glow"
+        },
+        "north": {
+          "cullface": "north",
+          "texture": "#glow"
+        },
+        "south": {
+          "cullface": "south",
+          "texture": "#glow"
+        },
+        "up": {
+          "cullface": "up",
+          "texture": "#glow"
+        },
+        "west": {
+          "cullface": "west",
+          "texture": "#glow"
+        }
+      },
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ]
+    }
+  ],
+  "render_type": "minecraft:translucent"
+}

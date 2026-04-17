@@ -326,7 +326,7 @@ public class DDBlocks {
     public static final DeferredBlock<SproutsBlock> MOSSY_SPROUTS = registerBlock("mossy_sprouts",
             () -> new SproutsBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SHORT_GRASS).sound(SoundType.WET_GRASS).offsetType(BlockBehaviour.OffsetType.XZ)));
     public static final DeferredBlock<GlimmeringVinesBlock> GLIMMERING_VINES = registerBlock("glimmering_vines",
-            () -> new GlimmeringVinesBlock(BlockBehaviour.Properties.of().noCollission().noOcclusion().lightLevel(value -> 11).sound(SoundType.SPORE_BLOSSOM)));
+            () -> new GlimmeringVinesBlock(BlockBehaviour.Properties.of().noCollission().noOcclusion().lightLevel(value -> 9).sound(SoundType.SPORE_BLOSSOM)));
     public static final DeferredBlock<GlimmeringVinePlantBlock> GLIMMERING_VINE_PLANT = registerNoTabBlock("glimmering_vine_plant",
             () -> new GlimmeringVinePlantBlock(BlockBehaviour.Properties.ofFullCopy(GLIMMERING_VINES.get()).sound(SoundType.SPORE_BLOSSOM)));
     public static final DeferredBlock<GlowshroomLampBlock> GLOWSHROOM_LAMP = registerBlock("glowshroom_lamp",

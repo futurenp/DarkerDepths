@@ -1,5 +1,6 @@
 package com.naterbobber.darkerdepths.client.render;
 
+import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.block.DDBlockStateProperties;
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import net.minecraft.client.renderer.LightTexture;
@@ -13,6 +14,7 @@ import net.neoforged.neoforge.client.event.ModelEvent;
 import net.neoforged.neoforge.registries.DeferredBlock;
 
 public class EmissiveModelManager {
+
     @SubscribeEvent
     public static void modify(ModelEvent.ModifyBakingResult event) {
         for (BlockState state : DDBlocks.DARKSLATE.get().getStateDefinition().getPossibleStates()) {
@@ -37,28 +39,60 @@ public class EmissiveModelManager {
             }
         }
 
+        int glowshroomBrightness = LightTexture.pack(12, 0);
+        int glowshroomBaseBrightness = LightTexture.pack(5, 0);
+
         applyToAllStates(event, new EmissiveBakedModel.Builder(),
                 DDBlocks.GLOWSHROOM_PLANKS,
                 DDBlocks.GLOWSHROOM_BLOCK
         );
 
-        applyToAllStates(event,
-                new EmissiveBakedModel.Builder()
+        applyToAllStates(event, new EmissiveBakedModel.Builder()
                         .baseRenderType(RenderType.CUTOUT)
                         .glowRenderType(RenderType.CUTOUT)
-                        .glowBrightness(200)
-                        .baseBrightness(100),
+                        .glowBrightness(glowshroomBrightness)
+                        .baseBrightness(glowshroomBaseBrightness),
                 DDBlocks.GLIMMERING_VINE_PLANT,
                 DDBlocks.GLIMMERING_VINES,
                 DDBlocks.GLOWSHROOM
         );
 
-        applyToAllStates(event,
-                new EmissiveBakedModel.Builder()
+        applyToAllStates(event, new EmissiveBakedModel.Builder()
+                        .baseBrightness(LightTexture.pack(2, 0)),
+                DDBlocks.GLOWSHROOM_STEM
+        );
+
+        applyToAllStates(event, new EmissiveBakedModel.Builder()
+                        .baseRenderType(RenderType.CUTOUT)
+                        .glowRenderType(RenderType.CUTOUT)
+                        .glowBrightness(glowshroomBrightness),
+                DDBlocks.POTTED_GLOWSHROOM
+        );
+
+        applyToAllStates(event, new EmissiveBakedModel.Builder()
                         .baseRenderType(RenderType.CUTOUT)
                         .glowRenderType(RenderType.CUTOUT)
                         .glowBrightness(LightTexture.FULL_BRIGHT),
-                DDBlocks.POTTED_GLOWSHROOM
+                DDBlocks.GLOWSHROOM_LANTERN,
+                DDBlocks.GLOWSHROOM_LAMP
+        );
+
+        applyToAllStates(event, new EmissiveBakedModel.Builder()
+                        .glowBrightness(LightTexture.FULL_BRIGHT)
+                        .baseBrightness(glowshroomBaseBrightness),
+                DDBlocks.GLOWSHROOM_HEART
+        );
+
+        applyToAllStates(event, new EmissiveBakedModel.Builder()
+                        .glowRenderType(RenderType.CUTOUT)
+                        .glowBrightness(LightTexture.pack(2, 0)),
+                DDBlocks.MOSSY_GRIMESTONE
+        );
+
+        applyToAllStates(event, new EmissiveBakedModel.Builder()
+                        .baseRenderType(RenderType.CUTOUT)
+                        .baseBrightness(LightTexture.pack(2, 0)),
+                DDBlocks.MOSSY_SPROUTS
         );
     }
 

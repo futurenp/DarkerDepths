@@ -5,14 +5,17 @@ import com.naterbobber.darkerdepths.init.DDBlocks;
 import com.naterbobber.darkerdepths.init.DDParticleTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.ParticleUtils;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.GrowingPlantHeadBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class GlimmeringVinesBlock extends GrowingPlantHeadBlock {
@@ -20,6 +23,7 @@ public class GlimmeringVinesBlock extends GrowingPlantHeadBlock {
 
     public GlimmeringVinesBlock(Properties properties) {
         super(properties, Direction.DOWN, SHAPE, false, 0.1D);
+        this.registerDefaultState((this.stateDefinition.any()).setValue(AGE, 20));
     }
 
     @Override
@@ -34,14 +38,7 @@ public class GlimmeringVinesBlock extends GrowingPlantHeadBlock {
 
     @Override
     protected int getBlocksToGrowWhenBonemealed(RandomSource rand) {
-        double d0 = 1.0D;
-
-        int i;
-        for(i = 0; rand.nextDouble() < d0; ++i) {
-            d0 *= 0.826D;
-        }
-
-        return i;
+        return rand.nextInt(1, 4);
     }
 
     @Override
@@ -60,5 +57,19 @@ public class GlimmeringVinesBlock extends GrowingPlantHeadBlock {
             return;
         }
         ParticleUtils.spawnParticleInBlock(level, pos, 1, DDParticleTypes.GLOW_GLIMMER.get());
+    }
+
+    @Override
+    protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+        super.randomTick(state, level, pos, random);
+    }
+
+    @Override
+    protected BlockState getGrowIntoState(BlockState state, RandomSource random) {
+        return state.setValue(AGE, state.getValue(AGE) + 1);
+    }
+
+    public BlockState getStateForPlacement(LevelAccessor level) {
+        return this.defaultBlockState().setValue(AGE, level.getRandom().nextInt(7) + 18);
     }
 }

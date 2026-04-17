@@ -53,6 +53,7 @@ public class DDBlockStateProvider extends BlockStateProvider {
         add(this::blockWithGlow, DDBlocks.GLOWSHROOM_BLOCK);
         add(this::crossWithGlow, DDBlocks.GLIMMERING_VINES);
         add(this::crossWithGlow, DDBlocks.GLIMMERING_VINE_PLANT);
+        add(this::glowLampBlock, DDBlocks.GLOWSHROOM_LAMP);
 
         skipBlock(
                 DDBlocks.VOID_SOUL_JAR,
@@ -81,7 +82,6 @@ public class DDBlockStateProvider extends BlockStateProvider {
                 DDBlocks.WALL_VOID_SOUL_TORCH,
                 DDBlocks.GLOWSHROOM_LANTERN,
                 DDBlocks.MOSSY_GRIMESTONE,
-                DDBlocks.GLOWSHROOM_LAMP,
                 DDBlocks.ARID_DEEPSLATE
         );
 
@@ -189,10 +189,7 @@ public class DDBlockStateProvider extends BlockStateProvider {
             case RelationalWallBlock b -> wallBlockWithItem(blockHolder, parentBlock);
             default -> throw new IllegalStateException("Unexpected value: " + block);
         }
-
     }
-
-
 
     private void simpleItem(DeferredHolder<Item, ? extends Item> item) {
         itemModels().withExistingParent(item.getId().getPath(), "item/generated")
@@ -350,33 +347,13 @@ public class DDBlockStateProvider extends BlockStateProvider {
         ResourceLocation texture = modLoc("block/" + blockName);
         ResourceLocation glowTexture = this.extend(texture, "_glow");
 
-        var modelBuilder = this.models().getBuilder(blockName)
-                .parent(new ModelFile.UncheckedModelFile("minecraft:block/block"))
+        var modelBuilder = this.models().withExistingParent(blockName, modLoc("block/glow_block"))
                 .renderType("minecraft:translucent")
                 .texture("particle", texture)
                 .texture("base", texture)
-                .texture("glow", glowTexture)
-                .element().from(0, 0, 0).to(16, 16, 16)
-                .face(Direction.UP).texture("#base").cullface(Direction.UP).end()
-                .face(Direction.DOWN).texture("#base").cullface(Direction.DOWN).end()
-                .face(Direction.NORTH).texture("#base").cullface(Direction.NORTH).end()
-                .face(Direction.SOUTH).texture("#base").cullface(Direction.SOUTH).end()
-                .face(Direction.EAST).texture("#base").cullface(Direction.EAST).end()
-                .face(Direction.WEST).texture("#base").cullface(Direction.WEST).end()
-                .end()
-                // Glowing overlay cube
-                .element().from(0, 0, 0).to(16, 16, 16)
-                .face(Direction.UP).texture("#glow").cullface(Direction.UP).end()
-                .face(Direction.DOWN).texture("#glow").cullface(Direction.DOWN).end()
-                .face(Direction.NORTH).texture("#glow").cullface(Direction.NORTH).end()
-                .face(Direction.SOUTH).texture("#glow").cullface(Direction.SOUTH).end()
-                .face(Direction.EAST).texture("#glow").cullface(Direction.EAST).end()
-                .face(Direction.WEST).texture("#glow").cullface(Direction.WEST).end()
-                .end();
+                .texture("glow", glowTexture);
 
-        var model = ConfiguredModel.builder().modelFile(modelBuilder).build();
-
-        simpleBlock(block.get(), model);
+        simpleBlock(block.get(), modelBuilder);
         simpleBlockItem(block.get(), models().getExistingFile(blockTexture(block.get())));
     }
 
@@ -424,6 +401,30 @@ public class DDBlockStateProvider extends BlockStateProvider {
 
         itemModels().withExistingParent(block.getId().getPath(), "item/generated")
                 .texture("layer0", blockTexture(block.get()));
+    }
+
+    public void glowLampBlock(DeferredHolder<Block, ? extends Block> block) {
+        String blockName = block.getId().getPath();
+
+        ResourceLocation offTexture = modLoc("block/" + blockName);
+        ResourceLocation onTexture = this.extend(offTexture, "_lit");
+        ResourceLocation glowTexture = this.extend(offTexture, "_lit_glow");
+
+        var offModel = models().withExistingParent(blockName, mcLoc("block/cube_all"))
+                .texture("all", offTexture);
+
+        var onModel = models().withExistingParent(blockName + "_on", modLoc("block/glow_block"))
+                .texture("particle", onTexture)
+                .texture("base", onTexture)
+                .texture("glow", glowTexture);
+
+        getVariantBuilder(block.get())
+                .partialState().with(net.minecraft.world.level.block.state.properties.BlockStateProperties.LIT, false)
+                .addModels(new ConfiguredModel(offModel))
+                .partialState().with(net.minecraft.world.level.block.state.properties.BlockStateProperties.LIT, true)
+                .addModels(new ConfiguredModel(onModel));
+
+        simpleBlockItem(block.get(), offModel);
     }
 
     public void crystalHuskBlock(DeferredHolder<Block, ? extends Block> block) {

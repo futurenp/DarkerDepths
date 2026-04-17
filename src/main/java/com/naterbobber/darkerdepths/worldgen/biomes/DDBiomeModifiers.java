@@ -146,7 +146,8 @@ public class DDBiomeModifiers {
                 getPlacedFeature(
                         context,
                         GLIMMERING_VINES,
-                        HUGE_GLOWSHROOM
+//                        HUGE_GLOWSHROOM
+                        SMUSHED_GLOWSHROOM
                 ),
                 GenerationStep.Decoration.VEGETAL_DECORATION)
         );

@@ -60,6 +60,7 @@ public class DDResourceKeys {
         public static final ResourceKey<ConfiguredFeature<?, ?>> GLOWSHROOM_PATCH = createKey("glowshroom_patch");
         public static final ResourceKey<ConfiguredFeature<?, ?>> HUGE_GLOWSHROOM = createKey("huge_glowshroom");
         public static final ResourceKey<ConfiguredFeature<?, ?>> HUGE_GLOWSHROOM_PLANTED = createKey("huge_glowshroom_planted");
+        public static final ResourceKey<ConfiguredFeature<?, ?>> SMUSHED_GLOWSHROOM = createKey("smushed_glowshroom");
         public static final ResourceKey<ConfiguredFeature<?, ?>> AMBERS_PLACEMENT = createKey("amber_placement");
         public static final ResourceKey<ConfiguredFeature<?, ?>> MOLTEN_SPRING = createKey("molten_spring");
         public static final ResourceKey<ConfiguredFeature<?, ?>> LARGE_MOLTEN_PILLAR = createKey("large_molten_pillar");
@@ -98,6 +99,7 @@ public class DDResourceKeys {
 
     public static class PlacedFeatures {
         public static final ResourceKey<PlacedFeature> HUGE_GLOWSHROOM = createKey("huge_glowshroom");
+        public static final ResourceKey<PlacedFeature> SMUSHED_GLOWSHROOM = createKey("smushed_glowshroom");
         public static final ResourceKey<PlacedFeature> GLOWSHROOM_PATCH = createKey("glowshroom_patch");
         public static final ResourceKey<PlacedFeature> AMBER_PLACEMENT = createKey("amber");
         public static final ResourceKey<PlacedFeature> MOLTEN_SPRING = createKey("molten_spring");

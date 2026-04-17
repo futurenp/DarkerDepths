@@ -41,7 +41,7 @@ public class DDSurfaceRules {
     );
 
     private static final SurfaceRules.RuleSource MAGMA_NOISE = SurfaceRules.ifTrue(
-            new AxisNoiseConditionSource(DDResourceKeys.Noises.MAGMA, -0.0125, 0.0125, true, true, true),
+            new AxisNoiseConditionSource(DDResourceKeys.Noises.MAGMA, -0.0075, 0.0075, true, true, true),
             MAGMA
     );
 

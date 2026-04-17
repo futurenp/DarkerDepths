@@ -8,7 +8,7 @@ import net.minecraft.world.level.levelgen.synth.NormalNoise;
 public class DDNoiseData {
 
     public static void bootstrap(BootstrapContext<NormalNoise.NoiseParameters> context) {
-        register(context, DDResourceKeys.Noises.MAGMA, -5, 0.4);
+        register(context, DDResourceKeys.Noises.MAGMA, -6, 0.4);
         register(context, DDResourceKeys.Noises.TUFF, -6, 1.0);
         register(context, DDResourceKeys.Noises.DUSKROCK, -5, 1.2);
     }

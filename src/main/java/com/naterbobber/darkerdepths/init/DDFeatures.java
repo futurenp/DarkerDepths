@@ -21,6 +21,7 @@ public class DDFeatures {
     public static final DeferredHolder<Feature<?>, RandomSpreadFeature> RANDOM_GLOWSHROOM_PATCHES = FEATURES.register("random_glowshroom_patches", () -> new RandomSpreadFeature(NoneFeatureConfiguration.CODEC));
     public static final DeferredHolder<Feature<?>, GemstoneFeature> GEMSTONE = FEATURES.register("gemstone", () -> new GemstoneFeature(NoneFeatureConfiguration.CODEC));
     public static final DeferredHolder<Feature<?>, HugeGlowshroomFeature> HUGE_GLOWSHROOM = FEATURES.register("huge_glowshroom", () -> new HugeGlowshroomFeature(NoneFeatureConfiguration.CODEC));
+    public static final DeferredHolder<Feature<?>, SmushedGlowshroomFeature> SMUSHED_GLOWSHROOM = FEATURES.register("smushed_glowshroom", () -> new SmushedGlowshroomFeature(NoneFeatureConfiguration.CODEC));
     public static final DeferredHolder<Feature<?>, PetrifiedBranchFeature> PETRIFIED_BRANCH = FEATURES.register("petrified_branch", () -> new PetrifiedBranchFeature(PetrifiedBranchConfig.CODEC));
     public static final DeferredHolder<Feature<?>, LavaVegetationPatchFeature> LAVA_VEGETATION_PATCH_FEATURE = FEATURES.register("lava_vegetation_patch", () -> new LavaVegetationPatchFeature(VegetationPatchConfiguration.CODEC));
     public static final DeferredHolder<Feature<?>, CorrespondentLayersFeature> CORRESPONDENT_LAYER = FEATURES.register("correspondent_layer", () -> new CorrespondentLayersFeature(CorrespondentLayersConfig.CODEC));

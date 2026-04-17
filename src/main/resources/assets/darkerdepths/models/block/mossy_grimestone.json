@@ -1,8 +1,37 @@
 {
-  "parent": "minecraft:block/cube_bottom_top",
+  "parent": "minecraft:block/block",
+  "render_type": "minecraft:translucent",
   "textures": {
-    "top": "darkerdepths:block/mossy_grimestone_top",
+    "particle": "darkerdepths:block/mossy_grimestone",
     "bottom": "darkerdepths:block/grimestone_top",
-    "side": "darkerdepths:block/mossy_grimestone"
-  }
+    "top": "darkerdepths:block/mossy_grimestone_top",
+    "side": "darkerdepths:block/mossy_grimestone",
+    "glow_top": "darkerdepths:block/mossy_grimestone_top_glow",
+    "glow_side": "darkerdepths:block/mossy_grimestone_glow"
+  },
+  "elements": [
+    {
+      "from": [0, 0, 0],
+      "to": [16, 16, 16],
+      "faces": {
+        "down": {"texture": "#bottom", "cullface": "down"},
+        "up": {"texture": "#top", "cullface": "up"},
+        "north": {"texture": "#side", "cullface": "north"},
+        "south": {"texture": "#side", "cullface": "south"},
+        "west": {"texture": "#side", "cullface": "west"},
+        "east": {"texture": "#side", "cullface": "east"}
+      }
+    },
+    {
+      "from": [0, 0, 0],
+      "to": [16, 16, 16],
+      "faces": {
+        "up": {"texture": "#glow_top", "cullface": "up"},
+        "north": {"texture": "#glow_side", "cullface": "north"},
+        "south": {"texture": "#glow_side", "cullface": "south"},
+        "west": {"texture": "#glow_side", "cullface": "west"},
+        "east": {"texture": "#glow_side", "cullface": "east"}
+      }
+    }
+  ]
 }
