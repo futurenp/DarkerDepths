@@ -84,7 +84,7 @@ public class EmissiveModelManager {
         );
 
         applyToAllStates(event, new EmissiveBakedModel.Builder()
-                        .glowRenderType(RenderType.CUTOUT)
+                        .glowRenderType(RenderType.TRANSLUCENT)
                         .glowBrightness(LightTexture.pack(2, 0)),
                 DDBlocks.MOSSY_GRIMESTONE
         );

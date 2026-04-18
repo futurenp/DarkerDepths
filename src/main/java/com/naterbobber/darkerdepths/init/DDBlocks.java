@@ -318,7 +318,7 @@ public class DDBlocks {
     public static final DeferredBlock<Block> GLOWSHROOM_HEART = registerBlock("glowshroom_heart",
             () -> new Block(BlockBehaviour.Properties.of().strength(2.0f, 3.0f).sound(SoundType.SHROOMLIGHT).lightLevel(value -> 15)));
     public static final DeferredBlock<GlowshroomBlock> GLOWSHROOM = registerBlock("glowshroom",
-            () -> new GlowshroomBlock(BlockBehaviour.Properties.of().strength(0.0F, 1.0F).sound(SoundType.SLIME_BLOCK).lightLevel((state) -> 3 + (2 * state.getValue(GlowshroomBlock.GLOWSHROOM_CLUSTERS))).noCollission()));
+            () -> new GlowshroomBlock(BlockBehaviour.Properties.of().offsetType(BlockBehaviour.OffsetType.XZ).strength(0.0F, 1.0F).sound(SoundType.SLIME_BLOCK).lightLevel((state) -> 3 + (2 * state.getValue(GlowshroomBlock.GLOWSHROOM_CLUSTERS))).noCollission()));
     public static final DeferredBlock<FlowerPotBlock> POTTED_GLOWSHROOM = registerNoTabBlock("potted_glowshroom",
             () -> new FlowerPotBlock(GLOWSHROOM.get(), BlockBehaviour.Properties.of().instabreak().noOcclusion().pushReaction(PushReaction.DESTROY).lightLevel((state) -> 5)));
     public static final DeferredBlock<GlowspursBlock> GLOWSPURS = registerBlock("glowspurs",
