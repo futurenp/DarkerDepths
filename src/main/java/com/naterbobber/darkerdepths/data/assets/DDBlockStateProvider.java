@@ -49,8 +49,6 @@ public class DDBlockStateProvider extends BlockStateProvider {
         add(this::livingCrystalBlock, DDBlocks.LIVING_CRYSTAL);
         add(this::airBlock, DDBlocks.SCORCHER_LIGHT_BLOCK);
         add(this::airBlock, DDBlocks.MOB_PLACER);
-        add(this::blockWithGlow, DDBlocks.GLOWSHROOM_PLANKS);
-        add(this::blockWithGlow, DDBlocks.GLOWSHROOM_BLOCK);
         add(this::crossWithGlow, DDBlocks.GLIMMERING_VINES);
         add(this::crossWithGlow, DDBlocks.GLIMMERING_VINE_PLANT);
         add(this::glowLampBlock, DDBlocks.GLOWSHROOM_LAMP);
@@ -344,21 +342,6 @@ public class DDBlockStateProvider extends BlockStateProvider {
     public void airBlock(DeferredHolder<Block, ? extends Block> block) {
         ModelFile airModel = models().getExistingFile(mcLoc("block/air"));
         simpleBlock(block.get(), airModel);
-    }
-
-    public void blockWithGlow(DeferredHolder<Block, ? extends Block> block) {
-        var blockName = block.getId().getPath();
-        ResourceLocation texture = modLoc("block/" + blockName);
-        ResourceLocation glowTexture = this.extend(texture, "_glow");
-
-        var modelBuilder = this.models().withExistingParent(blockName, modLoc("block/glow_block"))
-                .renderType("minecraft:translucent")
-                .texture("particle", texture)
-                .texture("base", texture)
-                .texture("glow", glowTexture);
-
-        simpleBlock(block.get(), modelBuilder);
-        simpleBlockItem(block.get(), models().getExistingFile(blockTexture(block.get())));
     }
 
     public void crossWithGlow(DeferredHolder<Block, ? extends Block> block) {

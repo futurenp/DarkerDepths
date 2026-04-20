@@ -1,9 +1,6 @@
 {
-  "parent": "darkerdepths:block/glow_block",
-  "render_type": "minecraft:translucent",
+  "parent": "minecraft:block/cube_all",
   "textures": {
-    "base": "darkerdepths:block/glowshroom_planks",
-    "glow": "darkerdepths:block/glowshroom_planks_glow",
-    "particle": "darkerdepths:block/glowshroom_planks"
+    "all": "darkerdepths:block/glowshroom_planks"
   }
 }

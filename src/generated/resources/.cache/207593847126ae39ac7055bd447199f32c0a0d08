@@ -1,4 +1,4 @@
-// 1.21.1	2026-04-20T01:47:36.824854	Block States: darkerdepths
+// 1.21.1	2026-04-20T12:52:10.7568202	Block States: darkerdepths
 2a9859a7500ed9a1940849e5db8741eb4e132509 assets/darkerdepths/blockstates/amber_block.json
 c13ff2deecd0684f70c52eb2bf4013ff009056cb assets/darkerdepths/blockstates/aridrock.json
 665632eb3766609df42f994531d5627b486d66f6 assets/darkerdepths/blockstates/aridrock_bricks.json
@@ -233,7 +233,7 @@ c80233f5ebb38abdf9e0b11f718c76bd349f398e assets/darkerdepths/models/block/forsak
 925abbcd6bf82b4931c0a819f7d8b8d4940d4309 assets/darkerdepths/models/block/geyser.json
 0cb133003a817306c9ab38661d31cd37e2707f26 assets/darkerdepths/models/block/glimmering_vines.json
 01989738c81ae1dc1400cbde8173fa039dfd5062 assets/darkerdepths/models/block/glimmering_vine_plant.json
-28590375f23004d9d426dbdada9e23a360a8f04b assets/darkerdepths/models/block/glowshroom_block.json
+77f41a51291c440fd80900332e015d7d311a9e65 assets/darkerdepths/models/block/glowshroom_block.json
 488a2cd1bf00ce25744e6d657493cf25ddc976d2 assets/darkerdepths/models/block/glowshroom_boards.json
 9df7d33f22d7e5970595e52a1fb56ebe11128e4e assets/darkerdepths/models/block/glowshroom_boards_horizontal.json
 77f8b9ecedc19bdfde1f4bb0b65f1163e666b64c assets/darkerdepths/models/block/glowshroom_bookshelf.json
@@ -257,7 +257,7 @@ dacc9b45e407dedef81135b8632a0107f711bd48 assets/darkerdepths/models/block/glowsh
 58a2e99c83c31bf158b9ba8dc09ca7bac914c11c assets/darkerdepths/models/block/glowshroom_hyphae_horizontal.json
 d426df8ab359934011543251711e32c0a088214c assets/darkerdepths/models/block/glowshroom_lamp.json
 f407a50ef994c01103e7e4163d06f5a6b053be8a assets/darkerdepths/models/block/glowshroom_lamp_on.json
-bf6fca9b990da5770f5b06de88337f4f6b66af79 assets/darkerdepths/models/block/glowshroom_planks.json
+fbc19ad04d5540a8860468923c73471a4b17249b assets/darkerdepths/models/block/glowshroom_planks.json
 934167ff96b838e86ab2a5409e6d1ad6a2b0422c assets/darkerdepths/models/block/glowshroom_pressure_plate.json
 d2abce6a0bd99c9a4b04a693bc9a8e651b478e43 assets/darkerdepths/models/block/glowshroom_pressure_plate_down.json
 c1457bd7fd94ebb2349fba6ddaaee46ab4a894c3 assets/darkerdepths/models/block/glowshroom_slab.json
