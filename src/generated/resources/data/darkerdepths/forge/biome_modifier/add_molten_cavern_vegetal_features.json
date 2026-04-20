@@ -2,8 +2,8 @@
   "type": "forge:add_features",
   "biomes": "darkerdepths:molten_cavern",
   "features": [
-    "darkerdepths:darkslate_vegetation",
-    "darkerdepths:petrified_roots"
+    "darkerdepths:petrified_roots_molten_cavern",
+    "darkerdepths:darkslate_vegetation"
   ],
   "step": "vegetal_decoration"
 }

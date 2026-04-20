@@ -207,5 +207,19 @@ public class DDPlacedFeatures {
                         BlockPredicate.ONLY_IN_AIR_PREDICATE, 12),
                 RandomOffsetPlacement.vertical(ConstantInt.of(-1)),
                 BiomeFilter.biome());
+
+        PlacementUtils.register(context, PETRIFIED_ROOTS_MOLTEN_CAVERN, lookup.getOrThrow(DDResourceKeys.ConfiguredFeatures.PETRIFIED_ROOTS),
+                CountPlacement.of(256),
+                InSquarePlacement.spread(),
+                PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
+                EnvironmentScanPlacement.scanningFor(Direction.UP, BlockPredicate.matchesBlocks(
+                                DDBlocks.DARKSLATE.get(),
+                                DDBlocks.ARIDROCK.get(),
+                                DDBlocks.DUSKROCK.get(),
+                                Blocks.PACKED_MUD,
+                                Blocks.TUFF),
+                        BlockPredicate.ONLY_IN_AIR_PREDICATE, 12),
+                RandomOffsetPlacement.vertical(ConstantInt.of(-1)),
+                BiomeFilter.biome());
     }
 }

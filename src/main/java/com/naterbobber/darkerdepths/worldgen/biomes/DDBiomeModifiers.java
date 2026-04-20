@@ -62,8 +62,8 @@ public class DDBiomeModifiers {
                 getBiome(context, MOLTEN_CAVERN),
                 getPlacedFeature(
                         context,
-                        DARKSLATE_VEGETATION,
-                        PETRIFIED_ROOTS
+                        PETRIFIED_ROOTS_MOLTEN_CAVERN,
+                        DARKSLATE_VEGETATION
                 ),
                 GenerationStep.Decoration.VEGETAL_DECORATION
         ));
@@ -88,9 +88,8 @@ public class DDBiomeModifiers {
                 getBiome(context, SANDY_CATACOMBS),
                 getPlacedFeature(
                         context,
-                        AMBER_PLACEMENT,
-                        PETRIFIED_BRANCH,
                         PETRIFIED_ROOTS,
+                        AMBER_PLACEMENT,
                         ARID_VEGETATION
                 ),
                 GenerationStep.Decoration.VEGETAL_DECORATION)
@@ -118,7 +117,8 @@ public class DDBiomeModifiers {
                 getBiome(context, SANDY_CATACOMBS),
                 getPlacedFeature(
                         context,
-                        CATACOMBS_LAVA_LINING
+                        CATACOMBS_LAVA_LINING,
+                        PETRIFIED_BRANCH
                 ),
                 GenerationStep.Decoration.UNDERGROUND_DECORATION)
         );
