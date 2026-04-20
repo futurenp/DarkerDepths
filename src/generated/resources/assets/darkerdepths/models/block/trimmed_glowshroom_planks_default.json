@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "darkerdepths:block/trimmed_glowshroom_planks_end",
+    "side": "darkerdepths:block/trimmed_glowshroom_planks_side"
+  }
+}

@@ -2,7 +2,7 @@ package com.naterbobber.darkerdepths.client.render.renderers;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.client.models.BodySnatcherModel;
-import com.naterbobber.darkerdepths.client.render.renderers.layers.DDCustomRenderTypeLayer;
+import com.naterbobber.darkerdepths.client.render.renderers.layers.DDRenderTypeLayer;
 import com.naterbobber.darkerdepths.entities.BodySnatcherEntity;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -17,6 +17,6 @@ public class BodySnatcherRenderer extends GeoEntityRenderer<BodySnatcherEntity> 
 
     public BodySnatcherRenderer(EntityRendererProvider.Context context) {
         super(context, new BodySnatcherModel());
-        addRenderLayer(new DDCustomRenderTypeLayer<>(this, RenderType.eyes(TEXTURE)));
+        addRenderLayer(new DDRenderTypeLayer<>(this, RenderType.eyes(TEXTURE)));
     }
 }

@@ -1,5 +1,6 @@
 {
   "parent": "minecraft:block/door_top_left",
+  "render_type": "minecraft:cutout",
   "textures": {
     "bottom": "darkerdepths:block/petrified_door_bottom",
     "top": "darkerdepths:block/petrified_door_top"

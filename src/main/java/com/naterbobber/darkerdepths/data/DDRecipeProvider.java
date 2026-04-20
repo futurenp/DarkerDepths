@@ -2,6 +2,7 @@ package com.naterbobber.darkerdepths.data;
 
 import com.google.common.collect.ImmutableList;
 import com.naterbobber.darkerdepths.DarkerDepths;
+import com.naterbobber.darkerdepths.compat.DDCompat;
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import com.naterbobber.darkerdepths.init.DDItems;
 import com.naterbobber.darkerdepths.util.DDTags;
@@ -25,6 +26,9 @@ import net.minecraft.world.item.crafting.SmeltingRecipe;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.Tags;
+import net.neoforged.neoforge.common.conditions.AndCondition;
+import net.neoforged.neoforge.common.conditions.ModLoadedCondition;
+import net.neoforged.neoforge.common.conditions.OrCondition;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -550,7 +554,8 @@ public class DDRecipeProvider extends RecipeProvider {
                 .define('#', item)
                 .pattern("###")
                 .pattern("###")
-                .unlockedBy("has_" + BuiltInRegistries.ITEM.getKey(item).getPath(), has(item)).save(recipeOutput);
+                .unlockedBy("has_" + BuiltInRegistries.ITEM.getKey(item).getPath(), has(item))
+                .save(recipeOutput);
     }
 
     private void twoXtwo(RecipeOutput recipeOutput, ItemLike result, Item item, int count) {
@@ -559,7 +564,8 @@ public class DDRecipeProvider extends RecipeProvider {
                 .define('S', item)
                 .pattern("SS")
                 .pattern("SS")
-                .unlockedBy("has_" + BuiltInRegistries.ITEM.getKey(item).getPath(), has(item)).save(recipeOutput);
+                .unlockedBy("has_" + BuiltInRegistries.ITEM.getKey(item).getPath(), has(item))
+                .save(recipeOutput);
     }
 
 
@@ -571,7 +577,8 @@ public class DDRecipeProvider extends RecipeProvider {
                 .pattern("SSS")
                 .pattern("SSS")
                 .pattern("SSS")
-                .unlockedBy("has_" + BuiltInRegistries.ITEM.getKey(item).getPath(), has(item)).save(recipeOutput);
+                .unlockedBy("has_" + BuiltInRegistries.ITEM.getKey(item).getPath(), has(item))
+                .save(recipeOutput);
     }
 
     private void stairsBlock(RecipeOutput recipeOutput, ItemLike result, Item item) {
@@ -581,7 +588,8 @@ public class DDRecipeProvider extends RecipeProvider {
                 .pattern("#  ")
                 .pattern("## ")
                 .pattern("###")
-                .unlockedBy("has_" + BuiltInRegistries.ITEM.getKey(item).getPath(), has(item)).save(recipeOutput);
+                .unlockedBy("has_" + BuiltInRegistries.ITEM.getKey(item).getPath(), has(item))
+                .save(recipeOutput);
     }
 
     private void fenceBlock(RecipeOutput recipeOutput, ItemLike result, Item item) {
@@ -591,7 +599,8 @@ public class DDRecipeProvider extends RecipeProvider {
                 .define('S', Items.STICK)
                 .pattern("#S#")
                 .pattern("#S#")
-                .unlockedBy("has_" + BuiltInRegistries.ITEM.getKey(item).getPath(), has(item)).save(recipeOutput);
+                .unlockedBy("has_" + BuiltInRegistries.ITEM.getKey(item).getPath(), has(item))
+                .save(recipeOutput);
     }
 
     private void slabBlock(RecipeOutput recipeOutput, ItemLike result, Item item) {
@@ -599,7 +608,8 @@ public class DDRecipeProvider extends RecipeProvider {
                 .shaped(RecipeCategory.BUILDING_BLOCKS, result, 6)
                 .define('#', item)
                 .pattern("###")
-                .unlockedBy("has_" + BuiltInRegistries.ITEM.getKey(item).getPath(), has(item)).save(recipeOutput);
+                .unlockedBy("has_" + BuiltInRegistries.ITEM.getKey(item).getPath(), has(item))
+                .save(recipeOutput);
     }
 
     private void pillarBlock(RecipeOutput recipeOutput, ItemLike result, Item item) {
@@ -608,7 +618,8 @@ public class DDRecipeProvider extends RecipeProvider {
                 .define('#', item)
                 .pattern("#")
                 .pattern("#")
-                .unlockedBy("has_" + BuiltInRegistries.ITEM.getKey(item).getPath(), has(item)).save(recipeOutput);
+                .unlockedBy("has_" + BuiltInRegistries.ITEM.getKey(item).getPath(), has(item))
+                .save(recipeOutput);
     }
 
     private void trimmedPlanksBlock(RecipeOutput recipeOutput, ItemLike result, Item planks) {
@@ -618,7 +629,8 @@ public class DDRecipeProvider extends RecipeProvider {
                 .pattern("#")
                 .pattern("#")
                 .pattern("#")
-                .unlockedBy("has_" + BuiltInRegistries.ITEM.getKey(planks).getPath(), has(planks)).save(recipeOutput);
+                .unlockedBy(getHasName(planks), has(planks))
+                .save(recipeOutput.withConditions(new ModLoadedCondition(DDCompat.NO_MANS_LAND.toString())));
     }
 
     private void bookshelfBlock(RecipeOutput recipeOutput, ItemLike result, Item planks) {
@@ -629,7 +641,8 @@ public class DDRecipeProvider extends RecipeProvider {
                 .pattern("###")
                 .pattern("bbb")
                 .pattern("###")
-                .unlockedBy("has_" + BuiltInRegistries.ITEM.getKey(planks).getPath(), has(planks)).save(recipeOutput);
+                .unlockedBy(getHasName(planks), has(planks))
+                .save(recipeOutput.withConditions(new OrCondition(List.of(new ModLoadedCondition(DDCompat.NO_MANS_LAND.toString()), new ModLoadedCondition(DDCompat.QUARK.toString())))));
     }
 
     private void boardsBlock(RecipeOutput recipeOutput, ItemLike result, Item planks, Item slab) {
@@ -638,7 +651,8 @@ public class DDRecipeProvider extends RecipeProvider {
                 .define('#', slab)
                 .pattern("#")
                 .pattern("#")
-                .unlockedBy("has_" + BuiltInRegistries.ITEM.getKey(planks).getPath(), has(planks)).save(recipeOutput);
+                .unlockedBy(getHasName(planks), has(planks))
+                .save(recipeOutput.withConditions(new ModLoadedCondition(DDCompat.WOODWORKS.toString())));
     }
 
     private void hangingSignBlock(RecipeOutput recipeOutput, ItemLike result, Item strippedLog, Item chain) {
@@ -674,6 +688,7 @@ public class DDRecipeProvider extends RecipeProvider {
         ShapelessRecipeBuilder
                 .shapeless(RecipeCategory.MISC, result, count)
                 .requires(item)
-                .unlockedBy("has_" + BuiltInRegistries.ITEM.getKey(item).getPath(), has(item)).save(recipeOutput);
+                .unlockedBy("has_" + BuiltInRegistries.ITEM.getKey(item).getPath(), has(item))
+                .save(recipeOutput);
     }
 }

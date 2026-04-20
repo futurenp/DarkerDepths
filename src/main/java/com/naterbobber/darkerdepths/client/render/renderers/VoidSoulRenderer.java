@@ -3,7 +3,7 @@ package com.naterbobber.darkerdepths.client.render.renderers;
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.client.models.VoidSoulModel;
 import com.naterbobber.darkerdepths.client.render.DDRenderTypes;
-import com.naterbobber.darkerdepths.client.render.renderers.layers.DDCustomRenderTypeLayer;
+import com.naterbobber.darkerdepths.client.render.renderers.layers.DDRenderTypeLayer;
 import com.naterbobber.darkerdepths.entities.VoidSoulEntity;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
@@ -21,7 +21,7 @@ public class VoidSoulRenderer extends GeoEntityRenderer<VoidSoulEntity> {
 
     public VoidSoulRenderer(EntityRendererProvider.Context context) {
         super(context, new VoidSoulModel());
-        addRenderLayer(new DDCustomRenderTypeLayer<>(this, RenderType.eyes(INNER_TEXTURE)));
+        addRenderLayer(new DDRenderTypeLayer<>(this, RenderType.eyes(INNER_TEXTURE)));
     }
 
     @Override

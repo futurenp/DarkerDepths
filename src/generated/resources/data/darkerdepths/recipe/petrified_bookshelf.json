@@ -1,4 +1,19 @@
 {
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:or",
+      "values": [
+        {
+          "type": "neoforge:mod_loaded",
+          "modid": "nomansland"
+        },
+        {
+          "type": "neoforge:mod_loaded",
+          "modid": "quark"
+        }
+      ]
+    }
+  ],
   "type": "minecraft:crafting_shaped",
   "category": "building",
   "key": {

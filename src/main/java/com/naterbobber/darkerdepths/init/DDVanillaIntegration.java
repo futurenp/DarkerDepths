@@ -26,6 +26,17 @@ public class DDVanillaIntegration {
         fireBlock.setFlammable(DDBlocks.PETRIFIED_ROOTS.get(), 60, 100);
         fireBlock.setFlammable(DDBlocks.DRY_SPROUTS.get(), 60, 100);
         fireBlock.setFlammable(DDBlocks.MOSSY_SPROUTS.get(), 60, 100);
+        fireBlock.setFlammable(DDBlocks.GLOWSHROOM_STEM.get(), 60, 100);
+        fireBlock.setFlammable(DDBlocks.GLOWSHROOM_HYPHAE.get(), 60, 100);
+        fireBlock.setFlammable(DDBlocks.STRIPPED_GLOWSHROOM_STEM.get(), 60, 100);
+        fireBlock.setFlammable(DDBlocks.STRIPPED_GLOWSHROOM_HYPHAE.get(), 60, 100);
+        fireBlock.setFlammable(DDBlocks.STRIPPED_GLOWSHROOM_POST.get(), 60, 100);
+        fireBlock.setFlammable(DDBlocks.GLOWSHROOM_PLANKS.get(), 60, 100);
+        fireBlock.setFlammable(DDBlocks.GLOWSHROOM_STAIRS.get(), 60, 100);
+        fireBlock.setFlammable(DDBlocks.GLOWSHROOM_SLAB.get(), 60, 100);
+        fireBlock.setFlammable(DDBlocks.GLOWSHROOM_VERTICAL_SLAB.get(), 60, 100);
+        fireBlock.setFlammable(DDBlocks.GLOWSHROOM_FENCE.get(), 60, 100);
+        fireBlock.setFlammable(DDBlocks.GLOWSHROOM_FENCE_GATE.get(), 60, 100);
     }
 
     private static void registerCompostables() {

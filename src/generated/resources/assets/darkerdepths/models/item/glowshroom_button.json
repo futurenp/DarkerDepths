@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/button_inventory",
+  "textures": {
+    "texture": "darkerdepths:block/glowshroom_planks"
+  }
+}

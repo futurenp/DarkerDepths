@@ -35,6 +35,7 @@ import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.dimension.DimensionType;
 import net.minecraft.world.phys.AABB;
 import org.jetbrains.annotations.Nullable;
+import software.bernie.geckolib.animatable.GeoAnimatable;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.animation.*;
@@ -170,6 +171,7 @@ public class GlowshroomMonsterEntity extends Monster implements GeoEntity {
     public boolean doHurtTarget(Entity entity) {
         if(this.getAttackTick() == 0) {
             this.setAttacking(true);
+            this.triggerAnim("Attack", ATTACK_SLAM.toString());
 
             this.setAttackTick(50);
             this.damageDelay = 24;
@@ -233,34 +235,20 @@ public class GlowshroomMonsterEntity extends Monster implements GeoEntity {
 
     @Override
     public void registerControllers(final AnimatableManager.ControllerRegistrar controllers) {
-        controllers.add(new AnimationController<>(this, "walkingController", 0, this::predicate));
-        controllers.add(new AnimationController<>(this, "attackingController", 0, this::attackPredicate));
+        controllers.add(new AnimationController<>(this, "Walk/Run/Idle", 0, this::idleRunWalkPredicate));
+        controllers.add(new AnimationController<>(this, "Attack", state -> PlayState.STOP)
+                .triggerableAnim(ATTACK_SLAM.toString(), ATTACK_SLAM));
     }
 
-    protected <E extends GlowshroomMonsterEntity> PlayState predicate(final AnimationState<E> event) {
+    protected PlayState idleRunWalkPredicate(final AnimationState<GlowshroomMonsterEntity> event) {
         if (!event.isMoving()) {
             return event.setAndContinue(IDLE);
         }
-
-//        DarkerDepths.LOGGER.info(this.hasTarget());
-
         if(this.hasTarget()) {
             return event.setAndContinue(RUN);
         } else {
             return event.setAndContinue(WALK);
         }
-    }
-
-    protected <E extends GlowshroomMonsterEntity> PlayState attackPredicate(final AnimationState<E> event) {
-        if (this.isAttacking()) {
-            if (event.getController().getAnimationState().equals(AnimationController.State.STOPPED)) {
-                event.getController().forceAnimationReset();
-                event.getController().setAnimation(ATTACK_SLAM);
-            }
-            return PlayState.CONTINUE;
-        }
-
-        return PlayState.STOP;
     }
 
     @Override
@@ -281,6 +269,7 @@ public class GlowshroomMonsterEntity extends Monster implements GeoEntity {
         this.entityData.set(ATTACK_TICK, attackTick);
     }
 
+    @Deprecated
     public boolean isAttacking() {
         return this.entityData.get(ATTACKING);
     }

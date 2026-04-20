@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "darkerdepths:block/glowshroom_slab"
+    },
+    "type=double": {
+      "model": "darkerdepths:block/glowshroom_planks"
+    },
+    "type=top": {
+      "model": "darkerdepths:block/glowshroom_slab_top"
+    }
+  }
+}

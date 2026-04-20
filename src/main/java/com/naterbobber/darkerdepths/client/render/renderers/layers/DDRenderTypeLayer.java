@@ -5,24 +5,22 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.entity.EndermanRenderer;
-import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.cache.object.BakedGeoModel;
 import software.bernie.geckolib.animatable.GeoAnimatable;
 import software.bernie.geckolib.renderer.GeoRenderer;
 import software.bernie.geckolib.renderer.layer.GeoRenderLayer;
 
 
-public class DDCustomRenderTypeLayer<T extends GeoAnimatable> extends GeoRenderLayer<T> {
+public class DDRenderTypeLayer<T extends GeoAnimatable> extends GeoRenderLayer<T> {
     private final RenderType renderType;
     private int brightness = -1;
 
-    public DDCustomRenderTypeLayer(GeoRenderer<T> renderer, RenderType renderType) {
+    public DDRenderTypeLayer(GeoRenderer<T> renderer, RenderType renderType) {
         super(renderer);
         this.renderType = renderType;
     }
 
-    public DDCustomRenderTypeLayer(GeoRenderer<T> renderer, RenderType renderType, int brightness) {
+    public DDRenderTypeLayer(GeoRenderer<T> renderer, RenderType renderType, int brightness) {
         super(renderer);
         this.renderType = renderType;
         this.brightness = brightness;

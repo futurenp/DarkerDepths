@@ -279,7 +279,7 @@ public class DDAdvancementProvider extends AdvancementProvider {
             var criterionName = "auto_grant";
 
             builder.display(
-                    DDBlocks.GLOWSHROOM.toStack(),
+                    DDBlocks.GLOWSHROOM_PLANKS.toStack(),
                     Component.translatable("advancements.darkerdepths.parent.title"),
                     Component.translatable("advancements.darkerdepths.parent.description"),
                     backgroundTexture,

@@ -54,6 +54,10 @@ public class DDBlockStateProvider extends BlockStateProvider {
         add(this::crossWithGlow, DDBlocks.GLIMMERING_VINES);
         add(this::crossWithGlow, DDBlocks.GLIMMERING_VINE_PLANT);
         add(this::glowLampBlock, DDBlocks.GLOWSHROOM_LAMP);
+        add(this::woodBlockWithItem, DDBlocks.GLOWSHROOM_HYPHAE, DDBlocks.GLOWSHROOM_STEM);
+        add(this::woodBlockWithItem, DDBlocks.STRIPPED_GLOWSHROOM_HYPHAE, DDBlocks.STRIPPED_GLOWSHROOM_STEM);
+        add(this::columnBlockWithItem, DDBlocks.GLOWSHROOM_BOOKSHELF, DDBlocks.GLOWSHROOM_PLANKS);
+        add(this::woodBlockWithItem, DDBlocks.GLOWSHROOM_BOARDS, DDBlocks.GLOWSHROOM_PLANKS);
 
         skipBlock(
                 DDBlocks.VOID_SOUL_JAR,
@@ -545,7 +549,7 @@ public class DDBlockStateProvider extends BlockStateProvider {
         ResourceLocation bottomTexture = location.withPath("block/" + location.getPath() + "_bottom");
         ResourceLocation topTexture = location.withPath("block/" + location.getPath() + "_top");
 
-        doorBlock((DoorBlock) block.get(), bottomTexture, topTexture);
+        doorBlockWithRenderType((DoorBlock) block.get(), bottomTexture, topTexture, "cutout");
 
         ResourceLocation itemTexture = location.withPath("item/" + location.getPath());
         itemModels().withExistingParent(block.getId().getPath(), "item/generated")

@@ -4,7 +4,7 @@ import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.block.blockentities.VoidSoulJarBlockEntity;
 import com.naterbobber.darkerdepths.client.models.VoidSoulJarModel;
 import com.naterbobber.darkerdepths.client.render.DDRenderTypes;
-import com.naterbobber.darkerdepths.client.render.renderers.layers.DDCustomRenderTypeLayer;
+import com.naterbobber.darkerdepths.client.render.renderers.layers.DDRenderTypeLayer;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;
@@ -19,7 +19,7 @@ public class VoidSoulJarBlockEntityRenderer extends GeoBlockRenderer<VoidSoulJar
 
     public VoidSoulJarBlockEntityRenderer(BlockEntityRendererProvider.Context context) {
         super(new VoidSoulJarModel<>());
-        addRenderLayer(new DDCustomRenderTypeLayer<>(this, RenderType.eyes(GLOWING_TEXTURE)));
-        addRenderLayer(new DDCustomRenderTypeLayer<>(this, DDRenderTypes.INVERTED_CUBE(INVERTED_TEXTURE)));
+        addRenderLayer(new DDRenderTypeLayer<>(this, RenderType.eyes(GLOWING_TEXTURE)));
+        addRenderLayer(new DDRenderTypeLayer<>(this, DDRenderTypes.INVERTED_CUBE(INVERTED_TEXTURE)));
     }
 }

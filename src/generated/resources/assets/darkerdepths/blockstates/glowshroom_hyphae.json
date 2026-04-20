@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "darkerdepths:block/glowshroom_hyphae_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "darkerdepths:block/glowshroom_hyphae"
+    },
+    "axis=z": {
+      "model": "darkerdepths:block/glowshroom_hyphae_horizontal",
+      "x": 90
+    }
+  }
+}

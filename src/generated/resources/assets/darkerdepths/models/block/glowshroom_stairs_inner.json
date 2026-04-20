@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/inner_stairs",
+  "textures": {
+    "bottom": "darkerdepths:block/glowshroom_planks",
+    "side": "darkerdepths:block/glowshroom_planks",
+    "top": "darkerdepths:block/glowshroom_planks"
+  }
+}

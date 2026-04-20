@@ -1,6 +1,8 @@
 {
   "values": [
     "darkerdepths:petrified_sign",
-    "darkerdepths:petrified_wall_sign"
+    "darkerdepths:glowshroom_sign",
+    "darkerdepths:petrified_wall_sign",
+    "darkerdepths:glowshroom_wall_sign"
   ]
 }

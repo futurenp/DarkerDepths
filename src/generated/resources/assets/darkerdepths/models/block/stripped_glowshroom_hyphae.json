@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "darkerdepths:block/stripped_glowshroom_stem",
+    "side": "darkerdepths:block/stripped_glowshroom_stem"
+  }
+}

@@ -39,6 +39,8 @@ public class DDLanguageProviderENUS extends LanguageProvider {
         blockOverrides.add(DDBlocks.PETRIFIED_WALL_SIGN.get());
         blockOverrides.add(DDBlocks.PETRIFIED_WALL_HANGING_SIGN.get());
         blockOverrides.add(DDBlocks.WALL_VOID_SOUL_TORCH.get());
+        blockOverrides.add(DDBlocks.GLOWSHROOM_WALL_SIGN.get());
+        blockOverrides.add(DDBlocks.GLOWSHROOM_WALL_HANGING_SIGN.get());
         // Entities
         entityTypeOverrides.add(DDEntityTypes.PETRIFIED_CHEST_BOAT.get());
         add(DDEntityTypes.PETRIFIED_CHEST_BOAT.get(), "Boat with Chest");

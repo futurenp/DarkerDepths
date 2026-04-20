@@ -58,7 +58,9 @@ public class DDBlocks {
     public static final BlockBehaviour.Properties GLOWSHROOM_PLANKS_PROPERTIES =
             blockProperties(1.2f, 1.8f, SoundType.WOOD, true);
     public static final BlockBehaviour.Properties GLOWSHROOM_STEM_PROPERTIES =
-            blockProperties(1.2f, 1.8f, SoundType.WOOD, true);
+            blockProperties(1.2f, 2.0f, SoundType.STEM, true);
+    public static final BlockBehaviour.Properties GLOWSHROOM_SIGN_PROPERTIES =
+            blockProperties(1.0f, SoundType.WOOD, true).noCollission();
 
 
     public static final DeferredBlock<RotatedPillarBlock> STRIPPED_PETRIFIED_LOG = registerBlock("stripped_petrified_log",
@@ -79,7 +81,6 @@ public class DDBlocks {
             () -> new RelationalStairBlock(PETRIFIED_PLANKS.get()));
     public static final DeferredBlock<RelationalSlabBlock> PETRIFIED_SLAB = registerBlock("petrified_slab",
             () -> new RelationalSlabBlock(PETRIFIED_PLANKS.get()));
-
     public static final DeferredBlock<VerticalSlabBlock> PETRIFIED_VERTICAL_SLAB = registerCompatBlock(List.of(DDCompat.QUARK), "petrified_vertical_slab",
             () -> new VerticalSlabBlock(PETRIFIED_PLANKS_PROPERTIES));
     public static final DeferredBlock<Block> TRIMMED_PETRIFIED_PLANKS = registerCompatBlock(List.of(DDCompat.NO_MANS_LAND), "trimmed_petrified_planks", CompatBlocks::createTrimmedPlanks);
@@ -109,6 +110,7 @@ public class DDBlocks {
             () -> new WoodPostBlock(PETRIFIED_LOG_PROPERTIES.noOcclusion()));
     public static final DeferredBlock<WoodPostBlock> STRIPPED_PETRIFIED_POST = registerCompatBlock(List.of(DDCompat.QUARK), "stripped_petrified_post",
             () -> new WoodPostBlock(PETRIFIED_LOG_PROPERTIES.noOcclusion()));
+
     public static final DeferredBlock<PorousBlock> POROUS_PETRIFIED_LOG = registerBlock("porous_petrified_log",
             () -> new PorousBlock(PETRIFIED_LOG_PROPERTIES.randomTicks().lightLevel(value -> 6)));
     public static final DeferredBlock<RotatedPillarBlock> ARIDROCK = registerBlock("aridrock",
@@ -311,10 +313,57 @@ public class DDBlocks {
             () -> new Block(DARKSLATE_BRICKS_PROPERTIES));
     public static final DeferredBlock<ConnectedRotatablePillarBlock> GRIMESTONE_PILLAR = registerBlock("grimestone_pillar",
             () -> new ConnectedRotatablePillarBlock(DARKSLATE_BRICKS_PROPERTIES));
+
+    public static final DeferredBlock<RotatedPillarBlock> STRIPPED_GLOWSHROOM_STEM = registerBlock("stripped_glowshroom_stem",
+            () -> new RotatedPillarBlock(GLOWSHROOM_STEM_PROPERTIES));
+    public static final DeferredBlock<RotatedPillarBlock> STRIPPED_GLOWSHROOM_HYPHAE = registerBlock("stripped_glowshroom_hyphae",
+            () -> new RotatedPillarBlock(GLOWSHROOM_STEM_PROPERTIES));
+    public static final DeferredBlock<DDLogBlock> GLOWSHROOM_STEM = registerBlock("glowshroom_stem",
+            () -> new DDLogBlock(GLOWSHROOM_STEM_PROPERTIES, STRIPPED_GLOWSHROOM_STEM.get()));
+    public static final DeferredBlock<DDLogBlock> GLOWSHROOM_HYPHAE = registerBlock("glowshroom_hyphae",
+            () -> new DDLogBlock(GLOWSHROOM_STEM_PROPERTIES, STRIPPED_GLOWSHROOM_HYPHAE.get()));
+    public static final DeferredBlock<Block> GLOWSHROOM_PLANKS = registerBlock("glowshroom_planks",
+            () -> new Block(GLOWSHROOM_PLANKS_PROPERTIES));
+    public static final DeferredBlock<RotatedPillarBlock> GLOWSHROOM_BOARDS = registerCompatBlock(List.of(), "glowshroom_boards",
+            () -> new RotatedPillarBlock(GLOWSHROOM_PLANKS_PROPERTIES));
+    public static final DeferredBlock<Block> VERTICAL_GLOWSHROOM_PLANKS = registerCompatBlock(List.of(DDCompat.QUARK), "vertical_glowshroom_planks",
+            () -> new Block(GLOWSHROOM_PLANKS_PROPERTIES));
+    public static final DeferredBlock<RelationalStairBlock> GLOWSHROOM_STAIRS = registerBlock("glowshroom_stairs",
+            () -> new RelationalStairBlock(GLOWSHROOM_PLANKS.get()));
+    public static final DeferredBlock<RelationalSlabBlock> GLOWSHROOM_SLAB = registerBlock("glowshroom_slab",
+            () -> new RelationalSlabBlock(GLOWSHROOM_PLANKS.get()));
+    public static final DeferredBlock<VerticalSlabBlock> GLOWSHROOM_VERTICAL_SLAB = registerCompatBlock(List.of(DDCompat.QUARK), "glowshroom_vertical_slab",
+            () -> new VerticalSlabBlock(GLOWSHROOM_PLANKS_PROPERTIES));
+    public static final DeferredBlock<Block> TRIMMED_GLOWSHROOM_PLANKS = registerCompatBlock(List.of(DDCompat.NO_MANS_LAND), "trimmed_glowshroom_planks", CompatBlocks::createTrimmedPlanks);
+    public static final DeferredBlock<RelationalFenceBlock> GLOWSHROOM_FENCE = registerBlock("glowshroom_fence",
+            () -> new RelationalFenceBlock(GLOWSHROOM_PLANKS.get()));
+    public static final DeferredBlock<RelationalFenceGateBlock> GLOWSHROOM_FENCE_GATE = registerBlock("glowshroom_fence_gate",
+            () -> new RelationalFenceGateBlock(GLOWSHROOM_PLANKS.get(), DDWoodType.GLOWSHROOM));
+    public static final DeferredBlock<DoorBlock> GLOWSHROOM_DOOR = registerBlock("glowshroom_door",
+            () -> new DoorBlock(DDBlockSetTypes.GLOWSHROOM, GLOWSHROOM_PLANKS_PROPERTIES));
+    public static final DeferredBlock<TrapDoorBlock> GLOWSHROOM_TRAPDOOR = registerBlock("glowshroom_trapdoor",
+            () -> new TrapDoorBlock(DDBlockSetTypes.GLOWSHROOM, GLOWSHROOM_PLANKS_PROPERTIES));
+    public static final DeferredBlock<Block> GLOWSHROOM_BOOKSHELF = registerCompatBlock(List.of(DDCompat.NO_MANS_LAND, DDCompat.QUARK, DDCompat.WOODWORKS),"glowshroom_bookshelf",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.BOOKSHELF)));
+    public static final DeferredBlock<RelationalPressurePlateBlock> GLOWSHROOM_PRESSURE_PLATE = registerBlock("glowshroom_pressure_plate",
+            () -> new RelationalPressurePlateBlock(GLOWSHROOM_PLANKS.get(), DDBlockSetTypes.GLOWSHROOM));
+    public static final DeferredBlock<RelationalButtonBlock> GLOWSHROOM_BUTTON = registerBlock("glowshroom_button",
+            () -> new RelationalButtonBlock(GLOWSHROOM_PLANKS.get(), DDBlockSetTypes.GLOWSHROOM, 30));
+    public static final DeferredBlock<DDStandingSignBlock> GLOWSHROOM_SIGN = registerNoTabBlock("glowshroom_sign",
+            () -> new DDStandingSignBlock(DDWoodType.GLOWSHROOM, GLOWSHROOM_SIGN_PROPERTIES));
+    public static final DeferredBlock<DDWallSignBlock> GLOWSHROOM_WALL_SIGN = registerNoTabBlock("glowshroom_wall_sign",
+            () -> new DDWallSignBlock(GLOWSHROOM_SIGN_PROPERTIES, DDWoodType.GLOWSHROOM));
+    public static final DeferredBlock<DDCeilingHangingSignBlock> GLOWSHROOM_HANGING_SIGN = registerNoTabBlock("glowshroom_hanging_sign",
+            () -> new DDCeilingHangingSignBlock(DDWoodType.GLOWSHROOM, GLOWSHROOM_SIGN_PROPERTIES));
+    public static final DeferredBlock<DDWallHangingSignBlock> GLOWSHROOM_WALL_HANGING_SIGN = registerNoTabBlock("glowshroom_wall_hanging_sign",
+            () -> new DDWallHangingSignBlock(DDWoodType.GLOWSHROOM, GLOWSHROOM_SIGN_PROPERTIES));
+    public static final DeferredBlock<WoodPostBlock> GLOWSHROOM_POST = registerCompatBlock(List.of(DDCompat.QUARK), "glowshroom_post",
+            () -> new WoodPostBlock(GLOWSHROOM_STEM_PROPERTIES.noOcclusion()));
+    public static final DeferredBlock<WoodPostBlock> STRIPPED_GLOWSHROOM_POST = registerCompatBlock(List.of(DDCompat.QUARK), "stripped_glowshroom_post",
+            () -> new WoodPostBlock(GLOWSHROOM_STEM_PROPERTIES.noOcclusion()));
+
     public static final DeferredBlock<Block> GLOWSHROOM_BLOCK = registerBlock("glowshroom_block",
             () -> new Block(BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.SLIME_BLOCK)));
-    public static final DeferredBlock<RotatedPillarBlock> GLOWSHROOM_STEM = registerBlock("glowshroom_stem",
-            () -> new RotatedPillarBlock(BlockBehaviour.Properties.of().strength(1.2f, 2.0f).sound(SoundType.STEM)));
     public static final DeferredBlock<Block> GLOWSHROOM_HEART = registerBlock("glowshroom_heart",
             () -> new Block(BlockBehaviour.Properties.of().strength(2.0f, 3.0f).sound(SoundType.SHROOMLIGHT).lightLevel(value -> 15)));
     public static final DeferredBlock<GlowshroomBlock> GLOWSHROOM = registerBlock("glowshroom",
@@ -335,8 +384,7 @@ public class DDBlocks {
             () -> new GlowshroomLanternBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LANTERN)));
     public static final DeferredBlock<RopeBlock> ROPE = registerNoTabBlock("rope",
             () -> new RopeBlock(blockProperties(0.1f, SoundType.WOOL, false).noOcclusion()));
-    public static final DeferredBlock<Block> GLOWSHROOM_PLANKS = registerBlock("glowshroom_planks",
-            () -> new Block(GLOWSHROOM_PLANKS_PROPERTIES));
+
 
 
     public static final DeferredBlock<MobPlacerBlock> MOB_PLACER = registerNoTabBlock("mob_placer",
