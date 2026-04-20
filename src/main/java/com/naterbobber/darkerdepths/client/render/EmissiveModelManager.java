@@ -14,145 +14,155 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.client.event.ModelEvent;
 import net.neoforged.neoforge.registries.DeferredBlock;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.function.Function;
 import java.util.function.Predicate;
 
 public class EmissiveModelManager {
 
     @SubscribeEvent
     public static void modify(ModelEvent.ModifyBakingResult event) {
-        for (BlockState state : DDBlocks.DARKSLATE.get().getStateDefinition().getPossibleStates()) {
-            if (state.hasProperty(DDBlockStateProperties.HEAT_LEVEL) && state.getValue(DDBlockStateProperties.HEAT_LEVEL) >= 1) {
-                ModelResourceLocation targetModel = BlockModelShaper.stateToModelLocation(state);
-                var originalModel = event.getModels().get(targetModel);
-                if (originalModel != null) {
-                    var emissiveModel = new EmissiveBakedModel.Builder(originalModel).baseBrightness(LightTexture.pack(state.getValue(DDBlockStateProperties.HEAT_LEVEL) * 2, 0)).build();
-                    event.getModels().put(targetModel, emissiveModel);
-                }
-            }
-        }
+        new BlockBaker.Builder(event, DDBlocks.GEYSER)
+                .modelSettings(new EmissiveBakedModel.ModelSettings().baseBrightness(LightTexture.pack(6, 0)))
+                .predicate(state -> state.hasProperty(DDBlockStateProperties.BURSTING) && state.getValue(DDBlockStateProperties.BURSTING))
+                .build()
+                .apply();
 
-        for (BlockState state : DDBlocks.GEYSER.get().getStateDefinition().getPossibleStates()) {
-            if (state.hasProperty(DDBlockStateProperties.BURSTING) && state.getValue(DDBlockStateProperties.BURSTING)) {
-                ModelResourceLocation targetModel = BlockModelShaper.stateToModelLocation(state);
-                var originalModel = event.getModels().get(targetModel);
-                if (originalModel != null) {
-                    var emissiveModel = new EmissiveBakedModel.Builder(originalModel).build();
-                    event.getModels().put(targetModel, emissiveModel);
-                }
-            }
-        }
+        new BlockBaker.Builder(event, DDBlocks.DARKSLATE)
+                .predicate(state -> state.hasProperty(DDBlockStateProperties.HEAT_LEVEL) && state.getValue(DDBlockStateProperties.HEAT_LEVEL) >= 2)
+                .dynamicSettings(state -> {
+                    var brightness = state.getValue(DDBlockStateProperties.HEAT_LEVEL) * 2 - 1;
+                    return new EmissiveBakedModel.ModelSettings().baseBrightness(LightTexture.pack(brightness, 0));
+                })
+                .build()
+                .apply();
 
         int glowshroomBrightness = LightTexture.pack(12, 0);
         int glowshroomBaseBrightness = LightTexture.pack(5, 0);
 
-        applyToAllStates(event, new EmissiveBakedModel.Builder(),
+        new BlockBaker.Builder(event,
                 DDBlocks.GLOWSHROOM_PLANKS,
                 DDBlocks.GLOWSHROOM_BLOCK
-        );
+        )
+                .modelSettings(new EmissiveBakedModel.ModelSettings())
+                .build()
+                .apply();
 
-        applyToAllStates(event, new EmissiveBakedModel.Builder()
-                        .baseRenderType(RenderType.CUTOUT)
-                        .glowRenderType(RenderType.CUTOUT)
-                        .glowBrightness(glowshroomBrightness)
-                        .baseBrightness(glowshroomBaseBrightness),
+        new BlockBaker.Builder(event,
                 DDBlocks.GLIMMERING_VINE_PLANT,
                 DDBlocks.GLIMMERING_VINES,
                 DDBlocks.GLOWSHROOM
-        );
-
-        applyToAllStates(event, new EmissiveBakedModel.Builder()
-                        .baseBrightness(LightTexture.pack(2, 0)),
-                DDBlocks.GLOWSHROOM_STEM
-        );
-
-        applyToAllStates(event, new EmissiveBakedModel.Builder()
+        )
+                .modelSettings(new EmissiveBakedModel.ModelSettings()
                         .baseRenderType(RenderType.CUTOUT)
                         .glowRenderType(RenderType.CUTOUT)
-                        .glowBrightness(glowshroomBrightness),
-                DDBlocks.POTTED_GLOWSHROOM
-        );
+                        .glowBrightness(glowshroomBrightness)
+                        .baseBrightness(glowshroomBaseBrightness))
+                .build()
+                .apply();
 
-        applyToAllStates(event, new EmissiveBakedModel.Builder()
+        new BlockBaker.Builder(event,
+                DDBlocks.GLOWSHROOM_STEM,
+                DDBlocks.GLOWSHROOM_HYPHAE
+        )
+                .modelSettings(new EmissiveBakedModel.ModelSettings()
+                        .baseBrightness(LightTexture.pack(2, 0)))
+                .build()
+                .apply();
+
+        new BlockBaker.Builder(event, DDBlocks.POTTED_GLOWSHROOM)
+                .modelSettings(new EmissiveBakedModel.ModelSettings()
                         .baseRenderType(RenderType.CUTOUT)
                         .glowRenderType(RenderType.CUTOUT)
-                        .glowBrightness(LightTexture.FULL_BRIGHT),
+                        .glowBrightness(glowshroomBrightness))
+                .build()
+                .apply();
+
+        new BlockBaker.Builder(event,
                 DDBlocks.GLOWSHROOM_LANTERN,
                 DDBlocks.GLOWSHROOM_LAMP
-        );
-
-        applyToAllStates(event, new EmissiveBakedModel.Builder()
-                        .glowBrightness(LightTexture.FULL_BRIGHT)
-                        .baseBrightness(glowshroomBaseBrightness),
-                DDBlocks.GLOWSHROOM_HEART
-        );
-
-        applyToAllStates(event, new EmissiveBakedModel.Builder()
-                        .glowRenderType(RenderType.TRANSLUCENT)
-                        .glowBrightness(LightTexture.pack(2, 0)),
-                DDBlocks.MOSSY_GRIMESTONE
-        );
-
-        applyToAllStates(event, new EmissiveBakedModel.Builder()
+        )
+                .modelSettings(new EmissiveBakedModel.ModelSettings()
                         .baseRenderType(RenderType.CUTOUT)
-                        .baseBrightness(LightTexture.pack(2, 0)),
-                DDBlocks.MOSSY_SPROUTS
-        );
-    }
+                        .glowRenderType(RenderType.CUTOUT)
+                        .glowBrightness(LightTexture.FULL_BRIGHT))
+                .build()
+                .apply();
 
-    @SafeVarargs
-    private static void applyToAllStates(ModelEvent.ModifyBakingResult event, EmissiveBakedModel.Builder modelBuilder, DeferredBlock<? extends Block>... blockHolders) {
-        for (DeferredBlock<? extends Block> holder : blockHolders) {
-            for (BlockState state : holder.get().getStateDefinition().getPossibleStates()) {
-                ModelResourceLocation targetModel = BlockModelShaper.stateToModelLocation(state);
-                var originalModel = event.getModels().get(targetModel);
-                if (originalModel != null) {
-                    var emissiveModel = modelBuilder.originalModel(originalModel).build();
-                    event.getModels().put(targetModel, emissiveModel);
-                }
-            }
-        }
+        new BlockBaker.Builder(event, DDBlocks.GLOWSHROOM_HEART)
+                .modelSettings(new EmissiveBakedModel.ModelSettings()
+                        .glowBrightness(LightTexture.FULL_BRIGHT)
+                        .baseBrightness(glowshroomBaseBrightness))
+                .build()
+                .apply();
+
+        new BlockBaker.Builder(event, DDBlocks.MOSSY_GRIMESTONE)
+                .modelSettings(new EmissiveBakedModel.ModelSettings()
+                        .glowBrightness(LightTexture.pack(2, 0)))
+                .build()
+                .apply();
+
+        new BlockBaker.Builder(event, DDBlocks.MOSSY_SPROUTS)
+                .modelSettings(new EmissiveBakedModel.ModelSettings()
+                                .baseRenderType(RenderType.CUTOUT)
+                                .baseBrightness(LightTexture.pack(2, 0)))
+                .build()
+                .apply();
     }
 
     private static class BlockBaker {
-        final List<DeferredBlock<? extends Block>> blockHolders;
-        final ModelEvent.ModifyBakingResult event;
-        Predicate<BlockState> predicate;
-        ModelSettings modelSettings;
-        boolean allStates;
+        private final List<DeferredBlock<? extends Block>> blockHolders;
+        private final ModelEvent.ModifyBakingResult event;
+        private final Predicate<BlockState> predicate;
+        private final Function<BlockState, EmissiveBakedModel.ModelSettings> settingsProvider;
 
-
-        private BlockBaker (BlockBaker.Builder builder) {
+        public BlockBaker (BlockBaker.Builder builder) {
             blockHolders = builder.blockHolders;
             event = builder.event;
-            allStates = builder.allStates;
-            modelSettings = builder.modelSettings;
+            settingsProvider = builder.settingsProvider;
             predicate = builder.predicate;
         }
 
-        public static BlockBaker of(BlockBaker.Builder builder) {
-            return new BlockBaker(builder);
+        public void apply() {
+            for (DeferredBlock<? extends Block> holder : blockHolders) {
+                for (BlockState state : holder.get().getStateDefinition().getPossibleStates()) {
+                    if(!predicate.test(state)) {
+                        continue;
+                    }
+
+                    ModelResourceLocation targetModel = BlockModelShaper.stateToModelLocation(state);
+                    var originalModel = event.getModels().get(targetModel);
+
+                    if (originalModel != null) {
+                        var emissiveModel = new EmissiveBakedModel(originalModel, settingsProvider.apply(state));
+                        event.getModels().put(targetModel, emissiveModel);
+                    }
+                }
+            }
         }
 
         static class Builder {
-            final ModelEvent.ModifyBakingResult event;
-            final List<DeferredBlock<? extends Block>> blockHolders;
-            boolean allStates = false;
-            ModelSettings modelSettings;
-            Predicate<BlockState> predicate = state -> true;
+            private final ModelEvent.ModifyBakingResult event;
+            private final List<DeferredBlock<? extends Block>> blockHolders;
+            private Predicate<BlockState> predicate = state -> true;
 
-            public Builder(ModelEvent.ModifyBakingResult event, List<DeferredBlock<? extends Block>> blockHolders) {
+            private Function<BlockState, EmissiveBakedModel.ModelSettings> settingsProvider =
+                    state -> new EmissiveBakedModel.ModelSettings();
+
+            @SafeVarargs
+            public Builder(ModelEvent.ModifyBakingResult event, DeferredBlock<? extends Block>... blockHolders) {
                 this.event = event;
-                this.blockHolders = blockHolders;
+                this.blockHolders = Arrays.asList(blockHolders);
             }
 
-            public Builder allStates() {
-                allStates = true;
+            public Builder modelSettings(EmissiveBakedModel.ModelSettings modelSettings) {
+                this.settingsProvider = state -> modelSettings;
                 return this;
             }
 
-            public Builder modelSettings(ModelSettings modelSettings) {
-                this.modelSettings = modelSettings;
+            public Builder dynamicSettings(Function<BlockState, EmissiveBakedModel.ModelSettings> settingsProvider) {
+                this.settingsProvider = settingsProvider;
                 return this;
             }
 
@@ -164,47 +174,6 @@ public class EmissiveModelManager {
             public BlockBaker build() {
                 return new BlockBaker(this);
             }
-        }
-    }
-
-    public static class ModelSettings {
-        RenderType baseRenderType = RenderType.SOLID;
-        RenderType glowRenderType = RenderType.TRANSLUCENT;
-        int baseBrightness = 0;
-        int glowBrightness = LightTexture.FULL_BLOCK;
-        boolean removeShadeBase = false;
-        boolean shadeGlow = false;
-
-        public ModelSettings(){}
-
-        public ModelSettings baseRenderType(RenderType baseRenderType) {
-            this.baseRenderType = baseRenderType;
-            return this;
-        }
-
-        public ModelSettings glowRenderType(RenderType glowRenderType) {
-            this.glowRenderType = glowRenderType;
-            return this;
-        }
-
-        public ModelSettings baseBrightness(int baseBrightness) {
-            this.baseBrightness = baseBrightness;
-            return this;
-        }
-
-        public ModelSettings glowBrightness(int glowBrightness) {
-            this.glowBrightness = glowBrightness;
-            return this;
-        }
-
-        public ModelSettings removeShadeBase() {
-            this.removeShadeBase = true;
-            return this;
-        }
-
-        public ModelSettings shadeGlow() {
-            this.shadeGlow = true;
-            return this;
         }
     }
 }

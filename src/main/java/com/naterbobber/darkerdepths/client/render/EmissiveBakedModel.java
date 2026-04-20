@@ -22,9 +22,9 @@ import java.util.List;
 
 public class EmissiveBakedModel extends BakedModelWrapper<BakedModel> {
 
-    private final EmissiveModelManager.ModelSettings settings;
+    private final ModelSettings settings;
 
-    public EmissiveBakedModel(BakedModel originalModel, EmissiveModelManager.ModelSettings settings) {
+    public EmissiveBakedModel(BakedModel originalModel, ModelSettings settings) {
         super(originalModel);
         this.settings = settings;
     }
@@ -68,10 +68,7 @@ public class EmissiveBakedModel extends BakedModelWrapper<BakedModel> {
         return new BakedQuad(vertexData, quad.getTintIndex(), quad.getDirection(), quad.getSprite(), shade);
     }
 
-
-
-    public static class Builder {
-        BakedModel originalModel;
+    public static class ModelSettings {
         RenderType baseRenderType = RenderType.SOLID;
         RenderType glowRenderType = RenderType.TRANSLUCENT;
         int baseBrightness = 0;
@@ -79,52 +76,36 @@ public class EmissiveBakedModel extends BakedModelWrapper<BakedModel> {
         boolean removeShadeBase = false;
         boolean shadeGlow = false;
 
-        EmissiveModelManager.ModelSettings settings;
+        public ModelSettings(){}
 
-
-        public Builder(BakedModel originalModel){
-            this.originalModel = originalModel;
-        }
-
-        public Builder(){}
-
-        public Builder originalModel(BakedModel originalModel){
-            this.originalModel = originalModel;
-            return this;
-        }
-
-        public Builder baseRenderType(RenderType baseRenderType) {
+        public ModelSettings baseRenderType(RenderType baseRenderType) {
             this.baseRenderType = baseRenderType;
             return this;
         }
 
-        public Builder glowRenderType(RenderType glowRenderType) {
+        public ModelSettings glowRenderType(RenderType glowRenderType) {
             this.glowRenderType = glowRenderType;
             return this;
         }
 
-        public Builder baseBrightness(int baseBrightness) {
+        public ModelSettings baseBrightness(int baseBrightness) {
             this.baseBrightness = baseBrightness;
             return this;
         }
 
-        public Builder glowBrightness(int glowBrightness) {
+        public ModelSettings glowBrightness(int glowBrightness) {
             this.glowBrightness = glowBrightness;
             return this;
         }
 
-        public Builder removeShadeBase() {
+        public ModelSettings removeShadeBase() {
             this.removeShadeBase = true;
             return this;
         }
 
-        public Builder shadeGlow() {
+        public ModelSettings shadeGlow() {
             this.shadeGlow = true;
             return this;
-        }
-
-        public EmissiveBakedModel build(){
-            return new EmissiveBakedModel(this);
         }
     }
 }
