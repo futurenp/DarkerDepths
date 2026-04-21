@@ -40,7 +40,7 @@ public class DarkslateBlock extends RotatedPillarBlock implements HeatableBlock 
 
     @Override
     public BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor level, BlockPos currentPos, BlockPos neighborPos) {
-        if (updatedByHeat(level, state)) {
+        if (updatedByHeat(level, neighborState)) {
             level.scheduleTick(currentPos, this, 10);
         }
         return super.updateShape(state, direction, neighborState, level, currentPos, neighborPos);
