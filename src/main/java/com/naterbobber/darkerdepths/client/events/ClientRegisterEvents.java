@@ -1,6 +1,7 @@
 package com.naterbobber.darkerdepths.client.events;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
+import com.naterbobber.darkerdepths.client.events.listeners.DDClientReloadListener;
 import com.naterbobber.darkerdepths.client.particle.*;
 import com.naterbobber.darkerdepths.client.particle.void_soul.*;
 import com.naterbobber.darkerdepths.client.particle.geyser.*;
@@ -19,6 +20,7 @@ import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
+import net.neoforged.neoforge.client.event.RegisterClientReloadListenersEvent;
 import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
 
 @OnlyIn(Dist.CLIENT)
@@ -77,5 +79,10 @@ public class ClientRegisterEvents {
                 (spriteSet) -> new ColoredAshParticle.Provider(spriteSet, 0.25F, 1F, 0.55F, ColoredAshParticle.BrightnessBehavior.FULL_BRIGHT));
 
         event.registerSpriteSet(DDParticleTypes.SCORCHER_SEARCHLIGHT.get(), ScorcherSearchlightParticle.Provider::new);
+    }
+
+    @SubscribeEvent
+    public static void registerReloadListener(RegisterClientReloadListenersEvent event) {
+        event.registerReloadListener(new DDClientReloadListener());
     }
 }

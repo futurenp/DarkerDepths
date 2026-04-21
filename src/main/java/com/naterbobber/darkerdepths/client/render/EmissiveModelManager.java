@@ -9,12 +9,12 @@ import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.ModLoadingException;
+import net.neoforged.fml.ModLoadingIssue;
 import net.neoforged.neoforge.client.event.ModelEvent;
 import net.neoforged.neoforge.registries.DeferredBlock;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
@@ -48,7 +48,9 @@ public class EmissiveModelManager {
                 DDBlocks.GLOWSHROOM_PLANKS,
                 DDBlocks.GLOWSHROOM_BLOCK,
                 DDBlocks.GLOWSHROOM_BUTTON,
-                DDBlocks.GLOWSHROOM_PRESSURE_PLATE
+                DDBlocks.GLOWSHROOM_PRESSURE_PLATE,
+                DDBlocks.STRIPPED_GLOWSHROOM_STEM,
+                DDBlocks.STRIPPED_GLOWSHROOM_HYPHAE
         )
                 .modelSettings(new EmissiveBakedModel.ModelSettings().autoGlow())
                 .build());
@@ -120,11 +122,12 @@ public class EmissiveModelManager {
         models.forEach(BlockBaker::apply);
     }
 
-    private static class BlockBaker {
+    public static class BlockBaker {
         private final List<DeferredBlock<? extends Block>> blockHolders;
         private final ModelEvent.ModifyBakingResult event;
         private final Predicate<BlockState> predicate;
         private final Function<BlockState, EmissiveBakedModel.ModelSettings> settingsProvider;
+        private static List<DeferredBlock<? extends Block>> allHolders = new ArrayList<>();
 
         public BlockBaker (BlockBaker.Builder builder) {
             blockHolders = builder.blockHolders;
@@ -134,6 +137,8 @@ public class EmissiveModelManager {
         }
 
         public void apply() {
+            checkDuplicates();
+
             for (DeferredBlock<? extends Block> holder : blockHolders) {
                 for (BlockState state : holder.get().getStateDefinition().getPossibleStates()) {
                     if(!predicate.test(state)) {
@@ -151,6 +156,28 @@ public class EmissiveModelManager {
             }
         }
 
+        public static void checkDuplicates() {
+            var set = new HashSet<>(allHolders);
+            if(set.size() != allHolders.size()) {
+                List<String> duplicateNames = allHolders.stream()
+                        .filter(holder -> Collections.frequency(allHolders, holder) > 1)
+                        .map(holder -> holder.getId().toString())
+                        .distinct()
+                        .toList();
+
+                throw new ModLoadingException(ModLoadingIssue.error(
+            "Duplicate entries found in model baker!" + "\n\t\t" + String.join("\n\t\t", duplicateNames), duplicateNames));
+            }
+        }
+
+        public static void addHolders(List<? extends DeferredBlock<? extends Block>> holders) {
+            allHolders.addAll(holders);
+        }
+
+        public static void clearHolders() {
+            allHolders.clear();
+        }
+
         static class Builder {
             private final ModelEvent.ModifyBakingResult event;
             private final List<DeferredBlock<? extends Block>> blockHolders;
@@ -163,6 +190,7 @@ public class EmissiveModelManager {
             public Builder(ModelEvent.ModifyBakingResult event, DeferredBlock<? extends Block>... blockHolders) {
                 this.event = event;
                 this.blockHolders = Arrays.asList(blockHolders);
+                BlockBaker.addHolders(this.blockHolders);
             }
 
             public Builder modelSettings(EmissiveBakedModel.ModelSettings modelSettings) {
