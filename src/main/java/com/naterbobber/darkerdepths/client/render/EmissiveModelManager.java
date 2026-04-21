@@ -1,12 +1,10 @@
 package com.naterbobber.darkerdepths.client.render;
 
-import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.block.DDBlockStateProperties;
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.block.BlockModelShaper;
-import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
@@ -14,6 +12,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.client.event.ModelEvent;
 import net.neoforged.neoforge.registries.DeferredBlock;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
@@ -23,25 +22,25 @@ public class EmissiveModelManager {
 
     @SubscribeEvent
     public static void modify(ModelEvent.ModifyBakingResult event) {
-        new BlockBaker.Builder(event, DDBlocks.GEYSER)
+        var models = new ArrayList<BlockBaker>();
+
+        models.add(new BlockBaker.Builder(event, DDBlocks.GEYSER)
                 .modelSettings(new EmissiveBakedModel.ModelSettings().baseBrightness(LightTexture.pack(6, 0)))
                 .predicate(state -> state.hasProperty(DDBlockStateProperties.BURSTING) && state.getValue(DDBlockStateProperties.BURSTING))
-                .build()
-                .apply();
+                .build());
 
-        new BlockBaker.Builder(event, DDBlocks.DARKSLATE)
+        models.add(new BlockBaker.Builder(event, DDBlocks.DARKSLATE)
                 .predicate(state -> state.hasProperty(DDBlockStateProperties.HEAT_LEVEL) && state.getValue(DDBlockStateProperties.HEAT_LEVEL) >= 2)
                 .dynamicSettings(state -> {
                     var brightness = state.getValue(DDBlockStateProperties.HEAT_LEVEL) * 2 - 1;
                     return new EmissiveBakedModel.ModelSettings().baseBrightness(LightTexture.pack(brightness, 0));
                 })
-                .build()
-                .apply();
+                .build());
 
         int glowshroomBrightness = LightTexture.pack(12, 0);
         int glowshroomBaseBrightness = LightTexture.pack(5, 0);
 
-        new BlockBaker.Builder(event,
+        models.add(new BlockBaker.Builder(event,
                 DDBlocks.GLOWSHROOM_FENCE,
                 DDBlocks.GLOWSHROOM_SLAB,
                 DDBlocks.GLOWSHROOM_STAIRS,
@@ -52,17 +51,15 @@ public class EmissiveModelManager {
                 DDBlocks.GLOWSHROOM_PRESSURE_PLATE
         )
                 .modelSettings(new EmissiveBakedModel.ModelSettings().autoGlow())
-                .build()
-                .apply();
+                .build());
 
-        new BlockBaker.Builder(event, DDBlocks.CRYSTAL_MELON)
+        models.add(new BlockBaker.Builder(event, DDBlocks.CRYSTAL_MELON)
                 .modelSettings(new EmissiveBakedModel.ModelSettings()
                         .baseBrightness(LightTexture.pack(10, 0))
                         .removeShadeBase())
-                .build()
-                .apply();
+                .build());
 
-        new BlockBaker.Builder(event,
+        models.add(new BlockBaker.Builder(event,
                 DDBlocks.GLIMMERING_VINE_PLANT,
                 DDBlocks.GLIMMERING_VINES,
                 DDBlocks.GLOWSHROOM
@@ -73,10 +70,9 @@ public class EmissiveModelManager {
                         .glowBrightness(glowshroomBrightness)
                         .baseBrightness(glowshroomBaseBrightness)
                         .removeShadeBase())
-                .build()
-                .apply();
+                .build());
 
-        new BlockBaker.Builder(event,
+        models.add(new BlockBaker.Builder(event,
                 DDBlocks.GLOWSHROOM_STEM,
                 DDBlocks.GLOWSHROOM_HYPHAE
         )
@@ -84,18 +80,16 @@ public class EmissiveModelManager {
                         .baseBrightness(LightTexture.pack(2, 0))
                         .glowBrightness(glowshroomBrightness)
                         .autoGlow())
-                .build()
-                .apply();
+                .build());
 
-        new BlockBaker.Builder(event, DDBlocks.POTTED_GLOWSHROOM)
+        models.add(new BlockBaker.Builder(event, DDBlocks.POTTED_GLOWSHROOM)
                 .modelSettings(new EmissiveBakedModel.ModelSettings()
                         .baseRenderType(RenderType.CUTOUT)
                         .glowRenderType(RenderType.CUTOUT)
                         .glowBrightness(glowshroomBrightness))
-                .build()
-                .apply();
+                .build());
 
-        new BlockBaker.Builder(event,
+        models.add(new BlockBaker.Builder(event,
                 DDBlocks.GLOWSHROOM_LANTERN,
                 DDBlocks.GLOWSHROOM_LAMP
         )
@@ -103,29 +97,27 @@ public class EmissiveModelManager {
                         .baseRenderType(RenderType.CUTOUT)
                         .glowRenderType(RenderType.CUTOUT)
                         .glowBrightness(LightTexture.FULL_BRIGHT))
-                .build()
-                .apply();
+                .build());
 
-        new BlockBaker.Builder(event, DDBlocks.GLOWSHROOM_HEART)
+        models.add(new BlockBaker.Builder(event, DDBlocks.GLOWSHROOM_HEART)
                 .modelSettings(new EmissiveBakedModel.ModelSettings()
                         .glowBrightness(LightTexture.FULL_BRIGHT)
                         .baseBrightness(glowshroomBaseBrightness))
-                .build()
-                .apply();
+                .build());
 
-        new BlockBaker.Builder(event, DDBlocks.MOSSY_GRIMESTONE)
+        models.add(new BlockBaker.Builder(event, DDBlocks.MOSSY_GRIMESTONE)
                 .modelSettings(new EmissiveBakedModel.ModelSettings()
                         .glowBrightness(LightTexture.pack(2, 0)))
-                .build()
-                .apply();
+                .build());
 
-        new BlockBaker.Builder(event, DDBlocks.MOSSY_SPROUTS)
+        models.add(new BlockBaker.Builder(event, DDBlocks.MOSSY_SPROUTS)
                 .modelSettings(new EmissiveBakedModel.ModelSettings()
                         .baseRenderType(RenderType.CUTOUT)
                         .baseBrightness(LightTexture.pack(2, 0))
                         .removeShadeBase())
-                .build()
-                .apply();
+                .build());
+
+        models.forEach(BlockBaker::apply);
     }
 
     private static class BlockBaker {
