@@ -48,6 +48,13 @@ public class HeatPropagationProcessor implements IChunkPostProcessor {
     public boolean processChunk(ServerLevel level, ChunkAccess chunk) {
         ChunkPos chunkPos = chunk.getPos();
 
+        ChunkAccess[][] localChunks = new ChunkAccess[3][3];
+        for (int cx = -1; cx <= 1; cx++) {
+            for (int cz = -1; cz <= 1; cz++) {
+                localChunks[cx + 1][cz + 1] = level.getChunkSource().getChunkNow(chunkPos.x + cx, chunkPos.z + cz);
+            }
+        }
+
         Queue<HeatNode> queue = suspendedQueues.get(chunkPos);
 
         if (queue == null) {
@@ -55,6 +62,7 @@ public class HeatPropagationProcessor implements IChunkPostProcessor {
         }
 
         int opsCompletedThisTick = 0;
+        BlockPos.MutableBlockPos mutableNeighbor = new BlockPos.MutableBlockPos();
 
         while (!queue.isEmpty() && opsCompletedThisTick < OPS_BUDGET_PER_TICK) {
             HeatNode node = queue.poll();
@@ -64,18 +72,26 @@ public class HeatPropagationProcessor implements IChunkPostProcessor {
             if (targetHeat <= 0) continue;
 
             for (Direction direction : Direction.values()) {
-                BlockPos neighborPos = node.pos().relative(direction);
+                mutableNeighbor.setWithOffset(node.pos(), direction);
 
-                if (!level.isLoaded(neighborPos)) continue;
+                int gridX = ((mutableNeighbor.getX() >> 4) - chunkPos.x) + 1;
+                int gridZ = ((mutableNeighbor.getZ() >> 4) - chunkPos.z) + 1;
 
-                BlockState neighborState = level.getBlockState(neighborPos);
+
+                if (gridX < 0 || gridX > 2 || gridZ < 0 || gridZ > 2) continue;
+
+                ChunkAccess neighborChunk = localChunks[gridX][gridZ];
+                if (neighborChunk == null) continue;
+
+
+                BlockState neighborState = neighborChunk.getBlockState(mutableNeighbor);
 
                 if (neighborState.is(DDTags.Blocks.HEATABLE) && neighborState.hasProperty(DDBlockStateProperties.HEAT_LEVEL)) {
                     int currentHeat = neighborState.getValue(DDBlockStateProperties.HEAT_LEVEL);
 
                     if (targetHeat > currentHeat) {
-                        level.setBlock(neighborPos, neighborState.setValue(DDBlockStateProperties.HEAT_LEVEL, targetHeat), Block.UPDATE_CLIENTS | Block.UPDATE_KNOWN_SHAPE | Block.UPDATE_NONE);
-                        queue.add(new HeatNode(neighborPos, targetHeat));
+                        level.setBlock(mutableNeighbor, neighborState.setValue(DDBlockStateProperties.HEAT_LEVEL, targetHeat), Block.UPDATE_CLIENTS | Block.UPDATE_KNOWN_SHAPE | Block.UPDATE_NONE);
+                        queue.add(new HeatNode(mutableNeighbor.immutable(), targetHeat));
                     }
                 }
             }
