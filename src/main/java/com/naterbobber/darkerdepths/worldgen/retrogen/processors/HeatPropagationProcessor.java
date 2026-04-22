@@ -3,16 +3,20 @@ package com.naterbobber.darkerdepths.worldgen.retrogen.processors;
 import com.naterbobber.darkerdepths.block.DDBlockStateProperties;
 import com.naterbobber.darkerdepths.block.generic.HeatableBlock;
 import com.naterbobber.darkerdepths.config.DDConfig;
+import com.naterbobber.darkerdepths.init.DDBlocks;
 import com.naterbobber.darkerdepths.util.DDTags;
 import com.naterbobber.darkerdepths.worldgen.retrogen.IChunkPostProcessor;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.ChunkPos;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.ChunkAccess;
+import net.minecraft.world.level.chunk.LevelChunk;
 import net.minecraft.world.level.chunk.LevelChunkSection;
+import net.neoforged.neoforge.common.util.BlockSnapshot;
 
 import java.util.LinkedList;
 import java.util.Map;
@@ -90,7 +94,7 @@ public class HeatPropagationProcessor implements IChunkPostProcessor {
                     int currentHeat = neighborState.getValue(DDBlockStateProperties.HEAT_LEVEL);
 
                     if (targetHeat > currentHeat) {
-                        level.setBlock(mutableNeighbor, neighborState.setValue(DDBlockStateProperties.HEAT_LEVEL, targetHeat), Block.UPDATE_CLIENTS | Block.UPDATE_KNOWN_SHAPE | Block.UPDATE_NONE);
+                        setBlockFast(level, mutableNeighbor, neighborState.setValue(DDBlockStateProperties.HEAT_LEVEL, targetHeat), Block.UPDATE_CLIENTS | Block.UPDATE_KNOWN_SHAPE | Block.UPDATE_NONE);
                         queue.add(new HeatNode(mutableNeighbor.immutable(), targetHeat));
                     }
                 }
@@ -139,5 +143,20 @@ public class HeatPropagationProcessor implements IChunkPostProcessor {
             }
         }
         return queue;
+    }
+
+    private static void setBlockFast(ServerLevel level, BlockPos pos, BlockState state, int flags) {
+        if (level.isOutsideBuildHeight(pos)) {
+            return;
+        }
+
+        LevelChunk levelchunk = level.getChunkAt(pos);
+        pos = pos.immutable();
+
+        BlockState blockstate = levelchunk.setBlockState(pos, state, (flags & 64) != 0);
+
+        if (blockstate != null) {
+            level.markAndNotifyBlock(pos, levelchunk, blockstate, state, flags, 512);
+        }
     }
 }
