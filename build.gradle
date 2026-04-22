@@ -111,6 +111,7 @@ dependencies {
     annotationProcessor "org.spongepowered:mixin:0.8.5:processor"
     compileOnly fg.deobf("com.github.glitchfiend:TerraBlender-forge:${project.minecraft_version}-${project.terrablender_version}")
     implementation fg.deobf("software.bernie.geckolib:geckolib-forge-${project.minecraft_version}:${project.geckolib_version}")
+    implementation fg.deobf("curse.maven:spark-361579:4738952")
 }
 
 jar {
