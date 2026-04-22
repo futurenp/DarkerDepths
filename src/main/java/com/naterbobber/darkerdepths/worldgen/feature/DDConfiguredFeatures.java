@@ -6,8 +6,10 @@ import com.naterbobber.darkerdepths.block.custom.GlowshroomBlock;
 import com.naterbobber.darkerdepths.block.custom.GlowspursBlock;
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import com.naterbobber.darkerdepths.init.DDFeatures;
+import com.naterbobber.darkerdepths.util.DDResourceKeys;
 import com.naterbobber.darkerdepths.util.DDTags;
 import com.naterbobber.darkerdepths.worldgen.feature.config.*;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderSet;
@@ -28,10 +30,12 @@ import net.minecraft.world.level.levelgen.feature.configurations.*;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.minecraft.world.level.levelgen.feature.stateproviders.RuleBasedBlockStateProvider;
 import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
+import net.minecraft.world.level.levelgen.placement.BlockPredicateFilter;
 import net.minecraft.world.level.levelgen.placement.CaveSurface;
 import net.minecraft.world.level.levelgen.structure.templatesystem.BlockMatchTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
 import net.minecraft.world.level.material.Fluids;
+import net.neoforged.neoforge.common.Tags;
 
 import java.util.List;
 import java.util.Optional;
@@ -97,15 +101,15 @@ public class DDConfiguredFeatures {
         FeatureUtils.register(context, GRIME_VEGETATION, Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(
                 new WeightedStateProvider(
                         SimpleWeightedRandomList.<BlockState>builder()
-                                .add(DDBlocks.GLOWSHROOM.get().defaultBlockState().setValue(GlowshroomBlock.GLOWSHROOM_CLUSTERS, 1), 4)
-                                .add(DDBlocks.GLOWSHROOM.get().defaultBlockState().setValue(GlowshroomBlock.GLOWSHROOM_CLUSTERS, 2), 2)
-                                .add(DDBlocks.GLOWSHROOM.get().defaultBlockState().setValue(GlowshroomBlock.GLOWSHROOM_CLUSTERS, 3), 1)
+                                .add(DDBlocks.GLOWSHROOM.get().defaultBlockState().setValue(GlowshroomBlock.GLOWSHROOM_CLUSTERS, 1), 5)
+                                .add(DDBlocks.GLOWSHROOM.get().defaultBlockState().setValue(GlowshroomBlock.GLOWSHROOM_CLUSTERS, 2), 5)
+                                .add(DDBlocks.GLOWSHROOM.get().defaultBlockState().setValue(GlowshroomBlock.GLOWSHROOM_CLUSTERS, 3), 3)
                                 .add(DDBlocks.GLOWSPURS.get().defaultBlockState().setValue(GlowspursBlock.FACING, Direction.NORTH), 1)
                                 .add(DDBlocks.GLOWSPURS.get().defaultBlockState().setValue(GlowspursBlock.FACING, Direction.EAST), 1)
                                 .add(DDBlocks.GLOWSPURS.get().defaultBlockState().setValue(GlowspursBlock.FACING, Direction.SOUTH), 1)
                                 .add(DDBlocks.GLOWSPURS.get().defaultBlockState().setValue(GlowspursBlock.FACING, Direction.WEST), 1)
-                                .add(DDBlocks.MOSSY_SPROUTS.get().defaultBlockState(), 120)
-                                .add(Blocks.AIR.defaultBlockState(), 1000)
+                                .add(DDBlocks.MOSSY_SPROUTS.get().defaultBlockState(), 200)
+                                .add(Blocks.AIR.defaultBlockState(), 420)
                 )
         ));
 
@@ -296,23 +300,47 @@ public class DDConfiguredFeatures {
 
         FeatureUtils.register(context, GRIMESTONE_CLIFF, DDFeatures.CLIFF_PLATEU.get(),
                 new CliffPlateuConfig(
-                        BlockStateProvider.simple(Blocks.TUFF.defaultBlockState()),
+                        BlockStateProvider.simple(Blocks.DEEPSLATE.defaultBlockState()),
                         4,
                         6
                 )
         );
 
         FeatureUtils.register(context, GRIME_SURFACE, DDFeatures.CORRESPONDENT_LAYER.get(), new CorrespondentLayersConfig(
-                DDTags.Blocks.GRIME_GROUND,
+                DDTags.Blocks.GRIME_SURFACE,
                 List.of(
                         BlockStateProvider.simple(DDBlocks.MOSSY_GRIMESTONE.get()),
                         BlockStateProvider.simple(DDBlocks.GRIMESTONE.get()),
+                        BlockStateProvider.simple(Blocks.TUFF),
                         BlockStateProvider.simple(Blocks.TUFF)
                 ),
                 PlacementUtils.inlinePlaced(lookup.getOrThrow(GRIME_VEGETATION)),
                 CaveSurface.FLOOR,
-                ConstantInt.of(1), 0.0F, 5, 0.8F,
-                UniformInt.of(4, 7), 0.3F, false)
+                ConstantInt.of(1),
+                0.0F,
+                5,
+                0.3F,
+                UniformInt.of(4, 7),
+                0.3F,
+                false)
+        );
+
+        FeatureUtils.register(
+                context,
+                GRIME_VEGETATION_PATCH,
+                Feature.RANDOM_PATCH,
+                FeatureUtils.simpleRandomPatchConfiguration(
+                        64,
+                        PlacementUtils.inlinePlaced(
+                                lookup.getOrThrow(GRIME_VEGETATION),
+                                BlockPredicateFilter.forPredicate(
+                                        BlockPredicate.allOf(
+                                                BlockPredicate.ONLY_IN_AIR_PREDICATE,
+                                                BlockPredicate.matchesBlocks(new BlockPos(0, -1, 0), DDBlocks.MOSSY_GRIMESTONE.get())
+                                        )
+                                )
+                        )
+                )
         );
 
         FeatureUtils.register(context, GLIMMERING_VINES, Feature.BLOCK_COLUMN, new BlockColumnConfiguration(

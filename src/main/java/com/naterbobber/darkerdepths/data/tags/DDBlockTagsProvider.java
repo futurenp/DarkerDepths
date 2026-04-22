@@ -271,6 +271,14 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
                 DDBlocks.MOSSY_GRIMESTONE.get()
         ).addTag(BlockTags.BASE_STONE_OVERWORLD);
 
+        this.tag(DDTags.Blocks.GRIME_SURFACE).add(
+                Blocks.STONE,
+                Blocks.DEEPSLATE,
+                Blocks.GRANITE,
+                Blocks.ANDESITE,
+                Blocks.DIORITE
+        );
+
         this.tag(DDTags.Blocks.HUGE_GLOWSHROOM_GROWABLE).add(
             DDBlocks.MOSSY_GRIMESTONE.get(),
             DDBlocks.GLOWSHROOM_BLOCK.get()

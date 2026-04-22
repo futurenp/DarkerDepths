@@ -104,7 +104,8 @@ public class EmissiveModelManager {
         models.add(new BlockBaker.Builder(event, DDBlocks.GLOWSHROOM_HEART)
                 .modelSettings(new EmissiveBakedModel.ModelSettings()
                         .glowBrightness(LightTexture.FULL_BRIGHT)
-                        .baseBrightness(glowshroomBaseBrightness))
+                        .baseBrightness(glowshroomBaseBrightness)
+                        .autoGlow())
                 .build());
 
         models.add(new BlockBaker.Builder(event, DDBlocks.MOSSY_GRIMESTONE)

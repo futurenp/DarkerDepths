@@ -12,7 +12,7 @@
               "waterlogged": "false"
             }
           },
-          "weight": 4
+          "weight": 5
         },
         {
           "data": {
@@ -22,7 +22,7 @@
               "waterlogged": "false"
             }
           },
-          "weight": 2
+          "weight": 5
         },
         {
           "data": {
@@ -32,7 +32,7 @@
               "waterlogged": "false"
             }
           },
-          "weight": 1
+          "weight": 3
         },
         {
           "data": {
@@ -78,13 +78,13 @@
           "data": {
             "Name": "darkerdepths:mossy_sprouts"
           },
-          "weight": 120
+          "weight": 200
         },
         {
           "data": {
             "Name": "minecraft:air"
           },
-          "weight": 1000
+          "weight": 420
         }
       ]
     }

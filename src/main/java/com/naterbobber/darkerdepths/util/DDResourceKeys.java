@@ -69,6 +69,7 @@ public class DDResourceKeys {
         public static final ResourceKey<ConfiguredFeature<?, ?>> GEYSER_PLACEMENT = createKey("geyser_placement");
         public static final ResourceKey<ConfiguredFeature<?, ?>> MOLTEN_POOL = createKey("molten_pool");
         public static final ResourceKey<ConfiguredFeature<?, ?>> GRIME_VEGETATION = createKey("grime_vegetation");
+        public static final ResourceKey<ConfiguredFeature<?, ?>> GRIME_VEGETATION_PATCH = createKey("grime_vegetation_patch");
         public static final ResourceKey<ConfiguredFeature<?, ?>> ARID_VEGETATION = createKey("arid_vegetation");
         public static final ResourceKey<ConfiguredFeature<?, ?>> DARKSLATE_VEGETATION = createKey("darkslate_vegetation");
         public static final ResourceKey<ConfiguredFeature<?, ?>> DARKSLATE_PLACEMENT = createKey("darkslate_placement");
@@ -126,6 +127,9 @@ public class DDResourceKeys {
         public static final ResourceKey<PlacedFeature> DUSKROCK_ORE = createKey("duskrock_ore");
         public static final ResourceKey<PlacedFeature> SCORCHED_REMAINS_PILE = createKey("scorched_remains_pile");
         public static final ResourceKey<PlacedFeature> GRIMESTONE_CLIFF = createKey("grimestone_cliff");
+        public static final ResourceKey<PlacedFeature> GRIME_VEGETATION_PATCH = createKey("grime_vegetation_patch");
+
+
 
         public static ResourceKey<PlacedFeature> createKey(String name) {
             return ResourceKey.create(Registries.PLACED_FEATURE, DarkerDepths.id(name));
@@ -220,6 +224,8 @@ public class DDResourceKeys {
         public static final ResourceKey<NormalNoise.NoiseParameters> MAGMA = createKey("magma");
         public static final ResourceKey<NormalNoise.NoiseParameters> TUFF = createKey("tuff");
         public static final ResourceKey<NormalNoise.NoiseParameters> DUSKROCK = createKey("duskrock");
+        public static final ResourceKey<NormalNoise.NoiseParameters> GRIMESTONE_TUFF = createKey("grimestone_tuff");
+        public static final ResourceKey<NormalNoise.NoiseParameters> GRIMESTONE_MOSSY = createKey("grimestone_mossy");
 
         private static ResourceKey<NormalNoise.NoiseParameters> createKey(String name) {
             return ResourceKey.create(Registries.NOISE, DarkerDepths.id(name));

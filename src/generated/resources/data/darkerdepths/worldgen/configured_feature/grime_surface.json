@@ -25,11 +25,17 @@
         "state": {
           "Name": "minecraft:tuff"
         }
+      },
+      {
+        "type": "minecraft:simple_state_provider",
+        "state": {
+          "Name": "minecraft:tuff"
+        }
       }
     ],
-    "replaceable": "#darkerdepths:grime_ground",
+    "replaceable": "#darkerdepths:grime_surface",
     "surface": "floor",
-    "vegetation_chance": 0.8,
+    "vegetation_chance": 0.3,
     "vegetation_feature": {
       "feature": "darkerdepths:grime_vegetation",
       "placement": []

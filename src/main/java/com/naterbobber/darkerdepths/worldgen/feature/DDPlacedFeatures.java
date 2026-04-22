@@ -2,6 +2,7 @@ package com.naterbobber.darkerdepths.worldgen.feature;
 
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import com.naterbobber.darkerdepths.util.DDResourceKeys;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
@@ -173,6 +174,22 @@ public class DDPlacedFeatures {
                 InSquarePlacement.spread(),
                 PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
                 EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.solid(), BlockPredicate.matchesTag(BlockTags.AIR), 32),
+                BiomeFilter.biome()
+        );
+
+        PlacementUtils.register(context, GRIME_VEGETATION_PATCH, lookup.getOrThrow(DDResourceKeys.ConfiguredFeatures.GRIME_VEGETATION_PATCH),
+                CountPlacement.of(175),
+                InSquarePlacement.spread(),
+                PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
+                EnvironmentScanPlacement.scanningFor(
+                        Direction.DOWN,
+                        BlockPredicate.allOf(
+                                BlockPredicate.ONLY_IN_AIR_PREDICATE,
+                                BlockPredicate.solid(new BlockPos(0, -1, 0))
+                        ),
+                        BlockPredicate.ONLY_IN_AIR_PREDICATE,
+                        32
+                ),
                 BiomeFilter.biome()
         );
 

@@ -11,6 +11,9 @@ public class DDNoiseData {
         register(context, DDResourceKeys.Noises.MAGMA, -6, 0.4);
         register(context, DDResourceKeys.Noises.TUFF, -6, 1.0);
         register(context, DDResourceKeys.Noises.DUSKROCK, -5, 1.2);
+        register(context, DDResourceKeys.Noises.GRIMESTONE_TUFF, -5, 1.2);
+        register(context, DDResourceKeys.Noises.GRIMESTONE_MOSSY, -4, 2.0);
+
     }
 
     private static void register(

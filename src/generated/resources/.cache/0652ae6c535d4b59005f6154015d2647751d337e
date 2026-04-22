@@ -1,4 +1,4 @@
-// 1.21.1	2026-04-20T01:47:36.8227058	Tags for minecraft:block mod id darkerdepths
+// 1.21.1	2026-04-21T23:17:47.6945399	Tags for minecraft:block mod id darkerdepths
 0163428a12a8c0cf1e5c527b85275a53bd3d364b data/blueprint/tags/block/wooden_bookshelves.json
 0163428a12a8c0cf1e5c527b85275a53bd3d364b data/c/tags/block/bookshelves.json
 ac36ffef27aa2a27c72cc7b41672e7cf704ff4c8 data/c/tags/block/fence_gates.json
@@ -10,6 +10,7 @@ cdf1f2b4de9ac0ed3806ea430d70efacdb79e789 data/darkerdepths/tags/block/arid_groun
 f0f92c5f0b5c5412980a4ca8436b4cb180919deb data/darkerdepths/tags/block/geyser_boosters.json
 f485153c7053cb8be9fd066d1743332b9238b48f data/darkerdepths/tags/block/geyser_bypasses.json
 7f5f8a9fd392d383a733fd34a0d453c4a7b4a456 data/darkerdepths/tags/block/grime_ground.json
+c48694d5decd6a38018ae506b924cf91c56a922e data/darkerdepths/tags/block/grime_surface.json
 e7bd8de8a354078b706815a462b396250218eaa1 data/darkerdepths/tags/block/heatable.json
 a39e015170ad81010779a5d446a2e44c0e8e49d6 data/darkerdepths/tags/block/heat_provider.json
 93edf834754c5da600737150f2d3453d6e54ae5b data/darkerdepths/tags/block/high_heat.json

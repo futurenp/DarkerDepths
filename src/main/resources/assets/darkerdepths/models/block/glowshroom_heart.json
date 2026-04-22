@@ -1,37 +1,9 @@
 {
-  "parent": "minecraft:block/block",
-  "render_type": "minecraft:translucent",
+  "parent": "darkerdepths:block/cube_unique_top_bottom",
   "textures": {
-    "particle": "darkerdepths:block/glowshroom_stem",
-    "bottom": "darkerdepths:block/glowshroom_stem",
-    "top": "darkerdepths:block/glowshroom_block",
+    "bottom": "darkerdepths:block/glowshroom_stem_top",
     "side": "darkerdepths:block/glowshroom_heart",
-    "glow_top": "darkerdepths:block/glowshroom_block_glow",
-    "glow_side": "darkerdepths:block/glowshroom_heart_glow"
-  },
-  "elements": [
-    {
-      "from": [0, 0, 0],
-      "to": [16, 16, 16],
-      "faces": {
-        "down": {"texture": "#bottom", "cullface": "down"},
-        "up": {"texture": "#top", "cullface": "up"},
-        "north": {"texture": "#side", "cullface": "north"},
-        "south": {"texture": "#side", "cullface": "south"},
-        "west": {"texture": "#side", "cullface": "west"},
-        "east": {"texture": "#side", "cullface": "east"}
-      }
-    },
-    {
-      "from": [0, 0, 0],
-      "to": [16, 16, 16],
-      "faces": {
-        "up": {"texture": "#glow_top", "cullface": "up"},
-        "north": {"texture": "#glow_side", "cullface": "north"},
-        "south": {"texture": "#glow_side", "cullface": "south"},
-        "west": {"texture": "#glow_side", "cullface": "west"},
-        "east": {"texture": "#glow_side", "cullface": "east"}
-      }
-    }
-  ]
+    "top": "darkerdepths:block/glowshroom_block",
+    "particle": "darkerdepths:block/glowshroom_heart"
+  }
 }

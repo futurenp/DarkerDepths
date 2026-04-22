@@ -52,17 +52,17 @@ public class CorrespondentLayersConfig implements FeatureConfiguration {
     public final float extraEdgeColumnChance;
     public final boolean xzReplace;
 
-    public CorrespondentLayersConfig(TagKey<Block> replaceableTags, List<BlockStateProvider> layers, Holder<PlacedFeature> feature, CaveSurface p_161296_, IntProvider p_161297_, float p_161298_, int p_161299_, float p_161300_, IntProvider p_161301_, float p_161302_, boolean xzReplace) {
+    public CorrespondentLayersConfig(TagKey<Block> replaceableTags, List<BlockStateProvider> layers, Holder<PlacedFeature> vegetationFeature, CaveSurface surface, IntProvider depth, float extraBottomBlockChance, int verticalRange, float vegetationChance, IntProvider xzRadius, float extraEdgeColumnChance, boolean xzReplace) {
         this.replaceable = replaceableTags;
         this.layers = layers;
-        this.vegetationFeature = feature;
-        this.surface = p_161296_;
-        this.depth = p_161297_;
-        this.extraBottomBlockChance = p_161298_;
-        this.verticalRange = p_161299_;
-        this.vegetationChance = p_161300_;
-        this.xzRadius = p_161301_;
-        this.extraEdgeColumnChance = p_161302_;
+        this.vegetationFeature = vegetationFeature;
+        this.surface = surface;
+        this.depth = depth;
+        this.extraBottomBlockChance = extraBottomBlockChance;
+        this.verticalRange = verticalRange;
+        this.vegetationChance = vegetationChance;
+        this.xzRadius = xzRadius;
+        this.extraEdgeColumnChance = extraEdgeColumnChance;
         this.xzReplace = xzReplace;
     }
 }

@@ -87,9 +87,38 @@ public class DDSurfaceRules {
             )
     );
 
+    private static final SurfaceRules.RuleSource GRIMESTONE_TUFF_NOISE = SurfaceRules.ifTrue(
+            new AxisNoiseConditionSource(DDResourceKeys.Noises.GRIMESTONE_TUFF, -0.13, 0.13, true, true, true),
+            SurfaceRules.sequence(
+                    SurfaceRules.ifTrue(
+                            new AxisNoiseConditionSource(DDResourceKeys.Noises.GRIMESTONE_TUFF, -0.07, 0.07, true, true, true),
+                            TUFF
+                    ),
+                    GRIMESTONE
+            )
+    );
+
+    private static final SurfaceRules.RuleSource GRIMESTONE_MOSSY_NOISE = SurfaceRules.ifTrue(
+            new AxisNoiseConditionSource(DDResourceKeys.Noises.GRIMESTONE_MOSSY, -0.1, 0.1, true, true, true),
+            GRIMESTONE
+    );
+
     public static final SurfaceRules.RuleSource GLOWSHROOM_FILL = SurfaceRules.ifTrue(
             SurfaceRules.isBiome(DDResourceKeys.Biomes.GLOWSHROOM_FOREST),
             SurfaceRules.sequence(
+                    SurfaceRules.ifTrue(
+                            SurfaceRules.stoneDepthCheck(0, false, 0, CaveSurface.FLOOR),
+                            SurfaceRules.sequence(
+                                    //grimestone not spawning when in water caves
+                                    SurfaceRules.ifTrue(SurfaceRules.waterBlockCheck(1, 0),
+                                            SurfaceRules.sequence(
+                                                    GRIMESTONE_TUFF_NOISE,
+                                                    GRIMESTONE_MOSSY_NOISE,
+                                                    MOSSY_GRIMESTONE)
+                                    ),
+                                    GRIMESTONE
+                                    )
+                    ),
                     SurfaceRules.ifTrue(
                             SurfaceRules.stoneDepthCheck(1, false, 0, CaveSurface.FLOOR),
                             GRIMESTONE
