@@ -59,7 +59,7 @@ public class EmissiveBakedModel extends BakedModelWrapper<BakedModel> {
                     newQuads.add(settings.baseBrightness == 0 ? quad : changeBrightness(quad, settings.baseBrightness, !settings.removeShadeBase, !settings.disableAmbientOcclusion));
                 }
 
-                if (settings.autoGlow && (renderType == null || renderType == settings.glowRenderType)) {
+                if (!settings.manualModelGlow && (renderType == null || renderType == settings.glowRenderType)) {
                     ResourceLocation baseLoc = quad.getSprite().contents().name();
                     ResourceLocation glowLoc = ResourceLocation.fromNamespaceAndPath(baseLoc.getNamespace(), baseLoc.getPath() + "_glow");
 
@@ -116,7 +116,7 @@ public class EmissiveBakedModel extends BakedModelWrapper<BakedModel> {
         int glowBrightness = LightTexture.FULL_BLOCK;
         boolean removeShadeBase = false;
         boolean shadeGlow = false;
-        boolean autoGlow = false;
+        boolean manualModelGlow = false;
         boolean disableAmbientOcclusion = false;
 
         public ModelSettings(){}
@@ -151,8 +151,8 @@ public class EmissiveBakedModel extends BakedModelWrapper<BakedModel> {
             return this;
         }
 
-        public ModelSettings autoGlow() {
-            this.autoGlow = true;
+        public ModelSettings manualModelGlow() {
+            this.manualModelGlow = true;
             return this;
         }
 

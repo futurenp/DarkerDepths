@@ -52,7 +52,7 @@ public class EmissiveModelManager {
                 DDBlocks.STRIPPED_GLOWSHROOM_STEM,
                 DDBlocks.STRIPPED_GLOWSHROOM_HYPHAE
         )
-                .modelSettings(new EmissiveBakedModel.ModelSettings().autoGlow())
+                .modelSettings(new EmissiveBakedModel.ModelSettings())
                 .build());
 
         models.add(new BlockBaker.Builder(event, DDBlocks.CRYSTAL_MELON)
@@ -71,6 +71,7 @@ public class EmissiveModelManager {
                         .glowRenderType(RenderType.CUTOUT)
                         .glowBrightness(glowshroomBrightness)
                         .baseBrightness(glowshroomBaseBrightness)
+                        .manualModelGlow()
                         .removeShadeBase())
                 .build());
 
@@ -80,15 +81,15 @@ public class EmissiveModelManager {
         )
                 .modelSettings(new EmissiveBakedModel.ModelSettings()
                         .baseBrightness(LightTexture.pack(2, 0))
-                        .glowBrightness(glowshroomBrightness)
-                        .autoGlow())
+                        .glowBrightness(glowshroomBrightness))
                 .build());
 
         models.add(new BlockBaker.Builder(event, DDBlocks.POTTED_GLOWSHROOM)
                 .modelSettings(new EmissiveBakedModel.ModelSettings()
                         .baseRenderType(RenderType.CUTOUT)
                         .glowRenderType(RenderType.CUTOUT)
-                        .glowBrightness(glowshroomBrightness))
+                        .glowBrightness(glowshroomBrightness)
+                        .manualModelGlow())
                 .build());
 
         models.add(new BlockBaker.Builder(event,
@@ -98,14 +99,14 @@ public class EmissiveModelManager {
                 .modelSettings(new EmissiveBakedModel.ModelSettings()
                         .baseRenderType(RenderType.CUTOUT)
                         .glowRenderType(RenderType.CUTOUT)
-                        .glowBrightness(LightTexture.FULL_BRIGHT))
+                        .glowBrightness(LightTexture.FULL_BRIGHT)
+                        .manualModelGlow())
                 .build());
 
         models.add(new BlockBaker.Builder(event, DDBlocks.GLOWSHROOM_HEART)
                 .modelSettings(new EmissiveBakedModel.ModelSettings()
                         .glowBrightness(LightTexture.FULL_BRIGHT)
-                        .baseBrightness(glowshroomBaseBrightness)
-                        .autoGlow())
+                        .baseBrightness(glowshroomBaseBrightness))
                 .build());
 
         models.add(new BlockBaker.Builder(event, DDBlocks.MOSSY_GRIMESTONE)
@@ -117,7 +118,8 @@ public class EmissiveModelManager {
                 .modelSettings(new EmissiveBakedModel.ModelSettings()
                         .baseRenderType(RenderType.CUTOUT)
                         .baseBrightness(LightTexture.pack(2, 0))
-                        .removeShadeBase())
+                        .removeShadeBase()
+                        .manualModelGlow())
                 .build());
 
         models.add(new BlockBaker.Builder(event, DDBlocks.AMBER_BLOCK)

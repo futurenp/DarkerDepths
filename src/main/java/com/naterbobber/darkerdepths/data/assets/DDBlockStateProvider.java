@@ -272,65 +272,8 @@ public class DDBlockStateProvider extends BlockStateProvider {
             ModelFile vertical;
             ModelFile horizontal;
 
-            if (propValue >= 2) {
-                ResourceLocation glowSideTexture = this.extend(sideTexture, "_glow");
-                ResourceLocation glowEndTexture = this.extend(endTexture, "_glow");
-
-                vertical = this.models().getBuilder(stateName)
-                        .parent(new ModelFile.UncheckedModelFile("minecraft:block/block"))
-                        .renderType("minecraft:translucent")
-                        .texture("particle", sideTexture)
-                        .texture("base_side", sideTexture)
-                        .texture("base_end", endTexture)
-                        .texture("glow_side", glowSideTexture)
-                        .texture("glow_end", glowEndTexture)
-                        .element().from(0, 0, 0).to(16, 16, 16)
-                        .face(Direction.UP).texture("#base_end").cullface(Direction.UP).end()
-                        .face(Direction.DOWN).texture("#base_end").cullface(Direction.DOWN).end()
-                        .face(Direction.NORTH).texture("#base_side").cullface(Direction.NORTH).end()
-                        .face(Direction.SOUTH).texture("#base_side").cullface(Direction.SOUTH).end()
-                        .face(Direction.EAST).texture("#base_side").cullface(Direction.EAST).end()
-                        .face(Direction.WEST).texture("#base_side").cullface(Direction.WEST).end()
-                        .end()
-                        // Glowing overlay cube
-                        .element().from(0, 0, 0).to(16, 16, 16)
-                        .face(Direction.UP).texture("#glow_end").cullface(Direction.UP).end()
-                        .face(Direction.DOWN).texture("#glow_end").cullface(Direction.DOWN).end()
-                        .face(Direction.NORTH).texture("#glow_side").cullface(Direction.NORTH).end()
-                        .face(Direction.SOUTH).texture("#glow_side").cullface(Direction.SOUTH).end()
-                        .face(Direction.EAST).texture("#glow_side").cullface(Direction.EAST).end()
-                        .face(Direction.WEST).texture("#glow_side").cullface(Direction.WEST).end()
-                        .end();
-
-                horizontal = this.models().getBuilder(stateName + "_horizontal")
-                        .parent(new ModelFile.UncheckedModelFile("minecraft:block/block"))
-                        .renderType("minecraft:translucent")
-                        .texture("particle", sideTexture)
-                        .texture("base_side", sideTexture)
-                        .texture("base_end", endTexture)
-                        .texture("glow_side", glowSideTexture)
-                        .texture("glow_end", glowEndTexture)
-                        .element().from(0, 0, 0).to(16, 16, 16)
-                        .face(Direction.UP).texture("#base_end").cullface(Direction.UP).end()
-                        .face(Direction.DOWN).texture("#base_end").cullface(Direction.DOWN).end()
-                        .face(Direction.NORTH).texture("#base_side").cullface(Direction.NORTH).end()
-                        .face(Direction.SOUTH).texture("#base_side").cullface(Direction.SOUTH).end()
-                        .face(Direction.EAST).texture("#base_side").cullface(Direction.EAST).end()
-                        .face(Direction.WEST).texture("#base_side").cullface(Direction.WEST).end()
-                        .end()
-                        // Glowing overlay cube
-                        .element().from(0, 0, 0).to(16, 16, 16)
-                        .face(Direction.UP).texture("#glow_end").cullface(Direction.UP).end()
-                        .face(Direction.DOWN).texture("#glow_end").cullface(Direction.DOWN).end()
-                        .face(Direction.NORTH).texture("#glow_side").cullface(Direction.NORTH).end()
-                        .face(Direction.SOUTH).texture("#glow_side").cullface(Direction.SOUTH).end()
-                        .face(Direction.EAST).texture("#glow_side").cullface(Direction.EAST).end()
-                        .face(Direction.WEST).texture("#glow_side").cullface(Direction.WEST).end()
-                        .end();
-            } else {
-                vertical = this.models().cubeColumn(stateName, sideTexture, endTexture);
-                horizontal = this.models().cubeColumnHorizontal(stateName + "_horizontal", sideTexture, endTexture);
-            }
+            vertical = this.models().cubeColumn(stateName, sideTexture, endTexture);
+            horizontal = this.models().cubeColumnHorizontal(stateName + "_horizontal", sideTexture, endTexture);
 
             if (axis == Direction.Axis.Y) {
                 return ConfiguredModel.builder().modelFile(vertical).build();
@@ -542,10 +485,6 @@ public class DDBlockStateProvider extends BlockStateProvider {
         ResourceLocation heatedBottomTexture = modLoc("block/darkslate_heat_level_2_top");
         ResourceLocation heatedTopTexture = modLoc("block/heated_geyser_top");
 
-        ResourceLocation heatedSideGlow = modLoc("block/heated_geyser_glow");
-        ResourceLocation heatedBottomGlow = modLoc("block/darkslate_heat_level_2_top_glow");
-        ResourceLocation heatedTopGlow = modLoc("block/heated_geyser_top_glow");
-
         ModelFile normalModel = models().cubeBottomTop(
                 "geyser",
                 sideTexture,
@@ -559,9 +498,6 @@ public class DDBlockStateProvider extends BlockStateProvider {
                 .texture("base_side", heatedSideTexture)
                 .texture("base_bottom", heatedBottomTexture)
                 .texture("base_top", heatedTopTexture)
-                .texture("glow_side", heatedSideGlow)
-                .texture("glow_bottom", heatedBottomGlow)
-                .texture("glow_top", heatedTopGlow)
                 .element().from(0, 0, 0).to(16, 16, 16)
                 .face(Direction.DOWN).texture("#base_bottom").cullface(Direction.DOWN).end()
                 .face(Direction.UP).texture("#base_top").cullface(Direction.UP).end()
@@ -569,14 +505,6 @@ public class DDBlockStateProvider extends BlockStateProvider {
                 .face(Direction.SOUTH).texture("#base_side").cullface(Direction.SOUTH).end()
                 .face(Direction.EAST).texture("#base_side").cullface(Direction.EAST).end()
                 .face(Direction.WEST).texture("#base_side").cullface(Direction.WEST).end()
-                .end()
-                .element().from(0, 0, 0).to(16, 16, 16)
-                .face(Direction.DOWN).texture("#glow_bottom").cullface(Direction.DOWN).end()
-                .face(Direction.UP).texture("#glow_top").cullface(Direction.UP).end()
-                .face(Direction.NORTH).texture("#glow_side").cullface(Direction.NORTH).end()
-                .face(Direction.SOUTH).texture("#glow_side").cullface(Direction.SOUTH).end()
-                .face(Direction.EAST).texture("#glow_side").cullface(Direction.EAST).end()
-                .face(Direction.WEST).texture("#glow_side").cullface(Direction.WEST).end()
                 .end();
 
         directionalBlock(block, state -> {
