@@ -64,6 +64,7 @@ public class DDTags {
         public static final TagKey<Block> HEAT_PROVIDER = TAGS.create("heat_provider");
         public static final TagKey<Block> GRIME_GROUND = TAGS.create("grime_ground");
         public static final TagKey<Block> GRIME_SURFACE = TAGS.create("grime_surface");
+        public static final TagKey<Block> POSTS = TAGS.create("posts", DDCompat.QUARK);
     }
     public static class Fluids {
         private static final TagFactory<Fluid> TAGS = make(Registries.FLUID);

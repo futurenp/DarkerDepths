@@ -1,11 +1,14 @@
 package com.naterbobber.darkerdepths.block;
 
 import com.naterbobber.darkerdepths.block.blockstates.PillarState;
+import com.naterbobber.darkerdepths.block.blockstates.PostState;
 import com.naterbobber.darkerdepths.block.blockstates.VerticalSlabState;
 import com.naterbobber.darkerdepths.block.custom.RopeBlock;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
+
+import java.util.List;
 
 public class DDBlockStateProperties {
     public static final IntegerProperty CRYSTAL_GROWTH_LEVEL = IntegerProperty.create("crystal_growth_level", 0, 3);
@@ -19,18 +22,18 @@ public class DDBlockStateProperties {
     public static final BooleanProperty BURSTING = BooleanProperty.create("bursting");
     public static final BooleanProperty BOOSTED = BooleanProperty.create("boosted");
     public static final BooleanProperty PROVIDES_ASH = BooleanProperty.create("provides_ash");
-    public static final BooleanProperty CHAIN_DOWN = BooleanProperty.create("chain_down");
-    public static final BooleanProperty CHAIN_UP = BooleanProperty.create("chain_up");
-    public static final BooleanProperty CHAIN_NORTH = BooleanProperty.create("chain_north");
-    public static final BooleanProperty CHAIN_SOUTH = BooleanProperty.create("chain_south");
-    public static final BooleanProperty CHAIN_EAST = BooleanProperty.create("chain_east");
-    public static final BooleanProperty CHAIN_WEST = BooleanProperty.create("chain_west");
-    public static final BooleanProperty[] CHAINED = new BooleanProperty[] {
-            CHAIN_DOWN,
-            CHAIN_UP,
-            CHAIN_NORTH,
-            CHAIN_SOUTH,
-            CHAIN_EAST,
-            CHAIN_WEST
-    };
+    public static final EnumProperty<PostState> CONNECT_UP = EnumProperty.create("connect_up", PostState.class);
+    public static final EnumProperty<PostState> CONNECT_DOWN = EnumProperty.create("connect_down", PostState.class);
+    public static final EnumProperty<PostState> CONNECT_NORTH = EnumProperty.create("connect_north", PostState.class);
+    public static final EnumProperty<PostState> CONNECT_EAST = EnumProperty.create("connect_east", PostState.class);
+    public static final EnumProperty<PostState> CONNECT_SOUTH = EnumProperty.create("connect_south", PostState.class);
+    public static final EnumProperty<PostState> CONNECT_WEST = EnumProperty.create("connect_west", PostState.class);
+    public static final List<EnumProperty<PostState>> CONNECT = List.of(
+            CONNECT_DOWN,
+            CONNECT_UP,
+            CONNECT_NORTH,
+            CONNECT_SOUTH,
+            CONNECT_EAST,
+            CONNECT_WEST
+    );
 }

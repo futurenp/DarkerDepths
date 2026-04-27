@@ -1,0 +1,6 @@
+{
+  "parent": "darkerdepths:block/post_connect",
+  "textures": {
+    "texture": "darkerdepths:block/glowshroom_stem"
+  }
+}

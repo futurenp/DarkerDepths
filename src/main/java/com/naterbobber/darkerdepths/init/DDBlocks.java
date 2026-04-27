@@ -67,7 +67,7 @@ public class DDBlocks {
             () -> new RotatedPillarBlock(PETRIFIED_LOG_PROPERTIES));
     public static final DeferredBlock<RotatedPillarBlock> STRIPPED_PETRIFIED_WOOD = registerBlock("stripped_petrified_wood",
             () -> new RotatedPillarBlock(PETRIFIED_LOG_PROPERTIES));
-    public static final DeferredBlock<RotatedPillarBlock> PETRIFIED_LOG = registerBlock("petrified_log",
+    public static final DeferredBlock<DDLogBlock> PETRIFIED_LOG = registerBlock("petrified_log",
             () -> new DDLogBlock(PETRIFIED_LOG_PROPERTIES, STRIPPED_PETRIFIED_LOG.get()));
     public static final DeferredBlock<RotatedPillarBlock> PETRIFIED_WOOD = registerBlock("petrified_wood",
             () -> new DDLogBlock(PETRIFIED_LOG_PROPERTIES, STRIPPED_PETRIFIED_WOOD.get()));
@@ -106,10 +106,10 @@ public class DDBlocks {
             () -> new DDCeilingHangingSignBlock(DDWoodType.PETRIFIED, PETRIFIED_SIGN_PROPERTIES));
     public static final DeferredBlock<DDWallHangingSignBlock> PETRIFIED_WALL_HANGING_SIGN = registerNoTabBlock("petrified_wall_hanging_sign",
             () -> new DDWallHangingSignBlock(DDWoodType.PETRIFIED, PETRIFIED_SIGN_PROPERTIES));
-    public static final DeferredBlock<RelationalWoodPostBlock> PETRIFIED_POST = registerCompatBlock(List.of(DDCompat.QUARK), "petrified_post",
-            () -> new RelationalWoodPostBlock(PETRIFIED_LOG.get()));
     public static final DeferredBlock<RelationalWoodPostBlock> STRIPPED_PETRIFIED_POST = registerCompatBlock(List.of(DDCompat.QUARK), "stripped_petrified_post",
             () -> new RelationalWoodPostBlock(STRIPPED_PETRIFIED_LOG.get()));
+    public static final DeferredBlock<RelationalWoodPostBlock> PETRIFIED_POST = registerCompatBlock(List.of(DDCompat.QUARK), "petrified_post",
+            () -> new RelationalWoodPostBlock(PETRIFIED_LOG.get(), STRIPPED_PETRIFIED_POST.get()));
 
     public static final DeferredBlock<PorousBlock> POROUS_PETRIFIED_LOG = registerBlock("porous_petrified_log",
             () -> new PorousBlock(PETRIFIED_LOG_PROPERTIES.randomTicks().lightLevel(value -> 6)));
@@ -357,10 +357,10 @@ public class DDBlocks {
             () -> new DDCeilingHangingSignBlock(DDWoodType.GLOWSHROOM, GLOWSHROOM_SIGN_PROPERTIES));
     public static final DeferredBlock<DDWallHangingSignBlock> GLOWSHROOM_WALL_HANGING_SIGN = registerNoTabBlock("glowshroom_wall_hanging_sign",
             () -> new DDWallHangingSignBlock(DDWoodType.GLOWSHROOM, GLOWSHROOM_SIGN_PROPERTIES));
-    public static final DeferredBlock<RelationalWoodPostBlock> GLOWSHROOM_POST = registerCompatBlock(List.of(DDCompat.QUARK), "glowshroom_post",
-            () -> new RelationalWoodPostBlock(GLOWSHROOM_STEM.get()));
     public static final DeferredBlock<RelationalWoodPostBlock> STRIPPED_GLOWSHROOM_POST = registerCompatBlock(List.of(DDCompat.QUARK), "stripped_glowshroom_post",
             () -> new RelationalWoodPostBlock(STRIPPED_GLOWSHROOM_STEM.get()));
+    public static final DeferredBlock<RelationalWoodPostBlock> GLOWSHROOM_POST = registerCompatBlock(List.of(DDCompat.QUARK), "glowshroom_post",
+            () -> new RelationalWoodPostBlock(GLOWSHROOM_STEM.get(), STRIPPED_GLOWSHROOM_POST.get()));
 
     public static final DeferredBlock<Block> GLOWSHROOM_BLOCK = registerBlock("glowshroom_block",
             () -> new Block(BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.SLIME_BLOCK)));

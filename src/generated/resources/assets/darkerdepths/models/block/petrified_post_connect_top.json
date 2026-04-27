@@ -1,0 +1,6 @@
+{
+  "parent": "darkerdepths:block/post_connect_top",
+  "textures": {
+    "texture": "darkerdepths:block/petrified_log"
+  }
+}

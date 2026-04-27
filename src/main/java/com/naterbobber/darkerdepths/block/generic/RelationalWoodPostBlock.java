@@ -10,6 +10,13 @@ public class RelationalWoodPostBlock extends WoodPostBlock implements IRelationa
         this.baseBlock = baseBlock;
     }
 
+    public RelationalWoodPostBlock(Block baseBlock, WoodPostBlock strippedPostBlock) {
+        super(baseBlock.properties().noOcclusion());
+        this.baseBlock = baseBlock;
+        this.strippedBlock = strippedPostBlock;
+    }
+
+
     @Override
     public Block getBaseBlock() {
         return baseBlock;

@@ -3,6 +3,7 @@ package com.naterbobber.darkerdepths.data.assets;
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.block.DDBlockStateProperties;
 import com.naterbobber.darkerdepths.block.blockstates.PillarState;
+import com.naterbobber.darkerdepths.block.blockstates.PostState;
 import com.naterbobber.darkerdepths.block.blockstates.VerticalSlabState;
 import com.naterbobber.darkerdepths.block.custom.DarkslateBlock;
 import com.naterbobber.darkerdepths.block.generic.*;
@@ -391,6 +392,10 @@ public class DDBlockStateProvider extends BlockStateProvider {
                 .texture("texture", texture);
         var chainSmall = models().getExistingFile(modLoc("block/chain_small"));
         var chainSmallTop = models().getExistingFile(modLoc("block/chain_small_top"));
+        var otherPost = models().withExistingParent(blockName + "_connect", DarkerDepths.id("block/post_connect"))
+                .texture("texture", texture);
+        var otherPostTop = models().withExistingParent(blockName + "_connect_top", DarkerDepths.id("block/post_connect_top"))
+                .texture("texture", texture);
 
         var builder = getMultipartBuilder(block.get());
 
@@ -402,17 +407,30 @@ public class DDBlockStateProvider extends BlockStateProvider {
                 .condition(BlockStateProperties.AXIS, Direction.Axis.Z);
 
         builder.part().modelFile(chainSmall).addModel()
-                .condition(DDBlockStateProperties.CHAIN_DOWN, true);
+                .condition(DDBlockStateProperties.CONNECT_DOWN, PostState.CHAIN);
         builder.part().modelFile(chainSmallTop).addModel()
-                .condition(DDBlockStateProperties.CHAIN_UP, true);
+                .condition(DDBlockStateProperties.CONNECT_UP, PostState.CHAIN);
         builder.part().modelFile(chainSmallTop).rotationX(90).addModel()
-                .condition(DDBlockStateProperties.CHAIN_NORTH, true);
+                .condition(DDBlockStateProperties.CONNECT_NORTH, PostState.CHAIN);
         builder.part().modelFile(chainSmall).rotationX(90).addModel()
-                .condition(DDBlockStateProperties.CHAIN_SOUTH, true);
+                .condition(DDBlockStateProperties.CONNECT_SOUTH, PostState.CHAIN);
         builder.part().modelFile(chainSmallTop).rotationX(90).rotationY(90).addModel()
-                .condition(DDBlockStateProperties.CHAIN_WEST, true);
+                .condition(DDBlockStateProperties.CONNECT_WEST, PostState.CHAIN);
         builder.part().modelFile(chainSmall).rotationX(90).rotationY(90).addModel()
-                .condition(DDBlockStateProperties.CHAIN_EAST, true);
+                .condition(DDBlockStateProperties.CONNECT_EAST, PostState.CHAIN);
+
+        builder.part().modelFile(otherPost).addModel()
+                .condition(DDBlockStateProperties.CONNECT_DOWN, PostState.OTHER_POST);
+        builder.part().modelFile(otherPostTop).addModel()
+                .condition(DDBlockStateProperties.CONNECT_UP, PostState.OTHER_POST);
+        builder.part().modelFile(otherPostTop).rotationX(90).addModel()
+                .condition(DDBlockStateProperties.CONNECT_NORTH, PostState.OTHER_POST);
+        builder.part().modelFile(otherPost).rotationX(90).addModel()
+                .condition(DDBlockStateProperties.CONNECT_SOUTH, PostState.OTHER_POST);
+        builder.part().modelFile(otherPostTop).rotationX(90).rotationY(90).addModel()
+                .condition(DDBlockStateProperties.CONNECT_WEST, PostState.OTHER_POST);
+        builder.part().modelFile(otherPost).rotationX(90).rotationY(90).addModel()
+                .condition(DDBlockStateProperties.CONNECT_EAST, PostState.OTHER_POST);
 
         simpleBlockItem(block.get(), postModel);
     }

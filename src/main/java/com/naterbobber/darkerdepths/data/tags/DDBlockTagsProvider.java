@@ -424,6 +424,13 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
         this.tag(DDTags.Blocks.VERTICAL_PLANKS).add(
                 DDBlocks.VERTICAL_PETRIFIED_PLANKS.get()
         );
+
+        this.tag(DDTags.Blocks.POSTS).add(
+                DDBlocks.PETRIFIED_POST.get(),
+                DDBlocks.STRIPPED_PETRIFIED_POST.get(),
+                DDBlocks.GLOWSHROOM_POST.get(),
+                DDBlocks.STRIPPED_GLOWSHROOM_POST.get()
+        );
     }
 
     private void generateTypeTags() {

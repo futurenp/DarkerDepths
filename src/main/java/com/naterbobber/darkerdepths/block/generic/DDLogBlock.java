@@ -22,4 +22,8 @@ public class DDLogBlock extends RotatedPillarBlock {
         }
         return super.getToolModifiedState(state, context, itemAbility, simulate);
     }
+
+    public Block getStrippedBlock() {
+        return strippedBlock;
+    }
 }

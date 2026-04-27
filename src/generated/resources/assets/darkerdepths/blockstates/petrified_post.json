@@ -32,7 +32,7 @@
         "model": "darkerdepths:block/chain_small"
       },
       "when": {
-        "chain_down": "true"
+        "connect_down": "chain"
       }
     },
     {
@@ -40,7 +40,7 @@
         "model": "darkerdepths:block/chain_small_top"
       },
       "when": {
-        "chain_up": "true"
+        "connect_up": "chain"
       }
     },
     {
@@ -49,7 +49,7 @@
         "x": 90
       },
       "when": {
-        "chain_north": "true"
+        "connect_north": "chain"
       }
     },
     {
@@ -58,7 +58,7 @@
         "x": 90
       },
       "when": {
-        "chain_south": "true"
+        "connect_south": "chain"
       }
     },
     {
@@ -68,7 +68,7 @@
         "y": 90
       },
       "when": {
-        "chain_west": "true"
+        "connect_west": "chain"
       }
     },
     {
@@ -78,7 +78,61 @@
         "y": 90
       },
       "when": {
-        "chain_east": "true"
+        "connect_east": "chain"
+      }
+    },
+    {
+      "apply": {
+        "model": "darkerdepths:block/petrified_post_connect"
+      },
+      "when": {
+        "connect_down": "other_post"
+      }
+    },
+    {
+      "apply": {
+        "model": "darkerdepths:block/petrified_post_connect_top"
+      },
+      "when": {
+        "connect_up": "other_post"
+      }
+    },
+    {
+      "apply": {
+        "model": "darkerdepths:block/petrified_post_connect_top",
+        "x": 90
+      },
+      "when": {
+        "connect_north": "other_post"
+      }
+    },
+    {
+      "apply": {
+        "model": "darkerdepths:block/petrified_post_connect",
+        "x": 90
+      },
+      "when": {
+        "connect_south": "other_post"
+      }
+    },
+    {
+      "apply": {
+        "model": "darkerdepths:block/petrified_post_connect_top",
+        "x": 90,
+        "y": 90
+      },
+      "when": {
+        "connect_west": "other_post"
+      }
+    },
+    {
+      "apply": {
+        "model": "darkerdepths:block/petrified_post_connect",
+        "x": 90,
+        "y": 90
+      },
+      "when": {
+        "connect_east": "other_post"
       }
     }
   ]
