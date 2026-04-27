@@ -123,12 +123,16 @@ public class EmissiveModelManager {
         models.forEach(BlockBaker::apply);
     }
 
-    public static class BlockBaker {
+    public static void clearHolders() {
+        EmissiveModelManager.BlockBaker.clearHolders();
+    }
+
+    private static class BlockBaker {
         private final List<DeferredBlock<? extends Block>> blockHolders;
         private final ModelEvent.ModifyBakingResult event;
         private final Predicate<BlockState> predicate;
         private final Function<BlockState, EmissiveBakedModel.ModelSettings> settingsProvider;
-        private static List<DeferredBlock<? extends Block>> allHolders = new ArrayList<>();
+        private static final List<DeferredBlock<? extends Block>> allHolders = new ArrayList<>();
 
         public BlockBaker (BlockBaker.Builder builder) {
             blockHolders = builder.blockHolders;
@@ -157,7 +161,7 @@ public class EmissiveModelManager {
             }
         }
 
-        public static void checkDuplicates() {
+        private static void checkDuplicates() {
             var set = new HashSet<>(allHolders);
             if(set.size() != allHolders.size()) {
                 List<String> duplicateNames = allHolders.stream()
@@ -171,11 +175,11 @@ public class EmissiveModelManager {
             }
         }
 
-        public static void addHolders(List<? extends DeferredBlock<? extends Block>> holders) {
+        private static void addHolders(List<? extends DeferredBlock<? extends Block>> holders) {
             allHolders.addAll(holders);
         }
 
-        public static void clearHolders() {
+        private static void clearHolders() {
             allHolders.clear();
         }
 

@@ -16,6 +16,6 @@ public class DDClientReloadListener extends SimplePreparableReloadListener {
 
     @Override
     protected void apply(Object o, ResourceManager resourceManager, ProfilerFiller profilerFiller) {
-        EmissiveModelManager.BlockBaker.clearHolders();
+        EmissiveModelManager.clearHolders();
     }
 }

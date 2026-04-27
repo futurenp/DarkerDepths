@@ -25,5 +25,7 @@ public class DDBlockEntityTypes {
             () -> BlockEntityType.Builder.of(MobPlacerBlockEntity::new, DDBlocks.MOB_PLACER.get()).build(null));
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<VoidSoulJarBlockEntity>> VOID_SOUL_JAR = BLOCK_ENTITIES.register("void_soul_jar",
             () -> BlockEntityType.Builder.of(VoidSoulJarBlockEntity::new, DDBlocks.VOID_SOUL_JAR.get()).build(null));
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<GlowshroomHeartBlockEntity>> GLOWSHROOM_HEART = BLOCK_ENTITIES.register("glowshroom_heart",
+            () -> BlockEntityType.Builder.of(GlowshroomHeartBlockEntity::new, DDBlocks.GLOWSHROOM_HEART.get()).build(null));
 }
 
