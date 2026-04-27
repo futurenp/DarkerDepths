@@ -19,8 +19,8 @@ public class BlockLightEngineMixin {
     @Inject(at = @At("HEAD"), method = "getEmission", cancellable = true)
     private void DD$getEmission(long sectionPos, BlockState state, CallbackInfoReturnable<Integer> cir) {
         BlockPos blockPos = BlockPos.of(sectionPos);
-        if (DynamicLightHandler.LIGHT_SOURCES.containsKey(blockPos) && DynamicLightHandler.LIGHT_SOURCES.get(blockPos).shouldKeep) {
-            cir.setReturnValue(10);
+        if (DynamicLightHandler.LIGHT_SOURCES.containsKey(blockPos) && DynamicLightHandler.LIGHT_SOURCES.get(blockPos).shouldKeep && DynamicLightHandler.ENABLED) {
+            cir.setReturnValue(12);
         }
     }
 

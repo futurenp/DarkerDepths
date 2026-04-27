@@ -80,6 +80,11 @@ repositories {
         url = "https://maven.minecraftforge.net"
     }
 
+    maven {
+        name = "Gegy"
+        url = uri("https://maven.gegy.dev")
+    }
+
     exclusiveContent {
         forRepository {
             maven {
@@ -93,11 +98,29 @@ repositories {
     }
 }
 
+var mappingsAttribute = Attribute.of("net.minecraft.mappings", String.class)
+
 dependencies {
+    attributesSchema {
+        attribute(mappingsAttribute)
+    }
+
     implementation("software.bernie.geckolib:geckolib-neoforge-${project.minecraft_version}:4.8.4")
     implementation("com.terraformersmc:biolith-neoforge:${project.biolith_version}")
     compileOnly("com.github.glitchfiend:TerraBlender-neoforge:${project.minecraft_version}-${project.terrablender_version}")
+    implementation("curse.maven:lambdynamiclights-393442:7958146")
+//    compileOnly("dev.lambdaurora.lambdynamiclights:lambdynamiclights-api:4.8.7+1.21.1") {
+//        attributes {
+//            attribute(mappingsAttribute, "mojmap")
+//        }
+//    }
+//    runtimeOnly("dev.lambdaurora.lambdynamiclights:lambdynamiclights-runtime:4.8.7+1.21.1") {
+//        attributes {
+//            attribute(mappingsAttribute, "mojmap")
+//        }
+//    }
     implementation("curse.maven:spark-361579:6225208")
+
 //    compileOnly "maven.modrinth:no-mans-land:h56TqJQD"
 //    compileOnly "maven.modrinth:biolith:byVGeYWw"
 //    runtimeOnly "maven.modrinth:no-mans-land:h56TqJQD"

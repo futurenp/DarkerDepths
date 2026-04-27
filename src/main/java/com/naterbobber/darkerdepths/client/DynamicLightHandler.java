@@ -1,5 +1,6 @@
 package com.naterbobber.darkerdepths.client;
 
+import com.naterbobber.darkerdepths.compat.DDCompat;
 import com.naterbobber.darkerdepths.init.DDItems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
@@ -18,8 +19,10 @@ public class DynamicLightHandler {
     private static final Minecraft INSTANCE = Minecraft.getInstance();
     public static final Map<BlockPos, LightValue> LIGHT_SOURCES = new ConcurrentHashMap<>();
     private static final int LIGHT_SCAN_RADIUS = 64;
+    public static final boolean ENABLED = !DDCompat.LAMB_DYNAMIC_LIGHTS.isLoaded();
 
     public static void onClientTick() {
+        if(!ENABLED) return;
 
         if (INSTANCE.player == null || INSTANCE.level == null) {
             return;

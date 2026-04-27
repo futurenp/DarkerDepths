@@ -1,0 +1,15 @@
+{
+  "match": {
+    "type": [
+      "minecraft:player"
+    ],
+    "equipment": {
+      "head": {
+        "items": [
+          "darkerdepths:glowshroom_cap"
+        ]
+      }
+    }
+  },
+  "luminance": 15
+}
