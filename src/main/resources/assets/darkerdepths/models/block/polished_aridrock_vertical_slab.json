@@ -1,8 +1,0 @@
-{
-  "parent": "darkerdepths:block/vertical_slab",
-  "textures": {
-    "bottom": "darkerdepths:block/polished_aridrock",
-    "top": "darkerdepths:block/polished_aridrock",
-    "side": "darkerdepths:block/polished_aridrock"
-  }
-}

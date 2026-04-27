@@ -161,16 +161,6 @@ public class DDRecipeProvider extends RecipeProvider {
                 .pattern("###")
                 .unlockedBy("has_glow_grime", has(DDItems.GLOW_GRIME.get())).save(recipeOutput);
 
-//        ShapedRecipeBuilder
-//                .shaped(RecipeCategory.TOOLS, DDItems.QUICKROPE.get())
-//                .define('#', DDItems.ROPE.get())
-//                .define('G', Items.GOLD_INGOT)
-//                .define('C', Items.COPPER_INGOT)
-//                .pattern(" # ")
-//                .pattern("GCG")
-//                .pattern(" # ")
-//                .unlockedBy("has_rope", has(DDItems.ROPE.get())).save(recipeOutput);
-
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.DECORATIONS, DDBlocks.GLOWSHROOM_LANTERN.get())
                 .define('#', Items.IRON_NUGGET)

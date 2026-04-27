@@ -1,0 +1,6 @@
+{
+  "parent": "darkerdepths:block/vertical_slab",
+  "textures": {
+    "texture": "darkerdepths:block/petrified_planks"
+  }
+}

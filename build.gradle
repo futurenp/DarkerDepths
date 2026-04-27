@@ -98,33 +98,18 @@ repositories {
     }
 }
 
-var mappingsAttribute = Attribute.of("net.minecraft.mappings", String.class)
-
 dependencies {
-    attributesSchema {
-        attribute(mappingsAttribute)
-    }
 
     implementation("software.bernie.geckolib:geckolib-neoforge-${project.minecraft_version}:4.8.4")
     implementation("com.terraformersmc:biolith-neoforge:${project.biolith_version}")
     compileOnly("com.github.glitchfiend:TerraBlender-neoforge:${project.minecraft_version}-${project.terrablender_version}")
-    implementation("curse.maven:lambdynamiclights-393442:7958146")
-//    compileOnly("dev.lambdaurora.lambdynamiclights:lambdynamiclights-api:4.8.7+1.21.1") {
-//        attributes {
-//            attribute(mappingsAttribute, "mojmap")
-//        }
-//    }
-//    runtimeOnly("dev.lambdaurora.lambdynamiclights:lambdynamiclights-runtime:4.8.7+1.21.1") {
-//        attributes {
-//            attribute(mappingsAttribute, "mojmap")
-//        }
-//    }
     implementation("curse.maven:spark-361579:6225208")
-
-//    compileOnly "maven.modrinth:no-mans-land:h56TqJQD"
-//    compileOnly "maven.modrinth:biolith:byVGeYWw"
-//    runtimeOnly "maven.modrinth:no-mans-land:h56TqJQD"
-//    runtimeOnly "maven.modrinth:biolith:byVGeYWw"
+    implementation("curse.maven:lambdynamiclights-393442:7958146")
+    runtimeOnly "maven.modrinth:no-mans-land:h56TqJQD"
+    runtimeOnly "curse.maven:quark-243121:7980026"
+    runtimeOnly "curse.maven:zeta-968868:7980010"
+    runtimeOnly "curse.maven:woodworks-543610:7118286"
+    runtimeOnly "curse.maven:blueprint-382216:7148094"
 }
 
 

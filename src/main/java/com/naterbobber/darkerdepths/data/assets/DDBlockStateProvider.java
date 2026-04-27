@@ -3,17 +3,20 @@ package com.naterbobber.darkerdepths.data.assets;
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.block.DDBlockStateProperties;
 import com.naterbobber.darkerdepths.block.blockstates.PillarState;
+import com.naterbobber.darkerdepths.block.blockstates.VerticalSlabState;
 import com.naterbobber.darkerdepths.block.custom.DarkslateBlock;
 import com.naterbobber.darkerdepths.block.generic.*;
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import com.naterbobber.darkerdepths.init.DDItems;
 import net.minecraft.core.Direction;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.SpawnEggItem;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
@@ -183,12 +186,14 @@ public class DDBlockStateProvider extends BlockStateProvider {
 
         switch (block) {
             case RelationalSlabBlock b -> slabBlockWithItem(blockHolder, parentBlock);
+            case RelationalVerticalSlabBlock b -> verticalSlabBlockWithItem(blockHolder, parentBlock);
             case RelationalStairBlock b -> stairsBlockWithItem(blockHolder, parentBlock);
             case RelationalPressurePlateBlock b -> pressurePlateBlockWithItem(blockHolder, parentBlock);
             case RelationalButtonBlock b -> buttonBlockWithItem(blockHolder, parentBlock);
             case RelationalFenceBlock b -> fenceBlockWithItem(blockHolder, parentBlock);
             case RelationalFenceGateBlock b -> fenceGateBlockWithItem(blockHolder, parentBlock);
             case RelationalWallBlock b -> wallBlockWithItem(blockHolder, parentBlock);
+            case RelationalWoodPostBlock b -> postBlockWithItem(blockHolder, parentBlock);
             default -> throw new IllegalStateException("Unexpected value: " + block);
         }
     }
@@ -406,13 +411,69 @@ public class DDBlockStateProvider extends BlockStateProvider {
                 .texture("glow", glowTexture);
 
         getVariantBuilder(block.get())
-                .partialState().with(net.minecraft.world.level.block.state.properties.BlockStateProperties.LIT, false)
+                .partialState().with(BlockStateProperties.LIT, false)
                 .addModels(new ConfiguredModel(offModel))
-                .partialState().with(net.minecraft.world.level.block.state.properties.BlockStateProperties.LIT, true)
+                .partialState().with(BlockStateProperties.LIT, true)
                 .addModels(new ConfiguredModel(onModel));
 
         simpleBlockItem(block.get(), offModel);
     }
+
+    public void verticalSlabBlockWithItem(DeferredHolder<Block, ? extends Block> block, Block parentBlock) {
+        String blockName = block.getId().getPath();
+        ResourceLocation texture = blockTexture(parentBlock);
+
+        var defaultModel = models().withExistingParent(blockName, DarkerDepths.id("block/vertical_slab"))
+                .texture("texture", texture);
+
+        var doubleModel = models().getExistingFile(
+                models().modLoc(BuiltInRegistries.BLOCK.getKey(parentBlock).getPath())
+        );
+
+        getVariantBuilder(block.get())
+                .partialState().with(DDBlockStateProperties.VERTICAL_SLAB_STATE, VerticalSlabState.NORTH).addModels(new ConfiguredModel(defaultModel, 0, 0, true))
+                .partialState().with(DDBlockStateProperties.VERTICAL_SLAB_STATE, VerticalSlabState.EAST).addModels(new ConfiguredModel(defaultModel, 0, 90, true))
+                .partialState().with(DDBlockStateProperties.VERTICAL_SLAB_STATE, VerticalSlabState.SOUTH).addModels(new ConfiguredModel(defaultModel, 0, 180, true))
+                .partialState().with(DDBlockStateProperties.VERTICAL_SLAB_STATE, VerticalSlabState.WEST).addModels(new ConfiguredModel(defaultModel, 0, 270, true))
+                .partialState().with(DDBlockStateProperties.VERTICAL_SLAB_STATE, VerticalSlabState.DOUBLE).addModels(new ConfiguredModel(doubleModel, 0, 0, true));
+
+        simpleBlockItem(block.get(), defaultModel);
+    }
+
+    public void postBlockWithItem(DeferredHolder<Block, ? extends Block> block, Block parentBlock) {
+        String blockName = block.getId().getPath();
+        ResourceLocation texture = blockTexture(parentBlock);
+
+        var postModel = models().withExistingParent(blockName, DarkerDepths.id("block/post"))
+                .texture("texture", texture);
+        var chainSmall = models().getExistingFile(modLoc("block/chain_small"));
+        var chainSmallTop = models().getExistingFile(modLoc("block/chain_small_top"));
+
+        var builder = getMultipartBuilder(block.get());
+
+        builder.part().modelFile(postModel).addModel()
+                .condition(BlockStateProperties.AXIS, Direction.Axis.Y);
+        builder.part().modelFile(postModel).rotationX(90).rotationY(90).addModel()
+                .condition(BlockStateProperties.AXIS, Direction.Axis.X);
+        builder.part().modelFile(postModel).rotationX(90).addModel()
+                .condition(BlockStateProperties.AXIS, Direction.Axis.Z);
+
+        builder.part().modelFile(chainSmall).addModel()
+                .condition(DDBlockStateProperties.CHAIN_DOWN, true);
+        builder.part().modelFile(chainSmallTop).addModel()
+                .condition(DDBlockStateProperties.CHAIN_UP, true);
+        builder.part().modelFile(chainSmallTop).rotationX(90).addModel()
+                .condition(DDBlockStateProperties.CHAIN_NORTH, true);
+        builder.part().modelFile(chainSmall).rotationX(90).addModel()
+                .condition(DDBlockStateProperties.CHAIN_SOUTH, true);
+        builder.part().modelFile(chainSmallTop).rotationX(90).rotationY(90).addModel()
+                .condition(DDBlockStateProperties.CHAIN_WEST, true);
+        builder.part().modelFile(chainSmall).rotationX(90).rotationY(90).addModel()
+                .condition(DDBlockStateProperties.CHAIN_EAST, true);
+
+        simpleBlockItem(block.get(), postModel);
+    }
+
 
     public void crystalHuskBlock(DeferredHolder<Block, ? extends Block> block) {
         getVariantBuilder(block.get()).forAllStates(state -> {

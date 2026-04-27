@@ -1,7 +1,0 @@
-{
-  "render_type": "minecraft:cutout",
-  "parent": "darkerdepths:block/post",
-  "textures": {
-    "texture": "darkerdepths:block/petrified_log"
-  }
-}

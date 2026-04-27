@@ -1,0 +1,6 @@
+{
+  "parent": "darkerdepths:block/post",
+  "textures": {
+    "texture": "darkerdepths:block/stripped_glowshroom_stem"
+  }
+}

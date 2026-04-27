@@ -1,5 +1,6 @@
 package com.naterbobber.darkerdepths.block.generic;
 
+import com.naterbobber.darkerdepths.block.DDBlockStateProperties;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -32,22 +33,13 @@ public class WoodPostBlock extends Block implements SimpleWaterloggedBlock {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public static final EnumProperty<Direction.Axis> AXIS = BlockStateProperties.AXIS;
 
-    public static final BooleanProperty[] CHAINED = new BooleanProperty[] {
-            BooleanProperty.create("chain_down"),
-            BooleanProperty.create("chain_up"),
-            BooleanProperty.create("chain_north"),
-            BooleanProperty.create("chain_south"),
-            BooleanProperty.create("chain_west"),
-            BooleanProperty.create("chain_east")
-    };
-
     public Block strippedBlock = null;
 
     public WoodPostBlock(Properties properties) {
         super(properties);
 
         BlockState state = this.stateDefinition.any().setValue(WATERLOGGED, false).setValue(AXIS, Direction.Axis.Y);
-        for(BooleanProperty prop : CHAINED)
+        for(BooleanProperty prop : DDBlockStateProperties.CHAINED)
             state = state.setValue(prop, false);
         registerDefaultState(state);
     }
@@ -108,7 +100,7 @@ public class WoodPostBlock extends Block implements SimpleWaterloggedBlock {
             BlockState sideState = world.getBlockState(pos.relative(d));
             if((sideState.getBlock() instanceof ChainBlock && sideState.getValue(BlockStateProperties.AXIS) == d.getAxis())
                     || (d == Direction.DOWN && sideState.getBlock() instanceof LanternBlock && sideState.getValue(LanternBlock.HANGING))) {
-                BooleanProperty prop = CHAINED[d.ordinal()];
+                BooleanProperty prop = DDBlockStateProperties.CHAINED[d.ordinal()];
                 state = state.setValue(prop, true);
             }
         }
@@ -119,7 +111,7 @@ public class WoodPostBlock extends Block implements SimpleWaterloggedBlock {
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(WATERLOGGED, AXIS);
-        for (BooleanProperty booleanProperty : CHAINED) {
+        for (BooleanProperty booleanProperty : DDBlockStateProperties.CHAINED) {
             builder.add(booleanProperty);
         }
     }
