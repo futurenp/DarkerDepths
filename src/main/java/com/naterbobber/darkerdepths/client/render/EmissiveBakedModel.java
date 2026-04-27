@@ -52,11 +52,11 @@ public class EmissiveBakedModel extends BakedModelWrapper<BakedModel> {
 
             if (isManualGlowQuad) {
                 if (renderType == null || renderType == settings.glowRenderType) {
-                    newQuads.add(changeBrightness(quad, settings.glowBrightness, settings.shadeGlow));
+                    newQuads.add(changeBrightness(quad, settings.glowBrightness, settings.shadeGlow, !settings.disableAmbientOcclusion));
                 }
             } else {
                 if (renderType == null || renderType == settings.baseRenderType) {
-                    newQuads.add(settings.baseBrightness == 0 ? quad : changeBrightness(quad, settings.baseBrightness, !settings.removeShadeBase));
+                    newQuads.add(settings.baseBrightness == 0 ? quad : changeBrightness(quad, settings.baseBrightness, !settings.removeShadeBase, !settings.disableAmbientOcclusion));
                 }
 
                 if (settings.autoGlow && (renderType == null || renderType == settings.glowRenderType)) {
@@ -100,13 +100,13 @@ public class EmissiveBakedModel extends BakedModelWrapper<BakedModel> {
         return new BakedQuad(newData, baseQuad.getTintIndex(), baseQuad.getDirection(), glowSprite, shade);
     }
 
-    private BakedQuad changeBrightness(BakedQuad quad, int brightness, boolean shade) {
+    private BakedQuad changeBrightness(BakedQuad quad, int brightness, boolean shade, boolean ambientOcclusion) {
         int[] vertexData = quad.getVertices().clone();
         for (int i = 0; i < 4; i++) {
             int vertexStartIndex = i * 8;
             vertexData[vertexStartIndex + 6] = brightness;
         }
-        return new BakedQuad(vertexData, quad.getTintIndex(), quad.getDirection(), quad.getSprite(), shade);
+        return new BakedQuad(vertexData, quad.getTintIndex(), quad.getDirection(), quad.getSprite(), shade, ambientOcclusion);
     }
 
     public static class ModelSettings {
@@ -117,6 +117,7 @@ public class EmissiveBakedModel extends BakedModelWrapper<BakedModel> {
         boolean removeShadeBase = false;
         boolean shadeGlow = false;
         boolean autoGlow = false;
+        boolean disableAmbientOcclusion = false;
 
         public ModelSettings(){}
 
@@ -152,6 +153,11 @@ public class EmissiveBakedModel extends BakedModelWrapper<BakedModel> {
 
         public ModelSettings autoGlow() {
             this.autoGlow = true;
+            return this;
+        }
+
+        public ModelSettings disableAmbientOcclusion() {
+            this.disableAmbientOcclusion = true;
             return this;
         }
     }

@@ -146,6 +146,7 @@ public class DDBiomeModifiers {
                 getPlacedFeature(
                         context,
                         GLIMMERING_VINES,
+                        HUGE_GLOWSHROOM,
                         SMUSHED_GLOWSHROOM,
                         GRIME_VEGETATION_PATCH
                 ),

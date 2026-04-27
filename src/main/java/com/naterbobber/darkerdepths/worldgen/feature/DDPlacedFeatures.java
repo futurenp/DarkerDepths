@@ -27,7 +27,7 @@ public class DDPlacedFeatures {
         HolderGetter<ConfiguredFeature<?, ?>> lookup = context.lookup(Registries.CONFIGURED_FEATURE);
 
         PlacementUtils.register(context, HUGE_GLOWSHROOM, lookup.getOrThrow(DDResourceKeys.ConfiguredFeatures.HUGE_GLOWSHROOM),
-                CountPlacement.of(UniformInt.of(32, 48)),
+                CountPlacement.of(UniformInt.of(8, 12)),
                 InSquarePlacement.spread(),
                 PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
                 EnvironmentScanPlacement.scanningFor(
@@ -39,7 +39,7 @@ public class DDPlacedFeatures {
                 BiomeFilter.biome());
 
         PlacementUtils.register(context, SMUSHED_GLOWSHROOM, lookup.getOrThrow(DDResourceKeys.ConfiguredFeatures.SMUSHED_GLOWSHROOM),
-                CountPlacement.of(UniformInt.of(32, 48)),
+                CountPlacement.of(UniformInt.of(42, 56)),
                 InSquarePlacement.spread(),
                 PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
                 EnvironmentScanPlacement.scanningFor(

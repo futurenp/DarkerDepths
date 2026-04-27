@@ -6,6 +6,7 @@ import com.naterbobber.darkerdepths.util.DDResourceKeys;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -28,6 +29,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
@@ -100,13 +102,20 @@ public class GlowshroomBlock extends Block implements BonemealableBlock, SimpleW
 
     @Override
     public boolean isBonemealSuccess(Level p_50901_, RandomSource random, BlockPos p_50903_, BlockState state) {
-        return random.nextFloat() < 0.4D && state.getValue(GLOWSHROOM_CLUSTERS) == 1;
+        return random.nextFloat() < 0.2D;
     }
 
     @Override
     public void performBonemeal(ServerLevel world, RandomSource random, BlockPos pos, BlockState state) {
+        ResourceKey<ConfiguredFeature<?, ?>> featureKey;
+        if(random.nextFloat() < 0.2D) {
+            featureKey = DDResourceKeys.ConfiguredFeatures.HUGE_GLOWSHROOM;
+        } else {
+            featureKey = DDResourceKeys.ConfiguredFeatures.SMUSHED_GLOWSHROOM;
+        }
+
         world.registryAccess().registryOrThrow(Registries.CONFIGURED_FEATURE)
-                .getHolder(DDResourceKeys.ConfiguredFeatures.HUGE_GLOWSHROOM_PLANTED).ifPresent(featureHolder -> {
+                .getHolder(featureKey).ifPresent(featureHolder -> {
 
                     world.setBlock(pos, Blocks.CAVE_AIR.defaultBlockState(), 4);
 

@@ -120,6 +120,10 @@ public class EmissiveModelManager {
                         .removeShadeBase())
                 .build());
 
+        models.add(new BlockBaker.Builder(event, DDBlocks.AMBER_BLOCK)
+                .modelSettings(new EmissiveBakedModel.ModelSettings())
+                .build());
+
         models.forEach(BlockBaker::apply);
     }
 

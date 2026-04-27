@@ -74,9 +74,13 @@ public class SmushedGlowshroomFeature extends Feature<NoneFeatureConfiguration> 
         for (int i = 0; i <= height; i++) {
             BlockPos stalkPos = pos.above(i);
             if (world.getBlockState(stalkPos).canBeReplaced()) {
-                BlockState state = (i == height) ?
-                        DDBlocks.GLOWSHROOM_HEART.get().defaultBlockState() :
-                        DDBlocks.GLOWSHROOM_STEM.get().defaultBlockState();
+
+                BlockState state;
+                if(i == height && world.getRandom().nextFloat() < 0.5F) {
+                    state = DDBlocks.GLOWSHROOM_HEART.get().defaultBlockState();
+                } else {
+                    state = DDBlocks.GLOWSHROOM_STEM.get().defaultBlockState();
+                }
 
                 setBlock(world, stalkPos, state);
             }

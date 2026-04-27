@@ -29,22 +29,40 @@ public class HugeGlowshroomFeature extends Feature<NoneFeatureConfiguration> {
         BlockPos pos = context.origin();
         RandomSource rand = context.random();
         BlockState belowState = world.getBlockState(pos.below());
-        boolean flag = belowState.is(DDTags.Blocks.HUGE_GLOWSHROOM_GROWABLE);
-        boolean flag2 = (world.isStateAtPosition(pos, BlockBehaviour.BlockStateBase::isAir) || world.getBlockState(pos).is(DDBlocks.GLOWSHROOM.get()) || world.getBlockState(pos).canBeReplaced()) && !world.getBlockState(pos).is(Blocks.LAVA);
-        if (flag2 && flag) {
-            int height = Mth.nextInt(rand, 2, 4);
-            int chanceHeight = 3;
-            if (height > chanceHeight) {
-                hugeGlowshroom(world, pos, height);
-            } else {
+
+        if (!belowState.is(DDTags.Blocks.HUGE_GLOWSHROOM_GROWABLE)) {
+            return false;
+        }
+
+        int height = Mth.nextInt(rand, 1, 4);
+
+        boolean canPlace = true;
+        for (int i = 0; i <= height; i++) {
+            BlockPos checkPos = pos.above(i);
+            BlockState state = world.getBlockState(checkPos);
+
+            boolean replaceable = (state.isAir()
+                    || state.is(DDBlocks.GLOWSHROOM.get())
+                    || state.canBeReplaced())
+                    && !state.is(Blocks.LAVA);
+
+            if (!replaceable) {
+                canPlace = false;
+                break;
+            }
+        }
+
+        if (canPlace) {
+            if(height <= 3) {
                 smallGlowshroom(world, pos, height);
+            } else {
+                hugeGlowshroom(world, pos, height);
             }
             return true;
         } else {
             return false;
         }
     }
-
 
     private void smallGlowshroom(WorldGenLevel world, BlockPos pos, int height) {
         for (int i = 0; i < height; i++) {
