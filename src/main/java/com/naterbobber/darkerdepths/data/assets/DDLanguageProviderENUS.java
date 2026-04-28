@@ -4,11 +4,15 @@ import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.init.*;
 import com.naterbobber.darkerdepths.util.DDResourceKeys;
 import net.minecraft.data.PackOutput;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.WallHangingSignBlock;
+import net.minecraft.world.level.block.WallSignBlock;
 import net.neoforged.neoforge.common.data.LanguageProvider;
 import net.neoforged.neoforge.registries.DeferredBlock;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
 
 import java.util.HashSet;
@@ -32,6 +36,7 @@ public class DDLanguageProviderENUS extends LanguageProvider {
     protected void addTranslations() {
         // Items
         add(DDItems.PETRIFIED_CHEST_BOAT, "Petrified Boat with Chest");
+        add(DDItems.GLOWSHROOM_CHEST_BOAT, "Glowshroom Boat with Chest");
 //        // Blocks
         add(DDBlocks.CRYSTAL_HUSK, "Crystal Husk");
         add(DDBlocks.FORSAKEN_BRONZE_BLOCK, "Block of Forsaken Bronze");
@@ -43,7 +48,9 @@ public class DDLanguageProviderENUS extends LanguageProvider {
         blockOverrides.add(DDBlocks.GLOWSHROOM_WALL_HANGING_SIGN.get());
         // Entities
         entityTypeOverrides.add(DDEntityTypes.PETRIFIED_CHEST_BOAT.get());
-        add(DDEntityTypes.PETRIFIED_CHEST_BOAT.get(), "Boat with Chest");
+        entityTypeOverrides.add(DDEntityTypes.GLOWSHROOM_CHEST_BOAT.get());
+        add(DDEntityTypes.PETRIFIED_CHEST_BOAT.get(), "Petrified Boat with Chest");
+        add(DDEntityTypes.GLOWSHROOM_CHEST_BOAT.get(), "Glowshroom Boat with Chest");
 
         // Enchantments
         add(ENCHANTMENT, "swift_strike", "Swift Strike");
