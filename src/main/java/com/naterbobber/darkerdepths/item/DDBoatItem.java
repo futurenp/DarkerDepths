@@ -1,13 +1,15 @@
 package com.naterbobber.darkerdepths.item;
 
-import com.naterbobber.darkerdepths.entities.PetrifiedBoatEntity;
-import com.naterbobber.darkerdepths.entities.PetrifiedChestBoatEntity;
+import com.naterbobber.darkerdepths.entities.DDBoatEntity;
+import com.naterbobber.darkerdepths.entities.DDChestBoatEntity;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntitySelector;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.vehicle.Boat;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ClipContext;
@@ -18,16 +20,19 @@ import net.minecraft.world.phys.Vec3;
 
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 
 public class DDBoatItem extends Item {
     private static final Predicate<Entity> NON_COLLIDABLE_ENTITIES = EntitySelector.NO_SPECTATORS.and(Entity::canBeCollidedWith);
-    private final PetrifiedBoatEntity.BoatType type;
+    private final DDBoatEntity.BoatType type;
     private final boolean hasChest;
+    private final Supplier<? extends EntityType<? extends Boat>> entityTypeSupplier;
 
-    public DDBoatItem(boolean hasChest, PetrifiedBoatEntity.BoatType typeIn, Properties properties) {
+    public DDBoatItem(boolean hasChest, DDBoatEntity.BoatType typeIn, Supplier<? extends EntityType<? extends Boat>> entityTypeSupplier, Properties properties) {
         super(properties);
         this.type = typeIn;
         this.hasChest = hasChest;
+        this.entityTypeSupplier = entityTypeSupplier;
     }
 
     @Override
@@ -51,7 +56,7 @@ public class DDBoatItem extends Item {
             }
 
             if (raytraceresult.getType() == HitResult.Type.BLOCK) {
-                PetrifiedBoatEntity boatentity = this.getBoat(worldIn, raytraceresult);
+                DDBoatEntity boatentity = this.getBoat(worldIn, raytraceresult);
                 boatentity.setBoatType(this.type);
                 boatentity.setYRot(playerIn.getYRot());
                 if (!worldIn.noCollision(boatentity, boatentity.getBoundingBox())) {
@@ -73,8 +78,16 @@ public class DDBoatItem extends Item {
         }
     }
 
-    private PetrifiedBoatEntity getBoat(Level world, HitResult hit) {
-        return this.hasChest ? new PetrifiedChestBoatEntity(world, hit.getLocation().x, hit.getLocation().y, hit.getLocation().z) : new PetrifiedBoatEntity(world, hit.getLocation().x, hit.getLocation().y, hit.getLocation().z);
+    private DDBoatEntity getBoat(Level world, HitResult hit) {
+        double x = hit.getLocation().x;
+        double y = hit.getLocation().y;
+        double z = hit.getLocation().z;
+
+        if (this.hasChest) {
+            return new DDChestBoatEntity((EntityType<? extends DDBoatEntity>) this.entityTypeSupplier.get(), this.type, world, x, y, z);
+        } else {
+            return new DDBoatEntity(this.entityTypeSupplier.get(), this.type, world, x, y, z);
+        }
     }
 
 }

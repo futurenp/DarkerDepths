@@ -4,12 +4,9 @@ import com.naterbobber.darkerdepths.init.DDBlocks;
 import com.naterbobber.darkerdepths.init.DDEntityTypes;
 import com.naterbobber.darkerdepths.init.DDItems;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.protocol.Packet;
-import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.server.level.ServerEntity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.vehicle.Boat;
 import net.minecraft.world.item.Item;
@@ -17,21 +14,22 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.phys.Vec3;
 
-public class PetrifiedBoatEntity extends Boat {
-    private static final EntityDataAccessor<Integer> BOAT_TYPE = SynchedEntityData.defineId(PetrifiedBoatEntity.class, EntityDataSerializers.INT);
+public class DDBoatEntity extends Boat {
+    private static final EntityDataAccessor<Integer> BOAT_TYPE = SynchedEntityData.defineId(DDBoatEntity.class, EntityDataSerializers.INT);
 
-    public PetrifiedBoatEntity(EntityType<? extends Boat> boat, Level world) {
-        super(boat, world);
+    public DDBoatEntity(EntityType<? extends Boat> entityType, Level world) {
+        super(entityType, world);
         this.blocksBuilding = true;
     }
 
-    public PetrifiedBoatEntity(Level world, double x, double y, double z) {
-        this(DDEntityTypes.PETRIFIED_BOAT.get(), world);
+    public DDBoatEntity(EntityType<? extends Boat> entityType, BoatType type, Level world, double x, double y, double z) {
+        this(entityType, world);
         this.setPos(x, y, z);
         this.setDeltaMovement(Vec3.ZERO);
         this.xo = x;
         this.yo = y;
         this.zo = z;
+        this.setBoatType(type);
     }
 
     @Override
@@ -42,7 +40,10 @@ public class PetrifiedBoatEntity extends Boat {
 
     @Override
     public Item getDropItem() {
-        return DDItems.PETRIFIED_BOAT.get();
+        return switch (this.getBoatTypeDropItem()) {
+            case GLOWSHROOM -> DDItems.GLOWSHROOM_BOAT.get();
+            default -> DDItems.PETRIFIED_BOAT.get();
+        };
     }
 
     public void setBoatType(BoatType type) {
@@ -68,7 +69,9 @@ public class PetrifiedBoatEntity extends Boat {
     }
 
     public enum BoatType {
-        PETRIFIED(DDBlocks.PETRIFIED_PLANKS.get(), "petrified");
+        PETRIFIED(DDBlocks.PETRIFIED_PLANKS.get(), "petrified"),
+        GLOWSHROOM(DDBlocks.GLOWSHROOM_PLANKS.get(), "glowshroom");
+
         private final String name;
         private final Block planks;
 
@@ -85,30 +88,26 @@ public class PetrifiedBoatEntity extends Boat {
             return this.planks;
         }
 
+        @Override
         public String toString() {
             return this.name;
         }
 
-        public static BoatType byId(int p_38431_) {
-            BoatType[] aboat$type = values();
-            if (p_38431_ < 0 || p_38431_ >= aboat$type.length) {
-                p_38431_ = 0;
+        public static BoatType byId(int id) {
+            BoatType[] types = values();
+            if (id < 0 || id >= types.length) {
+                id = 0;
             }
-
-            return aboat$type[p_38431_];
+            return types[id];
         }
 
-        public static BoatType byName(String p_38433_) {
-            BoatType[] aboat$type = values();
-
-            for(int i = 0; i < aboat$type.length; ++i) {
-                if (aboat$type[i].getName().equals(p_38433_)) {
-                    return aboat$type[i];
+        public static BoatType byName(String name) {
+            for (BoatType type : values()) {
+                if (type.getName().equals(name)) {
+                    return type;
                 }
             }
-
-            return aboat$type[0];
+            return values()[0];
         }
     }
-
 }

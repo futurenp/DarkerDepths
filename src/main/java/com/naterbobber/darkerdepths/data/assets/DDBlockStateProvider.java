@@ -13,9 +13,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.SpawnEggItem;
+import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
@@ -60,6 +58,8 @@ public class DDBlockStateProvider extends BlockStateProvider {
         add(this::woodBlockWithItem, DDBlocks.STRIPPED_GLOWSHROOM_HYPHAE, DDBlocks.STRIPPED_GLOWSHROOM_STEM);
         add(this::columnBlockWithItem, DDBlocks.GLOWSHROOM_BOOKSHELF, DDBlocks.GLOWSHROOM_PLANKS);
         add(this::woodBlockWithItem, DDBlocks.GLOWSHROOM_BOARDS, DDBlocks.GLOWSHROOM_PLANKS);
+        add(this::verticalPlanksBlockWithItem, DDBlocks.VERTICAL_GLOWSHROOM_PLANKS, DDBlocks.GLOWSHROOM_PLANKS);
+        add(this::verticalPlanksBlockWithItem, DDBlocks.VERTICAL_PETRIFIED_PLANKS, DDBlocks.PETRIFIED_PLANKS);
 
         skipBlock(
                 DDBlocks.VOID_SOUL_JAR,
@@ -131,16 +131,12 @@ public class DDBlockStateProvider extends BlockStateProvider {
 
             switch (item) {
                 case SpawnEggItem i -> spawnEggItem(holder);
-//                case BlockItem i -> blockItems.add(holder.getRegisteredName());
+                case SignItem i -> simpleItem(holder);
                 case BlockItem i -> {
 
                 }
-                default -> {
-                    simpleItem(holder);
-                }
+                default -> simpleItem(holder);
             }
-
-//            assignBlockItems();
         });
 
     }
@@ -168,17 +164,6 @@ public class DDBlockStateProvider extends BlockStateProvider {
                 }
             });
 
-    }
-
-    private void assignBlockItems() {
-        DDBlocks.BLOCKS.getEntries()
-                .stream()
-                .filter(holder -> !blockIgnores.contains(holder.get()))
-                .forEach(holder -> {
-                    if(blockItems.contains(holder.getRegisteredName())) {
-                        simpleBlockItem(holder.get(), models().getExistingFile(blockTexture(holder.get())));
-                    }
-                });
     }
 
     private void relationalBlockWithItem(DeferredHolder<Block, ? extends Block> blockHolder) {
@@ -381,6 +366,17 @@ public class DDBlockStateProvider extends BlockStateProvider {
                 .partialState().with(DDBlockStateProperties.VERTICAL_SLAB_STATE, VerticalSlabState.WEST).addModels(new ConfiguredModel(defaultModel, 0, 270, true))
                 .partialState().with(DDBlockStateProperties.VERTICAL_SLAB_STATE, VerticalSlabState.DOUBLE).addModels(new ConfiguredModel(doubleModel, 0, 0, true));
 
+        simpleBlockItem(block.get(), defaultModel);
+    }
+
+    public void verticalPlanksBlockWithItem(DeferredHolder<Block, ? extends Block> block, DeferredHolder<Block, ? extends Block> parentBlock) {
+        String blockName = block.getId().getPath();
+        ResourceLocation texture = blockTexture(parentBlock.get());
+
+        var defaultModel = models().withExistingParent(blockName, DarkerDepths.id("block/vertical_planks"))
+                .texture("all", texture);
+
+        simpleBlock(block.get(), defaultModel);
         simpleBlockItem(block.get(), defaultModel);
     }
 

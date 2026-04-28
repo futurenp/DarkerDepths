@@ -1,6 +1,6 @@
 {
-  "parent": "minecraft:block/cube_all",
+  "parent": "darkerdepths:block/vertical_planks",
   "textures": {
-    "all": "darkerdepths:block/vertical_glowshroom_planks"
+    "all": "darkerdepths:block/glowshroom_planks"
   }
 }

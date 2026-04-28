@@ -50,7 +50,12 @@ public class EmissiveModelManager {
                 DDBlocks.GLOWSHROOM_BUTTON,
                 DDBlocks.GLOWSHROOM_PRESSURE_PLATE,
                 DDBlocks.STRIPPED_GLOWSHROOM_STEM,
-                DDBlocks.STRIPPED_GLOWSHROOM_HYPHAE
+                DDBlocks.STRIPPED_GLOWSHROOM_HYPHAE,
+                DDBlocks.GLOWSHROOM_POST,
+                DDBlocks.GLOWSHROOM_BOOKSHELF,
+                DDBlocks.TRIMMED_PETRIFIED_PLANKS,
+                DDBlocks.GLOWSHROOM_VERTICAL_SLAB,
+                DDBlocks.VERTICAL_GLOWSHROOM_PLANKS
         )
                 .modelSettings(new EmissiveBakedModel.ModelSettings())
                 .build());
@@ -77,7 +82,8 @@ public class EmissiveModelManager {
 
         models.add(new BlockBaker.Builder(event,
                 DDBlocks.GLOWSHROOM_STEM,
-                DDBlocks.GLOWSHROOM_HYPHAE
+                DDBlocks.GLOWSHROOM_HYPHAE,
+                DDBlocks.STRIPPED_GLOWSHROOM_POST
         )
                 .modelSettings(new EmissiveBakedModel.ModelSettings()
                         .baseBrightness(LightTexture.pack(2, 0))
@@ -127,6 +133,7 @@ public class EmissiveModelManager {
                 .build());
 
         models.forEach(BlockBaker::apply);
+        clearHolders();
     }
 
     public static void clearHolders() {

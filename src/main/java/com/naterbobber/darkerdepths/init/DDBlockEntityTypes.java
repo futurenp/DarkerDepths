@@ -11,10 +11,8 @@ public class DDBlockEntityTypes {
 
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister.create(BuiltInRegistries.BLOCK_ENTITY_TYPE, DarkerDepths.MOD_ID);
 
-    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<DDSignBlockEntity>> DD_SIGN = BLOCK_ENTITIES.register("dd_sign",
-            () -> BlockEntityType.Builder.of(DDSignBlockEntity::new, DDBlocks.PETRIFIED_SIGN.get(), DDBlocks.PETRIFIED_WALL_SIGN.get()).build(null));
-    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<DDHangingSignBlockEntity>> DD_HANGING_SIGN = BLOCK_ENTITIES.register("dd_hanging_sign",
-            () -> BlockEntityType.Builder.of(DDHangingSignBlockEntity::new, DDBlocks.PETRIFIED_HANGING_SIGN.get(), DDBlocks.PETRIFIED_WALL_HANGING_SIGN.get()).build(null));
+
+
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<GeyserBlockEntity>> GEYSER = BLOCK_ENTITIES.register("geyser",
             () -> BlockEntityType.Builder.of(GeyserBlockEntity::new, DDBlocks.GEYSER.get()).build(null));
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<TombBlockEntity>> TOMB = BLOCK_ENTITIES.register("tomb",
@@ -27,5 +25,19 @@ public class DDBlockEntityTypes {
             () -> BlockEntityType.Builder.of(VoidSoulJarBlockEntity::new, DDBlocks.VOID_SOUL_JAR.get()).build(null));
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<GlowshroomHeartBlockEntity>> GLOWSHROOM_HEART = BLOCK_ENTITIES.register("glowshroom_heart",
             () -> BlockEntityType.Builder.of(GlowshroomHeartBlockEntity::new, DDBlocks.GLOWSHROOM_HEART.get()).build(null));
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<DDSignBlockEntity>> DD_SIGN = BLOCK_ENTITIES.register("dd_sign",
+            () -> BlockEntityType.Builder.of(DDSignBlockEntity::new,
+                    DDBlocks.PETRIFIED_SIGN.get(),
+                    DDBlocks.PETRIFIED_WALL_SIGN.get(),
+                    DDBlocks.GLOWSHROOM_SIGN.get(),
+                    DDBlocks.GLOWSHROOM_WALL_SIGN.get()
+            ).build(null));
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<DDHangingSignBlockEntity>> DD_HANGING_SIGN = BLOCK_ENTITIES.register("dd_hanging_sign",
+            () -> BlockEntityType.Builder.of(DDHangingSignBlockEntity::new,
+                    DDBlocks.PETRIFIED_HANGING_SIGN.get(),
+                    DDBlocks.PETRIFIED_WALL_HANGING_SIGN.get(),
+                    DDBlocks.GLOWSHROOM_HANGING_SIGN.get(),
+                    DDBlocks.GLOWSHROOM_WALL_HANGING_SIGN.get()
+            ).build(null));
 }
 

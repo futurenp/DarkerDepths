@@ -12,10 +12,33 @@ public class DDEntityTypes {
 
     public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(Registries.ENTITY_TYPE, DarkerDepths.MOD_ID);
 
-    public static final DeferredHolder<EntityType<?>, EntityType<PetrifiedBoatEntity>> PETRIFIED_BOAT = ENTITY_TYPES.register("petrified_boat",
-            () -> EntityType.Builder.<PetrifiedBoatEntity>of(PetrifiedBoatEntity::new, MobCategory.MISC).sized(1.375F, 0.5625F).build(DarkerDepths.id("petrified_boat").toString()));
-    public static final DeferredHolder<EntityType<?>, EntityType<PetrifiedChestBoatEntity>> PETRIFIED_CHEST_BOAT = ENTITY_TYPES.register("petrified_chest_boat",
-            () -> EntityType.Builder.<PetrifiedChestBoatEntity>of(PetrifiedChestBoatEntity::new, MobCategory.MISC).sized(1.375F, 0.5625F).build(DarkerDepths.id("petrified_chest_boat").toString()));
+    public static final DeferredHolder<EntityType<?>, EntityType<DDBoatEntity>> PETRIFIED_BOAT = ENTITY_TYPES.register("petrified_boat",
+            () -> EntityType.Builder.<DDBoatEntity>of((type, level) -> {
+                DDBoatEntity boat = new DDBoatEntity(type, level);
+                boat.setBoatType(DDBoatEntity.BoatType.PETRIFIED);
+                return boat;
+            }, MobCategory.MISC).sized(1.375F, 0.5625F).build(DarkerDepths.id("petrified_boat").toString()));
+
+    public static final DeferredHolder<EntityType<?>, EntityType<DDChestBoatEntity>> PETRIFIED_CHEST_BOAT = ENTITY_TYPES.register("petrified_chest_boat",
+            () -> EntityType.Builder.<DDChestBoatEntity>of((type, level) -> {
+                DDChestBoatEntity boat = new DDChestBoatEntity(type, level);
+                boat.setBoatType(DDBoatEntity.BoatType.PETRIFIED);
+                return boat;
+            }, MobCategory.MISC).sized(1.375F, 0.5625F).build(DarkerDepths.id("petrified_chest_boat").toString()));
+
+    public static final DeferredHolder<EntityType<?>, EntityType<DDBoatEntity>> GLOWSHROOM_BOAT = ENTITY_TYPES.register("glowshroom_boat",
+            () -> EntityType.Builder.<DDBoatEntity>of((type, level) -> {
+                DDBoatEntity boat = new DDBoatEntity(type, level);
+                boat.setBoatType(DDBoatEntity.BoatType.GLOWSHROOM);
+                return boat;
+            }, MobCategory.MISC).sized(1.375F, 0.5625F).build(DarkerDepths.id("glowshroom_boat").toString()));
+
+    public static final DeferredHolder<EntityType<?>, EntityType<DDChestBoatEntity>> GLOWSHROOM_CHEST_BOAT = ENTITY_TYPES.register("glowshroom_chest_boat",
+            () -> EntityType.Builder.<DDChestBoatEntity>of((type, level) -> {
+                DDChestBoatEntity boat = new DDChestBoatEntity(type, level);
+                boat.setBoatType(DDBoatEntity.BoatType.GLOWSHROOM);
+                return boat;
+            }, MobCategory.MISC).sized(1.375F, 0.5625F).build(DarkerDepths.id("glowshroom_chest_boat").toString()));
     public static final DeferredHolder<EntityType<?>, EntityType<GlowshroomMonsterEntity>> GLOWSHROOM_MONSTER = ENTITY_TYPES.register("glowshroom_monster",
             () -> EntityType.Builder.of(GlowshroomMonsterEntity::new, MobCategory.MONSTER).sized(1.6F, 1.9F).clientTrackingRange(8).build(DarkerDepths.id("glowshroom_monster").toString()));
     public static final DeferredHolder<EntityType<?>, EntityType<BodySnatcherEntity>> BODY_SNATCHER = ENTITY_TYPES.register("body_snatcher",

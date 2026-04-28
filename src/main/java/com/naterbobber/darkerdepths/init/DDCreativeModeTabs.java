@@ -54,6 +54,12 @@ public class DDCreativeModeTabs {
             DDBlocks.GEYSER, List.of(
                     DDItems.MAGMA_PAD,
                     DDItems.SCORCHER_SPAWN_EGG
+            ),
+            DDBlocks.GLOWSHROOM_BUTTON, List.of(
+                    DDItems.GLOWSHROOM_SIGN,
+                    DDItems.GLOWSHROOM_HANGING_SIGN,
+                    DDItems.GLOWSHROOM_BOAT,
+                    DDItems.GLOWSHROOM_CHEST_BOAT
             )
     );
 

@@ -34,6 +34,8 @@ public class ClientRegisterEvents {
         event.registerBlockEntityRenderer(DDBlockEntityTypes.DD_HANGING_SIGN.get(), HangingSignRenderer::new);
         event.registerEntityRenderer(DDEntityTypes.PETRIFIED_BOAT.get(), context -> new PetrifiedBoatRenderer(context, false));
         event.registerEntityRenderer(DDEntityTypes.PETRIFIED_CHEST_BOAT.get(), context -> new PetrifiedBoatRenderer(context, true));
+        event.registerEntityRenderer(DDEntityTypes.GLOWSHROOM_BOAT.get(), context -> new GlowshroomBoatRenderer(context, false));
+        event.registerEntityRenderer(DDEntityTypes.GLOWSHROOM_CHEST_BOAT.get(), context -> new GlowshroomBoatRenderer(context, true));
         event.registerEntityRenderer(DDEntityTypes.GLOWSHROOM_MONSTER.get(), GlowshroomMonsterRenderer::new);
         event.registerEntityRenderer(DDEntityTypes.BODY_SNATCHER.get(), BodySnatcherRenderer::new);
         event.registerEntityRenderer(DDEntityTypes.VOID_SOUL_KNIGHT.get(), VoidSoulKnightRenderer::new);
@@ -48,6 +50,9 @@ public class ClientRegisterEvents {
     public static void registerEntityModelLayers(EntityRenderersEvent.RegisterLayerDefinitions event) {
         event.registerLayerDefinition(new ModelLayerLocation(DarkerDepths.id("boat/petrified"), "main"), BoatModel::createBodyModel);
         event.registerLayerDefinition(new ModelLayerLocation(DarkerDepths.id("chest_boat/petrified"), "main"), ChestBoatModel::createBodyModel);
+        event.registerLayerDefinition(new ModelLayerLocation(DarkerDepths.id("boat/glowshroom"), "main"), BoatModel::createBodyModel);
+        event.registerLayerDefinition(new ModelLayerLocation(DarkerDepths.id("chest_boat/glowshroom"), "main"), ChestBoatModel::createBodyModel);
+
     }
 
     @SubscribeEvent
