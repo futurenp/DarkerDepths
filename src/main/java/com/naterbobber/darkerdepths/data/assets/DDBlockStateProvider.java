@@ -71,8 +71,6 @@ public class DDBlockStateProvider extends BlockStateProvider {
                 DDBlocks.CRYSTAL_MELON,
                 DDBlocks.CRYSTAL_HUSK,
                 DDBlocks.GLOWSHROOM,
-                DDBlocks.GLIMMERING_VINE_PLANT,
-                DDBlocks.GLIMMERING_VINES,
                 DDBlocks.GLOWSHROOM_HEART,
                 DDBlocks.GLOWSPURS,
                 DDBlocks.MAGMA_PAD,
@@ -158,8 +156,6 @@ public class DDBlockStateProvider extends BlockStateProvider {
                         case ConnectedRotatablePillarBlock b -> connectedRotatablePillarBlockWithItem(holder);
                         case ConnectedPillarBlock b -> connectedPillarBlockWithItem(holder);
                         case SignBlock b -> skipBlock(holder);
-                        case VerticalSlabBlock b -> skipBlock(holder);
-                        case WoodPostBlock b -> skipBlock(holder);
                         default -> simpleBlockWithItem(holder);
                 }
             });
