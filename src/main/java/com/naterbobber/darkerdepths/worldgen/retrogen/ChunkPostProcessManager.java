@@ -123,6 +123,10 @@ public class ChunkPostProcessManager {
                 data.remove(tag);
             }
         }
+
+        if (dimTags != null && activeTags != null && !level.hasChunk(pos.x, pos.z)) {
+            dimTags.remove(pos);
+        }
     }
 
     private static void addPendingTag(ResourceKey<Level> dim, ChunkPos pos, String tag) {
