@@ -1,8 +1,5 @@
 {
   "match": {
-    "type": [
-      "minecraft:player"
-    ],
     "equipment": {
       "head": {
         "items": [
