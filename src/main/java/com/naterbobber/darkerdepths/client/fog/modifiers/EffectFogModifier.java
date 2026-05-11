@@ -25,7 +25,8 @@ public class EffectFogModifier implements FogModifier {
 
         return paranoiaFactor > 0.0f
                 || player.hasEffect(MobEffects.BLINDNESS)
-                || player.hasEffect(DDMobEffects.PARANOIA.get());
+                || player.hasEffect(DDMobEffects.PARANOIA.get())
+                || player.hasEffect(MobEffects.DARKNESS);
     }
 
     @Override
