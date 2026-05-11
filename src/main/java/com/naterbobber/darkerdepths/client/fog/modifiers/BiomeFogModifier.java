@@ -1,13 +1,17 @@
 package com.naterbobber.darkerdepths.client.fog.modifiers;
 
+import com.mojang.blaze3d.shaders.Effect;
 import com.mojang.blaze3d.shaders.FogShape;
 import com.naterbobber.darkerdepths.client.fog.BiomeFog;
 import com.naterbobber.darkerdepths.client.fog.DDBiomeFogs;
 import com.naterbobber.darkerdepths.client.fog.FogModifier;
 import com.naterbobber.darkerdepths.config.DDConfig;
+import com.naterbobber.darkerdepths.init.DDBlocks;
 import com.naterbobber.darkerdepths.init.DDMobEffects;
+import com.naterbobber.darkerdepths.util.DDTags;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.item.Items;
 import net.neoforged.neoforge.client.event.ViewportEvent;
 import software.bernie.geckolib.util.Color;
 
@@ -20,7 +24,10 @@ public class BiomeFogModifier implements FogModifier {
     @Override
     public boolean isActive(LocalPlayer player) {
         if (!DDConfig.CONFIG.ENABLE_BIOME_FOG.get()) return false;
-        if (player.hasEffect(MobEffects.BLINDNESS) || player.hasEffect(DDMobEffects.PARANOIA)) return false;
+        if (player.hasEffect(MobEffects.BLINDNESS)
+                || player.hasEffect(DDMobEffects.PARANOIA)
+                || player.hasEffect(MobEffects.DARKNESS)
+        ) return false;
 
         var fluidType = player.getEyeInFluidType();
         return fluidType.isAir();
