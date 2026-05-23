@@ -2,9 +2,11 @@ package com.naterbobber.darkerdepths.client.models;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.entities.GlowshroomMonsterEntity;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
+import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.model.DefaultedEntityGeoModel;
 
 @OnlyIn(Dist.CLIENT)
@@ -26,5 +28,10 @@ public class GlowshroomMonsterModel extends DefaultedEntityGeoModel<GlowshroomMo
     @Override
     public ResourceLocation getAnimationResource(GlowshroomMonsterEntity glowshroomMonsterEntity) {
         return DarkerDepths.id("animations/entity/glowshroom_monster.animation.json");
+    }
+
+    @Override
+    public @Nullable RenderType getRenderType(GlowshroomMonsterEntity animatable, ResourceLocation texture) {
+        return RenderType.entityCutout(texture);
     }
 }

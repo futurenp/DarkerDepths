@@ -35,11 +35,6 @@ public class GlowshroomMonsterRenderer extends GeoEntityRenderer<GlowshroomMonst
     }
 
     @Override
-    public @Nullable RenderType getRenderType(GlowshroomMonsterEntity animatable, ResourceLocation texture, @Nullable MultiBufferSource bufferSource, float partialTick) {
-        return RenderType.entityCutout(texture);
-    }
-
-    @Override
     public void renderFinal(PoseStack poseStack, GlowshroomMonsterEntity animatable, BakedGeoModel model, MultiBufferSource bufferSource, VertexConsumer buffer, float partialTick, int packedLight, int packedOverlay, int color) {
         int attackTick = this.animatable.getAttackTick();
         if(attackTick == 24) {

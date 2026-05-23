@@ -2,13 +2,20 @@ package com.naterbobber.darkerdepths.client.render.renderers.layers;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.naterbobber.darkerdepths.DarkerDepths;
+import com.naterbobber.darkerdepths.client.render.DDRenderTypes;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.Mob;
+import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.cache.object.BakedGeoModel;
 import software.bernie.geckolib.animatable.GeoAnimatable;
 import software.bernie.geckolib.renderer.GeoRenderer;
 import software.bernie.geckolib.renderer.layer.GeoRenderLayer;
+import software.bernie.geckolib.util.ClientUtil;
 
 
 public class DDRenderTypeLayer<T extends GeoAnimatable> extends GeoRenderLayer<T> {
@@ -30,7 +37,24 @@ public class DDRenderTypeLayer<T extends GeoAnimatable> extends GeoRenderLayer<T
     public void render(PoseStack poseStack, T animatable, BakedGeoModel bakedModel, RenderType ignoredRenderType,
                        MultiBufferSource bufferSource, VertexConsumer ignoredBuffer, float partialTick,
                        int packedLight, int packedOverlay) {
-        VertexConsumer buffer = bufferSource.getBuffer(this.renderType);
+        var currentRenderType = this.renderType;
+        var texture = this.getTextureResource(animatable);
+
+        if(animatable instanceof Entity entity) {
+            if (entity.isInvisible()) {
+                if (!entity.isInvisibleTo(ClientUtil.getClientPlayer())) {
+                    currentRenderType = RenderType.itemEntityTranslucentCull(texture);
+                } else {
+                    currentRenderType = Minecraft.getInstance().shouldEntityAppearGlowing(entity) ? RenderType.outline(texture) : null;
+                }
+            }
+        }
+
+        if (currentRenderType == null) {
+            return;
+        }
+
+        VertexConsumer buffer = bufferSource.getBuffer(currentRenderType);
 
         if(brightness != -1) {
             int currentBlockLight = LightTexture.block(packedLight);
@@ -44,7 +68,7 @@ public class DDRenderTypeLayer<T extends GeoAnimatable> extends GeoRenderLayer<T
                 poseStack,
                 bufferSource,
                 animatable,
-                this.renderType,
+                currentRenderType,
                 buffer,
                 partialTick,
                 packedLight,

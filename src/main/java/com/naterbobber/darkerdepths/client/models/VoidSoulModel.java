@@ -1,10 +1,13 @@
 package com.naterbobber.darkerdepths.client.models;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
+import com.naterbobber.darkerdepths.client.render.DDRenderTypes;
 import com.naterbobber.darkerdepths.entities.VoidSoulEntity;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
+import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.model.DefaultedEntityGeoModel;
 
 @OnlyIn(Dist.CLIENT)
@@ -26,5 +29,10 @@ public class VoidSoulModel extends DefaultedEntityGeoModel<VoidSoulEntity> {
 	@Override
 	public ResourceLocation getAnimationResource(VoidSoulEntity voidSoulEntity) {
 		return DarkerDepths.id("animations/entity/void_soul.animation.json");
+	}
+
+	@Override
+	public @Nullable RenderType getRenderType(VoidSoulEntity animatable, ResourceLocation texture) {
+		return DDRenderTypes.INVERTED_CUBE(texture);
 	}
 }

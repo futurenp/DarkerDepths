@@ -20,11 +20,6 @@ public class ScorcherRenderer extends GeoEntityRenderer<ScorcherEntity> {
     }
 
     @Override
-    public @Nullable RenderType getRenderType(ScorcherEntity animatable, ResourceLocation texture, @Nullable MultiBufferSource bufferSource, float partialTick) {
-        return DDRenderTypes.EMISSIVE_TRANSPARENT(this.getTextureLocation(animatable));
-    }
-
-    @Override
     public Color getRenderColor(ScorcherEntity animatable, float partialTick, int packedLight) {
         if (animatable.hurtTime > 0 || !animatable.isAlive()) {
             return Color.ofRGBA(255, 180, 180, 255);
