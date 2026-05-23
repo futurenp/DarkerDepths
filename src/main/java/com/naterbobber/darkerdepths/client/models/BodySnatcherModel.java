@@ -38,7 +38,7 @@ public class BodySnatcherModel extends DefaultedEntityGeoModel<BodySnatcherEntit
 
         GeoBone head = this.getAnimationProcessor().getBone(this.headBone);
 
-        EntityModelData entityData = (EntityModelData) animationState.getData(DataTickets.ENTITY_MODEL_DATA);
+        EntityModelData entityData = animationState.getData(DataTickets.ENTITY_MODEL_DATA);
         head.setRotX(this.getBone("head").get().getRotX() + (entityData.headPitch() * 0.017453292F));
         head.setRotY(this.getBone("head").get().getRotY() + (entityData.netHeadYaw() * 0.017453292F));
 

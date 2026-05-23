@@ -1,10 +1,14 @@
 package com.naterbobber.darkerdepths.client.events;
 
+import com.mojang.blaze3d.vertex.DefaultVertexFormat;
+import com.mojang.datafixers.util.Pair;
 import com.naterbobber.darkerdepths.DarkerDepths;
+import com.naterbobber.darkerdepths.client.DDShaders;
 import com.naterbobber.darkerdepths.client.events.listeners.DDClientReloadListener;
 import com.naterbobber.darkerdepths.client.particle.*;
 import com.naterbobber.darkerdepths.client.particle.void_soul.*;
 import com.naterbobber.darkerdepths.client.particle.geyser.*;
+import com.naterbobber.darkerdepths.client.render.DDRenderTypes;
 import com.naterbobber.darkerdepths.client.render.renderers.*;
 import com.naterbobber.darkerdepths.init.DDBlockEntityTypes;
 import com.naterbobber.darkerdepths.init.DDEntityTypes;
@@ -12,6 +16,7 @@ import com.naterbobber.darkerdepths.init.DDParticleTypes;
 import net.minecraft.client.model.BoatModel;
 import net.minecraft.client.model.ChestBoatModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
+import net.minecraft.client.renderer.ShaderInstance;
 import net.minecraft.client.renderer.blockentity.HangingSignRenderer;
 import net.minecraft.client.renderer.blockentity.SignRenderer;
 import net.neoforged.api.distmarker.Dist;
@@ -19,9 +24,10 @@ import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.client.event.EntityRenderersEvent;
-import net.neoforged.neoforge.client.event.RegisterClientReloadListenersEvent;
-import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
+import net.neoforged.neoforge.client.event.*;
+
+import java.io.IOException;
+import java.util.function.Consumer;
 
 @OnlyIn(Dist.CLIENT)
 @EventBusSubscriber(modid = DarkerDepths.MOD_ID, value = Dist.CLIENT)
@@ -89,5 +95,15 @@ public class ClientRegisterEvents {
     @SubscribeEvent
     public static void registerReloadListener(RegisterClientReloadListenersEvent event) {
         event.registerReloadListener(new DDClientReloadListener());
+    }
+
+    @SubscribeEvent
+    public static void registerShaders(RegisterShadersEvent event) {
+        DDShaders.registerShaders(event);
+    }
+
+    @SubscribeEvent
+    public static void registerRenderTypes(RegisterNamedRenderTypesEvent event) {
+        DDRenderTypes.registerRenderTypes(event);
     }
 }

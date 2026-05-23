@@ -105,11 +105,11 @@ dependencies {
     compileOnly("com.github.glitchfiend:TerraBlender-neoforge:${project.minecraft_version}-${project.terrablender_version}")
     implementation("curse.maven:spark-361579:6225208")
     implementation("curse.maven:lambdynamiclights-393442:7958146")
-    runtimeOnly "maven.modrinth:no-mans-land:h56TqJQD"
-    runtimeOnly "curse.maven:quark-243121:7980026"
-    runtimeOnly "curse.maven:zeta-968868:7980010"
-    runtimeOnly "curse.maven:woodworks-543610:7118286"
-    runtimeOnly "curse.maven:blueprint-382216:7148094"
+//    runtimeOnly "maven.modrinth:no-mans-land:h56TqJQD"
+//    runtimeOnly "curse.maven:quark-243121:7980026"
+//    runtimeOnly "curse.maven:zeta-968868:7980010"
+//    runtimeOnly "curse.maven:woodworks-543610:7118286"
+//    runtimeOnly "curse.maven:blueprint-382216:7148094"
 }
 
 
