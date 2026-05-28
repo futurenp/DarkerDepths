@@ -48,14 +48,7 @@ public class HeatPropagationProcessor implements IChunkPostProcessor {
     @Override
     public boolean processChunk(ServerLevel level, ChunkAccess chunk) {
         ChunkPos chunkPos = chunk.getPos();
-
-        ChunkAccess[][] localChunks = new ChunkAccess[3][3];
-        for (int cx = -1; cx <= 1; cx++) {
-            for (int cz = -1; cz <= 1; cz++) {
-                localChunks[cx + 1][cz + 1] = level.getChunkSource().getChunkNow(chunkPos.x + cx, chunkPos.z + cz);
-            }
-        }
-
+        ChunkAccess[][] localChunks = getLocalChunks(level, chunk);
         Queue<HeatNode> queue = suspendedQueues.get(chunkPos);
 
         if (queue == null) {
@@ -140,20 +133,5 @@ public class HeatPropagationProcessor implements IChunkPostProcessor {
             }
         }
         return queue;
-    }
-
-    private static void setBlockFast(ServerLevel level, BlockPos pos, BlockState state, int flags) {
-        if (level.isOutsideBuildHeight(pos)) {
-            return;
-        }
-
-        LevelChunk levelchunk = level.getChunkAt(pos);
-        pos = pos.immutable();
-
-        BlockState blockstate = levelchunk.setBlockState(pos, state, (flags & 64) != 0);
-
-        if (blockstate != null) {
-            level.markAndNotifyBlock(pos, levelchunk, blockstate, state, flags, 512);
-        }
     }
 }
