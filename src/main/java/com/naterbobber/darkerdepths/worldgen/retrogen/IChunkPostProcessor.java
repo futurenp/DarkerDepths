@@ -19,7 +19,6 @@ public interface IChunkPostProcessor {
     /** Called if a chunk unloads mid-process so we can clean up memory */
     default void clearSuspendedState(ChunkPos pos) {}
 
-
     /** Returns a 3x3 array of the local chunks **/
     default ChunkAccess[][] getLocalChunks(ServerLevel level, ChunkAccess chunk) {
         ChunkPos chunkPos = chunk.getPos();

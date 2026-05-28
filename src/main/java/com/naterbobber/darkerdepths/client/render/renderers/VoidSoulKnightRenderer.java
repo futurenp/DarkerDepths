@@ -3,7 +3,7 @@ package com.naterbobber.darkerdepths.client.render.renderers;
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.client.models.VoidSoulKnightModel;
 import com.naterbobber.darkerdepths.client.render.DDRenderTypes;
-import com.naterbobber.darkerdepths.client.render.renderers.layers.DDRenderTypeLayer;
+import com.naterbobber.darkerdepths.client.render.renderers.layers.DDRenderLayer;
 import com.naterbobber.darkerdepths.entities.VoidSoulKnightEntity;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;
@@ -17,6 +17,6 @@ public class VoidSoulKnightRenderer extends GeoEntityRenderer<VoidSoulKnightEnti
 
     public VoidSoulKnightRenderer(EntityRendererProvider.Context context) {
         super(context, new VoidSoulKnightModel());
-        this.addRenderLayer(new DDRenderTypeLayer<>(this, DDRenderTypes.EMISSIVE_TRANSPARENT_FOG_OVERRIDE(TEXTURE)));
+        this.addRenderLayer(new DDRenderLayer<>(this, DDRenderTypes.EMISSIVE_TRANSPARENT_FOG_OVERRIDE(TEXTURE)));
     }
 }

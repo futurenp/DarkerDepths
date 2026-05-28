@@ -5,10 +5,9 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.client.models.GlowshroomMonsterModel;
 import com.naterbobber.darkerdepths.client.render.DDRenderTypes;
-import com.naterbobber.darkerdepths.client.render.renderers.layers.DDRenderTypeLayer;
+import com.naterbobber.darkerdepths.client.render.renderers.layers.DDRenderLayer;
 import com.naterbobber.darkerdepths.entities.GlowshroomMonsterEntity;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -17,7 +16,6 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.LightLayer;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import org.jetbrains.annotations.Nullable;
 import org.joml.Vector3d;
 import software.bernie.geckolib.cache.object.BakedGeoModel;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
@@ -30,8 +28,8 @@ public class GlowshroomMonsterRenderer extends GeoEntityRenderer<GlowshroomMonst
 
     public GlowshroomMonsterRenderer(EntityRendererProvider.Context context) {
         super(context, new GlowshroomMonsterModel());
-        addRenderLayer(new DDRenderTypeLayer<>(this, DDRenderTypes.EMISSIVE_TRANSPARENT(GLOWSHROOM_TEXTURE)));
-        addRenderLayer(new DDRenderTypeLayer<>(this, DDRenderTypes.CONFIGURABLE_EMISSIVE_TRANSPARENT(MOSS_TEXTURE), 5));
+        addRenderLayer(new DDRenderLayer<>(this, DDRenderTypes.EMISSIVE_TRANSPARENT(GLOWSHROOM_TEXTURE)));
+        addRenderLayer(new DDRenderLayer<>(this, DDRenderTypes.CONFIGURABLE_EMISSIVE_TRANSPARENT(MOSS_TEXTURE), 5));
     }
 
     @Override

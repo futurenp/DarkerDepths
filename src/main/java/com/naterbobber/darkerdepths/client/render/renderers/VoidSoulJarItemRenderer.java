@@ -3,7 +3,7 @@ package com.naterbobber.darkerdepths.client.render.renderers;
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.client.models.VoidSoulJarModel;
 import com.naterbobber.darkerdepths.client.render.DDRenderTypes;
-import com.naterbobber.darkerdepths.client.render.renderers.layers.DDRenderTypeLayer;
+import com.naterbobber.darkerdepths.client.render.renderers.layers.DDRenderLayer;
 import com.naterbobber.darkerdepths.item.VoidSoulJarItem;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
@@ -18,7 +18,7 @@ public class VoidSoulJarItemRenderer extends GeoItemRenderer<VoidSoulJarItem> {
 
     public VoidSoulJarItemRenderer() {
         super(new VoidSoulJarModel<>());
-        addRenderLayer(new DDRenderTypeLayer<>(this, DDRenderTypes.EMISSIVE_TRANSPARENT_FOG_OVERRIDE(GLOWING_TEXTURE)));
-        addRenderLayer(new DDRenderTypeLayer<>(this, DDRenderTypes.INVERTED_CUBE(INVERTED_TEXTURE)));
+        addRenderLayer(new DDRenderLayer<>(this, DDRenderTypes.EMISSIVE_TRANSPARENT_FOG_OVERRIDE(GLOWING_TEXTURE)));
+        addRenderLayer(new DDRenderLayer<>(this, DDRenderTypes.INVERTED_CUBE(INVERTED_TEXTURE)));
     }
 }

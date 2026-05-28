@@ -109,6 +109,10 @@ public class EmissiveBakedModel extends BakedModelWrapper<BakedModel> {
         return new BakedQuad(vertexData, quad.getTintIndex(), quad.getDirection(), quad.getSprite(), shade, ambientOcclusion);
     }
 
+    public static ModelSettings modelSettings() {
+        return new ModelSettings();
+    }
+
     public static class ModelSettings {
         RenderType baseRenderType = RenderType.SOLID;
         RenderType glowRenderType = RenderType.TRANSLUCENT;

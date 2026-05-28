@@ -2,15 +2,11 @@ package com.naterbobber.darkerdepths.client.render.renderers.layers;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.naterbobber.darkerdepths.DarkerDepths;
-import com.naterbobber.darkerdepths.client.render.DDRenderTypes;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.Mob;
-import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.cache.object.BakedGeoModel;
 import software.bernie.geckolib.animatable.GeoAnimatable;
 import software.bernie.geckolib.renderer.GeoRenderer;
@@ -18,19 +14,23 @@ import software.bernie.geckolib.renderer.layer.GeoRenderLayer;
 import software.bernie.geckolib.util.ClientUtil;
 
 
-public class DDRenderTypeLayer<T extends GeoAnimatable> extends GeoRenderLayer<T> {
+public class DDRenderLayer<T extends GeoAnimatable> extends GeoRenderLayer<T> {
     private final RenderType renderType;
     private int brightness = -1;
 
-    public DDRenderTypeLayer(GeoRenderer<T> renderer, RenderType renderType) {
+    public DDRenderLayer(GeoRenderer<T> renderer, RenderType renderType) {
         super(renderer);
         this.renderType = renderType;
     }
 
-    public DDRenderTypeLayer(GeoRenderer<T> renderer, RenderType renderType, int brightness) {
+    public DDRenderLayer(GeoRenderer<T> renderer, RenderType renderType, int brightness) {
         super(renderer);
         this.renderType = renderType;
         this.brightness = brightness;
+    }
+
+    public static <T extends GeoAnimatable> DDRenderLayer<T> withType(GeoRenderer<T> renderer, RenderType renderType) {
+        return new DDRenderLayer<T>(renderer, renderType);
     }
 
     @Override

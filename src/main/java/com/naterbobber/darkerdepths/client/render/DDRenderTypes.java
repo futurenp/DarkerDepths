@@ -26,7 +26,6 @@ public class DDRenderTypes extends RenderType {
         CompositeState state = CompositeState.builder()
                 .setShaderState(RENDERTYPE_ENTITY_CUTOUT_SHADER)
                 .setTextureState(new TextureStateShard(textureLocation, false, false))
-                .setTransparencyState(NO_TRANSPARENCY)
                 .createCompositeState(false);
 
         return create("inverted_cube", state);
