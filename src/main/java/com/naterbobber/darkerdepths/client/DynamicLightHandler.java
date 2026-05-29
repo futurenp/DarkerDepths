@@ -16,45 +16,41 @@ import java.util.concurrent.ConcurrentHashMap;
 
 @OnlyIn(Dist.CLIENT)
 public class DynamicLightHandler {
-    private static final Minecraft INSTANCE = Minecraft.getInstance();
-    public static final Map<BlockPos, LightValue> LIGHT_SOURCES = new ConcurrentHashMap<>();
-    private static final int LIGHT_SCAN_RADIUS = 64;
-    public static final boolean ENABLED = !DDCompat.LAMB_DYNAMIC_LIGHTS.isLoaded();
+    public static final Map<BlockPos, Boolean> LIGHT_SOURCES = new ConcurrentHashMap<>();
+    private static final boolean ENABLED = !DDCompat.LAMB_DYNAMIC_LIGHTS.isLoaded();
 
     public static void onClientTick() {
         if(!ENABLED) return;
+        var player = Minecraft.getInstance().player;
+        var level = Minecraft.getInstance().level;
 
-        if (INSTANCE.player == null || INSTANCE.level == null) {
+        if (player == null || level == null) {
             return;
         }
 
-        LIGHT_SOURCES.forEach((pos, value) -> value.shouldKeep = false);
+        LIGHT_SOURCES.replaceAll((pos, value) -> false);
+        var searchArea = player.getBoundingBox().inflate(64);
+        var entities = level.getEntitiesOfClass(LivingEntity.class, searchArea, DynamicLightHandler::shouldGlow);
 
-        AABB searchArea = INSTANCE.player.getBoundingBox().inflate(LIGHT_SCAN_RADIUS);
+        entities.forEach(entity -> {
+            BlockPos lightPos = entity.getOnPos();
+            if (!level.getBlockState(lightPos).isSolid()) {
+                lightPos = entity.blockPosition();
+            }
+            LIGHT_SOURCES.put(lightPos, true);
+        });
 
-        INSTANCE.level.getEntitiesOfClass(LivingEntity.class, searchArea, DynamicLightHandler::shouldGlow)
-                .forEach(entity -> {
-                    BlockPos lightPos = entity.getOnPos();
-                    if (!INSTANCE.level.getBlockState(lightPos).isSolid()) {
-                        lightPos = entity.blockPosition();
-                    }
-                    LIGHT_SOURCES.computeIfAbsent(lightPos, k -> new LightValue()).shouldKeep = true;
-                });
 
         if (!LIGHT_SOURCES.isEmpty()) {
             LIGHT_SOURCES.forEach((pos, value) -> {
-                INSTANCE.level.getChunkSource().getLightEngine().checkBlock(pos);
+                level.getChunkSource().getLightEngine().checkBlock(pos);
             });
-            LIGHT_SOURCES.entrySet().removeIf(entry -> !entry.getValue().shouldKeep);
+            LIGHT_SOURCES.entrySet().removeIf(entry -> !entry.getValue());
         }
     }
 
     public static boolean shouldGlow(LivingEntity entity) {
         return entity.getItemBySlot(EquipmentSlot.HEAD).getItem() == DDItems.GLOWSHROOM_CAP.get() && !entity.isSpectator();
-    }
-
-    public static class LightValue {
-        public boolean shouldKeep = true;
     }
 }
 
