@@ -16,22 +16,12 @@ import software.bernie.geckolib.model.data.EntityModelData;
 @OnlyIn(Dist.CLIENT)
 public class BodySnatcherModel extends DefaultedEntityGeoModel<BodySnatcherEntity> {
     public BodySnatcherModel() {
-        super(ResourceLocation.withDefaultNamespace(DarkerDepths.MOD_ID), true);
-    }
-
-    @Override
-    public ResourceLocation getModelResource(BodySnatcherEntity bodySnatcherEntity) {
-        return DarkerDepths.id("geo/entity/body_snatcher.geo.json");
+        super(DarkerDepths.id("body_snatcher"), true);
     }
 
     @Override
     public ResourceLocation getTextureResource(BodySnatcherEntity bodySnatcherEntity) {
         return DarkerDepths.id("textures/entity/body_snatcher/body_snatcher.png");
-    }
-
-    @Override
-    public ResourceLocation getAnimationResource(BodySnatcherEntity bodySnatcherEntity) {
-        return DarkerDepths.id("animations/entity/body_snatcher.animation.json");
     }
 
     @Override

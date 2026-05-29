@@ -12,22 +12,12 @@ import software.bernie.geckolib.model.DefaultedEntityGeoModel;
 @OnlyIn(Dist.CLIENT)
 public class GlowshroomMonsterModel extends DefaultedEntityGeoModel<GlowshroomMonsterEntity> {
     public GlowshroomMonsterModel() {
-        super(ResourceLocation.withDefaultNamespace(DarkerDepths.MOD_ID), true);
-    }
-
-    @Override
-    public ResourceLocation getModelResource(GlowshroomMonsterEntity glowshroomMonsterEntity) {
-        return DarkerDepths.id("geo/entity/glowshroom_monster.geo.json");
+        super(DarkerDepths.id("glowshroom_monster"), true);
     }
 
     @Override
     public ResourceLocation getTextureResource(GlowshroomMonsterEntity glowshroomMonsterEntity) {
         return DarkerDepths.id("textures/entity/glowshroom_monster/glowshroom_monster.png");
-    }
-
-    @Override
-    public ResourceLocation getAnimationResource(GlowshroomMonsterEntity glowshroomMonsterEntity) {
-        return DarkerDepths.id("animations/entity/glowshroom_monster.animation.json");
     }
 
     @Override

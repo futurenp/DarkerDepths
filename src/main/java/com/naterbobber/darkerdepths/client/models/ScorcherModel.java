@@ -13,22 +13,7 @@ import software.bernie.geckolib.model.DefaultedEntityGeoModel;
 @OnlyIn(Dist.CLIENT)
 public class ScorcherModel extends DefaultedEntityGeoModel<ScorcherEntity> {
     public ScorcherModel() {
-        super(ResourceLocation.withDefaultNamespace(DarkerDepths.MOD_ID), true);
-    }
-
-    @Override
-    public ResourceLocation getModelResource(ScorcherEntity scorcherEntity) {
-        return DarkerDepths.id("geo/entity/scorcher.geo.json");
-    }
-
-    @Override
-    public ResourceLocation getTextureResource(ScorcherEntity scorcherEntity) {
-        return DarkerDepths.id("textures/entity/scorcher/scorcher.png");
-    }
-
-    @Override
-    public ResourceLocation getAnimationResource(ScorcherEntity scorcherEntity) {
-        return DarkerDepths.id("animations/entity/scorcher.animation.json");
+        super(DarkerDepths.id("scorcher"), true);
     }
 
     @Override
