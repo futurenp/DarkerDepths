@@ -7,13 +7,15 @@ import com.naterbobber.darkerdepths.client.DDRenderStateShards;
 import net.minecraft.client.renderer.RenderStateShard;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.client.event.RegisterNamedRenderTypesEvent;
 
-public class DDRenderTypes extends RenderType {
+import static net.minecraft.client.renderer.RenderType.*;
 
-    public DDRenderTypes(String pName, VertexFormat pFormat, VertexFormat.Mode pMode, int pBufferSize, boolean pAffectsCrumbling, boolean pSortOnUpload, Runnable pSetupState, Runnable pClearState) {
-        super(pName, pFormat, pMode, pBufferSize, pAffectsCrumbling, pSortOnUpload, pSetupState, pClearState);
-    }
+@OnlyIn(Dist.CLIENT)
+final public class DDRenderTypes {
+    private DDRenderTypes() {}
 
     public static void registerRenderTypes(RegisterNamedRenderTypesEvent event) {
     }
@@ -22,65 +24,60 @@ public class DDRenderTypes extends RenderType {
         event.register(DarkerDepths.id(renderType.name), renderType, renderType);
     }
 
-    public static RenderType INVERTED_CUBE (ResourceLocation textureLocation) {
-        CompositeState state = CompositeState.builder()
-                .setShaderState(RENDERTYPE_ENTITY_CUTOUT_SHADER)
-                .setTextureState(new TextureStateShard(textureLocation, false, false))
-                .createCompositeState(false);
+    public static RenderType invertedCube(ResourceLocation textureLocation) {
+        var stateBuilder = stateBuilderWithTexture(textureLocation)
+                .setShaderState(RENDERTYPE_ENTITY_CUTOUT_SHADER);
 
-        return create("inverted_cube", state);
+        return createRenderType("inverted_cube", stateBuilder);
     }
 
-    public static RenderType EMISSIVE_SOLID (ResourceLocation textureLocation) {
-        CompositeState state = CompositeState.builder()
+    public static RenderType emissiveSolid(ResourceLocation textureLocation) {
+        var stateBuilder = stateBuilderWithTexture(textureLocation)
+                .setShaderState(RENDERTYPE_EYES_SHADER);
+
+        return createRenderType("emissive_solid", stateBuilder);
+    }
+
+    public static RenderType emissiveTransparent(ResourceLocation textureLocation) {
+        var stateBuilder = stateBuilderWithTexture(textureLocation)
                 .setShaderState(RENDERTYPE_EYES_SHADER)
-                .setTextureState(new TextureStateShard(textureLocation, false, false))
-                .createCompositeState(false);
+                .setTransparencyState(TRANSLUCENT_TRANSPARENCY);
 
-        return create("emissive_solid", state);
+        return createRenderType("emissive_transparent", stateBuilder);
     }
 
-    public static RenderType EMISSIVE_TRANSPARENT (ResourceLocation textureLocation) {
-        CompositeState state = CompositeState.builder()
-                .setShaderState(RENDERTYPE_EYES_SHADER)
-                .setTransparencyState(TRANSLUCENT_TRANSPARENCY)
-                .setTextureState(new TextureStateShard(textureLocation, false, false))
-                .createCompositeState(false);
-
-        return create("emissive_transparent", state);
-    }
-
-    public static RenderType EMISSIVE_TRANSPARENT_FOG_OVERRIDE(ResourceLocation textureLocation) {
-        CompositeState state = CompositeState.builder()
+    public static RenderType emissiveTransparentFogOverride(ResourceLocation textureLocation) {
+        var stateBuilder = stateBuilderWithTexture(textureLocation)
                 .setShaderState(DDRenderStateShards.GLOW_THROUGH_FOG)
                 .setTransparencyState(TRANSLUCENT_TRANSPARENCY)
                 .setCullState(NO_CULL)
                 .setLayeringState(RenderStateShard.VIEW_OFFSET_Z_LAYERING)
-                .setWriteMaskState(COLOR_WRITE)
-                .setTextureState(new TextureStateShard(textureLocation, false, false))
-                .createCompositeState(false);
+                .setWriteMaskState(COLOR_WRITE);
 
-        return create("emissive_transparent_fog_override", state);
+        return createRenderType("emissive_transparent_fog_override", stateBuilder);
     }
 
-    public static RenderType CONFIGURABLE_EMISSIVE_TRANSPARENT (ResourceLocation textureLocation) {
-        CompositeState state = CompositeState.builder()
+    public static RenderType configurableEmissiveTransparent(ResourceLocation textureLocation) {
+        var stateBuilder = stateBuilderWithTexture(textureLocation)
                 .setTransparencyState(TRANSLUCENT_TRANSPARENCY)
                 .setShaderState(RENDERTYPE_ENTITY_TRANSLUCENT_CULL_SHADER)
-                .setLightmapState(LIGHTMAP)
-                .setTextureState(new TextureStateShard(textureLocation, false, false))
-                .createCompositeState(false);
+                .setLightmapState(LIGHTMAP);
 
-        return create("emissive_transparent", state);
+        return createRenderType("emissive_transparent", stateBuilder);
     }
 
-    private static RenderType create(String name, CompositeState state) {
-        return create(name,
+    private static RenderType createRenderType(String name, CompositeState.CompositeStateBuilder stateBuilder) {
+        return RenderType.create(name,
                 DefaultVertexFormat.NEW_ENTITY,
                 VertexFormat.Mode.QUADS,
                 256,
                 false,
                 true,
-                state);
+                stateBuilder.createCompositeState(false)
+        );
+    }
+
+    private static CompositeState.CompositeStateBuilder stateBuilderWithTexture(ResourceLocation textureLocation) {
+        return CompositeState.builder().setTextureState(new TextureStateShard(textureLocation, false, false));
     }
 }

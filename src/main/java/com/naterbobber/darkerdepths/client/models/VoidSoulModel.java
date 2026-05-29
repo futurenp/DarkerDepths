@@ -33,6 +33,6 @@ public class VoidSoulModel extends DefaultedEntityGeoModel<VoidSoulEntity> {
 
 	@Override
 	public @Nullable RenderType getRenderType(VoidSoulEntity animatable, ResourceLocation texture) {
-		return DDRenderTypes.INVERTED_CUBE(texture);
+		return DDRenderTypes.invertedCube(texture);
 	}
 }

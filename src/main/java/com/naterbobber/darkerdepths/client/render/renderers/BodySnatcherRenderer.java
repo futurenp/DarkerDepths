@@ -17,6 +17,6 @@ public class BodySnatcherRenderer extends GeoEntityRenderer<BodySnatcherEntity> 
 
     public BodySnatcherRenderer(EntityRendererProvider.Context context) {
         super(context, new BodySnatcherModel());
-        addRenderLayer(DDRenderLayer.withType(this, DDRenderTypes.EMISSIVE_TRANSPARENT_FOG_OVERRIDE(TEXTURE)));
+        addRenderLayer(DDRenderLayer.withType(this, DDRenderTypes.emissiveTransparentFogOverride(TEXTURE)));
     }
 }

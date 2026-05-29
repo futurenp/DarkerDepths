@@ -18,7 +18,7 @@ public class VoidSoulJarBlockEntityRenderer extends GeoBlockRenderer<VoidSoulJar
 
     public VoidSoulJarBlockEntityRenderer(BlockEntityRendererProvider.Context context) {
         super(new VoidSoulJarModel<>());
-        addRenderLayer(new DDRenderLayer<>(this, DDRenderTypes.EMISSIVE_TRANSPARENT_FOG_OVERRIDE(GLOWING_TEXTURE)));
-        addRenderLayer(new DDRenderLayer<>(this, DDRenderTypes.INVERTED_CUBE(INVERTED_TEXTURE)));
+        addRenderLayer(DDRenderLayer.withType(this, DDRenderTypes.emissiveTransparentFogOverride(GLOWING_TEXTURE)));
+        addRenderLayer(DDRenderLayer.withType(this, DDRenderTypes.invertedCube(INVERTED_TEXTURE)));
     }
 }

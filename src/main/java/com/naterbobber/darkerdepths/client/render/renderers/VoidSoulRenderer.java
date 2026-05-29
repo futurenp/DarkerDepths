@@ -17,7 +17,7 @@ public class VoidSoulRenderer extends GeoEntityRenderer<VoidSoulEntity> {
 
     public VoidSoulRenderer(EntityRendererProvider.Context context) {
         super(context, new VoidSoulModel());
-        addRenderLayer(new DDRenderLayer<>(this, DDRenderTypes.EMISSIVE_TRANSPARENT_FOG_OVERRIDE(INNER_TEXTURE)));
+        addRenderLayer(DDRenderLayer.withType(this, DDRenderTypes.emissiveTransparentFogOverride(INNER_TEXTURE)));
     }
 }
 

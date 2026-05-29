@@ -24,12 +24,11 @@ import software.bernie.geckolib.renderer.GeoEntityRenderer;
 public class GlowshroomMonsterRenderer extends GeoEntityRenderer<GlowshroomMonsterEntity> {
     private static final ResourceLocation GLOWSHROOM_TEXTURE = DarkerDepths.id("textures/entity/glowshroom_monster/glowshroom_monster_glowshroom_glowmask.png");
     private static final ResourceLocation MOSS_TEXTURE = DarkerDepths.id("textures/entity/glowshroom_monster/glowshroom_monster_moss_glowmask.png");
-    private int currentTick = -1;
 
     public GlowshroomMonsterRenderer(EntityRendererProvider.Context context) {
         super(context, new GlowshroomMonsterModel());
-        addRenderLayer(new DDRenderLayer<>(this, DDRenderTypes.EMISSIVE_TRANSPARENT(GLOWSHROOM_TEXTURE)));
-        addRenderLayer(new DDRenderLayer<>(this, DDRenderTypes.CONFIGURABLE_EMISSIVE_TRANSPARENT(MOSS_TEXTURE), 5));
+        addRenderLayer(DDRenderLayer.withType(this, DDRenderTypes.emissiveTransparent(GLOWSHROOM_TEXTURE)));
+        addRenderLayer(DDRenderLayer.withBrightness(this, DDRenderTypes.configurableEmissiveTransparent(MOSS_TEXTURE), 5));
     }
 
     @Override
@@ -61,8 +60,7 @@ public class GlowshroomMonsterRenderer extends GeoEntityRenderer<GlowshroomMonst
     protected int getBlockLightLevel(GlowshroomMonsterEntity entity, BlockPos pos) {
         if(entity.isOnFire()) return 15;
         int brightness = entity.level().getBrightness(LightLayer.BLOCK, pos);
-        if(brightness < 2) return 2;
-        return brightness;
+        return Math.max(brightness, 2);
     }
 
     @Override

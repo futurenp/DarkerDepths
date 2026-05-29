@@ -8,6 +8,8 @@ import net.minecraft.client.renderer.block.BlockModelShaper;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModLoadingException;
 import net.neoforged.fml.ModLoadingIssue;
@@ -18,9 +20,9 @@ import java.util.*;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
+@OnlyIn(Dist.CLIENT)
 public class EmissiveModelManager {
 
-    @SubscribeEvent
     public static void modify(ModelEvent.ModifyBakingResult event) {
         var models = new ArrayList<BlockBaker>();
 

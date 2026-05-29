@@ -11,7 +11,6 @@ public class DDParticleTypes {
 
     public static final DeferredRegister<ParticleType<?>> PARTICLE_TYPES = DeferredRegister.create(Registries.PARTICLE_TYPE, DarkerDepths.MOD_ID);
 
-    // A clean, simple helper method for registering
     private static DeferredHolder<ParticleType<?>, SimpleParticleType> register(String name, boolean alwaysShow) {
         return PARTICLE_TYPES.register(name, () -> new SimpleParticleType(alwaysShow));
     }

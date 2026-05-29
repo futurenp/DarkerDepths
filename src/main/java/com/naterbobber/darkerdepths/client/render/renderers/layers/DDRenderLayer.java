@@ -7,30 +7,36 @@ import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.entity.Entity;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import software.bernie.geckolib.cache.object.BakedGeoModel;
 import software.bernie.geckolib.animatable.GeoAnimatable;
 import software.bernie.geckolib.renderer.GeoRenderer;
 import software.bernie.geckolib.renderer.layer.GeoRenderLayer;
 import software.bernie.geckolib.util.ClientUtil;
 
-
+@OnlyIn(Dist.CLIENT)
 public class DDRenderLayer<T extends GeoAnimatable> extends GeoRenderLayer<T> {
     private final RenderType renderType;
-    private int brightness = -1;
+    private int brightness = 0;
 
-    public DDRenderLayer(GeoRenderer<T> renderer, RenderType renderType) {
+    private DDRenderLayer(GeoRenderer<T> renderer, RenderType renderType) {
         super(renderer);
         this.renderType = renderType;
     }
 
-    public DDRenderLayer(GeoRenderer<T> renderer, RenderType renderType, int brightness) {
+    private DDRenderLayer(GeoRenderer<T> renderer, RenderType renderType, int brightness) {
         super(renderer);
         this.renderType = renderType;
         this.brightness = brightness;
     }
 
     public static <T extends GeoAnimatable> DDRenderLayer<T> withType(GeoRenderer<T> renderer, RenderType renderType) {
-        return new DDRenderLayer<T>(renderer, renderType);
+        return new DDRenderLayer<>(renderer, renderType);
+    }
+
+    public static <T extends GeoAnimatable> DDRenderLayer<T> withBrightness(GeoRenderer<T> renderer, RenderType renderType, int brightness) {
+        return new DDRenderLayer<>(renderer, renderType, brightness);
     }
 
     @Override
@@ -56,7 +62,7 @@ public class DDRenderLayer<T extends GeoAnimatable> extends GeoRenderLayer<T> {
 
         VertexConsumer buffer = bufferSource.getBuffer(currentRenderType);
 
-        if(brightness != -1) {
+        if(brightness > 0) {
             int currentBlockLight = LightTexture.block(packedLight);
             int skyLight = LightTexture.sky(packedLight);
             int finalBlockLight = Math.max(currentBlockLight, brightness);

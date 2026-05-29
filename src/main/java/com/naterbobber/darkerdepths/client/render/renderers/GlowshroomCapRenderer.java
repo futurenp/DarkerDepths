@@ -22,6 +22,6 @@ public class GlowshroomCapRenderer extends GeoArmorRenderer<GlowshroomCapItem> {
 
     @Override
     public RenderType getRenderType(GlowshroomCapItem animatable, ResourceLocation texture, @Nullable MultiBufferSource bufferSource, float partialTick) {
-        return DDRenderTypes.EMISSIVE_SOLID(texture);
+        return DDRenderTypes.emissiveSolid(texture);
     }
 }

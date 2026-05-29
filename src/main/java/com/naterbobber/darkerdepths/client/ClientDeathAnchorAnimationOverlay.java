@@ -109,18 +109,4 @@ public class ClientDeathAnchorAnimationOverlay {
         isOverlayActive = false;
         currentFrame = 0;
     }
-
-    public static boolean isOverlayActive() {
-        return isOverlayActive;
-    }
-
-    public static int getCurrentFrame() {
-        return currentFrame;
-    }
-
-    public static void setFrame(int frame) {
-        if (frame >= 0 && frame < ANIMATION_FRAMES.size()) {
-            currentFrame = frame;
-        }
-    }
 }

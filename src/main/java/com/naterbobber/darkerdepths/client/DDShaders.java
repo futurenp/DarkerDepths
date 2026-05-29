@@ -4,11 +4,14 @@ import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import com.mojang.blaze3d.vertex.VertexFormat;
 import com.naterbobber.darkerdepths.DarkerDepths;
 import net.minecraft.client.renderer.ShaderInstance;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.client.event.RegisterShadersEvent;
 
 import java.io.IOException;
 import java.util.function.Consumer;
 
+@OnlyIn(Dist.CLIENT)
 public class DDShaders {
     private static ShaderInstance renderTypeGlowThroughFog;
 

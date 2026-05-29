@@ -33,6 +33,6 @@ public class ScorcherModel extends DefaultedEntityGeoModel<ScorcherEntity> {
 
     @Override
     public @Nullable RenderType getRenderType(ScorcherEntity animatable, ResourceLocation texture) {
-        return DDRenderTypes.EMISSIVE_SOLID(texture);
+        return DDRenderTypes.emissiveSolid(texture);
     }
 }
