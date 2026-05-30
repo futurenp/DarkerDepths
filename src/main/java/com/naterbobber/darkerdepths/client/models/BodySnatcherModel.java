@@ -1,7 +1,9 @@
 package com.naterbobber.darkerdepths.client.models;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
+import com.naterbobber.darkerdepths.client.render.DDRenderTypes;
 import com.naterbobber.darkerdepths.entities.BodySnatcherEntity;
+import com.naterbobber.darkerdepths.init.DDEntityTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
@@ -14,14 +16,9 @@ import software.bernie.geckolib.model.DefaultedEntityGeoModel;
 import software.bernie.geckolib.model.data.EntityModelData;
 
 @OnlyIn(Dist.CLIENT)
-public class BodySnatcherModel extends DefaultedEntityGeoModel<BodySnatcherEntity> {
+public class BodySnatcherModel extends DDDefaultEntityModel<BodySnatcherEntity> {
     public BodySnatcherModel() {
-        super(DarkerDepths.id("body_snatcher"), true);
-    }
-
-    @Override
-    public ResourceLocation getTextureResource(BodySnatcherEntity bodySnatcherEntity) {
-        return DarkerDepths.id("textures/entity/body_snatcher/body_snatcher.png");
+        super(DDEntityTypes.BODY_SNATCHER);
     }
 
     @Override

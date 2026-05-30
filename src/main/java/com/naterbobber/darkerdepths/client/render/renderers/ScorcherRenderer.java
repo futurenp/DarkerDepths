@@ -1,22 +1,19 @@
 package com.naterbobber.darkerdepths.client.render.renderers;
 
-import com.naterbobber.darkerdepths.client.models.ScorcherModel;
+import com.naterbobber.darkerdepths.client.models.DDDefaultEntityModel;
 import com.naterbobber.darkerdepths.client.render.DDRenderTypes;
 import com.naterbobber.darkerdepths.entities.ScorcherEntity;
-import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.RenderType;
+import com.naterbobber.darkerdepths.init.DDEntityTypes;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
-import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
 import software.bernie.geckolib.util.Color;
 
 @OnlyIn(Dist.CLIENT)
 public class ScorcherRenderer extends GeoEntityRenderer<ScorcherEntity> {
     public ScorcherRenderer(EntityRendererProvider.Context context) {
-        super(context, new ScorcherModel());
+        super(context, DDDefaultEntityModel.withRenderType(DDEntityTypes.SCORCHER, DDRenderTypes::emissiveSolid));
     }
 
     @Override

@@ -3,11 +3,13 @@ package com.naterbobber.darkerdepths.client.render.renderers;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.naterbobber.darkerdepths.DarkerDepths;
-import com.naterbobber.darkerdepths.client.models.GlowshroomMonsterModel;
+import com.naterbobber.darkerdepths.client.models.DDDefaultEntityModel;
 import com.naterbobber.darkerdepths.client.render.DDRenderTypes;
 import com.naterbobber.darkerdepths.client.render.renderers.layers.DDRenderLayer;
 import com.naterbobber.darkerdepths.entities.GlowshroomMonsterEntity;
+import com.naterbobber.darkerdepths.init.DDEntityTypes;
 import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -26,7 +28,7 @@ public class GlowshroomMonsterRenderer extends GeoEntityRenderer<GlowshroomMonst
     private static final ResourceLocation MOSS_TEXTURE = DarkerDepths.id("textures/entity/glowshroom_monster/glowshroom_monster_moss_glowmask.png");
 
     public GlowshroomMonsterRenderer(EntityRendererProvider.Context context) {
-        super(context, new GlowshroomMonsterModel());
+        super(context, DDDefaultEntityModel.withRenderType(DDEntityTypes.GLOWSHROOM_MONSTER, RenderType::entityCutout));
         addRenderLayer(DDRenderLayer.withType(this, DDRenderTypes.emissiveTransparent(GLOWSHROOM_TEXTURE)));
         addRenderLayer(DDRenderLayer.withBrightness(this, DDRenderTypes.configurableEmissiveTransparent(MOSS_TEXTURE), 5));
     }
