@@ -7,7 +7,7 @@ import com.naterbobber.darkerdepths.init.DDStructures;
 import com.naterbobber.darkerdepths.worldgen.DDNoiseData;
 import com.naterbobber.darkerdepths.worldgen.biomes.DDBiomeModifiers;
 import com.naterbobber.darkerdepths.worldgen.biomes.DDBiomes;
-import com.naterbobber.darkerdepths.worldgen.carvers.DDCarvers;
+import com.naterbobber.darkerdepths.worldgen.DDCarvers;
 import com.naterbobber.darkerdepths.worldgen.feature.DDConfiguredFeatures;
 import com.naterbobber.darkerdepths.worldgen.feature.DDPlacedFeatures;
 import com.naterbobber.darkerdepths.worldgen.structures.processors.DDProcessorLists;

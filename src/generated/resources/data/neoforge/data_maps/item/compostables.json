@@ -1,0 +1,25 @@
+{
+  "values": {
+    "darkerdepths:glimmering_vines": {
+      "chance": 0.3
+    },
+    "darkerdepths:glow_grime": {
+      "chance": 0.5
+    },
+    "darkerdepths:glowshroom": {
+      "chance": 0.5
+    },
+    "darkerdepths:glowshroom_block": {
+      "chance": 0.85
+    },
+    "darkerdepths:glowspurs": {
+      "chance": 0.5
+    },
+    "darkerdepths:mossy_sprouts": {
+      "chance": 0.3
+    },
+    "darkerdepths:petrified_roots": {
+      "chance": 0.2
+    }
+  }
+}

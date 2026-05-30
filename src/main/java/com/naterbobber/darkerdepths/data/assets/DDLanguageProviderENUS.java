@@ -4,12 +4,14 @@ import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.init.*;
 import com.naterbobber.darkerdepths.util.DDResourceKeys;
 import net.minecraft.data.PackOutput;
+import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.WallHangingSignBlock;
 import net.minecraft.world.level.block.WallSignBlock;
+import net.minecraft.world.level.block.WallTorchBlock;
 import net.neoforged.neoforge.common.data.LanguageProvider;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -24,7 +26,8 @@ public class DDLanguageProviderENUS extends LanguageProvider {
     }
     private final Set<Block> blockOverrides = new HashSet<>();
     private final Set<Item> itemOverrides = new HashSet<>();
-    private final Set<EntityType> entityTypeOverrides = new HashSet<>();
+    private final Set<EntityType<?>> entityTypeOverrides = new HashSet<>();
+    private final Set<MobEffect> mobEffectOverrides = new HashSet<>();
 
     private static final String TOOLTIP = ddString("tooltip");
     private static final String ENCHANTMENT = ddString("enchantment");
@@ -41,24 +44,18 @@ public class DDLanguageProviderENUS extends LanguageProvider {
         add(DDBlocks.CRYSTAL_HUSK, "Crystal Husk");
         add(DDBlocks.FORSAKEN_BRONZE_BLOCK, "Block of Forsaken Bronze");
         add(DDBlocks.SCORCHED_REMAINS_BLOCK, "Block of Scorched Remains");
-        blockOverrides.add(DDBlocks.PETRIFIED_WALL_SIGN.get());
-        blockOverrides.add(DDBlocks.PETRIFIED_WALL_HANGING_SIGN.get());
-        blockOverrides.add(DDBlocks.WALL_VOID_SOUL_TORCH.get());
-        blockOverrides.add(DDBlocks.GLOWSHROOM_WALL_SIGN.get());
-        blockOverrides.add(DDBlocks.GLOWSHROOM_WALL_HANGING_SIGN.get());
+
         // Entities
-        entityTypeOverrides.add(DDEntityTypes.PETRIFIED_CHEST_BOAT.get());
-        entityTypeOverrides.add(DDEntityTypes.GLOWSHROOM_CHEST_BOAT.get());
-        add(DDEntityTypes.PETRIFIED_CHEST_BOAT.get(), "Petrified Boat with Chest");
-        add(DDEntityTypes.GLOWSHROOM_CHEST_BOAT.get(), "Glowshroom Boat with Chest");
+        add(DDEntityTypes.PETRIFIED_CHEST_BOAT, "Petrified Boat with Chest");
+        add(DDEntityTypes.GLOWSHROOM_CHEST_BOAT, "Glowshroom Boat with Chest");
 
         // Enchantments
         add(ENCHANTMENT, "swift_strike", "Swift Strike");
         add(ENCHANTMENT, "quick_dash", "Quick Dash");
 
         // Effects
-        add(DDMobEffects.SOUL_BINDING.get(), "Soul Binding");
-        add(DDMobEffects.PARANOIA.get(), "Paranoia");
+        add(DDMobEffects.SOUL_BINDING, "Soul Binding");
+        add(DDMobEffects.PARANOIA, "Paranoia");
 
         // Biomes
         add(BIOME, "molten_cavern", "Molten Cavern");
@@ -138,17 +135,37 @@ public class DDLanguageProviderENUS extends LanguageProvider {
         super.add(key, value);
     }
 
-    private void add(DeferredItem<? extends Item> holder, String value) {
-        var item = holder.get();
-        itemOverrides.add(item);
-        add(item, value);
+    private void add(DeferredHolder<?, ?> holder, String value) {
+        switch (holder.get()) {
+            case Item item -> add(item, value);
+            case Block block -> add(block, value);
+            case EntityType<?> entityType -> add(entityType, value);
+            case MobEffect mobEffect -> add(mobEffect, value);
+            default -> {
+            }
+        }
+
+        skip(holder);
     }
 
-    private void add(DeferredBlock<? extends Block> holder, String value) {
-        var block = holder.get();
-        blockOverrides.add(block);
-        itemOverrides.add(block.asItem());
-        add(block, value);
+    private void skip(DeferredHolder<?, ?> holder) {
+        switch (holder.get()) {
+            case Item item -> itemOverrides.add(item);
+            case Block block -> {
+                blockOverrides.add(block);
+                itemOverrides.add(block.asItem());
+            }
+            case EntityType<?> entityType -> entityTypeOverrides.add(entityType);
+            case MobEffect mobEffect -> mobEffectOverrides.add(mobEffect);
+            default -> {
+            }
+        }
+    }
+
+    private static boolean filterBlock(Block block) {
+        return !(block instanceof WallSignBlock) &&
+                !(block instanceof WallHangingSignBlock) &&
+                !(block instanceof WallTorchBlock);
     }
 
     private static String ddString(String str) {
@@ -158,6 +175,7 @@ public class DDLanguageProviderENUS extends LanguageProvider {
     private void autoParseFromId() {
         DDBlocks.BLOCKS.getEntries()
                 .stream()
+                .filter(holder -> filterBlock(holder.get()))
                 .filter(holder -> !blockOverrides.contains(holder.get()))
                 .forEach(holder -> {
                     var block = holder.get();

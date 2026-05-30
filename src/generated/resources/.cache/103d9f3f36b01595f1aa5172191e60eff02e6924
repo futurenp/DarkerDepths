@@ -1,4 +1,4 @@
-// 1.21.1	2026-04-27T00:49:31.2452173	Registries
+// 1.21.1	2026-05-27T19:12:51.7798741	Registries
 c4ee168e7bc25f3368a39009dc20c9876da3354f data/darkerdepths/damage_type/soul_binding_damage.json
 67449d45b04557a6ff85e2e4fb14a19e83a15a27 data/darkerdepths/enchantment/quick_dash.json
 efd3542a868f364e528e55ec4c13c3d5e8a423f0 data/darkerdepths/enchantment/swift_strike.json
@@ -19,10 +19,6 @@ e71b957ddac26dba3bbc363c18e9b6bcf7bde772 data/darkerdepths/neoforge/biome_modifi
 3588d4155dc01952faf27dd1e81ee45315dad226 data/darkerdepths/worldgen/biome/glowshroom_forest.json
 ea510f1fe42b40043e21e00d62d7101fb285c4be data/darkerdepths/worldgen/biome/molten_cavern.json
 bf1a891b85a3782f24de8a02682c6e4a3ea3c2de data/darkerdepths/worldgen/biome/sandy_catacombs.json
-b88f1f6aedd4b3c04b7b6d4b3c33c3ca9d4c5531 data/darkerdepths/worldgen/configured_carver/duskrock_carver.json
-2bcaf860a9517802ae79d050c085e4e74036a899 data/darkerdepths/worldgen/configured_carver/magma_carver.json
-7ed3382a5129c58d9b85f1257041e41e3bd8fa48 data/darkerdepths/worldgen/configured_carver/magma_line_carver.json
-6344dc50166e308b2aa909016296b93f4d16ec9e data/darkerdepths/worldgen/configured_carver/tuff_carver.json
 2ac38a3856b81d10b86c1ef83c3e51732a97522a data/darkerdepths/worldgen/configured_feature/amber_placement.json
 d88cd5b9d571a27136e13ae57dda928aed21cdca data/darkerdepths/worldgen/configured_feature/arid_boulder.json
 5cfe58f3459a1348ab0b65ccba984f1c3cf233fc data/darkerdepths/worldgen/configured_feature/arid_surface.json

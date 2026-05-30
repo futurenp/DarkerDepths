@@ -16,7 +16,6 @@ public class DDVanillaIntegration {
 
     public static void init() {
         registerFlammables();
-        registerCompostables();
         registerDispenserBehaviors();
     }
 
@@ -39,15 +38,6 @@ public class DDVanillaIntegration {
         fireBlock.setFlammable(DDBlocks.GLOWSHROOM_FENCE_GATE.get(), 60, 100);
     }
 
-    private static void registerCompostables() {
-//        ComposterBlock.add(0.5F, DDBlocks.GLOWSHROOM.get().asItem());
-//        ComposterBlock.add(0.85F, DDBlocks.GLOWSHROOM_BLOCK.get().asItem());
-//        ComposterBlock.add(0.5F, DDBlocks.GLOWSPURS.get().asItem());
-//        ComposterBlock.add(0.3F,  DDBlocks.GLIMMERING_VINES.get().asItem());
-//        ComposterBlock.add(0.3F, DDBlocks.MOSSY_SPROUTS.get().asItem());
-//        ComposterBlock.add(0.2F,  DDBlocks.PETRIFIED_ROOTS.get().asItem());
-    }
-
     private static void registerDispenserBehaviors() {
         DispenserBlock.registerBehavior(DDItems.VOID_SOUL_JAR.get(), (source, stack) -> {
             ServerLevel level = source.level();
@@ -65,33 +55,32 @@ public class DDVanillaIntegration {
 
             stack.shrink(1);
 
-            if (source.blockEntity() instanceof DispenserBlockEntity dispenser) {
-                ItemStack bottleStack = new ItemStack(Items.GLASS_BOTTLE);
-                boolean wasBottlePlaced = false;
+            DispenserBlockEntity dispenser = source.blockEntity();
+            ItemStack bottleStack = new ItemStack(Items.GLASS_BOTTLE);
+            boolean wasBottlePlaced = false;
 
+            for (int i = 0; i < dispenser.getContainerSize(); ++i) {
+                ItemStack slotStack = dispenser.getItem(i);
+                if (slotStack.is(Items.GLASS_BOTTLE) && slotStack.getCount() < slotStack.getMaxStackSize()) {
+                    slotStack.grow(1);
+                    wasBottlePlaced = true;
+                    break;
+                }
+            }
+
+            if (!wasBottlePlaced) {
                 for (int i = 0; i < dispenser.getContainerSize(); ++i) {
-                    ItemStack slotStack = dispenser.getItem(i);
-                    if (slotStack.is(Items.GLASS_BOTTLE) && slotStack.getCount() < slotStack.getMaxStackSize()) {
-                        slotStack.grow(1);
+                    if (dispenser.getItem(i).isEmpty()) {
+                        dispenser.setItem(i, bottleStack);
                         wasBottlePlaced = true;
                         break;
                     }
                 }
+            }
 
-                if (!wasBottlePlaced) {
-                    for (int i = 0; i < dispenser.getContainerSize(); ++i) {
-                        if (dispenser.getItem(i).isEmpty()) {
-                            dispenser.setItem(i, bottleStack);
-                            wasBottlePlaced = true;
-                            break;
-                        }
-                    }
-                }
-
-                if (!wasBottlePlaced) {
-                    DefaultDispenseItemBehavior fallback = new DefaultDispenseItemBehavior();
-                    fallback.dispense(source, bottleStack);
-                }
+            if (!wasBottlePlaced) {
+                DefaultDispenseItemBehavior fallback = new DefaultDispenseItemBehavior();
+                fallback.dispense(source, bottleStack);
             }
 
             return stack;
