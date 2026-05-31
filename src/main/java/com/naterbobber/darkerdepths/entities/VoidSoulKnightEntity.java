@@ -1,7 +1,10 @@
 package com.naterbobber.darkerdepths.entities;
 
+import com.naterbobber.darkerdepths.damage.DDDamageTypes;
 import com.naterbobber.darkerdepths.entities.control.ConfigurableMoveControl;
 import com.naterbobber.darkerdepths.entities.goals.AttackMemoryTargetGoal;
+import com.naterbobber.darkerdepths.util.DDResourceKeys;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -19,6 +22,7 @@ import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.monster.Skeleton;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
@@ -106,14 +110,14 @@ public class VoidSoulKnightEntity extends VoidSoulMonster implements GeoEntity {
         float damage = (float) this.getAttributeValue(Attributes.ATTACK_DAMAGE);
 
         if(this.firstDamageDelay == 0 && !this.firstAttackDone) {
-            this.attackTarget.hurt(this.level().damageSources().mobAttack(this), damage);
+            this.attackTarget.hurt(DDDamageTypes.getDamageSource(level(), DDResourceKeys.DamageTypes.VOID_SOUL_DAMAGE), damage);
             this.firstAttackDone = true;
             return;
         }
 
         if(this.secondDamageDelay == 0) {
             if (this.distanceToSqr(this.attackTarget) < 12) {
-                this.attackTarget.hurt(this.level().damageSources().mobAttack(this), damage);
+                this.attackTarget.hurt(damageSources().mobAttack(this), damage);
             }
             this.attackTarget = null;
         }

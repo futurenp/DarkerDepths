@@ -1,9 +1,11 @@
 package com.naterbobber.darkerdepths.entities;
 
+import com.naterbobber.darkerdepths.damage.DDDamageTypes;
 import com.naterbobber.darkerdepths.entities.goals.AttackMemoryTargetGoal;
 import com.naterbobber.darkerdepths.entities.goals.DashGoal;
 import com.naterbobber.darkerdepths.entities.goals.IDashable;
 import com.naterbobber.darkerdepths.init.DDMobEffects;
+import com.naterbobber.darkerdepths.util.DDResourceKeys;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -106,7 +108,7 @@ public class BodySnatcherEntity extends VoidSoulMonster implements GeoEntity, ID
 
         if(this.damageDelay == 0) {
             if (this.distanceToSqr(this.attackTarget) < 4) {
-                this.attackTarget.hurt(this.level().damageSources().mobAttack(this),
+                this.attackTarget.hurt(DDDamageTypes.getDamageSource(level(), DDResourceKeys.DamageTypes.VOID_SOUL_DAMAGE),
                         (float) this.getAttributeValue(Attributes.ATTACK_DAMAGE));
                 if(this.attackTarget instanceof Player player) {
                     player.forceAddEffect(new MobEffectInstance(DDMobEffects.PARANOIA, 200, 0, false, false, true), this);

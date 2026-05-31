@@ -11,19 +11,19 @@ import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.sounds.SoundSource;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 
-public record SendDeathAnchorPacket() implements CustomPacketPayload {
-    public static final CustomPacketPayload.Type<SendDeathAnchorPacket> TYPE = new CustomPacketPayload.Type<>(DarkerDepths.id("send_death_anchor_overlay"));
-    public static final StreamCodec<FriendlyByteBuf, SendDeathAnchorPacket> CODEC = CustomPacketPayload.codec(SendDeathAnchorPacket::write, SendDeathAnchorPacket::new);
+public record DeathAnchorPacket() implements CustomPacketPayload {
+    public static final CustomPacketPayload.Type<DeathAnchorPacket> TYPE = new CustomPacketPayload.Type<>(DarkerDepths.id("send_death_anchor_overlay"));
+    public static final StreamCodec<FriendlyByteBuf, DeathAnchorPacket> CODEC = CustomPacketPayload.codec(DeathAnchorPacket::write, DeathAnchorPacket::new);
 
-    private SendDeathAnchorPacket(FriendlyByteBuf buf) {
+    private DeathAnchorPacket(FriendlyByteBuf buf) {
         this();
     }
 
-    public static void write(SendDeathAnchorPacket packet, FriendlyByteBuf buf) {
+    public static void write(DeathAnchorPacket packet, FriendlyByteBuf buf) {
     }
 
     @SuppressWarnings("Convert2Lambda")
-    public static void handle(SendDeathAnchorPacket msg, IPayloadContext context) {
+    public static void handle(DeathAnchorPacket packet, IPayloadContext context) {
         if(!context.flow().isClientbound()) return;
 
         context.enqueueWork(new Runnable() {

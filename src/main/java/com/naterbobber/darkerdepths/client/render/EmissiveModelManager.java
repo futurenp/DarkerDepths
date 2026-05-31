@@ -62,12 +62,6 @@ public class EmissiveModelManager {
                 .modelSettings(EmissiveBakedModel.modelSettings())
                 .build());
 
-        models.add(BlockBaker.builder(event, DDBlocks.CRYSTAL_MELON)
-                .modelSettings(EmissiveBakedModel.modelSettings()
-                        .baseBrightness(LightTexture.pack(10, 0))
-                        .removeShadeBase())
-                .build());
-
         models.add(BlockBaker.builder(event,
                 DDBlocks.GLIMMERING_VINE_PLANT,
                 DDBlocks.GLIMMERING_VINES,

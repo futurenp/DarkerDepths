@@ -2,13 +2,13 @@ package com.naterbobber.darkerdepths.events;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.api.DeathAnchorLocation;
+import com.naterbobber.darkerdepths.damage.DDDamageTypes;
 import com.naterbobber.darkerdepths.init.*;
 import com.naterbobber.darkerdepths.init.DDEnchantmentEffects;
-import com.naterbobber.darkerdepths.network.SendDeathAnchorPacket;
+import com.naterbobber.darkerdepths.network.DeathAnchorPacket;
 import com.naterbobber.darkerdepths.util.DDResourceKeys;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.GlobalPos;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -113,7 +113,7 @@ public class LivingEvents {
             entity.teleportTo(newServer, teleportPos.getX() + 0.5D, teleportPos.getY(), teleportPos.getZ() + 0.5D, Set.of(), 0, 0);
 
             if (entity instanceof ServerPlayer serverPlayer) {
-                PacketDistributor.sendToPlayer(serverPlayer, new SendDeathAnchorPacket());
+                PacketDistributor.sendToPlayer(serverPlayer, new DeathAnchorPacket());
             }
 
             entity.setRemainingFireTicks(0);
@@ -148,10 +148,7 @@ public class LivingEvents {
                 deathAnchorLocation.setDeathAnchorLocation(Optional.empty());
             }
             if (entity instanceof Player player && !player.getAbilities().instabuild) {
-                DamageSource damageSource = new DamageSource(
-                        entity.level().registryAccess().registryOrThrow(Registries.DAMAGE_TYPE)
-                                .getHolderOrThrow(DDResourceKeys.DamageTypes.SOUL_BINDING_DAMAGE)
-                );
+                var damageSource = DDDamageTypes.getDamageSource(entity.level(), DDResourceKeys.DamageTypes.SOUL_BINDING_DAMAGE);
                 entity.hurt(damageSource, Float.MAX_VALUE);
             }
         }

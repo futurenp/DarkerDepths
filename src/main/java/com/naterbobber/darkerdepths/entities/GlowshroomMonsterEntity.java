@@ -1,9 +1,11 @@
 package com.naterbobber.darkerdepths.entities;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
+import com.naterbobber.darkerdepths.damage.DDDamageTypes;
 import com.naterbobber.darkerdepths.entities.goals.AttackMemoryTargetGoal;
 import com.naterbobber.darkerdepths.entities.control.ConfigurableMoveControl;
 import com.naterbobber.darkerdepths.init.DDSoundEvents;
+import com.naterbobber.darkerdepths.util.DDResourceKeys;
 import com.naterbobber.darkerdepths.util.DDTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -135,7 +137,7 @@ public class GlowshroomMonsterEntity extends Monster implements GeoEntity {
 
         if(this.damageDelay == 0) {
             if (this.distanceToSqr(this.attackTarget) < 16) {
-                this.attackTarget.hurt(this.level().damageSources().mobAttack(this), (float) this.getAttributeValue(Attributes.ATTACK_DAMAGE));
+                this.attackTarget.hurt(DDDamageTypes.getDamageSource(level(), DDResourceKeys.DamageTypes.GLOWSHROOM_SLAM_DAMAGE), (float) this.getAttributeValue(Attributes.ATTACK_DAMAGE));
                 this.playSound(SoundEvents.GENERIC_EXPLODE.value(), 1.6f, 1.5f);
             }
 

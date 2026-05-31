@@ -1,5 +1,7 @@
-// 1.21.1	2026-05-27T19:12:51.7798741	Registries
+// 1.21.1	2026-05-31T00:23:56.2668566	Registries
+5421ea5037eda0b2c2f733d8c49bcb351bbd5bb7 data/darkerdepths/damage_type/glowshroom_slam_damage.json
 c4ee168e7bc25f3368a39009dc20c9876da3354f data/darkerdepths/damage_type/soul_binding_damage.json
+8d92c694f931e389b3a7eab20c6dadfb2f40223c data/darkerdepths/damage_type/void_soul_damage.json
 67449d45b04557a6ff85e2e4fb14a19e83a15a27 data/darkerdepths/enchantment/quick_dash.json
 efd3542a868f364e528e55ec4c13c3d5e8a423f0 data/darkerdepths/enchantment/swift_strike.json
 5d98218e2ab7caff50b57087abfb832680c1ec0d data/darkerdepths/neoforge/biome_modifier/add_glowshroom_forest_raw_generation.json

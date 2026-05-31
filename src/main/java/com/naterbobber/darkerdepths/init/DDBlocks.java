@@ -5,7 +5,6 @@ import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.block.DDBlockSetTypes;
 import com.naterbobber.darkerdepths.block.custom.*;
 import com.naterbobber.darkerdepths.block.generic.*;
-import com.naterbobber.darkerdepths.compat.CompatBlocks;
 import com.naterbobber.darkerdepths.compat.CompatID;
 import com.naterbobber.darkerdepths.compat.DDCompat;
 import com.naterbobber.darkerdepths.item.BlockItemWithHoverText;
@@ -83,7 +82,8 @@ public class DDBlocks {
             () -> new RelationalSlabBlock(PETRIFIED_PLANKS.get()));
     public static final DeferredBlock<RelationalVerticalSlabBlock> PETRIFIED_VERTICAL_SLAB = registerCompatBlock(List.of(DDCompat.QUARK), "petrified_vertical_slab",
             () -> new RelationalVerticalSlabBlock(PETRIFIED_PLANKS.get()));
-    public static final DeferredBlock<Block> TRIMMED_PETRIFIED_PLANKS = registerCompatBlock(List.of(DDCompat.NO_MANS_LAND), "trimmed_petrified_planks", CompatBlocks::createTrimmedPlanks);
+    public static final DeferredBlock<Block> TRIMMED_PETRIFIED_PLANKS = registerCompatBlock(List.of(DDCompat.NO_MANS_LAND), "trimmed_petrified_planks",
+            () -> new ConnectedPillarBlock(BlockBehaviour.Properties.ofFullCopy(DDBlocks.PETRIFIED_PLANKS.get())));
     public static final DeferredBlock<RelationalFenceBlock> PETRIFIED_FENCE = registerBlock("petrified_fence",
             () -> new RelationalFenceBlock(PETRIFIED_PLANKS.get()));
     public static final DeferredBlock<RelationalFenceGateBlock> PETRIFIED_FENCE_GATE = registerBlock("petrified_fence_gate",
@@ -334,7 +334,8 @@ public class DDBlocks {
             () -> new RelationalSlabBlock(GLOWSHROOM_PLANKS.get()));
     public static final DeferredBlock<RelationalVerticalSlabBlock> GLOWSHROOM_VERTICAL_SLAB = registerCompatBlock(List.of(DDCompat.QUARK), "glowshroom_vertical_slab",
             () -> new RelationalVerticalSlabBlock(GLOWSHROOM_PLANKS.get()));
-    public static final DeferredBlock<Block> TRIMMED_GLOWSHROOM_PLANKS = registerCompatBlock(List.of(DDCompat.NO_MANS_LAND), "trimmed_glowshroom_planks", CompatBlocks::createTrimmedPlanks);
+    public static final DeferredBlock<Block> TRIMMED_GLOWSHROOM_PLANKS = registerCompatBlock(List.of(DDCompat.NO_MANS_LAND), "trimmed_glowshroom_planks",
+            () -> new ConnectedPillarBlock(BlockBehaviour.Properties.ofFullCopy(DDBlocks.PETRIFIED_PLANKS.get())));
     public static final DeferredBlock<RelationalFenceBlock> GLOWSHROOM_FENCE = registerBlock("glowshroom_fence",
             () -> new RelationalFenceBlock(GLOWSHROOM_PLANKS.get()));
     public static final DeferredBlock<RelationalFenceGateBlock> GLOWSHROOM_FENCE_GATE = registerBlock("glowshroom_fence_gate",

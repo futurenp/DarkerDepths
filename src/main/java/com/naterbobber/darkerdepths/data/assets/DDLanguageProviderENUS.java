@@ -64,6 +64,8 @@ public class DDLanguageProviderENUS extends LanguageProvider {
 
         // Death Messages
         add("death.attack.soul_binding_damage", "%1$s's soul was consumed by the Death Anchor.");
+        add("death.attack.void_soul_damage", "%1$s's soul was reclaimed.");
+        add("death.attack.glowshroom_slam_damage", "%1$s was squashed to death.");
 
         // Tooltips
         add(TOOLTIP, "press_shift", "Press [SHIFT]");

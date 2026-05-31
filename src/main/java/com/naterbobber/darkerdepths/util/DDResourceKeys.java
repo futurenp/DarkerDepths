@@ -205,6 +205,8 @@ public class DDResourceKeys {
 
     public static class DamageTypes {
         public static final ResourceKey<DamageType> SOUL_BINDING_DAMAGE = createKey("soul_binding_damage");
+        public static final ResourceKey<DamageType> VOID_SOUL_DAMAGE = createKey("void_soul_damage");
+        public static final ResourceKey<DamageType> GLOWSHROOM_SLAM_DAMAGE = createKey("glowshroom_slam_damage");
         private static ResourceKey<DamageType> createKey(String name) {
             return ResourceKey.create(Registries.DAMAGE_TYPE, DarkerDepths.id(name));
         }
