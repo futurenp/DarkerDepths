@@ -1,5 +1,34 @@
 {
-  "textures": [
-    "darkerdepths:void_soul"
+  "textures":[
+    "darkerdepths:void_soul\/0",
+    "darkerdepths:void_soul\/1",
+    "darkerdepths:void_soul\/2",
+    "darkerdepths:void_soul\/3",
+    "darkerdepths:void_soul\/4",
+    "darkerdepths:void_soul\/5",
+    "darkerdepths:void_soul\/6",
+    "darkerdepths:void_soul\/7",
+    "darkerdepths:void_soul\/8",
+    "darkerdepths:void_soul\/9",
+    "darkerdepths:void_soul\/10",
+    "darkerdepths:void_soul\/11",
+    "darkerdepths:void_soul\/12",
+    "darkerdepths:void_soul\/13",
+    "darkerdepths:void_soul\/14",
+    "darkerdepths:void_soul\/15",
+    "darkerdepths:void_soul\/16",
+    "darkerdepths:void_soul\/17",
+    "darkerdepths:void_soul\/18",
+    "darkerdepths:void_soul\/19",
+    "darkerdepths:void_soul\/20",
+    "darkerdepths:void_soul\/21",
+    "darkerdepths:void_soul\/22",
+    "darkerdepths:void_soul\/23",
+    "darkerdepths:void_soul\/24",
+    "darkerdepths:void_soul\/25",
+    "darkerdepths:void_soul\/26",
+    "darkerdepths:void_soul\/27",
+    "darkerdepths:void_soul\/28",
+    "darkerdepths:void_soul\/29"
   ]
 }

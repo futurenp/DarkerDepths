@@ -5,7 +5,7 @@ import com.naterbobber.darkerdepths.api.DeathAnchorLocation;
 import com.naterbobber.darkerdepths.damage.DDDamageTypes;
 import com.naterbobber.darkerdepths.init.*;
 import com.naterbobber.darkerdepths.init.DDEnchantmentEffects;
-import com.naterbobber.darkerdepths.network.DeathAnchorPacket;
+import com.naterbobber.darkerdepths.network.packets.DeathAnchorActivatePacket;
 import com.naterbobber.darkerdepths.util.DDResourceKeys;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.GlobalPos;
@@ -113,7 +113,7 @@ public class LivingEvents {
             entity.teleportTo(newServer, teleportPos.getX() + 0.5D, teleportPos.getY(), teleportPos.getZ() + 0.5D, Set.of(), 0, 0);
 
             if (entity instanceof ServerPlayer serverPlayer) {
-                PacketDistributor.sendToPlayer(serverPlayer, new DeathAnchorPacket());
+                PacketDistributor.sendToPlayer(serverPlayer, new DeathAnchorActivatePacket());
             }
 
             entity.setRemainingFireTicks(0);

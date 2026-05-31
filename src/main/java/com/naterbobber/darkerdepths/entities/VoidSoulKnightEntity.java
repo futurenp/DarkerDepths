@@ -126,6 +126,7 @@ public class VoidSoulKnightEntity extends VoidSoulMonster implements GeoEntity {
     @Override
     public void tick() {
         super.tick();
+        summonVoidSoulParticles(0.8F, 2F);
 
         if (this.level().isClientSide) return;
 

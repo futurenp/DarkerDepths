@@ -120,6 +120,12 @@ public class BodySnatcherEntity extends VoidSoulMonster implements GeoEntity, ID
     }
 
     @Override
+    public void tick() {
+        super.tick();
+        summonVoidSoulParticles(0.6F, 1.1F);
+    }
+
+    @Override
     public boolean doHurtTarget(Entity entity) {
         if(this.attackTick == 0) {
             this.setAttacking(true);

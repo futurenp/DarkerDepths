@@ -5,8 +5,8 @@ import net.minecraft.world.effect.MobEffectCategory;
 
 public class SoulBindingEffect extends MobEffect {
 
-    public SoulBindingEffect(MobEffectCategory category, int duration) {
-        super(category, duration);
+    public SoulBindingEffect(MobEffectCategory category, int color) {
+        super(category, color);
     }
 
 }

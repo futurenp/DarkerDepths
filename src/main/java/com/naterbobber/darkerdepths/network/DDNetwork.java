@@ -1,6 +1,7 @@
 package com.naterbobber.darkerdepths.network;
 
-import com.naterbobber.darkerdepths.client.fog.modifiers.ScorcherFlashModifier;
+import com.naterbobber.darkerdepths.network.packets.DeathAnchorActivatePacket;
+import com.naterbobber.darkerdepths.network.packets.ScorcherFlashPacket;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.registration.HandlerThread;
@@ -14,9 +15,9 @@ public class DDNetwork {
         final PayloadRegistrar registrar = event.registrar(PROTOCOL_VERSION)
                 .executesOn(HandlerThread.NETWORK);
         registrar.playToClient(
-                DeathAnchorPacket.TYPE,
-                DeathAnchorPacket.CODEC,
-                DeathAnchorPacket::handle
+                DeathAnchorActivatePacket.TYPE,
+                DeathAnchorActivatePacket.CODEC,
+                DeathAnchorActivatePacket::handle
         );
         registrar.playToClient(
                 ScorcherFlashPacket.TYPE,

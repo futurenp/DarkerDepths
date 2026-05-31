@@ -1,4 +1,4 @@
-package com.naterbobber.darkerdepths.network;
+package com.naterbobber.darkerdepths.network.packets;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.client.ClientDeathAnchorAnimationOverlay;
@@ -11,19 +11,19 @@ import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.sounds.SoundSource;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 
-public record DeathAnchorPacket() implements CustomPacketPayload {
-    public static final CustomPacketPayload.Type<DeathAnchorPacket> TYPE = new CustomPacketPayload.Type<>(DarkerDepths.id("send_death_anchor_overlay"));
-    public static final StreamCodec<FriendlyByteBuf, DeathAnchorPacket> CODEC = CustomPacketPayload.codec(DeathAnchorPacket::write, DeathAnchorPacket::new);
+public record DeathAnchorActivatePacket() implements CustomPacketPayload {
+    public static final CustomPacketPayload.Type<DeathAnchorActivatePacket> TYPE = new CustomPacketPayload.Type<>(DarkerDepths.id("send_death_anchor_overlay"));
+    public static final StreamCodec<FriendlyByteBuf, DeathAnchorActivatePacket> CODEC = CustomPacketPayload.codec(DeathAnchorActivatePacket::write, DeathAnchorActivatePacket::new);
 
-    private DeathAnchorPacket(FriendlyByteBuf buf) {
+    private DeathAnchorActivatePacket(FriendlyByteBuf buf) {
         this();
     }
 
-    public static void write(DeathAnchorPacket packet, FriendlyByteBuf buf) {
+    public static void write(DeathAnchorActivatePacket packet, FriendlyByteBuf buf) {
     }
 
     @SuppressWarnings("Convert2Lambda")
-    public static void handle(DeathAnchorPacket packet, IPayloadContext context) {
+    public static void handle(DeathAnchorActivatePacket packet, IPayloadContext context) {
         if(!context.flow().isClientbound()) return;
 
         context.enqueueWork(new Runnable() {

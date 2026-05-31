@@ -2,12 +2,15 @@ package com.naterbobber.darkerdepths.entities;
 
 import com.naterbobber.darkerdepths.init.DDEntityTypes;
 import com.naterbobber.darkerdepths.init.DDParticleTypes;
+import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.ParticleUtils;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageSources;
 import net.minecraft.world.entity.EntityType;
@@ -82,5 +85,16 @@ public abstract class VoidSoulMonster extends Monster {
         super.defineSynchedData(builder);
         builder.define(IDLE, false);
         builder.define(ATTACKING, false);
+    }
+
+    protected void summonVoidSoulParticles(double radiusXZ, double radiusY) {
+        var blockPos = this.blockPosition().above((int) radiusY / 2);
+        var level = this.level();
+        var randomFloat = level.random.nextFloat();
+        if(randomFloat < .01F) {
+            ParticleUtils.spawnParticles(level, blockPos, 1, radiusXZ, radiusY, true, DDParticleTypes.VOID_SOUL.get());
+        } else if(randomFloat < .04F) {
+            ParticleUtils.spawnParticles(level, blockPos, 1, radiusXZ, radiusY, true, DDParticleTypes.VOID_SOUL_DEATH.get());
+        }
     }
 }

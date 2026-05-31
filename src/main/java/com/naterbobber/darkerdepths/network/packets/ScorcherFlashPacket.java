@@ -1,17 +1,12 @@
-package com.naterbobber.darkerdepths.network;
+package com.naterbobber.darkerdepths.network.packets;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
-import com.naterbobber.darkerdepths.client.ClientDeathAnchorAnimationOverlay;
 import com.naterbobber.darkerdepths.client.fog.modifiers.ScorcherFlashModifier;
-import com.naterbobber.darkerdepths.init.DDSoundEvents;
 import io.netty.buffer.ByteBuf;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.sounds.SoundSource;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 
 public record ScorcherFlashPacket(int durationTicks) implements CustomPacketPayload {

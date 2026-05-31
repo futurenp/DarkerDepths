@@ -10,13 +10,14 @@ public class VoidSoulDeathParticle extends LargeSmokeParticle {
     protected VoidSoulDeathParticle(ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed, SpriteSet sprites) {
         super(level, x, y, z, xSpeed, ySpeed, zSpeed, sprites);
         gravity = 0;
+        this.zd = 0.04F;
+        this.xd = 0.04F;
+        this.yd = 0.02F;
     }
 
     @Override
     public void tick() {
         super.tick();
-        this.zd += 0.004F;
-        this.xd += 0.004F;
     }
 
     @OnlyIn(Dist.CLIENT)
