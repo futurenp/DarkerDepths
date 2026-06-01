@@ -52,6 +52,8 @@ public class DDLanguageProviderENUS extends LanguageProvider {
         // Enchantments
         add(ENCHANTMENT, "swift_strike", "Swift Strike");
         add(ENCHANTMENT, "quick_dash", "Quick Dash");
+        add(ENCHANTMENT, "quick_dash.desc", "Reduces Stiletto dash cooldown by 25% per level.");
+        add(ENCHANTMENT, "swift_strike.desc", "Dealing damage during a Stiletto dash instantly recharges dash cooldown.");
 
         // Effects
         add(DDMobEffects.SOUL_BINDING, "Soul Binding");
