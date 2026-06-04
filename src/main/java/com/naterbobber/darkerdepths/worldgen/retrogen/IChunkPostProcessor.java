@@ -1,6 +1,7 @@
 package com.naterbobber.darkerdepths.worldgen.retrogen;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.FullChunkStatus;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.block.state.BlockState;
@@ -34,7 +35,7 @@ public interface IChunkPostProcessor {
     }
 
     /** More optimized version of setBlock for process use **/
-    default void setBlockFast(ServerLevel level, BlockPos pos, BlockState state, int flags) {
+    default void setBlockFast(ServerLevel level, BlockPos pos, BlockState oldBlockState, int flags) {
         if (level.isOutsideBuildHeight(pos)) {
             return;
         }
@@ -42,10 +43,28 @@ public interface IChunkPostProcessor {
         LevelChunk levelchunk = level.getChunkAt(pos);
         pos = pos.immutable();
 
-        BlockState blockstate = levelchunk.setBlockState(pos, state, (flags & 64) != 0);
+        BlockState newBlockState = levelchunk.setBlockState(pos, oldBlockState, (flags & 64) != 0);
 
-        if (blockstate != null) {
-            level.markAndNotifyBlock(pos, levelchunk, blockstate, state, flags, 512);
+        if (newBlockState != null) {
+            markAndNotifyBlock(level, pos, levelchunk, newBlockState, oldBlockState, flags);
         }
+    }
+
+    /** Simplified markAndNotify block, also needed to avoid conflict with Lithium's mixins */
+    default void markAndNotifyBlock(ServerLevel level, BlockPos blockPos, LevelChunk levelchunk, BlockState newBlockState, BlockState oldBlockState, int flags) {
+        BlockState currentState = level.getBlockState(blockPos);
+        if (currentState == oldBlockState) {
+            if (newBlockState != currentState) {
+                level.setBlocksDirty(blockPos, newBlockState, currentState);
+            }
+
+            if (level.isClientSide || levelchunk != null && levelchunk.getFullStatus().isOrAfter(FullChunkStatus.BLOCK_TICKING)) {
+                level.sendBlockUpdated(blockPos, newBlockState, oldBlockState, flags);
+            }
+
+            level.onBlockStateChange(blockPos, newBlockState, currentState);
+            oldBlockState.onBlockStateChange(level, blockPos, newBlockState);
+        }
+
     }
 }
