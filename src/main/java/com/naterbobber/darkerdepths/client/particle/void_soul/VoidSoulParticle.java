@@ -12,16 +12,14 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
 public class VoidSoulParticle extends TextureSheetParticle {
-    private final RandomSource random;
     private final SpriteSet sprites;
     private boolean reachedSpawnSize = false;
     private final float maxQuadSize;
 
-
     protected VoidSoulParticle(ClientLevel level, double x, double y, double z,
                                double xSpeed, double ySpeed, double zSpeed, SpriteSet sprites) {
         super(level, x, y, z, xSpeed, ySpeed, zSpeed);
-        this.random = level.getRandom();
+        RandomSource random = level.getRandom();
         this.sprites = sprites;
         this.lifetime = 80;
         this.quadSize = 0.05F;

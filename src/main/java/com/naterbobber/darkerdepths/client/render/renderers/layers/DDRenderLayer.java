@@ -69,7 +69,10 @@ public class DDRenderLayer<T extends GeoAnimatable> extends GeoRenderLayer<T> {
             packedLight = LightTexture.pack(finalBlockLight, skyLight);
         }
 
-        this.getRenderer().reRender(
+        var renderer = this.getRenderer();
+        int color = renderer.getRenderColor(animatable, partialTick, packedLight).argbInt();
+
+        renderer.reRender(
                 bakedModel,
                 poseStack,
                 bufferSource,
@@ -79,6 +82,6 @@ public class DDRenderLayer<T extends GeoAnimatable> extends GeoRenderLayer<T> {
                 partialTick,
                 packedLight,
                 packedOverlay,
-                this.getRenderer().getRenderColor(animatable, partialTick, packedLight).argbInt());
+                color);
     }
 }

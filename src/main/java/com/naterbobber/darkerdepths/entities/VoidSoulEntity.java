@@ -158,7 +158,7 @@ public class VoidSoulEntity extends PathfinderMob implements GeoEntity {
         if (!this.level().isClientSide()) {
             ServerLevel serverLevel = (ServerLevel) this.level();
             if(!isCaptured) {
-                ParticleOptions particle = DDParticleTypes.VOID_SOUL_DEATH.get();
+                ParticleOptions particle = DDParticleTypes.VOID_SOUL_SMOKE.get();
                 serverLevel.sendParticles(
                         particle,
                         this.getX(),

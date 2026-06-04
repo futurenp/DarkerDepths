@@ -17,7 +17,9 @@ import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 public class DDLanguageProviderENUS extends LanguageProvider {
@@ -29,18 +31,12 @@ public class DDLanguageProviderENUS extends LanguageProvider {
     private final Set<EntityType<?>> entityTypeOverrides = new HashSet<>();
     private final Set<MobEffect> mobEffectOverrides = new HashSet<>();
 
-    private static final String TOOLTIP = ddString("tooltip");
-    private static final String ENCHANTMENT = ddString("enchantment");
-    private static final String BIOME = ddString("biome");
-    private static final String ITEM_GROUP = ddString("itemGroup");
-    private static final String ADVANCEMENT = ddString("advancements");
-
     @Override
     protected void addTranslations() {
         // Items
         add(DDItems.PETRIFIED_CHEST_BOAT, "Petrified Boat with Chest");
         add(DDItems.GLOWSHROOM_CHEST_BOAT, "Glowshroom Boat with Chest");
-//        // Blocks
+        // Blocks
         add(DDBlocks.CRYSTAL_HUSK, "Crystal Husk");
         add(DDBlocks.FORSAKEN_BRONZE_BLOCK, "Block of Forsaken Bronze");
         add(DDBlocks.SCORCHED_REMAINS_BLOCK, "Block of Scorched Remains");
@@ -50,38 +46,45 @@ public class DDLanguageProviderENUS extends LanguageProvider {
         add(DDEntityTypes.GLOWSHROOM_CHEST_BOAT, "Glowshroom Boat with Chest");
 
         // Enchantments
-        add(ENCHANTMENT, "swift_strike", "Swift Strike");
-        add(ENCHANTMENT, "quick_dash", "Quick Dash");
-        add(ENCHANTMENT, "quick_dash.desc", "Reduces Stiletto dash cooldown by 25% per level.");
-        add(ENCHANTMENT, "swift_strike.desc", "Dealing damage during a Stiletto dash instantly recharges dash cooldown.");
-
-        // Effects
-        add(DDMobEffects.SOUL_BINDING, "Soul Binding");
-        add(DDMobEffects.PARANOIA, "Paranoia");
+        LangBuilder.of(this, ddString("enchantment"))
+                .add("swift_strike", "Swift Strike")
+                .add("quick_dash", "Quick Dash")
+                .add("quick_dash.desc", "Reduces Stiletto dash cooldown by 25% per level.")
+                .add("swift_strike.desc", "Dealing damage during a Stiletto dash instantly recharges dash cooldown.")
+                .applyAll();
 
         // Biomes
-        add(BIOME, "molten_cavern", "Molten Cavern");
-        add(BIOME, "sandy_catacombs", "Sandy Catacombs");
-        add(BIOME, "glowshroom_forest", "Glowshroom Forest");
+        LangBuilder.of(this, ddString("biome"))
+                .add("molten_cavern", "Molten Cavern")
+                .add("sandy_catacombs", "Sandy Catacombs")
+                .add("glowshroom_forest", "Glowshroom Forest")
+                .applyAll();
 
         // Death Messages
-        add("death.attack.soul_binding_damage", "%1$s's soul was consumed by the Death Anchor.");
-        add("death.attack.void_soul_damage", "%1$s's soul was reclaimed.");
-        add("death.attack.glowshroom_slam_damage", "%1$s was squashed to death.");
+        LangBuilder.of(this, "death.attack")
+                .add("soul_binding_damage.player", "%1$s's soul was consumed by the Death Anchor.")
+                .add("void_soul_damage", "%1$s's soul was reclaimed.")
+                .add("glowshroom_slam_damage", "%1$s was slammed to death.")
+                .applyAll();
 
         // Tooltips
-        add(TOOLTIP, "press_shift", "Press [SHIFT]");
-        add(TOOLTIP, "glowshroom_cap.shift_desc_1", "Provides light and haste when worn.");
-        add(TOOLTIP, "glowshroom_cap.shift_desc_2", "Found on the back of the Glowshroom Monster.");
-        add(TOOLTIP, "stiletto.shift_desc", "Use [RIGHT CLICK] to dash.");
-        add(TOOLTIP, "crystal_melon.shift_desc_1", "Used to supercharge any tool or weapon.");
-        add(TOOLTIP, "crystal_melon.shift_desc_2", "Right click when holding in the offhand to supercharge.");
-        add(TOOLTIP, "death_anchor.shift_desc_1", "Used to set a death location.");
-        add(TOOLTIP, "death_anchor.shift_desc_2", "Charge with a Void Soul Requiem.");
-        add(TOOLTIP, "legacy.shift_desc", "Legacy item no longer obtainable.");
+        LangBuilder.of(this, ddString("tooltip"))
+                .add("press_shift", "Press [SHIFT]")
+                .add("glowshroom_cap.shift_desc_1", "Provides light and haste when worn.")
+                .add("glowshroom_cap.shift_desc_2", "Found on the back of the Glowshroom Monster.")
+                .add("stiletto.shift_desc", "Use [RIGHT CLICK] to dash.")
+                .add("crystal_melon.shift_desc_1", "Used to supercharge any tool or weapon.")
+                .add("crystal_melon.shift_desc_2", "Right click when holding in the offhand to supercharge.")
+                .add("death_anchor.shift_desc_1", "Used to set a death location.")
+                .add("death_anchor.shift_desc_2", "Charge with a Void Soul Requiem.")
+                .add("legacy.shift_desc", "Legacy item no longer obtainable.")
+                .applyAll();
 
         // Creative Tab
-        add(ITEM_GROUP, "creative_tab", "Darker Depths");
+        LangBuilder.of(this, ddString("itemGroup"))
+                .add("creative_tab", "Darker Depths")
+                .applyAll();
+
 
         //Advancements
         addAdvancement("parent", "Darker Depths",
@@ -126,15 +129,16 @@ public class DDLanguageProviderENUS extends LanguageProvider {
     }
 
     private void addAdvancement(String key, String title, String description) {
+        String prefix = ddString("advancements");
         if (title != null && !title.isBlank()) {
-            add(ADVANCEMENT, key + ".title", title);
+            add(prefix, key + ".title", title);
         }
         if (description != null && !description.isBlank()) {
-            add(ADVANCEMENT, key + ".description", description);
+            add(prefix, key + ".description", description);
         }
     }
 
-    private void add(String type, String key, String value) {
+    public void add(String type, String key, String value) {
         key = type + key;
         super.add(key, value);
     }
@@ -201,6 +205,13 @@ public class DDLanguageProviderENUS extends LanguageProvider {
                     var entityType = holder.get();
                     add(entityType, toStartCase(holder.getId().getPath()));
                 });
+
+        DDMobEffects.MOB_EFFECTS.getEntries().stream()
+                .filter(holder -> !mobEffectOverrides.contains(holder.get()))
+                .forEach(holder -> {
+                    var mobEffect = holder.get();
+                    add(mobEffect, toStartCase(holder.getId().getPath()));
+                });
     }
 
     private static String toStartCase(String str) {
@@ -214,5 +225,29 @@ public class DDLanguageProviderENUS extends LanguageProvider {
             }
         }
         return startCaseString.substring(0, startCaseString.length() - 1);
+    }
+
+    private static class LangBuilder {
+        DDLanguageProviderENUS provider;
+        String prefix;
+        Map<String, String> langMap = new HashMap<>();
+
+        private LangBuilder(DDLanguageProviderENUS provider, String prefix) {
+            this.provider = provider;
+            this.prefix = prefix;
+        }
+
+        public static LangBuilder of(DDLanguageProviderENUS provider, String prefix) {
+            return new LangBuilder(provider, prefix);
+        }
+
+        public LangBuilder add(String key, String value) {
+            langMap.put(key, value);
+            return this;
+        }
+
+        public void applyAll() {
+            langMap.forEach((key, value) -> provider.add(prefix, key, value));
+        }
     }
 }

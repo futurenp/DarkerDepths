@@ -117,7 +117,7 @@ public class VoidSoulKnightEntity extends VoidSoulMonster implements GeoEntity {
 
         if(this.secondDamageDelay == 0) {
             if (this.distanceToSqr(this.attackTarget) < 12) {
-                this.attackTarget.hurt(damageSources().mobAttack(this), damage);
+                this.attackTarget.hurt(DDDamageTypes.getDamageSource(level(), DDResourceKeys.DamageTypes.VOID_SOUL_DAMAGE), damage);
             }
             this.attackTarget = null;
         }

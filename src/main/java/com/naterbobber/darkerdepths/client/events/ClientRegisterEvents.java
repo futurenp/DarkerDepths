@@ -1,7 +1,5 @@
 package com.naterbobber.darkerdepths.client.events;
 
-import com.mojang.blaze3d.vertex.DefaultVertexFormat;
-import com.mojang.datafixers.util.Pair;
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.client.DDShaders;
 import com.naterbobber.darkerdepths.client.events.listeners.DDClientReloadListener;
@@ -16,18 +14,13 @@ import com.naterbobber.darkerdepths.init.DDParticleTypes;
 import net.minecraft.client.model.BoatModel;
 import net.minecraft.client.model.ChestBoatModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
-import net.minecraft.client.renderer.ShaderInstance;
 import net.minecraft.client.renderer.blockentity.HangingSignRenderer;
 import net.minecraft.client.renderer.blockentity.SignRenderer;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.*;
-
-import java.io.IOException;
-import java.util.function.Consumer;
 
 @OnlyIn(Dist.CLIENT)
 @EventBusSubscriber(modid = DarkerDepths.MOD_ID, value = Dist.CLIENT)
@@ -72,7 +65,7 @@ public class ClientRegisterEvents {
         event.registerSpriteSet(DDParticleTypes.VOID_SOUL.get(), VoidSoulParticle.Provider::new);
         event.registerSpriteSet(DDParticleTypes.VOID_SOUL_FLAME.get(), VoidSoulFlameParticle.Provider::new);
         event.registerSpriteSet(DDParticleTypes.VOID_SOUL_FLAME_SMOKE.get(), VoidSoulFlameSmokeParticle.Provider::new);
-        event.registerSpriteSet(DDParticleTypes.VOID_SOUL_DEATH.get(), VoidSoulDeathParticle.Provider::new);
+        event.registerSpriteSet(DDParticleTypes.VOID_SOUL_SMOKE.get(), VoidSoulDeathParticle.Provider::new);
 
         // Geyser
         event.registerSpriteSet(DDParticleTypes.GEYSER_PASSIVE_SMOKE.get(), GeyserPassiveSmokeParticle.Provider::new);

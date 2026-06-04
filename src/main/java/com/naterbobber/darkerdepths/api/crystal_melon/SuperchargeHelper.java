@@ -1,4 +1,4 @@
-package com.naterbobber.darkerdepths.util;
+package com.naterbobber.darkerdepths.api.crystal_melon;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.component.SuperchargeInfo;
@@ -17,7 +17,6 @@ import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.item.component.Unbreakable;
 import net.minecraft.world.level.Level;
 
-import java.util.Objects;
 import java.util.Optional;
 
 public class SuperchargeHelper {

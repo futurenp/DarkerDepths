@@ -1,9 +1,9 @@
 package com.naterbobber.darkerdepths.block.custom;
 
-import com.naterbobber.darkerdepths.api.DeathAnchorLocation;
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import com.naterbobber.darkerdepths.init.DDItems;
 import com.naterbobber.darkerdepths.init.DDPoiTypes;
+import com.naterbobber.darkerdepths.api.death_anchor.IDeathAnchorExtension;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.GlobalPos;
 import net.minecraft.resources.ResourceKey;
@@ -57,9 +57,9 @@ public class DeathAnchorBlock extends Block {
 
             if (!player.getAbilities().instabuild) itemStack.shrink(1);
 
-            if (player instanceof DeathAnchorLocation deathAnchorLocation) {
+            if (player instanceof IDeathAnchorExtension deathAnchorLocation) {
                 this.handleExistingDeathAnchor(level, blockPos, deathAnchorLocation);
-                deathAnchorLocation.setDeathAnchorLocation(Optional.of(GlobalPos.of(level.dimension(), blockPos)));
+                deathAnchorLocation.darkerDepths$setDeathAnchorLocation(Optional.of(GlobalPos.of(level.dimension(), blockPos)));
             }
 
             return ItemInteractionResult.SUCCESS;
@@ -67,8 +67,8 @@ public class DeathAnchorBlock extends Block {
         return super.useItemOn(stack, state, level, blockPos, player, hand, result);
     }
 
-    private void handleExistingDeathAnchor(Level level, BlockPos current, DeathAnchorLocation deathAnchorLocation) {
-        Optional<GlobalPos> deathAnchorLocation1 = deathAnchorLocation.getDeathAnchorLocation();
+    private void handleExistingDeathAnchor(Level level, BlockPos current, IDeathAnchorExtension deathAnchorLocation) {
+        Optional<GlobalPos> deathAnchorLocation1 = deathAnchorLocation.darkerDepths$getDeathAnchorLocation();
 
         if (deathAnchorLocation1.isPresent() && level instanceof ServerLevel serverLevel) {
             GlobalPos globalPos = deathAnchorLocation1.get();

@@ -7,6 +7,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.DeathScreen;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.Entity;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -26,10 +27,11 @@ public class ClientDeathAnchorAnimationOverlay {
     public static final int FRAME_COUNT = 200;
     private static final int FRAME_DURATION_MS = 50;
     public static final List<ResourceLocation> ANIMATION_FRAMES = new ArrayList<>();
+    private static boolean hasDied = false;
 
     static {
         for (int i = startFrame; i <= FRAME_COUNT; i++) {
-            ResourceLocation frameLocation = ResourceLocation.fromNamespaceAndPath(DarkerDepths.MOD_ID,
+            var frameLocation = ResourceLocation.fromNamespaceAndPath(DarkerDepths.MOD_ID,
                     "textures/gui/death_anchor_overlay/frame_" + i + ".png");
             ANIMATION_FRAMES.add(frameLocation);
         }
@@ -39,12 +41,12 @@ public class ClientDeathAnchorAnimationOverlay {
     public void onRenderGuiOverlay(RenderGuiLayerEvent.Post event) {
         if (!isOverlayActive) return;
 
-        Minecraft mc = Minecraft.getInstance();
-        GuiGraphics guiGraphics = event.getGuiGraphics();
-
+        var mc = Minecraft.getInstance();
+        var guiGraphics = event.getGuiGraphics();
         int screenWidth = mc.getWindow().getGuiScaledWidth();
         int screenHeight = mc.getWindow().getGuiScaledHeight();
 
+        handleRespawn();
         updateAnimation();
         renderOverlay(guiGraphics, screenWidth, screenHeight);
     }
@@ -68,12 +70,22 @@ public class ClientDeathAnchorAnimationOverlay {
                 currentFrame++;
                 lastFrameTime = currentTime;
 
-                //pause on the last frame for another tick to try to end on DeathScreen in case of desync
-                //there probably is a more robust way to do this, but I'm concerned about the animation being stuck on when it shouldn't
-            } else if(currentTime - lastFrameTime >= FRAME_DURATION_MS * 2)
+            } else
             {
                 stopOverlay();
             }
+        }
+    }
+
+    private static void handleRespawn() {
+        var mc = Minecraft.getInstance();
+        var entity = mc.cameraEntity;
+        if(entity == null) return;
+        if(!entity.isAlive() && !hasDied) {
+            hasDied = true;
+        }
+        if(entity.isAlive() && hasDied) {
+            stopOverlay();
         }
     }
 
@@ -108,5 +120,6 @@ public class ClientDeathAnchorAnimationOverlay {
     public static void stopOverlay() {
         isOverlayActive = false;
         currentFrame = 0;
+        hasDied = false;
     }
 }
