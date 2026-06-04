@@ -11,7 +11,7 @@
     {
       "apply": {
         "model": "darkerdepths:block/aridrock_bricks_wall_side",
-        "uvlock": true,
+        "uvlock": false,
         "y": 90
       },
       "when": {
