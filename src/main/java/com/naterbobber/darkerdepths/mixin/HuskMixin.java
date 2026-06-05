@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class HuskMixin {
 
     @Inject(at = @At("HEAD"), method = "checkHuskSpawnRules", cancellable = true)
-    private static void DD$checkHuskSpawnRules(EntityType<Husk> entityType, ServerLevelAccessor world, MobSpawnType mobSpawnType, BlockPos pos, RandomSource randomSource, CallbackInfoReturnable<Boolean> cir) {
+    private static void darkerdepths$checkHuskSpawnRules(EntityType<Husk> entityType, ServerLevelAccessor world, MobSpawnType mobSpawnType, BlockPos pos, RandomSource randomSource, CallbackInfoReturnable<Boolean> cir) {
         if (world.getBlockState(pos.below()).is(DDTags.Blocks.HUSKS_SPAWNABLE_ON)) {
             cir.setReturnValue(true);
         }

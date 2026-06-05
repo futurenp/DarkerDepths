@@ -36,7 +36,7 @@ public class ClientDeathAnchorAnimationOverlay {
             ANIMATION_FRAMES.add(frameLocation);
         }
     }
-
+        // next on the chopping block
     @SubscribeEvent
     public void onRenderGuiOverlay(RenderGuiLayerEvent.Post event) {
         if (!isOverlayActive) return;

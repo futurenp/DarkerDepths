@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class BlockLightEngineMixin {
 
     @Inject(at = @At("HEAD"), method = "getEmission", cancellable = true)
-    private void DD$getEmission(long sectionPos, BlockState state, CallbackInfoReturnable<Integer> cir) {
+    private void darkerdepths$getEmission(long sectionPos, BlockState state, CallbackInfoReturnable<Integer> cir) {
         BlockPos blockPos = BlockPos.of(sectionPos);
         if (DynamicLightHandler.LIGHT_SOURCES.containsKey(blockPos) && DynamicLightHandler.LIGHT_SOURCES.get(blockPos)) {
             cir.setReturnValue(12);

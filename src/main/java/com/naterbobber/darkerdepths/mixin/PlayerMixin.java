@@ -24,7 +24,7 @@ public class PlayerMixin implements IDeathAnchorExtension {
     private int darkerDepths$healthCooldown;
 
     @Inject(at = @At("HEAD"), method = "addAdditionalSaveData")
-    private void DD$addAdditionalSaveData(CompoundTag tag, CallbackInfo ci) {
+    private void darkerdepths$addAdditionalSaveData(CompoundTag tag, CallbackInfo ci) {
         this.darkerDepths$getDeathAnchorLocation().flatMap((globalPos) ->
                 GlobalPos.CODEC
                         .encodeStart(NbtOps.INSTANCE, globalPos)
@@ -34,7 +34,7 @@ public class PlayerMixin implements IDeathAnchorExtension {
     }
 
     @Inject(at = @At("HEAD"), method = "readAdditionalSaveData")
-    private void DD$readAdditionalSaveData(CompoundTag tag, CallbackInfo ci) {
+    private void darkerdepths$readAdditionalSaveData(CompoundTag tag, CallbackInfo ci) {
         if (tag.contains("DeathAnchorLocation", 10)) {
             this.darkerDepths$setDeathAnchorLocation(GlobalPos.CODEC.parse(NbtOps.INSTANCE, tag.get("DeathAnchorLocation")).resultOrPartial(DarkerDepths.LOGGER::error));
         }
@@ -44,7 +44,7 @@ public class PlayerMixin implements IDeathAnchorExtension {
     }
 
     @Inject(at = @At("HEAD"), method = "tick")
-    private void DD$tick(CallbackInfo ci) {
+    private void darkerdepths$tick(CallbackInfo ci) {
         Player player = (Player)(Object)this;
         if(player.level().isClientSide) return;
         if(player.getAttribute(Attributes.MAX_HEALTH).hasModifier(IDeathAnchorExtension.MAX_HEALTH_DEBUFF_ID)) {
@@ -77,8 +77,7 @@ public class PlayerMixin implements IDeathAnchorExtension {
         var healthAttribute = player.getAttribute(Attributes.MAX_HEALTH);
         if(healthAttribute != null) {
             var modifier = healthAttribute.getModifier(IDeathAnchorExtension.MAX_HEALTH_DEBUFF_ID);
-            var currentAmount = modifier.amount();
-            var newAmount = currentAmount + 0.1;
+            var newAmount = modifier.amount() + 0.1;
             if(newAmount < 0) {
                 healthAttribute.addOrReplacePermanentModifier(
                         new AttributeModifier(IDeathAnchorExtension.MAX_HEALTH_DEBUFF_ID, newAmount, AttributeModifier.Operation.ADD_MULTIPLIED_BASE));

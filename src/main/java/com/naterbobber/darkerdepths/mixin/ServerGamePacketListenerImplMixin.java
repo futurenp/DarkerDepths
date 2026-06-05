@@ -18,7 +18,7 @@ public class ServerGamePacketListenerImplMixin {
             at = @At("STORE"),
             ordinal = 10
     )
-    private double DD$modifyMovementValue(double original) {
+    private double darkerdepths$modifyMovementValue(double original) {
         boolean flag = this.player.hasEffect(DDMobEffects.SOUL_BINDING);
         return flag ? 0.0D : original;
     }
