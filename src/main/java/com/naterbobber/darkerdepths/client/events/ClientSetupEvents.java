@@ -1,25 +1,15 @@
 package com.naterbobber.darkerdepths.client.events;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
-import com.naterbobber.darkerdepths.block.DDBlockStateProperties;
-import com.naterbobber.darkerdepths.client.ClientDeathAnchorAnimationOverlay;
 import com.naterbobber.darkerdepths.client.fog.FogManager;
 import com.naterbobber.darkerdepths.client.fog.modifiers.BiomeFogModifier;
 import com.naterbobber.darkerdepths.client.fog.modifiers.EffectFogModifier;
 import com.naterbobber.darkerdepths.client.fog.modifiers.ScorcherFlashModifier;
-import com.naterbobber.darkerdepths.client.render.EmissiveBakedModel;
 import com.naterbobber.darkerdepths.client.render.EmissiveModelManager;
-import com.naterbobber.darkerdepths.init.DDBlocks;
 import com.naterbobber.darkerdepths.init.DDDataComponents;
 import com.naterbobber.darkerdepths.init.DDItems;
 import com.naterbobber.darkerdepths.init.DDWoodType;
-import net.minecraft.client.renderer.LightTexture;
-import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.block.BlockModelShaper;
 import net.minecraft.client.renderer.item.ItemProperties;
-import net.minecraft.client.resources.model.ModelResourceLocation;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.IEventBus;
@@ -28,7 +18,6 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.ModelEvent;
 import net.neoforged.neoforge.common.NeoForge;
-import net.neoforged.neoforge.registries.DeferredBlock;
 
 @OnlyIn(Dist.CLIENT)
 @EventBusSubscriber(modid = DarkerDepths.MOD_ID, value = Dist.CLIENT)
@@ -39,7 +28,6 @@ public class ClientSetupEvents {
         IEventBus eventBus = NeoForge.EVENT_BUS;
 
         eventBus.register(new ClientEvents());
-        eventBus.register(new ClientDeathAnchorAnimationOverlay());
         FogManager.register(new BiomeFogModifier());
         FogManager.register(new EffectFogModifier());
         FogManager.register(new ScorcherFlashModifier());

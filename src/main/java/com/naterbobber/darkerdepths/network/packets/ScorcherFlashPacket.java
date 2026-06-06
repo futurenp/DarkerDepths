@@ -1,7 +1,7 @@
 package com.naterbobber.darkerdepths.network.packets;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
-import com.naterbobber.darkerdepths.client.fog.modifiers.ScorcherFlashModifier;
+import com.naterbobber.darkerdepths.client.screen_effects.ScorcherFlashHandler;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
@@ -27,7 +27,12 @@ public record ScorcherFlashPacket(int durationTicks) implements CustomPacketPayl
         context.enqueueWork(new Runnable() {
             @Override
             public void run() {
-                ScorcherFlashModifier.triggerFlash(packet.durationTicks());            }
+                if(!ScorcherFlashHandler.isFlashed()) {
+                    ScorcherFlashHandler.triggerFlash(packet.durationTicks());
+                } else if(ScorcherFlashHandler.getTicksRemaining() < ScorcherFlashHandler.getMaxTicks() - 20) {
+                    ScorcherFlashHandler.setFlashTicksRemaining(ScorcherFlashHandler.getMaxTicks() - 20);
+                }
+            }
         });
     }
 

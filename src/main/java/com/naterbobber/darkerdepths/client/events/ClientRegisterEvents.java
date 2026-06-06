@@ -1,7 +1,7 @@
 package com.naterbobber.darkerdepths.client.events;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
-import com.naterbobber.darkerdepths.client.DDShaders;
+import com.naterbobber.darkerdepths.client.render.DDShaders;
 import com.naterbobber.darkerdepths.client.events.listeners.DDClientReloadListener;
 import com.naterbobber.darkerdepths.client.particle.*;
 import com.naterbobber.darkerdepths.client.particle.void_soul.*;

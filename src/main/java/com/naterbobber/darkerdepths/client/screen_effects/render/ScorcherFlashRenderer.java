@@ -1,8 +1,8 @@
-package com.naterbobber.darkerdepths.client;
+package com.naterbobber.darkerdepths.client.screen_effects.render;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.naterbobber.darkerdepths.client.fog.modifiers.ScorcherFlashModifier;
+import com.naterbobber.darkerdepths.client.screen_effects.ScorcherFlashHandler;
 import com.naterbobber.darkerdepths.entities.ScorcherEntity;
 import com.naterbobber.darkerdepths.init.DDEntityTypes;
 import com.naterbobber.darkerdepths.init.DDParticleTypes;
@@ -15,14 +15,14 @@ import net.neoforged.api.distmarker.OnlyIn;
 import org.lwjgl.opengl.GL11;
 
 @OnlyIn(Dist.CLIENT)
-public class ScorcherCameraRenderer {
+public class ScorcherFlashRenderer {
 
     private static ScorcherEntity scorcher;
     private static int lastParticleTick = -1;
 
     public static void render(Camera camera) {
         var mc = Minecraft.getInstance();
-        if (!ScorcherFlashModifier.isFlashed()
+        if (!ScorcherFlashHandler.isFlashed()
                 || mc.level == null
                 || mc.player == null
                 || !mc.player.isAlive()
@@ -45,8 +45,8 @@ public class ScorcherCameraRenderer {
         setScorcherPosAndRot(camPos, fixedYaw);
 
         float pTick = mc.getTimer().getGameTimeDeltaPartialTick(true);
-        int remaining = ScorcherFlashModifier.getTicksRemaining();
-        int maxTime = ScorcherFlashModifier.getMaxTicks();
+        int remaining = ScorcherFlashHandler.getTicksRemaining();
+        int maxTime = ScorcherFlashHandler.getMaxTicks();
         float elapsedTicks = (maxTime - remaining) + pTick;
         float zTranslation = calculateZTranslation(elapsedTicks, maxTime);
         PoseStack screenStack = new PoseStack();
@@ -103,13 +103,12 @@ public class ScorcherCameraRenderer {
         if (scorcher == null) {
             scorcher = DDEntityTypes.SCORCHER.get().create(mc.level);
             if (scorcher != null) {
-                scorcher.setId(999999);
                 scorcher.triggerAnim("shake_controller", "attack");
                 return true;
             }
         }
 
-        return false;
+        return scorcher != null;
     }
 
     public static void setScorcherPosAndRot(Vec3 camPos, float fixedYaw) {

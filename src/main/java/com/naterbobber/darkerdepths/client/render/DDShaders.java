@@ -1,4 +1,4 @@
-package com.naterbobber.darkerdepths.client;
+package com.naterbobber.darkerdepths.client.render;
 
 import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import com.mojang.blaze3d.vertex.VertexFormat;

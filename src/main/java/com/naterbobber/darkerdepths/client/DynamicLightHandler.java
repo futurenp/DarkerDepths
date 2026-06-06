@@ -6,10 +6,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.phys.AABB;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.client.event.ClientTickEvent;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -19,7 +17,7 @@ public class DynamicLightHandler {
     public static final Map<BlockPos, Boolean> LIGHT_SOURCES = new ConcurrentHashMap<>();
     private static final boolean ENABLED = !DDCompat.LAMB_DYNAMIC_LIGHTS.isLoaded();
 
-    public static void onClientTick() {
+    public static void tick() {
         if(!ENABLED) return;
         var player = Minecraft.getInstance().player;
         var level = Minecraft.getInstance().level;

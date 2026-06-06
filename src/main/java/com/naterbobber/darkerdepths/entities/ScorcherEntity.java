@@ -3,7 +3,7 @@ package com.naterbobber.darkerdepths.entities;
 import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
 import com.mojang.serialization.Dynamic;
-import com.naterbobber.darkerdepths.client.fog.modifiers.ScorcherFlashModifier;
+import com.naterbobber.darkerdepths.client.screen_effects.ScorcherFlashHandler;
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import com.naterbobber.darkerdepths.init.DDParticleTypes;
 import com.naterbobber.darkerdepths.network.packets.ScorcherFlashPacket;
@@ -368,7 +368,7 @@ public class ScorcherEntity extends Mob implements GeoEntity {
                 || !this.isAlive()
                 || !this.hasBeamTarget()
                 || this.level().getDifficulty() == Difficulty.PEACEFUL
-                || ScorcherFlashModifier.isFlashed()) {
+                || ScorcherFlashHandler.isFlashed()) {
             return;
         }
 

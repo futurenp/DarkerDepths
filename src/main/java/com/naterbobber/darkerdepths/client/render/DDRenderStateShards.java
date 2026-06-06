@@ -1,4 +1,4 @@
-package com.naterbobber.darkerdepths.client;
+package com.naterbobber.darkerdepths.client.render;
 
 import net.minecraft.client.renderer.RenderStateShard;
 import net.neoforged.api.distmarker.Dist;
