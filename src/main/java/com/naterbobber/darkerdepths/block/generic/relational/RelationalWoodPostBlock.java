@@ -1,8 +1,10 @@
-package com.naterbobber.darkerdepths.block.generic;
+package com.naterbobber.darkerdepths.block.generic.relational;
 
+import com.naterbobber.darkerdepths.block.generic.IRelationalBlock;
+import com.naterbobber.darkerdepths.block.generic.WoodPostBlock;
 import net.minecraft.world.level.block.Block;
 
-public class RelationalWoodPostBlock extends WoodPostBlock implements IRelationalBlock{
+public class RelationalWoodPostBlock extends WoodPostBlock implements IRelationalBlock {
     private final Block baseBlock;
 
     public RelationalWoodPostBlock(Block baseBlock) {

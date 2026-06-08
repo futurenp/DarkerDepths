@@ -1,13 +1,94 @@
 {
   "variants": {
-    "type=bottom": {
+    "heat_level=0,type=bottom,waterlogged=false": {
       "model": "darkerdepths:block/darkslate_slab"
     },
-    "type=double": {
-      "model": "darkerdepths:block/darkslate"
+    "heat_level=0,type=bottom,waterlogged=true": {
+      "model": "darkerdepths:block/darkslate_slab"
     },
-    "type=top": {
+    "heat_level=0,type=double,waterlogged=false": {
+      "model": "darkerdepths:block/darkslate_slab_double"
+    },
+    "heat_level=0,type=double,waterlogged=true": {
+      "model": "darkerdepths:block/darkslate_slab_double"
+    },
+    "heat_level=0,type=top,waterlogged=false": {
       "model": "darkerdepths:block/darkslate_slab_top"
+    },
+    "heat_level=0,type=top,waterlogged=true": {
+      "model": "darkerdepths:block/darkslate_slab_top"
+    },
+    "heat_level=1,type=bottom,waterlogged=false": {
+      "model": "darkerdepths:block/darkslate_slab_heat_level_1"
+    },
+    "heat_level=1,type=bottom,waterlogged=true": {
+      "model": "darkerdepths:block/darkslate_slab_heat_level_1"
+    },
+    "heat_level=1,type=double,waterlogged=false": {
+      "model": "darkerdepths:block/darkslate_slab_heat_level_1_double"
+    },
+    "heat_level=1,type=double,waterlogged=true": {
+      "model": "darkerdepths:block/darkslate_slab_heat_level_1_double"
+    },
+    "heat_level=1,type=top,waterlogged=false": {
+      "model": "darkerdepths:block/darkslate_slab_heat_level_1_top"
+    },
+    "heat_level=1,type=top,waterlogged=true": {
+      "model": "darkerdepths:block/darkslate_slab_heat_level_1_top"
+    },
+    "heat_level=2,type=bottom,waterlogged=false": {
+      "model": "darkerdepths:block/darkslate_slab_heat_level_2"
+    },
+    "heat_level=2,type=bottom,waterlogged=true": {
+      "model": "darkerdepths:block/darkslate_slab_heat_level_2"
+    },
+    "heat_level=2,type=double,waterlogged=false": {
+      "model": "darkerdepths:block/darkslate_slab_heat_level_2_double"
+    },
+    "heat_level=2,type=double,waterlogged=true": {
+      "model": "darkerdepths:block/darkslate_slab_heat_level_2_double"
+    },
+    "heat_level=2,type=top,waterlogged=false": {
+      "model": "darkerdepths:block/darkslate_slab_heat_level_2_top"
+    },
+    "heat_level=2,type=top,waterlogged=true": {
+      "model": "darkerdepths:block/darkslate_slab_heat_level_2_top"
+    },
+    "heat_level=3,type=bottom,waterlogged=false": {
+      "model": "darkerdepths:block/darkslate_slab_heat_level_3"
+    },
+    "heat_level=3,type=bottom,waterlogged=true": {
+      "model": "darkerdepths:block/darkslate_slab_heat_level_3"
+    },
+    "heat_level=3,type=double,waterlogged=false": {
+      "model": "darkerdepths:block/darkslate_slab_heat_level_3_double"
+    },
+    "heat_level=3,type=double,waterlogged=true": {
+      "model": "darkerdepths:block/darkslate_slab_heat_level_3_double"
+    },
+    "heat_level=3,type=top,waterlogged=false": {
+      "model": "darkerdepths:block/darkslate_slab_heat_level_3_top"
+    },
+    "heat_level=3,type=top,waterlogged=true": {
+      "model": "darkerdepths:block/darkslate_slab_heat_level_3_top"
+    },
+    "heat_level=4,type=bottom,waterlogged=false": {
+      "model": "darkerdepths:block/darkslate_slab_heat_level_4"
+    },
+    "heat_level=4,type=bottom,waterlogged=true": {
+      "model": "darkerdepths:block/darkslate_slab_heat_level_4"
+    },
+    "heat_level=4,type=double,waterlogged=false": {
+      "model": "darkerdepths:block/darkslate_slab_heat_level_4_double"
+    },
+    "heat_level=4,type=double,waterlogged=true": {
+      "model": "darkerdepths:block/darkslate_slab_heat_level_4_double"
+    },
+    "heat_level=4,type=top,waterlogged=false": {
+      "model": "darkerdepths:block/darkslate_slab_heat_level_4_top"
+    },
+    "heat_level=4,type=top,waterlogged=true": {
+      "model": "darkerdepths:block/darkslate_slab_heat_level_4_top"
     }
   }
 }

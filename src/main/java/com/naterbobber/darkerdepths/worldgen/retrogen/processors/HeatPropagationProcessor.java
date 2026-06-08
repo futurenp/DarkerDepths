@@ -1,7 +1,7 @@
 package com.naterbobber.darkerdepths.worldgen.retrogen.processors;
 
 import com.naterbobber.darkerdepths.block.DDBlockStateProperties;
-import com.naterbobber.darkerdepths.block.generic.HeatableBlock;
+import com.naterbobber.darkerdepths.block.generic.IHeatableBlock;
 import com.naterbobber.darkerdepths.config.DDConfig;
 import com.naterbobber.darkerdepths.util.DDTags;
 import com.naterbobber.darkerdepths.worldgen.retrogen.IChunkPostProcessor;
@@ -12,7 +12,6 @@ import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.ChunkAccess;
-import net.minecraft.world.level.chunk.LevelChunk;
 import net.minecraft.world.level.chunk.LevelChunkSection;
 
 import java.util.LinkedList;
@@ -62,7 +61,7 @@ public class HeatPropagationProcessor implements IChunkPostProcessor {
             HeatNode node = queue.poll();
             opsCompletedThisTick++;
 
-            int targetHeat = HeatableBlock.calculateNewHeat(node.heat());
+            int targetHeat = IHeatableBlock.calculateNewHeat(node.heat());
             if (targetHeat <= 0) continue;
 
             for (Direction direction : Direction.values()) {
@@ -125,7 +124,7 @@ public class HeatPropagationProcessor implements IChunkPostProcessor {
                         for (int z = 0; z < 16; z++) {
                             BlockState currentState = section.getBlockState(x, y, z);
                             if (currentState.is(DDTags.Blocks.HEAT_PROVIDER)) {
-                                queue.add(new HeatNode(new BlockPos(startX + x, sectionMinY + y, startZ + z), HeatableBlock.determineHeat(currentState)));
+                                queue.add(new HeatNode(new BlockPos(startX + x, sectionMinY + y, startZ + z), IHeatableBlock.determineHeat(currentState)));
                             }
                         }
                     }

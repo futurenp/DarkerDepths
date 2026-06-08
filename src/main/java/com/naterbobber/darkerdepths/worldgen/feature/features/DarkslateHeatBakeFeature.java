@@ -2,17 +2,14 @@ package com.naterbobber.darkerdepths.worldgen.feature.features;
 
 import com.mojang.serialization.Codec;
 import com.naterbobber.darkerdepths.block.DDBlockStateProperties;
-import com.naterbobber.darkerdepths.block.generic.HeatableBlock;
-import com.naterbobber.darkerdepths.init.DDBlocks;
+import com.naterbobber.darkerdepths.block.generic.IHeatableBlock;
 import com.naterbobber.darkerdepths.util.DDTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.tags.FluidTags;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.ChunkAccess;
 import net.minecraft.world.level.chunk.LevelChunkSection;
@@ -69,7 +66,7 @@ public class DarkslateHeatBakeFeature extends Feature<NoneFeatureConfiguration> 
                             int worldZ = startZ + z;
                             BlockPos currentPos = new BlockPos(worldX, worldY, worldZ);
 
-                            pushHeatOutward(level, currentPos, HeatableBlock.determineHeat(currentState));
+                            pushHeatOutward(level, currentPos, IHeatableBlock.determineHeat(currentState));
                         }
                     }
                 }
@@ -97,7 +94,7 @@ public class DarkslateHeatBakeFeature extends Feature<NoneFeatureConfiguration> 
                 int currentHeat = neighborState.getValue(DDBlockStateProperties.HEAT_LEVEL);
 
                 if (heatLevelToPass > currentHeat) {
-                    level.setBlock(neighborPos, neighborState.setValue(DDBlockStateProperties.HEAT_LEVEL, HeatableBlock.calculateNewHeat(heatLevelToPass)), Block.UPDATE_CLIENTS);
+                    level.setBlock(neighborPos, neighborState.setValue(DDBlockStateProperties.HEAT_LEVEL, IHeatableBlock.calculateNewHeat(heatLevelToPass)), Block.UPDATE_CLIENTS);
                     pushHeatOutward(level, neighborPos, heatLevelToPass - 1);
                 }
             }

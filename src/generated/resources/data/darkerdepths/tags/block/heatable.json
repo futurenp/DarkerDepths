@@ -1,6 +1,10 @@
 {
   "values": [
     "darkerdepths:darkslate",
+    "darkerdepths:darkslate_slab",
+    "darkerdepths:darkslate_vertical_slab",
+    "darkerdepths:darkslate_stairs",
+    "darkerdepths:darkslate_wall",
     "darkerdepths:dead_living_crystal",
     "darkerdepths:living_crystal",
     "darkerdepths:geyser"

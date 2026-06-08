@@ -5,7 +5,8 @@ import com.naterbobber.darkerdepths.block.DDBlockStateProperties;
 import com.naterbobber.darkerdepths.block.blockstates.PillarState;
 import com.naterbobber.darkerdepths.block.blockstates.PostState;
 import com.naterbobber.darkerdepths.block.blockstates.VerticalSlabState;
-import com.naterbobber.darkerdepths.block.custom.DarkslateBlock;
+import com.naterbobber.darkerdepths.block.custom.darkslate.DarkslateBlock;
+import com.naterbobber.darkerdepths.block.custom.darkslate.DarkslateSlabBlock;
 import com.naterbobber.darkerdepths.block.generic.*;
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import com.naterbobber.darkerdepths.init.DDItems;
@@ -16,7 +17,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.client.model.generators.ModelBuilder;
@@ -60,6 +60,11 @@ public class DDBlockStateProvider extends BlockStateProvider {
         add(this::woodBlockWithItem, DDBlocks.GLOWSHROOM_BOARDS, DDBlocks.GLOWSHROOM_PLANKS);
         add(this::verticalPlanksBlockWithItem, DDBlocks.VERTICAL_GLOWSHROOM_PLANKS, DDBlocks.GLOWSHROOM_PLANKS);
         add(this::verticalPlanksBlockWithItem, DDBlocks.VERTICAL_PETRIFIED_PLANKS, DDBlocks.PETRIFIED_PLANKS);
+        add(this::darkslateBlockWithItem, DDBlocks.DARKSLATE);
+        add(this::darkslateSlabBlockWithItem, DDBlocks.DARKSLATE_SLAB);
+        add(this::darkslateVerticalSlabBlockWithItem, DDBlocks.DARKSLATE_VERTICAL_SLAB);
+//        add(this::darkslateStairBlockWithItem, DDBlocks.DARKSLATE_STAIRS);
+//        add(this::darkslateWallBlockWithItem, DDBlocks.DARKSLATE_WALL);
 
         skipBlock(
                 DDBlocks.VOID_SOUL_JAR,
@@ -151,7 +156,6 @@ public class DDBlockStateProvider extends BlockStateProvider {
                         case DoorBlock b -> doorBlockWithItem(holder);
                         case TrapDoorBlock b -> trapdoorBlockWithItem(holder);
                         case BushBlock b -> crossBlockWithItem(holder);
-                        case DarkslateBlock b -> darkslateBlockWithItem(holder, DDBlockStateProperties.HEAT_LEVEL);
                         case RotatedPillarBlock b -> rotatablePillarBlockWithItem(holder);
                         case ConnectedRotatablePillarBlock b -> connectedRotatablePillarBlockWithItem(holder);
                         case ConnectedPillarBlock b -> connectedPillarBlockWithItem(holder);
@@ -167,15 +171,15 @@ public class DDBlockStateProvider extends BlockStateProvider {
         Block parentBlock = block.getBaseBlock();
 
         switch (block) {
-            case RelationalSlabBlock b -> slabBlockWithItem(blockHolder, parentBlock);
-            case RelationalVerticalSlabBlock b -> verticalSlabBlockWithItem(blockHolder, parentBlock);
-            case RelationalStairBlock b -> stairsBlockWithItem(blockHolder, parentBlock);
-            case RelationalPressurePlateBlock b -> pressurePlateBlockWithItem(blockHolder, parentBlock);
-            case RelationalButtonBlock b -> buttonBlockWithItem(blockHolder, parentBlock);
-            case RelationalFenceBlock b -> fenceBlockWithItem(blockHolder, parentBlock);
-            case RelationalFenceGateBlock b -> fenceGateBlockWithItem(blockHolder, parentBlock);
-            case RelationalWallBlock b -> wallBlockWithItem(blockHolder, parentBlock);
-            case RelationalWoodPostBlock b -> postBlockWithItem(blockHolder, parentBlock);
+            case SlabBlock b -> slabBlockWithItem(blockHolder, parentBlock);
+            case VerticalSlabBlock b -> verticalSlabBlockWithItem(blockHolder, parentBlock);
+            case StairBlock b -> stairsBlockWithItem(blockHolder, parentBlock);
+            case PressurePlateBlock b -> pressurePlateBlockWithItem(blockHolder, parentBlock);
+            case ButtonBlock b -> buttonBlockWithItem(blockHolder, parentBlock);
+            case FenceBlock b -> fenceBlockWithItem(blockHolder, parentBlock);
+            case FenceGateBlock b -> fenceGateBlockWithItem(blockHolder, parentBlock);
+            case WallBlock b -> wallBlockWithItem(blockHolder, parentBlock);
+            case WoodPostBlock b -> postBlockWithItem(blockHolder, parentBlock);
             default -> throw new IllegalStateException("Unexpected value: " + block);
         }
     }
@@ -235,8 +239,9 @@ public class DDBlockStateProvider extends BlockStateProvider {
         }
     }
 
-    public void darkslateBlockWithItem(DeferredHolder<Block, ? extends Block> blockHolder, IntegerProperty property) {
+    public void darkslateBlockWithItem(DeferredHolder<Block, ? extends Block> blockHolder) {
         Block block = blockHolder.get();
+        var property = DDBlockStateProperties.HEAT_LEVEL;
         getVariantBuilder(block).forAllStates(state -> {
             Direction.Axis axis = state.getValue(RotatedPillarBlock.AXIS);
             int propValue = state.getValue(property);
@@ -248,14 +253,11 @@ public class DDBlockStateProvider extends BlockStateProvider {
                 stateName = blockName;
             }
 
-            ResourceLocation sideTexture = modLoc("block/" + stateName);
-            ResourceLocation endTexture = this.extend(sideTexture, "_top");
+            var sideTexture = modLoc("block/" + stateName);
+            var endTexture = this.extend(sideTexture, "_top");
 
-            ModelFile vertical;
-            ModelFile horizontal;
-
-            vertical = this.models().cubeColumn(stateName, sideTexture, endTexture);
-            horizontal = this.models().cubeColumnHorizontal(stateName + "_horizontal", sideTexture, endTexture);
+            var vertical = this.models().cubeColumn(stateName, sideTexture, endTexture);
+            var horizontal = this.models().cubeColumnHorizontal(stateName + "_horizontal", sideTexture, endTexture);
 
             if (axis == Direction.Axis.Y) {
                 return ConfiguredModel.builder().modelFile(vertical).build();
@@ -267,6 +269,82 @@ public class DDBlockStateProvider extends BlockStateProvider {
         });
 
         simpleBlockItem(block, models().getExistingFile(blockTexture(block)));
+    }
+
+    private void darkslateSlabBlockWithItem(DeferredHolder<Block, ? extends Block> blockHolder) {
+        if(!(blockHolder.get() instanceof DarkslateSlabBlock)) return ;
+        var property = DDBlockStateProperties.HEAT_LEVEL;
+        var blockName = blockHolder.getId().getPath();
+
+        getVariantBuilder(blockHolder.get()).forAllStates(state -> {
+            var type = state.getValue(SlabBlock.TYPE);
+            var heatLevel = state.getValue(property);
+            var propertyName = property.getName();
+
+            var stateName = blockName + "_" + propertyName + "_" + heatLevel;
+            if (heatLevel == 0) {
+                stateName = blockName;
+            }
+
+            var darkslateName = DDBlocks.DARKSLATE.getId().getPath();
+            var textureName = darkslateName + "_" + propertyName + "_" + heatLevel;
+            if (heatLevel == 0) {
+                textureName = darkslateName;
+            }
+
+            var sideTexture = modLoc("block/" + textureName);
+            var endTexture = this.extend(sideTexture, "_top");
+
+            var bottom = this.models().slab(stateName, sideTexture, endTexture, endTexture);
+            var top = this.models().slabTop(stateName + "_top", sideTexture, endTexture, endTexture);
+            var doubleSlab = this.models().cubeColumn(stateName + "_double", sideTexture, endTexture);
+
+            return switch (type) {
+                case TOP -> ConfiguredModel.builder().modelFile(top).build();
+                case BOTTOM -> ConfiguredModel.builder().modelFile(bottom).build();
+                case DOUBLE -> ConfiguredModel.builder().modelFile(doubleSlab).build();
+            };
+        });
+
+        simpleBlockItem(blockHolder.get(), models().getExistingFile(blockTexture(blockHolder.get())));
+    }
+
+    private void darkslateVerticalSlabBlockWithItem(DeferredHolder<Block, ? extends Block> blockHolder) {
+        if(!(blockHolder.get() instanceof DarkslateSlabBlock)) return;
+        var property = DDBlockStateProperties.HEAT_LEVEL;
+        var blockName = blockHolder.getId().getPath();
+
+        getVariantBuilder(blockHolder.get()).forAllStates(state -> {
+            var type = state.getValue(VerticalSlabBlock.TYPE);
+            var heatLevel = state.getValue(property);
+            var propertyName = property.getName();
+
+            var stateName = blockName + "_" + propertyName + "_" + heatLevel;
+            if (heatLevel == 0) {
+                stateName = blockName;
+            }
+
+            var darkslateName = DDBlocks.DARKSLATE.getId().getPath();
+            var textureName = darkslateName + "_" + propertyName + "_" + heatLevel;
+            if (heatLevel == 0) {
+                textureName = darkslateName;
+            }
+
+            var sideTexture = modLoc("block/" + textureName);
+            var endTexture = this.extend(sideTexture, "_top");
+
+            var bottom = this.models().slab(stateName, sideTexture, endTexture, endTexture);
+            var top = this.models().slabTop(stateName + "_top", sideTexture, endTexture, endTexture);
+            var doubleSlab = this.models().cubeColumn(stateName + "_double", sideTexture, endTexture);
+
+            return switch (type) {
+//                case TOP -> ConfiguredModel.builder().modelFile(top).build();
+//                case BOTTOM -> ConfiguredModel.builder().modelFile(bottom).build();
+                default -> ConfiguredModel.builder().modelFile(doubleSlab).build();
+            };
+        });
+
+        simpleBlockItem(blockHolder.get(), models().getExistingFile(blockTexture(blockHolder.get())));
     }
 
     public void airBlock(DeferredHolder<Block, ? extends Block> block) {

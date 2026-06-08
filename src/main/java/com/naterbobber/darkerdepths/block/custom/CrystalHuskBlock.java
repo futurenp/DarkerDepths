@@ -1,7 +1,7 @@
 package com.naterbobber.darkerdepths.block.custom;
 
 import com.naterbobber.darkerdepths.block.DDBlockStateProperties;
-import com.naterbobber.darkerdepths.block.generic.HeatableBlock;
+import com.naterbobber.darkerdepths.block.generic.IHeatableBlock;
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -24,9 +24,8 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.Nullable;
 
-public class CrystalHuskBlock extends Block implements HeatableBlock {
+public class CrystalHuskBlock extends Block implements IHeatableBlock {
     private static final IntegerProperty CRYSTAL_GROWTH_LEVEL = DDBlockStateProperties.CRYSTAL_GROWTH_LEVEL;
-    private static final IntegerProperty HEAT_LEVEL = DDBlockStateProperties.HEAT_LEVEL;
 
     public CrystalHuskBlock(Properties properties) {
         super(properties);
@@ -44,7 +43,7 @@ public class CrystalHuskBlock extends Block implements HeatableBlock {
     @Override
     public @Nullable BlockState getStateForPlacement(BlockPlaceContext context) {
         int neighborHeat = getHighestNeighborHeat(context.getLevel(), context.getClickedPos());
-        return this.defaultBlockState().setValue(HEAT_LEVEL, HeatableBlock.calculateNewHeat(neighborHeat));
+        return this.defaultBlockState().setValue(HEAT_LEVEL, IHeatableBlock.calculateNewHeat(neighborHeat));
     }
 
     @Override
@@ -85,9 +84,8 @@ public class CrystalHuskBlock extends Block implements HeatableBlock {
 
     @Override
     public BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor level, BlockPos currentPos, BlockPos neighborPos) {
-        if (updatedByHeat(level, state)) {
-            level.scheduleTick(currentPos, this, 10);
-        }
+        level.scheduleTick(currentPos, this, 10);
+
         return super.updateShape(state, direction, neighborState, level, currentPos, neighborPos);
     }
 

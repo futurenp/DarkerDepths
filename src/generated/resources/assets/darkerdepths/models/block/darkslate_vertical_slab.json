@@ -1,6 +1,0 @@
-{
-  "parent": "darkerdepths:block/vertical_slab",
-  "textures": {
-    "texture": "darkerdepths:block/darkslate"
-  }
-}

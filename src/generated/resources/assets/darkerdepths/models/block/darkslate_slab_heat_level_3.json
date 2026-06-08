@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "darkerdepths:block/darkslate_heat_level_3_top",
+    "side": "darkerdepths:block/darkslate_heat_level_3",
+    "top": "darkerdepths:block/darkslate_heat_level_3_top"
+  }
+}

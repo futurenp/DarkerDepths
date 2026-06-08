@@ -4,7 +4,10 @@ import com.google.common.collect.Maps;
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.block.DDBlockSetTypes;
 import com.naterbobber.darkerdepths.block.custom.*;
+import com.naterbobber.darkerdepths.block.custom.darkslate.DarkslateBlock;
+import com.naterbobber.darkerdepths.block.custom.darkslate.DarkslateSlabBlock;
 import com.naterbobber.darkerdepths.block.generic.*;
+import com.naterbobber.darkerdepths.block.generic.relational.*;
 import com.naterbobber.darkerdepths.compat.CompatID;
 import com.naterbobber.darkerdepths.compat.DDCompat;
 import com.naterbobber.darkerdepths.item.BlockItemWithHoverText;
@@ -217,8 +220,8 @@ public class DDBlocks {
             () -> new DarkslateBlock(DARKSLATE_PROPERTIES));
     public static final DeferredBlock<RelationalStairBlock> DARKSLATE_STAIRS = registerBlock("darkslate_stairs",
             () -> new RelationalStairBlock(DARKSLATE.get()));
-    public static final DeferredBlock<RelationalSlabBlock> DARKSLATE_SLAB = registerBlock("darkslate_slab",
-            () -> new RelationalSlabBlock(DARKSLATE.get()));
+    public static final DeferredBlock<DarkslateSlabBlock> DARKSLATE_SLAB = registerBlock("darkslate_slab",
+            DarkslateSlabBlock::new);
     public static final DeferredBlock<RelationalVerticalSlabBlock> DARKSLATE_VERTICAL_SLAB = registerCompatBlock(List.of(DDCompat.QUARK), "darkslate_vertical_slab",
             () -> new RelationalVerticalSlabBlock(DARKSLATE.get()));
     public static final DeferredBlock<RelationalWallBlock> DARKSLATE_WALL = registerBlock("darkslate_wall",

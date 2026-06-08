@@ -1,5 +1,6 @@
-package com.naterbobber.darkerdepths.block.generic;
+package com.naterbobber.darkerdepths.block.generic.relational;
 
+import com.naterbobber.darkerdepths.block.generic.IRelationalBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.StairBlock;
 

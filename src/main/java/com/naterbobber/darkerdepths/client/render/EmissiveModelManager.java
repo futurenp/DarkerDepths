@@ -31,7 +31,13 @@ public class EmissiveModelManager {
                 .predicate(state -> state.hasProperty(DDBlockStateProperties.BURSTING) && state.getValue(DDBlockStateProperties.BURSTING))
                 .build());
 
-        models.add(BlockBaker.builder(event, DDBlocks.DARKSLATE)
+        models.add(BlockBaker.builder(event,
+                        DDBlocks.DARKSLATE,
+                        DDBlocks.DARKSLATE_SLAB,
+                        DDBlocks.DARKSLATE_VERTICAL_SLAB,
+                        DDBlocks.DARKSLATE_STAIRS,
+                        DDBlocks.DARKSLATE_WALL
+                )
                 .predicate(state -> state.hasProperty(DDBlockStateProperties.HEAT_LEVEL) && state.getValue(DDBlockStateProperties.HEAT_LEVEL) >= 2)
                 .dynamicSettings(state -> {
                     var brightness = state.getValue(DDBlockStateProperties.HEAT_LEVEL) * 2 - 1;

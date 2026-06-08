@@ -1,7 +1,7 @@
 package com.naterbobber.darkerdepths.block.blockentities;
 
 import com.naterbobber.darkerdepths.block.DDBlockStateProperties;
-import com.naterbobber.darkerdepths.block.generic.HeatableBlock;
+import com.naterbobber.darkerdepths.block.generic.IHeatableBlock;
 import com.naterbobber.darkerdepths.block.custom.GeyserBlock;
 import com.naterbobber.darkerdepths.init.DDBlockEntityTypes;
 import com.naterbobber.darkerdepths.init.DDCriteria;
@@ -18,10 +18,8 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.Mth;
-import net.minecraft.util.ParticleUtils;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -36,7 +34,7 @@ import net.minecraft.world.phys.Vec3;
 
 import java.util.List;
 
-public class GeyserBlockEntity extends BlockEntity implements HeatableBlock {
+public class GeyserBlockEntity extends BlockEntity implements IHeatableBlock {
     private static final BooleanProperty BURSTING = DDBlockStateProperties.BURSTING;
     private static final IntegerProperty HEAT_LEVEL = DDBlockStateProperties.HEAT_LEVEL;
     private static final BooleanProperty POWERED = BlockStateProperties.POWERED;

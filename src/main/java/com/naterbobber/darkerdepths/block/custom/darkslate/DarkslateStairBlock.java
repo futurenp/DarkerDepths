@@ -1,8 +1,7 @@
-package com.naterbobber.darkerdepths.block.custom;
+package com.naterbobber.darkerdepths.block.custom.darkslate;
 
-import com.naterbobber.darkerdepths.block.DDBlockStateProperties;
-import com.naterbobber.darkerdepths.block.generic.HeatableBlock;
-import com.naterbobber.darkerdepths.util.DDTags;
+import com.naterbobber.darkerdepths.block.generic.IHeatableBlock;
+import com.naterbobber.darkerdepths.init.DDBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -10,17 +9,13 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.RotatedPillarBlock;
+import net.minecraft.world.level.block.StairBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.*;
-import org.jetbrains.annotations.Nullable;
 
-public class DarkslateBlock extends RotatedPillarBlock implements HeatableBlock {
-    private static final IntegerProperty HEAT_LEVEL = DDBlockStateProperties.HEAT_LEVEL;
-
-    public DarkslateBlock(Properties pProperties) {
-        super(pProperties);
+public class DarkslateStairBlock extends StairBlock implements IHeatableBlock {
+    public DarkslateStairBlock() {
+        super(DDBlocks.DARKSLATE.get().defaultBlockState(), DDBlocks.DARKSLATE.get().properties());
         this.registerDefaultState(this.defaultBlockState()
                 .setValue(HEAT_LEVEL, 0));
     }
@@ -31,18 +26,16 @@ public class DarkslateBlock extends RotatedPillarBlock implements HeatableBlock 
         builder.add(HEAT_LEVEL);
     }
 
-    @Nullable
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         int neighborHeat = getHighestNeighborHeat(context.getLevel(), context.getClickedPos());
-        return super.getStateForPlacement(context).setValue(HEAT_LEVEL, HeatableBlock.calculateNewHeat(neighborHeat));
+        return super.getStateForPlacement(context).setValue(HEAT_LEVEL, IHeatableBlock.calculateNewHeat(neighborHeat));
     }
 
     @Override
     public BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor level, BlockPos currentPos, BlockPos neighborPos) {
-        if (updatedByHeat(level, neighborState)) {
-            level.scheduleTick(currentPos, this, 10);
-        }
+        level.scheduleTick(currentPos, this, 10);
+
         return super.updateShape(state, direction, neighborState, level, currentPos, neighborPos);
     }
 

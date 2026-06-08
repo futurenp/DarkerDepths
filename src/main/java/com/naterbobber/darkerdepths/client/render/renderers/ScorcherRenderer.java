@@ -13,7 +13,7 @@ import software.bernie.geckolib.util.Color;
 @OnlyIn(Dist.CLIENT)
 public class ScorcherRenderer extends GeoEntityRenderer<ScorcherEntity> {
     public ScorcherRenderer(EntityRendererProvider.Context context) {
-        super(context, DDDefaultEntityModel.withRenderType(DDEntityTypes.SCORCHER, DDRenderTypes::emissiveSolid));
+        super(context, DDDefaultEntityModel.withRenderType(DDEntityTypes.SCORCHER, DDRenderTypes::emissiveSolidFogOverride));
     }
 
     @Override

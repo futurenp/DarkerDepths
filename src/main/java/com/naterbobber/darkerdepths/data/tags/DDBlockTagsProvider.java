@@ -366,6 +366,10 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
 
         this.tag(DDTags.Blocks.HEATABLE).add(
                 DDBlocks.DARKSLATE.get(),
+                DDBlocks.DARKSLATE_SLAB.get(),
+                DDBlocks.DARKSLATE_VERTICAL_SLAB.get(),
+                DDBlocks.DARKSLATE_STAIRS.get(),
+                DDBlocks.DARKSLATE_WALL.get(),
                 DDBlocks.CRYSTAL_HUSK.get(),
                 DDBlocks.LIVING_CRYSTAL.get(),
                 DDBlocks.GEYSER.get()
