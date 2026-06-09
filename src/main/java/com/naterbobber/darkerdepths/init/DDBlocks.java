@@ -4,8 +4,7 @@ import com.google.common.collect.Maps;
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.block.DDBlockSetTypes;
 import com.naterbobber.darkerdepths.block.custom.*;
-import com.naterbobber.darkerdepths.block.custom.darkslate.DarkslateBlock;
-import com.naterbobber.darkerdepths.block.custom.darkslate.DarkslateSlabBlock;
+import com.naterbobber.darkerdepths.block.custom.darkslate.*;
 import com.naterbobber.darkerdepths.block.generic.*;
 import com.naterbobber.darkerdepths.block.generic.relational.*;
 import com.naterbobber.darkerdepths.compat.CompatID;
@@ -218,14 +217,14 @@ public class DDBlocks {
 
     public static final DeferredBlock<DarkslateBlock> DARKSLATE = registerBlock("darkslate",
             () -> new DarkslateBlock(DARKSLATE_PROPERTIES));
-    public static final DeferredBlock<RelationalStairBlock> DARKSLATE_STAIRS = registerBlock("darkslate_stairs",
-            () -> new RelationalStairBlock(DARKSLATE.get()));
+    public static final DeferredBlock<DarkslateStairBlock> DARKSLATE_STAIRS = registerBlock("darkslate_stairs",
+            () -> new DarkslateStairBlock(DARKSLATE.get().defaultBlockState(), DARKSLATE_PROPERTIES));
     public static final DeferredBlock<DarkslateSlabBlock> DARKSLATE_SLAB = registerBlock("darkslate_slab",
-            DarkslateSlabBlock::new);
-    public static final DeferredBlock<RelationalVerticalSlabBlock> DARKSLATE_VERTICAL_SLAB = registerCompatBlock(List.of(DDCompat.QUARK), "darkslate_vertical_slab",
-            () -> new RelationalVerticalSlabBlock(DARKSLATE.get()));
-    public static final DeferredBlock<RelationalWallBlock> DARKSLATE_WALL = registerBlock("darkslate_wall",
-            () -> new RelationalWallBlock(DARKSLATE.get()));
+            () -> new DarkslateSlabBlock(DARKSLATE_PROPERTIES));
+    public static final DeferredBlock<DarkslateVerticalSlabBlock> DARKSLATE_VERTICAL_SLAB = registerCompatBlock(List.of(DDCompat.QUARK), "darkslate_vertical_slab",
+            () -> new DarkslateVerticalSlabBlock(DARKSLATE_PROPERTIES));
+    public static final DeferredBlock<DarkslateWallBlock> DARKSLATE_WALL = registerBlock("darkslate_wall",
+            () -> new DarkslateWallBlock(DARKSLATE_PROPERTIES));
     public static final DeferredBlock<Block> POLISHED_DARKSLATE = registerBlock("polished_darkslate",
             () -> new Block(DARKSLATE_PROPERTIES));
     public static final DeferredBlock<RelationalStairBlock> POLISHED_DARKSLATE_STAIRS = registerBlock("polished_darkslate_stairs",

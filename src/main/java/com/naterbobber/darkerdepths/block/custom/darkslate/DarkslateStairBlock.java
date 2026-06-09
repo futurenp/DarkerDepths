@@ -10,12 +10,13 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.StairBlock;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 
 public class DarkslateStairBlock extends StairBlock implements IHeatableBlock {
-    public DarkslateStairBlock() {
-        super(DDBlocks.DARKSLATE.get().defaultBlockState(), DDBlocks.DARKSLATE.get().properties());
+    public DarkslateStairBlock(BlockState baseState, Properties properties) {
+        super(baseState, properties);
         this.registerDefaultState(this.defaultBlockState()
                 .setValue(HEAT_LEVEL, 0));
     }

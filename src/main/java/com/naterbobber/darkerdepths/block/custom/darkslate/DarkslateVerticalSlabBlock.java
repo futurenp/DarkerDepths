@@ -10,12 +10,13 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 
-public class DarkslateVericalSlabBlock extends VerticalSlabBlock implements IHeatableBlock {
-    public DarkslateVericalSlabBlock() {
-        super(DDBlocks.DARKSLATE.get().properties());
+public class DarkslateVerticalSlabBlock extends VerticalSlabBlock implements IHeatableBlock {
+    public DarkslateVerticalSlabBlock(Properties properties) {
+        super(properties);
         this.registerDefaultState(this.defaultBlockState()
                 .setValue(HEAT_LEVEL, 0));
     }

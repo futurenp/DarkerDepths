@@ -1,7 +1,7 @@
 package com.naterbobber.darkerdepths.block.custom.darkslate;
 
+import com.google.common.collect.ImmutableMap;
 import com.naterbobber.darkerdepths.block.generic.IHeatableBlock;
-import com.naterbobber.darkerdepths.init.DDBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -12,12 +12,18 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.WallBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.phys.shapes.VoxelShape;
+
+import java.util.Map;
 
 public class DarkslateWallBlock extends WallBlock implements IHeatableBlock {
-    public DarkslateWallBlock() {
-        super(DDBlocks.DARKSLATE.get().properties());
+    public DarkslateWallBlock(Properties properties) {
+        super(properties);
         this.registerDefaultState(this.defaultBlockState()
                 .setValue(HEAT_LEVEL, 0));
+
+        this.shapeByIndex = this.makeShapes(4.0F, 3.0F, 16.0F, 0.0F, 14.0F, 16.0F);
+        this.collisionShapeByIndex = this.makeShapes(4.0F, 3.0F, 24.0F, 0.0F, 24.0F, 24.0F);
     }
 
     @Override
@@ -42,5 +48,17 @@ public class DarkslateWallBlock extends WallBlock implements IHeatableBlock {
     @Override
     public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
         sendHeatUpdate(level, pos, state);
+    }
+
+    @Override
+    public Map<BlockState, VoxelShape> makeShapes(float width, float depth, float wallPostHeight, float wallMinY, float wallLowHeight, float wallTallHeight) {
+        Map<BlockState, VoxelShape> base = super.makeShapes(width, depth, wallPostHeight, wallMinY, wallLowHeight, wallTallHeight);
+        ImmutableMap.Builder<BlockState, VoxelShape> expanded = ImmutableMap.builder();
+        for (Map.Entry<BlockState, VoxelShape> entry : base.entrySet()) {
+            for (int heat : HEAT_LEVEL.getPossibleValues()) {
+                expanded.put(entry.getKey().setValue(HEAT_LEVEL, heat), entry.getValue());
+            }
+        }
+        return expanded.build();
     }
 }
