@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "darkerdepths:block/polished_darkslate_heat_level_2"
+  }
+}

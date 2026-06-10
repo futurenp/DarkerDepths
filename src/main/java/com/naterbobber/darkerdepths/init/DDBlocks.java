@@ -215,8 +215,8 @@ public class DDBlocks {
             () -> new AmethystClusterBlock(6, 3, BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(1.0f).sound(SoundType.SMALL_AMETHYST_BUD).lightLevel(value -> 7)));
 
 
-    public static final DeferredBlock<DarkslateBlock> DARKSLATE = registerBlock("darkslate",
-            () -> new DarkslateBlock(DARKSLATE_PROPERTIES));
+    public static final DeferredBlock<RotatableDarkslateBlock> DARKSLATE = registerBlock("darkslate",
+            () -> new RotatableDarkslateBlock(DARKSLATE_PROPERTIES));
     public static final DeferredBlock<DarkslateStairBlock> DARKSLATE_STAIRS = registerBlock("darkslate_stairs",
             () -> new DarkslateStairBlock(DARKSLATE.get().defaultBlockState(), DARKSLATE_PROPERTIES));
     public static final DeferredBlock<DarkslateSlabBlock> DARKSLATE_SLAB = registerBlock("darkslate_slab",
@@ -225,30 +225,30 @@ public class DDBlocks {
             () -> new DarkslateVerticalSlabBlock(DARKSLATE_PROPERTIES));
     public static final DeferredBlock<DarkslateWallBlock> DARKSLATE_WALL = registerBlock("darkslate_wall",
             () -> new DarkslateWallBlock(DARKSLATE_PROPERTIES));
-    public static final DeferredBlock<Block> POLISHED_DARKSLATE = registerBlock("polished_darkslate",
-            () -> new Block(DARKSLATE_PROPERTIES));
-    public static final DeferredBlock<RelationalStairBlock> POLISHED_DARKSLATE_STAIRS = registerBlock("polished_darkslate_stairs",
-            () -> new RelationalStairBlock(POLISHED_DARKSLATE.get()));
-    public static final DeferredBlock<RelationalSlabBlock> POLISHED_DARKSLATE_SLAB = registerBlock("polished_darkslate_slab",
-            () -> new RelationalSlabBlock(POLISHED_DARKSLATE.get()));
-    public static final DeferredBlock<RelationalVerticalSlabBlock> POLISHED_DARKSLATE_VERTICAL_SLAB = registerCompatBlock(List.of(DDCompat.QUARK), "polished_darkslate_vertical_slab",
-            () -> new RelationalVerticalSlabBlock(POLISHED_DARKSLATE.get()));
-    public static final DeferredBlock<Block> DARKSLATE_BRICKS = registerBlock("darkslate_bricks",
-            () -> new Block(DARKSLATE_BRICKS_PROPERTIES));
-    public static final DeferredBlock<RelationalStairBlock> DARKSLATE_BRICKS_STAIRS = registerBlock("darkslate_bricks_stairs",
-            () -> new RelationalStairBlock(DARKSLATE_BRICKS.get()));
-    public static final DeferredBlock<RelationalSlabBlock> DARKSLATE_BRICKS_SLAB = registerBlock("darkslate_bricks_slab",
-            () -> new RelationalSlabBlock(DARKSLATE_BRICKS.get()));
-    public static final DeferredBlock<RelationalVerticalSlabBlock> DARKSLATE_BRICKS_VERTICAL_SLAB = registerCompatBlock(List.of(DDCompat.QUARK), "darkslate_bricks_vertical_slab",
-            () -> new RelationalVerticalSlabBlock(DARKSLATE_BRICKS.get()));
-    public static final DeferredBlock<RelationalWallBlock> DARKSLATE_BRICKS_WALL = registerBlock("darkslate_bricks_wall",
-            () -> new RelationalWallBlock(DARKSLATE_BRICKS.get()));
-    public static final DeferredBlock<Block> CHISELED_DARKSLATE_BRICKS = registerBlock("chiseled_darkslate_bricks",
-            () -> new Block(DARKSLATE_BRICKS_PROPERTIES));
-    public static final DeferredBlock<Block> CRACKED_DARKSLATE_BRICKS = registerBlock("cracked_darkslate_bricks",
-            () -> new Block(DARKSLATE_BRICKS_PROPERTIES));
-    public static final DeferredBlock<ConnectedRotatablePillarBlock> DARKSLATE_PILLAR = registerBlock("darkslate_pillar",
-            () -> new ConnectedRotatablePillarBlock(DARKSLATE_BRICKS_PROPERTIES));
+    public static final DeferredBlock<DarkslateBlock> POLISHED_DARKSLATE = registerBlock("polished_darkslate",
+            () -> new DarkslateBlock(DARKSLATE_PROPERTIES));
+    public static final DeferredBlock<DarkslateStairBlock> POLISHED_DARKSLATE_STAIRS = registerBlock("polished_darkslate_stairs",
+            () -> new DarkslateStairBlock(POLISHED_DARKSLATE.get().defaultBlockState(), DARKSLATE_PROPERTIES));
+    public static final DeferredBlock<DarkslateSlabBlock> POLISHED_DARKSLATE_SLAB = registerBlock("polished_darkslate_slab",
+            () -> new DarkslateSlabBlock(DARKSLATE_PROPERTIES));
+    public static final DeferredBlock<DarkslateVerticalSlabBlock> POLISHED_DARKSLATE_VERTICAL_SLAB = registerCompatBlock(List.of(DDCompat.QUARK), "polished_darkslate_vertical_slab",
+            () -> new DarkslateVerticalSlabBlock(DARKSLATE_PROPERTIES));
+    public static final DeferredBlock<DarkslateBlock> DARKSLATE_BRICKS = registerBlock("darkslate_bricks",
+            () -> new DarkslateBlock(DARKSLATE_BRICKS_PROPERTIES));
+    public static final DeferredBlock<DarkslateStairBlock> DARKSLATE_BRICKS_STAIRS = registerBlock("darkslate_bricks_stairs",
+            () -> new DarkslateStairBlock(DARKSLATE_BRICKS.get().defaultBlockState(), DARKSLATE_BRICKS_PROPERTIES));
+    public static final DeferredBlock<DarkslateSlabBlock> DARKSLATE_BRICKS_SLAB = registerBlock("darkslate_bricks_slab",
+            () -> new DarkslateSlabBlock(DARKSLATE_BRICKS_PROPERTIES));
+    public static final DeferredBlock<DarkslateVerticalSlabBlock> DARKSLATE_BRICKS_VERTICAL_SLAB = registerCompatBlock(List.of(DDCompat.QUARK), "darkslate_bricks_vertical_slab",
+            () -> new DarkslateVerticalSlabBlock(DARKSLATE_BRICKS_PROPERTIES));
+    public static final DeferredBlock<DarkslateWallBlock> DARKSLATE_BRICKS_WALL = registerBlock("darkslate_bricks_wall",
+            () -> new DarkslateWallBlock(DARKSLATE_BRICKS_PROPERTIES));
+    public static final DeferredBlock<DarkslateBlock> CHISELED_DARKSLATE_BRICKS = registerBlock("chiseled_darkslate_bricks",
+            () -> new DarkslateBlock(DARKSLATE_BRICKS_PROPERTIES));
+    public static final DeferredBlock<DarkslateBlock> CRACKED_DARKSLATE_BRICKS = registerBlock("cracked_darkslate_bricks",
+            () -> new DarkslateBlock(DARKSLATE_BRICKS_PROPERTIES));
+    public static final DeferredBlock<ConnectedRotatableDarkslatePillarBlock> DARKSLATE_PILLAR = registerBlock("darkslate_pillar",
+            () -> new ConnectedRotatableDarkslatePillarBlock(DARKSLATE_BRICKS_PROPERTIES));
     public static final DeferredBlock<GeyserBlock> GEYSER = registerBlock("geyser",
             () -> new GeyserBlock(DARKSLATE_PROPERTIES.randomTicks()));
     public static final DeferredBlock<ScorchedRemainsBushBlock> SCORCHED_REMAINS = registerBlock("scorched_remains",

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "darkerdepths:block/polished_darkslate_heat_level_3",
+    "side": "darkerdepths:block/polished_darkslate_heat_level_3"
+  }
+}

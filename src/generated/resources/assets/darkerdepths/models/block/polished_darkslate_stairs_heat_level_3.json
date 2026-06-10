@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "bottom": "darkerdepths:block/polished_darkslate_heat_level_3",
+    "side": "darkerdepths:block/polished_darkslate_heat_level_3",
+    "top": "darkerdepths:block/polished_darkslate_heat_level_3"
+  }
+}

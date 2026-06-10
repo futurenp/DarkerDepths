@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "darkerdepths:block/darkslate_bricks_heat_level_4",
+    "side": "darkerdepths:block/darkslate_bricks_heat_level_4",
+    "top": "darkerdepths:block/darkslate_bricks_heat_level_4"
+  }
+}

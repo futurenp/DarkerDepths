@@ -5,6 +5,7 @@
         "model": "darkerdepths:block/darkslate_bricks_wall_post"
       },
       "when": {
+        "heat_level": "0",
         "up": "true"
       }
     },
@@ -15,7 +16,8 @@
         "y": 90
       },
       "when": {
-        "east": "low"
+        "east": "low",
+        "heat_level": "0"
       }
     },
     {
@@ -25,7 +27,8 @@
         "y": 90
       },
       "when": {
-        "east": "tall"
+        "east": "tall",
+        "heat_level": "0"
       }
     },
     {
@@ -34,6 +37,7 @@
         "uvlock": true
       },
       "when": {
+        "heat_level": "0",
         "north": "low"
       }
     },
@@ -43,6 +47,7 @@
         "uvlock": true
       },
       "when": {
+        "heat_level": "0",
         "north": "tall"
       }
     },
@@ -53,6 +58,7 @@
         "y": 180
       },
       "when": {
+        "heat_level": "0",
         "south": "low"
       }
     },
@@ -63,6 +69,7 @@
         "y": 180
       },
       "when": {
+        "heat_level": "0",
         "south": "tall"
       }
     },
@@ -73,6 +80,7 @@
         "y": 270
       },
       "when": {
+        "heat_level": "0",
         "west": "low"
       }
     },
@@ -83,6 +91,387 @@
         "y": 270
       },
       "when": {
+        "heat_level": "0",
+        "west": "tall"
+      }
+    },
+    {
+      "apply": {
+        "model": "darkerdepths:block/darkslate_bricks_wall_heat_level_1_post"
+      },
+      "when": {
+        "heat_level": "1",
+        "up": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "darkerdepths:block/darkslate_bricks_wall_heat_level_1_side",
+        "uvlock": true,
+        "y": 90
+      },
+      "when": {
+        "east": "low",
+        "heat_level": "1"
+      }
+    },
+    {
+      "apply": {
+        "model": "darkerdepths:block/darkslate_bricks_wall_heat_level_1_side_tall",
+        "uvlock": true,
+        "y": 90
+      },
+      "when": {
+        "east": "tall",
+        "heat_level": "1"
+      }
+    },
+    {
+      "apply": {
+        "model": "darkerdepths:block/darkslate_bricks_wall_heat_level_1_side",
+        "uvlock": true
+      },
+      "when": {
+        "heat_level": "1",
+        "north": "low"
+      }
+    },
+    {
+      "apply": {
+        "model": "darkerdepths:block/darkslate_bricks_wall_heat_level_1_side_tall",
+        "uvlock": true
+      },
+      "when": {
+        "heat_level": "1",
+        "north": "tall"
+      }
+    },
+    {
+      "apply": {
+        "model": "darkerdepths:block/darkslate_bricks_wall_heat_level_1_side",
+        "uvlock": true,
+        "y": 180
+      },
+      "when": {
+        "heat_level": "1",
+        "south": "low"
+      }
+    },
+    {
+      "apply": {
+        "model": "darkerdepths:block/darkslate_bricks_wall_heat_level_1_side_tall",
+        "uvlock": true,
+        "y": 180
+      },
+      "when": {
+        "heat_level": "1",
+        "south": "tall"
+      }
+    },
+    {
+      "apply": {
+        "model": "darkerdepths:block/darkslate_bricks_wall_heat_level_1_side",
+        "uvlock": true,
+        "y": 270
+      },
+      "when": {
+        "heat_level": "1",
+        "west": "low"
+      }
+    },
+    {
+      "apply": {
+        "model": "darkerdepths:block/darkslate_bricks_wall_heat_level_1_side_tall",
+        "uvlock": true,
+        "y": 270
+      },
+      "when": {
+        "heat_level": "1",
+        "west": "tall"
+      }
+    },
+    {
+      "apply": {
+        "model": "darkerdepths:block/darkslate_bricks_wall_heat_level_2_post"
+      },
+      "when": {
+        "heat_level": "2",
+        "up": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "darkerdepths:block/darkslate_bricks_wall_heat_level_2_side",
+        "uvlock": true,
+        "y": 90
+      },
+      "when": {
+        "east": "low",
+        "heat_level": "2"
+      }
+    },
+    {
+      "apply": {
+        "model": "darkerdepths:block/darkslate_bricks_wall_heat_level_2_side_tall",
+        "uvlock": true,
+        "y": 90
+      },
+      "when": {
+        "east": "tall",
+        "heat_level": "2"
+      }
+    },
+    {
+      "apply": {
+        "model": "darkerdepths:block/darkslate_bricks_wall_heat_level_2_side",
+        "uvlock": true
+      },
+      "when": {
+        "heat_level": "2",
+        "north": "low"
+      }
+    },
+    {
+      "apply": {
+        "model": "darkerdepths:block/darkslate_bricks_wall_heat_level_2_side_tall",
+        "uvlock": true
+      },
+      "when": {
+        "heat_level": "2",
+        "north": "tall"
+      }
+    },
+    {
+      "apply": {
+        "model": "darkerdepths:block/darkslate_bricks_wall_heat_level_2_side",
+        "uvlock": true,
+        "y": 180
+      },
+      "when": {
+        "heat_level": "2",
+        "south": "low"
+      }
+    },
+    {
+      "apply": {
+        "model": "darkerdepths:block/darkslate_bricks_wall_heat_level_2_side_tall",
+        "uvlock": true,
+        "y": 180
+      },
+      "when": {
+        "heat_level": "2",
+        "south": "tall"
+      }
+    },
+    {
+      "apply": {
+        "model": "darkerdepths:block/darkslate_bricks_wall_heat_level_2_side",
+        "uvlock": true,
+        "y": 270
+      },
+      "when": {
+        "heat_level": "2",
+        "west": "low"
+      }
+    },
+    {
+      "apply": {
+        "model": "darkerdepths:block/darkslate_bricks_wall_heat_level_2_side_tall",
+        "uvlock": true,
+        "y": 270
+      },
+      "when": {
+        "heat_level": "2",
+        "west": "tall"
+      }
+    },
+    {
+      "apply": {
+        "model": "darkerdepths:block/darkslate_bricks_wall_heat_level_3_post"
+      },
+      "when": {
+        "heat_level": "3",
+        "up": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "darkerdepths:block/darkslate_bricks_wall_heat_level_3_side",
+        "uvlock": true,
+        "y": 90
+      },
+      "when": {
+        "east": "low",
+        "heat_level": "3"
+      }
+    },
+    {
+      "apply": {
+        "model": "darkerdepths:block/darkslate_bricks_wall_heat_level_3_side_tall",
+        "uvlock": true,
+        "y": 90
+      },
+      "when": {
+        "east": "tall",
+        "heat_level": "3"
+      }
+    },
+    {
+      "apply": {
+        "model": "darkerdepths:block/darkslate_bricks_wall_heat_level_3_side",
+        "uvlock": true
+      },
+      "when": {
+        "heat_level": "3",
+        "north": "low"
+      }
+    },
+    {
+      "apply": {
+        "model": "darkerdepths:block/darkslate_bricks_wall_heat_level_3_side_tall",
+        "uvlock": true
+      },
+      "when": {
+        "heat_level": "3",
+        "north": "tall"
+      }
+    },
+    {
+      "apply": {
+        "model": "darkerdepths:block/darkslate_bricks_wall_heat_level_3_side",
+        "uvlock": true,
+        "y": 180
+      },
+      "when": {
+        "heat_level": "3",
+        "south": "low"
+      }
+    },
+    {
+      "apply": {
+        "model": "darkerdepths:block/darkslate_bricks_wall_heat_level_3_side_tall",
+        "uvlock": true,
+        "y": 180
+      },
+      "when": {
+        "heat_level": "3",
+        "south": "tall"
+      }
+    },
+    {
+      "apply": {
+        "model": "darkerdepths:block/darkslate_bricks_wall_heat_level_3_side",
+        "uvlock": true,
+        "y": 270
+      },
+      "when": {
+        "heat_level": "3",
+        "west": "low"
+      }
+    },
+    {
+      "apply": {
+        "model": "darkerdepths:block/darkslate_bricks_wall_heat_level_3_side_tall",
+        "uvlock": true,
+        "y": 270
+      },
+      "when": {
+        "heat_level": "3",
+        "west": "tall"
+      }
+    },
+    {
+      "apply": {
+        "model": "darkerdepths:block/darkslate_bricks_wall_heat_level_4_post"
+      },
+      "when": {
+        "heat_level": "4",
+        "up": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "darkerdepths:block/darkslate_bricks_wall_heat_level_4_side",
+        "uvlock": true,
+        "y": 90
+      },
+      "when": {
+        "east": "low",
+        "heat_level": "4"
+      }
+    },
+    {
+      "apply": {
+        "model": "darkerdepths:block/darkslate_bricks_wall_heat_level_4_side_tall",
+        "uvlock": true,
+        "y": 90
+      },
+      "when": {
+        "east": "tall",
+        "heat_level": "4"
+      }
+    },
+    {
+      "apply": {
+        "model": "darkerdepths:block/darkslate_bricks_wall_heat_level_4_side",
+        "uvlock": true
+      },
+      "when": {
+        "heat_level": "4",
+        "north": "low"
+      }
+    },
+    {
+      "apply": {
+        "model": "darkerdepths:block/darkslate_bricks_wall_heat_level_4_side_tall",
+        "uvlock": true
+      },
+      "when": {
+        "heat_level": "4",
+        "north": "tall"
+      }
+    },
+    {
+      "apply": {
+        "model": "darkerdepths:block/darkslate_bricks_wall_heat_level_4_side",
+        "uvlock": true,
+        "y": 180
+      },
+      "when": {
+        "heat_level": "4",
+        "south": "low"
+      }
+    },
+    {
+      "apply": {
+        "model": "darkerdepths:block/darkslate_bricks_wall_heat_level_4_side_tall",
+        "uvlock": true,
+        "y": 180
+      },
+      "when": {
+        "heat_level": "4",
+        "south": "tall"
+      }
+    },
+    {
+      "apply": {
+        "model": "darkerdepths:block/darkslate_bricks_wall_heat_level_4_side",
+        "uvlock": true,
+        "y": 270
+      },
+      "when": {
+        "heat_level": "4",
+        "west": "low"
+      }
+    },
+    {
+      "apply": {
+        "model": "darkerdepths:block/darkslate_bricks_wall_heat_level_4_side_tall",
+        "uvlock": true,
+        "y": 270
+      },
+      "when": {
+        "heat_level": "4",
         "west": "tall"
       }
     }

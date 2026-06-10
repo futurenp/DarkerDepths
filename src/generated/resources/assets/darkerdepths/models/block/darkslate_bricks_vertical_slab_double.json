@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "darkerdepths:block/darkslate_bricks",
+    "side": "darkerdepths:block/darkslate_bricks"
+  }
+}

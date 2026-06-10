@@ -1,7 +1,19 @@
 {
   "variants": {
-    "": {
+    "heat_level=0": {
       "model": "darkerdepths:block/darkslate_bricks"
+    },
+    "heat_level=1": {
+      "model": "darkerdepths:block/darkslate_bricks_heat_level_1"
+    },
+    "heat_level=2": {
+      "model": "darkerdepths:block/darkslate_bricks_heat_level_2"
+    },
+    "heat_level=3": {
+      "model": "darkerdepths:block/darkslate_bricks_heat_level_3"
+    },
+    "heat_level=4": {
+      "model": "darkerdepths:block/darkslate_bricks_heat_level_4"
     }
   }
 }

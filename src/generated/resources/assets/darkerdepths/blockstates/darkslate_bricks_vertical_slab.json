@@ -1,26 +1,93 @@
 {
   "variants": {
-    "type=double": {
-      "model": "darkerdepths:block/darkslate_bricks",
-      "uvlock": true
+    "heat_level=0,type=double": {
+      "model": "darkerdepths:block/darkslate_bricks_vertical_slab_double"
     },
-    "type=east": {
+    "heat_level=0,type=east": {
       "model": "darkerdepths:block/darkslate_bricks_vertical_slab",
-      "uvlock": true,
       "y": 90
     },
-    "type=north": {
-      "model": "darkerdepths:block/darkslate_bricks_vertical_slab",
-      "uvlock": true
+    "heat_level=0,type=north": {
+      "model": "darkerdepths:block/darkslate_bricks_vertical_slab"
     },
-    "type=south": {
+    "heat_level=0,type=south": {
       "model": "darkerdepths:block/darkslate_bricks_vertical_slab",
-      "uvlock": true,
       "y": 180
     },
-    "type=west": {
+    "heat_level=0,type=west": {
       "model": "darkerdepths:block/darkslate_bricks_vertical_slab",
-      "uvlock": true,
+      "y": 270
+    },
+    "heat_level=1,type=double": {
+      "model": "darkerdepths:block/darkslate_bricks_vertical_slab_heat_level_1_double"
+    },
+    "heat_level=1,type=east": {
+      "model": "darkerdepths:block/darkslate_bricks_vertical_slab_heat_level_1",
+      "y": 90
+    },
+    "heat_level=1,type=north": {
+      "model": "darkerdepths:block/darkslate_bricks_vertical_slab_heat_level_1"
+    },
+    "heat_level=1,type=south": {
+      "model": "darkerdepths:block/darkslate_bricks_vertical_slab_heat_level_1",
+      "y": 180
+    },
+    "heat_level=1,type=west": {
+      "model": "darkerdepths:block/darkslate_bricks_vertical_slab_heat_level_1",
+      "y": 270
+    },
+    "heat_level=2,type=double": {
+      "model": "darkerdepths:block/darkslate_bricks_vertical_slab_heat_level_2_double"
+    },
+    "heat_level=2,type=east": {
+      "model": "darkerdepths:block/darkslate_bricks_vertical_slab_heat_level_2",
+      "y": 90
+    },
+    "heat_level=2,type=north": {
+      "model": "darkerdepths:block/darkslate_bricks_vertical_slab_heat_level_2"
+    },
+    "heat_level=2,type=south": {
+      "model": "darkerdepths:block/darkslate_bricks_vertical_slab_heat_level_2",
+      "y": 180
+    },
+    "heat_level=2,type=west": {
+      "model": "darkerdepths:block/darkslate_bricks_vertical_slab_heat_level_2",
+      "y": 270
+    },
+    "heat_level=3,type=double": {
+      "model": "darkerdepths:block/darkslate_bricks_vertical_slab_heat_level_3_double"
+    },
+    "heat_level=3,type=east": {
+      "model": "darkerdepths:block/darkslate_bricks_vertical_slab_heat_level_3",
+      "y": 90
+    },
+    "heat_level=3,type=north": {
+      "model": "darkerdepths:block/darkslate_bricks_vertical_slab_heat_level_3"
+    },
+    "heat_level=3,type=south": {
+      "model": "darkerdepths:block/darkslate_bricks_vertical_slab_heat_level_3",
+      "y": 180
+    },
+    "heat_level=3,type=west": {
+      "model": "darkerdepths:block/darkslate_bricks_vertical_slab_heat_level_3",
+      "y": 270
+    },
+    "heat_level=4,type=double": {
+      "model": "darkerdepths:block/darkslate_bricks_vertical_slab_heat_level_4_double"
+    },
+    "heat_level=4,type=east": {
+      "model": "darkerdepths:block/darkslate_bricks_vertical_slab_heat_level_4",
+      "y": 90
+    },
+    "heat_level=4,type=north": {
+      "model": "darkerdepths:block/darkslate_bricks_vertical_slab_heat_level_4"
+    },
+    "heat_level=4,type=south": {
+      "model": "darkerdepths:block/darkslate_bricks_vertical_slab_heat_level_4",
+      "y": 180
+    },
+    "heat_level=4,type=west": {
+      "model": "darkerdepths:block/darkslate_bricks_vertical_slab_heat_level_4",
       "y": 270
     }
   }

@@ -1,6 +1,8 @@
 {
-  "parent": "darkerdepths:block/vertical_slab",
+  "parent": "darkerdepths:block/vertical_slab_column",
   "textures": {
-    "texture": "darkerdepths:block/darkslate_bricks"
+    "bottom": "darkerdepths:block/darkslate_bricks",
+    "texture": "darkerdepths:block/darkslate_bricks",
+    "top": "darkerdepths:block/darkslate_bricks"
   }
 }

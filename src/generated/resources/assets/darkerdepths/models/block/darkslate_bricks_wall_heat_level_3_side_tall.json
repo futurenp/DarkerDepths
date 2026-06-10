@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/template_wall_side_tall",
+  "textures": {
+    "wall": "darkerdepths:block/darkslate_bricks_heat_level_3"
+  }
+}

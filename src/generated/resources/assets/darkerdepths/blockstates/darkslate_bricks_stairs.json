@@ -1,206 +1,1026 @@
 {
   "variants": {
-    "facing=east,half=bottom,shape=inner_left": {
+    "facing=east,half=bottom,heat_level=0,shape=inner_left": {
       "model": "darkerdepths:block/darkslate_bricks_stairs_inner",
       "uvlock": true,
       "y": 270
     },
-    "facing=east,half=bottom,shape=inner_right": {
+    "facing=east,half=bottom,heat_level=0,shape=inner_right": {
       "model": "darkerdepths:block/darkslate_bricks_stairs_inner"
     },
-    "facing=east,half=bottom,shape=outer_left": {
+    "facing=east,half=bottom,heat_level=0,shape=outer_left": {
       "model": "darkerdepths:block/darkslate_bricks_stairs_outer",
       "uvlock": true,
       "y": 270
     },
-    "facing=east,half=bottom,shape=outer_right": {
+    "facing=east,half=bottom,heat_level=0,shape=outer_right": {
       "model": "darkerdepths:block/darkslate_bricks_stairs_outer"
     },
-    "facing=east,half=bottom,shape=straight": {
+    "facing=east,half=bottom,heat_level=0,shape=straight": {
       "model": "darkerdepths:block/darkslate_bricks_stairs"
     },
-    "facing=east,half=top,shape=inner_left": {
+    "facing=east,half=bottom,heat_level=1,shape=inner_left": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_1_inner",
+      "uvlock": true,
+      "y": 270
+    },
+    "facing=east,half=bottom,heat_level=1,shape=inner_right": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_1_inner"
+    },
+    "facing=east,half=bottom,heat_level=1,shape=outer_left": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_1_outer",
+      "uvlock": true,
+      "y": 270
+    },
+    "facing=east,half=bottom,heat_level=1,shape=outer_right": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_1_outer"
+    },
+    "facing=east,half=bottom,heat_level=1,shape=straight": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_1"
+    },
+    "facing=east,half=bottom,heat_level=2,shape=inner_left": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_2_inner",
+      "uvlock": true,
+      "y": 270
+    },
+    "facing=east,half=bottom,heat_level=2,shape=inner_right": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_2_inner"
+    },
+    "facing=east,half=bottom,heat_level=2,shape=outer_left": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_2_outer",
+      "uvlock": true,
+      "y": 270
+    },
+    "facing=east,half=bottom,heat_level=2,shape=outer_right": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_2_outer"
+    },
+    "facing=east,half=bottom,heat_level=2,shape=straight": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_2"
+    },
+    "facing=east,half=bottom,heat_level=3,shape=inner_left": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_3_inner",
+      "uvlock": true,
+      "y": 270
+    },
+    "facing=east,half=bottom,heat_level=3,shape=inner_right": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_3_inner"
+    },
+    "facing=east,half=bottom,heat_level=3,shape=outer_left": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_3_outer",
+      "uvlock": true,
+      "y": 270
+    },
+    "facing=east,half=bottom,heat_level=3,shape=outer_right": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_3_outer"
+    },
+    "facing=east,half=bottom,heat_level=3,shape=straight": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_3"
+    },
+    "facing=east,half=bottom,heat_level=4,shape=inner_left": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_4_inner",
+      "uvlock": true,
+      "y": 270
+    },
+    "facing=east,half=bottom,heat_level=4,shape=inner_right": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_4_inner"
+    },
+    "facing=east,half=bottom,heat_level=4,shape=outer_left": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_4_outer",
+      "uvlock": true,
+      "y": 270
+    },
+    "facing=east,half=bottom,heat_level=4,shape=outer_right": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_4_outer"
+    },
+    "facing=east,half=bottom,heat_level=4,shape=straight": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_4"
+    },
+    "facing=east,half=top,heat_level=0,shape=inner_left": {
       "model": "darkerdepths:block/darkslate_bricks_stairs_inner",
       "uvlock": true,
       "x": 180
     },
-    "facing=east,half=top,shape=inner_right": {
+    "facing=east,half=top,heat_level=0,shape=inner_right": {
       "model": "darkerdepths:block/darkslate_bricks_stairs_inner",
       "uvlock": true,
       "x": 180,
       "y": 90
     },
-    "facing=east,half=top,shape=outer_left": {
+    "facing=east,half=top,heat_level=0,shape=outer_left": {
       "model": "darkerdepths:block/darkslate_bricks_stairs_outer",
       "uvlock": true,
       "x": 180
     },
-    "facing=east,half=top,shape=outer_right": {
+    "facing=east,half=top,heat_level=0,shape=outer_right": {
       "model": "darkerdepths:block/darkslate_bricks_stairs_outer",
       "uvlock": true,
       "x": 180,
       "y": 90
     },
-    "facing=east,half=top,shape=straight": {
+    "facing=east,half=top,heat_level=0,shape=straight": {
       "model": "darkerdepths:block/darkslate_bricks_stairs",
       "uvlock": true,
       "x": 180
     },
-    "facing=north,half=bottom,shape=inner_left": {
+    "facing=east,half=top,heat_level=1,shape=inner_left": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_1_inner",
+      "uvlock": true,
+      "x": 180
+    },
+    "facing=east,half=top,heat_level=1,shape=inner_right": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_1_inner",
+      "uvlock": true,
+      "x": 180,
+      "y": 90
+    },
+    "facing=east,half=top,heat_level=1,shape=outer_left": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_1_outer",
+      "uvlock": true,
+      "x": 180
+    },
+    "facing=east,half=top,heat_level=1,shape=outer_right": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_1_outer",
+      "uvlock": true,
+      "x": 180,
+      "y": 90
+    },
+    "facing=east,half=top,heat_level=1,shape=straight": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_1",
+      "uvlock": true,
+      "x": 180
+    },
+    "facing=east,half=top,heat_level=2,shape=inner_left": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_2_inner",
+      "uvlock": true,
+      "x": 180
+    },
+    "facing=east,half=top,heat_level=2,shape=inner_right": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_2_inner",
+      "uvlock": true,
+      "x": 180,
+      "y": 90
+    },
+    "facing=east,half=top,heat_level=2,shape=outer_left": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_2_outer",
+      "uvlock": true,
+      "x": 180
+    },
+    "facing=east,half=top,heat_level=2,shape=outer_right": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_2_outer",
+      "uvlock": true,
+      "x": 180,
+      "y": 90
+    },
+    "facing=east,half=top,heat_level=2,shape=straight": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_2",
+      "uvlock": true,
+      "x": 180
+    },
+    "facing=east,half=top,heat_level=3,shape=inner_left": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_3_inner",
+      "uvlock": true,
+      "x": 180
+    },
+    "facing=east,half=top,heat_level=3,shape=inner_right": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_3_inner",
+      "uvlock": true,
+      "x": 180,
+      "y": 90
+    },
+    "facing=east,half=top,heat_level=3,shape=outer_left": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_3_outer",
+      "uvlock": true,
+      "x": 180
+    },
+    "facing=east,half=top,heat_level=3,shape=outer_right": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_3_outer",
+      "uvlock": true,
+      "x": 180,
+      "y": 90
+    },
+    "facing=east,half=top,heat_level=3,shape=straight": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_3",
+      "uvlock": true,
+      "x": 180
+    },
+    "facing=east,half=top,heat_level=4,shape=inner_left": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_4_inner",
+      "uvlock": true,
+      "x": 180
+    },
+    "facing=east,half=top,heat_level=4,shape=inner_right": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_4_inner",
+      "uvlock": true,
+      "x": 180,
+      "y": 90
+    },
+    "facing=east,half=top,heat_level=4,shape=outer_left": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_4_outer",
+      "uvlock": true,
+      "x": 180
+    },
+    "facing=east,half=top,heat_level=4,shape=outer_right": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_4_outer",
+      "uvlock": true,
+      "x": 180,
+      "y": 90
+    },
+    "facing=east,half=top,heat_level=4,shape=straight": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_4",
+      "uvlock": true,
+      "x": 180
+    },
+    "facing=north,half=bottom,heat_level=0,shape=inner_left": {
       "model": "darkerdepths:block/darkslate_bricks_stairs_inner",
       "uvlock": true,
       "y": 180
     },
-    "facing=north,half=bottom,shape=inner_right": {
+    "facing=north,half=bottom,heat_level=0,shape=inner_right": {
       "model": "darkerdepths:block/darkslate_bricks_stairs_inner",
       "uvlock": true,
       "y": 270
     },
-    "facing=north,half=bottom,shape=outer_left": {
+    "facing=north,half=bottom,heat_level=0,shape=outer_left": {
       "model": "darkerdepths:block/darkslate_bricks_stairs_outer",
       "uvlock": true,
       "y": 180
     },
-    "facing=north,half=bottom,shape=outer_right": {
+    "facing=north,half=bottom,heat_level=0,shape=outer_right": {
       "model": "darkerdepths:block/darkslate_bricks_stairs_outer",
       "uvlock": true,
       "y": 270
     },
-    "facing=north,half=bottom,shape=straight": {
+    "facing=north,half=bottom,heat_level=0,shape=straight": {
       "model": "darkerdepths:block/darkslate_bricks_stairs",
       "uvlock": true,
       "y": 270
     },
-    "facing=north,half=top,shape=inner_left": {
+    "facing=north,half=bottom,heat_level=1,shape=inner_left": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_1_inner",
+      "uvlock": true,
+      "y": 180
+    },
+    "facing=north,half=bottom,heat_level=1,shape=inner_right": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_1_inner",
+      "uvlock": true,
+      "y": 270
+    },
+    "facing=north,half=bottom,heat_level=1,shape=outer_left": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_1_outer",
+      "uvlock": true,
+      "y": 180
+    },
+    "facing=north,half=bottom,heat_level=1,shape=outer_right": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_1_outer",
+      "uvlock": true,
+      "y": 270
+    },
+    "facing=north,half=bottom,heat_level=1,shape=straight": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_1",
+      "uvlock": true,
+      "y": 270
+    },
+    "facing=north,half=bottom,heat_level=2,shape=inner_left": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_2_inner",
+      "uvlock": true,
+      "y": 180
+    },
+    "facing=north,half=bottom,heat_level=2,shape=inner_right": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_2_inner",
+      "uvlock": true,
+      "y": 270
+    },
+    "facing=north,half=bottom,heat_level=2,shape=outer_left": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_2_outer",
+      "uvlock": true,
+      "y": 180
+    },
+    "facing=north,half=bottom,heat_level=2,shape=outer_right": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_2_outer",
+      "uvlock": true,
+      "y": 270
+    },
+    "facing=north,half=bottom,heat_level=2,shape=straight": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_2",
+      "uvlock": true,
+      "y": 270
+    },
+    "facing=north,half=bottom,heat_level=3,shape=inner_left": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_3_inner",
+      "uvlock": true,
+      "y": 180
+    },
+    "facing=north,half=bottom,heat_level=3,shape=inner_right": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_3_inner",
+      "uvlock": true,
+      "y": 270
+    },
+    "facing=north,half=bottom,heat_level=3,shape=outer_left": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_3_outer",
+      "uvlock": true,
+      "y": 180
+    },
+    "facing=north,half=bottom,heat_level=3,shape=outer_right": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_3_outer",
+      "uvlock": true,
+      "y": 270
+    },
+    "facing=north,half=bottom,heat_level=3,shape=straight": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_3",
+      "uvlock": true,
+      "y": 270
+    },
+    "facing=north,half=bottom,heat_level=4,shape=inner_left": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_4_inner",
+      "uvlock": true,
+      "y": 180
+    },
+    "facing=north,half=bottom,heat_level=4,shape=inner_right": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_4_inner",
+      "uvlock": true,
+      "y": 270
+    },
+    "facing=north,half=bottom,heat_level=4,shape=outer_left": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_4_outer",
+      "uvlock": true,
+      "y": 180
+    },
+    "facing=north,half=bottom,heat_level=4,shape=outer_right": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_4_outer",
+      "uvlock": true,
+      "y": 270
+    },
+    "facing=north,half=bottom,heat_level=4,shape=straight": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_4",
+      "uvlock": true,
+      "y": 270
+    },
+    "facing=north,half=top,heat_level=0,shape=inner_left": {
       "model": "darkerdepths:block/darkslate_bricks_stairs_inner",
       "uvlock": true,
       "x": 180,
       "y": 270
     },
-    "facing=north,half=top,shape=inner_right": {
+    "facing=north,half=top,heat_level=0,shape=inner_right": {
       "model": "darkerdepths:block/darkslate_bricks_stairs_inner",
       "uvlock": true,
       "x": 180
     },
-    "facing=north,half=top,shape=outer_left": {
+    "facing=north,half=top,heat_level=0,shape=outer_left": {
       "model": "darkerdepths:block/darkslate_bricks_stairs_outer",
       "uvlock": true,
       "x": 180,
       "y": 270
     },
-    "facing=north,half=top,shape=outer_right": {
+    "facing=north,half=top,heat_level=0,shape=outer_right": {
       "model": "darkerdepths:block/darkslate_bricks_stairs_outer",
       "uvlock": true,
       "x": 180
     },
-    "facing=north,half=top,shape=straight": {
+    "facing=north,half=top,heat_level=0,shape=straight": {
       "model": "darkerdepths:block/darkslate_bricks_stairs",
       "uvlock": true,
       "x": 180,
       "y": 270
     },
-    "facing=south,half=bottom,shape=inner_left": {
+    "facing=north,half=top,heat_level=1,shape=inner_left": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_1_inner",
+      "uvlock": true,
+      "x": 180,
+      "y": 270
+    },
+    "facing=north,half=top,heat_level=1,shape=inner_right": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_1_inner",
+      "uvlock": true,
+      "x": 180
+    },
+    "facing=north,half=top,heat_level=1,shape=outer_left": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_1_outer",
+      "uvlock": true,
+      "x": 180,
+      "y": 270
+    },
+    "facing=north,half=top,heat_level=1,shape=outer_right": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_1_outer",
+      "uvlock": true,
+      "x": 180
+    },
+    "facing=north,half=top,heat_level=1,shape=straight": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_1",
+      "uvlock": true,
+      "x": 180,
+      "y": 270
+    },
+    "facing=north,half=top,heat_level=2,shape=inner_left": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_2_inner",
+      "uvlock": true,
+      "x": 180,
+      "y": 270
+    },
+    "facing=north,half=top,heat_level=2,shape=inner_right": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_2_inner",
+      "uvlock": true,
+      "x": 180
+    },
+    "facing=north,half=top,heat_level=2,shape=outer_left": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_2_outer",
+      "uvlock": true,
+      "x": 180,
+      "y": 270
+    },
+    "facing=north,half=top,heat_level=2,shape=outer_right": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_2_outer",
+      "uvlock": true,
+      "x": 180
+    },
+    "facing=north,half=top,heat_level=2,shape=straight": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_2",
+      "uvlock": true,
+      "x": 180,
+      "y": 270
+    },
+    "facing=north,half=top,heat_level=3,shape=inner_left": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_3_inner",
+      "uvlock": true,
+      "x": 180,
+      "y": 270
+    },
+    "facing=north,half=top,heat_level=3,shape=inner_right": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_3_inner",
+      "uvlock": true,
+      "x": 180
+    },
+    "facing=north,half=top,heat_level=3,shape=outer_left": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_3_outer",
+      "uvlock": true,
+      "x": 180,
+      "y": 270
+    },
+    "facing=north,half=top,heat_level=3,shape=outer_right": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_3_outer",
+      "uvlock": true,
+      "x": 180
+    },
+    "facing=north,half=top,heat_level=3,shape=straight": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_3",
+      "uvlock": true,
+      "x": 180,
+      "y": 270
+    },
+    "facing=north,half=top,heat_level=4,shape=inner_left": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_4_inner",
+      "uvlock": true,
+      "x": 180,
+      "y": 270
+    },
+    "facing=north,half=top,heat_level=4,shape=inner_right": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_4_inner",
+      "uvlock": true,
+      "x": 180
+    },
+    "facing=north,half=top,heat_level=4,shape=outer_left": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_4_outer",
+      "uvlock": true,
+      "x": 180,
+      "y": 270
+    },
+    "facing=north,half=top,heat_level=4,shape=outer_right": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_4_outer",
+      "uvlock": true,
+      "x": 180
+    },
+    "facing=north,half=top,heat_level=4,shape=straight": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_4",
+      "uvlock": true,
+      "x": 180,
+      "y": 270
+    },
+    "facing=south,half=bottom,heat_level=0,shape=inner_left": {
       "model": "darkerdepths:block/darkslate_bricks_stairs_inner"
     },
-    "facing=south,half=bottom,shape=inner_right": {
+    "facing=south,half=bottom,heat_level=0,shape=inner_right": {
       "model": "darkerdepths:block/darkslate_bricks_stairs_inner",
       "uvlock": true,
       "y": 90
     },
-    "facing=south,half=bottom,shape=outer_left": {
+    "facing=south,half=bottom,heat_level=0,shape=outer_left": {
       "model": "darkerdepths:block/darkslate_bricks_stairs_outer"
     },
-    "facing=south,half=bottom,shape=outer_right": {
+    "facing=south,half=bottom,heat_level=0,shape=outer_right": {
       "model": "darkerdepths:block/darkslate_bricks_stairs_outer",
       "uvlock": true,
       "y": 90
     },
-    "facing=south,half=bottom,shape=straight": {
+    "facing=south,half=bottom,heat_level=0,shape=straight": {
       "model": "darkerdepths:block/darkslate_bricks_stairs",
       "uvlock": true,
       "y": 90
     },
-    "facing=south,half=top,shape=inner_left": {
+    "facing=south,half=bottom,heat_level=1,shape=inner_left": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_1_inner"
+    },
+    "facing=south,half=bottom,heat_level=1,shape=inner_right": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_1_inner",
+      "uvlock": true,
+      "y": 90
+    },
+    "facing=south,half=bottom,heat_level=1,shape=outer_left": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_1_outer"
+    },
+    "facing=south,half=bottom,heat_level=1,shape=outer_right": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_1_outer",
+      "uvlock": true,
+      "y": 90
+    },
+    "facing=south,half=bottom,heat_level=1,shape=straight": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_1",
+      "uvlock": true,
+      "y": 90
+    },
+    "facing=south,half=bottom,heat_level=2,shape=inner_left": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_2_inner"
+    },
+    "facing=south,half=bottom,heat_level=2,shape=inner_right": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_2_inner",
+      "uvlock": true,
+      "y": 90
+    },
+    "facing=south,half=bottom,heat_level=2,shape=outer_left": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_2_outer"
+    },
+    "facing=south,half=bottom,heat_level=2,shape=outer_right": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_2_outer",
+      "uvlock": true,
+      "y": 90
+    },
+    "facing=south,half=bottom,heat_level=2,shape=straight": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_2",
+      "uvlock": true,
+      "y": 90
+    },
+    "facing=south,half=bottom,heat_level=3,shape=inner_left": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_3_inner"
+    },
+    "facing=south,half=bottom,heat_level=3,shape=inner_right": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_3_inner",
+      "uvlock": true,
+      "y": 90
+    },
+    "facing=south,half=bottom,heat_level=3,shape=outer_left": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_3_outer"
+    },
+    "facing=south,half=bottom,heat_level=3,shape=outer_right": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_3_outer",
+      "uvlock": true,
+      "y": 90
+    },
+    "facing=south,half=bottom,heat_level=3,shape=straight": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_3",
+      "uvlock": true,
+      "y": 90
+    },
+    "facing=south,half=bottom,heat_level=4,shape=inner_left": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_4_inner"
+    },
+    "facing=south,half=bottom,heat_level=4,shape=inner_right": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_4_inner",
+      "uvlock": true,
+      "y": 90
+    },
+    "facing=south,half=bottom,heat_level=4,shape=outer_left": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_4_outer"
+    },
+    "facing=south,half=bottom,heat_level=4,shape=outer_right": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_4_outer",
+      "uvlock": true,
+      "y": 90
+    },
+    "facing=south,half=bottom,heat_level=4,shape=straight": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_4",
+      "uvlock": true,
+      "y": 90
+    },
+    "facing=south,half=top,heat_level=0,shape=inner_left": {
       "model": "darkerdepths:block/darkslate_bricks_stairs_inner",
       "uvlock": true,
       "x": 180,
       "y": 90
     },
-    "facing=south,half=top,shape=inner_right": {
+    "facing=south,half=top,heat_level=0,shape=inner_right": {
       "model": "darkerdepths:block/darkslate_bricks_stairs_inner",
       "uvlock": true,
       "x": 180,
       "y": 180
     },
-    "facing=south,half=top,shape=outer_left": {
+    "facing=south,half=top,heat_level=0,shape=outer_left": {
       "model": "darkerdepths:block/darkslate_bricks_stairs_outer",
       "uvlock": true,
       "x": 180,
       "y": 90
     },
-    "facing=south,half=top,shape=outer_right": {
+    "facing=south,half=top,heat_level=0,shape=outer_right": {
       "model": "darkerdepths:block/darkslate_bricks_stairs_outer",
       "uvlock": true,
       "x": 180,
       "y": 180
     },
-    "facing=south,half=top,shape=straight": {
+    "facing=south,half=top,heat_level=0,shape=straight": {
       "model": "darkerdepths:block/darkslate_bricks_stairs",
       "uvlock": true,
       "x": 180,
       "y": 90
     },
-    "facing=west,half=bottom,shape=inner_left": {
+    "facing=south,half=top,heat_level=1,shape=inner_left": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_1_inner",
+      "uvlock": true,
+      "x": 180,
+      "y": 90
+    },
+    "facing=south,half=top,heat_level=1,shape=inner_right": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_1_inner",
+      "uvlock": true,
+      "x": 180,
+      "y": 180
+    },
+    "facing=south,half=top,heat_level=1,shape=outer_left": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_1_outer",
+      "uvlock": true,
+      "x": 180,
+      "y": 90
+    },
+    "facing=south,half=top,heat_level=1,shape=outer_right": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_1_outer",
+      "uvlock": true,
+      "x": 180,
+      "y": 180
+    },
+    "facing=south,half=top,heat_level=1,shape=straight": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_1",
+      "uvlock": true,
+      "x": 180,
+      "y": 90
+    },
+    "facing=south,half=top,heat_level=2,shape=inner_left": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_2_inner",
+      "uvlock": true,
+      "x": 180,
+      "y": 90
+    },
+    "facing=south,half=top,heat_level=2,shape=inner_right": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_2_inner",
+      "uvlock": true,
+      "x": 180,
+      "y": 180
+    },
+    "facing=south,half=top,heat_level=2,shape=outer_left": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_2_outer",
+      "uvlock": true,
+      "x": 180,
+      "y": 90
+    },
+    "facing=south,half=top,heat_level=2,shape=outer_right": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_2_outer",
+      "uvlock": true,
+      "x": 180,
+      "y": 180
+    },
+    "facing=south,half=top,heat_level=2,shape=straight": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_2",
+      "uvlock": true,
+      "x": 180,
+      "y": 90
+    },
+    "facing=south,half=top,heat_level=3,shape=inner_left": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_3_inner",
+      "uvlock": true,
+      "x": 180,
+      "y": 90
+    },
+    "facing=south,half=top,heat_level=3,shape=inner_right": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_3_inner",
+      "uvlock": true,
+      "x": 180,
+      "y": 180
+    },
+    "facing=south,half=top,heat_level=3,shape=outer_left": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_3_outer",
+      "uvlock": true,
+      "x": 180,
+      "y": 90
+    },
+    "facing=south,half=top,heat_level=3,shape=outer_right": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_3_outer",
+      "uvlock": true,
+      "x": 180,
+      "y": 180
+    },
+    "facing=south,half=top,heat_level=3,shape=straight": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_3",
+      "uvlock": true,
+      "x": 180,
+      "y": 90
+    },
+    "facing=south,half=top,heat_level=4,shape=inner_left": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_4_inner",
+      "uvlock": true,
+      "x": 180,
+      "y": 90
+    },
+    "facing=south,half=top,heat_level=4,shape=inner_right": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_4_inner",
+      "uvlock": true,
+      "x": 180,
+      "y": 180
+    },
+    "facing=south,half=top,heat_level=4,shape=outer_left": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_4_outer",
+      "uvlock": true,
+      "x": 180,
+      "y": 90
+    },
+    "facing=south,half=top,heat_level=4,shape=outer_right": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_4_outer",
+      "uvlock": true,
+      "x": 180,
+      "y": 180
+    },
+    "facing=south,half=top,heat_level=4,shape=straight": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_4",
+      "uvlock": true,
+      "x": 180,
+      "y": 90
+    },
+    "facing=west,half=bottom,heat_level=0,shape=inner_left": {
       "model": "darkerdepths:block/darkslate_bricks_stairs_inner",
       "uvlock": true,
       "y": 90
     },
-    "facing=west,half=bottom,shape=inner_right": {
+    "facing=west,half=bottom,heat_level=0,shape=inner_right": {
       "model": "darkerdepths:block/darkslate_bricks_stairs_inner",
       "uvlock": true,
       "y": 180
     },
-    "facing=west,half=bottom,shape=outer_left": {
+    "facing=west,half=bottom,heat_level=0,shape=outer_left": {
       "model": "darkerdepths:block/darkslate_bricks_stairs_outer",
       "uvlock": true,
       "y": 90
     },
-    "facing=west,half=bottom,shape=outer_right": {
+    "facing=west,half=bottom,heat_level=0,shape=outer_right": {
       "model": "darkerdepths:block/darkslate_bricks_stairs_outer",
       "uvlock": true,
       "y": 180
     },
-    "facing=west,half=bottom,shape=straight": {
+    "facing=west,half=bottom,heat_level=0,shape=straight": {
       "model": "darkerdepths:block/darkslate_bricks_stairs",
       "uvlock": true,
       "y": 180
     },
-    "facing=west,half=top,shape=inner_left": {
+    "facing=west,half=bottom,heat_level=1,shape=inner_left": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_1_inner",
+      "uvlock": true,
+      "y": 90
+    },
+    "facing=west,half=bottom,heat_level=1,shape=inner_right": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_1_inner",
+      "uvlock": true,
+      "y": 180
+    },
+    "facing=west,half=bottom,heat_level=1,shape=outer_left": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_1_outer",
+      "uvlock": true,
+      "y": 90
+    },
+    "facing=west,half=bottom,heat_level=1,shape=outer_right": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_1_outer",
+      "uvlock": true,
+      "y": 180
+    },
+    "facing=west,half=bottom,heat_level=1,shape=straight": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_1",
+      "uvlock": true,
+      "y": 180
+    },
+    "facing=west,half=bottom,heat_level=2,shape=inner_left": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_2_inner",
+      "uvlock": true,
+      "y": 90
+    },
+    "facing=west,half=bottom,heat_level=2,shape=inner_right": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_2_inner",
+      "uvlock": true,
+      "y": 180
+    },
+    "facing=west,half=bottom,heat_level=2,shape=outer_left": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_2_outer",
+      "uvlock": true,
+      "y": 90
+    },
+    "facing=west,half=bottom,heat_level=2,shape=outer_right": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_2_outer",
+      "uvlock": true,
+      "y": 180
+    },
+    "facing=west,half=bottom,heat_level=2,shape=straight": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_2",
+      "uvlock": true,
+      "y": 180
+    },
+    "facing=west,half=bottom,heat_level=3,shape=inner_left": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_3_inner",
+      "uvlock": true,
+      "y": 90
+    },
+    "facing=west,half=bottom,heat_level=3,shape=inner_right": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_3_inner",
+      "uvlock": true,
+      "y": 180
+    },
+    "facing=west,half=bottom,heat_level=3,shape=outer_left": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_3_outer",
+      "uvlock": true,
+      "y": 90
+    },
+    "facing=west,half=bottom,heat_level=3,shape=outer_right": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_3_outer",
+      "uvlock": true,
+      "y": 180
+    },
+    "facing=west,half=bottom,heat_level=3,shape=straight": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_3",
+      "uvlock": true,
+      "y": 180
+    },
+    "facing=west,half=bottom,heat_level=4,shape=inner_left": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_4_inner",
+      "uvlock": true,
+      "y": 90
+    },
+    "facing=west,half=bottom,heat_level=4,shape=inner_right": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_4_inner",
+      "uvlock": true,
+      "y": 180
+    },
+    "facing=west,half=bottom,heat_level=4,shape=outer_left": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_4_outer",
+      "uvlock": true,
+      "y": 90
+    },
+    "facing=west,half=bottom,heat_level=4,shape=outer_right": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_4_outer",
+      "uvlock": true,
+      "y": 180
+    },
+    "facing=west,half=bottom,heat_level=4,shape=straight": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_4",
+      "uvlock": true,
+      "y": 180
+    },
+    "facing=west,half=top,heat_level=0,shape=inner_left": {
       "model": "darkerdepths:block/darkslate_bricks_stairs_inner",
       "uvlock": true,
       "x": 180,
       "y": 180
     },
-    "facing=west,half=top,shape=inner_right": {
+    "facing=west,half=top,heat_level=0,shape=inner_right": {
       "model": "darkerdepths:block/darkslate_bricks_stairs_inner",
       "uvlock": true,
       "x": 180,
       "y": 270
     },
-    "facing=west,half=top,shape=outer_left": {
+    "facing=west,half=top,heat_level=0,shape=outer_left": {
       "model": "darkerdepths:block/darkslate_bricks_stairs_outer",
       "uvlock": true,
       "x": 180,
       "y": 180
     },
-    "facing=west,half=top,shape=outer_right": {
+    "facing=west,half=top,heat_level=0,shape=outer_right": {
       "model": "darkerdepths:block/darkslate_bricks_stairs_outer",
       "uvlock": true,
       "x": 180,
       "y": 270
     },
-    "facing=west,half=top,shape=straight": {
+    "facing=west,half=top,heat_level=0,shape=straight": {
       "model": "darkerdepths:block/darkslate_bricks_stairs",
+      "uvlock": true,
+      "x": 180,
+      "y": 180
+    },
+    "facing=west,half=top,heat_level=1,shape=inner_left": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_1_inner",
+      "uvlock": true,
+      "x": 180,
+      "y": 180
+    },
+    "facing=west,half=top,heat_level=1,shape=inner_right": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_1_inner",
+      "uvlock": true,
+      "x": 180,
+      "y": 270
+    },
+    "facing=west,half=top,heat_level=1,shape=outer_left": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_1_outer",
+      "uvlock": true,
+      "x": 180,
+      "y": 180
+    },
+    "facing=west,half=top,heat_level=1,shape=outer_right": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_1_outer",
+      "uvlock": true,
+      "x": 180,
+      "y": 270
+    },
+    "facing=west,half=top,heat_level=1,shape=straight": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_1",
+      "uvlock": true,
+      "x": 180,
+      "y": 180
+    },
+    "facing=west,half=top,heat_level=2,shape=inner_left": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_2_inner",
+      "uvlock": true,
+      "x": 180,
+      "y": 180
+    },
+    "facing=west,half=top,heat_level=2,shape=inner_right": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_2_inner",
+      "uvlock": true,
+      "x": 180,
+      "y": 270
+    },
+    "facing=west,half=top,heat_level=2,shape=outer_left": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_2_outer",
+      "uvlock": true,
+      "x": 180,
+      "y": 180
+    },
+    "facing=west,half=top,heat_level=2,shape=outer_right": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_2_outer",
+      "uvlock": true,
+      "x": 180,
+      "y": 270
+    },
+    "facing=west,half=top,heat_level=2,shape=straight": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_2",
+      "uvlock": true,
+      "x": 180,
+      "y": 180
+    },
+    "facing=west,half=top,heat_level=3,shape=inner_left": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_3_inner",
+      "uvlock": true,
+      "x": 180,
+      "y": 180
+    },
+    "facing=west,half=top,heat_level=3,shape=inner_right": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_3_inner",
+      "uvlock": true,
+      "x": 180,
+      "y": 270
+    },
+    "facing=west,half=top,heat_level=3,shape=outer_left": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_3_outer",
+      "uvlock": true,
+      "x": 180,
+      "y": 180
+    },
+    "facing=west,half=top,heat_level=3,shape=outer_right": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_3_outer",
+      "uvlock": true,
+      "x": 180,
+      "y": 270
+    },
+    "facing=west,half=top,heat_level=3,shape=straight": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_3",
+      "uvlock": true,
+      "x": 180,
+      "y": 180
+    },
+    "facing=west,half=top,heat_level=4,shape=inner_left": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_4_inner",
+      "uvlock": true,
+      "x": 180,
+      "y": 180
+    },
+    "facing=west,half=top,heat_level=4,shape=inner_right": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_4_inner",
+      "uvlock": true,
+      "x": 180,
+      "y": 270
+    },
+    "facing=west,half=top,heat_level=4,shape=outer_left": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_4_outer",
+      "uvlock": true,
+      "x": 180,
+      "y": 180
+    },
+    "facing=west,half=top,heat_level=4,shape=outer_right": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_4_outer",
+      "uvlock": true,
+      "x": 180,
+      "y": 270
+    },
+    "facing=west,half=top,heat_level=4,shape=straight": {
+      "model": "darkerdepths:block/darkslate_bricks_stairs_heat_level_4",
       "uvlock": true,
       "x": 180,
       "y": 180
