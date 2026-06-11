@@ -13,52 +13,52 @@
       "model": "darkerdepths:block/darkslate_pillar_upper_x"
     },
     "axis=x,heat_level=1,pillar_state=default": {
-      "model": "darkerdepths:block/darkslate_pillar_default_x"
+      "model": "darkerdepths:block/darkslate_pillar_heat_level_1_default_x"
     },
     "axis=x,heat_level=1,pillar_state=lower": {
-      "model": "darkerdepths:block/darkslate_pillar_lower_x"
+      "model": "darkerdepths:block/darkslate_pillar_heat_level_1_lower_x"
     },
     "axis=x,heat_level=1,pillar_state=middle": {
-      "model": "darkerdepths:block/darkslate_pillar_middle_x"
+      "model": "darkerdepths:block/darkslate_pillar_heat_level_1_middle_x"
     },
     "axis=x,heat_level=1,pillar_state=upper": {
-      "model": "darkerdepths:block/darkslate_pillar_upper_x"
+      "model": "darkerdepths:block/darkslate_pillar_heat_level_1_upper_x"
     },
     "axis=x,heat_level=2,pillar_state=default": {
-      "model": "darkerdepths:block/darkslate_pillar_default_x"
+      "model": "darkerdepths:block/darkslate_pillar_heat_level_2_default_x"
     },
     "axis=x,heat_level=2,pillar_state=lower": {
-      "model": "darkerdepths:block/darkslate_pillar_lower_x"
+      "model": "darkerdepths:block/darkslate_pillar_heat_level_2_lower_x"
     },
     "axis=x,heat_level=2,pillar_state=middle": {
-      "model": "darkerdepths:block/darkslate_pillar_middle_x"
+      "model": "darkerdepths:block/darkslate_pillar_heat_level_2_middle_x"
     },
     "axis=x,heat_level=2,pillar_state=upper": {
-      "model": "darkerdepths:block/darkslate_pillar_upper_x"
+      "model": "darkerdepths:block/darkslate_pillar_heat_level_2_upper_x"
     },
     "axis=x,heat_level=3,pillar_state=default": {
-      "model": "darkerdepths:block/darkslate_pillar_default_x"
+      "model": "darkerdepths:block/darkslate_pillar_heat_level_3_default_x"
     },
     "axis=x,heat_level=3,pillar_state=lower": {
-      "model": "darkerdepths:block/darkslate_pillar_lower_x"
+      "model": "darkerdepths:block/darkslate_pillar_heat_level_3_lower_x"
     },
     "axis=x,heat_level=3,pillar_state=middle": {
-      "model": "darkerdepths:block/darkslate_pillar_middle_x"
+      "model": "darkerdepths:block/darkslate_pillar_heat_level_3_middle_x"
     },
     "axis=x,heat_level=3,pillar_state=upper": {
-      "model": "darkerdepths:block/darkslate_pillar_upper_x"
+      "model": "darkerdepths:block/darkslate_pillar_heat_level_3_upper_x"
     },
     "axis=x,heat_level=4,pillar_state=default": {
-      "model": "darkerdepths:block/darkslate_pillar_default_x"
+      "model": "darkerdepths:block/darkslate_pillar_heat_level_4_default_x"
     },
     "axis=x,heat_level=4,pillar_state=lower": {
-      "model": "darkerdepths:block/darkslate_pillar_lower_x"
+      "model": "darkerdepths:block/darkslate_pillar_heat_level_4_lower_x"
     },
     "axis=x,heat_level=4,pillar_state=middle": {
-      "model": "darkerdepths:block/darkslate_pillar_middle_x"
+      "model": "darkerdepths:block/darkslate_pillar_heat_level_4_middle_x"
     },
     "axis=x,heat_level=4,pillar_state=upper": {
-      "model": "darkerdepths:block/darkslate_pillar_upper_x"
+      "model": "darkerdepths:block/darkslate_pillar_heat_level_4_upper_x"
     },
     "axis=y,heat_level=0,pillar_state=default": {
       "model": "darkerdepths:block/darkslate_pillar_default"
@@ -73,52 +73,52 @@
       "model": "darkerdepths:block/darkslate_pillar_upper"
     },
     "axis=y,heat_level=1,pillar_state=default": {
-      "model": "darkerdepths:block/darkslate_pillar_default"
+      "model": "darkerdepths:block/darkslate_pillar_heat_level_1_default"
     },
     "axis=y,heat_level=1,pillar_state=lower": {
-      "model": "darkerdepths:block/darkslate_pillar_lower"
+      "model": "darkerdepths:block/darkslate_pillar_heat_level_1_lower"
     },
     "axis=y,heat_level=1,pillar_state=middle": {
-      "model": "darkerdepths:block/darkslate_pillar_middle"
+      "model": "darkerdepths:block/darkslate_pillar_heat_level_1_middle"
     },
     "axis=y,heat_level=1,pillar_state=upper": {
-      "model": "darkerdepths:block/darkslate_pillar_upper"
+      "model": "darkerdepths:block/darkslate_pillar_heat_level_1_upper"
     },
     "axis=y,heat_level=2,pillar_state=default": {
-      "model": "darkerdepths:block/darkslate_pillar_default"
+      "model": "darkerdepths:block/darkslate_pillar_heat_level_2_default"
     },
     "axis=y,heat_level=2,pillar_state=lower": {
-      "model": "darkerdepths:block/darkslate_pillar_lower"
+      "model": "darkerdepths:block/darkslate_pillar_heat_level_2_lower"
     },
     "axis=y,heat_level=2,pillar_state=middle": {
-      "model": "darkerdepths:block/darkslate_pillar_middle"
+      "model": "darkerdepths:block/darkslate_pillar_heat_level_2_middle"
     },
     "axis=y,heat_level=2,pillar_state=upper": {
-      "model": "darkerdepths:block/darkslate_pillar_upper"
+      "model": "darkerdepths:block/darkslate_pillar_heat_level_2_upper"
     },
     "axis=y,heat_level=3,pillar_state=default": {
-      "model": "darkerdepths:block/darkslate_pillar_default"
+      "model": "darkerdepths:block/darkslate_pillar_heat_level_3_default"
     },
     "axis=y,heat_level=3,pillar_state=lower": {
-      "model": "darkerdepths:block/darkslate_pillar_lower"
+      "model": "darkerdepths:block/darkslate_pillar_heat_level_3_lower"
     },
     "axis=y,heat_level=3,pillar_state=middle": {
-      "model": "darkerdepths:block/darkslate_pillar_middle"
+      "model": "darkerdepths:block/darkslate_pillar_heat_level_3_middle"
     },
     "axis=y,heat_level=3,pillar_state=upper": {
-      "model": "darkerdepths:block/darkslate_pillar_upper"
+      "model": "darkerdepths:block/darkslate_pillar_heat_level_3_upper"
     },
     "axis=y,heat_level=4,pillar_state=default": {
-      "model": "darkerdepths:block/darkslate_pillar_default"
+      "model": "darkerdepths:block/darkslate_pillar_heat_level_4_default"
     },
     "axis=y,heat_level=4,pillar_state=lower": {
-      "model": "darkerdepths:block/darkslate_pillar_lower"
+      "model": "darkerdepths:block/darkslate_pillar_heat_level_4_lower"
     },
     "axis=y,heat_level=4,pillar_state=middle": {
-      "model": "darkerdepths:block/darkslate_pillar_middle"
+      "model": "darkerdepths:block/darkslate_pillar_heat_level_4_middle"
     },
     "axis=y,heat_level=4,pillar_state=upper": {
-      "model": "darkerdepths:block/darkslate_pillar_upper"
+      "model": "darkerdepths:block/darkslate_pillar_heat_level_4_upper"
     },
     "axis=z,heat_level=0,pillar_state=default": {
       "model": "darkerdepths:block/darkslate_pillar_default_z"
@@ -133,52 +133,52 @@
       "model": "darkerdepths:block/darkslate_pillar_upper_z"
     },
     "axis=z,heat_level=1,pillar_state=default": {
-      "model": "darkerdepths:block/darkslate_pillar_default_z"
+      "model": "darkerdepths:block/darkslate_pillar_heat_level_1_default_z"
     },
     "axis=z,heat_level=1,pillar_state=lower": {
-      "model": "darkerdepths:block/darkslate_pillar_lower_z"
+      "model": "darkerdepths:block/darkslate_pillar_heat_level_1_lower_z"
     },
     "axis=z,heat_level=1,pillar_state=middle": {
-      "model": "darkerdepths:block/darkslate_pillar_middle_z"
+      "model": "darkerdepths:block/darkslate_pillar_heat_level_1_middle_z"
     },
     "axis=z,heat_level=1,pillar_state=upper": {
-      "model": "darkerdepths:block/darkslate_pillar_upper_z"
+      "model": "darkerdepths:block/darkslate_pillar_heat_level_1_upper_z"
     },
     "axis=z,heat_level=2,pillar_state=default": {
-      "model": "darkerdepths:block/darkslate_pillar_default_z"
+      "model": "darkerdepths:block/darkslate_pillar_heat_level_2_default_z"
     },
     "axis=z,heat_level=2,pillar_state=lower": {
-      "model": "darkerdepths:block/darkslate_pillar_lower_z"
+      "model": "darkerdepths:block/darkslate_pillar_heat_level_2_lower_z"
     },
     "axis=z,heat_level=2,pillar_state=middle": {
-      "model": "darkerdepths:block/darkslate_pillar_middle_z"
+      "model": "darkerdepths:block/darkslate_pillar_heat_level_2_middle_z"
     },
     "axis=z,heat_level=2,pillar_state=upper": {
-      "model": "darkerdepths:block/darkslate_pillar_upper_z"
+      "model": "darkerdepths:block/darkslate_pillar_heat_level_2_upper_z"
     },
     "axis=z,heat_level=3,pillar_state=default": {
-      "model": "darkerdepths:block/darkslate_pillar_default_z"
+      "model": "darkerdepths:block/darkslate_pillar_heat_level_3_default_z"
     },
     "axis=z,heat_level=3,pillar_state=lower": {
-      "model": "darkerdepths:block/darkslate_pillar_lower_z"
+      "model": "darkerdepths:block/darkslate_pillar_heat_level_3_lower_z"
     },
     "axis=z,heat_level=3,pillar_state=middle": {
-      "model": "darkerdepths:block/darkslate_pillar_middle_z"
+      "model": "darkerdepths:block/darkslate_pillar_heat_level_3_middle_z"
     },
     "axis=z,heat_level=3,pillar_state=upper": {
-      "model": "darkerdepths:block/darkslate_pillar_upper_z"
+      "model": "darkerdepths:block/darkslate_pillar_heat_level_3_upper_z"
     },
     "axis=z,heat_level=4,pillar_state=default": {
-      "model": "darkerdepths:block/darkslate_pillar_default_z"
+      "model": "darkerdepths:block/darkslate_pillar_heat_level_4_default_z"
     },
     "axis=z,heat_level=4,pillar_state=lower": {
-      "model": "darkerdepths:block/darkslate_pillar_lower_z"
+      "model": "darkerdepths:block/darkslate_pillar_heat_level_4_lower_z"
     },
     "axis=z,heat_level=4,pillar_state=middle": {
-      "model": "darkerdepths:block/darkslate_pillar_middle_z"
+      "model": "darkerdepths:block/darkslate_pillar_heat_level_4_middle_z"
     },
     "axis=z,heat_level=4,pillar_state=upper": {
-      "model": "darkerdepths:block/darkslate_pillar_upper_z"
+      "model": "darkerdepths:block/darkslate_pillar_heat_level_4_upper_z"
     }
   }
 }

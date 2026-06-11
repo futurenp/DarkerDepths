@@ -47,7 +47,8 @@ public class EmissiveModelManager {
                         DDBlocks.DARKSLATE_BRICKS_VERTICAL_SLAB,
                         DDBlocks.DARKSLATE_BRICKS_WALL,
                         DDBlocks.CHISELED_DARKSLATE_BRICKS,
-                        DDBlocks.CRACKED_DARKSLATE_BRICKS
+                        DDBlocks.CRACKED_DARKSLATE_BRICKS,
+                        DDBlocks.DARKSLATE_PILLAR
                 )
                 .predicate(state -> state.hasProperty(DDBlockStateProperties.HEAT_LEVEL) && state.getValue(DDBlockStateProperties.HEAT_LEVEL) >= 2)
                 .dynamicSettings(state -> {

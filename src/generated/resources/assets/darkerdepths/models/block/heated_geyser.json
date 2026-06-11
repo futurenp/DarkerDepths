@@ -1,49 +1,8 @@
 {
-  "parent": "minecraft:block/block",
-  "elements": [
-    {
-      "faces": {
-        "down": {
-          "cullface": "down",
-          "texture": "#base_bottom"
-        },
-        "east": {
-          "cullface": "east",
-          "texture": "#base_side"
-        },
-        "north": {
-          "cullface": "north",
-          "texture": "#base_side"
-        },
-        "south": {
-          "cullface": "south",
-          "texture": "#base_side"
-        },
-        "up": {
-          "cullface": "up",
-          "texture": "#base_top"
-        },
-        "west": {
-          "cullface": "west",
-          "texture": "#base_side"
-        }
-      },
-      "from": [
-        0,
-        0,
-        0
-      ],
-      "to": [
-        16,
-        16,
-        16
-      ]
-    }
-  ],
+  "parent": "minecraft:block/cube_bottom_top",
   "textures": {
-    "base_bottom": "darkerdepths:block/darkslate_heat_level_2_top",
-    "base_side": "darkerdepths:block/heated_geyser",
-    "base_top": "darkerdepths:block/heated_geyser_top",
-    "particle": "darkerdepths:block/heated_geyser"
+    "bottom": "darkerdepths:block/darkslate_heat_level_3_top",
+    "side": "darkerdepths:block/heated_geyser",
+    "top": "darkerdepths:block/heated_geyser_top"
   }
 }

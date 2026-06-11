@@ -62,7 +62,7 @@ public class DDLanguageProviderENUS extends LanguageProvider {
 
         // Death Messages
         LangBuilder.of(this, "death.attack.")
-                .add("soul_binding_damage.player", "%1$s's soul was consumed by the Death Anchor.")
+                .add("soul_binding_damage", "%1$s's soul was consumed by the Death Anchor.")
                 .add("void_soul_damage", "%1$s's soul was reclaimed.")
                 .add("glowshroom_slam_damage", "%1$s was slammed to death.")
                 .applyAll();

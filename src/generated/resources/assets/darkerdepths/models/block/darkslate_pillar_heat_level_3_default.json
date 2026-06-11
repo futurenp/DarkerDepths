@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "darkerdepths:block/darkslate_pillar_end_heat_level_3",
+    "side": "darkerdepths:block/darkslate_pillar_side_heat_level_3"
+  }
+}

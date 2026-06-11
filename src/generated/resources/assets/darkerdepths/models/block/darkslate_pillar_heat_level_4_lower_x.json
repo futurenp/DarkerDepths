@@ -1,0 +1,8 @@
+{
+  "parent": "darkerdepths:block/pillar_x",
+  "textures": {
+    "end": "darkerdepths:block/darkslate_pillar_end_heat_level_4",
+    "particle": "darkerdepths:block/darkslate_pillar_side_lower_horizontal_heat_level_4",
+    "side": "darkerdepths:block/darkslate_pillar_side_lower_horizontal_heat_level_4"
+  }
+}

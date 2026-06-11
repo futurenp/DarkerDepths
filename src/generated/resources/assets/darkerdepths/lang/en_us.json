@@ -177,7 +177,7 @@
   "block.darkerdepths.void_soul_jar": "Void Soul Jar",
   "block.darkerdepths.void_soul_torch": "Void Soul Torch",
   "death.attack.glowshroom_slam_damage": "%1$s was slammed to death.",
-  "death.attack.soul_binding_damage.player": "%1$s's soul was consumed by the Death Anchor.",
+  "death.attack.soul_binding_damage": "%1$s's soul was consumed by the Death Anchor.",
   "death.attack.void_soul_damage": "%1$s's soul was reclaimed.",
   "effect.darkerdepths.paranoia": "Paranoia",
   "effect.darkerdepths.soul_binding": "Soul Binding",

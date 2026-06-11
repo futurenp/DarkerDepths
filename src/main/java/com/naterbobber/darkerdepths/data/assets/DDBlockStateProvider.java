@@ -79,6 +79,8 @@ public class DDBlockStateProvider extends BlockStateProvider {
 
         add(this::darkslateBlockWithItem, DDBlocks.CRACKED_DARKSLATE_BRICKS);
         add(this::darkslateBlockWithItem, DDBlocks.CHISELED_DARKSLATE_BRICKS);
+        add(this::connectedRotatableDarkslatePillarBlockWithItem, DDBlocks.DARKSLATE_PILLAR);
+
 
 
         skipBlock(
@@ -431,6 +433,30 @@ public class DDBlockStateProvider extends BlockStateProvider {
                 .condition(heatProperty, heat).end();
     }
 
+    private void connectedRotatableDarkslatePillarBlockWithItem(DeferredHolder<Block, ? extends Block> block) {
+        var blockName = block.getId().getPath();
+        var heatProperty = DDBlockStateProperties.HEAT_LEVEL;
+
+        getVariantBuilder(block.get()).forAllStates(state -> {
+            int heat = state.getValue(heatProperty);
+
+            var heatExtension = heat != 0 ? "_" + heatProperty.getName() + "_" + heat : "";
+
+            var verticalTextures = PillarTextures.fromNameAndExtensionDarkslate(blockName, "", heat);
+            var horizontalTextures = PillarTextures.fromNameAndExtensionDarkslate(blockName, "horizontal", heat);
+
+            var textures = state.getValue(BlockStateProperties.AXIS) == Direction.Axis.Y
+                    ? verticalTextures : horizontalTextures;
+            var modelToUse = createPillarFromState(blockName + heatExtension, textures, state);
+
+            return ConfiguredModel.builder()
+                    .modelFile(modelToUse)
+                    .build();
+        });
+
+        simpleBlockItem(block.get(), models().getExistingFile(modLoc("block/" + blockName + "_default")));
+    }
+
     private ResourceLocation getDarkslateTexture(BlockState state, DeferredHolder<Block, ? extends Block> blockHolder) {
         return modLoc("block/" + getDarkslateTextureName(state, blockHolder));
     }
@@ -678,37 +704,29 @@ public class DDBlockStateProvider extends BlockStateProvider {
     }
 
     public void geyserBlock(DeferredHolder<Block, ? extends Block> blockHolder) {
-        Block block = blockHolder.get();
+        var sideTexture = modLoc("block/geyser");
+        var bottomTexture = modLoc("block/darkslate_top");
+        var topTexture = modLoc("block/geyser_top");
 
-        ResourceLocation sideTexture = modLoc("block/geyser");
-        ResourceLocation bottomTexture = modLoc("block/darkslate_top");
-        ResourceLocation topTexture = modLoc("block/geyser_top");
+        var heatedSideTexture = modLoc("block/heated_geyser");
+        var heatedBottomTexture = modLoc("block/darkslate_heat_level_3_top");
+        var heatedTopTexture = modLoc("block/heated_geyser_top");
 
-        ResourceLocation heatedSideTexture = modLoc("block/heated_geyser");
-        ResourceLocation heatedBottomTexture = modLoc("block/darkslate_heat_level_2_top");
-        ResourceLocation heatedTopTexture = modLoc("block/heated_geyser_top");
-
-        ModelFile normalModel = models().cubeBottomTop(
+        var normalModel = models().cubeBottomTop(
                 "geyser",
                 sideTexture,
                 bottomTexture,
                 topTexture
         );
 
-        ModelFile burstingModel = this.models().getBuilder("heated_geyser")
-                .parent(new net.neoforged.neoforge.client.model.generators.ModelFile.UncheckedModelFile("minecraft:block/block"))
-                .texture("particle", heatedSideTexture)
-                .texture("base_side", heatedSideTexture)
-                .texture("base_bottom", heatedBottomTexture)
-                .texture("base_top", heatedTopTexture)
-                .element().from(0, 0, 0).to(16, 16, 16)
-                .face(Direction.DOWN).texture("#base_bottom").cullface(Direction.DOWN).end()
-                .face(Direction.UP).texture("#base_top").cullface(Direction.UP).end()
-                .face(Direction.NORTH).texture("#base_side").cullface(Direction.NORTH).end()
-                .face(Direction.SOUTH).texture("#base_side").cullface(Direction.SOUTH).end()
-                .face(Direction.EAST).texture("#base_side").cullface(Direction.EAST).end()
-                .face(Direction.WEST).texture("#base_side").cullface(Direction.WEST).end()
-                .end();
+        var burstingModel = models().cubeBottomTop(
+                "heated_geyser",
+                heatedSideTexture,
+                heatedBottomTexture,
+                heatedTopTexture
+        );
+
+        var block = blockHolder.get();
 
         directionalBlock(block, state -> {
             boolean isBursting = state.getValue(DDBlockStateProperties.BURSTING);
@@ -719,48 +737,31 @@ public class DDBlockStateProvider extends BlockStateProvider {
     }
 
     private void doorBlockWithItem(DeferredHolder<Block, ? extends Block> block) {
-        ResourceLocation location = block.getId();
+        var location = block.getId();
 
-        ResourceLocation bottomTexture = location.withPath("block/" + location.getPath() + "_bottom");
-        ResourceLocation topTexture = location.withPath("block/" + location.getPath() + "_top");
+        var bottomTexture = location.withPath("block/" + location.getPath() + "_bottom");
+        var topTexture = location.withPath("block/" + location.getPath() + "_top");
+        var itemTexture = location.withPath("item/" + location.getPath());
 
         doorBlockWithRenderType((DoorBlock) block.get(), bottomTexture, topTexture, "cutout");
 
-        ResourceLocation itemTexture = location.withPath("item/" + location.getPath());
         itemModels().withExistingParent(block.getId().getPath(), "item/generated")
                 .texture("layer0", itemTexture);
     }
 
     private void connectedPillarBlockWithItem(DeferredHolder<Block, ? extends Block> block) {
-        var location = block.getId();
-        var blockName = location.getPath();
-        var endTexture = location.withPath("block/" + blockName + "_end");
-        var sideTexture = location.withPath("block/" + blockName + "_side");
-        var sideLowerTexture = location.withPath("block/" + blockName + "_side_lower");
-        var sideMiddleTexture = location.withPath("block/" + blockName + "_side_middle");
-        var sideUpperTexture = location.withPath("block/" + blockName + "_side_upper");
-
-        var defaultModel = models().cubeColumn(blockName + "_default", sideTexture, endTexture);
-        var lowerModel = models().cubeColumn(blockName + "_lower", sideLowerTexture, endTexture);
-        var middleModel = models().cubeColumn(blockName + "_middle", sideMiddleTexture, endTexture);
-        var upperModel = models().cubeColumn(blockName + "_upper", sideUpperTexture, endTexture);
+        var blockName = block.getId().getPath();
+        var textures = PillarTextures.fromName(blockName);
 
         getVariantBuilder(block.get()).forAllStates(state -> {
-            var pillarState = state.getValue(ConnectedRotatablePillarBlock.PILLAR_STATE);
-
-            var modelToUse = switch (pillarState) {
-                case LOWER -> lowerModel;
-                case MIDDLE -> middleModel;
-                case UPPER -> upperModel;
-                default -> defaultModel;
-            };
+            var modelToUse = createPillarFromState(blockName, textures, state);
 
             return ConfiguredModel.builder()
                     .modelFile(modelToUse)
                     .build();
         });
 
-        simpleBlockItem(block.get(), defaultModel);
+        simpleBlockItem(block.get(), models().getExistingFile(modLoc("block/" + blockName + "_default")));
     }
 
     private void trapdoorBlockWithItem(DeferredHolder<Block, ? extends Block> block) {
@@ -793,14 +794,13 @@ public class DDBlockStateProvider extends BlockStateProvider {
     }
 
     private void columnBlockWithItem(DeferredHolder<Block, ? extends Block> block, DeferredHolder<Block, ? extends Block> topBlock) {
-        ResourceLocation location = block.getId();
-        String blockName = location.getPath();
-        ResourceLocation topLocation = topBlock.getId();
-        String parentBlockName = topLocation.getPath();
+        var location = block.getId();
+        var blockName = location.getPath();
+        var parentBlockName = topBlock.getId().getPath();
 
-        ResourceLocation sideTexture = location.withPath("block/" + blockName);
-        ResourceLocation topTexture = location.withPath("block/" + parentBlockName);
-        ModelFile cubeColumn = models().cubeColumn(blockName, sideTexture, topTexture);
+        var sideTexture = location.withPath("block/" + blockName);
+        var topTexture = location.withPath("block/" + parentBlockName);
+        var cubeColumn = models().cubeColumn(blockName, sideTexture, topTexture);
 
         getVariantBuilder(block.get()).partialState().setModels(new ConfiguredModel(cubeColumn));
         simpleBlockItem(block.get(), cubeColumn);
@@ -812,11 +812,9 @@ public class DDBlockStateProvider extends BlockStateProvider {
         var horizontalTextures = PillarTextures.fromNameAndExtension(blockName, "horizontal");
 
         getVariantBuilder(block.get()).forAllStates(state -> {
-            var pillarState = state.getValue(ConnectedRotatablePillarBlock.PILLAR_STATE);
-            var axis = state.getValue(ConnectedRotatablePillarBlock.AXIS);
-
-            var textures = axis == Direction.Axis.Y ? verticalTextures : horizontalTextures;
-            var modelToUse = createPillarFromParent(blockName, textures, axis, pillarState);
+            var textures = state.getValue(BlockStateProperties.AXIS) == Direction.Axis.Y
+                    ? verticalTextures : horizontalTextures;
+            var modelToUse = createPillarFromState(blockName, textures, state);
 
             return ConfiguredModel.builder()
                     .modelFile(modelToUse)
@@ -826,12 +824,15 @@ public class DDBlockStateProvider extends BlockStateProvider {
         simpleBlockItem(block.get(), models().getExistingFile(modLoc("block/" + blockName + "_default")));
     }
 
-    private ModelFile createPillarFromParent(String blockName, PillarTextures textures, Direction.Axis axis, PillarState pillarState) {
-        var direction = axis.getName();
-        var parentName = "block/pillar_" + direction;
-        var modelName = blockName + "_" + pillarState + "_" + direction;
+    private ModelFile createPillarFromState(String blockName, PillarTextures textures, BlockState state) {
+        var pillarState = state.getValue(ConnectedRotatablePillarBlock.PILLAR_STATE);
+        var axisProperty = BlockStateProperties.AXIS;
+        Direction.Axis axis = null;
 
-        var endTex = textures.endTexture;
+        if(state.hasProperty(axisProperty)) {
+            axis = state.getValue(axisProperty);
+        }
+
         ResourceLocation sideTex;
         switch(pillarState) {
             case LOWER -> sideTex = textures.lowerTexture;
@@ -840,9 +841,14 @@ public class DDBlockStateProvider extends BlockStateProvider {
             default -> sideTex = textures.texture;
         }
 
-        if(axis == Direction.Axis.Y) {
+        var endTex = textures.endTexture;
+
+        if(axis == Direction.Axis.Y || axis == null) {
             return models().cubeColumn(blockName + "_" + pillarState, sideTex, endTex);
         }
+
+        var parentName = "block/pillar_" + axis;
+        var modelName = blockName + "_" + pillarState + "_" + axis;
 
         return models().withExistingParent(modelName, DarkerDepths.id(parentName))
                 .texture("particle", sideTex)
@@ -861,6 +867,24 @@ public class DDBlockStateProvider extends BlockStateProvider {
             var middleTexture = DarkerDepths.id(defaultPath + "side_middle" + extension);
             var upperTexture = DarkerDepths.id(defaultPath + "side_upper" + extension);
             var endTexture = DarkerDepths.id(defaultPath + "end");
+
+            return new PillarTextures(texture, lowerTexture, middleTexture, upperTexture, endTexture);
+        }
+
+        public static PillarTextures fromNameAndExtensionDarkslate(String blockName, String extension, int heat) {
+            if(!extension.isEmpty()) {
+                extension = "_" + extension;
+            }
+
+            var heatProperty = DDBlockStateProperties.HEAT_LEVEL;
+            var heatExtension = heat == 0 ? "" : "_" + heatProperty.getName() + "_" + heat;
+
+            var defaultPath = "block/" + blockName + "_";
+            var texture = DarkerDepths.id(defaultPath + "side" + extension + heatExtension);
+            var lowerTexture = DarkerDepths.id(defaultPath + "side_lower" + extension + heatExtension);
+            var middleTexture = DarkerDepths.id(defaultPath + "side_middle" + extension + heatExtension);
+            var upperTexture = DarkerDepths.id(defaultPath + "side_upper" + extension + heatExtension);
+            var endTexture = DarkerDepths.id(defaultPath + "end" + heatExtension);
 
             return new PillarTextures(texture, lowerTexture, middleTexture, upperTexture, endTexture);
         }
