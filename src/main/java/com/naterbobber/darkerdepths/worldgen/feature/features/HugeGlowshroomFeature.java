@@ -138,7 +138,7 @@ public class HugeGlowshroomFeature extends Feature<NoneFeatureConfiguration> {
                                 int blockStateRandom = (int) (Math.random() * 3 + 1);
                                 if (glowshroomRandom == 0) {
                                     if(world.getBlockState(capPos).is(Blocks.WATER)){
-                                        this.setBlock(world, capPos, DDBlocks.GLOWSHROOM.get().defaultBlockState().setValue(GlowshroomBlock.GLOWSHROOM_CLUSTERS, blockStateRandom).setValue(GlowshroomBlock.WATERLOGGED, true));
+                                        this.setBlock(world, capPos, DDBlocks.GLOWSHROOM.get().defaultBlockState().setValue(GlowshroomBlock.GLOWSHROOM_CLUSTERS, blockStateRandom));
                                     } else {
                                         this.setBlock(world, capPos, DDBlocks.GLOWSHROOM.get().defaultBlockState().setValue(GlowshroomBlock.GLOWSHROOM_CLUSTERS, blockStateRandom));
                                     }
@@ -243,9 +243,7 @@ public class HugeGlowshroomFeature extends Feature<NoneFeatureConfiguration> {
                                 int glowshroomRandom = (int) (Math.random() * 18);
                                 int blockStateRandom = (int) (Math.random() * 3 + 1);
                                 if (glowshroomRandom == 0) {
-                                    if(world.getBlockState(capPos).is(Blocks.WATER)){
-                                        this.setBlock(world, capPos, DDBlocks.GLOWSHROOM.get().defaultBlockState().setValue(GlowshroomBlock.GLOWSHROOM_CLUSTERS, blockStateRandom).setValue(GlowshroomBlock.WATERLOGGED, true));
-                                    } else {
+                                    if(!world.getBlockState(capPos).is(Blocks.WATER)){
                                         this.setBlock(world, capPos, DDBlocks.GLOWSHROOM.get().defaultBlockState().setValue(GlowshroomBlock.GLOWSHROOM_CLUSTERS, blockStateRandom));
                                     }
                                 }

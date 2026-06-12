@@ -6,7 +6,6 @@ import com.naterbobber.darkerdepths.util.DDResourceKeys;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -15,38 +14,26 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.BonemealableBlock;
-import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
-import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
-import net.minecraft.world.level.material.FluidState;
-import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import org.jetbrains.annotations.Nullable;
 
-public class GlowshroomBlock extends Block implements BonemealableBlock, SimpleWaterloggedBlock {
+public class GlowshroomBlock extends Block implements BonemealableBlock {
     public static final IntegerProperty GLOWSHROOM_CLUSTERS = DDBlockStateProperties.GLOWSHROOM_CLUSTERS;
-    public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     protected static final VoxelShape SHAPE_1 = Block.box(5.0D, 0.0D, 5.0D, 11.0D, 6.0D, 11.0D);
     protected static final VoxelShape SHAPE_2 = Block.box(4.0D, 0.0D, 4.0D, 12.0D, 7.0D, 12.0D);
     protected static final VoxelShape SHAPE_3 = Block.box(3.0D, 0.0D, 3.0D, 13.0D, 7.0D, 13.0D);
 
     public GlowshroomBlock(Properties properties) {
         super(properties);
-        this.registerDefaultState(this.stateDefinition.any().setValue(WATERLOGGED, false).setValue(GLOWSHROOM_CLUSTERS, 1));
+        this.registerDefaultState(this.stateDefinition.any().setValue(GLOWSHROOM_CLUSTERS, 1));
     }
 
     @Override
@@ -62,18 +49,6 @@ public class GlowshroomBlock extends Block implements BonemealableBlock, SimpleW
         } else {
             return ItemInteractionResult.FAIL;
         }
-    }
-
-    @Nullable
-    @Override
-    public BlockState getStateForPlacement(BlockPlaceContext context) {
-        FluidState state = context.getLevel().getFluidState(context.getClickedPos());
-        return this.defaultBlockState().setValue(WATERLOGGED, state.getType() == Fluids.WATER);
-    }
-
-    @Override
-    public FluidState getFluidState(BlockState state) {
-        return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
     }
 
     @Override
@@ -97,7 +72,8 @@ public class GlowshroomBlock extends Block implements BonemealableBlock, SimpleW
 
     @Override
     public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState) {
-        return blockState.getValue(GLOWSHROOM_CLUSTERS) == 1;
+        return levelReader.getBrightness(LightLayer.SKY, blockPos) == 0
+                && blockState.getValue(GLOWSHROOM_CLUSTERS) == 1;
     }
 
     @Override
@@ -107,12 +83,9 @@ public class GlowshroomBlock extends Block implements BonemealableBlock, SimpleW
 
     @Override
     public void performBonemeal(ServerLevel world, RandomSource random, BlockPos pos, BlockState state) {
-        ResourceKey<ConfiguredFeature<?, ?>> featureKey;
-        if(random.nextFloat() < 0.2D) {
-            featureKey = DDResourceKeys.ConfiguredFeatures.HUGE_GLOWSHROOM;
-        } else {
-            featureKey = DDResourceKeys.ConfiguredFeatures.SMUSHED_GLOWSHROOM;
-        }
+        var featureKey = random.nextFloat() < 0.2D
+                ? DDResourceKeys.ConfiguredFeatures.HUGE_GLOWSHROOM
+                : DDResourceKeys.ConfiguredFeatures.SMUSHED_GLOWSHROOM;
 
         world.registryAccess().registryOrThrow(Registries.CONFIGURED_FEATURE)
                 .getHolder(featureKey).ifPresent(featureHolder -> {
@@ -130,6 +103,6 @@ public class GlowshroomBlock extends Block implements BonemealableBlock, SimpleW
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         super.createBlockStateDefinition(builder);
-        builder.add(GLOWSHROOM_CLUSTERS, WATERLOGGED);
+        builder.add(GLOWSHROOM_CLUSTERS);
     }
 }
