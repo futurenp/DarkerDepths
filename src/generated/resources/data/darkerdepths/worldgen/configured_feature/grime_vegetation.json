@@ -8,8 +8,7 @@
           "data": {
             "Name": "darkerdepths:glowshroom",
             "Properties": {
-              "clusters": "1",
-              "waterlogged": "false"
+              "clusters": "1"
             }
           },
           "weight": 5
@@ -18,8 +17,7 @@
           "data": {
             "Name": "darkerdepths:glowshroom",
             "Properties": {
-              "clusters": "2",
-              "waterlogged": "false"
+              "clusters": "2"
             }
           },
           "weight": 5
@@ -28,8 +26,7 @@
           "data": {
             "Name": "darkerdepths:glowshroom",
             "Properties": {
-              "clusters": "3",
-              "waterlogged": "false"
+              "clusters": "3"
             }
           },
           "weight": 3
