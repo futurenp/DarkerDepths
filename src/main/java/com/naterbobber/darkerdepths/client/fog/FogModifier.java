@@ -16,4 +16,8 @@ public interface FogModifier {
     default void modifyRender(ViewportEvent.RenderFog event, LocalPlayer player, float partialTick) {}
 
     default void modifyFov(ViewportEvent.ComputeFov event, LocalPlayer player, float partialTick) {}
+
+    default float lerp(float start, float end, float factor) { return start + factor * (end - start); }
+
+    default double lerp(double start, double end, float factor) { return start + factor * (end - start); }
 }

@@ -1,17 +1,13 @@
 package com.naterbobber.darkerdepths.client.fog.modifiers;
 
-import com.mojang.blaze3d.shaders.Effect;
 import com.mojang.blaze3d.shaders.FogShape;
 import com.naterbobber.darkerdepths.client.fog.BiomeFog;
 import com.naterbobber.darkerdepths.client.fog.DDBiomeFogs;
 import com.naterbobber.darkerdepths.client.fog.FogModifier;
 import com.naterbobber.darkerdepths.config.DDConfig;
-import com.naterbobber.darkerdepths.init.DDBlocks;
 import com.naterbobber.darkerdepths.init.DDMobEffects;
-import com.naterbobber.darkerdepths.util.DDTags;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.item.Items;
 import net.neoforged.neoforge.client.event.ViewportEvent;
 import software.bernie.geckolib.util.Color;
 
@@ -87,15 +83,9 @@ public class BiomeFogModifier implements FogModifier {
         event.setCanceled(true);
     }
 
-    private float lerp(float start, float end, float factor) {
-        return start + factor * (end - start);
-    }
-
     private float getTotalBiomeWeight() {
         float total = 0;
         for (BiomeFog biome : DDBiomeFogs.BIOME_FOGS) total += biome.getWeight();
         return total;
     }
-
-
 }

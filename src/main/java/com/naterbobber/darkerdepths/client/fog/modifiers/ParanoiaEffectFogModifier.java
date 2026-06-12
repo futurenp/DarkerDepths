@@ -12,7 +12,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.neoforged.neoforge.client.event.ViewportEvent;
 
-public class EffectFogModifier implements FogModifier {
+public class ParanoiaEffectFogModifier implements FogModifier {
     private float paranoiaFactor = 0.0f;
     private static final float TRANSITION_SECONDS = 1.5f;
 
@@ -87,17 +87,14 @@ public class EffectFogModifier implements FogModifier {
     }
 
     private float getTorchMultiplier(LocalPlayer player) {
-        ItemStack main = player.getMainHandItem();
-        ItemStack off = player.getOffhandItem();
-        Item voidTorch = DDItems.VOID_SOUL_TORCH.get();
-
-        if (main.is(voidTorch) || off.is(voidTorch)) return 2f;
-        if (main.is(Items.TORCH) || off.is(Items.TORCH)) return 1.4f;
-        if (main.is(Items.REDSTONE_TORCH) || off.is(Items.REDSTONE_TORCH)) return 1.25f;
-        if (main.is(Items.SOUL_TORCH) || off.is(Items.SOUL_TORCH)) return 0.7f;
+        if (inAnyHand(player, DDItems.VOID_SOUL_TORCH.get())) return 2f;
+        if (inAnyHand(player, Items.TORCH)) return 1.4f;
+        if (inAnyHand(player, Items.REDSTONE_TORCH)) return 1.25f;
+        if (inAnyHand(player, Items.SOUL_TORCH)) return 0.7f;
         return 1f;
     }
 
-    private float lerp(float start, float end, float factor) { return start + factor * (end - start); }
-    private double lerp(double start, double end, float factor) { return start + factor * (end - start); }
+    private boolean inAnyHand(LocalPlayer player, Item item) {
+        return player.getMainHandItem().is(item) || player.getOffhandItem().is(item);
+    }
 }

@@ -825,7 +825,7 @@ public class DDBlockStateProvider extends BlockStateProvider {
     }
 
     private ModelFile createPillarFromState(String blockName, PillarTextures textures, BlockState state) {
-        var pillarState = state.getValue(ConnectedRotatablePillarBlock.PILLAR_STATE);
+        var pillarState = state.getValue(DDBlockStateProperties.PILLAR_STATE);
         var axisProperty = BlockStateProperties.AXIS;
         Direction.Axis axis = null;
 

@@ -3,7 +3,7 @@ package com.naterbobber.darkerdepths.client.events;
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.client.fog.FogManager;
 import com.naterbobber.darkerdepths.client.fog.modifiers.BiomeFogModifier;
-import com.naterbobber.darkerdepths.client.fog.modifiers.EffectFogModifier;
+import com.naterbobber.darkerdepths.client.fog.modifiers.ParanoiaEffectFogModifier;
 import com.naterbobber.darkerdepths.client.fog.modifiers.ScorcherFlashModifier;
 import com.naterbobber.darkerdepths.client.render.EmissiveModelManager;
 import com.naterbobber.darkerdepths.init.DDDataComponents;
@@ -29,7 +29,7 @@ public class ClientSetupEvents {
 
         eventBus.register(new ClientEvents());
         FogManager.register(new BiomeFogModifier());
-        FogManager.register(new EffectFogModifier());
+        FogManager.register(new ParanoiaEffectFogModifier());
         FogManager.register(new ScorcherFlashModifier());
 
         event.enqueueWork(() -> {

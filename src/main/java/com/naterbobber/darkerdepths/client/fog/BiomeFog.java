@@ -7,11 +7,11 @@ import software.bernie.geckolib.util.Color;
 import java.util.function.Supplier;
 
 public class BiomeFog {
-    ResourceKey<Biome> biomeKey;
-    Color color;
-    float weight;
-    Supplier<Integer> minDist;
-    Supplier<Integer> maxDist;
+    private ResourceKey<Biome> biomeKey;
+    private Color color;
+    private float weight;
+    private Supplier<Integer> minDist;
+    private Supplier<Integer> maxDist;
 
     public BiomeFog(ResourceKey<Biome> biome, Color color, Supplier<Integer> minDist, Supplier<Integer> maxDist) {
         this.biomeKey = biome;
@@ -20,15 +20,15 @@ public class BiomeFog {
         this.maxDist = maxDist;
     }
 
-    Color getWeightedColors() {
+    public Color getWeightedColors() {
         return Color.ofRGB(color.getRedFloat() * weight, color.getGreenFloat() * weight, color.getBlueFloat() * weight);
     }
 
-    float getWeightedMin() {
+    public float getWeightedMin() {
         return weight * minDist.get();
     }
 
-    float getWeightedMax() {
+    public float getWeightedMax() {
         return weight * maxDist.get();
     }
 

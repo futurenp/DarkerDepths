@@ -14,22 +14,19 @@ public class SoulBindingBlackoutHandler {
     public static void tick() {
         var mc = Minecraft.getInstance();
 
-        if (mc.isPaused()) {
+        if (mc.isPaused() || mc.screen instanceof DeathScreen || !isActive()) {
             return;
         }
-
-        if (mc.screen instanceof DeathScreen) {
-            return;
-        }
-
-        if (!isActive()) return;
 
         handleRespawn();
-        SoulBindingBlackoutRenderer.updateFrame();
+        
+        if(isActive()) {
+            SoulBindingBlackoutRenderer.updateFrame();
+        }
     }
 
     public static void start() {
-        LocalPlayer player = Minecraft.getInstance().player;
+        var player = Minecraft.getInstance().player;
 
         if (player == null) return;
 

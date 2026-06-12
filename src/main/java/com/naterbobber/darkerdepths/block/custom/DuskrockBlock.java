@@ -14,7 +14,6 @@ public class DuskrockBlock extends Block {
         super(properties);
     }
 
-
     @Override
     public TriState canSustainPlant(BlockState state, BlockGetter level, BlockPos soilPosition, Direction facing, BlockState plant) {
         Block plantBlock = plant.getBlock();

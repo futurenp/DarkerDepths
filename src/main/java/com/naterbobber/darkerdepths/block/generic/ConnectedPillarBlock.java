@@ -9,6 +9,7 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 
 import javax.annotation.Nullable;
@@ -17,7 +18,7 @@ public class ConnectedPillarBlock extends Block {
     private static final EnumProperty<PillarState> PILLAR_STATE = DDBlockStateProperties.PILLAR_STATE;
     public ConnectedPillarBlock(Properties properties) {
         super(properties);
-        this.registerDefaultState(this.stateDefinition.any().setValue(PILLAR_STATE, PillarState.DEFAULT));
+        this.registerDefaultState(this.defaultBlockState().setValue(PILLAR_STATE, PillarState.DEFAULT));
     }
 
     @Nullable
@@ -27,36 +28,40 @@ public class ConnectedPillarBlock extends Block {
     }
 
     @Override
-    public BlockState updateShape(BlockState pState, Direction pDirection, BlockState pNeighborState, LevelAccessor pLevel, BlockPos pCurrentPos, BlockPos pNeighborPos) {
-        if (pDirection == Direction.UP || pDirection == Direction.DOWN) {
-            return getState(pLevel, pCurrentPos);
+    public BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor level, BlockPos pos, BlockPos neighborPos) {
+        if ((direction == Direction.UP || direction == Direction.DOWN) && !state.hasProperty(BlockStateProperties.AXIS)) {
+            return getState(level, pos);
         }
-        return super.updateShape(pState, pDirection, pNeighborState, pLevel, pCurrentPos, pNeighborPos);
+        return super.updateShape(state, direction, neighborState, level, pos, neighborPos);
     }
 
     private BlockState getState(LevelAccessor level, BlockPos pos) {
-        Block blockAbove = level.getBlockState(pos.above()).getBlock();
-        Block blockBelow = level.getBlockState(pos.below()).getBlock();
+        boolean above = level.getBlockState(pos.above()).is(this);
+        boolean below = level.getBlockState(pos.below()).is(this);
 
-        boolean isPillarAbove = blockAbove == this;
-        boolean isPillarBelow = blockBelow == this;
+        var pillarState = getPillarState(above, below);
 
-        PillarState currentState;
+        return this.defaultBlockState().setValue(PILLAR_STATE, pillarState);
+    }
 
-        if (isPillarAbove && isPillarBelow) {
-            currentState = PillarState.MIDDLE;
-        } else if (isPillarAbove) {
-            currentState = PillarState.LOWER;
-        } else if (isPillarBelow) {
-            currentState = PillarState.UPPER;
+    protected PillarState getPillarState(boolean above, boolean below) {
+        PillarState state;
+
+        if (above && below) {
+            state = PillarState.MIDDLE;
+        } else if (above) {
+            state = PillarState.LOWER;
+        } else if (below) {
+            state = PillarState.UPPER;
         } else {
-            currentState = PillarState.DEFAULT;
+            state = PillarState.DEFAULT;
         }
 
-        return this.defaultBlockState().setValue(PILLAR_STATE, currentState);
+        return state;
     }
+
     @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
-        pBuilder.add(PILLAR_STATE);
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        builder.add(PILLAR_STATE);
     }
 }

@@ -1,6 +1,5 @@
 package com.naterbobber.darkerdepths.block.custom.darkslate;
 
-import com.naterbobber.darkerdepths.block.blockstates.PillarState;
 import com.naterbobber.darkerdepths.block.generic.ConnectedRotatablePillarBlock;
 import com.naterbobber.darkerdepths.block.generic.IHeatableBlock;
 import net.minecraft.core.BlockPos;
