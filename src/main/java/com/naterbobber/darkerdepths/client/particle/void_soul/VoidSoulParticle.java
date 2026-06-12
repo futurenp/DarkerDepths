@@ -1,5 +1,6 @@
 package com.naterbobber.darkerdepths.client.particle.void_soul;
 
+import com.naterbobber.darkerdepths.client.render.DDParticleRenderTypes;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.ParticleProvider;
 import net.minecraft.client.particle.ParticleRenderType;
@@ -87,7 +88,7 @@ public class VoidSoulParticle extends TextureSheetParticle {
 
     @Override
     public ParticleRenderType getRenderType() {
-        return ParticleRenderType.PARTICLE_SHEET_TRANSLUCENT;
+        return DDParticleRenderTypes.PARTICLE_GLOW_THROUGH_FOG;
     }
 
     @OnlyIn(Dist.CLIENT)

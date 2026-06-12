@@ -640,7 +640,6 @@ public class ScorcherEntity extends Mob implements GeoEntity {
             }
 
             if (this.losLostTicks > 20) {
-                // If it loses line of sight on its attacker long enough, it forgets them
                 if (this.target == entity.getLastHurtByMob()) {
                     entity.setLastHurtByMob(null);
                 }

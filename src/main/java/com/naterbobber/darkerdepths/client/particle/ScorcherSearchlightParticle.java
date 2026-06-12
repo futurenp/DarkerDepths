@@ -11,10 +11,11 @@ import net.neoforged.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class ScorcherSearchlightParticle extends FlameParticle {
+
     protected ScorcherSearchlightParticle(ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
         super(level, x, y, z, xSpeed, ySpeed, zSpeed);
+        this.lifetime = (int)((double)6.0F / (level.getRandom().nextFloat() * 0.8 + 0.2)) + 4;
         this.quadSize = 0.15F + level.getRandom().nextFloat()/10;
-        this.lifetime = (int)((double)6.0F / (Math.random() * 0.8 + 0.2)) + 4;
     }
 
     @Override
@@ -25,6 +26,7 @@ public class ScorcherSearchlightParticle extends FlameParticle {
     @Override
     public void tick() {
         super.tick();
+
         if(rCol < 1F) {
             this.rCol += 0.1f;
         }

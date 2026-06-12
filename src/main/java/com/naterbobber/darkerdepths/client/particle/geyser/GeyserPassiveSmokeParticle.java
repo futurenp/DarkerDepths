@@ -1,5 +1,6 @@
 package com.naterbobber.darkerdepths.client.particle.geyser;
 
+import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.block.DDBlockStateProperties;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.CampfireSmokeParticle;
@@ -22,12 +23,17 @@ public class GeyserPassiveSmokeParticle extends CampfireSmokeParticle {
     private final double targetMinSpeed;
     private final double targetMaxSpeed = 0.7;
     private final int easeInDuration = 10;
+    private final float maxQuadSize;
+    private float sizeMultiplier;
     private int burstProgress = 0;
     private boolean boosted;
     private BurstPhase burstPhase = BurstPhase.PASSIVE;
 
     protected GeyserPassiveSmokeParticle(ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
         super(level, x, y, z, xSpeed, ySpeed, zSpeed, false);
+        this.maxQuadSize = quadSize * 1.5F;
+        this.quadSize = 0.25F;
+        this.sizeMultiplier = 1.075F;
 
         this.moveDirection = Direction.getNearest(xSpeed, ySpeed, zSpeed);
         this.targetMinSpeed = Math.max(Math.max(Math.abs(xSpeed), Math.abs(ySpeed)), Math.abs(zSpeed));
@@ -40,6 +46,11 @@ public class GeyserPassiveSmokeParticle extends CampfireSmokeParticle {
     @Override
     public void tick() {
         super.tick();
+
+        if(quadSize < maxQuadSize) {
+            quadSize = Math.min(quadSize * sizeMultiplier, maxQuadSize);
+            sizeMultiplier = Math.max(sizeMultiplier * 0.995F, 1.01F);
+        }
 
         if (this.burstPhase == BurstPhase.PASSIVE) {
             BlockState state = this.level.getBlockState(this.geyserPos);

@@ -14,14 +14,22 @@ import java.util.function.Consumer;
 @OnlyIn(Dist.CLIENT)
 public class DDShaders {
     private static ShaderInstance renderTypeGlowThroughFog;
+    private static ShaderInstance particleRenderTypeGlowThroughFog;
 
     public static void registerShaders(RegisterShadersEvent event) {
         register(event, "rendertype_glow_through_fog", DefaultVertexFormat.NEW_ENTITY,
                 shader -> renderTypeGlowThroughFog = shader);
+
+        register(event, "particle_rendertype_glow_through_fog", DefaultVertexFormat.PARTICLE,
+                shader -> particleRenderTypeGlowThroughFog = shader);
     }
 
     public static ShaderInstance getRenderTypeGlowThroughFog() {
         return renderTypeGlowThroughFog;
+    }
+
+    public static ShaderInstance getParticleRenderTypeGlowThroughFog() {
+        return particleRenderTypeGlowThroughFog;
     }
 
     private static void register(
