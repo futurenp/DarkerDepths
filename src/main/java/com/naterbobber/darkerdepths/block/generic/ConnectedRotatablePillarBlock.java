@@ -1,6 +1,7 @@
 package com.naterbobber.darkerdepths.block.generic;
 
 import com.naterbobber.darkerdepths.block.DDBlockStateProperties;
+import com.naterbobber.darkerdepths.block.custom.darkslate.ConnectedRotatableDarkslatePillarBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -15,7 +16,7 @@ import javax.annotation.Nullable;
 import java.util.function.Function;
 
 public class ConnectedRotatablePillarBlock extends ConnectedPillarBlock {
-    private static final EnumProperty<Direction.Axis> AXIS = BlockStateProperties.AXIS;
+    protected static final EnumProperty<Direction.Axis> AXIS = BlockStateProperties.AXIS;
 
     public ConnectedRotatablePillarBlock(Properties properties) {
         super(properties);
@@ -47,19 +48,19 @@ public class ConnectedRotatablePillarBlock extends ConnectedPillarBlock {
     }
 
     private BlockState getState(LevelAccessor level, BlockPos pos, Direction.Axis axis) {
-        Function<Direction.AxisDirection, Boolean> connects = (Direction.AxisDirection axisDirection) -> {
-            var direction = Direction.get(axisDirection, axis);
-            var state = level.getBlockState(pos.relative(direction));
-            return state.is(this) && state.getValue(AXIS) == axis;
-        };
-
-        boolean connectsPos = connects.apply(Direction.AxisDirection.POSITIVE);
-        boolean connectsNeg = connects.apply(Direction.AxisDirection.NEGATIVE);
+        boolean connectsPos = getConnects(Direction.AxisDirection.POSITIVE, level, pos, axis);
+        boolean connectsNeg = getConnects(Direction.AxisDirection.NEGATIVE, level, pos, axis);
 
         var pillarState = getPillarState(connectsPos, connectsNeg);
 
         return this.defaultBlockState()
                 .setValue(DDBlockStateProperties.PILLAR_STATE, pillarState)
                 .setValue(AXIS, axis);
+    }
+
+    protected boolean getConnects(Direction.AxisDirection axisDirection, LevelAccessor level, BlockPos pos, Direction.Axis axis) {
+        var direction = Direction.get(axisDirection, axis);
+        var state = level.getBlockState(pos.relative(direction));
+        return state.is(this) && state.getValue(AXIS) == axis;
     }
 }

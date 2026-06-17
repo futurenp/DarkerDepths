@@ -4,7 +4,6 @@ import com.naterbobber.darkerdepths.damage.DDDamageTypes;
 import com.naterbobber.darkerdepths.entities.control.ConfigurableMoveControl;
 import com.naterbobber.darkerdepths.entities.goals.AttackMemoryTargetGoal;
 import com.naterbobber.darkerdepths.util.DDResourceKeys;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -22,7 +21,6 @@ import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.monster.Monster;
-import net.minecraft.world.entity.monster.Skeleton;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
@@ -188,6 +186,8 @@ public class VoidSoulKnightEntity extends VoidSoulMonster implements GeoEntity {
     public boolean doHurtTarget(Entity entity) {
         if(this.getAttackTick() == 0) {
             this.setAttacking(true);
+            this.stopTriggeredAnim("attack_controller", "attack");
+            this.triggerAnim("attack_controller", "attack");
 
             this.attackTick = 50;
             this.firstDamageDelay = 10;
@@ -238,11 +238,12 @@ public class VoidSoulKnightEntity extends VoidSoulMonster implements GeoEntity {
 
     @Override
     public void registerControllers(final AnimatableManager.ControllerRegistrar controllers) {
-        controllers.add(new AnimationController<>(this, "walkingController", 5, this::predicate));
-        controllers.add(new AnimationController<>(this, "attackingController", 0, this::attackPredicate));
+        controllers.add(new AnimationController<>(this, "movement_controller", 5, this::movementPredicate));
+        controllers.add(new AnimationController<>(this, "attack_controller", 0, state -> PlayState.STOP)
+                .triggerableAnim("attack", ATTACK_ANIM));
     }
 
-    protected <E extends VoidSoulKnightEntity> PlayState predicate(final AnimationState<E> event) {
+    protected <E extends VoidSoulKnightEntity> PlayState movementPredicate(final AnimationState<E> event) {
         if (this.isDormant()) {
             return event.setAndContinue(DORMANT_ANIM);
         }
@@ -252,18 +253,6 @@ public class VoidSoulKnightEntity extends VoidSoulMonster implements GeoEntity {
         }
 
         return event.setAndContinue(IDLE_ANIM);
-    }
-
-    protected <E extends VoidSoulKnightEntity> PlayState attackPredicate(final AnimationState<E> event) {
-        if (this.isAttacking()) {
-            if (event.getController().getAnimationState().equals(AnimationController.State.STOPPED)) {
-                event.getController().forceAnimationReset();
-                event.getController().setAnimation(ATTACK_ANIM);
-            }
-            return PlayState.CONTINUE;
-        }
-
-        return PlayState.STOP;
     }
 
     @Override

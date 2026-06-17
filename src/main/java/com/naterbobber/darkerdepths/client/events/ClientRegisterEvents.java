@@ -51,7 +51,6 @@ public class ClientRegisterEvents {
         event.registerLayerDefinition(new ModelLayerLocation(DarkerDepths.id("chest_boat/petrified"), "main"), ChestBoatModel::createBodyModel);
         event.registerLayerDefinition(new ModelLayerLocation(DarkerDepths.id("boat/glowshroom"), "main"), BoatModel::createBodyModel);
         event.registerLayerDefinition(new ModelLayerLocation(DarkerDepths.id("chest_boat/glowshroom"), "main"), ChestBoatModel::createBodyModel);
-
     }
 
     @SubscribeEvent

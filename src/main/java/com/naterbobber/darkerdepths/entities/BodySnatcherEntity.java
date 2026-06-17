@@ -40,9 +40,9 @@ public class BodySnatcherEntity extends VoidSoulMonster implements GeoEntity, ID
     private static final float REACH = 1.65F;
 
     private final AnimatableInstanceCache geoCache = GeckoLibUtil.createInstanceCache(this);
-    protected static final RawAnimation ATTACK_ANIM = RawAnimation.begin().then("attack.swing", Animation.LoopType.PLAY_ONCE);
+    protected static final RawAnimation ATTACK_ANIM = RawAnimation.begin().thenPlay("attack.swing");
     protected static final RawAnimation IDLE_ANIM = RawAnimation.begin().thenLoop("idle");
-    protected static final RawAnimation PRE_DASH = RawAnimation.begin().thenLoop("pre_dash");
+    protected static final RawAnimation PRE_DASH = RawAnimation.begin().then("pre_dash", Animation.LoopType.PLAY_ONCE);
     protected static final RawAnimation HURT = RawAnimation.begin().thenLoop("hurt");
 
     private static final EntityDataAccessor<Boolean> PREPARING_TO_DASH =
@@ -129,6 +129,8 @@ public class BodySnatcherEntity extends VoidSoulMonster implements GeoEntity, ID
     public boolean doHurtTarget(Entity entity) {
         if(this.attackTick == 0) {
             this.setAttacking(true);
+            this.stopTriggeredAnim("attack_controller", "attack");
+            this.triggerAnim("attack_controller", "attack");
 
             this.attackTick = 20;
             this.damageDelay = 10;
@@ -162,34 +164,14 @@ public class BodySnatcherEntity extends VoidSoulMonster implements GeoEntity, ID
 
     @Override
     public void registerControllers(final AnimatableManager.ControllerRegistrar controllers) {
-        controllers.add(new AnimationController<>(this, "walkingController", 5, this::predicate));
-        controllers.add(new AnimationController<>(this, "attackingController", 0, this::attackPredicate));
-        controllers.add(new AnimationController<>(this, "dashController", 0, this::dashPredicate));
+        controllers.add(new AnimationController<>(this, "movement_controller", this::predicate)
+                .triggerableAnim("dash", PRE_DASH));
+        controllers.add(new AnimationController<>(this, "attack_controller", state -> PlayState.STOP)
+                .triggerableAnim("attack", ATTACK_ANIM));
     }
 
     protected <E extends BodySnatcherEntity> PlayState predicate(final AnimationState<E> event) {
         return event.setAndContinue(IDLE_ANIM);
-    }
-
-    protected <E extends BodySnatcherEntity> PlayState dashPredicate(final AnimationState<E> event) {
-        if (this.isPreparingToDash()) {
-            return event.setAndContinue(PRE_DASH);
-        }
-
-        event.getController().stop();
-        return PlayState.STOP;
-    }
-
-    protected <E extends BodySnatcherEntity> PlayState attackPredicate(final AnimationState<E> event) {
-        if (this.isAttacking()) {
-            if (event.getController().getAnimationState().equals(AnimationController.State.STOPPED)) {
-                event.getController().forceAnimationReset();
-                event.getController().setAnimation(ATTACK_ANIM);
-            }
-            return PlayState.CONTINUE;
-        }
-
-        return PlayState.STOP;
     }
 
     @Override
@@ -226,6 +208,10 @@ public class BodySnatcherEntity extends VoidSoulMonster implements GeoEntity, ID
     @Override
     public void setDashing(boolean isDashing) {
         this.entityData.set(DASHING, isDashing);
+        if(isDashing) {
+            stopTriggeredAnim("movement_controller", "dash");
+            triggerAnim("movement_controller", "dash");
+        }
     }
 
     public boolean isPreparingToDash() {

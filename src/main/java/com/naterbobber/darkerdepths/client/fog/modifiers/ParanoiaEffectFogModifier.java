@@ -32,7 +32,7 @@ public class ParanoiaEffectFogModifier implements FogModifier {
     @Override
     public void tick(LocalPlayer player) {
         float step = 1.0f / (TRANSITION_SECONDS * 20.0f);
-        if (player.hasEffect(DDMobEffects.PARANOIA) && !player.isInFluidType()) {
+        if (player.hasEffect(DDMobEffects.PARANOIA) && player.getEyeInFluidType().isAir()) {
             paranoiaFactor += step;
         } else {
             paranoiaFactor -= step;

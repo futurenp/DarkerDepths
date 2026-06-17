@@ -13,10 +13,11 @@ public class DDParticleRenderTypes {
     public static ParticleRenderType PARTICLE_GLOW_THROUGH_FOG = new ParticleRenderType() {
         @Override
         public BufferBuilder begin(Tesselator tesselator, TextureManager textureManager) {
-            RenderSystem.disableBlend();
             RenderSystem.depthMask(true);
             RenderSystem.setShader(DDShaders::getParticleRenderTypeGlowThroughFog);
             RenderSystem.setShaderTexture(0, TextureAtlas.LOCATION_PARTICLES);
+            RenderSystem.enableBlend();
+            RenderSystem.defaultBlendFunc();
             return tesselator.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.PARTICLE);
         }
 

@@ -57,6 +57,7 @@ public class DashGoal extends Goal {
 
         if (this.mob instanceof IDashable dashable) {
             dashable.setPreparingToDash(true);
+
         }
     }
 
