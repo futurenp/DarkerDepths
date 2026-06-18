@@ -89,14 +89,12 @@ public class GlowshroomBoatRenderer extends BoatRenderer {
 
         poseStack.popPose();
 
-        if (entity instanceof Leashable leashable) {
-            var entityLeashHolder = leashable.getLeashHolder();
-            if (entityLeashHolder != null) {
-                this.renderLeash(entity, partialTicks, poseStack, buffer, entity);
-            }
+        var entityLeashHolder = entity.getLeashHolder();
+        if (entityLeashHolder != null) {
+            this.renderLeash(entity, partialTicks, poseStack, buffer, entity);
         }
 
-        RenderNameTagEvent event = new RenderNameTagEvent(entity, entity.getDisplayName(), this, poseStack, buffer, packedLight, partialTicks);
+        var event = new RenderNameTagEvent(entity, entity.getDisplayName(), this, poseStack, buffer, packedLight, partialTicks);
         NeoForge.EVENT_BUS.post(event);
         if (event.canRender().isTrue() || event.canRender().isDefault() && this.shouldShowName(entity)) {
             this.renderNameTag(entity, event.getContent(), poseStack, buffer, packedLight, partialTicks);

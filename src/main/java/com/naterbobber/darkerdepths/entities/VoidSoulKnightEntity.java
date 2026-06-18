@@ -3,12 +3,15 @@ package com.naterbobber.darkerdepths.entities;
 import com.naterbobber.darkerdepths.damage.DDDamageTypes;
 import com.naterbobber.darkerdepths.entities.control.ConfigurableMoveControl;
 import com.naterbobber.darkerdepths.entities.goals.AttackMemoryTargetGoal;
+import com.naterbobber.darkerdepths.init.DDSoundEvents;
 import com.naterbobber.darkerdepths.util.DDResourceKeys;
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
@@ -23,6 +26,7 @@ import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.animation.AnimationController;
@@ -107,6 +111,14 @@ public class VoidSoulKnightEntity extends VoidSoulMonster implements GeoEntity {
 
         float damage = (float) this.getAttributeValue(Attributes.ATTACK_DAMAGE);
 
+        if(this.firstDamageDelay == 5) {
+            this.playSound(DDSoundEvents.ENTITY_VOID_SOUL_KNIGHT_LIGHT_SWING.get());
+        }
+
+        if(this.secondDamageDelay == 6) {
+            this.playSound(DDSoundEvents.ENTITY_VOID_SOUL_KNIGHT_HEAVY_SWING.get());
+        }
+
         if(this.firstDamageDelay == 0 && !this.firstAttackDone) {
             this.attackTarget.hurt(DDDamageTypes.getDamageSource(level(), DDResourceKeys.DamageTypes.VOID_SOUL_DAMAGE), damage);
             this.firstAttackDone = true;
@@ -147,7 +159,7 @@ public class VoidSoulKnightEntity extends VoidSoulMonster implements GeoEntity {
 
         if(isPeaceful) return;
 
-        Player player = this.level().getNearestPlayer(this, 8);
+        var player = this.level().getNearestPlayer(this, 8);
 
         boolean hpChanged = this.getHealth() < this.getMaxHealth();
 
@@ -195,7 +207,7 @@ public class VoidSoulKnightEntity extends VoidSoulMonster implements GeoEntity {
             this.secondDamageDelay = 38;
 
             if (entity instanceof LivingEntity) {
-                this.attackTarget = (LivingEntity)entity;
+                this.attackTarget = entity;
             }
 
             this.level().broadcastEntityEvent(this, (byte) 4);
@@ -253,6 +265,11 @@ public class VoidSoulKnightEntity extends VoidSoulMonster implements GeoEntity {
         }
 
         return event.setAndContinue(IDLE_ANIM);
+    }
+
+    @Override
+    protected void playStepSound(BlockPos pos, BlockState state) {
+        this.playSound(SoundEvents.IRON_GOLEM_STEP, 1.5F, 1.3F);
     }
 
     @Override

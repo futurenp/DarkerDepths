@@ -60,5 +60,19 @@
     "sounds": [
       "darkerdepths:entity/glowshroom_monster/hurt"
     ]
+  },
+  "entity.void_soul_knight.heavy_swing": {
+    "category": "entity",
+    "subtitle": "Void Soul Knight Swings",
+    "sounds": [
+      "darkerdepths:entity/void_soul_knight/heavy_swing"
+    ]
+  },
+  "entity.void_soul_knight.light_swing": {
+    "category": "entity",
+    "subtitle": "Void Soul Knight Swings",
+    "sounds": [
+      "darkerdepths:entity/void_soul_knight/light_swing"
+    ]
   }
 }
