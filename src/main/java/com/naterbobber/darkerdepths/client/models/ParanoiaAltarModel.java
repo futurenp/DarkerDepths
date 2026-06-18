@@ -20,18 +20,6 @@ public class ParanoiaAltarModel<T extends GeoAnimatable> extends GeoModel<T> {
 
 	@Override
 	public ResourceLocation getTextureResource(T animatable) {
-		if (animatable instanceof ParanoiaAltarBlockEntity paranoiaAltar) {
-			if (paranoiaAltar.getBlockState().getValue(ParanoiaAltarBlock.LOCKED)) {
-				return DarkerDepths.id("textures/entity/paranoia_altar/paranoia_altar_locked.png");
-			} else {
-				return DarkerDepths.id("textures/entity/paranoia_altar/paranoia_altar.png");
-			}
-		}
-
-		if (animatable instanceof ParanoiaAltarItem) {
-			return DarkerDepths.id("textures/entity/paranoia_altar/paranoia_altar.png");
-		}
-
 		return DarkerDepths.id("textures/entity/paranoia_altar/paranoia_altar.png");
 	}
 

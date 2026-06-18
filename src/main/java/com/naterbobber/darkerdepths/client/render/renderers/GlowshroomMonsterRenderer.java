@@ -30,7 +30,7 @@ public class GlowshroomMonsterRenderer extends GeoEntityRenderer<GlowshroomMonst
     public GlowshroomMonsterRenderer(EntityRendererProvider.Context context) {
         super(context, DDDefaultEntityModel.withRenderType(DDEntityTypes.GLOWSHROOM_MONSTER, RenderType::entityCutout));
         addRenderLayer(DDRenderLayer.withType(this, DDRenderTypes.emissiveTransparent(GLOWSHROOM_TEXTURE)));
-        addRenderLayer(DDRenderLayer.withBrightness(this, DDRenderTypes.configurableEmissiveTransparent(MOSS_TEXTURE), 5));
+        addRenderLayer(DDRenderLayer.withType(this, DDRenderTypes.configurableEmissiveTransparent(MOSS_TEXTURE)).setMinBrightness(5));
     }
 
     @Override

@@ -15,34 +15,29 @@ import software.bernie.geckolib.renderer.GeoRenderer;
 import software.bernie.geckolib.renderer.layer.GeoRenderLayer;
 import software.bernie.geckolib.util.ClientUtil;
 
+import java.util.function.Predicate;
+
 @OnlyIn(Dist.CLIENT)
 public class DDRenderLayer<T extends GeoAnimatable> extends GeoRenderLayer<T> {
-    private final RenderType renderType;
-    private int brightness = 0;
+    protected final RenderType renderType;
+    private int minBrightness = 0;
+    private Predicate<T> renderPredicate = animatable -> true;
 
-    private DDRenderLayer(GeoRenderer<T> renderer, RenderType renderType) {
+    protected DDRenderLayer(GeoRenderer<T> renderer, RenderType renderType) {
         super(renderer);
         this.renderType = renderType;
-    }
-
-    private DDRenderLayer(GeoRenderer<T> renderer, RenderType renderType, int brightness) {
-        super(renderer);
-        this.renderType = renderType;
-        this.brightness = brightness;
     }
 
     public static <T extends GeoAnimatable> DDRenderLayer<T> withType(GeoRenderer<T> renderer, RenderType renderType) {
         return new DDRenderLayer<>(renderer, renderType);
     }
 
-    public static <T extends GeoAnimatable> DDRenderLayer<T> withBrightness(GeoRenderer<T> renderer, RenderType renderType, int brightness) {
-        return new DDRenderLayer<>(renderer, renderType, brightness);
-    }
-
     @Override
     public void render(PoseStack poseStack, T animatable, BakedGeoModel bakedModel, RenderType ignoredRenderType,
                        MultiBufferSource bufferSource, VertexConsumer ignoredBuffer, float partialTick,
                        int packedLight, int packedOverlay) {
+        if(!shouldRender(animatable)) return;
+
         var currentRenderType = this.renderType;
         var texture = this.getTextureResource(animatable);
 
@@ -60,15 +55,14 @@ public class DDRenderLayer<T extends GeoAnimatable> extends GeoRenderLayer<T> {
             return;
         }
 
-        VertexConsumer buffer = bufferSource.getBuffer(currentRenderType);
-
-        if(brightness > 0) {
+        if(minBrightness > 0) {
             int currentBlockLight = LightTexture.block(packedLight);
             int skyLight = LightTexture.sky(packedLight);
-            int finalBlockLight = Math.max(currentBlockLight, brightness);
+            int finalBlockLight = Math.max(currentBlockLight, minBrightness);
             packedLight = LightTexture.pack(finalBlockLight, skyLight);
         }
 
+        var vertexConsumer = bufferSource.getBuffer(currentRenderType);
         var renderer = this.getRenderer();
         int color = renderer.getRenderColor(animatable, partialTick, packedLight).argbInt();
 
@@ -78,10 +72,24 @@ public class DDRenderLayer<T extends GeoAnimatable> extends GeoRenderLayer<T> {
                 bufferSource,
                 animatable,
                 currentRenderType,
-                buffer,
+                vertexConsumer,
                 partialTick,
                 packedLight,
                 packedOverlay,
                 color);
+    }
+
+    protected boolean shouldRender(T animatable) {
+        return renderPredicate.test(animatable);
+    }
+
+    public DDRenderLayer<T> setRenderPredicate(Predicate<T> predicate) {
+        this.renderPredicate = predicate;
+        return this;
+    }
+
+    public DDRenderLayer<T> setMinBrightness(int minBrightness) {
+        this.minBrightness = minBrightness;
+        return this;
     }
 }
