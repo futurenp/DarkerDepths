@@ -358,12 +358,7 @@ public class DDBlockStateProvider extends BlockStateProvider {
             var stateName = getDarkslateStateName(blockHolder, state);
 
             var sideTexture = getDarkslateTexture(state, parentHolder);
-            ResourceLocation endTexture;
-            if(uniqueEnds) {
-                endTexture = this.extend(sideTexture, "_top");
-            } else {
-                endTexture = sideTexture;
-            }
+            var endTexture = uniqueEnds ? this.extend(sideTexture, "_top") : sideTexture;
 
             var stairs = models().stairs(stateName, sideTexture, endTexture, endTexture);
             var stairsInner = models().stairsInner(stateName + "_inner", sideTexture, endTexture, endTexture);

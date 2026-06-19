@@ -212,7 +212,7 @@ public class DDBlocks {
     public static final DeferredBlock<Block> AMBER_BLOCK = registerBlock("amber_block",
             () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(1.0f).sound(SoundType.AMETHYST).lightLevel(value -> 7)));
     public static final DeferredBlock<AmethystClusterBlock> AMBER_CLUSTER = registerBlock("amber_cluster",
-            () -> new AmethystClusterBlock(6, 3, BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(1.0f).sound(SoundType.SMALL_AMETHYST_BUD).lightLevel(value -> 7)));
+            () -> new AmberClusterBlock(6, 3, BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(1.0f).sound(SoundType.SMALL_AMETHYST_BUD).lightLevel(value -> 7)));
 
 
     public static final DeferredBlock<RotatableDarkslateBlock> DARKSLATE = registerBlock("darkslate",
