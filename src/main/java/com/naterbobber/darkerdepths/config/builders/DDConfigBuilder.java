@@ -26,6 +26,7 @@ public class DDConfigBuilder {
     public final ModConfigSpec.IntValue OVERWORLD_BIOME_WEIGHT_TERRABLENDER;
     public final ModConfigSpec.BooleanValue DISABLE_HEATABLE_BLOCK_BAKING;
     public final ModConfigSpec.IntValue HEAT_BAKE_BUDGET;
+    public final ModConfigSpec.BooleanValue DARKER_DEPTHS_SHADERS;
 
     public DDConfigBuilder(ModConfigSpec.Builder builder) {
         builder.push("Biome Provider");
@@ -132,6 +133,11 @@ public class DDConfigBuilder {
                 "Blocks such as Darkslate will not generate with the correct stages and will not be updated to be correct heat values upon generation if true.\n" +
                 "Baking does require additional resources, so disabling should improve world gen performance.")
                 .define("disable_heatable_block_baking", false);
+        builder.pop();
+
+        builder.push("Rendering");
+        DARKER_DEPTHS_SHADERS = builder.comment("Darker Depths uses custom shaders for some specific things. If you are having issues with shaders from iris or similar, set this to false")
+                .define("darker_depths_shaders", true);
         builder.pop();
     }
 }

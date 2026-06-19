@@ -47,7 +47,7 @@ final public class DDRenderTypes {
 
     public static RenderType emissiveTransparentFogOverride(ResourceLocation textureLocation) {
         var stateBuilder = stateBuilderWithTexture(textureLocation)
-                .setShaderState(DDRenderStateShards.GLOW_THROUGH_FOG)
+                .setShaderState(DDRenderStateShards.getGlowThroughFog())
                 .setTransparencyState(TRANSLUCENT_TRANSPARENCY)
                 .setCullState(NO_CULL)
                 .setLayeringState(RenderStateShard.VIEW_OFFSET_Z_LAYERING)
@@ -58,7 +58,7 @@ final public class DDRenderTypes {
 
     public static RenderType emissiveSolidFogOverride(ResourceLocation textureLocation) {
         var stateBuilder = stateBuilderWithTexture(textureLocation)
-                .setShaderState(DDRenderStateShards.GLOW_THROUGH_FOG);
+                .setShaderState(DDRenderStateShards.getGlowThroughFog());
 
         return createRenderType("emissive_transparent_fog_override", stateBuilder);
     }
