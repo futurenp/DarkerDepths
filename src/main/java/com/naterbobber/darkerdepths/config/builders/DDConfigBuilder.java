@@ -18,9 +18,9 @@ public class DDConfigBuilder {
     public final ModConfigSpec.IntValue SANDY_CATACOMBS_FOG_MAX;
     public final ModConfigSpec.IntValue GLOWSHROOM_FOREST_FOG_MIN;
     public final ModConfigSpec.IntValue GLOWSHROOM_FOREST_FOG_MAX;
-    public final DDBiomeConfigBuilder SANDY_CATACOMBS_CLIMATE;
-    public final DDBiomeConfigBuilder GLOWSHROOM_FOREST_CLIMATE;
-    public final DDBiomeConfigBuilder MOLTEN_CAVERN_CLIMATE;
+    public final DDBiomeConfigBuilder SANDY_CATACOMBS;
+    public final DDBiomeConfigBuilder GLOWSHROOM_FOREST;
+    public final DDBiomeConfigBuilder MOLTEN_CAVERN;
     public final ModConfigSpec.BooleanValue PRIORITIZE_TERRABLENDER;
     public final ModConfigSpec.BooleanValue USE_DEFAULTS_TERRABLENDER;
     public final ModConfigSpec.IntValue OVERWORLD_BIOME_WEIGHT_TERRABLENDER;
@@ -53,7 +53,7 @@ public class DDConfigBuilder {
                 0.3, 1.5,
                 0.0
         );
-        SANDY_CATACOMBS_CLIMATE = DDBiomeConfigBuilder.create(builder, "sandy_catacombs", sandyCatacombsDefaults);
+        SANDY_CATACOMBS = DDBiomeConfigBuilder.create(builder, "sandy_catacombs", sandyCatacombsDefaults);
 
         var glowshroomForestDefaults = new DDBiomeConfigBuilder.Defaults(
                 0.4, 1,
@@ -64,7 +64,7 @@ public class DDConfigBuilder {
                 0.3, 0.9,
                 0.0
         );
-        GLOWSHROOM_FOREST_CLIMATE = DDBiomeConfigBuilder.create(builder, "glowshroom_forest", glowshroomForestDefaults);
+        GLOWSHROOM_FOREST = DDBiomeConfigBuilder.create(builder, "glowshroom_forest", glowshroomForestDefaults);
 
         var moltenCavernDefaults = new DDBiomeConfigBuilder.Defaults(
                 -1.0, 0.7,
@@ -75,7 +75,7 @@ public class DDConfigBuilder {
                 0.7, 2.0,
                 0.0
         );
-        MOLTEN_CAVERN_CLIMATE = DDBiomeConfigBuilder.create(builder, "molten_cavern", moltenCavernDefaults);
+        MOLTEN_CAVERN = DDBiomeConfigBuilder.create(builder, "molten_cavern", moltenCavernDefaults);
         builder.pop();
 
         builder.push("Biome Fog");
@@ -136,7 +136,7 @@ public class DDConfigBuilder {
         builder.pop();
 
         builder.push("Rendering");
-        DARKER_DEPTHS_SHADERS = builder.comment("Darker Depths uses custom shaders for some specific things. If you are having issues with shaders from iris or similar, set this to false")
+        DARKER_DEPTHS_SHADERS = builder.comment("Darker Depths uses custom shaders for specific effects. If you are having issues with shaders from iris or similar, set this to false.")
                 .define("darker_depths_shaders", true);
         builder.pop();
     }

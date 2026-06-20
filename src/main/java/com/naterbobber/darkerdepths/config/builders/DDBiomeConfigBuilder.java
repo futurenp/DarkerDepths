@@ -10,7 +10,9 @@ public record DDBiomeConfigBuilder(
         ModConfigSpec.DoubleValue erosionMin, ModConfigSpec.DoubleValue erosionMax,
         ModConfigSpec.DoubleValue weirdnessMin, ModConfigSpec.DoubleValue weirdnessMax,
         ModConfigSpec.DoubleValue depthMin, ModConfigSpec.DoubleValue depthMax,
-        ModConfigSpec.DoubleValue offset) {
+        ModConfigSpec.DoubleValue offset,
+        ModConfigSpec.BooleanValue enabled
+) {
 
     public static DDBiomeConfigBuilder create(ModConfigSpec.Builder builder, String biomeName, Defaults defaults) {
         builder.comment("Climate parameters for the " + biomeName + " biome.").push(biomeName);
@@ -35,10 +37,12 @@ public record DDBiomeConfigBuilder(
 
         var offset = builder.defineInRange("offset", defaults.offset, -2.0, 2.0);
 
+        var enabled = builder.define("enabled", true);
+
         builder.pop();
 
         return new DDBiomeConfigBuilder(tempMin, tempMax, humidityMin, humidityMax, continentalnessMin, continentalnessMax,
-                erosionMin, erosionMax, weirdnessMin, weirdnessMax, depthMin, depthMax, offset);
+                erosionMin, erosionMax, weirdnessMin, weirdnessMax, depthMin, depthMax, offset, enabled);
     }
 
     public record Defaults(double tempMin, double tempMax, double humidityMin, double humidityMax, double continentalnessMin, double continentalnessMax,
