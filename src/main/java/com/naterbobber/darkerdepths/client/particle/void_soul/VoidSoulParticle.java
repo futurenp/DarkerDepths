@@ -88,7 +88,7 @@ public class VoidSoulParticle extends TextureSheetParticle {
 
     @Override
     public ParticleRenderType getRenderType() {
-        return DDParticleRenderTypes.PARTICLE_GLOW_THROUGH_FOG;
+        return DDParticleRenderTypes.getParticleGlowThroughFog();
     }
 
     @OnlyIn(Dist.CLIENT)
