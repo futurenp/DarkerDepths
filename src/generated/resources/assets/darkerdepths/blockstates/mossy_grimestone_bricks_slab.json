@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "darkerdepths:block/mossy_grimestone_bricks_slab"
+    },
+    "type=double": {
+      "model": "darkerdepths:block/mossy_grimestone_bricks"
+    },
+    "type=top": {
+      "model": "darkerdepths:block/mossy_grimestone_bricks_slab_top"
+    }
+  }
+}

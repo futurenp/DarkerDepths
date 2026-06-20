@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "darkerdepths:block/mossy_grimestone_bricks",
+    "side": "darkerdepths:block/mossy_grimestone_bricks",
+    "top": "darkerdepths:block/mossy_grimestone_bricks"
+  }
+}

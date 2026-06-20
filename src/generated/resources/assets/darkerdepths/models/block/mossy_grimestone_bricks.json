@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "darkerdepths:block/mossy_grimestone_bricks"
+  }
+}

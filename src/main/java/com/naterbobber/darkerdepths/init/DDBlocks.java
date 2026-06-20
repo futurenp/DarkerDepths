@@ -309,6 +309,16 @@ public class DDBlocks {
             () -> new RelationalVerticalSlabBlock(GRIMESTONE_BRICKS.get()));
     public static final DeferredBlock<RelationalWallBlock> GRIMESTONE_BRICKS_WALL = registerBlock("grimestone_bricks_wall",
             () -> new RelationalWallBlock(GRIMESTONE_BRICKS.get()));
+    public static final DeferredBlock<Block> MOSSY_GRIMESTONE_BRICKS = registerBlock("mossy_grimestone_bricks",
+            () -> new Block(DARKSLATE_BRICKS_PROPERTIES));
+    public static final DeferredBlock<RelationalStairBlock> MOSSY_GRIMESTONE_BRICKS_STAIRS = registerBlock("mossy_grimestone_bricks_stairs",
+            () -> new RelationalStairBlock(MOSSY_GRIMESTONE_BRICKS.get()));
+    public static final DeferredBlock<RelationalSlabBlock> MOSSY_GRIMESTONE_BRICKS_SLAB = registerBlock("mossy_grimestone_bricks_slab",
+            () -> new RelationalSlabBlock(MOSSY_GRIMESTONE_BRICKS.get()));
+    public static final DeferredBlock<RelationalVerticalSlabBlock> MOSSY_GRIMESTONE_BRICKS_VERTICAL_SLAB = registerCompatBlock(List.of(DDCompat.QUARK), "mossy_grimestone_bricks_vertical_slab",
+            () -> new RelationalVerticalSlabBlock(MOSSY_GRIMESTONE_BRICKS.get()));
+    public static final DeferredBlock<RelationalWallBlock> MOSSY_GRIMESTONE_BRICKS_WALL = registerBlock("mossy_grimestone_bricks_wall",
+            () -> new RelationalWallBlock(MOSSY_GRIMESTONE_BRICKS.get()));
     public static final DeferredBlock<Block> CHISELED_GRIMESTONE_BRICKS = registerBlock("chiseled_grimestone_bricks",
             () -> new Block(DARKSLATE_BRICKS_PROPERTIES));
     public static final DeferredBlock<Block> CRACKED_GRIMESTONE_BRICKS = registerBlock("cracked_grimestone_bricks",

@@ -76,7 +76,7 @@ public class EmissiveModelManager {
                 DDBlocks.TRIMMED_PETRIFIED_PLANKS,
                 DDBlocks.GLOWSHROOM_VERTICAL_SLAB,
                 DDBlocks.VERTICAL_GLOWSHROOM_PLANKS
-        )
+                )
                 .modelSettings(EmissiveBakedModel.modelSettings())
                 .build());
 
@@ -84,7 +84,7 @@ public class EmissiveModelManager {
                 DDBlocks.GLIMMERING_VINE_PLANT,
                 DDBlocks.GLIMMERING_VINES,
                 DDBlocks.GLOWSHROOM
-        )
+                )
                 .modelSettings(EmissiveBakedModel.modelSettings()
                         .baseRenderType(RenderType.CUTOUT)
                         .glowRenderType(RenderType.CUTOUT)
@@ -98,7 +98,7 @@ public class EmissiveModelManager {
                 DDBlocks.GLOWSHROOM_STEM,
                 DDBlocks.GLOWSHROOM_HYPHAE,
                 DDBlocks.STRIPPED_GLOWSHROOM_POST
-        )
+                )
                 .modelSettings(EmissiveBakedModel.modelSettings()
                         .baseBrightness(LightTexture.pack(2, 0))
                         .glowBrightness(glowshroomBrightness))
@@ -115,7 +115,7 @@ public class EmissiveModelManager {
         models.add(BlockBaker.builder(event,
                 DDBlocks.GLOWSHROOM_LANTERN,
                 DDBlocks.GLOWSHROOM_LAMP
-        )
+                )
                 .modelSettings(EmissiveBakedModel.modelSettings()
                         .baseRenderType(RenderType.CUTOUT)
                         .glowRenderType(RenderType.CUTOUT)
@@ -129,7 +129,14 @@ public class EmissiveModelManager {
                         .baseBrightness(glowshroomBaseBrightness))
                 .build());
 
-        models.add(BlockBaker.builder(event, DDBlocks.MOSSY_GRIMESTONE)
+        models.add(BlockBaker.builder(event,
+                        DDBlocks.MOSSY_GRIMESTONE,
+                        DDBlocks.MOSSY_GRIMESTONE_BRICKS,
+                        DDBlocks.MOSSY_GRIMESTONE_BRICKS_SLAB,
+                        DDBlocks.MOSSY_GRIMESTONE_BRICKS_STAIRS,
+                        DDBlocks.MOSSY_GRIMESTONE_BRICKS_VERTICAL_SLAB,
+                        DDBlocks.MOSSY_GRIMESTONE_BRICKS_WALL
+                )
                 .modelSettings(EmissiveBakedModel.modelSettings()
                         .glowBrightness(LightTexture.pack(2, 0)))
                 .build());
