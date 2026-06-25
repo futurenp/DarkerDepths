@@ -103,8 +103,8 @@ dependencies {
     implementation("software.bernie.geckolib:geckolib-neoforge-${project.minecraft_version}:4.8.4")
     implementation("com.terraformersmc:biolith-neoforge:${project.biolith_version}")
     compileOnly("com.github.glitchfiend:TerraBlender-neoforge:${project.minecraft_version}-${project.terrablender_version}")
-//    implementation("curse.maven:spark-361579:6225208")
-//    implementation("curse.maven:lambdynamiclights-393442:7958146")
+    implementation("curse.maven:spark-361579:6225208")
+    implementation("curse.maven:lambdynamiclights-393442:7958146")
 //    implementation("curse.maven:better-combat-by-daedelus-639842:7721843")
 //    implementation "curse.maven:cloth-config-348521:5729127"
 //    implementation "curse.maven:playeranimator-658587:7389814"

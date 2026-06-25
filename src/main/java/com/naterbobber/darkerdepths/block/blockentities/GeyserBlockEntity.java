@@ -6,6 +6,7 @@ import com.naterbobber.darkerdepths.block.custom.GeyserBlock;
 import com.naterbobber.darkerdepths.init.DDBlockEntityTypes;
 import com.naterbobber.darkerdepths.init.DDCriteria;
 import com.naterbobber.darkerdepths.init.DDParticleTypes;
+import com.naterbobber.darkerdepths.init.DDSoundEvents;
 import com.naterbobber.darkerdepths.util.DDTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -40,7 +41,7 @@ public class GeyserBlockEntity extends BlockEntity implements IHeatableBlock {
     private static final BooleanProperty POWERED = BlockStateProperties.POWERED;
     private static final BooleanProperty BOOSTED = DDBlockStateProperties.BOOSTED;
     private static final String burstLengthTag = "burstLength";
-    private static final int minBurstLength = 60;
+    private static final int minBurstLength = 80;
     private int currentBurstLength = minBurstLength;
 
     public GeyserBlockEntity(BlockPos pos, BlockState state) {
@@ -221,7 +222,7 @@ public class GeyserBlockEntity extends BlockEntity implements IHeatableBlock {
         level.setBlock(blockPos, newBlockState, Block.UPDATE_ALL);
 
         if(value) {
-            level.playSound(null, blockPos, SoundEvents.LAVA_EXTINGUISH, SoundSource.BLOCKS, 2.25f, 0.25f);
+            level.playSound(null, blockPos, DDSoundEvents.BLOCK_GEYSER_BURST_1.get(), SoundSource.BLOCKS, 2.25f, 0.75f + level.random.nextFloat() / 2);
             if(level instanceof ServerLevel &&
                     level.getFluidState(blockPos.above()).is(FluidTags.LAVA)
             ) {

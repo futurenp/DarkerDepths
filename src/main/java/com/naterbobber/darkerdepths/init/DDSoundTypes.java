@@ -12,6 +12,4 @@ public class DDSoundTypes {
             DDSoundEvents.BLOCK_GRIMESTONE_HIT.get(),
             DDSoundEvents.BLOCK_GRIMESTONE_FALL.get()
     );
-
-    //    public static final SoundType ROPE = new SoundType(1.0F, 1.0F, BLOCK_ROPE_BREAK.get(), BLOCK_ROPE_STEP.get(), BLOCK_ROPE_PLACE.get(), null, null);
 }

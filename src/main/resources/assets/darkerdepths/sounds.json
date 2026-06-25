@@ -34,6 +34,11 @@
       "darkerdepths:block/grimestone/break3"
     ]
   },
+  "block.geyser.burst_1": {
+    "sounds":[
+      "darkerdepths:block/geyser/burst_1"
+    ]
+  },
   "block.death_anchor.soul_binding": {
     "category": "block",
     "sounds": [

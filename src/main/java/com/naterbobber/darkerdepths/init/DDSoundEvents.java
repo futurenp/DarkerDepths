@@ -18,6 +18,7 @@ public class DDSoundEvents {
     public static final DeferredHolder<SoundEvent, SoundEvent> BLOCK_GRIMESTONE_PLACE                   = registerSoundEvent("block.grimestone.place");
     public static final DeferredHolder<SoundEvent, SoundEvent> BLOCK_GRIMESTONE_HIT                     = registerSoundEvent("block.grimestone.hit");
     public static final DeferredHolder<SoundEvent, SoundEvent> BLOCK_GRIMESTONE_FALL                    = registerSoundEvent("block.grimestone.fall");
+    public static final DeferredHolder<SoundEvent, SoundEvent> BLOCK_GEYSER_BURST_1                     = registerSoundEvent("block.geyser.burst_1");
     public static final DeferredHolder<SoundEvent, SoundEvent> ENTITY_VOID_SOUL_KNIGHT_HEAVY_SWING      = registerSoundEvent("entity.void_soul_knight.heavy_swing");
     public static final DeferredHolder<SoundEvent, SoundEvent> ENTITY_VOID_SOUL_KNIGHT_LIGHT_SWING      = registerSoundEvent("entity.void_soul_knight.light_swing");
     public static final DeferredHolder<SoundEvent, SoundEvent> ENTITY_GLOWSHROOM_MONSTER_AMBIENT        = registerSoundEvent("entity.glowshroom_monster.ambient");
