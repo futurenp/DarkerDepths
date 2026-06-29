@@ -2,7 +2,6 @@ package com.naterbobber.darkerdepths.worldgen.feature.features;
 
 import com.mojang.serialization.Codec;
 import com.naterbobber.darkerdepths.block.DDBlockStateProperties;
-import com.naterbobber.darkerdepths.block.custom.GlowshroomBlock;
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import com.naterbobber.darkerdepths.util.DDTags;
 import net.minecraft.core.BlockPos;
@@ -11,14 +10,10 @@ import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
-import net.minecraft.world.level.levelgen.feature.TreeFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
-
-import java.util.stream.IntStream;
 
 public class SmushedGlowshroomFeature extends Feature<NoneFeatureConfiguration> {
 
@@ -124,9 +119,9 @@ public class SmushedGlowshroomFeature extends Feature<NoneFeatureConfiguration> 
         }
 
         if(placement == 1) {
-            setBlock(world, placePos, DDBlocks.GLOWSHROOM_BLOCK.get().defaultBlockState());
+            setBlock(world, placePos, DDBlocks.GLOWSHROOM_PILEUS.get().defaultBlockState());
         } else if(placement == 2 && world.getRandom().nextFloat() > 0.9F) {
-            setBlock(world, placePos, DDBlocks.GLOWSHROOM_BLOCK.get().defaultBlockState());
+            setBlock(world, placePos, DDBlocks.GLOWSHROOM_PILEUS.get().defaultBlockState());
         }
     }
 
@@ -148,10 +143,10 @@ public class SmushedGlowshroomFeature extends Feature<NoneFeatureConfiguration> 
             BlockState state;
 
             if(world.getBlockState(pos).is(BlockTags.AIR)) {
-                if(world.getBlockState(pos.above()).is(DDBlocks.GLOWSHROOM_BLOCK.get()) && currentGlowshrooms < maxGlowshrooms) {
+                if(world.getBlockState(pos.above()).is(DDBlocks.GLOWSHROOM_PILEUS.get()) && currentGlowshrooms < maxGlowshrooms) {
                     currentGlowshrooms++;
                     state = DDBlocks.GLIMMERING_VINES.get().defaultBlockState();
-                } else if (world.getBlockState(pos.below()).is(DDBlocks.GLOWSHROOM_BLOCK.get()) &&  currentGlimmeringVines < maxGlimmeringVines) {
+                } else if (world.getBlockState(pos.below()).is(DDBlocks.GLOWSHROOM_PILEUS.get()) &&  currentGlimmeringVines < maxGlimmeringVines) {
                     state = DDBlocks.GLOWSHROOM.get().defaultBlockState().setValue(DDBlockStateProperties.GLOWSHROOM_CLUSTERS, random.nextInt(1, 4));
                     currentGlimmeringVines++;
                 } else return;

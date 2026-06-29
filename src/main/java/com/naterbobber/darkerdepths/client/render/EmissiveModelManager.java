@@ -10,7 +10,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModLoadingException;
 import net.neoforged.fml.ModLoadingIssue;
 import net.neoforged.neoforge.client.event.ModelEvent;
@@ -66,7 +65,7 @@ public class EmissiveModelManager {
                 DDBlocks.GLOWSHROOM_STAIRS,
                 DDBlocks.GLOWSHROOM_FENCE_GATE,
                 DDBlocks.GLOWSHROOM_PLANKS,
-                DDBlocks.GLOWSHROOM_BLOCK,
+                DDBlocks.GLOWSHROOM_PILEUS,
                 DDBlocks.GLOWSHROOM_BUTTON,
                 DDBlocks.GLOWSHROOM_PRESSURE_PLATE,
                 DDBlocks.STRIPPED_GLOWSHROOM_STEM,
@@ -75,7 +74,9 @@ public class EmissiveModelManager {
                 DDBlocks.GLOWSHROOM_BOOKSHELF,
                 DDBlocks.TRIMMED_PETRIFIED_PLANKS,
                 DDBlocks.GLOWSHROOM_VERTICAL_SLAB,
-                DDBlocks.VERTICAL_GLOWSHROOM_PLANKS
+                DDBlocks.VERTICAL_GLOWSHROOM_PLANKS,
+                DDBlocks.GLOWSHROOM_TRAPDOOR,
+                DDBlocks.GLOWSHROOM_DOOR
                 )
                 .modelSettings(EmissiveBakedModel.modelSettings())
                 .build());

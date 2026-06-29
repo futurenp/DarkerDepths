@@ -99,7 +99,7 @@ public class DDSurfaceRules {
     );
 
     private static final SurfaceRules.RuleSource GRIMESTONE_MOSSY_NOISE = SurfaceRules.ifTrue(
-            new AxisNoiseConditionSource(DDResourceKeys.Noises.GRIMESTONE_MOSSY, -0.1, 0.1, true, true, true),
+            new AxisNoiseConditionSource(DDResourceKeys.Noises.GRIMESTONE_MOSSY, -0.13, 0.13, true, true, true),
             GRIMESTONE
     );
 

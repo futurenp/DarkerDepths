@@ -45,6 +45,15 @@ final public class DDRenderTypes {
         return createRenderType("emissive_transparent", stateBuilder);
     }
 
+    public static RenderType emissiveTransparentNoCull(ResourceLocation textureLocation) {
+        var stateBuilder = stateBuilderWithTexture(textureLocation)
+                .setShaderState(RENDERTYPE_EYES_SHADER)
+                .setCullState(NO_CULL)
+                .setTransparencyState(TRANSLUCENT_TRANSPARENCY);
+
+        return createRenderType("emissive_transparent_no_cull", stateBuilder);
+    }
+
     public static RenderType emissiveTransparentFogOverride(ResourceLocation textureLocation) {
         var stateBuilder = stateBuilderWithTexture(textureLocation)
                 .setShaderState(DDRenderStateShards.getGlowThroughFog())

@@ -5,13 +5,10 @@ import com.naterbobber.darkerdepths.block.custom.GlowshroomBlock;
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import com.naterbobber.darkerdepths.util.DDTags;
 import net.minecraft.core.BlockPos;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
@@ -112,7 +109,7 @@ public class HugeGlowshroomFeature extends Feature<NoneFeatureConfiguration> {
                     if(world.getBlockState(capPos).canBeReplaced()) {
                         switch (blockIndex) {
                             case 1:
-                                this.setBlock(world, capPos, DDBlocks.GLOWSHROOM_BLOCK.get().defaultBlockState());
+                                this.setBlock(world, capPos, DDBlocks.GLOWSHROOM_PILEUS.get().defaultBlockState());
                                 break;
                             case 2:
                                 if(!world.getBlockState(capPos).is(Blocks.WATER)){
@@ -130,7 +127,7 @@ public class HugeGlowshroomFeature extends Feature<NoneFeatureConfiguration> {
                                 if (glowVineRandom == 0) {
                                     this.setBlock(world, capPos, DDBlocks.GLIMMERING_VINES.get().defaultBlockState());
                                 } else {
-                                    this.setBlock(world, capPos, DDBlocks.GLOWSHROOM_BLOCK.get().defaultBlockState());
+                                    this.setBlock(world, capPos, DDBlocks.GLOWSHROOM_PILEUS.get().defaultBlockState());
                                 }
                                 break;
                             case 4:
@@ -218,7 +215,7 @@ public class HugeGlowshroomFeature extends Feature<NoneFeatureConfiguration> {
                     if(world.getBlockState(capPos).canBeReplaced()){
                         switch (blockIndex) {
                             case 1:
-                                this.setBlock(world, capPos, DDBlocks.GLOWSHROOM_BLOCK.get().defaultBlockState());
+                                this.setBlock(world, capPos, DDBlocks.GLOWSHROOM_PILEUS.get().defaultBlockState());
                                 break;
                             case 2:
                                 if(!world.getBlockState(capPos).is(Blocks.WATER)) {
@@ -236,7 +233,7 @@ public class HugeGlowshroomFeature extends Feature<NoneFeatureConfiguration> {
                                 if (glowVineRandom == 0) {
                                     this.setBlock(world, capPos, DDBlocks.GLIMMERING_VINES.get().defaultBlockState());
                                 } else {
-                                    this.setBlock(world, capPos, DDBlocks.GLOWSHROOM_BLOCK.get().defaultBlockState());
+                                    this.setBlock(world, capPos, DDBlocks.GLOWSHROOM_PILEUS.get().defaultBlockState());
                                 }
                                 break;
                             case 4:

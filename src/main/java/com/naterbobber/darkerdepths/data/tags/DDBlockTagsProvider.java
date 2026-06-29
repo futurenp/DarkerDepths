@@ -37,7 +37,7 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
 
     private void generateMinableTags() {
         this.tag(BlockTags.MINEABLE_WITH_HOE).add(
-                DDBlocks.GLOWSHROOM_BLOCK.get(),
+                DDBlocks.GLOWSHROOM_PILEUS.get(),
                 DDBlocks.GLOWSHROOM_STEM.get(),
                 DDBlocks.GLOWSHROOM_HEART.get(),
                 DDBlocks.SCORCHED_REMAINS_BLOCK.get(),
@@ -281,7 +281,7 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
 
         this.tag(DDTags.Blocks.HUGE_GLOWSHROOM_GROWABLE).add(
             DDBlocks.MOSSY_GRIMESTONE.get(),
-            DDBlocks.GLOWSHROOM_BLOCK.get()
+            DDBlocks.GLOWSHROOM_PILEUS.get()
         ).addTag(BlockTags.BASE_STONE_OVERWORLD);
 
         this.tag(BlockTags.PLANKS).add(

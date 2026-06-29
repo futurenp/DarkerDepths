@@ -375,8 +375,10 @@ public class DDBlocks {
     public static final DeferredBlock<RelationalWoodPostBlock> GLOWSHROOM_POST = registerCompatBlock(List.of(DDCompat.QUARK), "glowshroom_post",
             () -> new RelationalWoodPostBlock(GLOWSHROOM_STEM.get(), STRIPPED_GLOWSHROOM_POST.get()));
 
-    public static final DeferredBlock<Block> GLOWSHROOM_BLOCK = registerBlock("glowshroom_block",
+    public static final DeferredBlock<Block> GLOWSHROOM_PILEUS = registerBlock("glowshroom_block",
             () -> new Block(BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.SLIME_BLOCK)));
+    public static final DeferredBlock<Block> DEAD_GLOWSHROOM_PILEUS = registerBlock("dead_glowshroom_pileus",
+            () -> new Block(BlockBehaviour.Properties.of().strength(0.8F).sound(SoundType.NETHERRACK)));
     public static final DeferredBlock<GlowshroomHeartBlock> GLOWSHROOM_HEART = registerBlock("glowshroom_heart",
             () -> new GlowshroomHeartBlock(BlockBehaviour.Properties.of().strength(2.0f, 3.0f).sound(SoundType.SHROOMLIGHT).lightLevel(value -> 15)));
     public static final DeferredBlock<GlowshroomBlock> GLOWSHROOM = registerBlock("glowshroom",

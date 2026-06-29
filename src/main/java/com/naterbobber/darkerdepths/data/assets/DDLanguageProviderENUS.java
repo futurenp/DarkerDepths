@@ -40,6 +40,7 @@ public class DDLanguageProviderENUS extends LanguageProvider {
         add(DDBlocks.CRYSTAL_HUSK, "Crystal Husk");
         add(DDBlocks.FORSAKEN_BRONZE_BLOCK, "Block of Forsaken Bronze");
         add(DDBlocks.SCORCHED_REMAINS_BLOCK, "Block of Scorched Remains");
+        add(DDBlocks.GLOWSHROOM_PILEUS, "Glowshroom Pileus");
 
         // Entities
         add(DDEntityTypes.PETRIFIED_CHEST_BOAT, "Petrified Boat with Chest");

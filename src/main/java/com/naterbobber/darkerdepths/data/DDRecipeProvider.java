@@ -26,7 +26,6 @@ import net.minecraft.world.item.crafting.SmeltingRecipe;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.Tags;
-import net.neoforged.neoforge.common.conditions.AndCondition;
 import net.neoforged.neoforge.common.conditions.ModLoadedCondition;
 import net.neoforged.neoforge.common.conditions.OrCondition;
 
@@ -154,7 +153,7 @@ public class DDRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_glow_grime", has(DDItems.GLOW_GRIME.get())).save(recipeOutput);
 
         ShapedRecipeBuilder
-                .shaped(RecipeCategory.BUILDING_BLOCKS, DDBlocks.GLOWSHROOM_BLOCK.get(), 2)
+                .shaped(RecipeCategory.BUILDING_BLOCKS, DDBlocks.GLOWSHROOM_PILEUS.get(), 2)
                 .define('#', DDItems.GLOW_GRIME.get())
                 .pattern("###")
                 .pattern("# #")
@@ -283,8 +282,8 @@ public class DDRecipeProvider extends RecipeProvider {
                 .save(recipeOutput);
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, DDItems.GLOW_GRIME.get(), 2)
-                .requires(DDBlocks.GLOWSHROOM_BLOCK.get())
-                .unlockedBy("has_glowshroom_block", has(DDBlocks.GLOWSHROOM_BLOCK.get()))
+                .requires(DDBlocks.GLOWSHROOM_PILEUS.get())
+                .unlockedBy("has_glowshroom_block", has(DDBlocks.GLOWSHROOM_PILEUS.get()))
                 .save(recipeOutput, DarkerDepths.id("glow_grime_from_glowshroom_block"));
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.GLOW_INK_SAC, 2)
