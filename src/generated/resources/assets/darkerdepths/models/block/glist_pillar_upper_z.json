@@ -1,0 +1,8 @@
+{
+  "parent": "darkerdepths:block/pillar_z",
+  "textures": {
+    "end": "darkerdepths:block/glist_pillar_end",
+    "particle": "darkerdepths:block/glist_pillar_side_upper_horizontal",
+    "side": "darkerdepths:block/glist_pillar_side_upper_horizontal"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "bottom": "darkerdepths:block/glist",
+    "side": "darkerdepths:block/glist",
+    "top": "darkerdepths:block/glist"
+  }
+}

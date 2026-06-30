@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "bottom": "darkerdepths:block/polished_glist",
+    "side": "darkerdepths:block/polished_glist",
+    "top": "darkerdepths:block/polished_glist"
+  }
+}

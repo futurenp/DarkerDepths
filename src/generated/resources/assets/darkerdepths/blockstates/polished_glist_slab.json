@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "darkerdepths:block/polished_glist_slab"
+    },
+    "type=double": {
+      "model": "darkerdepths:block/polished_glist"
+    },
+    "type=top": {
+      "model": "darkerdepths:block/polished_glist_slab_top"
+    }
+  }
+}

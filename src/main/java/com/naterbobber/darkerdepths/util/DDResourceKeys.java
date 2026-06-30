@@ -226,8 +226,9 @@ public class DDResourceKeys {
         public static final ResourceKey<NormalNoise.NoiseParameters> MAGMA = createKey("magma");
         public static final ResourceKey<NormalNoise.NoiseParameters> TUFF = createKey("tuff");
         public static final ResourceKey<NormalNoise.NoiseParameters> DUSKROCK = createKey("duskrock");
-        public static final ResourceKey<NormalNoise.NoiseParameters> GRIMESTONE_TUFF = createKey("grimestone_tuff");
+        public static final ResourceKey<NormalNoise.NoiseParameters> GRIMESTONE_GLIST = createKey("grimestone_glist");
         public static final ResourceKey<NormalNoise.NoiseParameters> GRIMESTONE_MOSSY = createKey("grimestone_mossy");
+        public static final ResourceKey<NormalNoise.NoiseParameters> GLIST_GRIMESTONE = createKey("glist_grimestone");
 
         private static ResourceKey<NormalNoise.NoiseParameters> createKey(String name) {
             return ResourceKey.create(Registries.NOISE, DarkerDepths.id(name));

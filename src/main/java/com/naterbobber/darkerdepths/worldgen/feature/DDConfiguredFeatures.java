@@ -300,7 +300,7 @@ public class DDConfiguredFeatures {
 
         FeatureUtils.register(context, GRIMESTONE_CLIFF, DDFeatures.CLIFF_PLATEU.get(),
                 new CliffPlateuConfig(
-                        BlockStateProvider.simple(Blocks.DEEPSLATE.defaultBlockState()),
+                        BlockStateProvider.simple(DDBlocks.GLIST.get().defaultBlockState()),
                         4,
                         6
                 )
@@ -310,9 +310,7 @@ public class DDConfiguredFeatures {
                 DDTags.Blocks.GRIME_SURFACE,
                 List.of(
                         BlockStateProvider.simple(DDBlocks.MOSSY_GRIMESTONE.get()),
-                        BlockStateProvider.simple(DDBlocks.GRIMESTONE.get()),
-                        BlockStateProvider.simple(Blocks.TUFF),
-                        BlockStateProvider.simple(Blocks.TUFF)
+                        BlockStateProvider.simple(DDBlocks.GRIMESTONE.get())
                 ),
                 PlacementUtils.inlinePlaced(lookup.getOrThrow(GRIME_VEGETATION)),
                 CaveSurface.FLOOR,

@@ -19,18 +19,6 @@
             "axis": "y"
           }
         }
-      },
-      {
-        "type": "minecraft:simple_state_provider",
-        "state": {
-          "Name": "minecraft:tuff"
-        }
-      },
-      {
-        "type": "minecraft:simple_state_provider",
-        "state": {
-          "Name": "minecraft:tuff"
-        }
       }
     ],
     "replaceable": "#darkerdepths:grime_surface",

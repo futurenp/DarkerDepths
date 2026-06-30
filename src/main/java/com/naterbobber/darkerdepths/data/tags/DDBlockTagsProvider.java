@@ -277,6 +277,7 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
                 Blocks.GRANITE,
                 Blocks.ANDESITE,
                 Blocks.DIORITE
+//                DDBlocks.GLIST.get()
         );
 
         this.tag(DDTags.Blocks.HUGE_GLOWSHROOM_GROWABLE).add(

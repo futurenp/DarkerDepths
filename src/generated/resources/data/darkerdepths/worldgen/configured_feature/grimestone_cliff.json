@@ -5,10 +5,7 @@
     "main_block": {
       "type": "minecraft:simple_state_provider",
       "state": {
-        "Name": "minecraft:deepslate",
-        "Properties": {
-          "axis": "y"
-        }
+        "Name": "darkerdepths:glist"
       }
     },
     "xz_radius": 4

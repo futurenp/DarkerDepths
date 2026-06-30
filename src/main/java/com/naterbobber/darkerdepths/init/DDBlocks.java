@@ -326,6 +326,41 @@ public class DDBlocks {
     public static final DeferredBlock<ConnectedRotatablePillarBlock> GRIMESTONE_PILLAR = registerBlock("grimestone_pillar",
             () -> new ConnectedRotatablePillarBlock(DARKSLATE_BRICKS_PROPERTIES));
 
+    public static final DeferredBlock<Block> GLIST = registerBlock("glist",
+            () -> new Block(DARKSLATE_PROPERTIES));
+    public static final DeferredBlock<RelationalStairBlock> GLIST_STAIRS = registerBlock("glist_stairs",
+            () -> new RelationalStairBlock(GLIST.get()));
+    public static final DeferredBlock<RelationalSlabBlock> GLIST_SLAB = registerBlock("glist_slab",
+            () -> new RelationalSlabBlock(GLIST.get()));
+    public static final DeferredBlock<RelationalVerticalSlabBlock> GLIST_VERTICAL_SLAB = registerCompatBlock(List.of(DDCompat.QUARK), "glist_vertical_slab",
+            () -> new RelationalVerticalSlabBlock(GLIST.get()));
+    public static final DeferredBlock<RelationalWallBlock> GLIST_WALL = registerBlock("glist_wall",
+            () -> new RelationalWallBlock(GLIST.get()));
+    public static final DeferredBlock<Block> POLISHED_GLIST = registerBlock("polished_glist",
+            () -> new Block(DARKSLATE_PROPERTIES));
+    public static final DeferredBlock<RelationalStairBlock> POLISHED_GLIST_STAIRS = registerBlock("polished_glist_stairs",
+            () -> new RelationalStairBlock(POLISHED_GLIST.get()));
+    public static final DeferredBlock<RelationalSlabBlock> POLISHED_GLIST_SLAB = registerBlock("polished_glist_slab",
+            () -> new RelationalSlabBlock(POLISHED_GLIST.get()));
+    public static final DeferredBlock<RelationalVerticalSlabBlock> POLISHED_GLIST_VERTICAL_SLAB = registerCompatBlock(List.of(DDCompat.QUARK), "polished_glist_vertical_slab",
+            () -> new RelationalVerticalSlabBlock(POLISHED_GLIST.get()));
+    public static final DeferredBlock<Block> GLIST_BRICKS = registerBlock("glist_bricks",
+            () -> new Block(DARKSLATE_PROPERTIES));
+    public static final DeferredBlock<RelationalStairBlock> GLIST_BRICKS_STAIRS = registerBlock("glist_bricks_stairs",
+            () -> new RelationalStairBlock(GLIST_BRICKS.get()));
+    public static final DeferredBlock<RelationalSlabBlock> GLIST_BRICKS_SLAB = registerBlock("glist_bricks_slab",
+            () -> new RelationalSlabBlock(GLIST_BRICKS.get()));
+    public static final DeferredBlock<RelationalVerticalSlabBlock> GLIST_BRICKS_VERTICAL_SLAB = registerCompatBlock(List.of(DDCompat.QUARK), "glist_bricks_vertical_slab",
+            () -> new RelationalVerticalSlabBlock(GLIST_BRICKS.get()));
+    public static final DeferredBlock<RelationalWallBlock> GLIST_BRICKS_WALL = registerBlock("glist_bricks_wall",
+            () -> new RelationalWallBlock(GLIST_BRICKS.get()));
+    public static final DeferredBlock<Block> CHISELED_GLIST_BRICKS = registerBlock("chiseled_glist_bricks",
+            () -> new Block(DARKSLATE_BRICKS_PROPERTIES));
+    public static final DeferredBlock<Block> CRACKED_GLIST_BRICKS = registerBlock("cracked_glist_bricks",
+            () -> new Block(DARKSLATE_BRICKS_PROPERTIES));
+    public static final DeferredBlock<ConnectedRotatablePillarBlock> GLIST_PILLAR = registerBlock("glist_pillar",
+            () -> new ConnectedRotatablePillarBlock(DARKSLATE_BRICKS_PROPERTIES));
+
     public static final DeferredBlock<RotatedPillarBlock> STRIPPED_GLOWSHROOM_STEM = registerBlock("stripped_glowshroom_stem",
             () -> new RotatedPillarBlock(GLOWSHROOM_STEM_PROPERTIES));
     public static final DeferredBlock<RotatedPillarBlock> STRIPPED_GLOWSHROOM_HYPHAE = registerBlock("stripped_glowshroom_hyphae",
@@ -376,7 +411,7 @@ public class DDBlocks {
             () -> new RelationalWoodPostBlock(GLOWSHROOM_STEM.get(), STRIPPED_GLOWSHROOM_POST.get()));
 
     public static final DeferredBlock<Block> GLOWSHROOM_PILEUS = registerBlock("glowshroom_block",
-            () -> new Block(BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.SLIME_BLOCK)));
+            () -> new Block(BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.CORAL_BLOCK)));
     public static final DeferredBlock<Block> DEAD_GLOWSHROOM_PILEUS = registerBlock("dead_glowshroom_pileus",
             () -> new Block(BlockBehaviour.Properties.of().strength(0.8F).sound(SoundType.NETHERRACK)));
     public static final DeferredBlock<GlowshroomHeartBlock> GLOWSHROOM_HEART = registerBlock("glowshroom_heart",

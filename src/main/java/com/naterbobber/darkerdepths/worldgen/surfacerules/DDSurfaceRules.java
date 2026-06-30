@@ -20,6 +20,8 @@ public class DDSurfaceRules {
             SurfaceRules.state(Blocks.MAGMA_BLOCK.defaultBlockState());
     private static final SurfaceRules.RuleSource GRIMESTONE =
             SurfaceRules.state(DDBlocks.GRIMESTONE.get().defaultBlockState());
+    private static final SurfaceRules.RuleSource GLIST =
+            SurfaceRules.state(DDBlocks.GLIST.get().defaultBlockState());
     private static final SurfaceRules.RuleSource DUSKROCK =
             SurfaceRules.state(DDBlocks.DUSKROCK.get().defaultBlockState());
     private static final SurfaceRules.RuleSource MOSSY_GRIMESTONE =
@@ -87,12 +89,12 @@ public class DDSurfaceRules {
             )
     );
 
-    private static final SurfaceRules.RuleSource GRIMESTONE_TUFF_NOISE = SurfaceRules.ifTrue(
-            new AxisNoiseConditionSource(DDResourceKeys.Noises.GRIMESTONE_TUFF, -0.13, 0.13, true, true, true),
+    private static final SurfaceRules.RuleSource GRIMESTONE_GLIST_NOISE = SurfaceRules.ifTrue(
+            new AxisNoiseConditionSource(DDResourceKeys.Noises.GRIMESTONE_GLIST, -0.13, 0.13, true, true, true),
             SurfaceRules.sequence(
                     SurfaceRules.ifTrue(
-                            new AxisNoiseConditionSource(DDResourceKeys.Noises.GRIMESTONE_TUFF, -0.07, 0.07, true, true, true),
-                            TUFF
+                            new AxisNoiseConditionSource(DDResourceKeys.Noises.GRIMESTONE_GLIST, -0.07, 0.07, true, true, true),
+                            GLIST
                     ),
                     GRIMESTONE
             )
@@ -112,7 +114,7 @@ public class DDSurfaceRules {
                                     //grimestone not spawning when in water caves
                                     SurfaceRules.ifTrue(SurfaceRules.waterBlockCheck(1, 0),
                                             SurfaceRules.sequence(
-                                                    GRIMESTONE_TUFF_NOISE,
+                                                    GRIMESTONE_GLIST_NOISE,
                                                     GRIMESTONE_MOSSY_NOISE,
                                                     MOSSY_GRIMESTONE)
                                     ),
@@ -120,13 +122,17 @@ public class DDSurfaceRules {
                                     )
                     ),
                     SurfaceRules.ifTrue(
-                            SurfaceRules.stoneDepthCheck(1, false, 0, CaveSurface.FLOOR),
-                            GRIMESTONE
+                            SurfaceRules.stoneDepthCheck(2, false, 0, CaveSurface.FLOOR),
+                            SurfaceRules.sequence(
+                                GRIMESTONE_GLIST_NOISE,
+                                GRIMESTONE
+                            )
                     ),
                     SurfaceRules.ifTrue(
-                            SurfaceRules.stoneDepthCheck(3, false, 0, CaveSurface.FLOOR),
-                            TUFF
-                    )
+                            new AxisNoiseConditionSource(DDResourceKeys.Noises.GLIST_GRIMESTONE, -0.1, 0.1, true, true, true),
+                            GRIMESTONE
+                    ),
+                    GLIST
             )
     );
 
