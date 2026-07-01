@@ -22,6 +22,7 @@ public class DDBlockStateProperties {
     public static final BooleanProperty BURSTING = BooleanProperty.create("bursting");
     public static final BooleanProperty BOOSTED = BooleanProperty.create("boosted");
     public static final BooleanProperty PROVIDES_ASH = BooleanProperty.create("provides_ash");
+    public static final BooleanProperty LARGE =  BooleanProperty.create("large");
     public static final EnumProperty<PostState> CONNECT_UP = EnumProperty.create("connect_up", PostState.class);
     public static final EnumProperty<PostState> CONNECT_DOWN = EnumProperty.create("connect_down", PostState.class);
     public static final EnumProperty<PostState> CONNECT_NORTH = EnumProperty.create("connect_north", PostState.class);

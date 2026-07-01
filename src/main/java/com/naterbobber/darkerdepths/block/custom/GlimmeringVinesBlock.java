@@ -23,7 +23,7 @@ public class GlimmeringVinesBlock extends GrowingPlantHeadBlock {
 
     public GlimmeringVinesBlock(Properties properties) {
         super(properties, Direction.DOWN, SHAPE, false, 0.1D);
-        this.registerDefaultState((this.stateDefinition.any()).setValue(AGE, 20));
+        this.registerDefaultState((this.stateDefinition.any()).setValue(AGE, 18));
     }
 
     @Override
@@ -70,6 +70,6 @@ public class GlimmeringVinesBlock extends GrowingPlantHeadBlock {
     }
 
     public BlockState getStateForPlacement(LevelAccessor level) {
-        return this.defaultBlockState().setValue(AGE, level.getRandom().nextInt(7) + 18);
+        return this.defaultBlockState().setValue(AGE, level.getRandom().nextInt(8) + 17);
     }
 }

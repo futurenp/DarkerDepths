@@ -1,0 +1,10 @@
+{
+  "values": {
+    "darkerdepths:glowshroom_block": {
+      "replace": true,
+      "value": {
+        "waxed": "darkerdepths:waxed_glowshroom_block"
+      }
+    }
+  }
+}

@@ -66,6 +66,7 @@ public class EmissiveModelManager {
                 DDBlocks.GLOWSHROOM_FENCE_GATE,
                 DDBlocks.GLOWSHROOM_PLANKS,
                 DDBlocks.GLOWSHROOM_PILEUS,
+                DDBlocks.WAXED_GLOWSHROOM_PILEUS,
                 DDBlocks.GLOWSHROOM_BUTTON,
                 DDBlocks.GLOWSHROOM_PRESSURE_PLATE,
                 DDBlocks.STRIPPED_GLOWSHROOM_STEM,

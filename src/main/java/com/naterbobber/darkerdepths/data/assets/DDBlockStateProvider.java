@@ -82,7 +82,6 @@ public class DDBlockStateProvider extends BlockStateProvider {
         add(this::connectedRotatableDarkslatePillarBlockWithItem, DDBlocks.DARKSLATE_PILLAR);
 
 
-
         skipBlock(
                 DDBlocks.VOID_SOUL_JAR,
                 DDBlocks.DEATH_ANCHOR,
@@ -109,7 +108,8 @@ public class DDBlockStateProvider extends BlockStateProvider {
                 DDBlocks.GLOWSHROOM_LANTERN,
                 DDBlocks.MOSSY_GRIMESTONE,
                 DDBlocks.ARID_DEEPSLATE,
-                DDBlocks.GLOWSHROOM_SHELF
+                DDBlocks.GLOWSHROOM_SHELF,
+                DDBlocks.WAXED_GLOWSHROOM_PILEUS
         );
 
         skipItem(DDItems.STILETTO,
@@ -121,6 +121,9 @@ public class DDBlockStateProvider extends BlockStateProvider {
 
         autoGenerateBlockAssets();
         autoGenerateItemAssets();
+
+        //requires autogenerate to run first, so skip, then run
+        add(this::simpleBlockWithItemOfExisting, DDBlocks.WAXED_GLOWSHROOM_PILEUS, DDBlocks.GLOWSHROOM_PILEUS);
     }
 
     @SafeVarargs
@@ -220,6 +223,12 @@ public class DDBlockStateProvider extends BlockStateProvider {
         simpleBlock(block.get());
         simpleBlockItem(block.get(), models().getExistingFile(blockTexture(block.get())));
     }
+
+    private void simpleBlockWithItemOfExisting(DeferredHolder<Block, ? extends Block> block, DeferredHolder<Block, ? extends Block> parentBlock) {
+        simpleBlock(block.get(), models().getExistingFile(blockTexture(parentBlock.get())));
+        simpleBlockItem(block.get(), models().getExistingFile(blockTexture(parentBlock.get())));
+    }
+
 
     private void logBlockWithItem(DeferredHolder<Block, ? extends Block> block) {
         logBlock((RotatedPillarBlock) block.get());

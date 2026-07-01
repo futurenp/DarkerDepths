@@ -22,6 +22,7 @@ import net.minecraft.util.random.SimpleWeightedRandomList;
 import net.minecraft.util.valueproviders.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.GrowingPlantHeadBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
@@ -350,7 +351,7 @@ public class DDConfiguredFeatures {
                                 BlockStateProvider.simple(DDBlocks.GLIMMERING_VINE_PLANT.get().defaultBlockState())
                         ),
                         BlockColumnConfiguration.layer(ConstantInt.of(1),
-                                BlockStateProvider.simple(DDBlocks.GLIMMERING_VINES.get().defaultBlockState()))
+                                BlockStateProvider.simple(DDBlocks.GLIMMERING_VINES.get().defaultBlockState().setValue(GrowingPlantHeadBlock.AGE, 24)))
                 ),
                 Direction.DOWN,
                 BlockPredicate.ONLY_IN_AIR_PREDICATE,

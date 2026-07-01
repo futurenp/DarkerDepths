@@ -1,18 +1,33 @@
 {
   "variants": {
-    "facing=north": {
+    "facing=north,large=false": {
       "model": "darkerdepths:block/glowshroom_shelf"
     },
-    "facing=west": {
+    "facing=west,large=false": {
       "model": "darkerdepths:block/glowshroom_shelf",
       "y": 270
     },
-    "facing=east": {
+    "facing=east,large=false": {
       "model": "darkerdepths:block/glowshroom_shelf",
       "y": 90
     },
-    "facing=south": {
+    "facing=south,large=false": {
       "model": "darkerdepths:block/glowshroom_shelf",
+      "y": 180
+    },
+    "facing=north,large=true": {
+      "model": "darkerdepths:block/glowshroom_shelf_large"
+    },
+    "facing=west,large=true": {
+      "model": "darkerdepths:block/glowshroom_shelf_large",
+      "y": 270
+    },
+    "facing=east,large=true": {
+      "model": "darkerdepths:block/glowshroom_shelf_large",
+      "y": 90
+    },
+    "facing=south,large=true": {
+      "model": "darkerdepths:block/glowshroom_shelf_large",
       "y": 180
     }
   }

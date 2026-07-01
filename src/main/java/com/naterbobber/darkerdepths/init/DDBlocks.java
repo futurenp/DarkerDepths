@@ -412,6 +412,8 @@ public class DDBlocks {
 
     public static final DeferredBlock<GlowshroomPileusBlock> GLOWSHROOM_PILEUS = registerBlock("glowshroom_block",
             () -> new GlowshroomPileusBlock(BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.CORAL_BLOCK).randomTicks()));
+    public static final DeferredBlock<Block> WAXED_GLOWSHROOM_PILEUS = registerBlock("waxed_glowshroom_block",
+            () -> new Block(BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.CORAL_BLOCK)));
     public static final DeferredBlock<Block> DEAD_GLOWSHROOM_PILEUS = registerBlock("dead_glowshroom_pileus",
             () -> new Block(BlockBehaviour.Properties.of().strength(0.8F).sound(SoundType.NETHERRACK)));
     public static final DeferredBlock<GlowshroomHeartBlock> GLOWSHROOM_HEART = registerBlock("glowshroom_heart",

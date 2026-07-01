@@ -5,11 +5,14 @@ import com.naterbobber.darkerdepths.init.DDItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.data.DataMapProvider;
+import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.datamaps.builtin.Compostable;
 import net.neoforged.neoforge.registries.datamaps.builtin.FurnaceFuel;
 import net.neoforged.neoforge.registries.datamaps.builtin.NeoForgeDataMaps;
+import net.neoforged.neoforge.registries.datamaps.builtin.Waxable;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -30,6 +33,7 @@ public class DDDataMapProvider extends DataMapProvider {
         addCompostable(DDBlocks.GLIMMERING_VINES, 0.3F);
         addCompostable(DDBlocks.MOSSY_SPROUTS, 0.3F);
         addCompostable(DDBlocks.PETRIFIED_ROOTS, 0.2F);
+        addWaxable(DDBlocks.GLOWSHROOM_PILEUS, DDBlocks.WAXED_GLOWSHROOM_PILEUS);
     }
 
     private void addFuel(DeferredHolder<?, ?> holder, int burnTime) {
@@ -46,5 +50,9 @@ public class DDDataMapProvider extends DataMapProvider {
 
     private void addCompostable(ResourceLocation location, float chance) {
         builder(NeoForgeDataMaps.COMPOSTABLES).add(location, new Compostable(chance), false);
+    }
+
+    private void addWaxable(DeferredBlock<? extends Block> block, DeferredBlock<? extends Block> waxedBlock) {
+        builder(NeoForgeDataMaps.WAXABLES).add(block, new Waxable(waxedBlock.get()), true);
     }
 }
