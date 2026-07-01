@@ -26,6 +26,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Function;
 
 @OnlyIn(Dist.CLIENT)
 public class EmissiveBakedModel extends BakedModelWrapper<BakedModel> {
@@ -80,7 +81,7 @@ public class EmissiveBakedModel extends BakedModelWrapper<BakedModel> {
     private BakedQuad createGlowQuad(BakedQuad baseQuad, TextureAtlasSprite glowSprite, int brightness, boolean shade) {
         int[] originalData = baseQuad.getVertices();
         int[] newData = originalData.clone();
-        TextureAtlasSprite baseSprite = baseQuad.getSprite();
+        var baseSprite = baseQuad.getSprite();
 
         for (int i = 0; i < 4; i++) {
             int vertexIndex = i * 8;

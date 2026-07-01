@@ -96,6 +96,15 @@ public class EmissiveModelManager {
                 .build());
 
         models.add(BlockBaker.builder(event,
+                DDBlocks.GLOWSHROOM_SHELF
+                )
+                .modelSettings(EmissiveBakedModel.modelSettings()
+                        .baseBrightness(glowshroomBrightness)
+                        .baseRenderType(RenderType.CUTOUT)
+                        .removeShadeBase())
+                .build());
+
+        models.add(BlockBaker.builder(event,
                 DDBlocks.GLOWSHROOM_STEM,
                 DDBlocks.GLOWSHROOM_HYPHAE,
                 DDBlocks.STRIPPED_GLOWSHROOM_POST

@@ -108,7 +108,8 @@ public class DDBlockStateProvider extends BlockStateProvider {
                 DDBlocks.WALL_VOID_SOUL_TORCH,
                 DDBlocks.GLOWSHROOM_LANTERN,
                 DDBlocks.MOSSY_GRIMESTONE,
-                DDBlocks.ARID_DEEPSLATE
+                DDBlocks.ARID_DEEPSLATE,
+                DDBlocks.GLOWSHROOM_SHELF
         );
 
         skipItem(DDItems.STILETTO,

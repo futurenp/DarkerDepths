@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "darkerdepths:block/glowshroom_shelf"
+    },
+    "facing=west": {
+      "model": "darkerdepths:block/glowshroom_shelf",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "darkerdepths:block/glowshroom_shelf",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "darkerdepths:block/glowshroom_shelf",
+      "y": 180
+    }
+  }
+}
