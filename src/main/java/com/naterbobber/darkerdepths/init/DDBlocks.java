@@ -428,29 +428,29 @@ public class DDBlocks {
             () -> new Block(BlockBehaviour.Properties.of().strength(0.8F).sound(SoundType.NETHERRACK)));
     public static final DeferredBlock<GlowshroomHeartBlock> GLOWSHROOM_HEART = registerBlock("glowshroom_heart",
             () -> new GlowshroomHeartBlock(BlockBehaviour.Properties.of().strength(2.0f, 3.0f).sound(SoundType.SHROOMLIGHT).lightLevel(value -> 15)));
+
+    public static final DeferredBlock<SproutsBlock> MOSSY_SPROUTS = registerBlock("mossy_sprouts",
+            () -> new SproutsBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SHORT_GRASS).sound(SoundType.WET_GRASS).offsetType(BlockBehaviour.OffsetType.XZ)));
     public static final DeferredBlock<GlowshroomBlock> GLOWSHROOM = registerBlock("glowshroom",
             () -> new GlowshroomBlock(BlockBehaviour.Properties.of().offsetType(BlockBehaviour.OffsetType.XZ).strength(0.0F, 1.0F).sound(SoundType.SLIME_BLOCK).lightLevel((state) -> 3 + (2 * state.getValue(GlowshroomBlock.GLOWSHROOM_CLUSTERS))).noCollission()));
     public static final DeferredBlock<GlowshroomShelfBlock> SHELF_GLOWSHROOM = registerBlock("shelf_glowshroom",
             () -> new GlowshroomShelfBlock(BlockBehaviour.Properties.of().strength(0.0F, 1.0F).sound(SoundType.SLIME_BLOCK).lightLevel((light) -> 5).noCollission()));
-
-    public static final DeferredBlock<FlowerPotBlock> POTTED_GLOWSHROOM = registerNoTabBlock("potted_glowshroom",
-            () -> new FlowerPotBlock(GLOWSHROOM.get(), BlockBehaviour.Properties.of().instabreak().noOcclusion().pushReaction(PushReaction.DESTROY).lightLevel((state) -> 5)));
-    public static final DeferredBlock<GlowspursBlock> GLOWSPURS = registerBlock("glowspurs",
-            () -> new GlowspursBlock(BlockBehaviour.Properties.of().instabreak().lightLevel(value -> 5).sound(SoundType.SLIME_BLOCK).noCollission()));
-    public static final DeferredBlock<SproutsBlock> MOSSY_SPROUTS = registerBlock("mossy_sprouts",
-            () -> new SproutsBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SHORT_GRASS).sound(SoundType.WET_GRASS).offsetType(BlockBehaviour.OffsetType.XZ)));
     public static final DeferredBlock<GlimmeringVinesBlock> GLIMMERING_VINES = registerBlock("glimmering_vines",
             () -> new GlimmeringVinesBlock(BlockBehaviour.Properties.of().noCollission().noOcclusion().lightLevel(value -> 9).sound(SoundType.SPORE_BLOSSOM)));
     public static final DeferredBlock<GlimmeringVinePlantBlock> GLIMMERING_VINE_PLANT = registerNoTabBlock("glimmering_vine_plant",
             () -> new GlimmeringVinePlantBlock(BlockBehaviour.Properties.ofFullCopy(GLIMMERING_VINES.get()).sound(SoundType.SPORE_BLOSSOM)));
+    public static final DeferredBlock<FlowerPotBlock> POTTED_GLOWSHROOM = registerNoTabBlock("potted_glowshroom",
+            () -> new FlowerPotBlock(GLOWSHROOM.get(), BlockBehaviour.Properties.of().instabreak().noOcclusion().pushReaction(PushReaction.DESTROY).lightLevel((state) -> 5)));
+    public static final DeferredBlock<GlowspursBlock> GLOWSPURS = registerBlock("glowspurs",
+            () -> new GlowspursBlock(BlockBehaviour.Properties.of().instabreak().lightLevel(value -> 5).sound(SoundType.SLIME_BLOCK).noCollission()));
+
     public static final DeferredBlock<GlowshroomLampBlock> GLOWSHROOM_LAMP = registerBlock("glowshroom_lamp",
             () -> new GlowshroomLampBlock(BlockBehaviour.Properties.of().strength(0.3f, 0.3f).lightLevel(state -> state.getValue(BlockStateProperties.LIT) ? 15 : 0).sound(SoundType.GLASS)));
     public static final DeferredBlock<GlowshroomLanternBlock> GLOWSHROOM_LANTERN = registerBlock("glowshroom_lantern",
             () -> new GlowshroomLanternBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LANTERN)));
+
     public static final DeferredBlock<RopeBlock> ROPE = registerNoTabBlock("rope",
             () -> new RopeBlock(blockProperties(0.1f, SoundType.WOOL, false).noOcclusion()));
-
-
 
     public static final DeferredBlock<MobPlacerBlock> MOB_PLACER = registerNoTabBlock("mob_placer",
             () -> new MobPlacerBlock(Block.Properties.ofFullCopy(Blocks.BEDROCK)));

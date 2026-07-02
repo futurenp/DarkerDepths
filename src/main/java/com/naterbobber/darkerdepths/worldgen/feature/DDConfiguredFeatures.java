@@ -108,8 +108,7 @@ public class DDConfiguredFeatures {
                                 .add(DDBlocks.GLOWSPURS.get().defaultBlockState().setValue(GlowspursBlock.FACING, Direction.EAST), 1)
                                 .add(DDBlocks.GLOWSPURS.get().defaultBlockState().setValue(GlowspursBlock.FACING, Direction.SOUTH), 1)
                                 .add(DDBlocks.GLOWSPURS.get().defaultBlockState().setValue(GlowspursBlock.FACING, Direction.WEST), 1)
-                                .add(DDBlocks.MOSSY_SPROUTS.get().defaultBlockState(), 200)
-                                .add(Blocks.AIR.defaultBlockState(), 420)
+                                .add(DDBlocks.MOSSY_SPROUTS.get().defaultBlockState(), 400)
                 )
         ));
 
@@ -328,7 +327,7 @@ public class DDConfiguredFeatures {
                 GRIME_VEGETATION_PATCH,
                 Feature.RANDOM_PATCH,
                 FeatureUtils.simpleRandomPatchConfiguration(
-                        64,
+                        48,
                         PlacementUtils.inlinePlaced(
                                 lookup.getOrThrow(GRIME_VEGETATION),
                                 BlockPredicateFilter.forPredicate(

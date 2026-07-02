@@ -178,7 +178,7 @@ public class DDPlacedFeatures {
         );
 
         PlacementUtils.register(context, GRIME_VEGETATION_PATCH, lookup.getOrThrow(DDResourceKeys.ConfiguredFeatures.GRIME_VEGETATION_PATCH),
-                CountPlacement.of(175),
+                CountPlacement.of(200),
                 InSquarePlacement.spread(),
                 PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
                 EnvironmentScanPlacement.scanningFor(

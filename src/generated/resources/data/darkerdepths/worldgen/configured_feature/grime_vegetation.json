@@ -75,13 +75,7 @@
           "data": {
             "Name": "darkerdepths:mossy_sprouts"
           },
-          "weight": 200
-        },
-        {
-          "data": {
-            "Name": "minecraft:air"
-          },
-          "weight": 420
+          "weight": 400
         }
       ]
     }

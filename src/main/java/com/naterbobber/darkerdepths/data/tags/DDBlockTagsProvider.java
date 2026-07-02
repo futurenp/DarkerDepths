@@ -38,10 +38,13 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
     private void generateMinableTags() {
         this.tag(BlockTags.MINEABLE_WITH_HOE).add(
                 DDBlocks.GLOWSHROOM_PILEUS.get(),
-                DDBlocks.GLOWSHROOM_STEM.get(),
-                DDBlocks.GLOWSHROOM_HEART.get(),
+                DDBlocks.WAXED_GLOWSHROOM_PILEUS.get(),
                 DDBlocks.SCORCHED_REMAINS_BLOCK.get(),
                 DDBlocks.SCORCHED_REMAINS.get()
+        );
+
+        this.tag(BlockTags.MINEABLE_WITH_AXE).add(
+                DDBlocks.GLOWSHROOM_HEART.get()
         );
 
         this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(
@@ -119,6 +122,7 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
                 DDBlocks.GLIST_BRICKS.get(),
                 DDBlocks.GLIST_BRICKS_STAIRS.get(),
                 DDBlocks.GLIST_BRICKS_SLAB.get(),
+                DDBlocks.GLIST_BRICKS_VERTICAL_SLAB.get(),
                 DDBlocks.GLIST_BRICKS_WALL.get(),
                 DDBlocks.AMBER_BLOCK.get(),
                 DDBlocks.AMBER_CLUSTER.get(),
@@ -128,6 +132,7 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
                 DDBlocks.CRACKED_ARIDROCK_BRICKS.get(),
                 DDBlocks.CRACKED_DUSKROCK_BRICKS.get(),
                 DDBlocks.CRACKED_GRIMESTONE_BRICKS.get(),
+                DDBlocks.CRACKED_GLIST_BRICKS.get(),
                 DDBlocks.CHISELED_DARKSLATE_BRICKS.get(),
                 DDBlocks.CHISELED_ARIDROCK_BRICKS.get(),
                 DDBlocks.CHISELED_DUSKROCK_BRICKS.get(),
@@ -258,11 +263,12 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
 
         this.tag(BlockTags.DEEPSLATE_ORE_REPLACEABLES).add(
                 DDBlocks.DARKSLATE.get(),
+                DDBlocks.MOSSY_GRIMESTONE.get(),
                 DDBlocks.GRIMESTONE.get(),
+                DDBlocks.GLIST.get(),
                 DDBlocks.ARIDROCK.get(),
                 DDBlocks.DUSKROCK.get(),
-                Blocks.PACKED_MUD,
-                DDBlocks.MOSSY_GRIMESTONE.get()
+                Blocks.PACKED_MUD
         );
 
         this.tag(DDTags.Blocks.CATACOMBS_STRIPE_REPLACEABLE).add(
