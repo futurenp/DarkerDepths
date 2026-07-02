@@ -83,8 +83,6 @@ public class EmissiveModelManager {
                 .build());
 
         models.add(BlockBaker.builder(event,
-                DDBlocks.GLIMMERING_VINE_PLANT,
-                DDBlocks.GLIMMERING_VINES,
                 DDBlocks.GLOWSHROOM
                 )
                 .modelSettings(EmissiveBakedModel.modelSettings()
@@ -92,12 +90,21 @@ public class EmissiveModelManager {
                         .glowRenderType(RenderType.CUTOUT)
                         .glowBrightness(glowshroomBrightness)
                         .baseBrightness(glowshroomBaseBrightness)
-                        .manualModelGlow()
                         .removeShadeBase())
                 .build());
 
         models.add(BlockBaker.builder(event,
-                DDBlocks.GLOWSHROOM_SHELF
+                DDBlocks.GLIMMERING_VINE_PLANT,
+                DDBlocks.GLIMMERING_VINES
+                )
+                .modelSettings(EmissiveBakedModel.modelSettings()
+                        .removeShadeBase()
+                        .baseRenderType(RenderType.CUTOUT)
+                        .baseBrightness(glowshroomBrightness))
+                .build());
+
+        models.add(BlockBaker.builder(event,
+                DDBlocks.SHELF_GLOWSHROOM
                 )
                 .modelSettings(EmissiveBakedModel.modelSettings()
                         .baseBrightness(glowshroomBrightness)
@@ -149,7 +156,8 @@ public class EmissiveModelManager {
                         DDBlocks.MOSSY_GRIMESTONE_BRICKS_WALL
                 )
                 .modelSettings(EmissiveBakedModel.modelSettings()
-                        .glowBrightness(LightTexture.pack(2, 0)))
+                        .glowBrightness(LightTexture.pack(3, 0))
+                        .shadeGlow())
                 .build());
 
         models.add(BlockBaker.builder(event, DDBlocks.MOSSY_SPROUTS)

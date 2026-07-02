@@ -3,34 +3,34 @@
 	"credit": "Made with Blockbench",
 	"ambientocclusion": false,
 	"textures": {
-		"0": "darkerdepths:block/glowshroom_shelf",
-		"particle": "darkerdepths:block/glowshroom_shelf"
+		"0": "darkerdepths:block/shelf_glowshroom_large",
+		"particle": "darkerdepths:block/shelf_glowshroom_large"
 	},
 	"elements": [
 		{
-			"from": [3, 8, 8],
-			"to": [13, 8, 16],
+			"from": [0, 8, 2],
+			"to": [16, 8, 16],
 			"rotation": {"angle": -22.5, "axis": "x", "origin": [8, 8, 16]},
 			"faces": {
 				"north": {"uv": [0, 2, 8, 2], "texture": "#missing"},
 				"east": {"uv": [0, 2, 8, 2], "texture": "#missing"},
 				"south": {"uv": [0, 2, 8, 2], "texture": "#missing"},
 				"west": {"uv": [0, 2, 8, 2], "texture": "#missing"},
-				"up": {"uv": [3, 8, 13, 16], "texture": "#0"},
-				"down": {"uv": [3, 16, 13, 8], "texture": "#0"}
+				"up": {"uv": [0, 4, 16, 16], "texture": "#0"},
+				"down": {"uv": [0, 16, 16, 4], "texture": "#0"}
 			}
 		},
 		{
-			"from": [3, 8, 8],
-			"to": [13, 8, 16],
+			"from": [0, 8, 2],
+			"to": [16, 8, 16],
 			"rotation": {"angle": 22.5, "axis": "x", "origin": [8, 8, 16]},
 			"faces": {
 				"north": {"uv": [0, 2, 8, 2], "texture": "#missing"},
 				"east": {"uv": [0, 2, 8, 2], "texture": "#missing"},
 				"south": {"uv": [0, 2, 8, 2], "texture": "#missing"},
 				"west": {"uv": [0, 2, 8, 2], "texture": "#missing"},
-				"up": {"uv": [3, 8, 13, 16], "texture": "#0"},
-				"down": {"uv": [3, 16, 13, 8], "texture": "#0"}
+				"up": {"uv": [0, 4, 16, 16], "texture": "#0"},
+				"down": {"uv": [0, 16, 16, 4], "texture": "#0"}
 			}
 		}
 	],

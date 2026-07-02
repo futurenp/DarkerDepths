@@ -63,6 +63,16 @@ public class DDBlocks {
     public static final BlockBehaviour.Properties GLOWSHROOM_SIGN_PROPERTIES =
             blockProperties(1.0f, SoundType.WOOD, true).noCollission();
 
+    public static final BlockBehaviour.Properties GRIMESTONE_PROPERTIES =
+            blockProperties(2.0f, 5f, SoundType.DEEPSLATE, true);
+    public static final BlockBehaviour.Properties GRIMESTONE_BRICKS_PROPERTIES =
+            blockProperties(2.5f, 6.0f, SoundType.DEEPSLATE_BRICKS, true);
+
+    public static final BlockBehaviour.Properties GLIST_PROPERTIES =
+            blockProperties(1.25f, 2.5f, SoundType.TUFF, true);
+    public static final BlockBehaviour.Properties GLIST_BRICKS_PROPERTIES =
+            blockProperties(1.5f, 3.5f, SoundType.TUFF_BRICKS, true);
+
 
     public static final DeferredBlock<RotatedPillarBlock> STRIPPED_PETRIFIED_LOG = registerBlock("stripped_petrified_log",
             () -> new RotatedPillarBlock(PETRIFIED_LOG_PROPERTIES));
@@ -280,7 +290,7 @@ public class DDBlocks {
 
 
     public static final DeferredBlock<GrimestoneBlock> GRIMESTONE = registerBlock("grimestone",
-            () -> new GrimestoneBlock(DARKSLATE_PROPERTIES));
+            () -> new GrimestoneBlock(GRIMESTONE_PROPERTIES));
     public static final DeferredBlock<RelationalStairBlock> GRIMESTONE_STAIRS = registerBlock("grimestone_stairs",
             () -> new RelationalStairBlock(GRIMESTONE.get()));
     public static final DeferredBlock<RelationalSlabBlock> GRIMESTONE_SLAB = registerBlock("grimestone_slab",
@@ -290,9 +300,9 @@ public class DDBlocks {
     public static final DeferredBlock<RelationalWallBlock> GRIMESTONE_WALL = registerBlock("grimestone_wall",
             () -> new RelationalWallBlock(GRIMESTONE.get()));
     public static final DeferredBlock<MossyGrimestoneBlock> MOSSY_GRIMESTONE = registerBlock("mossy_grimestone",
-            () -> new MossyGrimestoneBlock(DARKSLATE_PROPERTIES));
+            () -> new MossyGrimestoneBlock(GRIMESTONE_PROPERTIES));
     public static final DeferredBlock<Block> POLISHED_GRIMESTONE = registerBlock("polished_grimestone",
-            () -> new Block(DARKSLATE_PROPERTIES));
+            () -> new Block(GRIMESTONE_PROPERTIES));
     public static final DeferredBlock<RelationalStairBlock> POLISHED_GRIMESTONE_STAIRS = registerBlock("polished_grimestone_stairs",
             () -> new RelationalStairBlock(POLISHED_GRIMESTONE.get()));
     public static final DeferredBlock<RelationalSlabBlock> POLISHED_GRIMESTONE_SLAB = registerBlock("polished_grimestone_slab",
@@ -300,7 +310,7 @@ public class DDBlocks {
     public static final DeferredBlock<RelationalVerticalSlabBlock> POLISHED_GRIMESTONE_VERTICAL_SLAB = registerCompatBlock(List.of(DDCompat.QUARK), "polished_grimestone_vertical_slab",
             () -> new RelationalVerticalSlabBlock(POLISHED_GRIMESTONE.get()));
     public static final DeferredBlock<Block> GRIMESTONE_BRICKS = registerBlock("grimestone_bricks",
-            () -> new Block(DARKSLATE_BRICKS_PROPERTIES));
+            () -> new Block(GRIMESTONE_BRICKS_PROPERTIES));
     public static final DeferredBlock<RelationalStairBlock> GRIMESTONE_BRICKS_STAIRS = registerBlock("grimestone_bricks_stairs",
             () -> new RelationalStairBlock(GRIMESTONE_BRICKS.get()));
     public static final DeferredBlock<RelationalSlabBlock> GRIMESTONE_BRICKS_SLAB = registerBlock("grimestone_bricks_slab",
@@ -310,7 +320,7 @@ public class DDBlocks {
     public static final DeferredBlock<RelationalWallBlock> GRIMESTONE_BRICKS_WALL = registerBlock("grimestone_bricks_wall",
             () -> new RelationalWallBlock(GRIMESTONE_BRICKS.get()));
     public static final DeferredBlock<Block> MOSSY_GRIMESTONE_BRICKS = registerBlock("mossy_grimestone_bricks",
-            () -> new Block(DARKSLATE_BRICKS_PROPERTIES));
+            () -> new Block(GRIMESTONE_BRICKS_PROPERTIES));
     public static final DeferredBlock<RelationalStairBlock> MOSSY_GRIMESTONE_BRICKS_STAIRS = registerBlock("mossy_grimestone_bricks_stairs",
             () -> new RelationalStairBlock(MOSSY_GRIMESTONE_BRICKS.get()));
     public static final DeferredBlock<RelationalSlabBlock> MOSSY_GRIMESTONE_BRICKS_SLAB = registerBlock("mossy_grimestone_bricks_slab",
@@ -320,14 +330,14 @@ public class DDBlocks {
     public static final DeferredBlock<RelationalWallBlock> MOSSY_GRIMESTONE_BRICKS_WALL = registerBlock("mossy_grimestone_bricks_wall",
             () -> new RelationalWallBlock(MOSSY_GRIMESTONE_BRICKS.get()));
     public static final DeferredBlock<Block> CHISELED_GRIMESTONE_BRICKS = registerBlock("chiseled_grimestone_bricks",
-            () -> new Block(DARKSLATE_BRICKS_PROPERTIES));
+            () -> new Block(GRIMESTONE_BRICKS_PROPERTIES));
     public static final DeferredBlock<Block> CRACKED_GRIMESTONE_BRICKS = registerBlock("cracked_grimestone_bricks",
-            () -> new Block(DARKSLATE_BRICKS_PROPERTIES));
+            () -> new Block(GRIMESTONE_BRICKS_PROPERTIES));
     public static final DeferredBlock<ConnectedRotatablePillarBlock> GRIMESTONE_PILLAR = registerBlock("grimestone_pillar",
-            () -> new ConnectedRotatablePillarBlock(DARKSLATE_BRICKS_PROPERTIES));
+            () -> new ConnectedRotatablePillarBlock(GRIMESTONE_BRICKS_PROPERTIES));
 
     public static final DeferredBlock<Block> GLIST = registerBlock("glist",
-            () -> new Block(DARKSLATE_PROPERTIES));
+            () -> new Block(GLIST_PROPERTIES));
     public static final DeferredBlock<RelationalStairBlock> GLIST_STAIRS = registerBlock("glist_stairs",
             () -> new RelationalStairBlock(GLIST.get()));
     public static final DeferredBlock<RelationalSlabBlock> GLIST_SLAB = registerBlock("glist_slab",
@@ -337,7 +347,7 @@ public class DDBlocks {
     public static final DeferredBlock<RelationalWallBlock> GLIST_WALL = registerBlock("glist_wall",
             () -> new RelationalWallBlock(GLIST.get()));
     public static final DeferredBlock<Block> POLISHED_GLIST = registerBlock("polished_glist",
-            () -> new Block(DARKSLATE_PROPERTIES));
+            () -> new Block(GLIST_PROPERTIES));
     public static final DeferredBlock<RelationalStairBlock> POLISHED_GLIST_STAIRS = registerBlock("polished_glist_stairs",
             () -> new RelationalStairBlock(POLISHED_GLIST.get()));
     public static final DeferredBlock<RelationalSlabBlock> POLISHED_GLIST_SLAB = registerBlock("polished_glist_slab",
@@ -345,7 +355,7 @@ public class DDBlocks {
     public static final DeferredBlock<RelationalVerticalSlabBlock> POLISHED_GLIST_VERTICAL_SLAB = registerCompatBlock(List.of(DDCompat.QUARK), "polished_glist_vertical_slab",
             () -> new RelationalVerticalSlabBlock(POLISHED_GLIST.get()));
     public static final DeferredBlock<Block> GLIST_BRICKS = registerBlock("glist_bricks",
-            () -> new Block(DARKSLATE_PROPERTIES));
+            () -> new Block(GLIST_BRICKS_PROPERTIES));
     public static final DeferredBlock<RelationalStairBlock> GLIST_BRICKS_STAIRS = registerBlock("glist_bricks_stairs",
             () -> new RelationalStairBlock(GLIST_BRICKS.get()));
     public static final DeferredBlock<RelationalSlabBlock> GLIST_BRICKS_SLAB = registerBlock("glist_bricks_slab",
@@ -355,11 +365,11 @@ public class DDBlocks {
     public static final DeferredBlock<RelationalWallBlock> GLIST_BRICKS_WALL = registerBlock("glist_bricks_wall",
             () -> new RelationalWallBlock(GLIST_BRICKS.get()));
     public static final DeferredBlock<Block> CHISELED_GLIST_BRICKS = registerBlock("chiseled_glist_bricks",
-            () -> new Block(DARKSLATE_BRICKS_PROPERTIES));
+            () -> new Block(GLIST_BRICKS_PROPERTIES));
     public static final DeferredBlock<Block> CRACKED_GLIST_BRICKS = registerBlock("cracked_glist_bricks",
-            () -> new Block(DARKSLATE_BRICKS_PROPERTIES));
+            () -> new Block(GLIST_BRICKS_PROPERTIES));
     public static final DeferredBlock<ConnectedRotatablePillarBlock> GLIST_PILLAR = registerBlock("glist_pillar",
-            () -> new ConnectedRotatablePillarBlock(DARKSLATE_BRICKS_PROPERTIES));
+            () -> new ConnectedRotatablePillarBlock(GLIST_BRICKS_PROPERTIES));
 
     public static final DeferredBlock<RotatedPillarBlock> STRIPPED_GLOWSHROOM_STEM = registerBlock("stripped_glowshroom_stem",
             () -> new RotatedPillarBlock(GLOWSHROOM_STEM_PROPERTIES));
@@ -420,7 +430,7 @@ public class DDBlocks {
             () -> new GlowshroomHeartBlock(BlockBehaviour.Properties.of().strength(2.0f, 3.0f).sound(SoundType.SHROOMLIGHT).lightLevel(value -> 15)));
     public static final DeferredBlock<GlowshroomBlock> GLOWSHROOM = registerBlock("glowshroom",
             () -> new GlowshroomBlock(BlockBehaviour.Properties.of().offsetType(BlockBehaviour.OffsetType.XZ).strength(0.0F, 1.0F).sound(SoundType.SLIME_BLOCK).lightLevel((state) -> 3 + (2 * state.getValue(GlowshroomBlock.GLOWSHROOM_CLUSTERS))).noCollission()));
-    public static final DeferredBlock<GlowshroomShelfBlock> GLOWSHROOM_SHELF = registerBlock("glowshroom_shelf",
+    public static final DeferredBlock<GlowshroomShelfBlock> SHELF_GLOWSHROOM = registerBlock("shelf_glowshroom",
             () -> new GlowshroomShelfBlock(BlockBehaviour.Properties.of().strength(0.0F, 1.0F).sound(SoundType.SLIME_BLOCK).lightLevel((light) -> 5).noCollission()));
 
     public static final DeferredBlock<FlowerPotBlock> POTTED_GLOWSHROOM = registerNoTabBlock("potted_glowshroom",

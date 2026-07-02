@@ -2,6 +2,6 @@
   "parent": "minecraft:block/cross",
   "render_type": "minecraft:cutout",
   "textures": {
-    "cross": "darkerdepths:block/glimmering_vine_plant"
+    "cross": "darkerdepths:block/glimmering_vine_plant_base"
   }
 }

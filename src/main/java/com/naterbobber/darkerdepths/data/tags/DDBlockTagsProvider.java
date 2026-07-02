@@ -51,46 +51,75 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
                 DDBlocks.ARIDROCK.get(),
                 DDBlocks.DUSKROCK.get(),
                 DDBlocks.GRIMESTONE.get(),
+                DDBlocks.GLIST.get(),
                 DDBlocks.DARKSLATE_SLAB.get(),
+                DDBlocks.DARKSLATE_VERTICAL_SLAB.get(),
                 DDBlocks.DARKSLATE_STAIRS.get(),
                 DDBlocks.DARKSLATE_WALL.get(),
                 DDBlocks.ARIDROCK_SLAB.get(),
+                DDBlocks.ARIDROCK_VERTICAL_SLAB.get(),
                 DDBlocks.ARIDROCK_STAIRS.get(),
                 DDBlocks.ARIDROCK_WALL.get(),
                 DDBlocks.DUSKROCK_SLAB.get(),
+                DDBlocks.DUSKROCK_VERTICAL_SLAB.get(),
                 DDBlocks.DUSKROCK_STAIRS.get(),
                 DDBlocks.DUSKROCK_WALL.get(),
                 DDBlocks.GRIMESTONE_SLAB.get(),
+                DDBlocks.GRIMESTONE_VERTICAL_SLAB.get(),
                 DDBlocks.GRIMESTONE_STAIRS.get(),
                 DDBlocks.GRIMESTONE_WALL.get(),
+                DDBlocks.GLIST_SLAB.get(),
+                DDBlocks.GLIST_VERTICAL_SLAB.get(),
+                DDBlocks.GLIST_STAIRS.get(),
+                DDBlocks.GLIST_WALL.get(),
                 DDBlocks.POLISHED_DARKSLATE.get(),
                 DDBlocks.POLISHED_DARKSLATE_SLAB.get(),
+                DDBlocks.POLISHED_DARKSLATE_VERTICAL_SLAB.get(),
                 DDBlocks.POLISHED_DARKSLATE_STAIRS.get(),
                 DDBlocks.POLISHED_ARIDROCK.get(),
                 DDBlocks.POLISHED_ARIDROCK_SLAB.get(),
+                DDBlocks.POLISHED_ARIDROCK_VERTICAL_SLAB.get(),
                 DDBlocks.POLISHED_ARIDROCK_STAIRS.get(),
                 DDBlocks.POLISHED_DUSKROCK.get(),
                 DDBlocks.POLISHED_DUSKROCK_SLAB.get(),
                 DDBlocks.POLISHED_DUSKROCK_STAIRS.get(),
                 DDBlocks.POLISHED_GRIMESTONE.get(),
                 DDBlocks.POLISHED_GRIMESTONE_SLAB.get(),
+                DDBlocks.POLISHED_GRIMESTONE_VERTICAL_SLAB.get(),
                 DDBlocks.POLISHED_GRIMESTONE_STAIRS.get(),
+                DDBlocks.POLISHED_GLIST.get(),
+                DDBlocks.POLISHED_GLIST_SLAB.get(),
+                DDBlocks.POLISHED_GLIST_VERTICAL_SLAB.get(),
+                DDBlocks.POLISHED_GLIST_STAIRS.get(),
                 DDBlocks.DARKSLATE_BRICKS.get(),
                 DDBlocks.DARKSLATE_BRICKS_STAIRS.get(),
                 DDBlocks.DARKSLATE_BRICKS_SLAB.get(),
+                DDBlocks.DARKSLATE_BRICKS_VERTICAL_SLAB.get(),
                 DDBlocks.DARKSLATE_BRICKS_WALL.get(),
                 DDBlocks.ARIDROCK_BRICKS.get(),
                 DDBlocks.ARIDROCK_BRICKS_STAIRS.get(),
                 DDBlocks.ARIDROCK_BRICKS_SLAB.get(),
+                DDBlocks.ARIDROCK_BRICKS_VERTICAL_SLAB.get(),
                 DDBlocks.ARIDROCK_BRICKS_WALL.get(),
                 DDBlocks.DUSKROCK_BRICKS.get(),
                 DDBlocks.DUSKROCK_BRICKS_STAIRS.get(),
                 DDBlocks.DUSKROCK_BRICKS_SLAB.get(),
+                DDBlocks.DUSKROCK_BRICKS_VERTICAL_SLAB.get(),
                 DDBlocks.DUSKROCK_BRICKS_WALL.get(),
                 DDBlocks.GRIMESTONE_BRICKS.get(),
                 DDBlocks.GRIMESTONE_BRICKS_STAIRS.get(),
                 DDBlocks.GRIMESTONE_BRICKS_SLAB.get(),
+                DDBlocks.GRIMESTONE_BRICKS_VERTICAL_SLAB.get(),
                 DDBlocks.GRIMESTONE_BRICKS_WALL.get(),
+                DDBlocks.MOSSY_GRIMESTONE_BRICKS.get(),
+                DDBlocks.MOSSY_GRIMESTONE_BRICKS_STAIRS.get(),
+                DDBlocks.MOSSY_GRIMESTONE_BRICKS_SLAB.get(),
+                DDBlocks.MOSSY_GRIMESTONE_BRICKS_VERTICAL_SLAB.get(),
+                DDBlocks.MOSSY_GRIMESTONE_BRICKS_WALL.get(),
+                DDBlocks.GLIST_BRICKS.get(),
+                DDBlocks.GLIST_BRICKS_STAIRS.get(),
+                DDBlocks.GLIST_BRICKS_SLAB.get(),
+                DDBlocks.GLIST_BRICKS_WALL.get(),
                 DDBlocks.AMBER_BLOCK.get(),
                 DDBlocks.AMBER_CLUSTER.get(),
                 DDBlocks.GEYSER.get(),
@@ -103,6 +132,7 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
                 DDBlocks.CHISELED_ARIDROCK_BRICKS.get(),
                 DDBlocks.CHISELED_DUSKROCK_BRICKS.get(),
                 DDBlocks.CHISELED_GRIMESTONE_BRICKS.get(),
+                DDBlocks.CHISELED_GLIST_BRICKS.get(),
                 DDBlocks.STONE_MELON.get(),
                 DDBlocks.CRYSTAL_MELON.get(),
                 DDBlocks.ARID_DEEPSLATE.get(),
@@ -119,17 +149,7 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
                 DDBlocks.GRIMESTONE_PILLAR.get(),
                 DDBlocks.DUSKROCK_PILLAR.get(),
                 DDBlocks.DARKSLATE_PILLAR.get(),
-                DDBlocks.ARIDROCK_VERTICAL_SLAB.get(),
-                DDBlocks.ARIDROCK_BRICKS_VERTICAL_SLAB.get(),
-                DDBlocks.DARKSLATE_VERTICAL_SLAB.get(),
-                DDBlocks.DARKSLATE_BRICKS_VERTICAL_SLAB.get(),
-                DDBlocks.DUSKROCK_VERTICAL_SLAB.get(),
-                DDBlocks.DUSKROCK_BRICKS_VERTICAL_SLAB.get(),
-                DDBlocks.GRIMESTONE_VERTICAL_SLAB.get(),
-                DDBlocks.GRIMESTONE_BRICKS_VERTICAL_SLAB.get(),
-                DDBlocks.POLISHED_ARIDROCK_VERTICAL_SLAB.get(),
-                DDBlocks.POLISHED_DARKSLATE_VERTICAL_SLAB.get(),
-                DDBlocks.POLISHED_GRIMESTONE_VERTICAL_SLAB.get(),
+                DDBlocks.GLIST_PILLAR.get(),
                 DDBlocks.MAGMA_PAD.get()
         );
 
@@ -193,16 +213,17 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
         this.tag(DDTags.Blocks.GEYSER_ASH_PROVIDERS).add(DDBlocks.SCORCHED_REMAINS_BLOCK.get());
 
         this.tag(DDTags.Blocks.GEYSER_BYPASSES).add(
-                        Blocks.SNOW,
-                        Blocks.MOSS_CARPET,
-                        Blocks.GLOW_LICHEN,
-                        Blocks.SCULK_VEIN,
-                        DDBlocks.GLOWSHROOM.get(),
-                        DDBlocks.GLOWSPURS.get(),
-                        DDBlocks.GLIMMERING_VINES.get(),
-                        DDBlocks.GLIMMERING_VINE_PLANT.get(),
-                        DDBlocks.DRY_SPROUTS.get(),
-                        DDBlocks.SCORCHER_LIGHT_BLOCK.get()
+                Blocks.SNOW,
+                Blocks.MOSS_CARPET,
+                Blocks.GLOW_LICHEN,
+                Blocks.SCULK_VEIN,
+                DDBlocks.GLOWSHROOM.get(),
+                DDBlocks.GLOWSPURS.get(),
+                DDBlocks.GLIMMERING_VINES.get(),
+                DDBlocks.GLIMMERING_VINE_PLANT.get(),
+                DDBlocks.DRY_SPROUTS.get(),
+                DDBlocks.SCORCHER_LIGHT_BLOCK.get(),
+                DDBlocks.SHELF_GLOWSHROOM.get()
                 )
                 .addTag(BlockTags.WOOL_CARPETS)
                 .addTag(BlockTags.ALL_SIGNS)
@@ -224,7 +245,11 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
                 DDBlocks.PETRIFIED_LOG.get(),
                 DDBlocks.STRIPPED_PETRIFIED_LOG.get(),
                 DDBlocks.PETRIFIED_WOOD.get(),
-                DDBlocks.STRIPPED_PETRIFIED_WOOD.get()
+                DDBlocks.STRIPPED_PETRIFIED_WOOD.get(),
+                DDBlocks.GLOWSHROOM_HYPHAE.get(),
+                DDBlocks.GLOWSHROOM_STEM.get(),
+                DDBlocks.STRIPPED_GLOWSHROOM_HYPHAE.get(),
+                DDBlocks.STRIPPED_GLOWSHROOM_STEM.get()
         );
 
         this.tag(BlockTags.BASE_STONE_OVERWORLD).add(
@@ -257,7 +282,8 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
                 Blocks.PACKED_MUD,
                 Blocks.MAGMA_BLOCK,
                 DDBlocks.GRIMESTONE.get(),
-                DDBlocks.MOSSY_GRIMESTONE.get()
+                DDBlocks.MOSSY_GRIMESTONE.get(),
+                DDBlocks.GLIST.get()
         );
 
         this.tag(DDTags.Blocks.ARID_GROUND).add(
@@ -277,7 +303,6 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
                 Blocks.GRANITE,
                 Blocks.ANDESITE,
                 Blocks.DIORITE
-//                DDBlocks.GLIST.get()
         );
 
         this.tag(DDTags.Blocks.HUGE_GLOWSHROOM_GROWABLE).add(
@@ -286,7 +311,8 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
         ).addTag(BlockTags.BASE_STONE_OVERWORLD);
 
         this.tag(BlockTags.PLANKS).add(
-                DDBlocks.PETRIFIED_PLANKS.get()
+                DDBlocks.PETRIFIED_PLANKS.get(),
+                DDBlocks.GLOWSHROOM_PLANKS.get()
         );
 
         this.tag(DDTags.Blocks.HUSKS_SPAWNABLE_ON).add(DDBlocks.ARIDROCK.get());
@@ -296,23 +322,31 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
                 DDBlocks.PETRIFIED_SIGN.get(),
                 DDBlocks.PETRIFIED_WALL_SIGN.get(),
                 DDBlocks.VOID_SOUL_TORCH.get(),
-                DDBlocks.PETRIFIED_PRESSURE_PLATE.get()
+                DDBlocks.PETRIFIED_PRESSURE_PLATE.get(),
+                DDBlocks.GLOWSHROOM_PRESSURE_PLATE.get(),
+                DDBlocks.GLOWSHROOM_SIGN.get(),
+                DDBlocks.GLOWSHROOM_WALL_SIGN.get()
         );
 
         this.tag(BlockTags.SNAPS_GOAT_HORN).add(
                 DDBlocks.PETRIFIED_LOG.get(),
-                DDBlocks.POROUS_PETRIFIED_LOG.get()
+                DDBlocks.PETRIFIED_WOOD.get(),
+                DDBlocks.POROUS_PETRIFIED_LOG.get(),
+                DDBlocks.GLOWSHROOM_STEM.get(),
+                DDBlocks.GLOWSHROOM_HYPHAE.get()
         );
 
         this.tag(BlockTags.ENCHANTMENT_POWER_PROVIDER).add(
-                DDBlocks.PETRIFIED_BOOKSHELF.get()
+                DDBlocks.PETRIFIED_BOOKSHELF.get(),
+                DDBlocks.GLOWSHROOM_BOOKSHELF.get()
         );
 
         this.tag(Tags.Blocks.STORAGE_BLOCKS)
                 .add(DDBlocks.FORSAKEN_BRONZE_BLOCK.get());
 
         this.tag(Tags.Blocks.BOOKSHELVES).add(
-                DDBlocks.PETRIFIED_BOOKSHELF.get()
+                DDBlocks.PETRIFIED_BOOKSHELF.get(),
+                DDBlocks.GLOWSHROOM_BOOKSHELF.get()
         );
 
         this.tag(BlockTags.REPLACEABLE).add(
@@ -330,7 +364,8 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
                 DDBlocks.ARIDROCK.get(),
                 DDBlocks.GRIMESTONE.get(),
                 DDBlocks.MOSSY_GRIMESTONE.get(),
-                DDBlocks.DUSKROCK.get()
+                DDBlocks.DUSKROCK.get(),
+                DDBlocks.GLIST.get()
         );
 
         this.tag(BlockTags.SWORD_EFFICIENT).add(
@@ -341,7 +376,9 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
                 DDBlocks.MOSSY_SPROUTS.get(),
                 DDBlocks.GLOWSPURS.get(),
                 DDBlocks.GLIMMERING_VINES.get(),
-                DDBlocks.GLIMMERING_VINE_PLANT.get()
+                DDBlocks.GLIMMERING_VINE_PLANT.get(),
+                DDBlocks.SHELF_GLOWSHROOM.get(),
+                DDBlocks.GLOWSHROOM.get()
         );
 
         this.tag(DDTags.Blocks.VERY_HIGH_HEAT).add(
@@ -397,31 +434,38 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
 
     private void generateWoodenTags() {
         this.tag(BlockTags.WOODEN_DOORS).add(
-                DDBlocks.PETRIFIED_DOOR.get()
+                DDBlocks.PETRIFIED_DOOR.get(),
+                DDBlocks.GLOWSHROOM_DOOR.get()
         );
 
         this.tag(BlockTags.WOODEN_TRAPDOORS).add(
-                DDBlocks.PETRIFIED_TRAPDOOR.get()
+                DDBlocks.PETRIFIED_TRAPDOOR.get(),
+                DDBlocks.GLOWSHROOM_TRAPDOOR.get()
         );
 
         this.tag(BlockTags.WOODEN_SLABS).add(
-                DDBlocks.PETRIFIED_SLAB.get()
+                DDBlocks.PETRIFIED_SLAB.get(),
+                DDBlocks.GLOWSHROOM_SLAB.get()
         );
 
         this.tag(BlockTags.WOODEN_STAIRS).add(
-                DDBlocks.PETRIFIED_STAIRS.get()
+                DDBlocks.PETRIFIED_STAIRS.get(),
+                DDBlocks.GLOWSHROOM_STAIRS.get()
         );
 
         this.tag(BlockTags.WOODEN_BUTTONS).add(
-                DDBlocks.PETRIFIED_BUTTON.get()
+                DDBlocks.PETRIFIED_BUTTON.get(),
+                DDBlocks.GLOWSHROOM_BUTTON.get()
         );
 
         this.tag(BlockTags.WOODEN_PRESSURE_PLATES).add(
-                DDBlocks.PETRIFIED_PRESSURE_PLATE.get()
+                DDBlocks.PETRIFIED_PRESSURE_PLATE.get(),
+                DDBlocks.GLOWSHROOM_PRESSURE_PLATE.get()
         );
 
         this.tag(BlockTags.WOODEN_FENCES).add(
-                DDBlocks.PETRIFIED_FENCE.get()
+                DDBlocks.PETRIFIED_FENCE.get(),
+                DDBlocks.GLOWSHROOM_FENCE.get()
         );
     }
 

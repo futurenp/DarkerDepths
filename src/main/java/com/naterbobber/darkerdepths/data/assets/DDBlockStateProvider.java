@@ -2,9 +2,9 @@ package com.naterbobber.darkerdepths.data.assets;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.block.DDBlockStateProperties;
-import com.naterbobber.darkerdepths.block.blockstates.PillarState;
 import com.naterbobber.darkerdepths.block.blockstates.PostState;
 import com.naterbobber.darkerdepths.block.blockstates.VerticalSlabState;
+import com.naterbobber.darkerdepths.block.custom.GlimmeringVinePlantBlock;
 import com.naterbobber.darkerdepths.block.custom.darkslate.*;
 import com.naterbobber.darkerdepths.block.generic.*;
 import com.naterbobber.darkerdepths.init.DDBlocks;
@@ -50,8 +50,8 @@ public class DDBlockStateProvider extends BlockStateProvider {
         add(this::livingCrystalBlock, DDBlocks.LIVING_CRYSTAL);
         add(this::airBlock, DDBlocks.SCORCHER_LIGHT_BLOCK);
         add(this::airBlock, DDBlocks.MOB_PLACER);
-        add(this::crossWithGlow, DDBlocks.GLIMMERING_VINES);
-        add(this::crossWithGlow, DDBlocks.GLIMMERING_VINE_PLANT);
+        add(this::crossBlockWithItem, DDBlocks.GLIMMERING_VINES);
+        add(this::glimmeringVinesPlant, DDBlocks.GLIMMERING_VINE_PLANT);
         add(this::glowLampBlock, DDBlocks.GLOWSHROOM_LAMP);
         add(this::woodBlockWithItem, DDBlocks.GLOWSHROOM_HYPHAE, DDBlocks.GLOWSHROOM_STEM);
         add(this::woodBlockWithItem, DDBlocks.STRIPPED_GLOWSHROOM_HYPHAE, DDBlocks.STRIPPED_GLOWSHROOM_STEM);
@@ -108,7 +108,7 @@ public class DDBlockStateProvider extends BlockStateProvider {
                 DDBlocks.GLOWSHROOM_LANTERN,
                 DDBlocks.MOSSY_GRIMESTONE,
                 DDBlocks.ARID_DEEPSLATE,
-                DDBlocks.GLOWSHROOM_SHELF,
+                DDBlocks.SHELF_GLOWSHROOM,
                 DDBlocks.WAXED_GLOWSHROOM_PILEUS
         );
 
@@ -498,50 +498,28 @@ public class DDBlockStateProvider extends BlockStateProvider {
         simpleBlock(block.get(), airModel);
     }
 
-    public void crossWithGlow(DeferredHolder<Block, ? extends Block> block) {
+    private void glimmeringVinesPlant(DeferredHolder<Block, ? extends Block> block) {
+        if(!(block.get() instanceof GlimmeringVinePlantBlock)) {
+            return;
+        }
+
         var blockName = block.getId().getPath();
-        ResourceLocation texture = modLoc("block/" + blockName);
-        ResourceLocation glowTexture = this.extend(texture, "_glow");
 
-        var modelBuilder = this.models().getBuilder(blockName)
-                .parent(new ModelFile.UncheckedModelFile("minecraft:block/block"))
-                .renderType("minecraft:translucent")
-                .texture("particle", texture)
-                .texture("cross", texture)
-                .texture("glow", glowTexture);
+        getVariantBuilder(block.get()).forAllStates(state -> {
+            boolean base = state.getValue(DDBlockStateProperties.BASE);
+            var name = blockName + (base ? "_base" : "");
+            var texture = modLoc("block/" + name);
 
-        modelBuilder.element().from(0, 0, 8).to(16, 16, 8.001f)
-                .rotation().origin(8, 8, 8).axis(Direction.Axis.Y).angle(45f).rescale(true).end()
-                .face(Direction.NORTH).texture("#cross").uvs(0, 0, 16, 16).end()
-                .face(Direction.SOUTH).texture("#cross").uvs(0, 0, 16, 16).end()
-                .end();
+            var model = models()
+                    .withExistingParent(name, "minecraft:block/cross")
+                    .renderType("minecraft:cutout")
+                    .texture("cross", texture);
 
-        modelBuilder.element().from(8, 0, 0).to(8.001f, 16, 16)
-                .rotation().origin(8, 8, 8).axis(Direction.Axis.Y).angle(45f).rescale(true).end()
-                .face(Direction.EAST).texture("#cross").uvs(0, 0, 16, 16).end()
-                .face(Direction.WEST).texture("#cross").uvs(0, 0, 16, 16).end()
-                .end();
+            return ConfiguredModel.builder().modelFile(model).build();
+        });
 
-        modelBuilder.element().from(-0.01f, -0.01f, 7.99f).to(16.01f, 16.01f, 8.01f)
-                .rotation().origin(8, 8, 8).axis(Direction.Axis.Y).angle(45f).rescale(true).end()
-                .shade(false)
-                .face(Direction.NORTH).texture("#glow").uvs(0, 0, 16, 16).end()
-                .face(Direction.SOUTH).texture("#glow").uvs(0, 0, 16, 16).end()
-                .end();
-
-        modelBuilder.element().from(7.99f, -0.01f, -0.01f).to(8.01f, 16.01f, 16.01f)
-                .rotation().origin(8, 8, 8).axis(Direction.Axis.Y).angle(45f).rescale(true).end()
-                .shade(false)
-                .face(Direction.EAST).texture("#glow").uvs(0, 0, 16, 16).end()
-                .face(Direction.WEST).texture("#glow").uvs(0, 0, 16, 16).end()
-                .end();
-
-        var model = ConfiguredModel.builder().modelFile(modelBuilder).build();
-
-        simpleBlock(block.get(), model);
-
-        itemModels().withExistingParent(block.getId().getPath(), "item/generated")
-                .texture("layer0", blockTexture(block.get()));
+        itemModels().withExistingParent(blockName, "item/generated")
+                .texture("layer0", modLoc("block/" + blockName));
     }
 
     public void glowLampBlock(DeferredHolder<Block, ? extends Block> block) {

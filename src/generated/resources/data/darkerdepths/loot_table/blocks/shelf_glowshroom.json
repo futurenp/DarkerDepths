@@ -1,0 +1,44 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "block": "darkerdepths:shelf_glowshroom",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "large": "false"
+              }
+            }
+          ],
+          "name": "darkerdepths:shelf_glowshroom"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "block": "darkerdepths:shelf_glowshroom",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "large": "true"
+              }
+            }
+          ],
+          "name": "darkerdepths:shelf_glowshroom"
+        }
+      ],
+      "rolls": 2.0
+    }
+  ],
+  "random_sequence": "darkerdepths:blocks/shelf_glowshroom"
+}

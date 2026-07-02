@@ -25,7 +25,7 @@ public class DDBiomeFogs {
     );
 
     public static final BiomeFog GLOWSHROOM_FOREST = create(DDResourceKeys.Biomes.GLOWSHROOM_FOREST,
-            Color.ofRGB(0.16F, 0.34F, 0.24F),
+            Color.ofRGB(0.16F, 0.33F, 0.25F),
             DDConfig.CONFIG.GLOWSHROOM_FOREST_FOG_MIN,
             DDConfig.CONFIG.GLOWSHROOM_FOREST_FOG_MAX
     );

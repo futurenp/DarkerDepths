@@ -1,9 +1,9 @@
 {
-  "feature": "darkerdepths:glimmering_vines",
+  "feature": "darkerdepths:glimmering_vines_with_base",
   "placement": [
     {
       "type": "minecraft:count",
-      "count": 100
+      "count": 80
     },
     {
       "type": "minecraft:in_square"

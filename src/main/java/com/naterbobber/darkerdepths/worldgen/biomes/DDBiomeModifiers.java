@@ -145,6 +145,7 @@ public class DDBiomeModifiers {
                 getBiome(context, GLOWSHROOM_FOREST),
                 getPlacedFeature(
                         context,
+                        GLIMMERING_VINES_WITH_BASE,
                         GLIMMERING_VINES,
                         HUGE_GLOWSHROOM,
                         SMUSHED_GLOWSHROOM,

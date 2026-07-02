@@ -1,7 +1,10 @@
 {
   "variants": {
-    "": {
+    "base=false": {
       "model": "darkerdepths:block/glimmering_vine_plant"
+    },
+    "base=true": {
+      "model": "darkerdepths:block/glimmering_vine_plant_base"
     }
   }
 }

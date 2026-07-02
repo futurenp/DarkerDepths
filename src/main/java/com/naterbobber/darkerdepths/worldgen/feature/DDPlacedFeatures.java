@@ -226,8 +226,16 @@ public class DDPlacedFeatures {
                 HeightRangePlacement.uniform(VerticalAnchor.BOTTOM, VerticalAnchor.belowTop(16)),
                 BiomeFilter.biome());
 
+        PlacementUtils.register(context, GLIMMERING_VINES_WITH_BASE, lookup.getOrThrow(DDResourceKeys.ConfiguredFeatures.GLIMMERING_VINES_WITH_BASE),
+                CountPlacement.of(80),
+                InSquarePlacement.spread(),
+                PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
+                EnvironmentScanPlacement.scanningFor(Direction.UP, BlockPredicate.solid(), BlockPredicate.ONLY_IN_AIR_PREDICATE, 12),
+                RandomOffsetPlacement.vertical(ConstantInt.of(-1)),
+                BiomeFilter.biome());
+
         PlacementUtils.register(context, GLIMMERING_VINES, lookup.getOrThrow(DDResourceKeys.ConfiguredFeatures.GLIMMERING_VINES),
-                CountPlacement.of(188),
+                CountPlacement.of(100),
                 InSquarePlacement.spread(),
                 PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
                 EnvironmentScanPlacement.scanningFor(Direction.UP, BlockPredicate.solid(), BlockPredicate.ONLY_IN_AIR_PREDICATE, 12),

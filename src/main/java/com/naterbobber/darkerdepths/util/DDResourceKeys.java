@@ -86,6 +86,7 @@ public class DDResourceKeys {
         public static final ResourceKey<ConfiguredFeature<?, ?>> ARID_BOULDER = createKey("arid_boulder");
         public static final ResourceKey<ConfiguredFeature<?, ?>> CATACOMBS_LAVA_LINING = createKey("catacombs_lava_lining");
         public static final ResourceKey<ConfiguredFeature<?, ?>> DUSKROCK_STRIPE = createKey("duskrock_stripe");
+        public static final ResourceKey<ConfiguredFeature<?, ?>> GLIMMERING_VINES_WITH_BASE = createKey("glimmering_vines_with_base");
         public static final ResourceKey<ConfiguredFeature<?, ?>> GLIMMERING_VINES = createKey("glimmering_vines");
         public static final ResourceKey<ConfiguredFeature<?, ?>> PETRIFIED_ROOTS = createKey("petrified_roots");
         public static final ResourceKey<ConfiguredFeature<?, ?>> CRYSTAL_HUSK_ORE = createKey("crystal_husk_ore");
@@ -121,6 +122,7 @@ public class DDResourceKeys {
         public static final ResourceKey<PlacedFeature> ARID_BOULDER = createKey("arid_boulder");
         public static final ResourceKey<PlacedFeature> CATACOMBS_LAVA_LINING = createKey("catacombs_lava_lining");
         public static final ResourceKey<PlacedFeature> DUSKROCK_STRIPE = createKey("duskrock_stripe");
+        public static final ResourceKey<PlacedFeature> GLIMMERING_VINES_WITH_BASE = createKey("glimmering_vines_with_base");
         public static final ResourceKey<PlacedFeature> GLIMMERING_VINES = createKey("glimmering_vines");
         public static final ResourceKey<PlacedFeature> PETRIFIED_ROOTS = createKey("petrified_roots");
         public static final ResourceKey<PlacedFeature> CRYSTAL_HUSK_ORE = createKey("crystal_husk_ore");

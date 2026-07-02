@@ -6,6 +6,7 @@
     "minecraft:packed_mud",
     "minecraft:magma_block",
     "darkerdepths:grimestone",
-    "darkerdepths:mossy_grimestone"
+    "darkerdepths:mossy_grimestone",
+    "darkerdepths:glist"
   ]
 }

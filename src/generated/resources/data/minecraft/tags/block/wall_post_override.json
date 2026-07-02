@@ -3,6 +3,9 @@
     "darkerdepths:petrified_sign",
     "darkerdepths:petrified_wall_sign",
     "darkerdepths:void_soul_torch",
-    "darkerdepths:petrified_pressure_plate"
+    "darkerdepths:petrified_pressure_plate",
+    "darkerdepths:glowshroom_pressure_plate",
+    "darkerdepths:glowshroom_sign",
+    "darkerdepths:glowshroom_wall_sign"
   ]
 }

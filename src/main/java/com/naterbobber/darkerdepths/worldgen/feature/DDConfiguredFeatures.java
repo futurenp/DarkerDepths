@@ -1,12 +1,12 @@
 package com.naterbobber.darkerdepths.worldgen.feature;
 
 import com.google.common.collect.ImmutableList;
+import com.naterbobber.darkerdepths.block.DDBlockStateProperties;
 import com.naterbobber.darkerdepths.block.custom.AshBlock;
 import com.naterbobber.darkerdepths.block.custom.GlowshroomBlock;
 import com.naterbobber.darkerdepths.block.custom.GlowspursBlock;
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import com.naterbobber.darkerdepths.init.DDFeatures;
-import com.naterbobber.darkerdepths.util.DDResourceKeys;
 import com.naterbobber.darkerdepths.util.DDTags;
 import com.naterbobber.darkerdepths.worldgen.feature.config.*;
 import net.minecraft.core.BlockPos;
@@ -36,7 +36,6 @@ import net.minecraft.world.level.levelgen.placement.CaveSurface;
 import net.minecraft.world.level.levelgen.structure.templatesystem.BlockMatchTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
 import net.minecraft.world.level.material.Fluids;
-import net.neoforged.neoforge.common.Tags;
 
 import java.util.List;
 import java.util.Optional;
@@ -342,11 +341,27 @@ public class DDConfiguredFeatures {
                 )
         );
 
+        FeatureUtils.register(context, GLIMMERING_VINES_WITH_BASE, Feature.BLOCK_COLUMN, new BlockColumnConfiguration(
+                List.of(BlockColumnConfiguration.layer(ConstantInt.of(1),
+                                BlockStateProvider.simple(DDBlocks.GLIMMERING_VINE_PLANT.get().defaultBlockState().setValue(DDBlockStateProperties.BASE, true))),
+                        BlockColumnConfiguration.layer(
+                                new WeightedListInt(SimpleWeightedRandomList.<IntProvider>builder()
+                                        .add(UniformInt.of(1, 3))
+                                        .build()),
+                                BlockStateProvider.simple(DDBlocks.GLIMMERING_VINE_PLANT.get().defaultBlockState())
+                        ),
+                        BlockColumnConfiguration.layer(ConstantInt.of(1),
+                                BlockStateProvider.simple(DDBlocks.GLIMMERING_VINES.get().defaultBlockState().setValue(GrowingPlantHeadBlock.AGE, 24)))
+                ),
+                Direction.DOWN,
+                BlockPredicate.ONLY_IN_AIR_PREDICATE,
+                true)
+        );
+
         FeatureUtils.register(context, GLIMMERING_VINES, Feature.BLOCK_COLUMN, new BlockColumnConfiguration(
                 List.of(BlockColumnConfiguration.layer(
                                 new WeightedListInt(SimpleWeightedRandomList.<IntProvider>builder()
-                                        .add(UniformInt.of(2, 5), 2)
-                                        .add(UniformInt.of(0, 2), 10)
+                                        .add(UniformInt.of(0, 1))
                                         .build()),
                                 BlockStateProvider.simple(DDBlocks.GLIMMERING_VINE_PLANT.get().defaultBlockState())
                         ),

@@ -79,7 +79,7 @@ public class ClientRegisterEvents {
         event.registerSpriteSet(DDParticleTypes.MOLTEN_ASH.get(),
                 (spriteSet) -> new ColoredAshParticle.Provider(spriteSet, 1F, 0.4F, 0.25F, ColoredAshParticle.BrightnessBehavior.FADE));
         event.registerSpriteSet(DDParticleTypes.GLOW_GLIMMER.get(),
-                (spriteSet) -> new ColoredAshParticle.Provider(spriteSet, 0.25F, 1F, 0.55F, ColoredAshParticle.BrightnessBehavior.FULL_BRIGHT));
+                (spriteSet) -> new ColoredAshParticle.Provider(spriteSet, 0.25F, 0.92F, 0.59F, ColoredAshParticle.BrightnessBehavior.FULL_BRIGHT));
 
         event.registerSpriteSet(DDParticleTypes.SCORCHER_SEARCHLIGHT.get(), ScorcherSearchlightParticle.Provider::new);
     }

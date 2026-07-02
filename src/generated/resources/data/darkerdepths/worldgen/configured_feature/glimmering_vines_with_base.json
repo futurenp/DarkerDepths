@@ -8,14 +8,26 @@
     "direction": "down",
     "layers": [
       {
+        "height": 1,
+        "provider": {
+          "type": "minecraft:simple_state_provider",
+          "state": {
+            "Name": "darkerdepths:glimmering_vine_plant",
+            "Properties": {
+              "base": "true"
+            }
+          }
+        }
+      },
+      {
         "height": {
           "type": "minecraft:weighted_list",
           "distribution": [
             {
               "data": {
                 "type": "minecraft:uniform",
-                "max_inclusive": 1,
-                "min_inclusive": 0
+                "max_inclusive": 3,
+                "min_inclusive": 1
               },
               "weight": 1
             }
