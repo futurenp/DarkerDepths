@@ -433,8 +433,8 @@ public class DDBlocks {
             () -> new SproutsBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SHORT_GRASS).sound(SoundType.WET_GRASS).offsetType(BlockBehaviour.OffsetType.XZ)));
     public static final DeferredBlock<GlowshroomBlock> GLOWSHROOM = registerBlock("glowshroom",
             () -> new GlowshroomBlock(BlockBehaviour.Properties.of().offsetType(BlockBehaviour.OffsetType.XZ).strength(0.0F, 1.0F).sound(SoundType.SLIME_BLOCK).lightLevel((state) -> 3 + (2 * state.getValue(GlowshroomBlock.GLOWSHROOM_CLUSTERS))).noCollission()));
-    public static final DeferredBlock<GlowshroomShelfBlock> SHELF_GLOWSHROOM = registerBlock("shelf_glowshroom",
-            () -> new GlowshroomShelfBlock(BlockBehaviour.Properties.of().strength(0.0F, 1.0F).sound(SoundType.SLIME_BLOCK).lightLevel((light) -> 5).noCollission()));
+    public static final DeferredBlock<ShelfGlowshroomBlock> SHELF_GLOWSHROOM = registerBlock("shelf_glowshroom",
+            () -> new ShelfGlowshroomBlock(BlockBehaviour.Properties.of().strength(0.0F, 1.0F).sound(SoundType.SLIME_BLOCK).lightLevel((light) -> 5).noCollission()));
     public static final DeferredBlock<GlimmeringVinesBlock> GLIMMERING_VINES = registerBlock("glimmering_vines",
             () -> new GlimmeringVinesBlock(BlockBehaviour.Properties.of().noCollission().noOcclusion().lightLevel(value -> 9).sound(SoundType.SPORE_BLOSSOM)));
     public static final DeferredBlock<GlimmeringVinePlantBlock> GLIMMERING_VINE_PLANT = registerNoTabBlock("glimmering_vine_plant",

@@ -64,6 +64,7 @@ public class DDConfiguredFeatures {
         HolderGetter<ConfiguredFeature<?, ?>> lookup = context.lookup(Registries.CONFIGURED_FEATURE);
         FeatureUtils.register(context, GLOWSHROOM_PATCH, DDFeatures.RANDOM_GLOWSHROOM_PATCHES.get(), FeatureConfiguration.NONE);
         FeatureUtils.register(context, HUGE_GLOWSHROOM, DDFeatures.HUGE_GLOWSHROOM.get(), FeatureConfiguration.NONE);
+        FeatureUtils.register(context, SHELF_GLOWSHROOM, DDFeatures.SHELF_GLOWSHROOM.get(), FeatureConfiguration.NONE);
         FeatureUtils.register(context, SMUSHED_GLOWSHROOM, DDFeatures.SMUSHED_GLOWSHROOM.get(), FeatureConfiguration.NONE);
         FeatureUtils.register(context, HUGE_GLOWSHROOM_PLANTED, DDFeatures.HUGE_GLOWSHROOM.get(), FeatureConfiguration.NONE);
         FeatureUtils.register(context, AMBERS_PLACEMENT, DDFeatures.GEMSTONE.get(), FeatureConfiguration.NONE);

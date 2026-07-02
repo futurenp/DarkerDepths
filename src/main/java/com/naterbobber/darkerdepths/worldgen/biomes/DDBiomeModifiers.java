@@ -149,6 +149,7 @@ public class DDBiomeModifiers {
                         GLIMMERING_VINES,
                         HUGE_GLOWSHROOM,
                         SMUSHED_GLOWSHROOM,
+                        SHELF_GLOWSHROOM,
                         GRIME_VEGETATION_PATCH
                 ),
                 GenerationStep.Decoration.VEGETAL_DECORATION)

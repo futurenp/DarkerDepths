@@ -93,6 +93,8 @@ public class DDResourceKeys {
         public static final ResourceKey<ConfiguredFeature<?, ?>> DUSKROCK_ORE = createKey("duskrock_ore");
         public static final ResourceKey<ConfiguredFeature<?, ?>> SCORCHED_REMAINS_PILE = createKey("scorched_remains_pile");
         public static final ResourceKey<ConfiguredFeature<?, ?>> GRIMESTONE_CLIFF = createKey("grimestone_cliff");
+        public static final ResourceKey<ConfiguredFeature<?, ?>> SHELF_GLOWSHROOM = createKey("shelf_glowshroom");
+
 
         public static ResourceKey<ConfiguredFeature<?, ?>> createKey(String name) {
             return ResourceKey.create(Registries.CONFIGURED_FEATURE, DarkerDepths.id(name));
@@ -130,6 +132,7 @@ public class DDResourceKeys {
         public static final ResourceKey<PlacedFeature> SCORCHED_REMAINS_PILE = createKey("scorched_remains_pile");
         public static final ResourceKey<PlacedFeature> GRIMESTONE_CLIFF = createKey("grimestone_cliff");
         public static final ResourceKey<PlacedFeature> GRIME_VEGETATION_PATCH = createKey("grime_vegetation_patch");
+        public static final ResourceKey<PlacedFeature> SHELF_GLOWSHROOM = createKey("shelf_glowshroom");
 
 
 

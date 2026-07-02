@@ -250,7 +250,7 @@ public class DDAdvancementProvider extends AdvancementProvider {
                 } else if(biomeKey.equals(DDResourceKeys.Biomes.SANDY_CATACOMBS)) {
                     item = DDBlocks.ARIDROCK.toStack();
                 } else {
-                    item = DDBlocks.GRIMESTONE.toStack();
+                    item = DDBlocks.MOSSY_GRIMESTONE.toStack();
                 }
 
                 builder.display(
@@ -275,11 +275,11 @@ public class DDAdvancementProvider extends AdvancementProvider {
 
         private static void parentNode(Consumer<AdvancementHolder> saver, ExistingFileHelper existingFileHelper) {
             var builder = Advancement.Builder.advancement();
-            var backgroundTexture = DarkerDepths.id("textures/block/" + DDBlocks.DUSKROCK.getId().getPath() + ".png");
+            var backgroundTexture = DarkerDepths.id("textures/block/" + DDBlocks.GLIST.getId().getPath() + ".png");
             var criterionName = "auto_grant";
 
             builder.display(
-                    DDBlocks.GLOWSHROOM_PLANKS.toStack(),
+                    DDBlocks.GLOWSHROOM.toStack(),
                     Component.translatable("advancements.darkerdepths.parent.title"),
                     Component.translatable("advancements.darkerdepths.parent.description"),
                     backgroundTexture,

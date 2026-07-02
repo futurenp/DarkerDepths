@@ -1,21 +1,15 @@
 package com.naterbobber.darkerdepths.block.custom;
 
-import com.mojang.serialization.MapCodec;
-
 import com.naterbobber.darkerdepths.block.DDBlockStateProperties;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.particles.ParticleOptions;
-import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.BoneMealItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -34,10 +28,9 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.neoforged.neoforge.common.Tags;
 import org.jetbrains.annotations.Nullable;
 
-public class GlowshroomShelfBlock extends Block {
+public class ShelfGlowshroomBlock extends Block {
 
     protected static final DirectionProperty FACING;
     protected static final BooleanProperty LARGE = DDBlockStateProperties.LARGE;
@@ -63,7 +56,7 @@ public class GlowshroomShelfBlock extends Block {
         LARGE_EAST_AABB = Block.box(0.0F, 3.0F, 0.0F, 13.0F, 13.0F, 16.0F);
     }
 
-    public GlowshroomShelfBlock(Properties properties) {
+    public ShelfGlowshroomBlock(Properties properties) {
         super(properties);
         this.registerDefaultState(
                 this.stateDefinition.any()
