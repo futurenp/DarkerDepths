@@ -27,7 +27,7 @@ public class DDPlacedFeatures {
         HolderGetter<ConfiguredFeature<?, ?>> lookup = context.lookup(Registries.CONFIGURED_FEATURE);
 
         PlacementUtils.register(context, HUGE_GLOWSHROOM, lookup.getOrThrow(DDResourceKeys.ConfiguredFeatures.HUGE_GLOWSHROOM),
-                CountPlacement.of(UniformInt.of(8, 12)),
+                CountPlacement.of(UniformInt.of(12, 16)),
                 InSquarePlacement.spread(),
                 PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
                 EnvironmentScanPlacement.scanningFor(
@@ -39,7 +39,7 @@ public class DDPlacedFeatures {
                 BiomeFilter.biome());
 
         PlacementUtils.register(context, SMUSHED_GLOWSHROOM, lookup.getOrThrow(DDResourceKeys.ConfiguredFeatures.SMUSHED_GLOWSHROOM),
-                CountPlacement.of(UniformInt.of(42, 56)),
+                CountPlacement.of(UniformInt.of(52, 72)),
                 InSquarePlacement.spread(),
                 PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
                 EnvironmentScanPlacement.scanningFor(
@@ -51,7 +51,7 @@ public class DDPlacedFeatures {
                 BiomeFilter.biome());
 
         PlacementUtils.register(context, GRIMESTONE_CLIFF, lookup.getOrThrow(DDResourceKeys.ConfiguredFeatures.GRIMESTONE_CLIFF),
-                CountPlacement.of(UniformInt.of(32, 48)),
+                CountPlacement.of(UniformInt.of(24, 36)),
                 InSquarePlacement.spread(),
                 PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
                 EnvironmentScanPlacement.scanningFor(
@@ -69,7 +69,7 @@ public class DDPlacedFeatures {
                 EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.solid(), BlockPredicate.ONLY_IN_AIR_PREDICATE, 12));
 
         PlacementUtils.register(context, SHELF_GLOWSHROOM, lookup.getOrThrow(DDResourceKeys.ConfiguredFeatures.SHELF_GLOWSHROOM),
-                CountPlacement.of(UniformInt.of(12, 24)),
+                CountPlacement.of(UniformInt.of(16, 22)),
                 InSquarePlacement.spread(),
                 PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
                 BiomeFilter.biome());
@@ -234,7 +234,7 @@ public class DDPlacedFeatures {
                 BiomeFilter.biome());
 
         PlacementUtils.register(context, GLIMMERING_VINES_WITH_BASE, lookup.getOrThrow(DDResourceKeys.ConfiguredFeatures.GLIMMERING_VINES_WITH_BASE),
-                CountPlacement.of(60),
+                CountPlacement.of(64),
                 InSquarePlacement.spread(),
                 PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
                 EnvironmentScanPlacement.scanningFor(Direction.UP, BlockPredicate.solid(), BlockPredicate.ONLY_IN_AIR_PREDICATE, 12),
@@ -242,7 +242,7 @@ public class DDPlacedFeatures {
                 BiomeFilter.biome());
 
         PlacementUtils.register(context, GLIMMERING_VINES, lookup.getOrThrow(DDResourceKeys.ConfiguredFeatures.GLIMMERING_VINES),
-                CountPlacement.of(60),
+                CountPlacement.of(72),
                 InSquarePlacement.spread(),
                 PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
                 EnvironmentScanPlacement.scanningFor(Direction.UP, BlockPredicate.solid(), BlockPredicate.ONLY_IN_AIR_PREDICATE, 12),

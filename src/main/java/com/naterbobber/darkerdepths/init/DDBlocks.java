@@ -300,7 +300,7 @@ public class DDBlocks {
     public static final DeferredBlock<RelationalWallBlock> GRIMESTONE_WALL = registerBlock("grimestone_wall",
             () -> new RelationalWallBlock(GRIMESTONE.get()));
     public static final DeferredBlock<MossyGrimestoneBlock> MOSSY_GRIMESTONE = registerBlock("mossy_grimestone",
-            () -> new MossyGrimestoneBlock(GRIMESTONE_PROPERTIES));
+            () -> new MossyGrimestoneBlock(GRIMESTONE_PROPERTIES.randomTicks()));
     public static final DeferredBlock<Block> POLISHED_GRIMESTONE = registerBlock("polished_grimestone",
             () -> new Block(GRIMESTONE_PROPERTIES));
     public static final DeferredBlock<RelationalStairBlock> POLISHED_GRIMESTONE_STAIRS = registerBlock("polished_grimestone_stairs",

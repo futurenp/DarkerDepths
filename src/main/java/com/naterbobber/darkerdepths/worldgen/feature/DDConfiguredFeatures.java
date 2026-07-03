@@ -109,7 +109,7 @@ public class DDConfiguredFeatures {
                                 .add(DDBlocks.GLOWSPURS.get().defaultBlockState().setValue(GlowspursBlock.FACING, Direction.EAST), 1)
                                 .add(DDBlocks.GLOWSPURS.get().defaultBlockState().setValue(GlowspursBlock.FACING, Direction.SOUTH), 1)
                                 .add(DDBlocks.GLOWSPURS.get().defaultBlockState().setValue(GlowspursBlock.FACING, Direction.WEST), 1)
-                                .add(DDBlocks.MOSSY_SPROUTS.get().defaultBlockState(), 400)
+                                .add(DDBlocks.MOSSY_SPROUTS.get().defaultBlockState(), 320)
                 )
         ));
 

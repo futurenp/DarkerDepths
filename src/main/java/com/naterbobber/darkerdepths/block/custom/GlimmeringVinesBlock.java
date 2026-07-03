@@ -19,7 +19,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class GlimmeringVinesBlock extends GrowingPlantHeadBlock {
-    protected static final VoxelShape SHAPE = Block.box(4.0D, 9.0D, 4.0D, 12.0D, 16.0D, 12.0D);
+    protected static final VoxelShape SHAPE = Block.box(4.0D, 6.0D, 4.0D, 12.0D, 16.0D, 12.0D);
 
     public GlimmeringVinesBlock(Properties properties) {
         super(properties, Direction.DOWN, SHAPE, false, 0.1D);
