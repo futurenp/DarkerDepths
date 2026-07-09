@@ -11,7 +11,7 @@
               "clusters": "1"
             }
           },
-          "weight": 5
+          "weight": 4
         },
         {
           "data": {
@@ -20,7 +20,7 @@
               "clusters": "2"
             }
           },
-          "weight": 5
+          "weight": 3
         },
         {
           "data": {
@@ -29,7 +29,7 @@
               "clusters": "3"
             }
           },
-          "weight": 3
+          "weight": 2
         },
         {
           "data": {
@@ -75,7 +75,7 @@
           "data": {
             "Name": "darkerdepths:mossy_sprouts"
           },
-          "weight": 320
+          "weight": 200
         }
       ]
     }
