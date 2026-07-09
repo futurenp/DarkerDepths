@@ -149,16 +149,4 @@ public class ShelfGlowshroomBlock extends Block {
         }
 
     }
-
-    @Override
-    protected float getMaxHorizontalOffset() {
-        return super.getMaxHorizontalOffset();
-
-
-
-    }
-
-
-
-
 }
