@@ -3,6 +3,7 @@ package com.naterbobber.darkerdepths.init;
 import com.google.common.collect.Maps;
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.block.DDBlockSetTypes;
+import com.naterbobber.darkerdepths.block.DDBlockStateProperties;
 import com.naterbobber.darkerdepths.block.custom.*;
 import com.naterbobber.darkerdepths.block.custom.darkslate.*;
 import com.naterbobber.darkerdepths.block.generic.*;
@@ -434,7 +435,7 @@ public class DDBlocks {
     public static final DeferredBlock<GlowshroomBlock> GLOWSHROOM = registerBlock("glowshroom",
             () -> new GlowshroomBlock(BlockBehaviour.Properties.of().offsetType(BlockBehaviour.OffsetType.XZ).strength(0.0F, 1.0F).sound(SoundType.SLIME_BLOCK).lightLevel((state) -> 3 + (2 * state.getValue(GlowshroomBlock.GLOWSHROOM_CLUSTERS))).noCollission()));
     public static final DeferredBlock<ShelfGlowshroomBlock> SHELF_GLOWSHROOM = registerBlock("shelf_glowshroom",
-            () -> new ShelfGlowshroomBlock(BlockBehaviour.Properties.of().strength(0.0F, 1.0F).sound(SoundType.SLIME_BLOCK).lightLevel((light) -> 5).noCollission()));
+            () -> new ShelfGlowshroomBlock(BlockBehaviour.Properties.of().strength(0.0F, 1.0F).sound(SoundType.SLIME_BLOCK).lightLevel((state) -> state.getValue(DDBlockStateProperties.LARGE) ? 8 : 5).noCollission()));
     public static final DeferredBlock<GlimmeringVinesBlock> GLIMMERING_VINES = registerBlock("glimmering_vines",
             () -> new GlimmeringVinesBlock(BlockBehaviour.Properties.of().noCollission().noOcclusion().lightLevel(value -> 9).sound(SoundType.SPORE_BLOSSOM)));
     public static final DeferredBlock<GlimmeringVinePlantBlock> GLIMMERING_VINE_PLANT = registerNoTabBlock("glimmering_vine_plant",
@@ -442,7 +443,7 @@ public class DDBlocks {
     public static final DeferredBlock<FlowerPotBlock> POTTED_GLOWSHROOM = registerNoTabBlock("potted_glowshroom",
             () -> new FlowerPotBlock(GLOWSHROOM.get(), BlockBehaviour.Properties.of().instabreak().noOcclusion().pushReaction(PushReaction.DESTROY).lightLevel((state) -> 5)));
     public static final DeferredBlock<GlowspursBlock> GLOWSPURS = registerBlock("glowspurs",
-            () -> new GlowspursBlock(BlockBehaviour.Properties.of().instabreak().lightLevel(value -> 5).sound(SoundType.SLIME_BLOCK).noCollission()));
+            () -> new GlowspursBlock(BlockBehaviour.Properties.of().strength(0.2F).lightLevel(value -> 3).sound(SoundType.WET_GRASS).noCollission()));
 
     public static final DeferredBlock<GlowshroomLampBlock> GLOWSHROOM_LAMP = registerBlock("glowshroom_lamp",
             () -> new GlowshroomLampBlock(BlockBehaviour.Properties.of().strength(0.3f, 0.3f).lightLevel(state -> state.getValue(BlockStateProperties.LIT) ? 15 : 0).sound(SoundType.GLASS)));

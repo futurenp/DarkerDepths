@@ -31,7 +31,7 @@ public class CliffPlateuFeature extends Feature<CliffPlateuConfig> {
         float radiusX = baseRadius;
         float radiusZ = baseRadius;
 
-        var randomStretchSelectionArray = new int[] {0, 0, 0, 1, 1, 2, 3};
+        var randomStretchSelectionArray = new int[] {0, 0, 0, 0, 1, 1, 1, 2, 3};
         int stretch = randomStretchSelectionArray[random.nextInt(randomStretchSelectionArray.length)];
 
         if (random.nextBoolean()) {
@@ -43,7 +43,7 @@ public class CliffPlateuFeature extends Feature<CliffPlateuConfig> {
         var boundingBox = new Bounds((int) Math.ceil(radiusX), (int) Math.ceil(radiusZ));
         var blocksToPlace = new HashMap<BlockPos, BlockState>();
         var heightmap = new int[boundingBox.x * 2 + 1][boundingBox.z * 2 + 1];
-        int height = config.height() + random.nextInt(5) - 1;
+        int height = config.height() + random.nextInt(7) - 2;
 
         for (int[] ints : heightmap) {
             Arrays.fill(ints, -999);

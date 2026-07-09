@@ -1,27 +1,13 @@
 {
-	"render_type": "minecraft:cutout",
 	"format_version": "1.21.6",
 	"credit": "Made with Blockbench",
 	"parent": "minecraft:block/coral_fan",
+	"render_type": "minecraft:cutout",
 	"textures": {
-		"1": "darkerdepths:block/glowspurs_top",
-		"fan": "darkerdepths:block/glowspurs",
-		"particle": "darkerdepths:block/glowspurs_top"
+		"particle": "darkerdepths:block/glowspurs_top",
+		"fan": "darkerdepths:block/glowspurs"
 	},
 	"elements": [
-		{
-			"from": [0, 0, 0],
-			"to": [16, 16, 0],
-			"rotation": {"angle": 22.5, "axis": "x", "origin": [8, 0, 8]},
-			"faces": {
-				"north": {"uv": [0, 0, 16, 16], "texture": "#1"},
-				"east": {"uv": [0, 0, 0, 16], "rotation": 90, "texture": "#missing"},
-				"south": {"uv": [16, 0, 0, 16], "texture": "#1"},
-				"west": {"uv": [0, 0, 0, 16], "rotation": 270, "texture": "#missing"},
-				"up": {"uv": [0, 0, 16, 16], "texture": "#fan"},
-				"down": {"uv": [16, 0, 0, 16], "rotation": 180, "texture": "#fan"}
-			}
-		},
 		{
 			"from": [0, 0, -8],
 			"to": [16, 0, 8],
@@ -33,19 +19,6 @@
 				"west": {"uv": [0, 0, 0, 16], "rotation": 270, "texture": "#missing"},
 				"up": {"uv": [0, 0, 16, 16], "texture": "#fan"},
 				"down": {"uv": [16, 0, 0, 16], "rotation": 180, "texture": "#fan"}
-			}
-		},
-		{
-			"from": [0, 0, 16],
-			"to": [16, 16, 16],
-			"rotation": {"angle": -22.5, "axis": "x", "origin": [8, 0, 8]},
-			"faces": {
-				"north": {"uv": [16, 0, 0, 16], "texture": "#1"},
-				"east": {"uv": [0, 0, 0, 16], "rotation": 270, "texture": "#missing"},
-				"south": {"uv": [0, 0, 16, 16], "texture": "#1"},
-				"west": {"uv": [0, 0, 0, 16], "rotation": 90, "texture": "#missing"},
-				"up": {"uv": [0, 0, 16, 16], "rotation": 180, "texture": "#fan"},
-				"down": {"uv": [16, 0, 0, 16], "texture": "#fan"}
 			}
 		},
 		{
@@ -66,14 +39,16 @@
 		{
 			"name": "group",
 			"origin": [8, 0, 8],
+			"scope": 0,
 			"color": 0,
-			"children": [0, 1]
+			"children": [0]
 		},
 		{
 			"name": "group",
 			"origin": [8, 0, 8],
+			"scope": 0,
 			"color": 0,
-			"children": [2, 3]
+			"children": [1]
 		}
 	]
 }

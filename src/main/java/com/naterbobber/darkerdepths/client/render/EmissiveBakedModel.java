@@ -11,29 +11,24 @@ import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.inventory.InventoryMenu;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.client.ChunkRenderTypeSet;
-import net.neoforged.neoforge.client.event.ModelEvent;
 import net.neoforged.neoforge.client.model.BakedModelWrapper;
 import net.neoforged.neoforge.client.model.data.ModelData;
-import net.neoforged.neoforge.registries.DeferredBlock;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.function.Function;
 
 @OnlyIn(Dist.CLIENT)
 public class EmissiveBakedModel extends BakedModelWrapper<BakedModel> {
 
-    private final ModelSettings settings;
+    private final Settings settings;
 
-    public EmissiveBakedModel(BakedModel originalModel, ModelSettings settings) {
+    public EmissiveBakedModel(BakedModel originalModel, Settings settings) {
         super(originalModel);
         this.settings = settings;
     }
@@ -113,11 +108,11 @@ public class EmissiveBakedModel extends BakedModelWrapper<BakedModel> {
         return new BakedQuad(vertexData, quad.getTintIndex(), quad.getDirection(), quad.getSprite(), shade, ambientOcclusion);
     }
 
-    public static ModelSettings modelSettings() {
-        return new ModelSettings();
+    public static Settings settings() {
+        return new Settings();
     }
 
-    public static class ModelSettings {
+    public static class Settings implements BakedModelSettings {
         RenderType baseRenderType = RenderType.SOLID;
         RenderType glowRenderType = RenderType.TRANSLUCENT;
         int baseBrightness = 0;
@@ -127,46 +122,51 @@ public class EmissiveBakedModel extends BakedModelWrapper<BakedModel> {
         boolean manualModelGlow = false;
         boolean disableAmbientOcclusion = false;
 
-        public ModelSettings(){}
+        public Settings(){}
 
-        public ModelSettings baseRenderType(RenderType baseRenderType) {
+        public Settings baseRenderType(RenderType baseRenderType) {
             this.baseRenderType = baseRenderType;
             return this;
         }
 
-        public ModelSettings glowRenderType(RenderType glowRenderType) {
+        public Settings glowRenderType(RenderType glowRenderType) {
             this.glowRenderType = glowRenderType;
             return this;
         }
 
-        public ModelSettings baseBrightness(int baseBrightness) {
+        public Settings baseBrightness(int baseBrightness) {
             this.baseBrightness = baseBrightness;
             return this;
         }
 
-        public ModelSettings glowBrightness(int glowBrightness) {
+        public Settings glowBrightness(int glowBrightness) {
             this.glowBrightness = glowBrightness;
             return this;
         }
 
-        public ModelSettings removeShadeBase() {
+        public Settings removeShadeBase() {
             this.removeShadeBase = true;
             return this;
         }
 
-        public ModelSettings shadeGlow() {
+        public Settings shadeGlow() {
             this.shadeGlow = true;
             return this;
         }
 
-        public ModelSettings manualModelGlow() {
+        public Settings manualModelGlow() {
             this.manualModelGlow = true;
             return this;
         }
 
-        public ModelSettings disableAmbientOcclusion() {
+        public Settings disableAmbientOcclusion() {
             this.disableAmbientOcclusion = true;
             return this;
+        }
+
+        @Override
+        public EmissiveBakedModel model(BakedModel originalModel) {
+            return new EmissiveBakedModel(originalModel, this);
         }
     }
 }

@@ -5,7 +5,7 @@ import com.naterbobber.darkerdepths.client.fog.FogManager;
 import com.naterbobber.darkerdepths.client.fog.modifiers.BiomeFogModifier;
 import com.naterbobber.darkerdepths.client.fog.modifiers.ParanoiaEffectFogModifier;
 import com.naterbobber.darkerdepths.client.fog.modifiers.ScorcherFlashModifier;
-import com.naterbobber.darkerdepths.client.render.EmissiveModelManager;
+import com.naterbobber.darkerdepths.client.render.BakedModelManager;
 import com.naterbobber.darkerdepths.init.DDDataComponents;
 import com.naterbobber.darkerdepths.init.DDItems;
 import com.naterbobber.darkerdepths.init.DDWoodType;
@@ -56,6 +56,6 @@ public class ClientSetupEvents {
 
     @SubscribeEvent
     public static void onModifyBakingResult(ModelEvent.ModifyBakingResult event) {
-        EmissiveModelManager.modify(event);
+        BakedModelManager.modify(event);
     }
 }

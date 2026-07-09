@@ -28,5 +28,9 @@ public class DDEntityTypeTagsProvider extends EntityTypeTagsProvider {
                 DDEntityTypes.VOID_SOUL.get(),
                 DDEntityTypes.BODY_SNATCHER.get()
         );
+
+        this.tag(DDTags.EntityTypes.GLOWSPURS_IMMUNE).add(
+                DDEntityTypes.GLOWSHROOM_MONSTER.get()
+        );
     }
 }

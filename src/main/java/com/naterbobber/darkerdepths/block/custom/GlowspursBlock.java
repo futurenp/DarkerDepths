@@ -1,12 +1,14 @@
 package com.naterbobber.darkerdepths.block.custom;
 
-import com.naterbobber.darkerdepths.init.DDEntityTypes;
+import com.naterbobber.darkerdepths.util.DDTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -25,17 +27,15 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
-import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-import java.util.List;
-
 public class GlowspursBlock extends Block {
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     private static final BooleanProperty POWERED = BlockStateProperties.POWERED;
-    private static final VoxelShape SHAPE = Block.box(1.0D, 0.0D, 1.0D, 15.0D, 10.0D, 15.0D);
+    private static final VoxelShape POWERED_SHAPE = Block.box(1.0D, 0.0D, 1.0D, 15.0D, 10.0D, 15.0D);
+    private static final VoxelShape SHAPE = Block.box(1.0D, 0.0D, 1.0D, 15.0D, 5.0D, 15.0D);
 
     public GlowspursBlock(Properties properties) {
         super(properties);
@@ -49,34 +49,37 @@ public class GlowspursBlock extends Block {
 
     @Override
     public VoxelShape getShape(BlockState stateIn, BlockGetter worldIn, BlockPos pos, CollisionContext p_60558_) {
-        return SHAPE;
+        return stateIn.getValue(POWERED) ? POWERED_SHAPE : SHAPE;
     }
 
     @Override
-    public void entityInside(BlockState state, Level worldIn, BlockPos pos, Entity entityIn) {
-        if (entityIn instanceof LivingEntity && entityIn.getType() != DDEntityTypes.GLOWSHROOM_MONSTER.get()) {
-            entityIn.makeStuckInBlock(state, new Vec3(0.45F, 1.0D, 0.45F));
-            if (!worldIn.isClientSide() && !state.getValue(POWERED)) {
-                worldIn.playSound(null, pos, SoundEvents.PLAYER_HURT_SWEET_BERRY_BUSH, SoundSource.BLOCKS, 1.0F, 0.6F);
-                this.updateState(pos, state, worldIn);
-            }
+    public void entityInside(BlockState state, Level worldIn, BlockPos pos, Entity entity) {
+        if(!(entity instanceof LivingEntity livingEntity)) return;
+        if(livingEntity.getType().is(DDTags.EntityTypes.GLOWSPURS_IMMUNE)) return;
+
+        livingEntity.makeStuckInBlock(state, new Vec3(0.35, 0.5, 0.35));
+        livingEntity.addEffect(new MobEffectInstance(MobEffects.POISON, 100, 0));
+
+        if (!worldIn.isClientSide() && !state.getValue(POWERED)) {
+            worldIn.playSound(null, pos, SoundEvents.PLAYER_HURT_SWEET_BERRY_BUSH, SoundSource.BLOCKS, 1.0F, 0.6F);
+            this.updateState(pos, state, worldIn);
         }
     }
 
     private void updateState(BlockPos pos, BlockState state, Level worldIn) {
-        worldIn.setBlock(pos, state.setValue(POWERED, true), 2);
+        worldIn.setBlock(pos, state.setValue(POWERED, true), Block.UPDATE_ALL);
         worldIn.scheduleTick(pos, this, 40);
     }
 
     @Override
     public void tick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource random) {
-        boolean bl = state.getValue(POWERED);
-        if (bl) {
-            AABB boundingBox = getShape(state, worldIn, pos, CollisionContext.empty()).bounds().move(pos);
-            List<Player> playersInside = worldIn.getEntitiesOfClass(Player.class, boundingBox);
+        boolean powered = state.getValue(POWERED);
+        if (powered) {
+            var boundingBox = getShape(state, worldIn, pos, CollisionContext.empty()).bounds().move(pos);
+            var playersInside = worldIn.getEntitiesOfClass(Player.class, boundingBox);
 
             if (playersInside.isEmpty()) {
-                worldIn.setBlock(pos, state.setValue(POWERED, false), 2);
+                worldIn.setBlock(pos, state.setValue(POWERED, false), Block.UPDATE_ALL);
                 worldIn.playSound(null, pos, SoundEvents.PLAYER_HURT_SWEET_BERRY_BUSH, SoundSource.BLOCKS, 0.6F, 0.4F);
             } else {
                 worldIn.scheduleTick(pos, this, 40);

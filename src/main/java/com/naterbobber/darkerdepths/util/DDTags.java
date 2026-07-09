@@ -90,6 +90,7 @@ public class DDTags {
         private static final TagFactory<EntityType<?>> TAGS = make(Registries.ENTITY_TYPE);
 
         public static final TagKey<EntityType<?>> GLOWSHROOM_MONSTER_TARGET = TAGS.create("glowshroom_monster_target");
+        public static final TagKey<EntityType<?>> GLOWSPURS_IMMUNE = TAGS.create("glowspurs_immune");
         public static final TagKey<EntityType<?>> VOID_SOUL = TAGS.create("void_soul");
     }
 }

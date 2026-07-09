@@ -1,6 +1,6 @@
 package com.naterbobber.darkerdepths.client.events.listeners;
 
-import com.naterbobber.darkerdepths.client.render.EmissiveModelManager;
+import com.naterbobber.darkerdepths.client.render.BakedModelManager;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.server.packs.resources.SimplePreparableReloadListener;
 import net.minecraft.util.profiling.ProfilerFiller;
@@ -16,6 +16,6 @@ public class DDClientReloadListener extends SimplePreparableReloadListener {
 
     @Override
     protected void apply(Object o, ResourceManager resourceManager, ProfilerFiller profilerFiller) {
-        EmissiveModelManager.clearHolders();
+        BakedModelManager.clearHolders();
     }
 }
