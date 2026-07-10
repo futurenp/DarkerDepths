@@ -2,10 +2,10 @@
   "values": [
     "darkerdepths:mossy_grimestone",
     "minecraft:packed_mud",
-    "darkerdepths:aridrock",
-    "darkerdepths:duskrock",
     "darkerdepths:grimestone",
+    "darkerdepths:aridrock",
+    "darkerdepths:darkslate",
     "darkerdepths:glist",
-    "darkerdepths:darkslate"
+    "darkerdepths:duskrock"
   ]
 }

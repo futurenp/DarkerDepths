@@ -5,9 +5,9 @@
     "darkerdepths:porous_petrified_log",
     "darkerdepths:glowshroom_stem",
     "darkerdepths:glowshroom_hyphae",
-    "darkerdepths:glowshroom_stem",
-    "darkerdepths:glowshroom_hyphae",
     "darkerdepths:petrified_log",
-    "darkerdepths:petrified_wood"
+    "darkerdepths:petrified_wood",
+    "darkerdepths:glowshroom_stem",
+    "darkerdepths:glowshroom_hyphae"
   ]
 }

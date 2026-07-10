@@ -1,12 +1,12 @@
 {
   "values": [
-    "darkerdepths:glowshroom_stem",
-    "darkerdepths:glowshroom_hyphae",
-    "darkerdepths:stripped_glowshroom_stem",
-    "darkerdepths:stripped_glowshroom_hyphae",
     "darkerdepths:petrified_log",
     "darkerdepths:petrified_wood",
     "darkerdepths:stripped_petrified_log",
-    "darkerdepths:stripped_petrified_wood"
+    "darkerdepths:stripped_petrified_wood",
+    "darkerdepths:glowshroom_stem",
+    "darkerdepths:glowshroom_hyphae",
+    "darkerdepths:stripped_glowshroom_stem",
+    "darkerdepths:stripped_glowshroom_hyphae"
   ]
 }
