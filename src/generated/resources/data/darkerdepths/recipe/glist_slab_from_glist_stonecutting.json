@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "darkerdepths:glist"
+  },
+  "result": {
+    "count": 2,
+    "id": "darkerdepths:glist_slab"
+  }
+}

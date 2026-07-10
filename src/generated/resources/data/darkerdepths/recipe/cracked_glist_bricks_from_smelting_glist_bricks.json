@@ -3,12 +3,12 @@
   "category": "blocks",
   "cookingtime": 200,
   "experience": 0.1,
-  "group": "cracked_duskrock_bricks",
+  "group": "cracked_glist_bricks",
   "ingredient": {
-    "item": "darkerdepths:duskrock_bricks"
+    "item": "darkerdepths:glist_bricks"
   },
   "result": {
     "count": 1,
-    "id": "darkerdepths:cracked_duskrock_bricks"
+    "id": "darkerdepths:cracked_glist_bricks"
   }
 }

@@ -2,6 +2,10 @@ package com.naterbobber.darkerdepths.data;
 
 import com.google.common.collect.ImmutableList;
 import com.naterbobber.darkerdepths.DarkerDepths;
+import com.naterbobber.darkerdepths.block.generic.ConnectedRotatablePillarBlock;
+import com.naterbobber.darkerdepths.block.generic.VerticalSlabBlock;
+import com.naterbobber.darkerdepths.block.generic.relational.DDBlockSets;
+import com.naterbobber.darkerdepths.block.generic.relational.DDStoneBlockSet;
 import com.naterbobber.darkerdepths.compat.DDCompat;
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import com.naterbobber.darkerdepths.init.DDItems;
@@ -24,13 +28,17 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.SmeltingRecipe;
 import net.minecraft.world.level.ItemLike;
-import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.*;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.conditions.ModLoadedCondition;
 import net.neoforged.neoforge.common.conditions.OrCondition;
+import net.neoforged.neoforge.registries.DeferredBlock;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
+import java.util.function.Function;
 
 public class DDRecipeProvider extends RecipeProvider {
 
@@ -40,70 +48,14 @@ public class DDRecipeProvider extends RecipeProvider {
 
     @Override
     protected void buildRecipes(RecipeOutput recipeOutput) {
-        twoXtwo(recipeOutput, DDBlocks.POLISHED_DARKSLATE.get(), DDBlocks.DARKSLATE.get().asItem(), 4);
-        twoXtwo(recipeOutput, DDBlocks.POLISHED_ARIDROCK.get(), DDBlocks.ARIDROCK.get().asItem(), 4);
-        twoXtwo(recipeOutput, DDBlocks.POLISHED_DUSKROCK.get(), DDBlocks.DUSKROCK.get().asItem(), 4);
-        twoXtwo(recipeOutput, DDBlocks.POLISHED_GRIMESTONE.get(), DDBlocks.GRIMESTONE.get().asItem(), 4);
-        twoXtwo(recipeOutput, DDBlocks.DARKSLATE_BRICKS.get(), DDBlocks.POLISHED_DARKSLATE.get().asItem(), 4);
-        twoXtwo(recipeOutput, DDBlocks.ARIDROCK_BRICKS.get(), DDBlocks.POLISHED_ARIDROCK.get().asItem(), 4);
-        twoXtwo(recipeOutput, DDBlocks.DUSKROCK_BRICKS.get(), DDBlocks.POLISHED_DUSKROCK.get().asItem(), 4);
-        twoXtwo(recipeOutput, DDBlocks.GRIMESTONE_BRICKS.get(), DDBlocks.POLISHED_GRIMESTONE.get().asItem(), 4);
+        DDBlockSets.STONE_BLOCK_SETS.forEach(blockSet -> {
+            stoneBlockSet(recipeOutput, blockSet);
+        });
 
-        stairsBlock(recipeOutput, DDBlocks.DARKSLATE_STAIRS.get(), DDBlocks.DARKSLATE.get().asItem());
-        stairsBlock(recipeOutput, DDBlocks.ARIDROCK_STAIRS.get(), DDBlocks.ARIDROCK.get().asItem());
-        stairsBlock(recipeOutput, DDBlocks.DUSKROCK_STAIRS.get(), DDBlocks.DUSKROCK.get().asItem());
-        stairsBlock(recipeOutput, DDBlocks.GRIMESTONE_STAIRS.get(), DDBlocks.GRIMESTONE.get().asItem());
-        stairsBlock(recipeOutput, DDBlocks.POLISHED_DARKSLATE_STAIRS.get(), DDBlocks.POLISHED_DARKSLATE.get().asItem());
-        stairsBlock(recipeOutput, DDBlocks.POLISHED_ARIDROCK_STAIRS.get(), DDBlocks.POLISHED_ARIDROCK.get().asItem());
-        stairsBlock(recipeOutput, DDBlocks.POLISHED_DUSKROCK_STAIRS.get(), DDBlocks.POLISHED_DUSKROCK.get().asItem());
-        stairsBlock(recipeOutput, DDBlocks.POLISHED_GRIMESTONE_STAIRS.get(), DDBlocks.POLISHED_GRIMESTONE.get().asItem());
-        stairsBlock(recipeOutput, DDBlocks.DARKSLATE_BRICKS_STAIRS.get(), DDBlocks.DARKSLATE_BRICKS.get().asItem());
-        stairsBlock(recipeOutput, DDBlocks.ARIDROCK_BRICKS_STAIRS.get(), DDBlocks.ARIDROCK_BRICKS.get().asItem());
-        stairsBlock(recipeOutput, DDBlocks.DUSKROCK_BRICKS_STAIRS.get(), DDBlocks.DUSKROCK_BRICKS.get().asItem());
-        stairsBlock(recipeOutput, DDBlocks.GRIMESTONE_BRICKS_STAIRS.get(), DDBlocks.GRIMESTONE_BRICKS.get().asItem());
         stairsBlock(recipeOutput, DDBlocks.PETRIFIED_STAIRS.get(), DDBlocks.PETRIFIED_PLANKS.get().asItem());
-
-        slabBlock(recipeOutput, DDBlocks.DARKSLATE_SLAB.get(), DDBlocks.DARKSLATE.get().asItem());
-        slabBlock(recipeOutput, DDBlocks.ARIDROCK_SLAB.get(), DDBlocks.ARIDROCK.get().asItem());
-        slabBlock(recipeOutput, DDBlocks.DUSKROCK_SLAB.get(), DDBlocks.DUSKROCK.get().asItem());
-        slabBlock(recipeOutput, DDBlocks.GRIMESTONE_SLAB.get(), DDBlocks.GRIMESTONE.get().asItem());
-        slabBlock(recipeOutput, DDBlocks.POLISHED_DARKSLATE_SLAB.get(), DDBlocks.POLISHED_DARKSLATE.get().asItem());
-        slabBlock(recipeOutput, DDBlocks.POLISHED_ARIDROCK_SLAB.get(), DDBlocks.POLISHED_ARIDROCK.get().asItem());
-        slabBlock(recipeOutput, DDBlocks.POLISHED_DUSKROCK_SLAB.get(), DDBlocks.POLISHED_DUSKROCK.get().asItem());
-        slabBlock(recipeOutput, DDBlocks.POLISHED_GRIMESTONE_SLAB.get(), DDBlocks.POLISHED_GRIMESTONE.get().asItem());
-        slabBlock(recipeOutput, DDBlocks.DARKSLATE_BRICKS_SLAB.get(), DDBlocks.DARKSLATE_BRICKS.get().asItem());
-        slabBlock(recipeOutput, DDBlocks.ARIDROCK_BRICKS_SLAB.get(), DDBlocks.ARIDROCK_BRICKS.get().asItem());
-        slabBlock(recipeOutput, DDBlocks.DUSKROCK_BRICKS_SLAB.get(), DDBlocks.DUSKROCK_BRICKS.get().asItem());
-        slabBlock(recipeOutput, DDBlocks.GRIMESTONE_BRICKS_SLAB.get(), DDBlocks.GRIMESTONE_BRICKS.get().asItem());
         slabBlock(recipeOutput, DDBlocks.PETRIFIED_SLAB.get(), DDBlocks.PETRIFIED_PLANKS.get().asItem());
 
-        pillarBlock(recipeOutput, DDBlocks.ARIDROCK_PILLAR.get(), DDBlocks.POLISHED_ARIDROCK.get().asItem());
-        pillarBlock(recipeOutput, DDBlocks.GRIMESTONE_PILLAR.get(), DDBlocks.POLISHED_GRIMESTONE.get().asItem());
-        pillarBlock(recipeOutput, DDBlocks.DARKSLATE_PILLAR.get(), DDBlocks.POLISHED_DARKSLATE.get().asItem());
-        pillarBlock(recipeOutput, DDBlocks.DUSKROCK_PILLAR.get(), DDBlocks.POLISHED_DUSKROCK.get().asItem());
-
-        wallBlock(recipeOutput, DDBlocks.DARKSLATE_WALL.get(), DDBlocks.DARKSLATE.get().asItem());
-        wallBlock(recipeOutput, DDBlocks.ARIDROCK_WALL.get(), DDBlocks.ARIDROCK.get().asItem());
-        wallBlock(recipeOutput, DDBlocks.DUSKROCK_WALL.get(), DDBlocks.DUSKROCK.get().asItem());
-        wallBlock(recipeOutput, DDBlocks.GRIMESTONE_WALL.get(), DDBlocks.GRIMESTONE.get().asItem());
-        wallBlock(recipeOutput, DDBlocks.DARKSLATE_BRICKS_WALL.get(), DDBlocks.DARKSLATE_BRICKS.get().asItem());
-        wallBlock(recipeOutput, DDBlocks.ARIDROCK_BRICKS_WALL.get(), DDBlocks.ARIDROCK_BRICKS.get().asItem());
-        wallBlock(recipeOutput, DDBlocks.DUSKROCK_BRICKS_WALL.get(), DDBlocks.DUSKROCK_BRICKS.get().asItem());
-        wallBlock(recipeOutput, DDBlocks.GRIMESTONE_BRICKS_WALL.get(), DDBlocks.GRIMESTONE_BRICKS.get().asItem());
-
-        oreSmelting(recipeOutput, ImmutableList.of(DDBlocks.DARKSLATE_BRICKS.get()), RecipeCategory.BUILDING_BLOCKS, DDBlocks.CRACKED_DARKSLATE_BRICKS.get(), 0.1F, 200, "cracked_darkslate_bricks");
-        oreSmelting(recipeOutput, ImmutableList.of(DDBlocks.ARIDROCK_BRICKS.get()), RecipeCategory.BUILDING_BLOCKS, DDBlocks.CRACKED_ARIDROCK_BRICKS.get(), 0.1F, 200, "cracked_aridrock_bricks");
-        oreSmelting(recipeOutput, ImmutableList.of(DDBlocks.DUSKROCK_BRICKS.get()), RecipeCategory.BUILDING_BLOCKS, DDBlocks.CRACKED_DUSKROCK_BRICKS.get(), 0.1F, 200, "cracked_limestone_bricks");
-        oreSmelting(recipeOutput, ImmutableList.of(DDBlocks.GRIMESTONE_BRICKS.get()), RecipeCategory.BUILDING_BLOCKS, DDBlocks.CRACKED_GRIMESTONE_BRICKS.get(), 0.1F, 200, "cracked_grimestone_bricks");
-
-
-
         fenceBlock(recipeOutput, DDBlocks.PETRIFIED_FENCE.get(), DDBlocks.PETRIFIED_PLANKS.get().asItem());
-
-        chiseled(recipeOutput, DDBlocks.DARKSLATE_BRICKS_SLAB.get().asItem(), DDBlocks.CHISELED_DARKSLATE_BRICKS.get().asItem());
-        chiseled(recipeOutput, DDBlocks.ARIDROCK_BRICKS_SLAB.get().asItem(), DDBlocks.CHISELED_ARIDROCK_BRICKS.get().asItem());
-        chiseled(recipeOutput, DDBlocks.DUSKROCK_BRICKS_SLAB.get().asItem(), DDBlocks.CHISELED_DUSKROCK_BRICKS.get().asItem());
-        chiseled(recipeOutput, DDBlocks.GRIMESTONE_BRICKS_SLAB.get().asItem(), DDBlocks.CHISELED_GRIMESTONE_BRICKS.get().asItem());
 
         threeXthree(recipeOutput, DDBlocks.AMBER_BLOCK.get(), DDItems.AMBER.get());
         threeXthree(recipeOutput, DDBlocks.FORSAKEN_BRONZE_BLOCK.get(), DDItems.FORSAKEN_BRONZE_INGOT.get());
@@ -334,110 +286,6 @@ public class DDRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_rotten_flesh", has(Items.ROTTEN_FLESH))
                 .save(recipeOutput);
 
-        stonecutterResultFromBase(recipeOutput, DDBlocks.DARKSLATE_STAIRS.get(), DDBlocks.DARKSLATE.get());
-        stonecutterResultFromBase(recipeOutput, DDBlocks.ARIDROCK_STAIRS.get(), DDBlocks.ARIDROCK.get());
-        stonecutterResultFromBase(recipeOutput, DDBlocks.DUSKROCK_STAIRS.get(), DDBlocks.DUSKROCK.get());
-        stonecutterResultFromBase(recipeOutput, DDBlocks.GRIMESTONE_STAIRS.get(), DDBlocks.GRIMESTONE.get());
-        stonecutterResultFromBase(recipeOutput, DDBlocks.DARKSLATE_SLAB.get(), DDBlocks.DARKSLATE.get(), 2);
-        stonecutterResultFromBase(recipeOutput, DDBlocks.ARIDROCK_SLAB.get(), DDBlocks.ARIDROCK.get(), 2);
-        stonecutterResultFromBase(recipeOutput, DDBlocks.DUSKROCK_SLAB.get(), DDBlocks.DUSKROCK.get(), 2);
-        stonecutterResultFromBase(recipeOutput, DDBlocks.GRIMESTONE_SLAB.get(), DDBlocks.GRIMESTONE.get(), 2);
-        stonecutterResultFromBase(recipeOutput, DDBlocks.DARKSLATE_WALL.get(), DDBlocks.DARKSLATE.get());
-        stonecutterResultFromBase(recipeOutput, DDBlocks.ARIDROCK_WALL.get(), DDBlocks.ARIDROCK.get());
-        stonecutterResultFromBase(recipeOutput, DDBlocks.DUSKROCK_WALL.get(), DDBlocks.DUSKROCK.get());
-        stonecutterResultFromBase(recipeOutput, DDBlocks.GRIMESTONE_WALL.get(), DDBlocks.GRIMESTONE.get());
-
-        stonecutterResultFromBase(recipeOutput, DDBlocks.POLISHED_DARKSLATE.get(), DDBlocks.DARKSLATE.get());
-        stonecutterResultFromBase(recipeOutput, DDBlocks.POLISHED_ARIDROCK.get(), DDBlocks.ARIDROCK.get());
-        stonecutterResultFromBase(recipeOutput, DDBlocks.POLISHED_DUSKROCK.get(), DDBlocks.DUSKROCK.get());
-        stonecutterResultFromBase(recipeOutput, DDBlocks.POLISHED_GRIMESTONE.get(), DDBlocks.GRIMESTONE.get());
-        stonecutterResultFromBase(recipeOutput, DDBlocks.POLISHED_DARKSLATE_STAIRS.get(), DDBlocks.DARKSLATE.get());
-        stonecutterResultFromBase(recipeOutput, DDBlocks.POLISHED_ARIDROCK_STAIRS.get(), DDBlocks.ARIDROCK.get());
-        stonecutterResultFromBase(recipeOutput, DDBlocks.POLISHED_DUSKROCK_STAIRS.get(), DDBlocks.DUSKROCK.get());
-        stonecutterResultFromBase(recipeOutput, DDBlocks.POLISHED_GRIMESTONE_STAIRS.get(), DDBlocks.GRIMESTONE.get());
-        stonecutterResultFromBase(recipeOutput, DDBlocks.POLISHED_DARKSLATE_SLAB.get(), DDBlocks.DARKSLATE.get(), 2);
-        stonecutterResultFromBase(recipeOutput, DDBlocks.POLISHED_ARIDROCK_SLAB.get(), DDBlocks.ARIDROCK.get(), 2);
-        stonecutterResultFromBase(recipeOutput, DDBlocks.POLISHED_DUSKROCK_SLAB.get(), DDBlocks.DUSKROCK.get(), 2);
-        stonecutterResultFromBase(recipeOutput, DDBlocks.POLISHED_GRIMESTONE_SLAB.get(), DDBlocks.GRIMESTONE.get(), 2);
-
-        stonecutterResultFromBase(recipeOutput, DDBlocks.POLISHED_DARKSLATE_STAIRS.get(), DDBlocks.POLISHED_DARKSLATE.get());
-        stonecutterResultFromBase(recipeOutput, DDBlocks.POLISHED_ARIDROCK_STAIRS.get(), DDBlocks.POLISHED_ARIDROCK.get());
-        stonecutterResultFromBase(recipeOutput, DDBlocks.POLISHED_DUSKROCK_STAIRS.get(), DDBlocks.POLISHED_DUSKROCK.get());
-        stonecutterResultFromBase(recipeOutput, DDBlocks.POLISHED_GRIMESTONE_STAIRS.get(), DDBlocks.POLISHED_GRIMESTONE.get());
-        stonecutterResultFromBase(recipeOutput, DDBlocks.POLISHED_DARKSLATE_SLAB.get(), DDBlocks.POLISHED_DARKSLATE.get(), 2);
-        stonecutterResultFromBase(recipeOutput, DDBlocks.POLISHED_ARIDROCK_SLAB.get(), DDBlocks.POLISHED_ARIDROCK.get(), 2);
-        stonecutterResultFromBase(recipeOutput, DDBlocks.POLISHED_DUSKROCK_SLAB.get(), DDBlocks.POLISHED_DUSKROCK.get(), 2);
-        stonecutterResultFromBase(recipeOutput, DDBlocks.POLISHED_GRIMESTONE_SLAB.get(), DDBlocks.POLISHED_GRIMESTONE.get(), 2);
-
-        stonecutterResultFromBase(recipeOutput, DDBlocks.DARKSLATE_BRICKS.get(), DDBlocks.DARKSLATE.get());
-        stonecutterResultFromBase(recipeOutput, DDBlocks.ARIDROCK_BRICKS.get(), DDBlocks.ARIDROCK.get());
-        stonecutterResultFromBase(recipeOutput, DDBlocks.DUSKROCK_BRICKS.get(), DDBlocks.DUSKROCK.get());
-        stonecutterResultFromBase(recipeOutput, DDBlocks.GRIMESTONE_BRICKS.get(), DDBlocks.GRIMESTONE.get());
-        stonecutterResultFromBase(recipeOutput, DDBlocks.DARKSLATE_BRICKS_STAIRS.get(), DDBlocks.DARKSLATE.get());
-        stonecutterResultFromBase(recipeOutput, DDBlocks.ARIDROCK_BRICKS_STAIRS.get(), DDBlocks.ARIDROCK.get());
-        stonecutterResultFromBase(recipeOutput, DDBlocks.DUSKROCK_BRICKS_STAIRS.get(), DDBlocks.DUSKROCK.get());
-        stonecutterResultFromBase(recipeOutput, DDBlocks.GRIMESTONE_BRICKS_STAIRS.get(), DDBlocks.GRIMESTONE.get());
-        stonecutterResultFromBase(recipeOutput, DDBlocks.DARKSLATE_BRICKS_SLAB.get(), DDBlocks.DARKSLATE.get(), 2);
-        stonecutterResultFromBase(recipeOutput, DDBlocks.ARIDROCK_BRICKS_SLAB.get(), DDBlocks.ARIDROCK.get(), 2);
-        stonecutterResultFromBase(recipeOutput, DDBlocks.DUSKROCK_BRICKS_SLAB.get(), DDBlocks.DUSKROCK.get(), 2);
-        stonecutterResultFromBase(recipeOutput, DDBlocks.GRIMESTONE_BRICKS_SLAB.get(), DDBlocks.GRIMESTONE.get(), 2);
-        stonecutterResultFromBase(recipeOutput, DDBlocks.DARKSLATE_BRICKS_WALL.get(), DDBlocks.DARKSLATE.get());
-        stonecutterResultFromBase(recipeOutput, DDBlocks.ARIDROCK_BRICKS_WALL.get(), DDBlocks.ARIDROCK.get());
-        stonecutterResultFromBase(recipeOutput, DDBlocks.DUSKROCK_BRICKS_WALL.get(), DDBlocks.DUSKROCK.get());
-        stonecutterResultFromBase(recipeOutput, DDBlocks.GRIMESTONE_BRICKS_WALL.get(), DDBlocks.GRIMESTONE.get());
-        stonecutterResultFromBase(recipeOutput, DDBlocks.CHISELED_DARKSLATE_BRICKS.get(), DDBlocks.DARKSLATE.get());
-        stonecutterResultFromBase(recipeOutput, DDBlocks.CHISELED_ARIDROCK_BRICKS.get(), DDBlocks.ARIDROCK.get());
-        stonecutterResultFromBase(recipeOutput, DDBlocks.CHISELED_DUSKROCK_BRICKS.get(), DDBlocks.DUSKROCK.get());
-        stonecutterResultFromBase(recipeOutput, DDBlocks.CHISELED_GRIMESTONE_BRICKS.get(), DDBlocks.GRIMESTONE.get());
-
-        stonecutterResultFromBase(recipeOutput, DDBlocks.ARIDROCK_PILLAR.get(), DDBlocks.ARIDROCK.get());
-        stonecutterResultFromBase(recipeOutput, DDBlocks.GRIMESTONE_PILLAR.get(), DDBlocks.GRIMESTONE.get());
-        stonecutterResultFromBase(recipeOutput, DDBlocks.DARKSLATE_PILLAR.get(), DDBlocks.DARKSLATE.get());
-        stonecutterResultFromBase(recipeOutput, DDBlocks.DUSKROCK_PILLAR.get(), DDBlocks.DUSKROCK.get());
-
-        stonecutterResultFromBase(recipeOutput, DDBlocks.DARKSLATE_BRICKS.get(), DDBlocks.POLISHED_DARKSLATE.get());
-        stonecutterResultFromBase(recipeOutput, DDBlocks.ARIDROCK_BRICKS.get(), DDBlocks.POLISHED_ARIDROCK.get());
-        stonecutterResultFromBase(recipeOutput, DDBlocks.DUSKROCK_BRICKS.get(), DDBlocks.POLISHED_DUSKROCK.get());
-        stonecutterResultFromBase(recipeOutput, DDBlocks.GRIMESTONE_BRICKS.get(), DDBlocks.POLISHED_GRIMESTONE.get());
-        stonecutterResultFromBase(recipeOutput, DDBlocks.DARKSLATE_BRICKS_STAIRS.get(), DDBlocks.POLISHED_DARKSLATE.get());
-        stonecutterResultFromBase(recipeOutput, DDBlocks.ARIDROCK_BRICKS_STAIRS.get(), DDBlocks.POLISHED_ARIDROCK.get());
-        stonecutterResultFromBase(recipeOutput, DDBlocks.DUSKROCK_BRICKS_STAIRS.get(), DDBlocks.POLISHED_DUSKROCK.get());
-        stonecutterResultFromBase(recipeOutput, DDBlocks.GRIMESTONE_BRICKS_STAIRS.get(), DDBlocks.POLISHED_GRIMESTONE.get());
-        stonecutterResultFromBase(recipeOutput, DDBlocks.DARKSLATE_BRICKS_SLAB.get(), DDBlocks.POLISHED_DARKSLATE.get(), 2);
-        stonecutterResultFromBase(recipeOutput, DDBlocks.ARIDROCK_BRICKS_SLAB.get(), DDBlocks.POLISHED_ARIDROCK.get(), 2);
-        stonecutterResultFromBase(recipeOutput, DDBlocks.DUSKROCK_BRICKS_SLAB.get(), DDBlocks.POLISHED_DUSKROCK.get(), 2);
-        stonecutterResultFromBase(recipeOutput, DDBlocks.GRIMESTONE_BRICKS_SLAB.get(), DDBlocks.POLISHED_GRIMESTONE.get(), 2);
-        stonecutterResultFromBase(recipeOutput, DDBlocks.DARKSLATE_BRICKS_WALL.get(), DDBlocks.POLISHED_DARKSLATE.get());
-        stonecutterResultFromBase(recipeOutput, DDBlocks.ARIDROCK_BRICKS_WALL.get(), DDBlocks.POLISHED_ARIDROCK.get());
-        stonecutterResultFromBase(recipeOutput, DDBlocks.DUSKROCK_BRICKS_WALL.get(), DDBlocks.POLISHED_DUSKROCK.get());
-        stonecutterResultFromBase(recipeOutput, DDBlocks.GRIMESTONE_BRICKS_WALL.get(), DDBlocks.POLISHED_GRIMESTONE.get());
-        stonecutterResultFromBase(recipeOutput, DDBlocks.CHISELED_DARKSLATE_BRICKS.get(), DDBlocks.POLISHED_DARKSLATE.get());
-        stonecutterResultFromBase(recipeOutput, DDBlocks.CHISELED_ARIDROCK_BRICKS.get(), DDBlocks.POLISHED_ARIDROCK.get());
-        stonecutterResultFromBase(recipeOutput, DDBlocks.CHISELED_DUSKROCK_BRICKS.get(), DDBlocks.POLISHED_DUSKROCK.get());
-        stonecutterResultFromBase(recipeOutput, DDBlocks.CHISELED_GRIMESTONE_BRICKS.get(), DDBlocks.POLISHED_GRIMESTONE.get());
-
-        stonecutterResultFromBase(recipeOutput, DDBlocks.DARKSLATE_BRICKS_STAIRS.get(), DDBlocks.DARKSLATE_BRICKS.get());
-        stonecutterResultFromBase(recipeOutput, DDBlocks.ARIDROCK_BRICKS_STAIRS.get(), DDBlocks.ARIDROCK_BRICKS.get());
-        stonecutterResultFromBase(recipeOutput, DDBlocks.DUSKROCK_BRICKS_STAIRS.get(), DDBlocks.DUSKROCK_BRICKS.get());
-        stonecutterResultFromBase(recipeOutput, DDBlocks.GRIMESTONE_BRICKS_STAIRS.get(), DDBlocks.GRIMESTONE_BRICKS.get());
-        stonecutterResultFromBase(recipeOutput, DDBlocks.DARKSLATE_BRICKS_SLAB.get(), DDBlocks.DARKSLATE_BRICKS.get(), 2);
-        stonecutterResultFromBase(recipeOutput, DDBlocks.ARIDROCK_BRICKS_SLAB.get(), DDBlocks.ARIDROCK_BRICKS.get(), 2);
-        stonecutterResultFromBase(recipeOutput, DDBlocks.DUSKROCK_BRICKS_SLAB.get(), DDBlocks.DUSKROCK_BRICKS.get(), 2);
-        stonecutterResultFromBase(recipeOutput, DDBlocks.GRIMESTONE_BRICKS_SLAB.get(), DDBlocks.GRIMESTONE_BRICKS.get(), 2);
-        stonecutterResultFromBase(recipeOutput, DDBlocks.DARKSLATE_BRICKS_WALL.get(), DDBlocks.DARKSLATE_BRICKS.get());
-        stonecutterResultFromBase(recipeOutput, DDBlocks.ARIDROCK_BRICKS_WALL.get(), DDBlocks.ARIDROCK_BRICKS.get());
-        stonecutterResultFromBase(recipeOutput, DDBlocks.DUSKROCK_BRICKS_WALL.get(), DDBlocks.DUSKROCK_BRICKS.get());
-        stonecutterResultFromBase(recipeOutput, DDBlocks.GRIMESTONE_BRICKS_WALL.get(), DDBlocks.GRIMESTONE_BRICKS.get());
-        stonecutterResultFromBase(recipeOutput, DDBlocks.CHISELED_DARKSLATE_BRICKS.get(), DDBlocks.DARKSLATE_BRICKS.get());
-        stonecutterResultFromBase(recipeOutput, DDBlocks.CHISELED_ARIDROCK_BRICKS.get(), DDBlocks.ARIDROCK_BRICKS.get());
-        stonecutterResultFromBase(recipeOutput, DDBlocks.CHISELED_DUSKROCK_BRICKS.get(), DDBlocks.DUSKROCK_BRICKS.get());
-        stonecutterResultFromBase(recipeOutput, DDBlocks.CHISELED_GRIMESTONE_BRICKS.get(), DDBlocks.GRIMESTONE_BRICKS.get());
-
-        stonecutterResultFromBase(recipeOutput, DDBlocks.ARIDROCK_PILLAR.get(), DDBlocks.POLISHED_ARIDROCK.get());
-        stonecutterResultFromBase(recipeOutput, DDBlocks.GRIMESTONE_PILLAR.get(), DDBlocks.POLISHED_GRIMESTONE.get());
-        stonecutterResultFromBase(recipeOutput, DDBlocks.DARKSLATE_PILLAR.get(), DDBlocks.POLISHED_DARKSLATE.get());
-        stonecutterResultFromBase(recipeOutput, DDBlocks.DUSKROCK_PILLAR.get(), DDBlocks.POLISHED_DUSKROCK.get());
-
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.DECORATIONS, DDItems.ROPE.get(), 12)
                 .define('#', Items.STRING)
@@ -509,6 +357,178 @@ public class DDRecipeProvider extends RecipeProvider {
 
     }
 
+    protected static void stoneBlockSet(RecipeOutput recipeOutput, DDStoneBlockSet blockSet) {
+        generateBaseAndMiscRecipes(recipeOutput, blockSet);
+        generateStairsRecipes(recipeOutput, blockSet);
+        generateSlabRecipes(recipeOutput, blockSet);
+        generateVerticalSlabRecipes(recipeOutput, blockSet);
+        generateWallRecipes(recipeOutput, blockSet);
+        generatePillarRecipes(recipeOutput, blockSet);
+    }
+
+    public static void generateStairsRecipes(RecipeOutput recipeOutput, DDStoneBlockSet blockSet) {
+        var base = blockSet.getBase();
+        var polishedBase = blockSet.getPolished();
+        var bricksBase = blockSet.getBricks();
+        var mossyBase = blockSet.getMossyBricks();
+
+        var baseStairs = blockSet.getBaseStairs();
+        if (baseStairs != null && base != null) {
+            stonecutterResultFromBase(recipeOutput, baseStairs, base);
+            stairsBlock(recipeOutput, baseStairs, base.get().asItem());
+        }
+
+        var polishedStairs = blockSet.getPolishedStairs();
+        if (polishedStairs != null && base != null && polishedBase != null) {
+            stonecutterResultFromBase(recipeOutput, polishedStairs, base);
+            stonecutterResultFromBase(recipeOutput, polishedStairs, polishedBase);
+            stairsBlock(recipeOutput, polishedStairs, polishedBase.get().asItem());
+        }
+
+        var bricksStairs = blockSet.getBricksStairs();
+        if (bricksStairs != null && base != null && polishedBase != null && bricksBase != null) {
+            stonecutterResultFromBase(recipeOutput, bricksStairs, base);
+            stonecutterResultFromBase(recipeOutput, bricksStairs, polishedBase);
+            stonecutterResultFromBase(recipeOutput, bricksStairs, bricksBase);
+            stairsBlock(recipeOutput, bricksStairs, bricksBase.get().asItem());
+        }
+
+        var mossyStairs = blockSet.getMossyBricksStairs();
+        if (mossyStairs != null && mossyBase != null) {
+            stonecutterResultFromBase(recipeOutput, mossyStairs, mossyBase);
+            stairsBlock(recipeOutput, mossyStairs, mossyBase.get().asItem());
+        }
+    }
+
+    public static void generateSlabRecipes(RecipeOutput recipeOutput, DDStoneBlockSet blockSet) {
+        var base = blockSet.getBase();
+        var polishedBase = blockSet.getPolished();
+        var bricksBase = blockSet.getBricks();
+        var mossyBase = blockSet.getMossyBricks();
+
+        var baseSlab = blockSet.getBaseSlab();
+        if (baseSlab != null && base != null) {
+            stonecutterResultFromBase(recipeOutput, baseSlab, base, 2);
+            slabBlock(recipeOutput, baseSlab, base.get().asItem());
+        }
+
+        var polishedSlab = blockSet.getPolishedSlab();
+        if (polishedSlab != null && base != null && polishedBase != null) {
+            stonecutterResultFromBase(recipeOutput, polishedSlab, base, 2);
+            stonecutterResultFromBase(recipeOutput, polishedSlab, polishedBase, 2);
+            slabBlock(recipeOutput, polishedSlab, polishedBase.get().asItem());
+        }
+
+        var bricksSlab = blockSet.getBricksSlab();
+        if (bricksSlab != null && base != null && polishedBase != null && bricksBase != null) {
+            stonecutterResultFromBase(recipeOutput, bricksSlab, base, 2);
+            stonecutterResultFromBase(recipeOutput, bricksSlab, polishedBase, 2);
+            stonecutterResultFromBase(recipeOutput, bricksSlab, bricksBase, 2);
+            slabBlock(recipeOutput, bricksSlab, bricksBase.get().asItem());
+        }
+
+        var mossySlab = blockSet.getMossyBricksSlab();
+        if (mossySlab != null && mossyBase != null) {
+
+        }
+    }
+
+    public static void generateVerticalSlabRecipes(RecipeOutput recipeOutput, DDStoneBlockSet blockSet) {
+        var baseVerticalSlab = blockSet.getBaseVerticalSlab();
+        if (baseVerticalSlab != null) {
+
+        }
+
+        var polishedVerticalSlab = blockSet.getPolishedVerticalSlab();
+        if (polishedVerticalSlab != null) {
+
+        }
+
+        var bricksVerticalSlab = blockSet.getBricksVerticalSlab();
+        if (bricksVerticalSlab != null) {
+
+        }
+
+        var mossyVerticalSlab = blockSet.getMossyBricksVerticalSlab();
+        if (mossyVerticalSlab != null) {
+
+        }
+    }
+
+    public static void generateWallRecipes(RecipeOutput recipeOutput, DDStoneBlockSet blockSet) {
+        var base = blockSet.getBase();
+        var polishedBase = blockSet.getPolished();
+        var bricksBase = blockSet.getBricks();
+
+        var baseWall = blockSet.getBaseWall();
+        if (baseWall != null && base != null) {
+            stonecutterResultFromBase(recipeOutput, baseWall, base);
+            wallBlock(recipeOutput, baseWall, base.get().asItem());
+        }
+
+        var bricksWall = blockSet.getBricksWall();
+        if (bricksWall != null && base != null && polishedBase != null && bricksBase != null) {
+            stonecutterResultFromBase(recipeOutput, bricksWall, base);
+            stonecutterResultFromBase(recipeOutput, bricksWall, bricksBase);
+            stonecutterResultFromBase(recipeOutput, bricksWall, polishedBase);
+            wallBlock(recipeOutput, bricksWall, bricksBase.get().asItem());
+        }
+    }
+
+    public static void generatePillarRecipes(RecipeOutput recipeOutput, DDStoneBlockSet blockSet) {
+        var base = blockSet.getBase();
+        var polishedBase = blockSet.getPolished();
+        var pillar = blockSet.getPillar();
+
+        if (pillar != null && base != null && polishedBase != null) {
+            stonecutterResultFromBase(recipeOutput, pillar, base);
+            stonecutterResultFromBase(recipeOutput, pillar, polishedBase);
+            pillarBlock(recipeOutput, pillar, polishedBase.get().asItem());
+        }
+    }
+
+    public static void generateBaseAndMiscRecipes(RecipeOutput recipeOutput, DDStoneBlockSet blockSet) {
+        var base = blockSet.getBase();
+        var polishedBase = blockSet.getPolished();
+        var bricksBase = blockSet.getBricks();
+        var mossyBase = blockSet.getMossyBricks();
+        var chiseled = blockSet.getChiseled();
+        var cracked = blockSet.getCrackedBricks();
+
+        if (polishedBase != null && base != null) {
+            stonecutterResultFromBase(recipeOutput, polishedBase, base);
+            twoXtwo(recipeOutput, polishedBase, base.get().asItem(), 4);
+        }
+
+        if (bricksBase != null && base != null && polishedBase != null) {
+            stonecutterResultFromBase(recipeOutput, bricksBase, base);
+            stonecutterResultFromBase(recipeOutput, bricksBase, polishedBase);
+            twoXtwo(recipeOutput, bricksBase, polishedBase.get().asItem(), 4);
+        }
+
+        if(mossyBase != null) {
+
+        }
+
+        if (cracked != null && bricksBase != null) {
+            oreSmelting(recipeOutput,
+                    ImmutableList.of(bricksBase.get()),
+                    RecipeCategory.BUILDING_BLOCKS,
+                    cracked,
+                    0.1F,
+                    200,
+                    cracked.getId().getPath()
+            );
+        }
+
+        if (chiseled != null && base != null && polishedBase != null && bricksBase != null) {
+            stonecutterResultFromBase(recipeOutput, chiseled, base);
+            stonecutterResultFromBase(recipeOutput, chiseled, polishedBase);
+            stonecutterResultFromBase(recipeOutput, chiseled, bricksBase);
+
+            chiseled(recipeOutput, blockSet.getBricksSlab().asItem(), chiseled.asItem());
+        }
+    }
 
     protected static void stonecutterResultFromBase(RecipeOutput recipeOutput, ItemLike result, ItemLike ingredient) {
         stonecutterResultFromBase(recipeOutput, result, ingredient, 1);
@@ -528,7 +548,7 @@ public class DDRecipeProvider extends RecipeProvider {
         return BuiltInRegistries.ITEM.getKey(item.asItem()).getPath();
     }
 
-    private void chiseled(RecipeOutput recipeOutput, Item slab, Item result) {
+    private static void chiseled(RecipeOutput recipeOutput, Item slab, Item result) {
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, result)
                 .define('#', slab)
                 .pattern("#")
@@ -537,7 +557,7 @@ public class DDRecipeProvider extends RecipeProvider {
                 .save(recipeOutput);
     }
 
-    private void wallBlock(RecipeOutput recipeOutput, ItemLike result, Item item) {
+    private static void wallBlock(RecipeOutput recipeOutput, ItemLike result, Item item) {
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.BUILDING_BLOCKS, result, 6)
                 .define('#', item)
@@ -547,7 +567,7 @@ public class DDRecipeProvider extends RecipeProvider {
                 .save(recipeOutput);
     }
 
-    private void twoXtwo(RecipeOutput recipeOutput, ItemLike result, Item item, int count) {
+    private static void twoXtwo(RecipeOutput recipeOutput, ItemLike result, Item item, int count) {
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.BUILDING_BLOCKS, result, count)
                 .define('S', item)
@@ -570,7 +590,7 @@ public class DDRecipeProvider extends RecipeProvider {
                 .save(recipeOutput);
     }
 
-    private void stairsBlock(RecipeOutput recipeOutput, ItemLike result, Item item) {
+    private static void stairsBlock(RecipeOutput recipeOutput, ItemLike result, Item item) {
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.BUILDING_BLOCKS, result, 4)
                 .define('#', item)
@@ -592,7 +612,7 @@ public class DDRecipeProvider extends RecipeProvider {
                 .save(recipeOutput);
     }
 
-    private void slabBlock(RecipeOutput recipeOutput, ItemLike result, Item item) {
+    private static void slabBlock(RecipeOutput recipeOutput, ItemLike result, Item item) {
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.BUILDING_BLOCKS, result, 6)
                 .define('#', item)
@@ -601,7 +621,7 @@ public class DDRecipeProvider extends RecipeProvider {
                 .save(recipeOutput);
     }
 
-    private void pillarBlock(RecipeOutput recipeOutput, ItemLike result, Item item) {
+    private static void pillarBlock(RecipeOutput recipeOutput, ItemLike result, Item item) {
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.BUILDING_BLOCKS, result, 2)
                 .define('#', item)

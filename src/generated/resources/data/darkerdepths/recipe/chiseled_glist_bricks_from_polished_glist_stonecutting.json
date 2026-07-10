@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "darkerdepths:polished_glist"
+  },
+  "result": {
+    "count": 1,
+    "id": "darkerdepths:chiseled_glist_bricks"
+  }
+}
