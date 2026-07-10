@@ -1,7 +1,11 @@
-package com.naterbobber.darkerdepths.block.generic.relational;
+package com.naterbobber.darkerdepths.block.blocksets;
 
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.registries.DeferredBlock;
+
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Stream;
 
 public class StoneBlockSet {
     private final DeferredBlock<? extends Block> base;
@@ -26,6 +30,7 @@ public class StoneBlockSet {
     private final DeferredBlock<? extends Block> mossyBricksVerticalSlab;
     private final DeferredBlock<? extends Block> mossyBricksWall;
     private final DeferredBlock<? extends Block> pillar;
+    private final List<DeferredBlock<? extends Block>> allBlocks;
 
     protected StoneBlockSet(Builder builder) {
         this.base = builder.base;
@@ -50,6 +55,16 @@ public class StoneBlockSet {
         this.mossyBricksVerticalSlab = builder.mossyBricksVerticalSlab;
         this.mossyBricksWall = builder.mossyBricksWall;
         this.pillar = builder.pillar;
+
+        var blocksStream = Stream.of(
+                this.base, this.baseStairs, this.baseSlab, this.baseVerticalSlab, this.baseWall,
+                this.polished, this.polishedStairs, this.polishedSlab, this.polishedVerticalSlab,
+                this.bricks, this.bricksStairs, this.bricksSlab, this.bricksVerticalSlab, this.bricksWall,
+                this.crackedBricks, this.chiseled,
+                this.mossyBricks, this.mossyBricksStairs, this.mossyBricksSlab, this.mossyBricksVerticalSlab, this.mossyBricksWall,
+                this.pillar
+        );
+        this.allBlocks = blocksStream.filter(Objects::nonNull).toList();
     }
 
     public DeferredBlock<? extends Block> getBase() { return base; }
@@ -74,6 +89,10 @@ public class StoneBlockSet {
     public DeferredBlock<? extends Block> getMossyBricksVerticalSlab() { return mossyBricksVerticalSlab; }
     public DeferredBlock<? extends Block> getMossyBricksWall() { return mossyBricksWall; }
     public DeferredBlock<? extends Block> getPillar() { return pillar; }
+
+    public List<DeferredBlock<? extends Block>> getBlocks() {
+        return allBlocks;
+    }
 
     public static Builder builder() {
         var builder = new Builder();

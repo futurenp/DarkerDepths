@@ -1,9 +1,12 @@
 {
   "values": [
+    "darkerdepths:dead_living_crystal",
+    "darkerdepths:living_crystal",
+    "darkerdepths:geyser",
     "darkerdepths:darkslate",
+    "darkerdepths:darkslate_stairs",
     "darkerdepths:darkslate_slab",
     "darkerdepths:darkslate_vertical_slab",
-    "darkerdepths:darkslate_stairs",
     "darkerdepths:darkslate_wall",
     "darkerdepths:polished_darkslate",
     "darkerdepths:polished_darkslate_stairs",
@@ -14,11 +17,8 @@
     "darkerdepths:darkslate_bricks_slab",
     "darkerdepths:darkslate_bricks_vertical_slab",
     "darkerdepths:darkslate_bricks_wall",
-    "darkerdepths:chiseled_darkslate_bricks",
     "darkerdepths:cracked_darkslate_bricks",
-    "darkerdepths:darkslate_pillar",
-    "darkerdepths:dead_living_crystal",
-    "darkerdepths:living_crystal",
-    "darkerdepths:geyser"
+    "darkerdepths:chiseled_darkslate_bricks",
+    "darkerdepths:darkslate_pillar"
   ]
 }

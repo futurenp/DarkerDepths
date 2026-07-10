@@ -1,9 +1,8 @@
-package com.naterbobber.darkerdepths.block.generic.relational;
+package com.naterbobber.darkerdepths.block.blocksets;
 
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import com.naterbobber.darkerdepths.init.DDItems;
 import com.naterbobber.darkerdepths.util.DDTags;
-import net.minecraft.data.BlockFamily;
 
 import java.util.Set;
 

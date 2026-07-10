@@ -1,13 +1,13 @@
 package com.naterbobber.darkerdepths.data.tags;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
+import com.naterbobber.darkerdepths.block.blocksets.DDBlockSets;
 import com.naterbobber.darkerdepths.block.generic.VerticalSlabBlock;
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import com.naterbobber.darkerdepths.util.DDTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.*;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
@@ -15,7 +15,6 @@ import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
@@ -31,8 +30,8 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
         generateMinableTags();
         generateNeedsToolTags();
         generateModTags();
-        generateWoodenTags();
-        generateCompatTags();
+        generateWoodBlockSetTags();
+        generateStoneBlockSetTags();
     }
 
     private void generateMinableTags() {
@@ -50,94 +49,10 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
         this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(
                 DDBlocks.CRYSTAL_HUSK.get(),
                 DDBlocks.LIVING_CRYSTAL.get(),
-                DDBlocks.DARKSLATE.get(),
-                DDBlocks.ARIDROCK.get(),
-                DDBlocks.DUSKROCK.get(),
-                DDBlocks.GRIMESTONE.get(),
-                DDBlocks.GLIST.get(),
-                DDBlocks.DARKSLATE_SLAB.get(),
-                DDBlocks.DARKSLATE_VERTICAL_SLAB.get(),
-                DDBlocks.DARKSLATE_STAIRS.get(),
-                DDBlocks.DARKSLATE_WALL.get(),
-                DDBlocks.ARIDROCK_SLAB.get(),
-                DDBlocks.ARIDROCK_VERTICAL_SLAB.get(),
-                DDBlocks.ARIDROCK_STAIRS.get(),
-                DDBlocks.ARIDROCK_WALL.get(),
-                DDBlocks.DUSKROCK_SLAB.get(),
-                DDBlocks.DUSKROCK_VERTICAL_SLAB.get(),
-                DDBlocks.DUSKROCK_STAIRS.get(),
-                DDBlocks.DUSKROCK_WALL.get(),
-                DDBlocks.GRIMESTONE_SLAB.get(),
-                DDBlocks.GRIMESTONE_VERTICAL_SLAB.get(),
-                DDBlocks.GRIMESTONE_STAIRS.get(),
-                DDBlocks.GRIMESTONE_WALL.get(),
-                DDBlocks.GLIST_SLAB.get(),
-                DDBlocks.GLIST_VERTICAL_SLAB.get(),
-                DDBlocks.GLIST_STAIRS.get(),
-                DDBlocks.GLIST_WALL.get(),
-                DDBlocks.POLISHED_DARKSLATE.get(),
-                DDBlocks.POLISHED_DARKSLATE_SLAB.get(),
-                DDBlocks.POLISHED_DARKSLATE_VERTICAL_SLAB.get(),
-                DDBlocks.POLISHED_DARKSLATE_STAIRS.get(),
-                DDBlocks.POLISHED_ARIDROCK.get(),
-                DDBlocks.POLISHED_ARIDROCK_SLAB.get(),
-                DDBlocks.POLISHED_ARIDROCK_VERTICAL_SLAB.get(),
-                DDBlocks.POLISHED_ARIDROCK_STAIRS.get(),
-                DDBlocks.POLISHED_DUSKROCK.get(),
-                DDBlocks.POLISHED_DUSKROCK_SLAB.get(),
-                DDBlocks.POLISHED_DUSKROCK_STAIRS.get(),
-                DDBlocks.POLISHED_GRIMESTONE.get(),
-                DDBlocks.POLISHED_GRIMESTONE_SLAB.get(),
-                DDBlocks.POLISHED_GRIMESTONE_VERTICAL_SLAB.get(),
-                DDBlocks.POLISHED_GRIMESTONE_STAIRS.get(),
-                DDBlocks.POLISHED_GLIST.get(),
-                DDBlocks.POLISHED_GLIST_SLAB.get(),
-                DDBlocks.POLISHED_GLIST_VERTICAL_SLAB.get(),
-                DDBlocks.POLISHED_GLIST_STAIRS.get(),
-                DDBlocks.DARKSLATE_BRICKS.get(),
-                DDBlocks.DARKSLATE_BRICKS_STAIRS.get(),
-                DDBlocks.DARKSLATE_BRICKS_SLAB.get(),
-                DDBlocks.DARKSLATE_BRICKS_VERTICAL_SLAB.get(),
-                DDBlocks.DARKSLATE_BRICKS_WALL.get(),
-                DDBlocks.ARIDROCK_BRICKS.get(),
-                DDBlocks.ARIDROCK_BRICKS_STAIRS.get(),
-                DDBlocks.ARIDROCK_BRICKS_SLAB.get(),
-                DDBlocks.ARIDROCK_BRICKS_VERTICAL_SLAB.get(),
-                DDBlocks.ARIDROCK_BRICKS_WALL.get(),
-                DDBlocks.DUSKROCK_BRICKS.get(),
-                DDBlocks.DUSKROCK_BRICKS_STAIRS.get(),
-                DDBlocks.DUSKROCK_BRICKS_SLAB.get(),
-                DDBlocks.DUSKROCK_BRICKS_VERTICAL_SLAB.get(),
-                DDBlocks.DUSKROCK_BRICKS_WALL.get(),
-                DDBlocks.GRIMESTONE_BRICKS.get(),
-                DDBlocks.GRIMESTONE_BRICKS_STAIRS.get(),
-                DDBlocks.GRIMESTONE_BRICKS_SLAB.get(),
-                DDBlocks.GRIMESTONE_BRICKS_VERTICAL_SLAB.get(),
-                DDBlocks.GRIMESTONE_BRICKS_WALL.get(),
-                DDBlocks.MOSSY_GRIMESTONE_BRICKS.get(),
-                DDBlocks.MOSSY_GRIMESTONE_BRICKS_STAIRS.get(),
-                DDBlocks.MOSSY_GRIMESTONE_BRICKS_SLAB.get(),
-                DDBlocks.MOSSY_GRIMESTONE_BRICKS_VERTICAL_SLAB.get(),
-                DDBlocks.MOSSY_GRIMESTONE_BRICKS_WALL.get(),
-                DDBlocks.GLIST_BRICKS.get(),
-                DDBlocks.GLIST_BRICKS_STAIRS.get(),
-                DDBlocks.GLIST_BRICKS_SLAB.get(),
-                DDBlocks.GLIST_BRICKS_VERTICAL_SLAB.get(),
-                DDBlocks.GLIST_BRICKS_WALL.get(),
                 DDBlocks.AMBER_BLOCK.get(),
                 DDBlocks.AMBER_CLUSTER.get(),
                 DDBlocks.GEYSER.get(),
                 DDBlocks.MOSSY_GRIMESTONE.get(),
-                DDBlocks.CRACKED_DARKSLATE_BRICKS.get(),
-                DDBlocks.CRACKED_ARIDROCK_BRICKS.get(),
-                DDBlocks.CRACKED_DUSKROCK_BRICKS.get(),
-                DDBlocks.CRACKED_GRIMESTONE_BRICKS.get(),
-                DDBlocks.CRACKED_GLIST_BRICKS.get(),
-                DDBlocks.CHISELED_DARKSLATE_BRICKS.get(),
-                DDBlocks.CHISELED_ARIDROCK_BRICKS.get(),
-                DDBlocks.CHISELED_DUSKROCK_BRICKS.get(),
-                DDBlocks.CHISELED_GRIMESTONE_BRICKS.get(),
-                DDBlocks.CHISELED_GLIST_BRICKS.get(),
                 DDBlocks.STONE_MELON.get(),
                 DDBlocks.CRYSTAL_MELON.get(),
                 DDBlocks.ARID_DEEPSLATE.get(),
@@ -150,11 +65,6 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
                 DDBlocks.PARANOIA_ALTAR.get(),
                 DDBlocks.CRYSTAL_MELON.get(),
                 DDBlocks.FORSAKEN_BRONZE_BLOCK.get(),
-                DDBlocks.ARIDROCK_PILLAR.get(),
-                DDBlocks.GRIMESTONE_PILLAR.get(),
-                DDBlocks.DUSKROCK_PILLAR.get(),
-                DDBlocks.DARKSLATE_PILLAR.get(),
-                DDBlocks.GLIST_PILLAR.get(),
                 DDBlocks.MAGMA_PAD.get()
         );
 
@@ -162,38 +72,6 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
                 DDBlocks.ASH.get(),
                 DDBlocks.ASH_BLOCK.get()
         );
-
-        List<Block> PETRIFIED = List.of(
-                DDBlocks.PETRIFIED_PLANKS.get(),
-                DDBlocks.PETRIFIED_SLAB.get(),
-                DDBlocks.PETRIFIED_VERTICAL_SLAB.get(),
-                DDBlocks.PETRIFIED_STAIRS.get(),
-                DDBlocks.PETRIFIED_PRESSURE_PLATE.get(),
-                DDBlocks.PETRIFIED_BUTTON.get(),
-                DDBlocks.PETRIFIED_POST.get(),
-                DDBlocks.STRIPPED_PETRIFIED_POST.get(),
-                DDBlocks.PETRIFIED_FENCE.get(),
-                DDBlocks.PETRIFIED_FENCE_GATE.get(),
-                DDBlocks.PETRIFIED_DOOR.get(),
-                DDBlocks.PETRIFIED_TRAPDOOR.get(),
-                DDBlocks.PETRIFIED_SIGN.get(),
-                DDBlocks.PETRIFIED_HANGING_SIGN.get(),
-                DDBlocks.PETRIFIED_WALL_SIGN.get(),
-                DDBlocks.PETRIFIED_WALL_HANGING_SIGN.get(),
-                DDBlocks.PETRIFIED_LOG.get(),
-                DDBlocks.STRIPPED_PETRIFIED_LOG.get(),
-                DDBlocks.PETRIFIED_WOOD.get(),
-                DDBlocks.STRIPPED_PETRIFIED_WOOD.get(),
-                DDBlocks.POROUS_PETRIFIED_LOG.get(),
-                DDBlocks.PETRIFIED_BOARDS.get(),
-                DDBlocks.PETRIFIED_BOOKSHELF.get(),
-                DDBlocks.TRIMMED_PETRIFIED_PLANKS.get()
-        );
-
-        PETRIFIED.forEach(block -> {
-            this.tag(BlockTags.MINEABLE_WITH_AXE).add(block);
-            this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(block);
-        });
     }
 
     private void generateNeedsToolTags() {
@@ -246,50 +124,20 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
                 .addTag(BlockTags.LEAVES)
                 .addTag(BlockTags.RAILS);
 
-        this.tag(BlockTags.LOGS).add(
-                DDBlocks.PETRIFIED_LOG.get(),
-                DDBlocks.STRIPPED_PETRIFIED_LOG.get(),
-                DDBlocks.PETRIFIED_WOOD.get(),
-                DDBlocks.STRIPPED_PETRIFIED_WOOD.get(),
-                DDBlocks.GLOWSHROOM_HYPHAE.get(),
-                DDBlocks.GLOWSHROOM_STEM.get(),
-                DDBlocks.STRIPPED_GLOWSHROOM_HYPHAE.get(),
-                DDBlocks.STRIPPED_GLOWSHROOM_STEM.get()
-        );
-
         this.tag(BlockTags.BASE_STONE_OVERWORLD).add(
                 DDBlocks.DARKSLATE.get()
         );
 
         this.tag(BlockTags.DEEPSLATE_ORE_REPLACEABLES).add(
-                DDBlocks.DARKSLATE.get(),
                 DDBlocks.MOSSY_GRIMESTONE.get(),
-                DDBlocks.GRIMESTONE.get(),
-                DDBlocks.GLIST.get(),
-                DDBlocks.ARIDROCK.get(),
-                DDBlocks.DUSKROCK.get(),
                 Blocks.PACKED_MUD
-        );
-
-        this.tag(DDTags.Blocks.CATACOMBS_STRIPE_REPLACEABLE).add(
-                DDBlocks.ARIDROCK.get(),
-                Blocks.PACKED_MUD
-        );
-
-        this.tag(DDTags.Blocks.MAGMA_STRIPE_REPLACEABLE).add(
-                DDBlocks.DARKSLATE.get(),
-                Blocks.TUFF
         );
 
         this.tag(BlockTags.OVERWORLD_CARVER_REPLACEABLES).add(
-                DDBlocks.ARIDROCK.get(),
-                DDBlocks.DUSKROCK.get(),
                 DDBlocks.ARID_DEEPSLATE.get(),
                 Blocks.PACKED_MUD,
                 Blocks.MAGMA_BLOCK,
-                DDBlocks.GRIMESTONE.get(),
-                DDBlocks.MOSSY_GRIMESTONE.get(),
-                DDBlocks.GLIST.get()
+                DDBlocks.MOSSY_GRIMESTONE.get()
         );
 
         this.tag(DDTags.Blocks.ARID_GROUND).add(
@@ -316,23 +164,12 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
             DDBlocks.GLOWSHROOM_PILEUS.get()
         ).addTag(BlockTags.BASE_STONE_OVERWORLD);
 
-        this.tag(BlockTags.PLANKS).add(
-                DDBlocks.PETRIFIED_PLANKS.get(),
-                DDBlocks.GLOWSHROOM_PLANKS.get()
-        );
-
         this.tag(DDTags.Blocks.HUSKS_SPAWNABLE_ON).add(DDBlocks.ARIDROCK.get());
+
         this.tag(BlockTags.BEACON_BASE_BLOCKS).add(DDBlocks.FORSAKEN_BRONZE_BLOCK.get());
 
         this.tag(BlockTags.WALL_POST_OVERRIDE).add(
-                DDBlocks.PETRIFIED_SIGN.get(),
-                DDBlocks.PETRIFIED_WALL_SIGN.get(),
-                DDBlocks.VOID_SOUL_TORCH.get(),
-                DDBlocks.PETRIFIED_PRESSURE_PLATE.get(),
-                DDBlocks.GLOWSHROOM_PRESSURE_PLATE.get(),
-                DDBlocks.GLOWSHROOM_SIGN.get(),
-                DDBlocks.GLOWSHROOM_WALL_SIGN.get()
-        );
+                DDBlocks.VOID_SOUL_TORCH.get());
 
         this.tag(BlockTags.SNAPS_GOAT_HORN).add(
                 DDBlocks.PETRIFIED_LOG.get(),
@@ -342,19 +179,9 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
                 DDBlocks.GLOWSHROOM_HYPHAE.get()
         );
 
-        this.tag(BlockTags.ENCHANTMENT_POWER_PROVIDER).add(
-                DDBlocks.PETRIFIED_BOOKSHELF.get(),
-                DDBlocks.GLOWSHROOM_BOOKSHELF.get()
-        );
-
         this.tag(Tags.Blocks.STORAGE_BLOCKS).add(
                 DDBlocks.FORSAKEN_BRONZE_BLOCK.get(),
                 DDBlocks.AMBER_BLOCK.get()
-        );
-
-        this.tag(Tags.Blocks.BOOKSHELVES).add(
-                DDBlocks.PETRIFIED_BOOKSHELF.get(),
-                DDBlocks.GLOWSHROOM_BOOKSHELF.get()
         );
 
         this.tag(BlockTags.REPLACEABLE).add(
@@ -369,11 +196,7 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
         );
 
         this.tag(BlockTags.LUSH_GROUND_REPLACEABLE).add(
-                DDBlocks.ARIDROCK.get(),
-                DDBlocks.GRIMESTONE.get(),
-                DDBlocks.MOSSY_GRIMESTONE.get(),
-                DDBlocks.DUSKROCK.get(),
-                DDBlocks.GLIST.get()
+                DDBlocks.MOSSY_GRIMESTONE.get()
         );
 
         this.tag(BlockTags.SWORD_EFFICIENT).add(
@@ -411,23 +234,6 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
         );
 
         this.tag(DDTags.Blocks.HEATABLE).add(
-                DDBlocks.DARKSLATE.get(),
-                DDBlocks.DARKSLATE_SLAB.get(),
-                DDBlocks.DARKSLATE_VERTICAL_SLAB.get(),
-                DDBlocks.DARKSLATE_STAIRS.get(),
-                DDBlocks.DARKSLATE_WALL.get(),
-                DDBlocks.POLISHED_DARKSLATE.get(),
-                DDBlocks.POLISHED_DARKSLATE_STAIRS.get(),
-                DDBlocks.POLISHED_DARKSLATE_SLAB.get(),
-                DDBlocks.POLISHED_DARKSLATE_VERTICAL_SLAB.get(),
-                DDBlocks.DARKSLATE_BRICKS.get(),
-                DDBlocks.DARKSLATE_BRICKS_STAIRS.get(),
-                DDBlocks.DARKSLATE_BRICKS_SLAB.get(),
-                DDBlocks.DARKSLATE_BRICKS_VERTICAL_SLAB.get(),
-                DDBlocks.DARKSLATE_BRICKS_WALL.get(),
-                DDBlocks.CHISELED_DARKSLATE_BRICKS.get(),
-                DDBlocks.CRACKED_DARKSLATE_BRICKS.get(),
-                DDBlocks.DARKSLATE_PILLAR.get(),
                 DDBlocks.CRYSTAL_HUSK.get(),
                 DDBlocks.LIVING_CRYSTAL.get(),
                 DDBlocks.GEYSER.get()
@@ -440,93 +246,116 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
                 .addOptionalTag(DDTags.Blocks.LOW_HEAT);
     }
 
-    private void generateWoodenTags() {
-        this.tag(BlockTags.WOODEN_DOORS).add(
-                DDBlocks.PETRIFIED_DOOR.get(),
-                DDBlocks.GLOWSHROOM_DOOR.get()
-        );
+    private void generateStoneBlockSetTags() {
+        DDBlockSets.STONE_BLOCK_SETS.forEach(set -> {
+            set.getBlocks().stream().map(DeferredHolder::get).forEach(block -> {
+                this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(block);
 
-        this.tag(BlockTags.WOODEN_TRAPDOORS).add(
-                DDBlocks.PETRIFIED_TRAPDOOR.get(),
-                DDBlocks.GLOWSHROOM_TRAPDOOR.get()
-        );
+                if (set == DDBlockSets.DARKSLATE) {
+                    this.tag(DDTags.Blocks.HEATABLE).add(block);
+                }
+            });
 
-        this.tag(BlockTags.WOODEN_SLABS).add(
-                DDBlocks.PETRIFIED_SLAB.get(),
-                DDBlocks.GLOWSHROOM_SLAB.get()
-        );
-
-        this.tag(BlockTags.WOODEN_STAIRS).add(
-                DDBlocks.PETRIFIED_STAIRS.get(),
-                DDBlocks.GLOWSHROOM_STAIRS.get()
-        );
-
-        this.tag(BlockTags.WOODEN_BUTTONS).add(
-                DDBlocks.PETRIFIED_BUTTON.get(),
-                DDBlocks.GLOWSHROOM_BUTTON.get()
-        );
-
-        this.tag(BlockTags.WOODEN_PRESSURE_PLATES).add(
-                DDBlocks.PETRIFIED_PRESSURE_PLATE.get(),
-                DDBlocks.GLOWSHROOM_PRESSURE_PLATE.get()
-        );
-
-        this.tag(BlockTags.WOODEN_FENCES).add(
-                DDBlocks.PETRIFIED_FENCE.get(),
-                DDBlocks.GLOWSHROOM_FENCE.get()
-        );
+            var base = set.getBase();
+            if (base != null) {
+                var baseBlock = base.get();
+                this.tag(BlockTags.DEEPSLATE_ORE_REPLACEABLES).add(baseBlock);
+                this.tag(BlockTags.OVERWORLD_CARVER_REPLACEABLES).add(baseBlock);
+                this.tag(BlockTags.LUSH_GROUND_REPLACEABLE).add(baseBlock);
+            }
+        });
     }
 
-    private void generateCompatTags() {
-        this.tag(DDTags.Blocks.WOODEN_BOOKSHELVES).add(
-                DDBlocks.PETRIFIED_BOOKSHELF.get()
-        );
+    private void generateWoodBlockSetTags() {
+        DDBlockSets.WOOD_BLOCK_SETS.forEach(set -> {
+            set.getBlocks().stream().map(DeferredHolder::get).forEach(block -> {
+                this.tag(BlockTags.MINEABLE_WITH_AXE).add(block);
 
-        this.tag(DDTags.Blocks.TRIMMED_PLANKS).add(
-                DDBlocks.TRIMMED_PETRIFIED_PLANKS.get()
-        );
+                if (set == DDBlockSets.PETRIFIED) {
+                    this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(block);
+                }
+            });
 
-        this.tag(DDTags.Blocks.WOODEN_BOARDS).add(
-                DDBlocks.PETRIFIED_BOARDS.get()
-        );
+            this.tag(BlockTags.LOGS).add(
+                    set.getLog().get(),
+                    set.getWood().get(),
+                    set.getStrippedLog().get(),
+                    set.getStrippedWood().get()
+            );
+            this.tag(BlockTags.WOODEN_DOORS).add(set.getDoor().get());
+            this.tag(BlockTags.WOODEN_TRAPDOORS).add(set.getTrapdoor().get());
+            this.tag(BlockTags.WOODEN_SLABS).add(set.getSlab().get());
+            this.tag(BlockTags.WOODEN_STAIRS).add(set.getStairs().get());
+            this.tag(BlockTags.WOODEN_BUTTONS).add(set.getButton().get());
+            this.tag(BlockTags.WOODEN_PRESSURE_PLATES).add(set.getPressurePlate().get());
+            this.tag(BlockTags.WOODEN_FENCES).add(set.getFence().get());
+            this.tag(BlockTags.PLANKS).add(set.getPlanks().get());
+            this.tag(BlockTags.WALL_POST_OVERRIDE).add(
+                    set.getSign().get(),
+                    set.getWallSign().get(),
+                    set.getPressurePlate().get()
+            );
+            this.tag(BlockTags.SNAPS_GOAT_HORN).add(
+                    set.getLog().get(),
+                    set.getWood().get()
+            );
+            this.tag(BlockTags.ENCHANTMENT_POWER_PROVIDER).add(set.getBookshelf().get());
 
-        this.tag(DDTags.Blocks.VERTICAL_PLANKS).add(
-                DDBlocks.VERTICAL_PETRIFIED_PLANKS.get()
-        );
-
-        this.tag(DDTags.Blocks.POSTS).add(
-                DDBlocks.PETRIFIED_POST.get(),
-                DDBlocks.STRIPPED_PETRIFIED_POST.get(),
-                DDBlocks.GLOWSHROOM_POST.get(),
-                DDBlocks.STRIPPED_GLOWSHROOM_POST.get()
-        );
+            this.tag(Tags.Blocks.BOOKSHELVES).add(set.getBookshelf().get());
+            this.tag(DDTags.Blocks.WOODEN_BOOKSHELVES).add(set.getBookshelf().get());
+            this.tag(DDTags.Blocks.TRIMMED_PLANKS).add(set.getTrimmedPlanks().get());
+            this.tag(DDTags.Blocks.WOODEN_BOARDS).add(set.getBoards().get());
+            this.tag(DDTags.Blocks.VERTICAL_PLANKS).add(set.getVerticalPlanks().get());
+            this.tag(DDTags.Blocks.POSTS).add(
+                    set.getPost().get(),
+                    set.getStrippedPost().get()
+            );
+        });
     }
 
     private void generateTypeTags() {
-        addType(SlabBlock.class, BlockTags.SLABS);
-        addType(StairBlock.class, BlockTags.STAIRS);
-        addType(WallBlock.class, BlockTags.WALLS);
-        addType(DoorBlock.class, BlockTags.DOORS);
-        addType(TrapDoorBlock.class, BlockTags.TRAPDOORS);
-        addType(ButtonBlock.class, BlockTags.BUTTONS);
-        addType(PressurePlateBlock.class, BlockTags.PRESSURE_PLATES);
-        addType(StandingSignBlock.class, BlockTags.STANDING_SIGNS, BlockTags.SIGNS);
-        addType(WallSignBlock.class, BlockTags.WALL_SIGNS, BlockTags.SIGNS);
-        addType(WallHangingSignBlock.class, BlockTags.WALL_HANGING_SIGNS, BlockTags.ALL_HANGING_SIGNS);
-        addType(CeilingHangingSignBlock.class, BlockTags.CEILING_HANGING_SIGNS, BlockTags.ALL_HANGING_SIGNS);
-        addType(SignBlock.class, BlockTags.ALL_SIGNS);
-        addType(FenceBlock.class, BlockTags.FENCES);
-        addType(FenceGateBlock.class, BlockTags.FENCE_GATES, Tags.Blocks.FENCE_GATES, Tags.Blocks.FENCE_GATES_WOODEN);
-        addType(VerticalSlabBlock.class, DDTags.Blocks.VERTICAL_SLAB);
-        addType(FlowerPotBlock.class, BlockTags.FLOWER_POTS);
-    }
-
-    @SafeVarargs
-    private void addType(Class<? extends Block> blockType, TagKey<Block>... tags) {
         DDBlocks.BLOCKS.getEntries()
                 .stream()
                 .map(DeferredHolder::get)
-                .filter(blockType::isInstance)
-                .forEach(block -> Arrays.stream(tags).forEach(tag -> this.tag(tag).add(block)));
+                .forEach(block -> {
+                    switch (block) {
+                        case SlabBlock b -> this.tag(BlockTags.SLABS).add(block);
+                        case StairBlock b -> this.tag(BlockTags.STAIRS).add(block);
+                        case WallBlock b -> this.tag(BlockTags.WALLS).add(block);
+                        case DoorBlock b -> this.tag(BlockTags.DOORS).add(block);
+                        case TrapDoorBlock b -> this.tag(BlockTags.TRAPDOORS).add(block);
+                        case ButtonBlock b -> this.tag(BlockTags.BUTTONS).add(block);
+                        case PressurePlateBlock b -> this.tag(BlockTags.PRESSURE_PLATES).add(block);
+                        case StandingSignBlock b -> {
+                            this.tag(BlockTags.STANDING_SIGNS).add(block);
+                            this.tag(BlockTags.SIGNS).add(block);
+                            this.tag(BlockTags.ALL_SIGNS).add(block);
+                        }
+                        case WallSignBlock b -> {
+                            this.tag(BlockTags.WALL_SIGNS).add(block);
+                            this.tag(BlockTags.SIGNS).add(block);
+                            this.tag(BlockTags.ALL_SIGNS).add(block);
+                        }
+                        case WallHangingSignBlock b -> {
+                            this.tag(BlockTags.WALL_HANGING_SIGNS).add(block);
+                            this.tag(BlockTags.ALL_HANGING_SIGNS).add(block);
+                            this.tag(BlockTags.ALL_SIGNS).add(block);
+                        }
+                        case CeilingHangingSignBlock b -> {
+                            this.tag(BlockTags.CEILING_HANGING_SIGNS).add(block);
+                            this.tag(BlockTags.ALL_HANGING_SIGNS).add(block);
+                            this.tag(BlockTags.ALL_SIGNS).add(block);
+                        }
+                        case FenceBlock b -> this.tag(BlockTags.FENCES).add(block);
+                        case FenceGateBlock b -> {
+                            this.tag(BlockTags.FENCE_GATES).add(block);
+                            this.tag(Tags.Blocks.FENCE_GATES).add(block);
+                            this.tag(Tags.Blocks.FENCE_GATES_WOODEN).add(block);
+                        }
+                        case VerticalSlabBlock b -> this.tag(DDTags.Blocks.VERTICAL_SLAB).add(block);
+                        case FlowerPotBlock b -> this.tag(BlockTags.FLOWER_POTS).add(block);
+                        default -> {}
+                    }
+                });
     }
 }

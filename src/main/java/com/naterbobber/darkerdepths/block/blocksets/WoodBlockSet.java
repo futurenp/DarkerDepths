@@ -1,10 +1,14 @@
-package com.naterbobber.darkerdepths.block.generic.relational;
+package com.naterbobber.darkerdepths.block.blocksets;
 
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredItem;
+
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Stream;
 
 public class WoodBlockSet {
     private final DeferredBlock<? extends Block> log;
@@ -34,6 +38,7 @@ public class WoodBlockSet {
     private final DeferredItem<? extends Item> boat;
     private final DeferredItem<? extends Item> chestBoat;
     private final TagKey<Item> logTag;
+    private final List<DeferredBlock<? extends Block>> allBlocks;
 
     protected WoodBlockSet(Builder builder) {
         this.log = builder.log;
@@ -63,6 +68,14 @@ public class WoodBlockSet {
         this.boat = builder.boat;
         this.chestBoat = builder.chestBoat;
         this.logTag = builder.logTag;
+
+        var blocksStream = Stream.of(
+                this.log, this.wood, this.strippedLog, this.strippedWood, this.planks, this.boards, this.verticalPlanks,
+                this.stairs, this.slab, this.verticalSlab, this.trimmedPlanks, this.fence, this.fenceGate, this.door,
+                this.trapdoor, this.bookshelf, this.pressurePlate, this.button, this.sign, this.wallSign,
+                this.hangingSign, this.wallHangingSign, this.post, this.strippedPost
+        );
+        this.allBlocks = blocksStream.filter(Objects::nonNull).toList();
     }
 
     public DeferredBlock<? extends Block> getLog() { return log; }
@@ -92,6 +105,10 @@ public class WoodBlockSet {
     public DeferredItem<? extends Item> getBoat() { return boat; }
     public DeferredItem<? extends Item> getChestBoat() { return chestBoat; }
     public TagKey<Item> getLogTag() { return logTag; }
+
+    public List<DeferredBlock<? extends Block>> getBlocks() {
+        return allBlocks;
+    }
 
     public static Builder builder() {
         return new Builder();

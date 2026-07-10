@@ -2,9 +2,9 @@ package com.naterbobber.darkerdepths.data.recipes;
 
 import com.google.common.collect.ImmutableList;
 import com.naterbobber.darkerdepths.DarkerDepths;
-import com.naterbobber.darkerdepths.block.generic.relational.DDBlockSets;
-import com.naterbobber.darkerdepths.block.generic.relational.StoneBlockSet;
-import com.naterbobber.darkerdepths.block.generic.relational.WoodBlockSet;
+import com.naterbobber.darkerdepths.block.blocksets.DDBlockSets;
+import com.naterbobber.darkerdepths.block.blocksets.StoneBlockSet;
+import com.naterbobber.darkerdepths.block.blocksets.WoodBlockSet;
 import com.naterbobber.darkerdepths.compat.DDCompat;
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import com.naterbobber.darkerdepths.init.DDItems;
