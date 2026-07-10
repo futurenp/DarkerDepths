@@ -1,6 +1,7 @@
 {
   "type": "minecraft:crafting_shaped",
   "category": "misc",
+  "group": "boat",
   "key": {
     "#": {
       "item": "darkerdepths:petrified_planks"

@@ -1,11 +1,14 @@
 package com.naterbobber.darkerdepths.block.generic.relational;
 
 import com.naterbobber.darkerdepths.init.DDBlocks;
+import com.naterbobber.darkerdepths.init.DDItems;
+import com.naterbobber.darkerdepths.util.DDTags;
+import net.minecraft.data.BlockFamily;
 
 import java.util.Set;
 
 public class DDBlockSets {
-    public static final DDStoneBlockSet DARKSLATE = DDStoneBlockSet.builder()
+    public static final StoneBlockSet DARKSLATE = StoneBlockSet.builder()
             .base(DDBlocks.DARKSLATE)
             .baseStairs(DDBlocks.DARKSLATE_STAIRS)
             .baseSlab(DDBlocks.DARKSLATE_SLAB)
@@ -25,7 +28,7 @@ public class DDBlockSets {
             .pillar(DDBlocks.DARKSLATE_PILLAR)
             .build();
 
-    public static final DDStoneBlockSet ARIDROCK = DDStoneBlockSet.builder()
+    public static final StoneBlockSet ARIDROCK = StoneBlockSet.builder()
             .base(DDBlocks.ARIDROCK)
             .baseStairs(DDBlocks.ARIDROCK_STAIRS)
             .baseSlab(DDBlocks.ARIDROCK_SLAB)
@@ -45,7 +48,7 @@ public class DDBlockSets {
             .pillar(DDBlocks.ARIDROCK_PILLAR)
             .build();
 
-    public static final DDStoneBlockSet DUSKROCK = DDStoneBlockSet.builder()
+    public static final StoneBlockSet DUSKROCK = StoneBlockSet.builder()
             .base(DDBlocks.DUSKROCK)
             .baseStairs(DDBlocks.DUSKROCK_STAIRS)
             .baseSlab(DDBlocks.DUSKROCK_SLAB)
@@ -65,7 +68,7 @@ public class DDBlockSets {
             .pillar(DDBlocks.DUSKROCK_PILLAR)
             .build();
 
-    public static final DDStoneBlockSet GRIMESTONE = DDStoneBlockSet.builder()
+    public static final StoneBlockSet GRIMESTONE = StoneBlockSet.builder()
             .base(DDBlocks.GRIMESTONE)
             .baseStairs(DDBlocks.GRIMESTONE_STAIRS)
             .baseSlab(DDBlocks.GRIMESTONE_SLAB)
@@ -90,7 +93,7 @@ public class DDBlockSets {
             .pillar(DDBlocks.GRIMESTONE_PILLAR)
             .build();
 
-    public static final DDStoneBlockSet GLIST = DDStoneBlockSet.builder()
+    public static final StoneBlockSet GLIST = StoneBlockSet.builder()
             .base(DDBlocks.GLIST)
             .baseStairs(DDBlocks.GLIST_STAIRS)
             .baseSlab(DDBlocks.GLIST_SLAB)
@@ -110,11 +113,72 @@ public class DDBlockSets {
             .pillar(DDBlocks.GLIST_PILLAR)
             .build();
 
-    public static final Set<DDStoneBlockSet> STONE_BLOCK_SETS = Set.of(
+    public static final WoodBlockSet PETRIFIED = WoodBlockSet.builder()
+            .log(DDBlocks.PETRIFIED_LOG)
+            .wood(DDBlocks.PETRIFIED_WOOD)
+            .strippedLog(DDBlocks.STRIPPED_PETRIFIED_LOG)
+            .strippedWood(DDBlocks.STRIPPED_PETRIFIED_WOOD)
+            .planks(DDBlocks.PETRIFIED_PLANKS)
+            .boards(DDBlocks.PETRIFIED_BOARDS)
+            .verticalPlanks(DDBlocks.VERTICAL_PETRIFIED_PLANKS)
+            .stairs(DDBlocks.PETRIFIED_STAIRS)
+            .slab(DDBlocks.PETRIFIED_SLAB)
+            .verticalSlab(DDBlocks.PETRIFIED_VERTICAL_SLAB)
+            .trimmedPlanks(DDBlocks.TRIMMED_PETRIFIED_PLANKS)
+            .fence(DDBlocks.PETRIFIED_FENCE)
+            .fenceGate(DDBlocks.PETRIFIED_FENCE_GATE)
+            .door(DDBlocks.PETRIFIED_DOOR)
+            .trapdoor(DDBlocks.PETRIFIED_TRAPDOOR)
+            .bookshelf(DDBlocks.PETRIFIED_BOOKSHELF)
+            .pressurePlate(DDBlocks.PETRIFIED_PRESSURE_PLATE)
+            .button(DDBlocks.PETRIFIED_BUTTON)
+            .sign(DDBlocks.PETRIFIED_SIGN)
+            .hangingSign(DDBlocks.PETRIFIED_HANGING_SIGN)
+            .post(DDBlocks.PETRIFIED_POST)
+            .strippedPost(DDBlocks.STRIPPED_PETRIFIED_POST)
+            .boat(DDItems.PETRIFIED_BOAT)
+            .chestBoat(DDItems.PETRIFIED_CHEST_BOAT)
+            .logTag(DDTags.Items.PETRIFIED_LOGS)
+            .build();
+
+    public static final WoodBlockSet GLOWSHROOM = WoodBlockSet.builder()
+            .log(DDBlocks.GLOWSHROOM_STEM)
+            .wood(DDBlocks.GLOWSHROOM_HYPHAE) // Swap to GLOWSHROOM_WOOD if that's your registry name
+            .strippedLog(DDBlocks.STRIPPED_GLOWSHROOM_STEM)
+            .strippedWood(DDBlocks.STRIPPED_GLOWSHROOM_HYPHAE)
+            .planks(DDBlocks.GLOWSHROOM_PLANKS)
+            .boards(DDBlocks.GLOWSHROOM_BOARDS)
+            .verticalPlanks(DDBlocks.VERTICAL_GLOWSHROOM_PLANKS)
+            .stairs(DDBlocks.GLOWSHROOM_STAIRS)
+            .slab(DDBlocks.GLOWSHROOM_SLAB)
+            .verticalSlab(DDBlocks.GLOWSHROOM_VERTICAL_SLAB)
+            .trimmedPlanks(DDBlocks.TRIMMED_GLOWSHROOM_PLANKS)
+            .fence(DDBlocks.GLOWSHROOM_FENCE)
+            .fenceGate(DDBlocks.GLOWSHROOM_FENCE_GATE)
+            .door(DDBlocks.GLOWSHROOM_DOOR)
+            .trapdoor(DDBlocks.GLOWSHROOM_TRAPDOOR)
+            .bookshelf(DDBlocks.GLOWSHROOM_BOOKSHELF)
+            .pressurePlate(DDBlocks.GLOWSHROOM_PRESSURE_PLATE)
+            .button(DDBlocks.GLOWSHROOM_BUTTON)
+            .sign(DDBlocks.GLOWSHROOM_SIGN)
+            .hangingSign(DDBlocks.GLOWSHROOM_HANGING_SIGN)
+            .post(DDBlocks.GLOWSHROOM_POST)
+            .strippedPost(DDBlocks.STRIPPED_GLOWSHROOM_POST)
+            .boat(DDItems.GLOWSHROOM_BOAT)
+            .chestBoat(DDItems.GLOWSHROOM_CHEST_BOAT)
+            .logTag(DDTags.Items.GLOWSHROOM_STEMS)
+            .build();
+
+    public static final Set<StoneBlockSet> STONE_BLOCK_SETS = Set.of(
             DARKSLATE,
             ARIDROCK,
             DUSKROCK,
             GRIMESTONE,
             GLIST
+    );
+
+    public static final Set<WoodBlockSet> WOOD_BLOCK_SETS = Set.of(
+            PETRIFIED,
+            GLOWSHROOM
     );
 }

@@ -1,6 +1,8 @@
 package com.naterbobber.darkerdepths.data.tags;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
+import com.naterbobber.darkerdepths.block.generic.relational.DDBlockSets;
+import com.naterbobber.darkerdepths.block.generic.relational.WoodBlockSet;
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import com.naterbobber.darkerdepths.init.DDItems;
 import com.naterbobber.darkerdepths.util.DDTags;
@@ -24,27 +26,22 @@ public class DDItemTagsProvider extends ItemTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider provider) {
-        this.tag(ItemTags.LOGS).add(DDBlocks.PETRIFIED_LOG.get().asItem(),
-                DDBlocks.STRIPPED_PETRIFIED_LOG.get().asItem(),
-                DDBlocks.PETRIFIED_WOOD.get().asItem(),
-                DDBlocks.STRIPPED_PETRIFIED_WOOD.get().asItem()
-        );
-        this.tag(ItemTags.STONE_CRAFTING_MATERIALS).add(DDBlocks.DARKSLATE.get().asItem(),
+        this.tag(ItemTags.STONE_CRAFTING_MATERIALS).add(
+                DDBlocks.DARKSLATE.get().asItem(),
                 DDBlocks.ARIDROCK.get().asItem(),
                 DDBlocks.DUSKROCK.get().asItem(),
-                DDBlocks.GRIMESTONE.get().asItem()
+                DDBlocks.GRIMESTONE.get().asItem(),
+                DDBlocks.GLIST.get().asItem()
         );
-        this.tag(ItemTags.STONE_TOOL_MATERIALS).add(DDBlocks.DARKSLATE.get().asItem(),
+
+        this.tag(ItemTags.STONE_TOOL_MATERIALS).add(
+                DDBlocks.DARKSLATE.get().asItem(),
                 DDBlocks.ARIDROCK.get().asItem(),
                 DDBlocks.DUSKROCK.get().asItem(),
-                DDBlocks.GRIMESTONE.get().asItem()
+                DDBlocks.GRIMESTONE.get().asItem(),
+                DDBlocks.GLIST.get().asItem()
         );
-        this.tag(DDTags.Items.PETRIFIED_LOGS).add(
-                DDBlocks.PETRIFIED_LOG.get().asItem(),
-                DDBlocks.PETRIFIED_WOOD.get().asItem(),
-                DDBlocks.STRIPPED_PETRIFIED_LOG.get().asItem(),
-                DDBlocks.STRIPPED_PETRIFIED_WOOD.get().asItem()
-        );
+
         this.tag(DDTags.Items.STILETTO_ENCHANTABLE).add(DDItems.STILETTO.get());
         this.tag(ItemTags.SWORD_ENCHANTABLE).add(DDItems.STILETTO.get());
         this.tag(ItemTags.SHARP_WEAPON_ENCHANTABLE).add(DDItems.STILETTO.get());
@@ -54,12 +51,26 @@ public class DDItemTagsProvider extends ItemTagsProvider {
                 DDItems.GLOWSHROOM_CAP.get()
         );
 
-        this.tag(ItemTags.PLANKS).add(DDBlocks.PETRIFIED_PLANKS.get().asItem());
         this.tag(ItemTags.BEACON_PAYMENT_ITEMS).add(DDItems.FORSAKEN_BRONZE_INGOT.get());
 
         this.tag(Tags.Items.ROPES).add(DDItems.ROPE.get());
         this.tag(Tags.Items.INGOTS).add(DDItems.FORSAKEN_BRONZE_INGOT.get());
 
         this.copy(Tags.Blocks.STORAGE_BLOCKS, Tags.Items.STORAGE_BLOCKS);
+
+        DDBlockSets.WOOD_BLOCK_SETS.forEach(this::tagWoodSet);
+    }
+
+    private void tagWoodSet(WoodBlockSet blockSet) {
+        this.tag(ItemTags.PLANKS).add(DDBlocks.PETRIFIED_PLANKS.get().asItem());
+        this.tag(ItemTags.CHEST_BOATS).add(blockSet.getChestBoat().get());
+        this.tag(ItemTags.BOATS).add(blockSet.getBoat().get());
+        this.tag(blockSet.getLogTag()).add(
+                blockSet.getLog().get().asItem(),
+                blockSet.getStrippedLog().get().asItem(),
+                blockSet.getWood().get().asItem(),
+                blockSet.getStrippedWood().get().asItem());
+
+        this.tag(ItemTags.LOGS).addTags(blockSet.getLogTag());
     }
 }

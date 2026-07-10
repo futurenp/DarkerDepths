@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "darkerdepths:mossy_grimestone_bricks"
+  },
+  "result": {
+    "count": 1,
+    "id": "darkerdepths:mossy_grimestone_bricks_wall"
+  }
+}

@@ -4,6 +4,7 @@ import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.data.assets.DDBlockStateProvider;
 import com.naterbobber.darkerdepths.data.assets.DDLanguageProviderENUS;
 import com.naterbobber.darkerdepths.data.loot.DDLootTableProvider;
+import com.naterbobber.darkerdepths.data.recipes.DDRecipeProvider;
 import com.naterbobber.darkerdepths.data.tags.*;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;

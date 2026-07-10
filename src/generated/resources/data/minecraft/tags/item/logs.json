@@ -1,8 +1,6 @@
 {
   "values": [
-    "darkerdepths:petrified_log",
-    "darkerdepths:stripped_petrified_log",
-    "darkerdepths:petrified_wood",
-    "darkerdepths:stripped_petrified_wood"
+    "#darkerdepths:petrified_logs",
+    "#darkerdepths:glowshroom_stems"
   ]
 }

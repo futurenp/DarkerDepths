@@ -37,6 +37,7 @@ public class DDTags {
         private static final TagFactory<Item> TAGS = make(Registries.ITEM);
 
         public static final TagKey<Item> PETRIFIED_LOGS = TAGS.create("petrified_logs");
+        public static final TagKey<Item> GLOWSHROOM_STEMS = TAGS.create("glowshroom_stems");
         public static final TagKey<Item> STILETTO_ENCHANTABLE = TAGS.create("stiletto_enchantable");
     }
 
