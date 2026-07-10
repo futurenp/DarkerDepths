@@ -133,7 +133,9 @@ public class DDBlockSets {
             .pressurePlate(DDBlocks.PETRIFIED_PRESSURE_PLATE)
             .button(DDBlocks.PETRIFIED_BUTTON)
             .sign(DDBlocks.PETRIFIED_SIGN)
+            .wallSign(DDBlocks.PETRIFIED_WALL_SIGN)
             .hangingSign(DDBlocks.PETRIFIED_HANGING_SIGN)
+            .wallHangingSign(DDBlocks.PETRIFIED_WALL_HANGING_SIGN)
             .post(DDBlocks.PETRIFIED_POST)
             .strippedPost(DDBlocks.STRIPPED_PETRIFIED_POST)
             .boat(DDItems.PETRIFIED_BOAT)
@@ -143,7 +145,7 @@ public class DDBlockSets {
 
     public static final WoodBlockSet GLOWSHROOM = WoodBlockSet.builder()
             .log(DDBlocks.GLOWSHROOM_STEM)
-            .wood(DDBlocks.GLOWSHROOM_HYPHAE) // Swap to GLOWSHROOM_WOOD if that's your registry name
+            .wood(DDBlocks.GLOWSHROOM_HYPHAE)
             .strippedLog(DDBlocks.STRIPPED_GLOWSHROOM_STEM)
             .strippedWood(DDBlocks.STRIPPED_GLOWSHROOM_HYPHAE)
             .planks(DDBlocks.GLOWSHROOM_PLANKS)
@@ -161,7 +163,9 @@ public class DDBlockSets {
             .pressurePlate(DDBlocks.GLOWSHROOM_PRESSURE_PLATE)
             .button(DDBlocks.GLOWSHROOM_BUTTON)
             .sign(DDBlocks.GLOWSHROOM_SIGN)
+            .wallSign(DDBlocks.GLOWSHROOM_WALL_SIGN)
             .hangingSign(DDBlocks.GLOWSHROOM_HANGING_SIGN)
+            .wallHangingSign(DDBlocks.GLOWSHROOM_WALL_HANGING_SIGN)
             .post(DDBlocks.GLOWSHROOM_POST)
             .strippedPost(DDBlocks.STRIPPED_GLOWSHROOM_POST)
             .boat(DDItems.GLOWSHROOM_BOAT)

@@ -143,10 +143,7 @@ public class UniqueRecipes {
         ShapelessRecipeBuilder
                 .shapeless(RecipeCategory.MISC, DDItems.FORSAKEN_BRONZE_INGOT.get())
                 .requires(DDItems.FORSAKEN_BRONZE_SCRAP.get())
-                .requires(Items.COPPER_INGOT)
-                .requires(Items.COPPER_INGOT)
-                .requires(Items.COPPER_INGOT)
-                .requires(Items.COPPER_INGOT)
+                .requires(Items.COPPER_INGOT, 4)
                 .unlockedBy("has_forsaken_bronze_scrap", has(DDItems.FORSAKEN_BRONZE_SCRAP.get()))
                 .save(recipeOutput,DarkerDepths.id("forsaken_bronze_ingot_from_scrap"));
 

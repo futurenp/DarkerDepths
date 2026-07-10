@@ -26,7 +26,9 @@ public class WoodBlockSet {
     private final DeferredBlock<? extends Block> pressurePlate;
     private final DeferredBlock<? extends Block> button;
     private final DeferredBlock<? extends Block> sign;
+    private final DeferredBlock<? extends Block> wallSign;
     private final DeferredBlock<? extends Block> hangingSign;
+    private final DeferredBlock<? extends Block> wallHangingSign;
     private final DeferredBlock<? extends Block> post;
     private final DeferredBlock<? extends Block> strippedPost;
     private final DeferredItem<? extends Item> boat;
@@ -53,7 +55,9 @@ public class WoodBlockSet {
         this.pressurePlate = builder.pressurePlate;
         this.button = builder.button;
         this.sign = builder.sign;
+        this.wallSign = builder.wallSign;
         this.hangingSign = builder.hangingSign;
+        this.wallHangingSign = builder.wallHangingSign;
         this.post = builder.post;
         this.strippedPost = builder.strippedPost;
         this.boat = builder.boat;
@@ -80,7 +84,9 @@ public class WoodBlockSet {
     public DeferredBlock<? extends Block> getPressurePlate() { return pressurePlate; }
     public DeferredBlock<? extends Block> getButton() { return button; }
     public DeferredBlock<? extends Block> getSign() { return sign; }
+    public DeferredBlock<? extends Block> getWallSign() { return wallSign; }
     public DeferredBlock<? extends Block> getHangingSign() { return hangingSign; }
+    public DeferredBlock<? extends Block> getWallHangingSign() { return wallHangingSign; }
     public DeferredBlock<? extends Block> getPost() { return post; }
     public DeferredBlock<? extends Block> getStrippedPost() { return strippedPost; }
     public DeferredItem<? extends Item> getBoat() { return boat; }
@@ -111,7 +117,9 @@ public class WoodBlockSet {
         private DeferredBlock<? extends Block> pressurePlate;
         private DeferredBlock<? extends Block> button;
         private DeferredBlock<? extends Block> sign;
+        private DeferredBlock<? extends Block> wallSign;
         private DeferredBlock<? extends Block> hangingSign;
+        private DeferredBlock<? extends Block> wallHangingSign;
         private DeferredBlock<? extends Block> post;
         private DeferredBlock<? extends Block> strippedPost;
         private DeferredItem<? extends Item> boat;
@@ -213,8 +221,18 @@ public class WoodBlockSet {
             return this;
         }
 
+        public Builder wallSign(DeferredBlock<? extends Block> wallSign) {
+            this.wallSign = wallSign;
+            return this;
+        }
+
         public Builder hangingSign(DeferredBlock<? extends Block> hangingSign) {
             this.hangingSign = hangingSign;
+            return this;
+        }
+
+        public Builder wallHangingSign(DeferredBlock<? extends Block> wallHangingSign) {
+            this.wallHangingSign = wallHangingSign;
             return this;
         }
 

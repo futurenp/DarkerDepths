@@ -49,7 +49,7 @@ public class DDRecipeProvider extends RecipeProvider {
         UniqueRecipes.create(recipeOutput);
     }
 
-    public static class WoodBlockSetRecipes {
+    private static class WoodBlockSetRecipes {
         public static void create(RecipeOutput recipeOutput, WoodBlockSet blockSet) {
             hangingSign(recipeOutput, blockSet.getHangingSign().get(), blockSet.getStrippedLog().get().asItem());
             stairsBlock(recipeOutput, blockSet.getStairs().get(), blockSet.getPlanks().get().asItem());
@@ -90,7 +90,7 @@ public class DDRecipeProvider extends RecipeProvider {
         }
     }
 
-    public static class StoneBlockSetRecipes {
+    private static class StoneBlockSetRecipes {
         public static void create(RecipeOutput recipeOutput, StoneBlockSet blockSet) {
             baseAndMisc(recipeOutput, blockSet);
             stairs(recipeOutput, blockSet);
@@ -273,23 +273,23 @@ public class DDRecipeProvider extends RecipeProvider {
         }
     }
 
-    public static void stonecutterResultFromBase(RecipeOutput recipeOutput, ItemLike result, ItemLike ingredient) {
+    private static void stonecutterResultFromBase(RecipeOutput recipeOutput, ItemLike result, ItemLike ingredient) {
         stonecutterResultFromBase(recipeOutput, result, ingredient, 1);
     }
 
-    public static void stonecutterResultFromBase(RecipeOutput recipeOutput, ItemLike result, ItemLike ingredient, int count) {
+    private static void stonecutterResultFromBase(RecipeOutput recipeOutput, ItemLike result, ItemLike ingredient, int count) {
         stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, result, ingredient, count);
     }
 
-    public static String getConversionRecipeName(ItemLike result, ItemLike ingredient) {
+    protected static String getConversionRecipeName(ItemLike result, ItemLike ingredient) {
         return getItemName(result) + "_from_" + getItemName(ingredient);
     }
 
-    public static String getItemName(ItemLike item) {
+    protected static String getItemName(ItemLike item) {
         return BuiltInRegistries.ITEM.getKey(item.asItem()).getPath();
     }
 
-    public static void chiseled(RecipeOutput recipeOutput, Item slab, Item result) {
+    private static void chiseled(RecipeOutput recipeOutput, Item slab, Item result) {
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, result)
                 .define('#', slab)
                 .pattern("#")
@@ -298,7 +298,7 @@ public class DDRecipeProvider extends RecipeProvider {
                 .save(recipeOutput);
     }
 
-    public static void wallBlock(RecipeOutput recipeOutput, ItemLike result, Item item) {
+    private static void wallBlock(RecipeOutput recipeOutput, ItemLike result, Item item) {
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.BUILDING_BLOCKS, result, 6)
                 .define('#', item)
@@ -308,7 +308,7 @@ public class DDRecipeProvider extends RecipeProvider {
                 .save(recipeOutput);
     }
 
-    public static void twoXtwo(RecipeOutput recipeOutput, ItemLike result, Item item, int count) {
+    private static void twoXtwo(RecipeOutput recipeOutput, ItemLike result, Item item, int count) {
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.BUILDING_BLOCKS, result, count)
                 .define('S', item)
@@ -320,7 +320,7 @@ public class DDRecipeProvider extends RecipeProvider {
 
 
 
-    public static void threeXthree(RecipeOutput recipeOutput, ItemLike result, Item item) {
+    private static void threeXthree(RecipeOutput recipeOutput, ItemLike result, Item item) {
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.BUILDING_BLOCKS, result)
                 .define('S', item)
@@ -331,7 +331,7 @@ public class DDRecipeProvider extends RecipeProvider {
                 .save(recipeOutput);
     }
 
-    public static void stairsBlock(RecipeOutput recipeOutput, ItemLike result, Item item) {
+    private static void stairsBlock(RecipeOutput recipeOutput, ItemLike result, Item item) {
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.BUILDING_BLOCKS, result, 4)
                 .define('#', item)
@@ -342,7 +342,7 @@ public class DDRecipeProvider extends RecipeProvider {
                 .save(recipeOutput);
     }
 
-    public static void fenceBlock(RecipeOutput recipeOutput, ItemLike result, Item item) {
+    private static void fenceBlock(RecipeOutput recipeOutput, ItemLike result, Item item) {
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.BUILDING_BLOCKS, result, 3)
                 .define('#', item)
@@ -353,7 +353,7 @@ public class DDRecipeProvider extends RecipeProvider {
                 .save(recipeOutput);
     }
 
-    public static void slabBlock(RecipeOutput recipeOutput, ItemLike result, Item item) {
+    private static void slabBlock(RecipeOutput recipeOutput, ItemLike result, Item item) {
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.BUILDING_BLOCKS, result, 6)
                 .define('#', item)
@@ -362,7 +362,7 @@ public class DDRecipeProvider extends RecipeProvider {
                 .save(recipeOutput);
     }
 
-    public static void pillarBlock(RecipeOutput recipeOutput, ItemLike result, Item item) {
+    private static void pillarBlock(RecipeOutput recipeOutput, ItemLike result, Item item) {
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.BUILDING_BLOCKS, result, 2)
                 .define('#', item)
@@ -372,7 +372,7 @@ public class DDRecipeProvider extends RecipeProvider {
                 .save(recipeOutput);
     }
 
-    public static void trimmedPlanksBlock(RecipeOutput recipeOutput, ItemLike result, Item planks) {
+    private static void trimmedPlanksBlock(RecipeOutput recipeOutput, ItemLike result, Item planks) {
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.BUILDING_BLOCKS, result, 3)
                 .define('#', planks)
@@ -383,7 +383,7 @@ public class DDRecipeProvider extends RecipeProvider {
                 .save(recipeOutput.withConditions(new ModLoadedCondition(DDCompat.NO_MANS_LAND.toString())));
     }
 
-    public static void bookshelfBlock(RecipeOutput recipeOutput, ItemLike result, Item planks) {
+    private static void bookshelfBlock(RecipeOutput recipeOutput, ItemLike result, Item planks) {
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.BUILDING_BLOCKS, result, 1)
                 .define('#', planks)
@@ -395,7 +395,7 @@ public class DDRecipeProvider extends RecipeProvider {
                 .save(recipeOutput.withConditions(new OrCondition(List.of(new ModLoadedCondition(DDCompat.NO_MANS_LAND.toString()), new ModLoadedCondition(DDCompat.QUARK.toString())))));
     }
 
-    public static void boardsBlock(RecipeOutput recipeOutput, ItemLike result, Item planks, Item slab) {
+    private static void boardsBlock(RecipeOutput recipeOutput, ItemLike result, Item planks, Item slab) {
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.BUILDING_BLOCKS, result, 1)
                 .define('#', slab)
@@ -405,15 +405,15 @@ public class DDRecipeProvider extends RecipeProvider {
                 .save(recipeOutput.withConditions(new ModLoadedCondition(DDCompat.WOODWORKS.toString())));
     }
 
-    public static void oreSmelting(RecipeOutput recipeOutput, List<ItemLike> items, RecipeCategory recipeCategory, ItemLike p_176594_, float p_176595_, int p_176596_, String p_176597_) {
+    protected static void oreSmelting(RecipeOutput recipeOutput, List<ItemLike> items, RecipeCategory recipeCategory, ItemLike p_176594_, float p_176595_, int p_176596_, String p_176597_) {
         oreCooking(recipeOutput, recipeCategory, RecipeSerializer.SMELTING_RECIPE, SmeltingRecipe::new, items, p_176594_, p_176595_, p_176596_, p_176597_, "_from_smelting");
     }
 
-    public static void oreBlasting(RecipeOutput recipeOutput, List<ItemLike> items, RecipeCategory recipeCategory, ItemLike p_176628_, float p_176629_, int p_176630_, String p_176631_) {
+    protected static void oreBlasting(RecipeOutput recipeOutput, List<ItemLike> items, RecipeCategory recipeCategory, ItemLike p_176628_, float p_176629_, int p_176630_, String p_176631_) {
         oreCooking(recipeOutput, recipeCategory, RecipeSerializer.BLASTING_RECIPE, BlastingRecipe::new, items, p_176628_, p_176629_, p_176630_, p_176631_, "_from_blasting");
     }
 
-    public static <T extends AbstractCookingRecipe> void oreCooking(RecipeOutput recipeOutput, RecipeCategory recipeCategory, RecipeSerializer<T> serializer, AbstractCookingRecipe.Factory<T> recipeFactory, List<ItemLike> itemLike, ItemLike item, float experience, int time, String group, String name) {
+    private static <T extends AbstractCookingRecipe> void oreCooking(RecipeOutput recipeOutput, RecipeCategory recipeCategory, RecipeSerializer<T> serializer, AbstractCookingRecipe.Factory<T> recipeFactory, List<ItemLike> itemLike, ItemLike item, float experience, int time, String group, String name) {
         for (ItemLike itemlike : itemLike) {
             SimpleCookingRecipeBuilder
                     .generic(Ingredient.of(itemlike), recipeCategory, item, experience, time, serializer, recipeFactory)
@@ -423,7 +423,7 @@ public class DDRecipeProvider extends RecipeProvider {
         }
     }
 
-    public static void shaplessOne(RecipeOutput recipeOutput, Item result, Item item, int count) {
+    private static void shaplessOne(RecipeOutput recipeOutput, Item result, Item item, int count) {
         ShapelessRecipeBuilder
                 .shapeless(RecipeCategory.MISC, result, count)
                 .requires(item)

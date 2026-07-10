@@ -347,8 +347,10 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
                 DDBlocks.GLOWSHROOM_BOOKSHELF.get()
         );
 
-        this.tag(Tags.Blocks.STORAGE_BLOCKS)
-                .add(DDBlocks.FORSAKEN_BRONZE_BLOCK.get());
+        this.tag(Tags.Blocks.STORAGE_BLOCKS).add(
+                DDBlocks.FORSAKEN_BRONZE_BLOCK.get(),
+                DDBlocks.AMBER_BLOCK.get()
+        );
 
         this.tag(Tags.Blocks.BOOKSHELVES).add(
                 DDBlocks.PETRIFIED_BOOKSHELF.get(),
