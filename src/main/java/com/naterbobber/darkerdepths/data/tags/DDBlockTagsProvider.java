@@ -15,7 +15,6 @@ import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 public class DDBlockTagsProvider extends BlockTagsProvider {
@@ -248,7 +247,7 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
 
     private void generateStoneBlockSetTags() {
         DDBlockSets.STONE_BLOCK_SETS.forEach(set -> {
-            set.getBlocks().stream().map(DeferredHolder::get).forEach(block -> {
+            set.getAllBlocks().stream().map(DeferredHolder::get).forEachOrdered(block -> {
                 this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(block);
 
                 if (set == DDBlockSets.DARKSLATE) {
@@ -256,7 +255,7 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
                 }
             });
 
-            var base = set.getBase();
+            var base = set.getStandardGroup().base();
             if (base != null) {
                 var baseBlock = base.get();
                 this.tag(BlockTags.DEEPSLATE_ORE_REPLACEABLES).add(baseBlock);
@@ -268,7 +267,7 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
 
     private void generateWoodBlockSetTags() {
         DDBlockSets.WOOD_BLOCK_SETS.forEach(set -> {
-            set.getBlocks().stream().map(DeferredHolder::get).forEach(block -> {
+            set.getBlocks().stream().map(DeferredHolder::get).forEachOrdered(block -> {
                 this.tag(BlockTags.MINEABLE_WITH_AXE).add(block);
 
                 if (set == DDBlockSets.PETRIFIED) {

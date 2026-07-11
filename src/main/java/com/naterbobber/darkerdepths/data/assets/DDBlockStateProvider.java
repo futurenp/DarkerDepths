@@ -2,6 +2,7 @@ package com.naterbobber.darkerdepths.data.assets;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.block.DDBlockStateProperties;
+import com.naterbobber.darkerdepths.block.blocksets.DDBlockSets;
 import com.naterbobber.darkerdepths.block.blockstates.PostState;
 import com.naterbobber.darkerdepths.block.blockstates.VerticalSlabState;
 import com.naterbobber.darkerdepths.block.custom.GlimmeringVinePlantBlock;
@@ -22,12 +23,10 @@ import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import org.apache.logging.log4j.util.TriConsumer;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
+import java.util.stream.Stream;
 
 public class DDBlockStateProvider extends BlockStateProvider {
     private final Set<Block> blockIgnores = new HashSet<>();
@@ -41,10 +40,6 @@ public class DDBlockStateProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
-        add(this::woodBlockWithItem, DDBlocks.PETRIFIED_WOOD, DDBlocks.PETRIFIED_LOG);
-        add(this::woodBlockWithItem, DDBlocks.STRIPPED_PETRIFIED_WOOD, DDBlocks.STRIPPED_PETRIFIED_LOG);
-        add(this::columnBlockWithItem, DDBlocks.PETRIFIED_BOOKSHELF, DDBlocks.PETRIFIED_PLANKS);
-        add(this::woodBlockWithItem, DDBlocks.PETRIFIED_BOARDS, DDBlocks.PETRIFIED_BOARDS);
         add(this::geyserBlock, DDBlocks.GEYSER);
         add(this::crystalHuskBlock, DDBlocks.CRYSTAL_HUSK);
         add(this::livingCrystalBlock, DDBlocks.LIVING_CRYSTAL);
@@ -53,12 +48,6 @@ public class DDBlockStateProvider extends BlockStateProvider {
         add(this::crossBlockWithItem, DDBlocks.GLIMMERING_VINES);
         add(this::glimmeringVinesPlant, DDBlocks.GLIMMERING_VINE_PLANT);
         add(this::glowLampBlock, DDBlocks.GLOWSHROOM_LAMP);
-        add(this::woodBlockWithItem, DDBlocks.GLOWSHROOM_HYPHAE, DDBlocks.GLOWSHROOM_STEM);
-        add(this::woodBlockWithItem, DDBlocks.STRIPPED_GLOWSHROOM_HYPHAE, DDBlocks.STRIPPED_GLOWSHROOM_STEM);
-        add(this::columnBlockWithItem, DDBlocks.GLOWSHROOM_BOOKSHELF, DDBlocks.GLOWSHROOM_PLANKS);
-        add(this::woodBlockWithItem, DDBlocks.GLOWSHROOM_BOARDS, DDBlocks.GLOWSHROOM_PLANKS);
-        add(this::verticalPlanksBlockWithItem, DDBlocks.VERTICAL_GLOWSHROOM_PLANKS, DDBlocks.GLOWSHROOM_PLANKS);
-        add(this::verticalPlanksBlockWithItem, DDBlocks.VERTICAL_PETRIFIED_PLANKS, DDBlocks.PETRIFIED_PLANKS);
 
         add(this::rotatableDarkslateBlockWithItem, DDBlocks.DARKSLATE);
         add(this::darkslateSlabBlockWithItem, DDBlocks.DARKSLATE_SLAB, DDBlocks.DARKSLATE, true);
@@ -171,42 +160,87 @@ public class DDBlockStateProvider extends BlockStateProvider {
     }
 
     private void autoGenerateBlockAssets() {
+        DDBlockSets.STONE_BLOCK_SETS.forEach(blockSet -> {
+            if(blockSet == DDBlockSets.DARKSLATE) return;
+
+            var groups = blockSet.getAllGroups();
+            groups.forEach(group -> {
+                if(group == null) return;
+                var base = group.base().get();
+
+                filterBlockType(group.base());
+
+                stairsBlockWithItem(group.stairs(), base);
+                slabBlockWithItem(group.slab(), base);
+                verticalSlabBlockWithItem(group.verticalSlab(), base);
+
+                var wall = group.wall();
+                if(wall != null) {
+                    wallBlockWithItem(wall, base);
+                }
+
+                group.getMembers().forEach(groupMember -> {
+                    if (groupMember != null) {
+                        blockIgnores.add(groupMember.get());
+                    }
+                });
+            });
+        });
+
+        DDBlockSets.WOOD_BLOCK_SETS.forEach(blockSet -> {
+            var log = blockSet.getLog();
+            var strippedLog = blockSet.getStrippedLog();
+            var planks = blockSet.getPlanks();
+
+            logBlockWithItem(log);
+            logBlockWithItem(strippedLog);
+            simpleBlockWithItem(planks);
+            woodBlockWithItem(blockSet.getWood(), log);
+            woodBlockWithItem(blockSet.getStrippedWood(), strippedLog);
+            columnBlockWithItem(blockSet.getBookshelf(), planks);
+            woodBlockWithItem(blockSet.getBoards(), planks);
+            verticalPlanksBlockWithItem(blockSet.getVerticalPlanks(), planks);
+            stairsBlockWithItem(blockSet.getStairs(), planks.get());
+            slabBlockWithItem(blockSet.getSlab(), planks.get());
+            verticalSlabBlockWithItem(blockSet.getVerticalSlab(), planks.get());
+            pressurePlateBlockWithItem(blockSet.getPressurePlate(), planks.get());
+            buttonBlockWithItem(blockSet.getButton(), planks.get());
+            fenceBlockWithItem(blockSet.getFence(), planks.get());
+            fenceGateBlockWithItem(blockSet.getFenceGate(), planks.get());
+            postBlockWithItem(blockSet.getPost(), log.get());
+            postBlockWithItem(blockSet.getStrippedPost(), strippedLog.get());
+
+            blockSet.getBlocks().forEach(holder -> {
+                if (holder != null
+                        && holder != blockSet.getDoor()
+                        && holder != blockSet.getTrapdoor()
+                        && holder != blockSet.getTrimmedPlanks()
+                ) {
+                    blockIgnores.add(holder.get());
+                }
+            });
+        });
+
+
         DDBlocks.BLOCKS.getEntries()
                 .stream()
                 .filter(holder -> !blockIgnores.contains(holder.get()))
-                .forEach(holder -> {
-                    Block block = holder.get();
-
-                    switch (block) {
-                        case IRelationalBlock b -> relationalBlockWithItem(holder);
-                        case DoorBlock b -> doorBlockWithItem(holder);
-                        case TrapDoorBlock b -> trapdoorBlockWithItem(holder);
-                        case BushBlock b -> crossBlockWithItem(holder);
-                        case RotatedPillarBlock b -> rotatablePillarBlockWithItem(holder);
-                        case ConnectedRotatablePillarBlock b -> connectedRotatablePillarBlockWithItem(holder);
-                        case ConnectedPillarBlock b -> connectedPillarBlockWithItem(holder);
-                        case SignBlock b -> skipBlock(holder);
-                        default -> simpleBlockWithItem(holder);
-                }
-            });
+                .forEach(this::filterBlockType);
 
     }
 
-    private void relationalBlockWithItem(DeferredHolder<Block, ? extends Block> blockHolder) {
-        IRelationalBlock block = (IRelationalBlock) blockHolder.get();
-        Block parentBlock = block.getBaseBlock();
+    private void filterBlockType(DeferredHolder<Block, ? extends Block> holder) {
+        var block = holder.get();
 
         switch (block) {
-            case SlabBlock b -> slabBlockWithItem(blockHolder, parentBlock);
-            case VerticalSlabBlock b -> verticalSlabBlockWithItem(blockHolder, parentBlock);
-            case StairBlock b -> stairsBlockWithItem(blockHolder, parentBlock);
-            case PressurePlateBlock b -> pressurePlateBlockWithItem(blockHolder, parentBlock);
-            case ButtonBlock b -> buttonBlockWithItem(blockHolder, parentBlock);
-            case FenceBlock b -> fenceBlockWithItem(blockHolder, parentBlock);
-            case FenceGateBlock b -> fenceGateBlockWithItem(blockHolder, parentBlock);
-            case WallBlock b -> wallBlockWithItem(blockHolder, parentBlock);
-            case WoodPostBlock b -> postBlockWithItem(blockHolder, parentBlock);
-            default -> throw new IllegalStateException("Unexpected value: " + block);
+            case DoorBlock b -> doorBlockWithItem(holder);
+            case TrapDoorBlock b -> trapdoorBlockWithItem(holder);
+            case BushBlock b -> crossBlockWithItem(holder);
+            case RotatedPillarBlock b -> rotatablePillarBlockWithItem(holder);
+            case ConnectedRotatablePillarBlock b -> connectedRotatablePillarBlockWithItem(holder);
+            case ConnectedPillarBlock b -> connectedPillarBlockWithItem(holder);
+            case SignBlock b -> skipBlock(holder);
+            default -> simpleBlockWithItem(holder);
         }
     }
 

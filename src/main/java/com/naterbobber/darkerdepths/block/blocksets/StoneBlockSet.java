@@ -3,193 +3,98 @@ package com.naterbobber.darkerdepths.block.blocksets;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.registries.DeferredBlock;
 
+import javax.annotation.Nullable;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Stream;
 
 public class StoneBlockSet {
-    private final DeferredBlock<? extends Block> base;
-    private final DeferredBlock<? extends Block> baseStairs;
-    private final DeferredBlock<? extends Block> baseSlab;
-    private final DeferredBlock<? extends Block> baseVerticalSlab;
-    private final DeferredBlock<? extends Block> baseWall;
-    private final DeferredBlock<? extends Block> polished;
-    private final DeferredBlock<? extends Block> polishedStairs;
-    private final DeferredBlock<? extends Block> polishedSlab;
-    private final DeferredBlock<? extends Block> polishedVerticalSlab;
-    private final DeferredBlock<? extends Block> bricks;
-    private final DeferredBlock<? extends Block> bricksStairs;
-    private final DeferredBlock<? extends Block> bricksSlab;
-    private final DeferredBlock<? extends Block> bricksVerticalSlab;
-    private final DeferredBlock<? extends Block> bricksWall;
+    private final Group standardGroup;
+    private final Group polishedGroup;
+    private final Group bricksGroup;
+    private final Group mossyGroup;
+
     private final DeferredBlock<? extends Block> crackedBricks;
     private final DeferredBlock<? extends Block> chiseled;
-    private final DeferredBlock<? extends Block> mossyBricks;
-    private final DeferredBlock<? extends Block> mossyBricksStairs;
-    private final DeferredBlock<? extends Block> mossyBricksSlab;
-    private final DeferredBlock<? extends Block> mossyBricksVerticalSlab;
-    private final DeferredBlock<? extends Block> mossyBricksWall;
     private final DeferredBlock<? extends Block> pillar;
+
     private final List<DeferredBlock<? extends Block>> allBlocks;
+    private final List<Group> allGroups;
 
     protected StoneBlockSet(Builder builder) {
-        this.base = builder.base;
-        this.baseStairs = builder.baseStairs;
-        this.baseSlab = builder.baseSlab;
-        this.baseVerticalSlab = builder.baseVerticalSlab;
-        this.baseWall = builder.baseWall;
-        this.polished = builder.polished;
-        this.polishedStairs = builder.polishedStairs;
-        this.polishedSlab = builder.polishedSlab;
-        this.polishedVerticalSlab = builder.polishedVerticalSlab;
-        this.bricks = builder.bricks;
-        this.bricksStairs = builder.bricksStairs;
-        this.bricksSlab = builder.bricksSlab;
-        this.bricksVerticalSlab = builder.bricksVerticalSlab;
-        this.bricksWall = builder.bricksWall;
+        this.standardGroup = builder.standardGroup;
+        this.polishedGroup = builder.polishedGroup;
+        this.bricksGroup = builder.bricksGroup;
+        this.mossyGroup = builder.mossyGroup;
+
         this.crackedBricks = builder.crackedBricks;
         this.chiseled = builder.chiseled;
-        this.mossyBricks = builder.mossyBricks;
-        this.mossyBricksStairs = builder.mossyBricksStairs;
-        this.mossyBricksSlab = builder.mossyBricksSlab;
-        this.mossyBricksVerticalSlab = builder.mossyBricksVerticalSlab;
-        this.mossyBricksWall = builder.mossyBricksWall;
         this.pillar = builder.pillar;
 
         var blocksStream = Stream.of(
-                this.base, this.baseStairs, this.baseSlab, this.baseVerticalSlab, this.baseWall,
-                this.polished, this.polishedStairs, this.polishedSlab, this.polishedVerticalSlab,
-                this.bricks, this.bricksStairs, this.bricksSlab, this.bricksVerticalSlab, this.bricksWall,
-                this.crackedBricks, this.chiseled,
-                this.mossyBricks, this.mossyBricksStairs, this.mossyBricksSlab, this.mossyBricksVerticalSlab, this.mossyBricksWall,
-                this.pillar
+                this.crackedBricks, this.chiseled, this.pillar
         );
-        this.allBlocks = blocksStream.filter(Objects::nonNull).toList();
-    }
 
-    public DeferredBlock<? extends Block> getBase() { return base; }
-    public DeferredBlock<? extends Block> getBaseStairs() { return baseStairs; }
-    public DeferredBlock<? extends Block> getBaseSlab() { return baseSlab; }
-    public DeferredBlock<? extends Block> getBaseVerticalSlab() { return baseVerticalSlab; }
-    public DeferredBlock<? extends Block> getBaseWall() { return baseWall; }
-    public DeferredBlock<? extends Block> getPolished() { return polished; }
-    public DeferredBlock<? extends Block> getPolishedStairs() { return polishedStairs; }
-    public DeferredBlock<? extends Block> getPolishedSlab() { return polishedSlab; }
-    public DeferredBlock<? extends Block> getPolishedVerticalSlab() { return polishedVerticalSlab; }
-    public DeferredBlock<? extends Block> getBricks() { return bricks; }
-    public DeferredBlock<? extends Block> getBricksStairs() { return bricksStairs; }
-    public DeferredBlock<? extends Block> getBricksSlab() { return bricksSlab; }
-    public DeferredBlock<? extends Block> getBricksVerticalSlab() { return bricksVerticalSlab; }
-    public DeferredBlock<? extends Block> getBricksWall() { return bricksWall; }
+        if (this.standardGroup != null) blocksStream = Stream.concat(blocksStream, this.standardGroup.getMembers().stream());
+        if (this.polishedGroup != null) blocksStream = Stream.concat(blocksStream, this.polishedGroup.getMembers().stream());
+        if (this.bricksGroup != null) blocksStream = Stream.concat(blocksStream, this.bricksGroup.getMembers().stream());
+        if (this.mossyGroup != null) blocksStream = Stream.concat(blocksStream, this.mossyGroup.getMembers().stream());
+
+        this.allBlocks = blocksStream.filter(Objects::nonNull).toList();
+
+        this.allGroups = Stream.of(this.standardGroup, this.polishedGroup, this.bricksGroup, this.mossyGroup)
+                .filter(Objects::nonNull)
+                .filter(group -> group.base() != null)
+                .toList();    }
+
+    public Group getStandardGroup() { return standardGroup; }
+    public Group getPolishedGroup() { return polishedGroup; }
+    public Group getBricksGroup() { return bricksGroup; }
+    public Group getMossyGroup() { return mossyGroup; }
+    
     public DeferredBlock<? extends Block> getCrackedBricks() { return crackedBricks; }
     public DeferredBlock<? extends Block> getChiseled() { return chiseled; }
-    public DeferredBlock<? extends Block> getMossyBricks() { return mossyBricks; }
-    public DeferredBlock<? extends Block> getMossyBricksStairs() { return mossyBricksStairs; }
-    public DeferredBlock<? extends Block> getMossyBricksSlab() { return mossyBricksSlab; }
-    public DeferredBlock<? extends Block> getMossyBricksVerticalSlab() { return mossyBricksVerticalSlab; }
-    public DeferredBlock<? extends Block> getMossyBricksWall() { return mossyBricksWall; }
     public DeferredBlock<? extends Block> getPillar() { return pillar; }
 
-    public List<DeferredBlock<? extends Block>> getBlocks() {
+    public List<DeferredBlock<? extends Block>> getAllBlocks() {
         return allBlocks;
     }
 
+    public List<Group> getAllGroups() {
+        return allGroups;
+    }
+
     public static Builder builder() {
-        var builder = new Builder();
-        return builder;
+        return new Builder();
     }
 
     public static class Builder {
-        private DeferredBlock<? extends Block> base;
-        private DeferredBlock<? extends Block> baseStairs;
-        private DeferredBlock<? extends Block> baseSlab;
-        private DeferredBlock<? extends Block> baseVerticalSlab;
-        private DeferredBlock<? extends Block> baseWall;
-        private DeferredBlock<? extends Block> polished;
-        private DeferredBlock<? extends Block> polishedStairs;
-        private DeferredBlock<? extends Block> polishedSlab;
-        private DeferredBlock<? extends Block> polishedVerticalSlab;
-        private DeferredBlock<? extends Block> bricks;
-        private DeferredBlock<? extends Block> bricksStairs;
-        private DeferredBlock<? extends Block> bricksSlab;
-        private DeferredBlock<? extends Block> bricksVerticalSlab;
-        private DeferredBlock<? extends Block> bricksWall;
+        private Group standardGroup;
+        private Group polishedGroup;
+        private Group bricksGroup;
+        private Group mossyGroup;
         private DeferredBlock<? extends Block> crackedBricks;
         private DeferredBlock<? extends Block> chiseled;
-        private DeferredBlock<? extends Block> mossyBricks;
-        private DeferredBlock<? extends Block> mossyBricksStairs;
-        private DeferredBlock<? extends Block> mossyBricksSlab;
-        private DeferredBlock<? extends Block> mossyBricksVerticalSlab;
-        private DeferredBlock<? extends Block> mossyBricksWall;
         private DeferredBlock<? extends Block> pillar;
 
-        public Builder base(DeferredBlock<? extends Block> base) {
-            this.base = base;
+        public Builder standard(Group group) {
+            this.standardGroup = group;
             return this;
         }
 
-        public Builder baseStairs(DeferredBlock<? extends Block> baseStairs) {
-            this.baseStairs = baseStairs;
+        public Builder polished(Group group) {
+            this.polishedGroup = group;
             return this;
         }
 
-        public Builder baseSlab(DeferredBlock<? extends Block> baseSlab) {
-            this.baseSlab = baseSlab;
+        public Builder bricks(Group group) {
+            this.bricksGroup = group;
             return this;
         }
 
-        public Builder baseVerticalSlab(DeferredBlock<? extends Block> baseVerticalSlab) {
-            this.baseVerticalSlab = baseVerticalSlab;
-            return this;
-        }
-
-        public Builder baseWall(DeferredBlock<? extends Block> baseWall) {
-            this.baseWall = baseWall;
-            return this;
-        }
-
-        public Builder polished(DeferredBlock<? extends Block> polished) {
-            this.polished = polished;
-            return this;
-        }
-
-        public Builder polishedStairs(DeferredBlock<? extends Block> polishedStairs) {
-            this.polishedStairs = polishedStairs;
-            return this;
-        }
-
-        public Builder polishedSlab(DeferredBlock<? extends Block> polishedSlab) {
-            this.polishedSlab = polishedSlab;
-            return this;
-        }
-
-        public Builder polishedVerticalSlab(DeferredBlock<? extends Block> polishedVerticalSlab) {
-            this.polishedVerticalSlab = polishedVerticalSlab;
-            return this;
-        }
-
-        public Builder bricks(DeferredBlock<? extends Block> bricks) {
-            this.bricks = bricks;
-            return this;
-        }
-
-        public Builder bricksStairs(DeferredBlock<? extends Block> bricksStairs) {
-            this.bricksStairs = bricksStairs;
-            return this;
-        }
-
-        public Builder bricksSlab(DeferredBlock<? extends Block> bricksSlab) {
-            this.bricksSlab = bricksSlab;
-            return this;
-        }
-
-        public Builder bricksVerticalSlab(DeferredBlock<? extends Block> bricksVerticalSlab) {
-            this.bricksVerticalSlab = bricksVerticalSlab;
-            return this;
-        }
-
-        public Builder bricksWall(DeferredBlock<? extends Block> bricksWall) {
-            this.bricksWall = bricksWall;
+        public Builder mossy(Group group) {
+            this.mossyGroup = group;
             return this;
         }
 
@@ -203,31 +108,6 @@ public class StoneBlockSet {
             return this;
         }
 
-        public Builder mossyBricks(DeferredBlock<? extends Block> mossyBricks) {
-            this.mossyBricks = mossyBricks;
-            return this;
-        }
-
-        public Builder mossyBricksStairs(DeferredBlock<? extends Block> mossyBricksStairs) {
-            this.mossyBricksStairs = mossyBricksStairs;
-            return this;
-        }
-
-        public Builder mossyBricksSlab(DeferredBlock<? extends Block> mossyBricksSlab) {
-            this.mossyBricksSlab = mossyBricksSlab;
-            return this;
-        }
-
-        public Builder mossyBricksVerticalSlab(DeferredBlock<? extends Block> mossyBricksVerticalSlab) {
-            this.mossyBricksVerticalSlab = mossyBricksVerticalSlab;
-            return this;
-        }
-
-        public Builder mossyBricksWall(DeferredBlock<? extends Block> mossyBricksWall) {
-            this.mossyBricksWall = mossyBricksWall;
-            return this;
-        }
-
         public Builder pillar(DeferredBlock<? extends Block> pillar) {
             this.pillar = pillar;
             return this;
@@ -235,6 +115,26 @@ public class StoneBlockSet {
 
         public StoneBlockSet build() {
             return new StoneBlockSet(this);
+        }
+    }
+
+    public record Group(
+            DeferredBlock<? extends Block> base,
+            DeferredBlock<? extends Block> stairs,
+            DeferredBlock<? extends Block> slab,
+            DeferredBlock<? extends Block> verticalSlab,
+            DeferredBlock<? extends Block> wall) 
+    {
+        public Group(DeferredBlock<? extends Block> base, DeferredBlock<? extends Block> stairs, DeferredBlock<? extends Block> slab, DeferredBlock<? extends Block> verticalSlab, @Nullable DeferredBlock<? extends Block> wall) {
+            this.base = base;
+            this.stairs = stairs;
+            this.slab = slab;
+            this.verticalSlab = verticalSlab;
+            this.wall = wall;
+        }
+
+        public List<DeferredBlock<? extends Block>> getMembers() {
+            return Arrays.asList(base, stairs, slab, verticalSlab, wall);
         }
     }
 }

@@ -92,7 +92,7 @@ public class DDRecipeProvider extends RecipeProvider {
 
     private static class StoneBlockSetRecipes {
         public static void create(RecipeOutput recipeOutput, StoneBlockSet blockSet) {
-            baseAndMisc(recipeOutput, blockSet);
+            standardAndMisc(recipeOutput, blockSet);
             stairs(recipeOutput, blockSet);
             slabs(recipeOutput, blockSet);
             verticalSlabs(recipeOutput, blockSet);
@@ -100,32 +100,32 @@ public class DDRecipeProvider extends RecipeProvider {
             pillars(recipeOutput, blockSet);
         }
 
-        public static void baseAndMisc(RecipeOutput recipeOutput, StoneBlockSet blockSet) {
-            var base = blockSet.getBase();
-            var polishedBase = blockSet.getPolished();
-            var bricksBase = blockSet.getBricks();
-            var mossyBase = blockSet.getMossyBricks();
+        public static void standardAndMisc(RecipeOutput recipeOutput, StoneBlockSet blockSet) {
+            var standard = blockSet.getStandardGroup();
+            var polished = blockSet.getPolishedGroup();
+            var bricks = blockSet.getBricksGroup();
+            var mossy = blockSet.getMossyGroup();
             var chiseled = blockSet.getChiseled();
             var cracked = blockSet.getCrackedBricks();
 
-            if (polishedBase != null && base != null) {
-                stonecutterResultFromBase(recipeOutput, polishedBase, base);
-                twoXtwo(recipeOutput, polishedBase, base.get().asItem(), 4);
+            if (polished != null && standard != null) {
+                stonecutterResultFromBase(recipeOutput, polished.base(), standard.base());
+                twoXtwo(recipeOutput, polished.base(), standard.base().get().asItem(), 4);
             }
 
-            if (bricksBase != null && base != null && polishedBase != null) {
-                stonecutterResultFromBase(recipeOutput, bricksBase, base);
-                stonecutterResultFromBase(recipeOutput, bricksBase, polishedBase);
-                twoXtwo(recipeOutput, bricksBase, polishedBase.get().asItem(), 4);
+            if (bricks != null && standard != null && polished != null) {
+                stonecutterResultFromBase(recipeOutput, bricks.base(), standard.base());
+                stonecutterResultFromBase(recipeOutput, bricks.base(), polished.base());
+                twoXtwo(recipeOutput, bricks.base(), polished.base().get().asItem(), 4);
             }
 
-            if (mossyBase != null) {
+            if (mossy != null) {
 
             }
 
-            if (cracked != null && bricksBase != null) {
+            if (cracked != null && bricks != null) {
                 oreSmelting(recipeOutput,
-                        ImmutableList.of(bricksBase.get()),
+                        ImmutableList.of(bricks.base().get()),
                         RecipeCategory.BUILDING_BLOCKS,
                         cracked,
                         0.1F,
@@ -134,141 +134,131 @@ public class DDRecipeProvider extends RecipeProvider {
                 );
             }
 
-            if (chiseled != null && base != null && polishedBase != null && bricksBase != null) {
-                stonecutterResultFromBase(recipeOutput, chiseled, base);
-                stonecutterResultFromBase(recipeOutput, chiseled, polishedBase);
-                stonecutterResultFromBase(recipeOutput, chiseled, bricksBase);
+            if (chiseled != null && standard != null && polished != null && bricks != null) {
+                stonecutterResultFromBase(recipeOutput, chiseled, standard.base());
+                stonecutterResultFromBase(recipeOutput, chiseled, polished.base());
+                stonecutterResultFromBase(recipeOutput, chiseled, bricks.base());
 
-                chiseled(recipeOutput, blockSet.getBricksSlab().asItem(), chiseled.asItem());
+                chiseled(recipeOutput, bricks.slab().asItem(), chiseled.asItem());
             }
         }
 
         public static void stairs(RecipeOutput recipeOutput, StoneBlockSet blockSet) {
-            var base = blockSet.getBase();
-            var polishedBase = blockSet.getPolished();
-            var bricksBase = blockSet.getBricks();
-            var mossyBase = blockSet.getMossyBricks();
+            var standard = blockSet.getStandardGroup();
+            var polished = blockSet.getPolishedGroup();
+            var bricks = blockSet.getBricksGroup();
+            var mossy = blockSet.getMossyGroup();
 
-            var baseStairs = blockSet.getBaseStairs();
-            if (baseStairs != null && base != null) {
-                stonecutterResultFromBase(recipeOutput, baseStairs, base);
-                stairsBlock(recipeOutput, baseStairs, base.get().asItem());
+            if (standard != null && standard.stairs() != null && standard.base() != null) {
+                stonecutterResultFromBase(recipeOutput, standard.stairs(), standard.base());
+                stairsBlock(recipeOutput, standard.stairs(), standard.base().get().asItem());
             }
 
-            var polishedStairs = blockSet.getPolishedStairs();
-            if (polishedStairs != null && base != null && polishedBase != null) {
-                stonecutterResultFromBase(recipeOutput, polishedStairs, base);
-                stonecutterResultFromBase(recipeOutput, polishedStairs, polishedBase);
-                stairsBlock(recipeOutput, polishedStairs, polishedBase.get().asItem());
+            if (polished != null && polished.stairs() != null && standard != null && standard.base() != null && polished.base() != null) {
+                stonecutterResultFromBase(recipeOutput, polished.stairs(), standard.base());
+                stonecutterResultFromBase(recipeOutput, polished.stairs(), polished.base());
+                stairsBlock(recipeOutput, polished.stairs(), polished.base().get().asItem());
             }
 
-            var bricksStairs = blockSet.getBricksStairs();
-            if (bricksStairs != null && base != null && polishedBase != null && bricksBase != null) {
-                stonecutterResultFromBase(recipeOutput, bricksStairs, base);
-                stonecutterResultFromBase(recipeOutput, bricksStairs, polishedBase);
-                stonecutterResultFromBase(recipeOutput, bricksStairs, bricksBase);
-                stairsBlock(recipeOutput, bricksStairs, bricksBase.get().asItem());
+            if (bricks != null && bricks.stairs() != null && standard != null && standard.base() != null && polished != null && polished.base() != null && bricks.base() != null) {
+                stonecutterResultFromBase(recipeOutput, bricks.stairs(), standard.base());
+                stonecutterResultFromBase(recipeOutput, bricks.stairs(), polished.base());
+                stonecutterResultFromBase(recipeOutput, bricks.stairs(), bricks.base());
+                stairsBlock(recipeOutput, bricks.stairs(), bricks.base().get().asItem());
             }
 
-            var mossyStairs = blockSet.getMossyBricksStairs();
-            if (mossyStairs != null && mossyBase != null) {
-                stonecutterResultFromBase(recipeOutput, mossyStairs, mossyBase);
-                stairsBlock(recipeOutput, mossyStairs, mossyBase.get().asItem());
+            if (mossy != null && mossy.stairs() != null && mossy.base() != null) {
+                stonecutterResultFromBase(recipeOutput, mossy.stairs(), mossy.base());
+                stairsBlock(recipeOutput, mossy.stairs(), mossy.base().get().asItem());
             }
         }
 
         public static void slabs(RecipeOutput recipeOutput, StoneBlockSet blockSet) {
-            var base = blockSet.getBase();
-            var polishedBase = blockSet.getPolished();
-            var bricksBase = blockSet.getBricks();
-            var mossyBase = blockSet.getMossyBricks();
+            var standard = blockSet.getStandardGroup();
+            var polished = blockSet.getPolishedGroup();
+            var bricks = blockSet.getBricksGroup();
+            var mossy = blockSet.getMossyGroup();
 
-            var baseSlab = blockSet.getBaseSlab();
-            if (baseSlab != null && base != null) {
-                stonecutterResultFromBase(recipeOutput, baseSlab, base, 2);
-                slabBlock(recipeOutput, baseSlab, base.get().asItem());
+            if (standard != null && standard.slab() != null && standard.base() != null) {
+                stonecutterResultFromBase(recipeOutput, standard.slab(), standard.base(), 2);
+                slabBlock(recipeOutput, standard.slab(), standard.base().get().asItem());
             }
 
-            var polishedSlab = blockSet.getPolishedSlab();
-            if (polishedSlab != null && base != null && polishedBase != null) {
-                stonecutterResultFromBase(recipeOutput, polishedSlab, base, 2);
-                stonecutterResultFromBase(recipeOutput, polishedSlab, polishedBase, 2);
-                slabBlock(recipeOutput, polishedSlab, polishedBase.get().asItem());
+            if (polished != null && polished.slab() != null && standard != null && standard.base() != null && polished.base() != null) {
+                stonecutterResultFromBase(recipeOutput, polished.slab(), standard.base(), 2);
+                stonecutterResultFromBase(recipeOutput, polished.slab(), polished.base(), 2);
+                slabBlock(recipeOutput, polished.slab(), polished.base().get().asItem());
             }
 
-            var bricksSlab = blockSet.getBricksSlab();
-            if (bricksSlab != null && base != null && polishedBase != null && bricksBase != null) {
-                stonecutterResultFromBase(recipeOutput, bricksSlab, base, 2);
-                stonecutterResultFromBase(recipeOutput, bricksSlab, polishedBase, 2);
-                stonecutterResultFromBase(recipeOutput, bricksSlab, bricksBase, 2);
-                slabBlock(recipeOutput, bricksSlab, bricksBase.get().asItem());
+            if (bricks != null && bricks.slab() != null && standard != null && standard.base() != null && polished != null && polished.base() != null && bricks.base() != null) {
+                stonecutterResultFromBase(recipeOutput, bricks.slab(), standard.base(), 2);
+                stonecutterResultFromBase(recipeOutput, bricks.slab(), polished.base(), 2);
+                stonecutterResultFromBase(recipeOutput, bricks.slab(), bricks.base(), 2);
+                slabBlock(recipeOutput, bricks.slab(), bricks.base().get().asItem());
             }
 
-            var mossySlab = blockSet.getMossyBricksSlab();
-            if (mossySlab != null && mossyBase != null) {
-                stonecutterResultFromBase(recipeOutput, mossySlab, mossyBase, 2);
-                slabBlock(recipeOutput, mossySlab, mossyBase.get().asItem());
+            if (mossy != null && mossy.slab() != null && mossy.base() != null) {
+                stonecutterResultFromBase(recipeOutput, mossy.slab(), mossy.base(), 2);
+                slabBlock(recipeOutput, mossy.slab(), mossy.base().get().asItem());
             }
         }
 
         public static void verticalSlabs(RecipeOutput recipeOutput, StoneBlockSet blockSet) {
-            var baseVerticalSlab = blockSet.getBaseVerticalSlab();
-            if (baseVerticalSlab != null) {
+            var standard = blockSet.getStandardGroup();
+            var polished = blockSet.getPolishedGroup();
+            var bricks = blockSet.getBricksGroup();
+            var mossy = blockSet.getMossyGroup();
+
+            if (standard != null && standard.verticalSlab() != null) {
 
             }
 
-            var polishedVerticalSlab = blockSet.getPolishedVerticalSlab();
-            if (polishedVerticalSlab != null) {
+            if (polished != null && polished.verticalSlab() != null) {
 
             }
 
-            var bricksVerticalSlab = blockSet.getBricksVerticalSlab();
-            if (bricksVerticalSlab != null) {
+            if (bricks != null && bricks.verticalSlab() != null) {
 
             }
 
-            var mossyVerticalSlab = blockSet.getMossyBricksVerticalSlab();
-            if (mossyVerticalSlab != null) {
+            if (mossy != null && mossy.verticalSlab() != null) {
 
             }
         }
 
         public static void walls(RecipeOutput recipeOutput, StoneBlockSet blockSet) {
-            var base = blockSet.getBase();
-            var polishedBase = blockSet.getPolished();
-            var bricksBase = blockSet.getBricks();
+            var standard = blockSet.getStandardGroup();
+            var polished = blockSet.getPolishedGroup();
+            var bricks = blockSet.getBricksGroup();
+            var mossy = blockSet.getMossyGroup();
 
-            var baseWall = blockSet.getBaseWall();
-            if (baseWall != null && base != null) {
-                stonecutterResultFromBase(recipeOutput, baseWall, base);
-                wallBlock(recipeOutput, baseWall, base.get().asItem());
+            if (standard != null && standard.wall() != null && standard.base() != null) {
+                stonecutterResultFromBase(recipeOutput, standard.wall(), standard.base());
+                wallBlock(recipeOutput, standard.wall(), standard.base().get().asItem());
             }
 
-            var bricksWall = blockSet.getBricksWall();
-            if (bricksWall != null && base != null && polishedBase != null && bricksBase != null) {
-                stonecutterResultFromBase(recipeOutput, bricksWall, base);
-                stonecutterResultFromBase(recipeOutput, bricksWall, bricksBase);
-                stonecutterResultFromBase(recipeOutput, bricksWall, polishedBase);
-                wallBlock(recipeOutput, bricksWall, bricksBase.get().asItem());
+            if (bricks != null && bricks.wall() != null && standard != null && standard.base() != null && polished != null && polished.base() != null && bricks.base() != null) {
+                stonecutterResultFromBase(recipeOutput, bricks.wall(), standard.base());
+                stonecutterResultFromBase(recipeOutput, bricks.wall(), polished.base());
+                stonecutterResultFromBase(recipeOutput, bricks.wall(), bricks.base());
+                wallBlock(recipeOutput, bricks.wall(), bricks.base().get().asItem());
             }
 
-            var mossyBase = blockSet.getMossyBricks();
-            var mossyWall = blockSet.getMossyBricksWall();
-            if (mossyWall != null && mossyBase != null) {
-                stonecutterResultFromBase(recipeOutput, mossyWall, mossyBase);
-                wallBlock(recipeOutput, mossyWall, mossyBase.get().asItem());
+            if (mossy != null && mossy.wall() != null && mossy.base() != null) {
+                stonecutterResultFromBase(recipeOutput, mossy.wall(), mossy.base());
+                wallBlock(recipeOutput, mossy.wall(), mossy.base().get().asItem());
             }
         }
 
         public static void pillars(RecipeOutput recipeOutput, StoneBlockSet blockSet) {
-            var base = blockSet.getBase();
-            var polishedBase = blockSet.getPolished();
+            var standard = blockSet.getStandardGroup();
+            var polished = blockSet.getPolishedGroup();
             var pillar = blockSet.getPillar();
 
-            if (pillar != null && base != null && polishedBase != null) {
-                stonecutterResultFromBase(recipeOutput, pillar, base);
-                stonecutterResultFromBase(recipeOutput, pillar, polishedBase);
-                pillarBlock(recipeOutput, pillar, polishedBase.get().asItem());
+            if (pillar != null && standard != null && standard.base() != null && polished != null && polished.base() != null) {
+                stonecutterResultFromBase(recipeOutput, pillar, standard.base());
+                stonecutterResultFromBase(recipeOutput, pillar, polished.base());
+                pillarBlock(recipeOutput, pillar, polished.base().get().asItem());
             }
         }
     }
