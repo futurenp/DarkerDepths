@@ -4,6 +4,7 @@ import com.naterbobber.darkerdepths.init.DDBlocks;
 import com.naterbobber.darkerdepths.init.DDItems;
 import com.naterbobber.darkerdepths.util.DDTags;
 
+import java.util.List;
 import java.util.Set;
 
 public class DDBlockSets {
@@ -172,7 +173,7 @@ public class DDBlockSets {
             .logTag(DDTags.Items.GLOWSHROOM_STEMS)
             .build();
 
-    public static final Set<StoneBlockSet> STONE_BLOCK_SETS = Set.of(
+    public static final List<StoneBlockSet> STONE_BLOCK_SETS = List.of(
             DARKSLATE,
             ARIDROCK,
             DUSKROCK,
@@ -180,7 +181,7 @@ public class DDBlockSets {
             GLIST
     );
 
-    public static final Set<WoodBlockSet> WOOD_BLOCK_SETS = Set.of(
+    public static final List<WoodBlockSet> WOOD_BLOCK_SETS = List.of(
             PETRIFIED,
             GLOWSHROOM
     );

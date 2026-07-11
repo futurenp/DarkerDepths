@@ -1,10 +1,10 @@
 {
   "values": [
     "darkerdepths:mossy_grimestone",
-    "darkerdepths:grimestone",
-    "darkerdepths:aridrock",
     "darkerdepths:darkslate",
-    "darkerdepths:glist",
-    "darkerdepths:duskrock"
+    "darkerdepths:aridrock",
+    "darkerdepths:duskrock",
+    "darkerdepths:grimestone",
+    "darkerdepths:glist"
   ]
 }
