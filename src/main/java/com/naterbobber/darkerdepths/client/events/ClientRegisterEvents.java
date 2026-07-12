@@ -1,12 +1,21 @@
 package com.naterbobber.darkerdepths.client.events;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
-import com.naterbobber.darkerdepths.client.render.DDShaders;
 import com.naterbobber.darkerdepths.client.events.listeners.DDClientReloadListener;
-import com.naterbobber.darkerdepths.client.particle.*;
-import com.naterbobber.darkerdepths.client.particle.void_soul.*;
-import com.naterbobber.darkerdepths.client.particle.geyser.*;
+import com.naterbobber.darkerdepths.client.particle.ColoredAshParticle;
+import com.naterbobber.darkerdepths.client.particle.DrippingParticle;
+import com.naterbobber.darkerdepths.client.particle.GlowshroomGrowthParticle;
+import com.naterbobber.darkerdepths.client.particle.ScorcherSearchlightParticle;
+import com.naterbobber.darkerdepths.client.particle.geyser.GeyserBurstFlameParticle;
+import com.naterbobber.darkerdepths.client.particle.geyser.GeyserBurstMistParticle;
+import com.naterbobber.darkerdepths.client.particle.geyser.GeyserBurstSmokeParticle;
+import com.naterbobber.darkerdepths.client.particle.geyser.GeyserPassiveSmokeParticle;
+import com.naterbobber.darkerdepths.client.particle.void_soul.VoidSoulDeathParticle;
+import com.naterbobber.darkerdepths.client.particle.void_soul.VoidSoulFlameParticle;
+import com.naterbobber.darkerdepths.client.particle.void_soul.VoidSoulFlameSmokeParticle;
+import com.naterbobber.darkerdepths.client.particle.void_soul.VoidSoulParticle;
 import com.naterbobber.darkerdepths.client.render.DDRenderTypes;
+import com.naterbobber.darkerdepths.client.render.DDShaders;
 import com.naterbobber.darkerdepths.client.render.renderers.*;
 import com.naterbobber.darkerdepths.init.DDBlockEntityTypes;
 import com.naterbobber.darkerdepths.init.DDEntityTypes;
@@ -14,8 +23,7 @@ import com.naterbobber.darkerdepths.init.DDParticleTypes;
 import net.minecraft.client.model.BoatModel;
 import net.minecraft.client.model.ChestBoatModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
-import net.minecraft.client.renderer.blockentity.HangingSignRenderer;
-import net.minecraft.client.renderer.blockentity.SignRenderer;
+import net.minecraft.client.particle.SuspendedTownParticle;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -78,8 +86,10 @@ public class ClientRegisterEvents {
         // Misc
         event.registerSpriteSet(DDParticleTypes.MOLTEN_ASH.get(),
                 (spriteSet) -> new ColoredAshParticle.Provider(spriteSet, 1F, 0.4F, 0.25F, ColoredAshParticle.BrightnessBehavior.FADE));
+
         event.registerSpriteSet(DDParticleTypes.GLOW_GLIMMER.get(),
                 (spriteSet) -> new ColoredAshParticle.Provider(spriteSet, 0.25F, 0.92F, 0.59F, ColoredAshParticle.BrightnessBehavior.FULL_BRIGHT));
+        event.registerSpriteSet(DDParticleTypes.GLOWSHROOM_GROWTH.get(), GlowshroomGrowthParticle.Provider::new);
 
         event.registerSpriteSet(DDParticleTypes.SCORCHER_SEARCHLIGHT.get(), ScorcherSearchlightParticle.Provider::new);
     }

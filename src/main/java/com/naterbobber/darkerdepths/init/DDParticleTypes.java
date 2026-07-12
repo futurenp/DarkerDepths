@@ -37,6 +37,8 @@ public class DDParticleTypes {
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> GEYSER_BURST_FLAME_BOOSTED = register("geyser_burst_flame_boosted");
 
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> MOLTEN_ASH = register("molten_ash");
-    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> GLOW_GLIMMER = register("glow_glimmer");
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> SCORCHER_SEARCHLIGHT = register("scorcher_searchlight");
+
+    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> GLOW_GLIMMER = register("glow_glimmer");
+    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> GLOWSHROOM_GROWTH = register("glowshroom_growth");
 }
