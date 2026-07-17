@@ -33,7 +33,6 @@ public class DDDataMapProvider extends DataMapProvider {
         addCompostable(DDBlocks.GLIMMERING_VINES, 0.3F);
         addCompostable(DDBlocks.MOSSY_SPROUTS, 0.3F);
         addCompostable(DDBlocks.PETRIFIED_ROOTS, 0.2F);
-        addWaxable(DDBlocks.GLOWSHROOM_PILEUS, DDBlocks.WAXED_GLOWSHROOM_PILEUS);
     }
 
     private void addFuel(DeferredHolder<?, ?> holder, int burnTime) {

@@ -36,7 +36,6 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
     private void generateMinableTags() {
         this.tag(BlockTags.MINEABLE_WITH_HOE).add(
                 DDBlocks.GLOWSHROOM_PILEUS.get(),
-                DDBlocks.WAXED_GLOWSHROOM_PILEUS.get(),
                 DDBlocks.SCORCHED_REMAINS_BLOCK.get(),
                 DDBlocks.SCORCHED_REMAINS.get()
         );

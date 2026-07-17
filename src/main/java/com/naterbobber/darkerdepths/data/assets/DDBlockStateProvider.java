@@ -98,7 +98,7 @@ public class DDBlockStateProvider extends BlockStateProvider {
                 DDBlocks.MOSSY_GRIMESTONE,
                 DDBlocks.ARID_DEEPSLATE,
                 DDBlocks.SHELF_GLOWSHROOM,
-                DDBlocks.WAXED_GLOWSHROOM_PILEUS
+                DDBlocks.DEAD_SHELF_GLOWSHROOM
         );
 
         skipItem(DDItems.STILETTO,
@@ -110,9 +110,6 @@ public class DDBlockStateProvider extends BlockStateProvider {
 
         autoGenerateBlockAssets();
         autoGenerateItemAssets();
-
-        //requires autogenerate to run first, so skip, then run
-        add(this::simpleBlockWithItemOfExisting, DDBlocks.WAXED_GLOWSHROOM_PILEUS, DDBlocks.GLOWSHROOM_PILEUS);
     }
 
     @SafeVarargs

@@ -424,8 +424,6 @@ public class DDBlocks {
 
     public static final DeferredBlock<GlowshroomPileusBlock> GLOWSHROOM_PILEUS = registerBlock("glowshroom_block",
             () -> new GlowshroomPileusBlock(BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.CORAL_BLOCK).randomTicks()));
-    public static final DeferredBlock<Block> WAXED_GLOWSHROOM_PILEUS = registerBlock("waxed_glowshroom_block",
-            () -> new Block(BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.CORAL_BLOCK)));
     public static final DeferredBlock<Block> DEAD_GLOWSHROOM_PILEUS = registerBlock("dead_glowshroom_pileus",
             () -> new Block(BlockBehaviour.Properties.of().strength(0.8F).sound(SoundType.NETHERRACK)));
     public static final DeferredBlock<GlowshroomHeartBlock> GLOWSHROOM_HEART = registerBlock("glowshroom_heart",
@@ -437,6 +435,8 @@ public class DDBlocks {
             () -> new GlowshroomBlock(BlockBehaviour.Properties.of().offsetType(BlockBehaviour.OffsetType.XZ).strength(0.0F, 1.0F).sound(SoundType.SLIME_BLOCK).lightLevel((state) -> 3 + (2 * state.getValue(GlowshroomBlock.GLOWSHROOM_CLUSTERS))).noCollission()));
     public static final DeferredBlock<ShelfGlowshroomBlock> SHELF_GLOWSHROOM = registerBlock("shelf_glowshroom",
             () -> new ShelfGlowshroomBlock(BlockBehaviour.Properties.of().strength(0.0F, 1.0F).sound(SoundType.SLIME_BLOCK).lightLevel((state) -> state.getValue(DDBlockStateProperties.LARGE) ? 8 : 5).noCollission().randomTicks()));
+    public static final DeferredBlock<BaseShelfGlowshroomBlock> DEAD_SHELF_GLOWSHROOM = registerBlock("dead_shelf_glowshroom",
+            () -> new BaseShelfGlowshroomBlock(BlockBehaviour.Properties.of().strength(0.1F, 1.0F).sound(SoundType.NETHERRACK).noCollission()));
     public static final DeferredBlock<GlimmeringVinesBlock> GLIMMERING_VINES = registerBlock("glimmering_vines",
             () -> new GlimmeringVinesBlock(BlockBehaviour.Properties.of().noCollission().noOcclusion().lightLevel(value -> 9).sound(SoundType.SPORE_BLOSSOM)));
     public static final DeferredBlock<GlimmeringVinePlantBlock> GLIMMERING_VINE_PLANT = registerNoTabBlock("glimmering_vine_plant",

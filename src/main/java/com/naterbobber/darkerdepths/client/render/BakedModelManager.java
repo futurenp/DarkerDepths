@@ -25,7 +25,7 @@ public class BakedModelManager {
     public static void modify(ModelEvent.ModifyBakingResult event) {
         var models = new ArrayList<BlockBaker>();
 
-        models.add(BlockBaker.builder(event, DDBlocks.SHELF_GLOWSHROOM)
+        models.add(BlockBaker.builder(event, DDBlocks.SHELF_GLOWSHROOM, DDBlocks.DEAD_SHELF_GLOWSHROOM)
                 .dynamicSettings(blockState -> {
                     if(blockState.getValue(DDBlockStateProperties.LARGE)) {
                         return DirectionalOffsetBakedModel.Settings.of(DirectionalOffsetBakedModel.OffsetType.Y)
@@ -121,8 +121,7 @@ public class BakedModelManager {
                 .build());
 
         models.add(BlockBaker.builder(event,
-                        DDBlocks.GLOWSHROOM_PILEUS,
-                        DDBlocks.WAXED_GLOWSHROOM_PILEUS
+                        DDBlocks.GLOWSHROOM_PILEUS
                 )
                 .modelSettings(EmissiveBakedModel.settings()
                         .baseBrightness(glowshroomBrightness))
