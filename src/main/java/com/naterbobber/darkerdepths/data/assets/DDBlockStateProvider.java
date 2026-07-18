@@ -46,6 +46,7 @@ public class DDBlockStateProvider extends BlockStateProvider {
         add(this::airBlock, DDBlocks.SCORCHER_LIGHT_BLOCK);
         add(this::airBlock, DDBlocks.MOB_PLACER);
         add(this::crossBlockWithItem, DDBlocks.GLIMMERING_VINES);
+        add(this::crossBlockWithItem, DDBlocks.GULBS);
         add(this::glimmeringVinesPlant, DDBlocks.GLIMMERING_VINE_PLANT);
         add(this::glowLampBlock, DDBlocks.GLOWSHROOM_LAMP);
 

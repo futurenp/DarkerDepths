@@ -91,7 +91,8 @@ public class BakedModelManager {
                 .build());
 
         models.add(BlockBaker.builder(event,
-                        DDBlocks.GLOWSHROOM
+                        DDBlocks.GLOWSHROOM,
+                        DDBlocks.GULBS
                 )
                 .modelSettings(EmissiveBakedModel.settings()
                         .baseRenderType(RenderType.CUTOUT)

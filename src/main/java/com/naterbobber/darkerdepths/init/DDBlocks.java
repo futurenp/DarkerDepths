@@ -431,6 +431,8 @@ public class DDBlocks {
 
     public static final DeferredBlock<SproutsBlock> MOSSY_SPROUTS = registerBlock("mossy_sprouts",
             () -> new SproutsBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SHORT_GRASS).sound(SoundType.WET_GRASS).offsetType(BlockBehaviour.OffsetType.XZ)));
+    public static final DeferredBlock<GulbsBlock> GULBS = registerBlock("gulbs",
+            () -> new GulbsBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SHORT_GRASS).sound(SoundType.WET_GRASS).offsetType(BlockBehaviour.OffsetType.XZ).lightLevel(value -> 4)));
     public static final DeferredBlock<GlowshroomBlock> GLOWSHROOM = registerBlock("glowshroom",
             () -> new GlowshroomBlock(BlockBehaviour.Properties.of().offsetType(BlockBehaviour.OffsetType.XZ).strength(0.0F, 1.0F).sound(SoundType.SLIME_BLOCK).lightLevel((state) -> 3 + (2 * state.getValue(GlowshroomBlock.GLOWSHROOM_CLUSTERS))).noCollission()));
     public static final DeferredBlock<ShelfGlowshroomBlock> SHELF_GLOWSHROOM = registerBlock("shelf_glowshroom",
