@@ -49,9 +49,11 @@ public class GlowshroomHeartBlock extends BaseEntityBlock {
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level worldIn, BlockState state, BlockEntityType<T> blockEntityType) {
         if (worldIn.isClientSide) {
-            return createTickerHelper(blockEntityType, DDBlockEntityTypes.GLOWSHROOM_HEART.get(), (level, pos, blockState, blockEntity) -> blockEntity.clientTick(level, pos, blockState));
+            return createTickerHelper(blockEntityType, DDBlockEntityTypes.GLOWSHROOM_HEART.get(),
+                    (level, pos, blockState, blockEntity) -> blockEntity.clientTick(level, pos, blockState));
         } else {
-            return createTickerHelper(blockEntityType, DDBlockEntityTypes.GLOWSHROOM_HEART.get(), (level, pos, blockState, blockEntity) -> blockEntity.tick(level, pos, blockState));
+            return createTickerHelper(blockEntityType, DDBlockEntityTypes.GLOWSHROOM_HEART.get(),
+                    (level, pos, blockState, blockEntity) -> blockEntity.tick(level, pos, blockState));
         }
     }
 }

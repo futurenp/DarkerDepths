@@ -204,6 +204,7 @@
   "death.attack.glowshroom_slam_damage": "%1$s was slammed to death.",
   "death.attack.soul_binding_damage": "%1$s's soul was consumed by the Death Anchor.",
   "death.attack.void_soul_damage": "%1$s's soul was reclaimed.",
+  "effect.darkerdepths.glowing_mycoses": "Glowing Mycoses",
   "effect.darkerdepths.paranoia": "Paranoia",
   "effect.darkerdepths.soul_binding": "Soul Binding",
   "enchantment.darkerdepths.quick_dash": "Quick Dash",

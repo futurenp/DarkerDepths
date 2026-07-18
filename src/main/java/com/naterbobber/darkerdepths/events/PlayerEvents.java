@@ -110,6 +110,7 @@ public class PlayerEvents {
             }
         }
     }
+
     @SubscribeEvent
     public static void onBreakSpeed(PlayerEvent.BreakSpeed event) {
         ItemStack heldItem = event.getEntity().getMainHandItem();

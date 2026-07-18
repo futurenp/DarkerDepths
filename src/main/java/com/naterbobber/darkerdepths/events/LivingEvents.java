@@ -6,6 +6,8 @@ import com.naterbobber.darkerdepths.init.*;
 import com.naterbobber.darkerdepths.init.DDEnchantmentEffects;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -18,6 +20,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.event.entity.living.*;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import org.apache.commons.lang3.mutable.MutableFloat;
@@ -52,6 +55,13 @@ public class LivingEvents {
 
     @SubscribeEvent
     public static void onLivingDeathEvent(LivingDeathEvent event) {
+        if(event.getEntity().getType().is(EntityTypeTags.UNDEAD) && event.getSource().getEntity() instanceof Player player) {
+            if(player.hasEffect(DDMobEffects.GLOWING_MYCOSES)) {
+                player.heal(2);
+                player.level().playSound(null, player.blockPosition(), SoundEvents.BEACON_POWER_SELECT, SoundSource.BLOCKS, 0.45F, 1.5F);
+            }
+        }
+
         if(event.getEntity() instanceof Player player) {
             SoulBindingHandler.handleDeath(player, event);
         }
@@ -84,24 +94,13 @@ public class LivingEvents {
             return;
         }
 
-        ItemStack newlyEquipped = event.getTo();
-        ItemStack previouslyEquipped = event.getFrom();
+        var newItem = event.getTo();
+        var existingItem = event.getFrom();
 
-        if (newlyEquipped.is(DDItems.GLOWSHROOM_CAP.get())) {
-            player.addEffect(new MobEffectInstance(
-                            MobEffects.DIG_SPEED,
-                            MobEffectInstance.INFINITE_DURATION,
-                            0,
-                            false,
-                            false,
-                            true
-                    )
-            );
-        }
+        if (existingItem.is(DDItems.GLOWSHROOM_CAP.get())) {
+            if (!newItem.is(DDItems.GLOWSHROOM_CAP.get()) && player.getEffect(DDMobEffects.GLOWING_MYCOSES) != null && player.getEffect(DDMobEffects.GLOWING_MYCOSES).getDuration() == -1) {
 
-        if (previouslyEquipped.is(DDItems.GLOWSHROOM_CAP.get())) {
-            if (!newlyEquipped.is(DDItems.GLOWSHROOM_CAP.get())) {
-                player.removeEffect(MobEffects.DIG_SPEED);
+                player.removeEffect(DDMobEffects.GLOWING_MYCOSES);
             }
         }
     }
@@ -112,21 +111,25 @@ public class LivingEvents {
             return;
         }
 
-        if(!event.getItem().is(Items.MILK_BUCKET)) {
-            return;
+        var item = event.getItem();
+
+        if(item.is(Items.ROTTEN_FLESH)) {
+            if(player.getEffect(DDMobEffects.SOUL_BINDING).getDuration() > 0) {}
         }
 
-        if(StreamSupport.stream(player.getArmorSlots().spliterator(), false)
-                .anyMatch(armor -> armor.is(DDItems.GLOWSHROOM_CAP.get()))) {
-            player.addEffect(new MobEffectInstance(
-                            MobEffects.DIG_SPEED,
-                            MobEffectInstance.INFINITE_DURATION,
-                            0,
-                            false,
-                            false,
-                            true
-                    )
-            );
+        if(item.is(Items.MILK_BUCKET)) {
+            if(StreamSupport.stream(player.getArmorSlots().spliterator(), false)
+                    .anyMatch(armor -> armor.is(DDItems.GLOWSHROOM_CAP.get()))) {
+                player.addEffect(new MobEffectInstance(
+                                DDMobEffects.GLOWING_MYCOSES,
+                                MobEffectInstance.INFINITE_DURATION,
+                                0,
+                                false,
+                                false,
+                                true
+                        )
+                );
+            }
         }
     }
 

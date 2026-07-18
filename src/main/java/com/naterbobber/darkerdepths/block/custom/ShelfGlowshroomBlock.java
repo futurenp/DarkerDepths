@@ -99,6 +99,5 @@ public class ShelfGlowshroomBlock extends BaseShelfGlowshroomBlock implements IS
             level.sendParticles(particle, x, y, z, 1, 0.0, 0.0, 0.0, 0.01);
 
         }
-
     }
 }

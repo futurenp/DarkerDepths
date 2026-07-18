@@ -1,24 +1,27 @@
 package com.naterbobber.darkerdepths.item;
 
-import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.client.render.renderers.GlowshroomCapRenderer;
 import com.naterbobber.darkerdepths.init.DDArmorMaterials;
-import com.naterbobber.darkerdepths.init.DDItems;
+import com.naterbobber.darkerdepths.init.DDMobEffects;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.model.HumanoidModel;
-import net.minecraft.core.Holder;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ArmorItem;
-import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.Level;
 import software.bernie.geckolib.animatable.GeoItem;
 import software.bernie.geckolib.animatable.client.GeoRenderProvider;
 import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
@@ -28,7 +31,6 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 
 import javax.annotation.Nullable;
 import java.util.List;
-import java.util.Map;
 import java.util.function.Consumer;
 
 public class GlowshroomCapItem extends ArmorItem implements GeoItem {
@@ -52,6 +54,35 @@ public class GlowshroomCapItem extends ArmorItem implements GeoItem {
                 return this.renderer;
             }
         });
+    }
+
+    @Override
+    public void inventoryTick(ItemStack stack, Level level, Entity entity, int slotId, boolean isSelected) {
+        if(level.isClientSide) return;
+        if(!(entity instanceof LivingEntity livingEntity)) return;
+
+        if(!livingEntity.getItemBySlot(EquipmentSlot.HEAD).is(this)) {
+            return;
+        }
+
+        if(!livingEntity.hasEffect(DDMobEffects.GLOWING_MYCOSES)) {
+            livingEntity.addEffect(new MobEffectInstance(DDMobEffects.GLOWING_MYCOSES, MobEffectInstance.INFINITE_DURATION, 0, false, false, true));
+        }
+
+        if(slotId == 39 && level.isDay()) {
+            if(livingEntity instanceof Player player) {
+                if(level.getGameTime() % 2 != 0) return;
+
+                if(level.random.nextInt(100) != 0) {
+                    level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.CANDLE_EXTINGUISH, SoundSource.PLAYERS, 1.0F, 1.0F);
+                    return;
+                }
+
+                if(livingEntity.level().canSeeSky(livingEntity.blockPosition())) {
+                    livingEntity.setItemSlot(EquipmentSlot.HEAD, ItemStack.EMPTY);
+                }
+            }
+        }
     }
 
     @Override

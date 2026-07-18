@@ -1,6 +1,7 @@
 package com.naterbobber.darkerdepths.init;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
+import com.naterbobber.darkerdepths.effects.GlowingMycosesEffect;
 import com.naterbobber.darkerdepths.effects.ParanoiaEffect;
 import com.naterbobber.darkerdepths.effects.SoulBindingEffect;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -17,5 +18,7 @@ public class DDMobEffects {
             () -> new SoulBindingEffect(MobEffectCategory.NEUTRAL, 16185078));
     public static final DeferredHolder<MobEffect, ParanoiaEffect> PARANOIA = MOB_EFFECTS.register("paranoia", () -> new
             ParanoiaEffect(MobEffectCategory.HARMFUL, 2039587));
+    public static final DeferredHolder<MobEffect, GlowingMycosesEffect> GLOWING_MYCOSES = MOB_EFFECTS.register("glowing_mycoses", () -> new
+            GlowingMycosesEffect(MobEffectCategory.BENEFICIAL, 2039587));
 
 }
