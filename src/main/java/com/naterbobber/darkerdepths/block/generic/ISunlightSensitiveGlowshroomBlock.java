@@ -18,7 +18,6 @@ public interface ISunlightSensitiveGlowshroomBlock {
         if(level.isNight()) return;
         var brightness = level.getBrightness(LightLayer.SKY, pos.above());
 
-
         if(brightness >= 7) {
             replaceWithDeadPileus(level, pos);
         } else {

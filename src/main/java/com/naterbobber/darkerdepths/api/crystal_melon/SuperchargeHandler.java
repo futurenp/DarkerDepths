@@ -19,7 +19,7 @@ import net.minecraft.world.level.Level;
 
 import java.util.Optional;
 
-public class SuperchargeHelper {
+public class SuperchargeHandler {
 
     private static final ResourceLocation ATTACK_DAMAGE_MODIFIER_ID = DarkerDepths.id("supercharge_attack_damage");
     private static final ResourceLocation ATTACK_SPEED_MODIFIER_ID = DarkerDepths.id("supercharge_attack_speed");
@@ -30,22 +30,22 @@ public class SuperchargeHelper {
             return;
         }
 
-        ItemAttributeModifiers originalModifiers = stack.getOrDefault(DataComponents.ATTRIBUTE_MODIFIERS, ItemAttributeModifiers.EMPTY);
-        Optional<Unbreakable> originalUnbreakable = Optional.ofNullable(stack.get(DataComponents.UNBREAKABLE));
+        var originalModifiers = stack.getOrDefault(DataComponents.ATTRIBUTE_MODIFIERS, ItemAttributeModifiers.EMPTY);
+        var originalUnbreakable = Optional.ofNullable(stack.get(DataComponents.UNBREAKABLE));
 
         long expirationTick = level.getGameTime() + (DDConfig.CONFIG.SUPERCHARGE_DURATION.get() * 60 * 20L);
-        SuperchargeInfo info = new SuperchargeInfo(expirationTick, originalUnbreakable, originalModifiers);
+        var info = new SuperchargeInfo(expirationTick, originalUnbreakable, originalModifiers);
         stack.set(DDDataComponents.SUPERCHARGE_INFO.get(), info);
 
-        MutableComponent prefix = Component.literal("Supercharged ").withStyle(ChatFormatting.AQUA).withStyle(style -> style.withItalic(false));
-        Component originalName = stack.getHoverName().copy();
+        var prefix = Component.literal("Supercharged ").withStyle(ChatFormatting.AQUA).withStyle(style -> style.withItalic(false));
+        var originalName = stack.getHoverName().copy();
         stack.set(DataComponents.CUSTOM_NAME, prefix.append(originalName));
 
         float damageMultiplier = DDConfig.CONFIG.SUPERCHARGE_ATTACK_DAMAGE.get() / 100.0F;
         float attackSpeedMultiplier = DDConfig.CONFIG.SUPERCHARGE_ATTACK_SPEED.get() / 100.0F;
         float miningSpeedMultiplier = DDConfig.CONFIG.SUPERCHARGE_DIG_SPEED.get() / 100.0F;
 
-        ItemAttributeModifiers newModifiers = originalModifiers
+        var newModifiers = originalModifiers
                 .withModifierAdded(
                         Attributes.ATTACK_DAMAGE,
                         new AttributeModifier(ATTACK_DAMAGE_MODIFIER_ID, damageMultiplier, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
@@ -71,7 +71,7 @@ public class SuperchargeHelper {
             return;
         }
 
-        SuperchargeInfo info = stack.get(DDDataComponents.SUPERCHARGE_INFO.get());
+        var info = stack.get(DDDataComponents.SUPERCHARGE_INFO.get());
         if (info == null) {
             return;
         }

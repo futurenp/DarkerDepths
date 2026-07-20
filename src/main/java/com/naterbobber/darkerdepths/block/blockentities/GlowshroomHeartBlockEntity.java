@@ -1,5 +1,6 @@
 package com.naterbobber.darkerdepths.block.blockentities;
 
+import com.naterbobber.darkerdepths.api.GlowshroomMycosesHandler;
 import com.naterbobber.darkerdepths.init.DDBlockEntityTypes;
 import com.naterbobber.darkerdepths.init.DDMobEffects;
 import net.minecraft.core.BlockPos;
@@ -33,17 +34,10 @@ public class GlowshroomHeartBlockEntity extends BlockEntity {
 
         for(var entity : entities) {
             if(entity instanceof LivingEntity livingEntity && livingEntity.hasEffect(DDMobEffects.GLOWING_MYCOSES)) {
-                var activeRegen = livingEntity.getEffect(MobEffects.REGENERATION);
-
-                if(activeRegen == null){
-                    level.playSound(null, livingEntity.getOnPos(), SoundEvents.BEACON_POWER_SELECT, SoundSource.BLOCKS, 0.6F, 1.3F);
-                    //todo
-                    //summon particles on the player
-                }
+                var activeRegen = livingEntity.getEffect(DDMobEffects.GLOWING_MYCOSES_ACTIVE);
 
                 if (activeRegen == null || activeRegen.getDuration() <= 80) {
-                    var regenEffect = new MobEffectInstance(MobEffects.REGENERATION, 320, 0);
-                    livingEntity.addEffect(regenEffect);
+                    GlowshroomMycosesHandler.giveMycoses(livingEntity, 320, 0, activeRegen == null);
                 }
             }
         }

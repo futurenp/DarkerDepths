@@ -86,7 +86,6 @@ public class DDLanguageProviderENUS extends LanguageProvider {
                 .add("creative_tab", "Darker Depths")
                 .applyAll();
 
-
         //Advancements
         addAdvancement("parent", "Darker Depths",
                 "Thank you for installing Darker Depths!");

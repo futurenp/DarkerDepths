@@ -5,7 +5,7 @@ import com.naterbobber.darkerdepths.config.DDConfig;
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import com.naterbobber.darkerdepths.init.DDCriteria;
 import com.naterbobber.darkerdepths.init.DDDataComponents;
-import com.naterbobber.darkerdepths.api.crystal_melon.SuperchargeHelper;
+import com.naterbobber.darkerdepths.api.crystal_melon.SuperchargeHandler;
 import com.naterbobber.darkerdepths.component.SuperchargeInfo;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.component.DataComponents;
@@ -56,7 +56,7 @@ public class PlayerEvents {
                 DDCriteria.USED_CRYSTAL_MELON.get().trigger(sPlayer);
             }
 
-            SuperchargeHelper.applyUpgrades(mainHandStack, level);
+            SuperchargeHandler.applyUpgrades(mainHandStack, level);
             offHandStack.shrink(1);
             level.playSound(null, player.blockPosition(), SoundEvents.BEACON_ACTIVATE, SoundSource.PLAYERS, 0.75f, 1.6f);
 
@@ -133,7 +133,7 @@ public class PlayerEvents {
         }
 
         if (level.getGameTime() >= info.expirationTick()) {
-            SuperchargeHelper.revertUpgrades(stack);
+            SuperchargeHandler.revertUpgrades(stack);
             return false;
         }
         return true;

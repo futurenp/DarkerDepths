@@ -1,6 +1,7 @@
 package com.naterbobber.darkerdepths.init;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
+import com.naterbobber.darkerdepths.effects.GlowingMycosesActiveEffect;
 import com.naterbobber.darkerdepths.effects.GlowingMycosesEffect;
 import com.naterbobber.darkerdepths.effects.ParanoiaEffect;
 import com.naterbobber.darkerdepths.effects.SoulBindingEffect;
@@ -20,5 +21,7 @@ public class DDMobEffects {
             ParanoiaEffect(MobEffectCategory.HARMFUL, 2039587));
     public static final DeferredHolder<MobEffect, GlowingMycosesEffect> GLOWING_MYCOSES = MOB_EFFECTS.register("glowing_mycoses", () -> new
             GlowingMycosesEffect(MobEffectCategory.BENEFICIAL, 2039587));
+    public static final DeferredHolder<MobEffect, GlowingMycosesActiveEffect> GLOWING_MYCOSES_ACTIVE = MOB_EFFECTS.register("glowing_mycoses_active", () -> new
+            GlowingMycosesActiveEffect(MobEffectCategory.BENEFICIAL, 2039587));
 
 }

@@ -31,6 +31,8 @@ Artist:
 
 '''
 
+enumExtensions="META-INF/enumextensions.json"
+
 [[mixins]]
     config="darkerdepths.mixins.json"
 

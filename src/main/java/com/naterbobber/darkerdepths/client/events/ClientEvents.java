@@ -6,15 +6,16 @@ import com.naterbobber.darkerdepths.client.screen_effects.render.SoulBindingBlac
 import com.naterbobber.darkerdepths.client.screen_effects.render.ScorcherFlashRenderer;
 import com.naterbobber.darkerdepths.client.screen_effects.ScorcherFlashHandler;
 import com.naterbobber.darkerdepths.client.fog.FogManager;
+import com.naterbobber.darkerdepths.init.DDMobEffects;
+import com.naterbobber.darkerdepths.util.DDEnumProxies;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Gui;
 import net.minecraft.client.player.LocalPlayer;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.neoforge.client.event.ClientTickEvent;
-import net.neoforged.neoforge.client.event.RenderGuiLayerEvent;
-import net.neoforged.neoforge.client.event.RenderLevelStageEvent;
-import net.neoforged.neoforge.client.event.ViewportEvent;
+import net.neoforged.neoforge.client.event.*;
+import net.neoforged.neoforge.event.entity.player.PlayerHeartTypeEvent;
 
 @OnlyIn(Dist.CLIENT)
 public class ClientEvents {
@@ -39,6 +40,13 @@ public class ClientEvents {
     @SubscribeEvent
     public void onRenderGuiOverlay(RenderGuiLayerEvent.Post event) {
         SoulBindingBlackoutRenderer.render(event.getGuiGraphics(), Minecraft.getInstance().getWindow());
+    }
+
+    @SubscribeEvent
+    public void onPlayerHeartType(PlayerHeartTypeEvent event) {
+        if(event.getEntity().hasEffect(DDMobEffects.GLOWING_MYCOSES_ACTIVE) && event.getOriginalType() == Gui.HeartType.NORMAL) {
+            event.setType(DDEnumProxies.GLOWING_MYCOSES_PROXY.getValue());
+        }
     }
 
     @SubscribeEvent

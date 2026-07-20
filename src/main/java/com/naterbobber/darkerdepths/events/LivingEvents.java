@@ -1,6 +1,7 @@
 package com.naterbobber.darkerdepths.events;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
+import com.naterbobber.darkerdepths.api.GlowshroomMycosesHandler;
 import com.naterbobber.darkerdepths.api.death_anchor.SoulBindingHandler;
 import com.naterbobber.darkerdepths.init.*;
 import com.naterbobber.darkerdepths.init.DDEnchantmentEffects;
@@ -15,6 +16,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
@@ -55,15 +57,16 @@ public class LivingEvents {
 
     @SubscribeEvent
     public static void onLivingDeathEvent(LivingDeathEvent event) {
-        if(event.getEntity().getType().is(EntityTypeTags.UNDEAD) && event.getSource().getEntity() instanceof Player player) {
-            if(player.hasEffect(DDMobEffects.GLOWING_MYCOSES)) {
-                player.heal(2);
-                player.level().playSound(null, player.blockPosition(), SoundEvents.BEACON_POWER_SELECT, SoundSource.BLOCKS, 0.45F, 1.5F);
-            }
+        var deadEntity = event.getEntity();
+
+        if(deadEntity instanceof Player player) {
+            SoulBindingHandler.handleDeath(player, event);
         }
 
-        if(event.getEntity() instanceof Player player) {
-            SoulBindingHandler.handleDeath(player, event);
+        var deathSourceEntity = event.getSource().getEntity();
+
+        if(deathSourceEntity instanceof LivingEntity livingEntity) {
+            GlowshroomMycosesHandler.handleUndeadKill(livingEntity, event.getEntity());
         }
     }
 
@@ -98,7 +101,10 @@ public class LivingEvents {
         var existingItem = event.getFrom();
 
         if (existingItem.is(DDItems.GLOWSHROOM_CAP.get())) {
-            if (!newItem.is(DDItems.GLOWSHROOM_CAP.get()) && player.getEffect(DDMobEffects.GLOWING_MYCOSES) != null && player.getEffect(DDMobEffects.GLOWING_MYCOSES).getDuration() == -1) {
+            if (
+                    !newItem.is(DDItems.GLOWSHROOM_CAP.get())
+                    && player.getEffect(DDMobEffects.GLOWING_MYCOSES) != null
+                    && player.getEffect(DDMobEffects.GLOWING_MYCOSES).getDuration() == -1) {
 
                 player.removeEffect(DDMobEffects.GLOWING_MYCOSES);
             }
@@ -113,9 +119,7 @@ public class LivingEvents {
 
         var item = event.getItem();
 
-        if(item.is(Items.ROTTEN_FLESH)) {
-            if(player.getEffect(DDMobEffects.SOUL_BINDING).getDuration() > 0) {}
-        }
+        GlowshroomMycosesHandler.handleFleshEat(player, item);
 
         if(item.is(Items.MILK_BUCKET)) {
             if(StreamSupport.stream(player.getArmorSlots().spliterator(), false)

@@ -22,6 +22,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LightLayer;
 import software.bernie.geckolib.animatable.GeoItem;
 import software.bernie.geckolib.animatable.client.GeoRenderProvider;
 import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
@@ -71,15 +72,18 @@ public class GlowshroomCapItem extends ArmorItem implements GeoItem {
 
         if(slotId == 39 && level.isDay()) {
             if(livingEntity instanceof Player player) {
-                if(level.getGameTime() % 2 != 0) return;
+                if(level.getGameTime() % 20 != 0) return;
 
-                if(level.random.nextInt(100) != 0) {
+                if(level.canSeeSky(livingEntity.blockPosition())) {
                     level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.CANDLE_EXTINGUISH, SoundSource.PLAYERS, 1.0F, 1.0F);
-                    return;
-                }
 
-                if(livingEntity.level().canSeeSky(livingEntity.blockPosition())) {
-                    livingEntity.setItemSlot(EquipmentSlot.HEAD, ItemStack.EMPTY);
+                    var cap = livingEntity.getItemBySlot(EquipmentSlot.HEAD);
+                    var damage = cap.getDamageValue();
+                    if(damage + 1 < cap.getMaxDamage()) {
+                        cap.setDamageValue(cap.getDamageValue() + 2);
+                    } else {
+                        livingEntity.setItemSlot(EquipmentSlot.HEAD, ItemStack.EMPTY);
+                    }
                 }
             }
         }

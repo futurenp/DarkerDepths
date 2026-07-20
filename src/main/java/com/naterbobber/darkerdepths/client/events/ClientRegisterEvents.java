@@ -19,16 +19,20 @@ import com.naterbobber.darkerdepths.client.render.DDShaders;
 import com.naterbobber.darkerdepths.client.render.renderers.*;
 import com.naterbobber.darkerdepths.init.DDBlockEntityTypes;
 import com.naterbobber.darkerdepths.init.DDEntityTypes;
+import com.naterbobber.darkerdepths.init.DDMobEffects;
 import com.naterbobber.darkerdepths.init.DDParticleTypes;
 import net.minecraft.client.model.BoatModel;
 import net.minecraft.client.model.ChestBoatModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.particle.SuspendedTownParticle;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.*;
+import net.neoforged.neoforge.client.extensions.common.IClientMobEffectExtensions;
+import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 
 @OnlyIn(Dist.CLIENT)
 @EventBusSubscriber(modid = DarkerDepths.MOD_ID, value = Dist.CLIENT)
@@ -107,5 +111,17 @@ public class ClientRegisterEvents {
     @SubscribeEvent
     public static void registerRenderTypes(RegisterNamedRenderTypesEvent event) {
         DDRenderTypes.registerRenderTypes(event);
+    }
+
+    @SubscribeEvent
+    public static void onRegisterClientExtensions(RegisterClientExtensionsEvent event) {
+        var hiddenEffect = new IClientMobEffectExtensions() {
+            @Override
+            public boolean isVisibleInInventory(MobEffectInstance instance) {
+                return false;
+            }
+        };
+
+        event.registerMobEffect(hiddenEffect, DDMobEffects.GLOWING_MYCOSES_ACTIVE.get());
     }
 }
