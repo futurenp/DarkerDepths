@@ -66,6 +66,13 @@ public class BakedModelManager {
                 })
                 .build());
 
+        models.add(BlockBaker.builder(event, DDBlocks.RED_STRING_LIGHTS)
+                .modelSettings(EmissiveBakedModel.settings()
+                        .baseBrightness(LightTexture.pack(15, 0))
+                        .baseRenderType(RenderType.CUTOUT)
+                        .removeShadeBase())
+                .build());
+
         var glowshroomBrightness = LightTexture.pack(12, 0);
         var glowshroomBaseBrightness = LightTexture.pack(5, 0);
 

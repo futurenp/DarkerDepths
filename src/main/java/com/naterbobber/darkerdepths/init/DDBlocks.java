@@ -57,13 +57,13 @@ public class DDBlocks {
             blockProperties(8.0f, 15.0f, SoundType.NETHERITE_BLOCK, true);
 
     public static final BlockBehaviour.Properties GLOWSHROOM_PLANKS_PROPERTIES =
-            blockProperties(1.2f, 1.8f, SoundType.WOOD, true);
+            blockProperties(1.2f, 1.8f, SoundType.WOOD, false);
     public static final BlockBehaviour.Properties GLOWSHROOM_STEM_PROPERTIES =
-            blockProperties(1.2f, 2.0f, SoundType.STEM, true);
+            blockProperties(1.2f, 2.0f, SoundType.STEM, false);
     public static final BlockBehaviour.Properties GLOWSHROOM_BUTTON_PROPERTIES =
-            blockProperties(0.5f, SoundType.WOOD, true);
+            blockProperties(0.5f, SoundType.WOOD, false);
     public static final BlockBehaviour.Properties GLOWSHROOM_SIGN_PROPERTIES =
-            blockProperties(1.0f, SoundType.WOOD, true).noCollission();
+            blockProperties(1.0f, SoundType.WOOD, false).noCollission();
 
     public static final BlockBehaviour.Properties GRIMESTONE_PROPERTIES =
             blockProperties(2.0f, 5f, SoundType.DEEPSLATE, true);
@@ -452,6 +452,9 @@ public class DDBlocks {
             () -> new GlowshroomLampBlock(BlockBehaviour.Properties.of().strength(0.3f, 0.3f).lightLevel(state -> state.getValue(BlockStateProperties.LIT) ? 15 : 0).sound(SoundType.GLASS)));
     public static final DeferredBlock<GlowshroomLanternBlock> GLOWSHROOM_LANTERN = registerBlock("glowshroom_lantern",
             () -> new GlowshroomLanternBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LANTERN)));
+
+    public static final DeferredBlock<StringLightsBlock> RED_STRING_LIGHTS = registerBlock("red_string_lights",
+            () -> new StringLightsBlock(BlockBehaviour.Properties.of().lightLevel(state -> 7).strength(0.1F).sound(SoundType.CANDLE).noOcclusion().noCollission()));
 
     public static final DeferredBlock<RopeBlock> ROPE = registerNoTabBlock("rope",
             () -> new RopeBlock(blockProperties(0.1f, SoundType.WOOL, false).noOcclusion()));

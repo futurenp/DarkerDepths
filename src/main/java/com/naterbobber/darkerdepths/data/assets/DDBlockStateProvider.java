@@ -6,6 +6,7 @@ import com.naterbobber.darkerdepths.block.blocksets.DDBlockSets;
 import com.naterbobber.darkerdepths.block.blockstates.PostState;
 import com.naterbobber.darkerdepths.block.blockstates.VerticalSlabState;
 import com.naterbobber.darkerdepths.block.custom.GlimmeringVinePlantBlock;
+import com.naterbobber.darkerdepths.block.custom.StringLightsBlock;
 import com.naterbobber.darkerdepths.block.custom.darkslate.*;
 import com.naterbobber.darkerdepths.block.generic.*;
 import com.naterbobber.darkerdepths.init.DDBlocks;
@@ -224,7 +225,6 @@ public class DDBlockStateProvider extends BlockStateProvider {
                 .stream()
                 .filter(holder -> !blockIgnores.contains(holder.get()))
                 .forEach(this::filterBlockType);
-
     }
 
     private void filterBlockType(DeferredHolder<Block, ? extends Block> holder) {
@@ -238,6 +238,7 @@ public class DDBlockStateProvider extends BlockStateProvider {
             case ConnectedRotatablePillarBlock b -> connectedRotatablePillarBlockWithItem(holder);
             case ConnectedPillarBlock b -> connectedPillarBlockWithItem(holder);
             case SignBlock b -> skipBlock(holder);
+            case StringLightsBlock b -> stringLightsBlockWithItem(holder);
             default -> simpleBlockWithItem(holder);
         }
     }
@@ -301,8 +302,46 @@ public class DDBlockStateProvider extends BlockStateProvider {
         }
     }
 
+    public void stringLightsBlockWithItem(DeferredHolder<Block, ? extends Block> blockHolder) {
+        var block = blockHolder.get();
+        var blockName = blockHolder.getId().getPath();
+        var facingProperty = BlockStateProperties.HORIZONTAL_FACING;
+        var bottomProperty = BlockStateProperties.BOTTOM;
+
+        getVariantBuilder(block).forAllStates(state -> {
+            var texture = DarkerDepths.id("block/" + blockName);
+            var stateName = blockName;
+            var parentName = "block/string_lights";
+
+            if(state.getValue(bottomProperty)) {
+                stateName += "_bottom";
+                parentName += "_bottom";
+            }
+
+            var model = models()
+                    .withExistingParent(stateName, DarkerDepths.id(parentName))
+                    .texture("texture", texture);
+
+
+
+//            return switch (state.getValue(facingProperty)) {
+//                case NORTH -> ConfiguredModel.builder().modelFile(model).build();
+//                case EAST -> ConfiguredModel.builder().modelFile(model).rotationY(90).build();
+//                case SOUTH -> ConfiguredModel.builder().modelFile(model).rotationY(180).build();
+//                case WEST -> ConfiguredModel.builder().modelFile(model).rotationY(270).build();
+//                default -> null;
+//            };
+
+            return ConfiguredModel.builder().modelFile(model).rotationY((int) state.getValue(facingProperty).getOpposite().toYRot()).build();
+        });
+
+        itemModels().withExistingParent(blockName, "item/generated")
+                .texture("layer0", modLoc("block/" + blockName));
+
+    }
+
     public void rotatableDarkslateBlockWithItem(DeferredHolder<Block, ? extends Block> blockHolder) {
-        Block block = blockHolder.get();
+        var block = blockHolder.get();
         getVariantBuilder(block).forAllStates(state -> {
             var stateName = getDarkslateStateName(blockHolder, state);
 
