@@ -27,6 +27,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -114,6 +115,16 @@ public class StringLightsBlock extends Block {
         return doesNeighborSupport(level, pos, state, facing.getClockWise()) && doesNeighborSupport(level, pos, state, facing.getCounterClockWise());
     }
 
+    @Override
+    public boolean onDestroyedByPlayer(BlockState state, Level level, BlockPos pos, Player player, boolean willHarvest, FluidState fluid) {
+        var blockInfo = StringLightHandler.getBlockInfo(player.getUUID());
+        if(blockInfo != null &&blockInfo.pos() == pos) {
+            StringLightHandler.removePlacement(player.getUUID());
+        }
+
+        return super.onDestroyedByPlayer(state, level, pos, player, willHarvest, fluid);
+    }
+
     private boolean hasPartialSideSupport(LevelReader level, BlockPos neighborPos, BlockState neighborState, Direction facing, boolean isBottom) {
         double minY = isBottom ? 0 : 8;
         double maxY = isBottom ? 8 : 16;
@@ -182,6 +193,10 @@ public class StringLightsBlock extends Block {
         var baseState = blockInfo.state();
         var baseFacing = baseState.getValue(FACING);
         var basePos = blockInfo.pos();
+
+        if(pos.equals(basePos)) {
+            return false;
+        }
 
         if (state.getValue(BOTTOM) != baseState.getValue(BOTTOM) || state.getValue(FACING) != baseFacing) {
             return false;
