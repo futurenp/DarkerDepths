@@ -8,6 +8,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.LivingEntity;
@@ -27,7 +28,9 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
@@ -97,20 +100,47 @@ public class StringLightsBlock extends Block {
     @Override
     protected boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
         var facing = state.getValue(FACING);
+        boolean isBottom = state.getValue(BOTTOM);
 
-        if(level.getBlockState(pos.relative(facing.getOpposite())).isFaceSturdy(level, pos.relative(facing.getOpposite()), facing)) {
+        var behindPos = pos.relative(facing.getOpposite());
+        var behindState = level.getBlockState(behindPos);
+
+        if (behindState.isFaceSturdy(level, behindPos, facing)
+                || hasPartialSideSupport(level, behindPos, behindState, facing, isBottom)
+                || behindState.is(BlockTags.LEAVES)) {
             return true;
         }
 
         return doesNeighborSupport(level, pos, state, facing.getClockWise()) && doesNeighborSupport(level, pos, state, facing.getCounterClockWise());
     }
 
-    private boolean doesNeighborSupport(LevelReader level, BlockPos pos, BlockState state, Direction direction) {
-        var facing = state.getValue(FACING);
-        var bottom = state.getValue(BOTTOM);
+    private boolean hasPartialSideSupport(LevelReader level, BlockPos neighborPos, BlockState neighborState, Direction facing, boolean isBottom) {
+        double minY = isBottom ? 0 : 8;
+        double maxY = isBottom ? 8 : 16;
 
+        var requiredSupport = switch (facing) {
+            case NORTH -> Block.box(0, minY, 0, 16, maxY, 1);
+            case SOUTH -> Block.box(0, minY, 15, 16, maxY, 16);
+            case WEST  -> Block.box(0, minY, 0, 1, maxY, 16);
+            case EAST  -> Block.box(15, minY, 0, 16, maxY, 16);
+            default -> Shapes.empty();
+        };
+
+        if (requiredSupport.isEmpty()) {
+            return false;
+        }
+
+        var neighborShape = neighborState.getBlockSupportShape(level, neighborPos);
+
+        return !Shapes.joinIsNotEmpty(requiredSupport, neighborShape, BooleanOp.ONLY_FIRST);
+    }
+
+    private boolean doesNeighborSupport(LevelReader level, BlockPos pos, BlockState state, Direction direction) {
         var neighborState = level.getBlockState(pos.relative(direction));
         if(neighborState.getBlock() == this) {
+            var facing = state.getValue(FACING);
+            var bottom = state.getValue(BOTTOM);
+
             return neighborState.getValue(FACING) == facing && neighborState.getValue(BOTTOM) == bottom;
         }
 
@@ -168,6 +198,10 @@ public class StringLightsBlock extends Block {
         int basePosVal = basePos.get(perpendicularAxis);
 
         int distance = Math.abs(currentPosVal - basePosVal);
+
+        if(distance > 16) {
+            return false;
+        }
 
         var axisDirection = (basePosVal > currentPosVal)
                 ? Direction.AxisDirection.POSITIVE

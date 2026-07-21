@@ -23,6 +23,7 @@ import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
@@ -75,6 +76,24 @@ public class DDBlocks {
     public static final BlockBehaviour.Properties GLIST_BRICKS_PROPERTIES =
             blockProperties(1.5f, 3.5f, SoundType.TUFF_BRICKS, true);
 
+    private static final List<String> COLORS = List.of(
+            "white",
+            "light_gray",
+            "gray",
+            "black",
+            "brown",
+            "red",
+            "orange",
+            "yellow",
+            "lime",
+            "green",
+            "cyan",
+            "light_blue",
+            "blue",
+            "purple",
+            "magenta",
+            "pink"
+    );
 
     public static final DeferredBlock<RotatedPillarBlock> STRIPPED_PETRIFIED_LOG = registerBlock("stripped_petrified_log",
             () -> new RotatedPillarBlock(PETRIFIED_LOG_PROPERTIES));
@@ -453,8 +472,15 @@ public class DDBlocks {
     public static final DeferredBlock<GlowshroomLanternBlock> GLOWSHROOM_LANTERN = registerBlock("glowshroom_lantern",
             () -> new GlowshroomLanternBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LANTERN)));
 
-    public static final DeferredBlock<StringLightsBlock> RED_STRING_LIGHTS = registerBlock("red_string_lights",
-            () -> new StringLightsBlock(BlockBehaviour.Properties.of().lightLevel(state -> 7).strength(0.1F).sound(SoundType.CANDLE).noOcclusion().noCollission()));
+    public static List<DeferredBlock<? extends Block>> STRING_LIGHTS = new ArrayList<>();
+
+    static {
+        COLORS.forEach(color -> {
+            var holder = registerBlock(color + "_string_lights", () -> new StringLightsBlock(
+                    BlockBehaviour.Properties.of().lightLevel(state -> 7).strength(0.1F).sound(SoundType.CANDLE).noOcclusion().noCollission()));
+            STRING_LIGHTS.add(holder);
+        });
+    }
 
     public static final DeferredBlock<RopeBlock> ROPE = registerNoTabBlock("rope",
             () -> new RopeBlock(blockProperties(0.1f, SoundType.WOOL, false).noOcclusion()));

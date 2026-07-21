@@ -1,0 +1,6 @@
+{
+  "parent": "darkerdepths:block/string_lights",
+  "textures": {
+    "texture": "darkerdepths:block/cyan_string_lights"
+  }
+}

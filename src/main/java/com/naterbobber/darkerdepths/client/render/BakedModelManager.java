@@ -66,7 +66,7 @@ public class BakedModelManager {
                 })
                 .build());
 
-        models.add(BlockBaker.builder(event, DDBlocks.RED_STRING_LIGHTS)
+        models.add(BlockBaker.builder(event, DDBlocks.STRING_LIGHTS)
                 .modelSettings(EmissiveBakedModel.settings()
                         .baseBrightness(LightTexture.pack(15, 0))
                         .baseRenderType(RenderType.CUTOUT)
@@ -280,6 +280,10 @@ public class BakedModelManager {
         @SafeVarargs
         public static BlockBaker.Builder builder(ModelEvent.ModifyBakingResult event, DeferredBlock<? extends Block>... blockHolders) {
             return new BlockBaker.Builder(event, blockHolders);
+        }
+
+        public static BlockBaker.Builder builder(ModelEvent.ModifyBakingResult event, List<DeferredBlock<? extends Block>> blockHoldersList) {
+            return new BlockBaker.Builder(event, blockHoldersList.toArray(new DeferredBlock[blockHoldersList.size()]));
         }
 
         static class Builder {

@@ -1,0 +1,34 @@
+{
+  "variants": {
+    "bottom=false,facing=east": {
+      "model": "darkerdepths:block/brown_string_lights",
+      "y": 90
+    },
+    "bottom=false,facing=north": {
+      "model": "darkerdepths:block/brown_string_lights"
+    },
+    "bottom=false,facing=south": {
+      "model": "darkerdepths:block/brown_string_lights",
+      "y": 180
+    },
+    "bottom=false,facing=west": {
+      "model": "darkerdepths:block/brown_string_lights",
+      "y": 270
+    },
+    "bottom=true,facing=east": {
+      "model": "darkerdepths:block/brown_string_lights_bottom",
+      "y": 90
+    },
+    "bottom=true,facing=north": {
+      "model": "darkerdepths:block/brown_string_lights_bottom"
+    },
+    "bottom=true,facing=south": {
+      "model": "darkerdepths:block/brown_string_lights_bottom",
+      "y": 180
+    },
+    "bottom=true,facing=west": {
+      "model": "darkerdepths:block/brown_string_lights_bottom",
+      "y": 270
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "darkerdepths:block/light_gray_string_lights"
+  }
+}
