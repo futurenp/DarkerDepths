@@ -14,8 +14,11 @@ import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoBlockEntity;
 import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
@@ -26,6 +29,9 @@ import software.bernie.geckolib.util.RenderUtil;
 public class TombBlockEntity extends BlockEntity implements GeoBlockEntity, Container {
     private static final int OPEN_ANIMATION_DURATION = 53;
     private static final int CLOSE_ANIMATION_DURATION = 40;
+    private static final RawAnimation IDLE_OPEN_ANIM = RawAnimation.begin().then("idle_open", Animation.LoopType.HOLD_ON_LAST_FRAME);
+    private static final RawAnimation OPEN_ANIM = RawAnimation.begin().then("open", Animation.LoopType.HOLD_ON_LAST_FRAME);
+    private static final RawAnimation CLOSE_ANIM = RawAnimation.begin().then("close", Animation.LoopType.HOLD_ON_LAST_FRAME);
 
     private final AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
     private NonNullList<ItemStack> items = NonNullList.withSize(1, ItemStack.EMPTY);
@@ -57,7 +63,6 @@ public class TombBlockEntity extends BlockEntity implements GeoBlockEntity, Cont
         ContainerHelper.saveAllItems(nbt, this.items, registries);
     }
 
-    // Container implementation
     @Override
     public int getContainerSize() {
         return 1;
@@ -91,7 +96,7 @@ public class TombBlockEntity extends BlockEntity implements GeoBlockEntity, Cont
                 stack.setCount(this.getMaxStackSize());
             }
             this.setChanged();
-            this.syncToClients(); // Add this line to sync item changes
+            this.syncToClients();
         }
     }
 
@@ -101,7 +106,7 @@ public class TombBlockEntity extends BlockEntity implements GeoBlockEntity, Cont
             ItemStack result = ContainerHelper.removeItem(this.items, slot, amount);
             if (!result.isEmpty()) {
                 this.setChanged();
-                this.syncToClients(); // Add this line to sync item changes
+                this.syncToClients();
             }
             return result;
         }
@@ -121,7 +126,6 @@ public class TombBlockEntity extends BlockEntity implements GeoBlockEntity, Cont
         this.items.clear();
     }
 
-    // Convenience methods
     public ItemStack getStoredItem() {
         return this.getItem(0);
     }
@@ -151,8 +155,27 @@ public class TombBlockEntity extends BlockEntity implements GeoBlockEntity, Cont
         if (entity.isAnimating) {
             entity.animationTimer++;
             int maxTicks = entity.isOpen ? OPEN_ANIMATION_DURATION : CLOSE_ANIMATION_DURATION;
+            int timer = entity.animationTimer;
 
-            if (entity.animationTimer >= maxTicks) {
+            var facing = state.getValue(HorizontalDirectionalBlock.FACING);
+            var firstLandingPos = TombBlock.getPartPos(pos, TombBlock.Part.BACK_RIGHT, facing);
+            var secondLandingPos = TombBlock.getPartPos(pos, TombBlock.Part.BACK_LEFT, facing);
+
+            if(entity.isOpen) {
+                if(timer == 20) {
+                    level.playSound(null, firstLandingPos, SoundEvents.DEEPSLATE_HIT, SoundSource.BLOCKS, 0.75F, 0.3f);
+                }
+
+                if(timer == 24) {
+                    level.playSound(null, secondLandingPos, SoundEvents.DEEPSLATE_HIT, SoundSource.BLOCKS, 0.85F, 0.3f);
+                }
+            } else {
+                if (timer == maxTicks - 3) {
+                    level.playSound(null, entity.getBlockPos(), SoundEvents.DEEPSLATE_HIT, SoundSource.BLOCKS, 1, 0.3f);
+                }
+            }
+
+            if (timer >= maxTicks) {
                 entity.finishAnimation();
             }
         }
@@ -160,10 +183,17 @@ public class TombBlockEntity extends BlockEntity implements GeoBlockEntity, Cont
 
     public void toggleTomb() {
         if (this.isAnimating) return;
+        var block = this.getBlockState().getBlock();
+
+        if(block instanceof TombBlock tombBlock) {
+            var newState = getBlockState().setValue(BlockStateProperties.OPEN, !level.getBlockState(getBlockPos()).getValue(BlockStateProperties.OPEN));
+            level.setBlockAndUpdate(getBlockPos(), newState);
+            tombBlock.placeMultiblockParts(level, getBlockPos(), newState);
+        }
 
         this.isOpen = !this.isOpen;
         this.startAnimation();
-        this.playSound();
+        this.playOpenSound();
         this.syncToClients();
     }
 
@@ -192,12 +222,12 @@ public class TombBlockEntity extends BlockEntity implements GeoBlockEntity, Cont
         this.syncToClients();
     }
 
-    private void playSound() {
+    private void playOpenSound() {
         if (this.level != null) {
             if (this.isOpen) {
-                this.level.playSound(null, this.getBlockPos(), SoundEvents.GRINDSTONE_USE, SoundSource.BLOCKS, 1, 0.4f);
+                this.level.playSound(null, this.getBlockPos(), SoundEvents.GRINDSTONE_USE, SoundSource.BLOCKS, 1, 0.3f);
             } else {
-                this.level.playSound(null, this.getBlockPos(), SoundEvents.GRINDSTONE_USE, SoundSource.BLOCKS, 1, 0.7f);
+                this.level.playSound(null, this.getBlockPos(), SoundEvents.GRINDSTONE_USE, SoundSource.BLOCKS, 1, 0.55f);
             }
         }
     }
@@ -215,10 +245,10 @@ public class TombBlockEntity extends BlockEntity implements GeoBlockEntity, Cont
 
     private PlayState animationPredicate(AnimationState<TombBlockEntity> state) {
         if (this.isAnimating) {
-            String animationName = this.isOpen ? "open" : "close";
-            state.getController().setAnimation(RawAnimation.begin().then(animationName, Animation.LoopType.HOLD_ON_LAST_FRAME));
+            var animation = this.isOpen ? OPEN_ANIM : CLOSE_ANIM;
+            state.getController().setAnimation(animation);
         } else if (this.isOpen) {
-            state.getController().setAnimation(RawAnimation.begin().then("idle_open", Animation.LoopType.LOOP));
+            state.getController().setAnimation(IDLE_OPEN_ANIM);
         }
         return PlayState.CONTINUE;
     }

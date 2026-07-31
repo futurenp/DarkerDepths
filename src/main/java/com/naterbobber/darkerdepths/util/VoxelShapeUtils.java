@@ -4,6 +4,9 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class VoxelShapeUtils {
 
     public static VoxelShape rotateHorizontal(VoxelShape shape, Direction to) {

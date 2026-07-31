@@ -203,16 +203,16 @@ public class UniqueRecipes {
                 .unlockedBy("has_forsaken_bronze_ingot", has(DDItems.FORSAKEN_BRONZE_INGOT.get()))
                 .save(recipeOutput);
 
-        ShapedRecipeBuilder
-                .shaped(RecipeCategory.MISC, DDBlocks.TOMB.get().asItem())
-                .define('B', DDItems.FORSAKEN_BRONZE_INGOT.get())
-                .define('D', DDBlocks.DUSKROCK.get().asItem())
-                .define('S', DDBlocks.DARKSLATE.get().asItem())
-                .pattern(" B ")
-                .pattern("DDD")
-                .pattern("SSS")
-                .unlockedBy("has_forsaken_bronze_ingot", has(DDItems.FORSAKEN_BRONZE_INGOT.get()))
-                .save(recipeOutput);
+//        ShapedRecipeBuilder
+//                .shaped(RecipeCategory.MISC, DDBlocks.TOMB.get().asItem())
+//                .define('B', DDItems.FORSAKEN_BRONZE_INGOT.get())
+//                .define('D', DDBlocks.DUSKROCK.get().asItem())
+//                .define('S', DDBlocks.DARKSLATE.get().asItem())
+//                .pattern(" B ")
+//                .pattern("DDD")
+//                .pattern("SSS")
+//                .unlockedBy("has_forsaken_bronze_ingot", has(DDItems.FORSAKEN_BRONZE_INGOT.get()))
+//                .save(recipeOutput);
 
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.COMBAT, DDItems.STILETTO.get())

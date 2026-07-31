@@ -41,14 +41,17 @@ public class TombProcessor extends StructureProcessor {
 
         if (blockState.is(Blocks.MAGENTA_GLAZED_TERRACOTTA)) {
             Direction facing = getFacingDirection(blockState, settings);
-            Set<StructureTemplate.StructureBlockInfo> currentTombPartsSet = TombBlock.generateMultiblockForProcessor(worldPos, facing, level, relativeBlockInfo.pos());
+
+            var duskrockTomb = DDBlocks.TOMBS.getFirst().get();
+
+            Set<StructureTemplate.StructureBlockInfo> currentTombPartsSet = duskrockTomb.generateMultiblockForProcessor(worldPos, facing, level, relativeBlockInfo.pos());
 
             Map<BlockPos, StructureTemplate.StructureBlockInfo> currentTombParts = new HashMap<>();
             currentTombPartsSet.forEach(part -> currentTombParts.put(part.pos(), part));
 
             tombPartsMap.putAll(currentTombParts);
 
-            BlockState tombState = DDBlocks.TOMB.get().defaultBlockState()
+            BlockState tombState = duskrockTomb.defaultBlockState()
                     .setValue(TombBlock.PART, TombBlock.Part.FRONT_CENTER)
                     .setValue(TombBlock.FACING, facing)
                     .setValue(TombBlock.INHABITED, true)

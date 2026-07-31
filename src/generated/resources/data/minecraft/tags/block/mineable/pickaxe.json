@@ -13,7 +13,6 @@
     "darkerdepths:glowshroom_lantern",
     "darkerdepths:skull_wall",
     "darkerdepths:death_anchor",
-    "darkerdepths:tomb",
     "darkerdepths:void_soul_jar",
     "darkerdepths:paranoia_altar",
     "darkerdepths:crystal_melon",
@@ -132,6 +131,17 @@
     "darkerdepths:glist_bricks_stairs",
     "darkerdepths:glist_bricks_slab",
     "darkerdepths:glist_bricks_vertical_slab",
-    "darkerdepths:glist_bricks_wall"
+    "darkerdepths:glist_bricks_wall",
+    "darkerdepths:tomb",
+    "darkerdepths:darkslate_tomb",
+    "darkerdepths:aridrock_tomb",
+    "darkerdepths:glist_tomb",
+    "darkerdepths:grimestone_tomb",
+    "darkerdepths:andesite_tomb",
+    "darkerdepths:granite_tomb",
+    "darkerdepths:basalt_tomb",
+    "darkerdepths:blackstone_tomb",
+    "darkerdepths:diorite_tomb",
+    "darkerdepths:tuff_tomb"
   ]
 }

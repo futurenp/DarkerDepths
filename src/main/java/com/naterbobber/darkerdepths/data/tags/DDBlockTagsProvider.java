@@ -31,6 +31,7 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
         generateModTags();
         generateWoodBlockSetTags();
         generateStoneBlockSetTags();
+        generateTombTags();
     }
 
     private void generateMinableTags() {
@@ -58,7 +59,6 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
                 DDBlocks.GLOWSHROOM_LANTERN.get(),
                 DDBlocks.SKULL_WALL.get(),
                 DDBlocks.DEATH_ANCHOR.get(),
-                DDBlocks.TOMB.get(),
                 DDBlocks.VOID_SOUL_JAR.get(),
                 DDBlocks.PARANOIA_ALTAR.get(),
                 DDBlocks.CRYSTAL_MELON.get(),
@@ -78,8 +78,7 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
                 DDBlocks.LIVING_CRYSTAL.get(),
                 DDBlocks.CRYSTAL_HUSK.get(),
                 DDBlocks.STONE_MELON.get(),
-                DDBlocks.GLOWSHROOM_LAMP.get(),
-                DDBlocks.TOMB.get()
+                DDBlocks.GLOWSHROOM_LAMP.get()
         );
 
         this.tag(BlockTags.NEEDS_IRON_TOOL).add(
@@ -308,6 +307,14 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
                     set.getPost().get(),
                     set.getStrippedPost().get()
             );
+        });
+    }
+
+    private void generateTombTags() {
+        DDBlocks.TOMBS.forEach(holder -> {
+            var block = holder.get();
+            this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(block);
+            this.tag(BlockTags.NEEDS_STONE_TOOL).add(block);
         });
     }
 

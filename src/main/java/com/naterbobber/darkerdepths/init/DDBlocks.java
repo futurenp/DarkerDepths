@@ -1,5 +1,6 @@
 package com.naterbobber.darkerdepths.init;
 
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Maps;
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.block.DDBlockSetTypes;
@@ -23,9 +24,7 @@ import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Supplier;
 
 public class DDBlocks {
@@ -76,7 +75,7 @@ public class DDBlocks {
     public static final BlockBehaviour.Properties GLIST_BRICKS_PROPERTIES =
             blockProperties(1.5f, 3.5f, SoundType.TUFF_BRICKS, true);
 
-    private static final List<String> COLORS = List.of(
+    private static final List<String> COLORS = ImmutableList.of(
             "white",
             "light_gray",
             "gray",
@@ -224,8 +223,36 @@ public class DDBlocks {
             () -> new DeathAnchorBlock(FORSAKEN_BRONZE_PROPERTIES),
             List.of(Component.translatable("tooltip.darkerdepths.death_anchor.shift_desc_1").withStyle(ChatFormatting.GOLD),
                     Component.translatable("tooltip.darkerdepths.death_anchor.shift_desc_2").withStyle(ChatFormatting.GOLD)));
-    public static final DeferredBlock<TombBlock> TOMB = registerBlock("tomb",
-            () -> new TombBlock(blockProperties(4.0f, 10.0f, SoundType.DEEPSLATE, true).noOcclusion()));
+
+    private static final List<String> TOMB_TYPES = ImmutableList.of(
+            "duskrock",
+            "darkslate",
+            "aridrock",
+            "glist",
+            "grimestone",
+            "andesite",
+            "granite",
+            "basalt",
+            "blackstone",
+            "diorite",
+            "tuff"
+    );
+
+    public static final List<DeferredBlock<TombBlock>> TOMBS = new ArrayList<>();
+
+    static {
+        Supplier<TombBlock> supplier = () -> new TombBlock(blockProperties(4.0f, 10.0f, SoundType.DEEPSLATE, true).noOcclusion());
+        TOMB_TYPES.forEach(name -> {
+            if(name.equals("duskrock")) {
+                name = "tomb";
+            } else {
+                name += "_tomb";
+            }
+
+            TOMBS.add(registerBlock(name, supplier));
+        });
+    }
+
     public static final DeferredBlock<ParanoiaAltarBlock> PARANOIA_ALTAR = registerNoTabBlock("paranoia_altar",
             () -> new ParanoiaAltarBlock(blockProperties(2.5f, 3.0f, SoundType.DEEPSLATE, true).lightLevel(level -> 9).noOcclusion()));
     public static final DeferredBlock<Block> ARID_DEEPSLATE = registerBlock("arid_deepslate",
@@ -467,20 +494,22 @@ public class DDBlocks {
     public static final DeferredBlock<GlowspursBlock> GLOWSPURS = registerBlock("glowspurs",
             () -> new GlowspursBlock(BlockBehaviour.Properties.of().strength(0.2F).lightLevel(value -> 3).sound(SoundType.WET_GRASS).noCollission()));
 
+    public static List<DeferredBlock<? extends Block>> STRING_LIGHTS = new ArrayList<>();
+
+    static {
+        Supplier<StringLightsBlock> supplier = () -> new StringLightsBlock(
+                BlockBehaviour.Properties.of().lightLevel(state -> 7).strength(0.1F).sound(SoundType.CANDLE).noOcclusion().noCollission());
+
+        COLORS.forEach(color -> {
+            var holder = registerBlock(color + "_string_lights", supplier);
+            STRING_LIGHTS.add(holder);
+        });
+    }
+
     public static final DeferredBlock<GlowshroomLampBlock> GLOWSHROOM_LAMP = registerBlock("glowshroom_lamp",
             () -> new GlowshroomLampBlock(BlockBehaviour.Properties.of().strength(0.3f, 0.3f).lightLevel(state -> state.getValue(BlockStateProperties.LIT) ? 15 : 0).sound(SoundType.GLASS)));
     public static final DeferredBlock<GlowshroomLanternBlock> GLOWSHROOM_LANTERN = registerBlock("glowshroom_lantern",
             () -> new GlowshroomLanternBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LANTERN)));
-
-    public static List<DeferredBlock<? extends Block>> STRING_LIGHTS = new ArrayList<>();
-
-    static {
-        COLORS.forEach(color -> {
-            var holder = registerBlock(color + "_string_lights", () -> new StringLightsBlock(
-                    BlockBehaviour.Properties.of().lightLevel(state -> 7).strength(0.1F).sound(SoundType.CANDLE).noOcclusion().noCollission()));
-            STRING_LIGHTS.add(holder);
-        });
-    }
 
     public static final DeferredBlock<RopeBlock> ROPE = registerNoTabBlock("rope",
             () -> new RopeBlock(blockProperties(0.1f, SoundType.WOOL, false).noOcclusion()));

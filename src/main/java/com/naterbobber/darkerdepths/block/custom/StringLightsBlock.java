@@ -2,10 +2,8 @@ package com.naterbobber.darkerdepths.block.custom;
 
 import com.naterbobber.darkerdepths.api.StringLightHandler;
 import com.naterbobber.darkerdepths.util.VoxelShapeUtils;
-import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
@@ -18,10 +16,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -118,7 +114,7 @@ public class StringLightsBlock extends Block {
     @Override
     public boolean onDestroyedByPlayer(BlockState state, Level level, BlockPos pos, Player player, boolean willHarvest, FluidState fluid) {
         var blockInfo = StringLightHandler.getBlockInfo(player.getUUID());
-        if(blockInfo != null &&blockInfo.pos() == pos) {
+        if(blockInfo != null && blockInfo.pos() == pos) {
             StringLightHandler.removePlacement(player.getUUID());
         }
 
@@ -235,7 +231,7 @@ public class StringLightsBlock extends Block {
         }
 
         int requiredAmount = blocksToPlace.size();
-        Item requiredItem = state.getBlock().asItem();
+        var requiredItem = state.getBlock().asItem();
 
         if (!player.isCreative()) {
             int availableCount = 0;

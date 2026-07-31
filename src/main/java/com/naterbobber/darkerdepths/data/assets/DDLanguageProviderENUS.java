@@ -41,10 +41,12 @@ public class DDLanguageProviderENUS extends LanguageProvider {
         add(DDBlocks.FORSAKEN_BRONZE_BLOCK, "Block of Forsaken Bronze");
         add(DDBlocks.SCORCHED_REMAINS_BLOCK, "Block of Scorched Remains");
         add(DDBlocks.GLOWSHROOM_PILEUS, "Glowshroom Pileus");
+        add(DDBlocks.TOMBS.getFirst(), "Duskrock Tomb");
 
         // Entities
         add(DDEntityTypes.PETRIFIED_CHEST_BOAT, "Petrified Boat with Chest");
         add(DDEntityTypes.GLOWSHROOM_CHEST_BOAT, "Glowshroom Boat with Chest");
+
 
         // Enchantments
         LangBuilder.of(this, ddString("enchantment"))

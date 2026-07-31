@@ -7,6 +7,7 @@ import com.naterbobber.darkerdepths.block.blockstates.PostState;
 import com.naterbobber.darkerdepths.block.blockstates.VerticalSlabState;
 import com.naterbobber.darkerdepths.block.custom.GlimmeringVinePlantBlock;
 import com.naterbobber.darkerdepths.block.custom.StringLightsBlock;
+import com.naterbobber.darkerdepths.block.custom.TombBlock;
 import com.naterbobber.darkerdepths.block.custom.darkslate.*;
 import com.naterbobber.darkerdepths.block.generic.*;
 import com.naterbobber.darkerdepths.init.DDBlocks;
@@ -90,7 +91,6 @@ public class DDBlockStateProvider extends BlockStateProvider {
                 DDBlocks.PETRIFIED_ROOTS,
                 DDBlocks.PETRIFIED_ROOTS_PLANT,
                 DDBlocks.STONE_MELON,
-                DDBlocks.TOMB,
                 DDBlocks.SKULL_WALL,
                 DDBlocks.POTTED_GLOWSHROOM,
                 DDBlocks.ROPE,
@@ -239,6 +239,7 @@ public class DDBlockStateProvider extends BlockStateProvider {
             case ConnectedPillarBlock b -> connectedPillarBlockWithItem(holder);
             case SignBlock b -> skipBlock(holder);
             case StringLightsBlock b -> stringLightsBlockWithItem(holder);
+            case TombBlock b -> tombBlockWithItem(holder);
             default -> simpleBlockWithItem(holder);
         }
     }
@@ -294,13 +295,27 @@ public class DDBlockStateProvider extends BlockStateProvider {
     }
 
     private void rotatablePillarBlockWithItem(DeferredHolder<Block, ? extends Block> blockHolder) {
-        RotatedPillarBlock block = (RotatedPillarBlock) blockHolder.get();
-        String blockName = block.getName().getString();
+        var block = (RotatedPillarBlock) blockHolder.get();
+        var blockName = block.getName().getString();
 
         if(!blockName.contains("wood")) {
             logBlockWithItem(blockHolder);
         }
     }
+
+    public void tombBlockWithItem(DeferredHolder<Block, ? extends Block> blockHolder) {
+        var name = blockHolder.getId().getPath();
+
+        var model = models()
+                .withExistingParent(name, DarkerDepths.id("tomb_particles"));
+
+        simpleBlock(blockHolder.get(), model);
+
+        itemModels().withExistingParent(name, "item/generated")
+                .texture("layer0", modLoc("item/" + name));
+
+    }
+
 
     public void stringLightsBlockWithItem(DeferredHolder<Block, ? extends Block> blockHolder) {
         var block = blockHolder.get();
@@ -321,16 +336,6 @@ public class DDBlockStateProvider extends BlockStateProvider {
             var model = models()
                     .withExistingParent(stateName, DarkerDepths.id(parentName))
                     .texture("texture", texture);
-
-
-
-//            return switch (state.getValue(facingProperty)) {
-//                case NORTH -> ConfiguredModel.builder().modelFile(model).build();
-//                case EAST -> ConfiguredModel.builder().modelFile(model).rotationY(90).build();
-//                case SOUTH -> ConfiguredModel.builder().modelFile(model).rotationY(180).build();
-//                case WEST -> ConfiguredModel.builder().modelFile(model).rotationY(270).build();
-//                default -> null;
-//            };
 
             return ConfiguredModel.builder().modelFile(model).rotationY((int) state.getValue(facingProperty).getOpposite().toYRot()).build();
         });
