@@ -1,6 +1,7 @@
 package com.naterbobber.darkerdepths.events;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
+import com.naterbobber.darkerdepths.api.ITombBedExtension;
 import com.naterbobber.darkerdepths.config.DDConfig;
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import com.naterbobber.darkerdepths.init.DDCriteria;
@@ -25,6 +26,8 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
+import net.neoforged.neoforge.event.entity.player.PlayerSpawnPhantomsEvent;
+import net.neoforged.neoforge.event.level.SleepFinishedTimeEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 
 @EventBusSubscriber(modid = DarkerDepths.MOD_ID)
@@ -62,6 +65,16 @@ public class PlayerEvents {
 
             event.setCancellationResult(InteractionResult.SUCCESS);
             event.setCanceled(true);
+        }
+    }
+
+    @SubscribeEvent
+    public static void onPlayerSpawnPhantoms(PlayerSpawnPhantomsEvent event) {
+        var player = event.getEntity();
+        if(player instanceof ITombBedExtension playerEx) {
+            if(playerEx.darkerdepths$hasLastSleptInTombBed()) {
+                event.setResult(PlayerSpawnPhantomsEvent.Result.DENY);
+            }
         }
     }
 

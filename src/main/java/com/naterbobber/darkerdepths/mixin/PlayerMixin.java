@@ -1,11 +1,17 @@
 package com.naterbobber.darkerdepths.mixin;
 
+import com.mojang.datafixers.util.Either;
 import com.naterbobber.darkerdepths.DarkerDepths;
+import com.naterbobber.darkerdepths.api.ITombBedExtension;
 import com.naterbobber.darkerdepths.api.death_anchor.IDeathAnchorExtension;
+import com.naterbobber.darkerdepths.block.custom.TombBlock;
 import com.naterbobber.darkerdepths.init.DDMobEffects;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.GlobalPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtOps;
+import net.minecraft.nbt.TagType;
+import net.minecraft.util.Unit;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -21,15 +27,17 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Optional;
 
 @Mixin(Player.class)
-public class PlayerMixin implements IDeathAnchorExtension {
+public class PlayerMixin implements IDeathAnchorExtension, ITombBedExtension {
     @Unique
     private Optional<GlobalPos> darkerDepths$deathAnchorLocation = Optional.empty();
     @Unique
     private int darkerDepths$healthCooldown;
+    private boolean darkerDepths$hasSleptInTombBed;
 
     @Inject(at = @At("HEAD"), method = "addAdditionalSaveData")
     private void darkerdepths$addAdditionalSaveData(CompoundTag tag, CallbackInfo ci) {
@@ -39,6 +47,7 @@ public class PlayerMixin implements IDeathAnchorExtension {
                         .resultOrPartial(DarkerDepths.LOGGER::error))
                 .ifPresent((location) -> tag.put("DeathAnchorLocation", location));
         tag.putInt("HealthCooldown", this.darkerDepths$healthCooldown);
+        tag.putBoolean("SleptInTombBed", this.darkerDepths$hasSleptInTombBed);
     }
 
     @Inject(at = @At("HEAD"), method = "readAdditionalSaveData")
@@ -48,6 +57,9 @@ public class PlayerMixin implements IDeathAnchorExtension {
         }
         if(tag.contains("HealthCooldown", 10)) {
             this.darkerDepths$healthCooldown = tag.getInt("HealthCooldown");
+        }
+        if(tag.contains("SleptInTombBed")) {
+            this.darkerDepths$hasSleptInTombBed = tag.getBoolean("SleptInTombBed");
         }
     }
 
@@ -94,5 +106,15 @@ public class PlayerMixin implements IDeathAnchorExtension {
             }
             darkerDepths$setHealthCoolDown(IDeathAnchorExtension.RECOVERY_COOLDOWN);
         }
+    }
+
+    @Override
+    public void darkerdepths$setHasLastSleptInTombBed(boolean hasLastSlept) {
+        darkerDepths$hasSleptInTombBed = hasLastSlept;
+    }
+
+    @Override
+    public boolean darkerdepths$hasLastSleptInTombBed() {
+        return darkerDepths$hasSleptInTombBed;
     }
 }
