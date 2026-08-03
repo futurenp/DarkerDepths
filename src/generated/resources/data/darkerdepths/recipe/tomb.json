@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "darkerdepths:forsaken_bronze_ingot"
+    },
+    "D": {
+      "item": "darkerdepths:darkslate"
+    },
+    "S": {
+      "item": "darkerdepths:duskrock"
+    }
+  },
+  "pattern": [
+    " B ",
+    "SSS",
+    "DDD"
+  ],
+  "result": {
+    "count": 1,
+    "id": "darkerdepths:tomb"
+  }
+}

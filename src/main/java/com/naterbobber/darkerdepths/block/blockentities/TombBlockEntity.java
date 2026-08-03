@@ -1,7 +1,11 @@
 package com.naterbobber.darkerdepths.block.blockentities;
 
+import com.naterbobber.darkerdepths.block.DDBlockStateProperties;
+import com.naterbobber.darkerdepths.block.blockstates.BedState;
+import com.naterbobber.darkerdepths.block.blockstates.TombPart;
 import com.naterbobber.darkerdepths.block.custom.TombBlock;
 import com.naterbobber.darkerdepths.init.DDBlockEntityTypes;
+import com.naterbobber.darkerdepths.init.DDBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
@@ -18,7 +22,6 @@ import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoBlockEntity;
 import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
@@ -158,8 +161,8 @@ public class TombBlockEntity extends BlockEntity implements GeoBlockEntity, Cont
             int timer = entity.animationTimer;
 
             var facing = state.getValue(HorizontalDirectionalBlock.FACING);
-            var firstLandingPos = TombBlock.getPartPos(pos, TombBlock.Part.BACK_RIGHT, facing);
-            var secondLandingPos = TombBlock.getPartPos(pos, TombBlock.Part.BACK_LEFT, facing);
+            var firstLandingPos = TombBlock.getPartPos(pos, TombPart.BACK_RIGHT, facing);
+            var secondLandingPos = TombBlock.getPartPos(pos, TombPart.BACK_LEFT, facing);
 
             if(entity.isOpen) {
                 if(timer == 20) {
@@ -187,8 +190,7 @@ public class TombBlockEntity extends BlockEntity implements GeoBlockEntity, Cont
 
         if(block instanceof TombBlock tombBlock) {
             var newState = getBlockState().setValue(BlockStateProperties.OPEN, !level.getBlockState(getBlockPos()).getValue(BlockStateProperties.OPEN));
-            level.setBlockAndUpdate(getBlockPos(), newState);
-            tombBlock.placeMultiblockParts(level, getBlockPos(), newState);
+            tombBlock.updateMultiblockState(level, getBlockPos(), newState);
         }
 
         this.isOpen = !this.isOpen;
@@ -206,7 +208,11 @@ public class TombBlockEntity extends BlockEntity implements GeoBlockEntity, Cont
     }
 
     public boolean isInhabited() {
-        return this.getBlockState().getValue(TombBlock.INHABITED);
+        return this.getBlockState().getValue(DDBlockStateProperties.INHABITED);
+    }
+
+    public boolean hasBed() {
+        return !this.getBlockState().getValue(DDBlockStateProperties.BED).equals(BedState.NONE);
     }
 
     private void startAnimation() {

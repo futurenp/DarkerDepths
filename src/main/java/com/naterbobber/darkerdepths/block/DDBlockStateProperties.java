@@ -1,8 +1,6 @@
 package com.naterbobber.darkerdepths.block;
 
-import com.naterbobber.darkerdepths.block.blockstates.PillarState;
-import com.naterbobber.darkerdepths.block.blockstates.PostState;
-import com.naterbobber.darkerdepths.block.blockstates.VerticalSlabState;
+import com.naterbobber.darkerdepths.block.blockstates.*;
 import com.naterbobber.darkerdepths.block.custom.RopeBlock;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
@@ -38,4 +36,6 @@ public class DDBlockStateProperties {
             CONNECT_EAST,
             CONNECT_WEST
     );
+    public static final EnumProperty<BedState> BED = EnumProperty.create("bed", BedState.class);
+    public static final EnumProperty<TombPart> TOMB_PART = EnumProperty.create("part", TombPart.class);
 }

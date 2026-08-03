@@ -26,7 +26,7 @@ public class TombModel extends DefaultedBlockGeoModel<TombBlockEntity> {
 		var name = BuiltInRegistries.BLOCK.getKey(tombBlock).getPath();
 
 		if(name.equals("tomb")) {
-			stringBuilder.append("red");
+			stringBuilder.append("duskrock_tomb");
 		} else {
 			stringBuilder.append(name);
 		}

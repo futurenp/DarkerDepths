@@ -17,4 +17,8 @@ public class BlockStateUtils {
 
         return newState;
     }
+
+    public static <T extends Comparable<T>> BlockState copyProperty(BlockState source, BlockState target, Property<T> property) {
+        return target.setValue(property, source.getValue(property));
+    }
 }

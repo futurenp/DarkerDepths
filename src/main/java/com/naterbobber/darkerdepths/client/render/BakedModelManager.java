@@ -160,8 +160,7 @@ public class BakedModelManager {
                 .modelSettings(EmissiveBakedModel.settings()
                         .baseRenderType(RenderType.CUTOUT)
                         .glowRenderType(RenderType.CUTOUT)
-                        .glowBrightness(LightTexture.FULL_BRIGHT)
-                        .manualModelGlow())
+                        .glowBrightness(LightTexture.FULL_BRIGHT))
                 .build());
 
         models.add(BlockBaker.builder(event, DDBlocks.GLOWSHROOM_HEART)

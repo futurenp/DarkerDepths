@@ -25,6 +25,7 @@ import net.minecraft.client.model.BoatModel;
 import net.minecraft.client.model.ChestBoatModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.particle.SuspendedTownParticle;
+import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;

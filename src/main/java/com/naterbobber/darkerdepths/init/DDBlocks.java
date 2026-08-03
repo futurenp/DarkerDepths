@@ -235,10 +235,15 @@ public class DDBlocks {
             "basalt",
             "blackstone",
             "diorite",
-            "tuff"
+            "tuff",
+            "deepslate",
+            "calcite",
+            "dripstone",
+            "prismarine",
+            "dark_prismarine"
     );
 
-    public static final List<DeferredBlock<TombBlock>> TOMBS = new ArrayList<>();
+    public static final Map<String, DeferredBlock<TombBlock>> TOMBS = new HashMap<>();
 
     static {
         Supplier<TombBlock> supplier = () -> new TombBlock(blockProperties(4.0f, 10.0f, SoundType.DEEPSLATE, true).noOcclusion());
@@ -249,7 +254,7 @@ public class DDBlocks {
                 name += "_tomb";
             }
 
-            TOMBS.add(registerBlock(name, supplier));
+            TOMBS.put(name, registerBlock(name, supplier));
         });
     }
 

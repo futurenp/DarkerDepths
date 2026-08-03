@@ -1,5 +1,6 @@
 package com.naterbobber.darkerdepths.data.recipes;
 
+import com.google.common.collect.ImmutableList;
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import com.naterbobber.darkerdepths.init.DDItems;
@@ -16,11 +17,11 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.neoforged.neoforge.registries.DeferredBlock;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class UniqueRecipes {
     public static void create(RecipeOutput recipeOutput) {
@@ -202,17 +203,6 @@ public class UniqueRecipes {
                 .pattern("DOD")
                 .unlockedBy("has_forsaken_bronze_ingot", has(DDItems.FORSAKEN_BRONZE_INGOT.get()))
                 .save(recipeOutput);
-
-//        ShapedRecipeBuilder
-//                .shaped(RecipeCategory.MISC, DDBlocks.TOMB.get().asItem())
-//                .define('B', DDItems.FORSAKEN_BRONZE_INGOT.get())
-//                .define('D', DDBlocks.DUSKROCK.get().asItem())
-//                .define('S', DDBlocks.DARKSLATE.get().asItem())
-//                .pattern(" B ")
-//                .pattern("DDD")
-//                .pattern("SSS")
-//                .unlockedBy("has_forsaken_bronze_ingot", has(DDItems.FORSAKEN_BRONZE_INGOT.get()))
-//                .save(recipeOutput);
 
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.COMBAT, DDItems.STILETTO.get())

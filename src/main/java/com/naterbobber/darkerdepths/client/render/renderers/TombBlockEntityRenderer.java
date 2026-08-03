@@ -3,13 +3,17 @@ package com.naterbobber.darkerdepths.client.render.renderers;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
+import com.naterbobber.darkerdepths.DarkerDepths;
+import com.naterbobber.darkerdepths.block.DDBlockStateProperties;
 import com.naterbobber.darkerdepths.block.blockentities.TombBlockEntity;
+import com.naterbobber.darkerdepths.block.blockstates.BedState;
 import com.naterbobber.darkerdepths.block.custom.TombBlock;
 import com.naterbobber.darkerdepths.client.models.TombModel;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
+import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
@@ -17,6 +21,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.monster.Skeleton;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.neoforged.api.distmarker.Dist;
@@ -42,32 +47,84 @@ public class TombBlockEntityRenderer extends GeoBlockRenderer<TombBlockEntity> {
         if (animatable.isInhabited()) {
             renderSkeleton(animatable, partialTick, poseStack, bufferSource, packedLight);
         }
+
+        if(animatable.hasBed()) {
+            renderBed(animatable, partialTick, poseStack, bufferSource, packedLight);
+        }
     }
 
-    private void renderSkeleton(TombBlockEntity blockEntity, float partialTick, PoseStack matrices, MultiBufferSource bufferSource, int packedLight) {
-        Level level = blockEntity.getLevel();
+    private void renderBed(TombBlockEntity tombBlockEntity, float partialTick, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight) {
+        var bedState = tombBlockEntity.getBlockState().getValue(DDBlockStateProperties.BED);
+
+        if (bedState == BedState.NONE) {
+            return;
+        }
+
+        var texture = DarkerDepths.id("textures/entity/tomb/colors/" + bedState.getSerializedName() + ".png");
+        var consumer = bufferSource.getBuffer(RenderType.entityCutout(texture));
+
+        poseStack.pushPose();
+        poseStack.translate(0.0, 0.335, 0.0);
+
+        var pose = poseStack.last();
+
+        float length = 38.0F / 16.0F;
+        float width = 1F;
+        float height = 3/16F;
+
+        consumer.addVertex(pose, -length / 2, height, width)
+                .setColor(255, 255, 255, 255)
+                .setUv(1.0F, 0.0F)
+                .setOverlay(OverlayTexture.NO_OVERLAY)
+                .setLight(packedLight)
+                .setNormal(pose, 0.0F, 1.0F, 0.0F);
+
+        consumer.addVertex(pose, length / 2, height, width)
+                .setColor(255, 255, 255, 255)
+                .setUv(0.0F, 0.0F)
+                .setOverlay(OverlayTexture.NO_OVERLAY)
+                .setLight(packedLight)
+                .setNormal(pose, 0.0F, 1.0F, 0.0F);
+
+        consumer.addVertex(pose, length / 2, height, 0.0F)
+                .setColor(255, 255, 255, 255)
+                .setUv(0.0F, 1.0F)
+                .setOverlay(OverlayTexture.NO_OVERLAY)
+                .setLight(packedLight)
+                .setNormal(pose, 0.0F, 1.0F, 0.0F);
+
+        consumer.addVertex(pose, -length / 2, height, 0.0F)
+                .setColor(255, 255, 255, 255)
+                .setUv(1.0F, 1.0F)
+                .setOverlay(OverlayTexture.NO_OVERLAY)
+                .setLight(packedLight)
+                .setNormal(pose, 0.0F, 1.0F, 0.0F);
+
+        poseStack.popPose();
+    }
+
+    private void renderSkeleton(TombBlockEntity tombBlockEntity, float partialTick, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight) {
+        var level = tombBlockEntity.getLevel();
         if (level == null) return;
 
-        Skeleton skeleton = new Skeleton(EntityType.SKELETON, level);
+        var skeleton = new Skeleton(EntityType.SKELETON, level);
         skeleton.yHeadRot = 0.0f;
         skeleton.yHeadRotO = 0.0f;
 
-        // Set the stored item to the skeleton's main hand
-        ItemStack storedItem = blockEntity.getStoredItem();
+        var storedItem = tombBlockEntity.getStoredItem();
         if (!storedItem.isEmpty()) {
             skeleton.setItemInHand(InteractionHand.MAIN_HAND, storedItem.copy());
         }
 
-        matrices.pushPose();
-        matrices.translate(1.0, 0.335, 0.5);
+        poseStack.pushPose();
+        poseStack.translate(1.0, 0.335, 0.5);
 
-        matrices.mulPose(Axis.XP.rotationDegrees(-90f));
-        matrices.mulPose(Axis.ZP.rotationDegrees(90f));
+        poseStack.mulPose(Axis.XP.rotationDegrees(-90f));
+        poseStack.mulPose(Axis.ZP.rotationDegrees(90f));
 
-        // Render the skeleton with its held item
-        this.dispatcher.render(skeleton, 0, 0, 0, 0, partialTick, matrices, bufferSource, packedLight);
+        this.dispatcher.render(skeleton, 0, 0, 0, 0, partialTick, poseStack, bufferSource, packedLight);
 
-        matrices.popPose();
+        poseStack.popPose();
     }
 
     @Override
@@ -76,7 +133,7 @@ public class TombBlockEntityRenderer extends GeoBlockRenderer<TombBlockEntity> {
         BlockState state = blockEntity.getBlockState();
 
         if (state.getBlock() instanceof TombBlock) {
-            Direction facing = state.getValue(TombBlock.FACING);
+            Direction facing = state.getValue(HorizontalDirectionalBlock.FACING);
 
             return switch (facing) {
                 case SOUTH -> encapsulatingFullBlocks(pos.offset(-2, -8, -1), pos.offset(3, 3, 8));

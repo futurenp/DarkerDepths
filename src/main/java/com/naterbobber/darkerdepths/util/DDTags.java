@@ -64,6 +64,7 @@ public class DDTags {
         public static final TagKey<Block> GRIME_GROUND = TAGS.create("grime_ground");
         public static final TagKey<Block> GRIME_SURFACE = TAGS.create("grime_surface");
         public static final TagKey<Block> POSTS = TAGS.create("posts", DDCompat.QUARK);
+        public static final TagKey<Block> CARRYON_BLACKLIST = TAGS.create("block_blacklist", DDCompat.CARRYON);
     }
     public static class Fluids {
         private static final TagFactory<Fluid> TAGS = make(Registries.FLUID);
@@ -91,5 +92,6 @@ public class DDTags {
         public static final TagKey<EntityType<?>> GLOWSHROOM_MONSTER_TARGET = TAGS.create("glowshroom_monster_target");
         public static final TagKey<EntityType<?>> GLOWSPURS_IMMUNE = TAGS.create("glowspurs_immune");
         public static final TagKey<EntityType<?>> VOID_SOUL = TAGS.create("void_soul");
+        public static final TagKey<EntityType<?>> CARRYON_BLACKLIST = TAGS.create("entity_blacklist", DDCompat.CARRYON);
     }
 }

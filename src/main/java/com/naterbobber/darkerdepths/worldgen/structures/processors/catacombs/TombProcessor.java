@@ -1,6 +1,8 @@
 package com.naterbobber.darkerdepths.worldgen.structures.processors.catacombs;
 
 import com.mojang.serialization.MapCodec;
+import com.naterbobber.darkerdepths.block.DDBlockStateProperties;
+import com.naterbobber.darkerdepths.block.blockstates.TombPart;
 import com.naterbobber.darkerdepths.block.custom.TombBlock;
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import com.naterbobber.darkerdepths.init.DDItems;
@@ -12,6 +14,7 @@ import net.minecraft.nbt.ListTag;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlaceSettings;
@@ -37,31 +40,31 @@ public class TombProcessor extends StructureProcessor {
             StructureTemplate.StructureBlockInfo relativeBlockInfo,
             StructurePlaceSettings settings
     ) {
-        BlockState blockState = relativeBlockInfo.state();
+        var blockState = relativeBlockInfo.state();
 
         if (blockState.is(Blocks.MAGENTA_GLAZED_TERRACOTTA)) {
             Direction facing = getFacingDirection(blockState, settings);
 
-            var duskrockTomb = DDBlocks.TOMBS.getFirst().get();
+            var duskrockTomb = DDBlocks.TOMBS.get("tomb").get();
 
-            Set<StructureTemplate.StructureBlockInfo> currentTombPartsSet = duskrockTomb.generateMultiblockForProcessor(worldPos, facing, level, relativeBlockInfo.pos());
+            var currentTombPartsSet = duskrockTomb.generateMultiblockForProcessor(worldPos, facing, level, relativeBlockInfo.pos());
 
             Map<BlockPos, StructureTemplate.StructureBlockInfo> currentTombParts = new HashMap<>();
             currentTombPartsSet.forEach(part -> currentTombParts.put(part.pos(), part));
 
             tombPartsMap.putAll(currentTombParts);
 
-            BlockState tombState = duskrockTomb.defaultBlockState()
-                    .setValue(TombBlock.PART, TombBlock.Part.FRONT_CENTER)
-                    .setValue(TombBlock.FACING, facing)
-                    .setValue(TombBlock.INHABITED, true)
-                    .setValue(TombBlock.WATERLOGGED, level.getFluidState(worldPos).getType() == Fluids.WATER);
+            var tombState = duskrockTomb.defaultBlockState()
+                    .setValue(DDBlockStateProperties.TOMB_PART, TombPart.FRONT_CENTER)
+                    .setValue(HorizontalDirectionalBlock.FACING, facing)
+                    .setValue(DDBlockStateProperties.INHABITED, true)
+                    .setValue(BlockStateProperties.WATERLOGGED, level.getFluidState(worldPos).getType() == Fluids.WATER);
 
-            CompoundTag nbt = new CompoundTag();
-            ListTag itemsNbt = new ListTag();
+            var nbt = new CompoundTag();
+            var itemsNbt = new ListTag();
 
-            ItemStack forsakenBronzeScrap = new ItemStack(DDItems.FORSAKEN_BRONZE_SCRAP.get());
-            CompoundTag itemTag = (CompoundTag) forsakenBronzeScrap.save(level.registryAccess());
+            var forsakenBronzeScrap = new ItemStack(DDItems.FORSAKEN_BRONZE_SCRAP.get());
+            var itemTag = (CompoundTag) forsakenBronzeScrap.save(level.registryAccess());
             itemTag.putByte("Slot", (byte) 0);
             itemsNbt.add(itemTag);
 
@@ -74,7 +77,7 @@ public class TombProcessor extends StructureProcessor {
             );
         }
 
-        StructureTemplate.StructureBlockInfo tombPart = tombPartsMap.get(relativeBlockInfo.pos());
+        var tombPart = tombPartsMap.get(relativeBlockInfo.pos());
         if (tombPart != null) {
             return tombPart;
         }
@@ -84,7 +87,7 @@ public class TombProcessor extends StructureProcessor {
 
     private Direction getFacingDirection(BlockState markerBlock, StructurePlaceSettings settings) {
         if (markerBlock.hasProperty(BlockStateProperties.HORIZONTAL_FACING)) {
-            Direction markerFacing = markerBlock.getValue(BlockStateProperties.HORIZONTAL_FACING);
+            var markerFacing = markerBlock.getValue(BlockStateProperties.HORIZONTAL_FACING);
             return settings.getRotation().rotate(markerFacing);
         }
 

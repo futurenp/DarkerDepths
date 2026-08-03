@@ -23,7 +23,7 @@ public class CompatID {
         return new CompatID(compatID);
     }
 
-    public static CompatID create(String... compatIDs) {
+    public static CompatID createList(String... compatIDs) {
         return new CompatID(compatIDs);
     }
 

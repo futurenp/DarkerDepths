@@ -311,10 +311,11 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
     }
 
     private void generateTombTags() {
-        DDBlocks.TOMBS.forEach(holder -> {
+        DDBlocks.TOMBS.forEach((name, holder) -> {
             var block = holder.get();
             this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(block);
             this.tag(BlockTags.NEEDS_STONE_TOOL).add(block);
+            this.tag(DDTags.Blocks.CARRYON_BLACKLIST).add(block);
         });
     }
 

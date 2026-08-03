@@ -20,10 +20,13 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.SmeltingRecipe;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.conditions.ModLoadedCondition;
 import net.neoforged.neoforge.common.conditions.OrCondition;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
 public class DDRecipeProvider extends RecipeProvider {
@@ -45,6 +48,40 @@ public class DDRecipeProvider extends RecipeProvider {
 
         shaplessOne(recipeOutput, DDItems.AMBER.get(), DDBlocks.AMBER_BLOCK.get().asItem(), 9);
         shaplessOne(recipeOutput, DDItems.FORSAKEN_BRONZE_INGOT.get(), DDBlocks.FORSAKEN_BRONZE_BLOCK.get().asItem(), 9);
+
+        var tombBlockMap = new HashMap<>(Map.ofEntries(
+                Map.entry("tomb", DDBlocks.DUSKROCK.get()),
+                Map.entry("darkslate_tomb", DDBlocks.DARKSLATE.get()),
+                Map.entry("aridrock_tomb", DDBlocks.ARIDROCK.get()),
+                Map.entry("glist_tomb", DDBlocks.GLIST.get()),
+                Map.entry("grimestone_tomb", DDBlocks.GRIMESTONE.get()),
+                Map.entry("andesite_tomb", Blocks.ANDESITE),
+                Map.entry("granite_tomb", Blocks.GRANITE),
+                Map.entry("basalt_tomb", Blocks.BASALT),
+                Map.entry("blackstone_tomb", Blocks.BLACKSTONE),
+                Map.entry("diorite_tomb", Blocks.DIORITE),
+                Map.entry("tuff_tomb", Blocks.TUFF),
+                Map.entry("deepslate_tomb", Blocks.COBBLED_DEEPSLATE),
+                Map.entry("calcite_tomb", Blocks.CALCITE),
+                Map.entry("dripstone_tomb", Blocks.DRIPSTONE_BLOCK),
+                Map.entry("prismarine_tomb", Blocks.PRISMARINE),
+                Map.entry("dark_prismarine_tomb", Blocks.DARK_PRISMARINE)
+        ));
+
+        tombBlockMap.forEach((name, baseBlock) -> {
+            var tombBlock = DDBlocks.TOMBS.get(name);
+
+            ShapedRecipeBuilder
+                    .shaped(RecipeCategory.MISC, tombBlock.asItem())
+                    .define('B', DDItems.FORSAKEN_BRONZE_INGOT.get())
+                    .define('S', baseBlock.asItem())
+                    .define('D', DDBlocks.DARKSLATE.get().asItem())
+                    .pattern(" B ")
+                    .pattern("SSS")
+                    .pattern("DDD")
+                    .unlockedBy("has_forsaken_bronze_ingot", has(DDItems.FORSAKEN_BRONZE_INGOT.get()))
+                    .save(recipeOutput);
+        });
 
         UniqueRecipes.create(recipeOutput);
     }

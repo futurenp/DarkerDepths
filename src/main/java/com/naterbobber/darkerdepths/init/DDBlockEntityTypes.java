@@ -22,7 +22,7 @@ public class DDBlockEntityTypes {
             () -> BlockEntityType.Builder.of(GeyserBlockEntity::new, DDBlocks.GEYSER.get()).build(null));
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<TombBlockEntity>> TOMB = BLOCK_ENTITIES.register("tomb",
             () -> BlockEntityType.Builder.of(TombBlockEntity::new,
-                    DDBlocks.TOMBS.stream().map(DeferredBlock::get).toList().toArray(new TombBlock[0])).build(null));
+                    DDBlocks.TOMBS.values().stream().map(DeferredBlock::get).toList().toArray(new TombBlock[0])).build(null));
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<ParanoiaAltarBlockEntity>> PARANOIA_ALTAR = BLOCK_ENTITIES.register("paranoia_altar",
             () -> BlockEntityType.Builder.of(ParanoiaAltarBlockEntity::new, DDBlocks.PARANOIA_ALTAR.get()).build(null));
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<MobPlacerBlockEntity>> MOB_PLACER = BLOCK_ENTITIES.register("mob_placer",
