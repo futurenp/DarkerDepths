@@ -24,6 +24,7 @@ import net.minecraft.world.entity.monster.Skeleton;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.phys.AABB;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
@@ -67,10 +68,47 @@ public class TombBlockEntityRenderer extends GeoBlockRenderer<TombBlockEntity> {
         }
     }
 
-    private void renderBed(TombBlockEntity tombBlockEntity, float partialTick, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight) {
-        var hasBed = tombBlockEntity.getBlockState().getValue(DDBlockStateProperties.BED);
+    @Override
+    public void preRender(PoseStack poseStack, TombBlockEntity animatable, BakedGeoModel model, MultiBufferSource bufferSource, VertexConsumer buffer, boolean isReRender, float partialTick, int packedLight, int packedOverlay, int renderColor
+    ) {
+        boolean isOpen = animatable.getBlockState().getValue(BlockStateProperties.OPEN);
 
-        if (!hasBed) {
+        model.getBone("top_mirrored")
+                .ifPresent(bone -> {
+                    if(!isOpen) {
+                        bone.setHidden(true);
+                    } else bone.setHidden(!animatable.isMirroredTop());
+                });
+
+        model.getBone("top")
+                .ifPresent(bone -> {
+                    if(isOpen && animatable.isMirroredTop()) {
+                        bone.setHidden(true);
+                    } else {
+                        bone.setHidden(false);
+                    }
+                });
+
+        super.preRender(
+                poseStack,
+                animatable,
+                model,
+                bufferSource,
+                buffer,
+                isReRender,
+                partialTick,
+                packedLight,
+                packedOverlay,
+                renderColor
+        );
+    }
+
+    private void renderBed(TombBlockEntity tombBlockEntity, float partialTick, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight) {
+        var state = tombBlockEntity.getBlockState();
+        var hasBed = state.getValue(DDBlockStateProperties.BED);
+        var isOpen = state.getValue(BlockStateProperties.OPEN);
+
+        if (!hasBed || !isOpen) {
             return;
         }
 
@@ -150,11 +188,11 @@ public class TombBlockEntityRenderer extends GeoBlockRenderer<TombBlockEntity> {
 
     @Override
     public AABB getRenderBoundingBox(TombBlockEntity blockEntity) {
-        BlockPos pos = blockEntity.getBlockPos();
-        BlockState state = blockEntity.getBlockState();
+        var pos = blockEntity.getBlockPos();
+        var state = blockEntity.getBlockState();
 
         if (state.getBlock() instanceof TombBlock) {
-            Direction facing = state.getValue(HorizontalDirectionalBlock.FACING);
+            var facing = state.getValue(HorizontalDirectionalBlock.FACING);
 
             return switch (facing) {
                 case SOUTH -> encapsulatingFullBlocks(pos.offset(-2, -8, -1), pos.offset(3, 3, 8));

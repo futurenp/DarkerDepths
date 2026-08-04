@@ -182,7 +182,7 @@ public class TombBlock extends BaseEntityBlock implements SimpleWaterloggedBlock
         if (blockEntity instanceof TombBlockEntity tombEntity) {
             if (player.isSecondaryUseActive() && tombEntity.isOpen() && tombEntity.isInhabited() && tombEntity.hasStoredItem()) {
                 if(!isObstructed(level, mainPos, state.getValue(HorizontalDirectionalBlock.FACING))) {
-                    tombEntity.toggleTomb();
+                    tombEntity.toggleTomb(pos, player.position());
                 }
                 return ItemInteractionResult.SUCCESS;
             }
@@ -232,7 +232,9 @@ public class TombBlock extends BaseEntityBlock implements SimpleWaterloggedBlock
 
             if (player.isSecondaryUseActive()) {
                 if(tombEntity.hasBed() && !state.getValue(OCCUPIED) && tombEntity.isOpen()) {
-                    tombEntity.toggleTomb();
+                    if(!isObstructed(level, mainPos, state.getValue(HorizontalDirectionalBlock.FACING))) {
+                        tombEntity.toggleTomb(pos, player.position());
+                    }
                 }
                 return ItemInteractionResult.SUCCESS;
             }
@@ -280,7 +282,7 @@ public class TombBlock extends BaseEntityBlock implements SimpleWaterloggedBlock
             }
 
             if(!isObstructed(level, mainPos, state.getValue(HorizontalDirectionalBlock.FACING))) {
-                tombEntity.toggleTomb();
+                tombEntity.toggleTomb(pos, player.position());
             }
         }
 

@@ -20,6 +20,7 @@ import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoBlockEntity;
 import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
@@ -40,6 +41,7 @@ public class TombBlockEntity extends BlockEntity implements GeoBlockEntity, Cont
     private boolean isOpen = false;
     private boolean isAnimating = false;
     private int animationTimer = 0;
+    private boolean mirroredTop = false;
 
     public TombBlockEntity(BlockPos pos, BlockState state) {
         super(DDBlockEntityTypes.TOMB.get(), pos, state);
@@ -51,6 +53,7 @@ public class TombBlockEntity extends BlockEntity implements GeoBlockEntity, Cont
         this.isOpen = nbt.getBoolean("IsOpen");
         this.isAnimating = nbt.getBoolean("IsAnimating");
         this.animationTimer = nbt.getInt("AnimationTimer");
+        this.mirroredTop = nbt.getBoolean("MirroredTop");
         this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
         ContainerHelper.loadAllItems(nbt, this.items, registries);
     }
@@ -61,6 +64,7 @@ public class TombBlockEntity extends BlockEntity implements GeoBlockEntity, Cont
         nbt.putBoolean("IsOpen", this.isOpen);
         nbt.putBoolean("IsAnimating", this.isAnimating);
         nbt.putInt("AnimationTimer", this.animationTimer);
+        nbt.putBoolean("MirroredTop", this.mirroredTop);
         ContainerHelper.saveAllItems(nbt, this.items, registries);
     }
 
@@ -163,8 +167,10 @@ public class TombBlockEntity extends BlockEntity implements GeoBlockEntity, Cont
             int timer = entity.animationTimer;
 
             var facing = state.getValue(HorizontalDirectionalBlock.FACING);
-            var firstLandingPos = TombBlock.getPartPos(pos, TombUtils.Part.BACK_RIGHT, facing);
-            var secondLandingPos = TombBlock.getPartPos(pos, TombUtils.Part.BACK_LEFT, facing);
+            var mirrored = entity.mirroredTop;
+            var firstLandingPos = TombBlock.getPartPos(pos, mirrored ? TombUtils.Part.FRONT_RIGHT : TombUtils.Part.BACK_RIGHT, facing);
+            var secondLandingPos = TombBlock.getPartPos(pos, mirrored ? TombUtils.Part.FRONT_LEFT : TombUtils.Part.BACK_LEFT, facing);
+            var centerPos = mirrored ? TombBlock.getPartPos(pos, TombUtils.Part.BACK_CENTER, facing) : entity.getBlockPos();
 
             if(entity.isOpen) {
                 if(timer == 20) {
@@ -176,7 +182,7 @@ public class TombBlockEntity extends BlockEntity implements GeoBlockEntity, Cont
                 }
             } else {
                 if (timer == maxTicks - 3) {
-                    level.playSound(null, entity.getBlockPos(), SoundEvents.DEEPSLATE_HIT, SoundSource.BLOCKS, 1, 0.3f);
+                    level.playSound(null, centerPos, SoundEvents.DEEPSLATE_HIT, SoundSource.BLOCKS, 1, 0.3f);
                 }
             }
 
@@ -186,11 +192,29 @@ public class TombBlockEntity extends BlockEntity implements GeoBlockEntity, Cont
         }
     }
 
-    public void toggleTomb() {
-        if (this.isAnimating) return;
-        if(!this.isOpen) {
-            toggleOpenState(getBlockState());
+    public void toggleTomb(BlockPos clickedPos, Vec3 playerPos) {
+        if (this.isAnimating) {
+            return;
         }
+
+        BlockState state = getBlockState();
+
+        if (!this.isOpen) {
+            var facing =
+                    state.getValue(BlockStateProperties.HORIZONTAL_FACING);
+
+            var tombCenter = Vec3.atCenterOf(clickedPos);
+            var tombToPlayer = playerPos.subtract(tombCenter);
+            var facingVector = Vec3.atLowerCornerOf(facing.getNormal());
+
+            boolean openedFromFacingSide =
+                    tombToPlayer.dot(facingVector) > 0;
+
+            this.mirroredTop = !openedFromFacingSide;
+
+            toggleOpenState(state);
+        }
+
         this.isOpen = !this.isOpen;
         this.startAnimation();
         this.playOpenSound();
@@ -199,6 +223,14 @@ public class TombBlockEntity extends BlockEntity implements GeoBlockEntity, Cont
 
     public boolean isOpen() {
         return this.isOpen;
+    }
+
+    public boolean isMirroredTop() {
+        return this.mirroredTop;
+    }
+
+    public void setMirroredTop(boolean mirroredTop) {
+        this.mirroredTop = mirroredTop;
     }
 
     public boolean isAnimating() {
