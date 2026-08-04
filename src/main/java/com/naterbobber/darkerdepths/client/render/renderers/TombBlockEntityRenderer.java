@@ -6,7 +6,6 @@ import com.mojang.math.Axis;
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.block.DDBlockStateProperties;
 import com.naterbobber.darkerdepths.block.blockentities.TombBlockEntity;
-import com.naterbobber.darkerdepths.block.blockstates.BedState;
 import com.naterbobber.darkerdepths.block.custom.TombBlock;
 import com.naterbobber.darkerdepths.client.models.TombModel;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -20,12 +19,12 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.monster.Skeleton;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.common.Tags;
 import software.bernie.geckolib.cache.object.BakedGeoModel;
 import software.bernie.geckolib.renderer.GeoBlockRenderer;
 
@@ -54,23 +53,30 @@ public class TombBlockEntityRenderer extends GeoBlockRenderer<TombBlockEntity> {
     }
 
     private void renderBed(TombBlockEntity tombBlockEntity, float partialTick, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight) {
-        var bedState = tombBlockEntity.getBlockState().getValue(DDBlockStateProperties.BED);
+        var hasBed = tombBlockEntity.getBlockState().getValue(DDBlockStateProperties.BED);
 
-        if (bedState == BedState.NONE) {
+        if (!hasBed) {
             return;
         }
 
-        var texture = DarkerDepths.id("textures/entity/tomb/colors/" + bedState.getSerializedName() + ".png");
+        var bed = tombBlockEntity.getItemStack();
+        var textureName = getBedTextureName(bed);
+
+        if(textureName.equals("none")) {
+            return;
+        }
+
+        var texture = DarkerDepths.id("textures/entity/tomb/colors/" + textureName + ".png");
         var consumer = bufferSource.getBuffer(RenderType.entityCutout(texture));
 
         poseStack.pushPose();
-        poseStack.translate(0.0, 0.335, 0.0);
+        poseStack.translate(0.0, 0, 0.0);
 
         var pose = poseStack.last();
 
         float length = 38.0F / 16.0F;
         float width = 1F;
-        float height = 3/16F;
+        float height = 8/16F;
 
         consumer.addVertex(pose, -length / 2, height, width)
                 .setColor(255, 255, 255, 255)
@@ -101,6 +107,28 @@ public class TombBlockEntityRenderer extends GeoBlockRenderer<TombBlockEntity> {
                 .setNormal(pose, 0.0F, 1.0F, 0.0F);
 
         poseStack.popPose();
+    }
+
+    public static String getBedTextureName(ItemStack stack) {
+        return switch (stack) {
+            case ItemStack s when s.is(Tags.Items.DYED_WHITE) -> "white";
+            case ItemStack s when s.is(Tags.Items.DYED_LIGHT_GRAY) -> "light_gray";
+            case ItemStack s when s.is(Tags.Items.DYED_GRAY) -> "gray";
+            case ItemStack s when s.is(Tags.Items.DYED_BLACK) -> "black";
+            case ItemStack s when s.is(Tags.Items.DYED_BROWN) -> "brown";
+            case ItemStack s when s.is(Tags.Items.DYED_RED) -> "red";
+            case ItemStack s when s.is(Tags.Items.DYED_ORANGE) -> "orange";
+            case ItemStack s when s.is(Tags.Items.DYED_YELLOW) -> "yellow";
+            case ItemStack s when s.is(Tags.Items.DYED_LIME) -> "lime";
+            case ItemStack s when s.is(Tags.Items.DYED_GREEN) -> "green";
+            case ItemStack s when s.is(Tags.Items.DYED_CYAN) -> "cyan";
+            case ItemStack s when s.is(Tags.Items.DYED_LIGHT_BLUE) -> "light_blue";
+            case ItemStack s when s.is(Tags.Items.DYED_BLUE) -> "blue";
+            case ItemStack s when s.is(Tags.Items.DYED_PURPLE) -> "purple";
+            case ItemStack s when s.is(Tags.Items.DYED_MAGENTA) -> "magenta";
+            case ItemStack s when s.is(Tags.Items.DYED_PINK) -> "pink";
+            default -> "none";
+        };
     }
 
     private void renderSkeleton(TombBlockEntity tombBlockEntity, float partialTick, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight) {

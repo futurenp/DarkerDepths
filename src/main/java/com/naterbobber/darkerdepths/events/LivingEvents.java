@@ -4,6 +4,7 @@ import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.api.GlowshroomMycosesHandler;
 import com.naterbobber.darkerdepths.api.ITombBedExtension;
 import com.naterbobber.darkerdepths.api.death_anchor.SoulBindingHandler;
+import com.naterbobber.darkerdepths.block.DDBlockStateProperties;
 import com.naterbobber.darkerdepths.block.custom.TombBlock;
 import com.naterbobber.darkerdepths.init.*;
 import com.naterbobber.darkerdepths.init.DDEnchantmentEffects;
@@ -65,14 +66,13 @@ public class LivingEvents {
         players.forEach(player -> {
             if(player.isSleeping() && player instanceof ITombBedExtension playerEx) {
                 player.getSleepingPos().ifPresentOrElse(blockPos -> {
-                    if (level.getBlockState(blockPos).getBlock() instanceof TombBlock) {
-                        playerEx.darkerdepths$setHasLastSleptInTombBed(true);
-                    } else {
-                        playerEx.darkerdepths$setHasLastSleptInTombBed(false);
-                    }
-                }, () -> playerEx.darkerdepths$setHasLastSleptInTombBed(false));
+                    var state = level.getBlockState(blockPos);
+                    boolean isTombBed =
+                            state.getBlock() instanceof TombBlock &&
+                            state.getValue(DDBlockStateProperties.BED);
 
-                DarkerDepths.LOGGER.info("Slept in tombbed: " + playerEx.darkerdepths$hasLastSleptInTombBed());
+                    playerEx.darkerdepths$setHasLastSleptInTombBed(isTombBed);
+                }, () -> playerEx.darkerdepths$setHasLastSleptInTombBed(false));
             }
         });
     }

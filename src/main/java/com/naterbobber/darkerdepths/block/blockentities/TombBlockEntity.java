@@ -1,11 +1,9 @@
 package com.naterbobber.darkerdepths.block.blockentities;
 
 import com.naterbobber.darkerdepths.block.DDBlockStateProperties;
-import com.naterbobber.darkerdepths.block.blockstates.BedState;
-import com.naterbobber.darkerdepths.block.blockstates.TombPart;
+import com.naterbobber.darkerdepths.block.blockstates.TombUtils;
 import com.naterbobber.darkerdepths.block.custom.TombBlock;
 import com.naterbobber.darkerdepths.init.DDBlockEntityTypes;
-import com.naterbobber.darkerdepths.init.DDBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
@@ -73,18 +71,22 @@ public class TombBlockEntity extends BlockEntity implements GeoBlockEntity, Cont
 
     @Override
     public boolean isEmpty() {
-        return this.items.get(0).isEmpty();
+        return this.items.getFirst().isEmpty();
     }
 
     @Override
     public ItemStack getItem(int slot) {
-        return slot == 0 ? this.items.get(0) : ItemStack.EMPTY;
+        return slot == 0 ? this.items.getFirst() : ItemStack.EMPTY;
+    }
+
+    public ItemStack getItemStack() {
+        return this.items.getFirst();
     }
 
     @Override
     public ItemStack removeItemNoUpdate(int slot) {
         if (slot == 0) {
-            ItemStack result = this.items.get(0);
+            ItemStack result = this.items.getFirst();
             this.items.set(0, ItemStack.EMPTY);
             return result;
         }
@@ -105,7 +107,7 @@ public class TombBlockEntity extends BlockEntity implements GeoBlockEntity, Cont
 
     @Override
     public ItemStack removeItem(int slot, int amount) {
-        if (slot == 0 && !this.items.get(0).isEmpty()) {
+        if (slot == 0 && !this.items.getFirst().isEmpty()) {
             ItemStack result = ContainerHelper.removeItem(this.items, slot, amount);
             if (!result.isEmpty()) {
                 this.setChanged();
@@ -161,8 +163,8 @@ public class TombBlockEntity extends BlockEntity implements GeoBlockEntity, Cont
             int timer = entity.animationTimer;
 
             var facing = state.getValue(HorizontalDirectionalBlock.FACING);
-            var firstLandingPos = TombBlock.getPartPos(pos, TombPart.BACK_RIGHT, facing);
-            var secondLandingPos = TombBlock.getPartPos(pos, TombPart.BACK_LEFT, facing);
+            var firstLandingPos = TombBlock.getPartPos(pos, TombUtils.Part.BACK_RIGHT, facing);
+            var secondLandingPos = TombBlock.getPartPos(pos, TombUtils.Part.BACK_LEFT, facing);
 
             if(entity.isOpen) {
                 if(timer == 20) {
@@ -186,13 +188,9 @@ public class TombBlockEntity extends BlockEntity implements GeoBlockEntity, Cont
 
     public void toggleTomb() {
         if (this.isAnimating) return;
-        var block = this.getBlockState().getBlock();
-
-        if(block instanceof TombBlock tombBlock) {
-            var newState = getBlockState().setValue(BlockStateProperties.OPEN, !level.getBlockState(getBlockPos()).getValue(BlockStateProperties.OPEN));
-            tombBlock.updateMultiblockState(level, getBlockPos(), newState);
+        if(!this.isOpen) {
+            toggleOpenState(getBlockState());
         }
-
         this.isOpen = !this.isOpen;
         this.startAnimation();
         this.playOpenSound();
@@ -212,7 +210,7 @@ public class TombBlockEntity extends BlockEntity implements GeoBlockEntity, Cont
     }
 
     public boolean hasBed() {
-        return !this.getBlockState().getValue(DDBlockStateProperties.BED).equals(BedState.NONE);
+        return this.getBlockState().getValue(DDBlockStateProperties.BED);
     }
 
     private void startAnimation() {
@@ -222,10 +220,21 @@ public class TombBlockEntity extends BlockEntity implements GeoBlockEntity, Cont
     }
 
     private void finishAnimation() {
+        if(!this.isOpen) {
+            toggleOpenState(getBlockState());
+        }
+
         this.isAnimating = false;
         this.animationTimer = 0;
         this.setChanged();
         this.syncToClients();
+    }
+
+    private void toggleOpenState(BlockState state) {
+        if(state.getBlock() instanceof TombBlock tombBlock) {
+            var newState = state.setValue(BlockStateProperties.OPEN, !state.getValue(BlockStateProperties.OPEN));
+            tombBlock.updateMultiblockState(level, getBlockPos(), newState);
+        }
     }
 
     private void playOpenSound() {

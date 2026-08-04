@@ -1,11 +1,9 @@
 package com.naterbobber.darkerdepths.block.custom;
 
 import com.mojang.serialization.MapCodec;
-import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.block.DDBlockStateProperties;
 import com.naterbobber.darkerdepths.block.blockentities.TombBlockEntity;
-import com.naterbobber.darkerdepths.block.blockstates.BedState;
-import com.naterbobber.darkerdepths.block.blockstates.TombPart;
+import com.naterbobber.darkerdepths.block.blockstates.TombUtils;
 import com.naterbobber.darkerdepths.init.DDBlockEntityTypes;
 import com.naterbobber.darkerdepths.util.BlockStateUtils;
 import com.naterbobber.darkerdepths.util.VoxelShapeUtils;
@@ -17,78 +15,56 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.ItemInteractionResult;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.ai.behavior.SleepInBed;
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
-import net.minecraft.world.level.block.entity.BedBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.*;
-import net.minecraft.world.level.levelgen.PhantomSpawner;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.neoforge.common.Tags;
-import net.neoforged.neoforge.event.level.SleepFinishedTimeEvent;
 import org.jetbrains.annotations.Nullable;
 
-import javax.swing.*;
 import java.util.*;
 
 public class TombBlock extends BaseEntityBlock implements SimpleWaterloggedBlock {
-    private static final EnumProperty<TombPart> TOMB_PART = DDBlockStateProperties.TOMB_PART;
+    private static final EnumProperty<TombUtils.Part> TOMB_PART = DDBlockStateProperties.TOMB_PART;
     private static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     private static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     private static final BooleanProperty OPEN = BlockStateProperties.OPEN;
     private static final BooleanProperty INHABITED = DDBlockStateProperties.INHABITED;
-    private static final EnumProperty<BedState> BED = DDBlockStateProperties.BED;
+    private static final BooleanProperty BED = DDBlockStateProperties.BED;
     private static final BooleanProperty OCCUPIED = BlockStateProperties.OCCUPIED;
 
     private record MultiblockPartData(BlockPos pos, BlockState state) {}
 
-    private static final VoxelShape CORNER_PART = Shapes.or(
-            Block.box(2, 0, 5, 16, 3, 16),
-            Block.box(3, 3, 6, 16, 10, 16));
-    private static final VoxelShape CORNER_PART_MIRRORED = Shapes.or(
-            Block.box(0, 0, 5, 14, 3, 16),
-            Block.box(0, 3, 6, 13, 10, 16));
-    private static final VoxelShape CENTER_PART = Shapes.or(
-            Block.box(0, 0, 5, 16, 3, 16),
-            Block.box(0, 3, 6, 16, 10, 16));
-
-    private static final VoxelShape CORNER_WITH_TOP = Shapes.or(CORNER_PART, Block.box(1, 10, 4, 16, 15, 16));
-    private static final VoxelShape CORNER_MIRRORED_WITH_TOP = Shapes.or(CORNER_PART_MIRRORED, Block.box(0, 10, 4, 15, 15, 16));
-    private static final VoxelShape CENTER_WITH_TOP = Shapes.or(CENTER_PART, Block.box(0, 10, 4, 16, 15, 16));
-
-
     public TombBlock(Properties properties) {
         super(properties);
         this.registerDefaultState(this.stateDefinition.any()
-                .setValue(TOMB_PART, TombPart.FRONT_CENTER)
+                .setValue(TOMB_PART, TombUtils.Part.FRONT_CENTER)
                 .setValue(FACING, Direction.NORTH)
                 .setValue(WATERLOGGED, false)
                 .setValue(OPEN, false)
                 .setValue(INHABITED, false)
-                .setValue(BED, BedState.NONE)
+                .setValue(BED, false)
                 .setValue(OCCUPIED, false));
     }
 
@@ -105,24 +81,15 @@ public class TombBlock extends BaseEntityBlock implements SimpleWaterloggedBlock
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
         var part = state.getValue(TOMB_PART);
+        var shape = part.getShape().getVoxelShape(state.getValue(BED), state.getValue(OPEN));
         var facing = state.getValue(FACING);
-        var isOpen = state.getValue(OPEN);
-
-        var shape = switch(part) {
-            case FRONT_CENTER -> isOpen ? CENTER_PART : CENTER_WITH_TOP;
-            case FRONT_LEFT -> isOpen ? CORNER_PART : CORNER_WITH_TOP;
-            case FRONT_RIGHT -> isOpen ? CORNER_PART_MIRRORED : CORNER_MIRRORED_WITH_TOP;
-            case BACK_CENTER -> isOpen ? VoxelShapeUtils.rotateHorizontal(CENTER_PART, Direction.SOUTH) : VoxelShapeUtils.rotateHorizontal(CENTER_WITH_TOP, Direction.SOUTH);
-            case BACK_LEFT -> isOpen ? VoxelShapeUtils.rotateHorizontal(CORNER_PART_MIRRORED, Direction.SOUTH) : VoxelShapeUtils.rotateHorizontal(CORNER_MIRRORED_WITH_TOP, Direction.SOUTH);
-            case BACK_RIGHT -> isOpen ? VoxelShapeUtils.rotateHorizontal(CORNER_PART, Direction.SOUTH) : VoxelShapeUtils.rotateHorizontal(CORNER_WITH_TOP, Direction.SOUTH);
-        };
 
         return VoxelShapeUtils.rotateHorizontal(shape, facing);
     }
 
     @Override
     public RenderShape getRenderShape(BlockState state) {
-        return state.getValue(TOMB_PART) == TombPart.FRONT_CENTER ? RenderShape.ENTITYBLOCK_ANIMATED : RenderShape.MODEL;
+        return state.getValue(TOMB_PART) == TombUtils.Part.FRONT_CENTER ? RenderShape.ENTITYBLOCK_ANIMATED : RenderShape.MODEL;
     }
 
     @Nullable
@@ -131,7 +98,7 @@ public class TombBlock extends BaseEntityBlock implements SimpleWaterloggedBlock
         var fluid = context.getLevel().getFluidState(context.getClickedPos());
         return this.defaultBlockState()
                 .setValue(FACING, context.getHorizontalDirection().getOpposite())
-                .setValue(TOMB_PART, TombPart.FRONT_CENTER)
+                .setValue(TOMB_PART, TombUtils.Part.FRONT_CENTER)
                 .setValue(WATERLOGGED, fluid.getType() == Fluids.WATER);
     }
 
@@ -165,7 +132,7 @@ public class TombBlock extends BaseEntityBlock implements SimpleWaterloggedBlock
     @Override
     public void onPlace(BlockState state, Level level, BlockPos pos, BlockState oldState, boolean isMoving) {
         super.onPlace(state, level, pos, oldState, isMoving);
-        if (!level.isClientSide && !isMoving && state.getValue(TOMB_PART) == TombPart.FRONT_CENTER) {
+        if (!level.isClientSide && !isMoving && state.getValue(TOMB_PART) == TombUtils.Part.FRONT_CENTER) {
             this.placeMultiblockParts(level, pos, state);
         }
     }
@@ -173,7 +140,7 @@ public class TombBlock extends BaseEntityBlock implements SimpleWaterloggedBlock
     @Override
     public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean isMoving) {
         if (!level.isClientSide && !state.is(newState.getBlock())) {
-            if (state.getValue(TOMB_PART) == TombPart.FRONT_CENTER) {
+            if (state.getValue(TOMB_PART) == TombUtils.Part.FRONT_CENTER) {
                 var blockEntity = level.getBlockEntity(pos);
                 if (blockEntity instanceof TombBlockEntity tombEntity && tombEntity.hasStoredItem()) {
                     var storedItem = tombEntity.getStoredItem();
@@ -194,7 +161,7 @@ public class TombBlock extends BaseEntityBlock implements SimpleWaterloggedBlock
         }
 
         var part = state.getValue(TOMB_PART);
-        if (part != TombPart.FRONT_CENTER) {
+        if (part != TombUtils.Part.FRONT_CENTER) {
             var mainPos = getMainBlockPos(currentPos, state);
             if (!level.getBlockState(mainPos).is(this)) {
                 return Blocks.AIR.defaultBlockState();
@@ -213,7 +180,6 @@ public class TombBlock extends BaseEntityBlock implements SimpleWaterloggedBlock
         var mainPos = getMainBlockPos(pos, state);
         var blockEntity = level.getBlockEntity(mainPos);
         if (blockEntity instanceof TombBlockEntity tombEntity) {
-            // if sneaking, tomb is open, inhabited and has an item - close it
             if (player.isSecondaryUseActive() && tombEntity.isOpen() && tombEntity.isInhabited() && tombEntity.hasStoredItem()) {
                 if(!isObstructed(level, mainPos, state.getValue(HorizontalDirectionalBlock.FACING))) {
                     tombEntity.toggleTomb();
@@ -222,44 +188,55 @@ public class TombBlock extends BaseEntityBlock implements SimpleWaterloggedBlock
             }
 
             if (stack.is(ItemTags.BEDS) && tombEntity.isOpen() && !tombEntity.isInhabited()) {
-                if(stack.is(Tags.Items.DYED)) {
-                    var bedValue = BedState.getFromItem(stack);
-                    var newState = level.getBlockState(mainPos).setValue(BED, bedValue);
-                    updateMultiblockState(level, mainPos, newState);
+                boolean hasBed = state.getValue(BED);
 
-                    if(state.getValue(BED).equals(BedState.getFromItem(stack))) {
+                if(hasBed) {
+                    var bedInTomb = tombEntity.getItemStack();
+
+                    if(stack.getItem().equals(bedInTomb.getItem())) {
                         return ItemInteractionResult.SUCCESS;
                     }
-                }
 
-                if(!state.getValue(BED).equals(BedState.NONE)) {
-                    var bedInTomb = tombEntity.getItem(0);
-                    if(player.canTakeItem(bedInTomb)) {
-                        player.addItem(bedInTomb);
-                    } else if(!player.isCreative()) {
+                    if(!player.isCreative()) {
                         Block.popResourceFromFace(level, mainPos, Direction.UP, bedInTomb);
                     }
+
+                } else {
+                    var newState = level.getBlockState(mainPos).setValue(BED, true);
+                    updateMultiblockState(level, mainPos, newState);
                 }
 
                 tombEntity.setItem(0, new ItemStack(stack.getItem()));
                 if(!player.isCreative()) {
                     stack.shrink(1);
                 }
-
                 level.playSound(null, pos, SoundEvents.WOOL_PLACE, SoundSource.BLOCKS, 1.0F, 1.0F);
 
                 return ItemInteractionResult.CONSUME;
             }
 
-            // Don't do anything else if sneaking
+            if(stack.is(Tags.Items.TOOLS_SHEAR) && tombEntity.isOpen() && tombEntity.hasBed()) {
+                var bedInTomb = tombEntity.getItem(0);
+                if(!player.isCreative()) {
+                    Block.popResourceFromFace(level, mainPos, Direction.UP, bedInTomb);
+                }
+
+                level.playSound(null, mainPos, SoundEvents.SHEEP_SHEAR, SoundSource.BLOCKS, 1.0F, 1.0F);
+
+                tombEntity.setItem(0, new ItemStack(Items.AIR));
+                var newState = level.getBlockState(mainPos).setValue(BED, false);
+                updateMultiblockState(level, mainPos, newState);
+
+                return ItemInteractionResult.SUCCESS;
+            }
+
             if (player.isSecondaryUseActive()) {
-                if(tombEntity.hasBed() && !state.getValue(OCCUPIED)) {
+                if(tombEntity.hasBed() && !state.getValue(OCCUPIED) && tombEntity.isOpen()) {
                     tombEntity.toggleTomb();
                 }
                 return ItemInteractionResult.SUCCESS;
             }
 
-            // If tomb is open and inhabited
             if (tombEntity.isOpen() && tombEntity.isInhabited()) {
                 var heldItem = player.getItemInHand(hand);
                 if (tombEntity.hasStoredItem() && heldItem.isEmpty()) {
@@ -282,7 +259,7 @@ public class TombBlock extends BaseEntityBlock implements SimpleWaterloggedBlock
                         level.removeBlock(blockpos, false);
                     }
 
-                    Vec3 vec3 = pos.getCenter();
+                    var vec3 = pos.getCenter();
                     level.explode(null, level.damageSources().badRespawnPointExplosion(vec3), null, vec3, 5.0F, true, Level.ExplosionInteraction.BLOCK);
                     return ItemInteractionResult.SUCCESS;
                 } else if (state.getValue(OCCUPIED)) {
@@ -301,7 +278,7 @@ public class TombBlock extends BaseEntityBlock implements SimpleWaterloggedBlock
                     return ItemInteractionResult.SUCCESS;
                 }
             }
-            // If no item interaction occurred, toggle the tomb
+
             if(!isObstructed(level, mainPos, state.getValue(HorizontalDirectionalBlock.FACING))) {
                 tombEntity.toggleTomb();
             }
@@ -312,7 +289,7 @@ public class TombBlock extends BaseEntityBlock implements SimpleWaterloggedBlock
 
     @Override
     public boolean isBed(BlockState state, BlockGetter level, BlockPos pos, LivingEntity sleeper) {
-        return !state.getValue(BED).equals(BedState.NONE);
+        return state.getValue(BED);
     }
 
     @Override
@@ -362,25 +339,25 @@ public class TombBlock extends BaseEntityBlock implements SimpleWaterloggedBlock
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        return state.getValue(TOMB_PART) == TombPart.FRONT_CENTER ? new TombBlockEntity(pos, state) : null;
+        return state.getValue(TOMB_PART) == TombUtils.Part.FRONT_CENTER ? new TombBlockEntity(pos, state) : null;
     }
 
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
-        if (state.getValue(TOMB_PART) == TombPart.FRONT_CENTER) {
+        if (state.getValue(TOMB_PART) == TombUtils.Part.FRONT_CENTER) {
             return createTickerHelper(type, DDBlockEntityTypes.TOMB.get(), TombBlockEntity::tick);
         }
 
         return null;
     }
 
-    private Map<TombPart, MultiblockPartData> generateMultiblockPartData(BlockPos mainPos, Direction facing, LevelReader level) {
-        Map<TombPart, MultiblockPartData> parts = new HashMap<>();
+    private Map<TombUtils.Part, MultiblockPartData> generateMultiblockPartData(BlockPos mainPos, Direction facing, LevelReader level) {
+        Map<TombUtils.Part, MultiblockPartData> parts = new HashMap<>();
 
         var mainState = level.getBlockState(mainPos);
 
-        for (var part : TombPart.values()) {
+        for (var part : TombUtils.Part.values()) {
             var partPos = getPartPos(mainPos, part, facing);
             boolean isWaterlogged = level.getFluidState(partPos).getType() == Fluids.WATER;
 
@@ -404,7 +381,7 @@ public class TombBlock extends BaseEntityBlock implements SimpleWaterloggedBlock
     }
 
     public Set<StructureTemplate.StructureBlockInfo> generateMultiblockForProcessor(BlockPos mainPos, Direction facing, LevelReader level, BlockPos relativePos) {
-        Map<TombPart, MultiblockPartData> parts = generateMultiblockPartData(mainPos, facing, level);
+        Map<TombUtils.Part, MultiblockPartData> parts = generateMultiblockPartData(mainPos, facing, level);
         Set<StructureTemplate.StructureBlockInfo> targets = new HashSet<>();
 
         for (MultiblockPartData partData : parts.values()) {
@@ -418,7 +395,7 @@ public class TombBlock extends BaseEntityBlock implements SimpleWaterloggedBlock
         var parts = generateMultiblockPartData(mainPos, facing, level);
 
         for (var partData : parts.values()) {
-            if (partData.state.getValue(TOMB_PART) != TombPart.FRONT_CENTER) {
+            if (partData.state.getValue(TOMB_PART) != TombUtils.Part.FRONT_CENTER) {
                 level.setBlock(partData.pos, partData.state, Block.UPDATE_ALL);
             }
         }
@@ -439,7 +416,7 @@ public class TombBlock extends BaseEntityBlock implements SimpleWaterloggedBlock
         }
     }
 
-    public static BlockPos getPartPos(BlockPos mainPos, TombPart part, Direction facing) {
+    public static BlockPos getPartPos(BlockPos mainPos, TombUtils.Part part, Direction facing) {
         var right = facing.getClockWise();
         return mainPos.relative(part.xOffset() > 0 ? right : right.getOpposite(), Math.abs(part.xOffset()))
                 .relative(part.zOffset() > 0 ? facing : facing.getOpposite(), Math.abs(part.zOffset()));

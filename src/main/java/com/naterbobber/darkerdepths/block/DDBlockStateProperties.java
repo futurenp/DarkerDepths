@@ -36,6 +36,6 @@ public class DDBlockStateProperties {
             CONNECT_EAST,
             CONNECT_WEST
     );
-    public static final EnumProperty<BedState> BED = EnumProperty.create("bed", BedState.class);
-    public static final EnumProperty<TombPart> TOMB_PART = EnumProperty.create("part", TombPart.class);
+    public static final BooleanProperty BED = BooleanProperty.create("bed");
+    public static final EnumProperty<TombUtils.Part> TOMB_PART = EnumProperty.create("part", TombUtils.Part.class);
 }

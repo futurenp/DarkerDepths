@@ -2,7 +2,7 @@ package com.naterbobber.darkerdepths.worldgen.structures.processors.catacombs;
 
 import com.mojang.serialization.MapCodec;
 import com.naterbobber.darkerdepths.block.DDBlockStateProperties;
-import com.naterbobber.darkerdepths.block.blockstates.TombPart;
+import com.naterbobber.darkerdepths.block.blockstates.TombUtils;
 import com.naterbobber.darkerdepths.block.custom.TombBlock;
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import com.naterbobber.darkerdepths.init.DDItems;
@@ -55,7 +55,7 @@ public class TombProcessor extends StructureProcessor {
             tombPartsMap.putAll(currentTombParts);
 
             var tombState = duskrockTomb.defaultBlockState()
-                    .setValue(DDBlockStateProperties.TOMB_PART, TombPart.FRONT_CENTER)
+                    .setValue(DDBlockStateProperties.TOMB_PART, TombUtils.Part.FRONT_CENTER)
                     .setValue(HorizontalDirectionalBlock.FACING, facing)
                     .setValue(DDBlockStateProperties.INHABITED, true)
                     .setValue(BlockStateProperties.WATERLOGGED, level.getFluidState(worldPos).getType() == Fluids.WATER);

@@ -33,4 +33,18 @@ public class VoxelShapeUtils {
 
         return buffer[0];
     }
+
+    public static VoxelShape mirror(VoxelShape originalShape, Direction.Axis axis) {
+        var buffer = new VoxelShape[]{Shapes.empty()};
+
+        originalShape.forAllBoxes((minX, minY, minZ, maxX, maxY, maxZ) -> {
+            buffer[0] = Shapes.or(buffer[0], switch (axis) {
+                case X -> Shapes.box(1.0 - maxX, minY, minZ, 1.0 - minX, maxY, maxZ);
+                case Y -> Shapes.box(minX, 1.0 - maxY, minZ, maxX, 1.0 - minY, maxZ);
+                case Z -> Shapes.box(minX, minY, 1.0 - maxZ, maxX, maxY, 1.0 - minZ);
+            });
+        });
+
+        return buffer[0];
+    }
 }
