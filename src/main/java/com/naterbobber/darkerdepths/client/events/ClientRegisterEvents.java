@@ -21,6 +21,7 @@ import com.naterbobber.darkerdepths.init.DDBlockEntityTypes;
 import com.naterbobber.darkerdepths.init.DDEntityTypes;
 import com.naterbobber.darkerdepths.init.DDMobEffects;
 import com.naterbobber.darkerdepths.init.DDParticleTypes;
+import com.naterbobber.darkerdepths.util.Colors;
 import net.minecraft.client.model.BoatModel;
 import net.minecraft.client.model.ChestBoatModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
@@ -64,6 +65,14 @@ public class ClientRegisterEvents {
         event.registerLayerDefinition(new ModelLayerLocation(DarkerDepths.id("chest_boat/petrified"), "main"), ChestBoatModel::createBodyModel);
         event.registerLayerDefinition(new ModelLayerLocation(DarkerDepths.id("boat/glowshroom"), "main"), BoatModel::createBodyModel);
         event.registerLayerDefinition(new ModelLayerLocation(DarkerDepths.id("chest_boat/glowshroom"), "main"), ChestBoatModel::createBodyModel);
+    }
+
+    @SubscribeEvent
+    public static void registerAdditionalModels(ModelEvent.RegisterAdditional event) {
+        for (var color : Colors.BASE_16) {
+            event.register(ModelResourceLocation
+                    .standalone(DarkerDepths.id("block/tomb_bed_" + color)));
+        }
     }
 
     @SubscribeEvent

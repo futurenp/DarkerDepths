@@ -12,6 +12,7 @@ import com.naterbobber.darkerdepths.block.custom.darkslate.*;
 import com.naterbobber.darkerdepths.block.generic.*;
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import com.naterbobber.darkerdepths.init.DDItems;
+import com.naterbobber.darkerdepths.util.Colors;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
@@ -28,7 +29,6 @@ import org.apache.logging.log4j.util.TriConsumer;
 import java.util.*;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
-import java.util.stream.Stream;
 
 public class DDBlockStateProvider extends BlockStateProvider {
     private final Set<Block> blockIgnores = new HashSet<>();
@@ -73,6 +73,7 @@ public class DDBlockStateProvider extends BlockStateProvider {
         add(this::darkslateBlockWithItem, DDBlocks.CHISELED_DARKSLATE_BRICKS);
         add(this::connectedRotatableDarkslatePillarBlockWithItem, DDBlocks.DARKSLATE_PILLAR);
 
+        tombBedAdditional();
 
         skipBlock(
                 DDBlocks.VOID_SOUL_JAR,
@@ -303,7 +304,7 @@ public class DDBlockStateProvider extends BlockStateProvider {
         }
     }
 
-    public void tombBlockWithItem(DeferredHolder<Block, ? extends Block> blockHolder) {
+    private void tombBlockWithItem(DeferredHolder<Block, ? extends Block> blockHolder) {
         var name = blockHolder.getId().getPath();
 
         var model = models()
@@ -316,8 +317,14 @@ public class DDBlockStateProvider extends BlockStateProvider {
 
     }
 
+    private void tombBedAdditional() {
+        for (var color : Colors.BASE_16) {
+            models().withExistingParent("tomb_bed_" + color, DarkerDepths.id("block/tomb_bed"))
+                    .texture("texture", DarkerDepths.id("block/tomb_bed_" + color));
+        }
+    }
 
-    public void stringLightsBlockWithItem(DeferredHolder<Block, ? extends Block> blockHolder) {
+    private void stringLightsBlockWithItem(DeferredHolder<Block, ? extends Block> blockHolder) {
         var block = blockHolder.get();
         var blockName = blockHolder.getId().getPath();
         var facingProperty = BlockStateProperties.HORIZONTAL_FACING;
@@ -345,7 +352,7 @@ public class DDBlockStateProvider extends BlockStateProvider {
 
     }
 
-    public void rotatableDarkslateBlockWithItem(DeferredHolder<Block, ? extends Block> blockHolder) {
+    private void rotatableDarkslateBlockWithItem(DeferredHolder<Block, ? extends Block> blockHolder) {
         var block = blockHolder.get();
         getVariantBuilder(block).forAllStates(state -> {
             var stateName = getDarkslateStateName(blockHolder, state);
@@ -366,7 +373,7 @@ public class DDBlockStateProvider extends BlockStateProvider {
         defaultBlockItem(blockHolder);
     }
 
-    public void darkslateBlockWithItem(DeferredHolder<Block, ? extends Block> blockHolder) {
+    private void darkslateBlockWithItem(DeferredHolder<Block, ? extends Block> blockHolder) {
         var block = blockHolder.get();
         getVariantBuilder(block).forAllStates(state -> {
             var stateName = getDarkslateStateName(blockHolder, state);
@@ -569,7 +576,7 @@ public class DDBlockStateProvider extends BlockStateProvider {
         return stateName;
     }
 
-    public void airBlock(DeferredHolder<Block, ? extends Block> block) {
+    private void airBlock(DeferredHolder<Block, ? extends Block> block) {
         ModelFile airModel = models().getExistingFile(mcLoc("block/air"));
         simpleBlock(block.get(), airModel);
     }
@@ -622,7 +629,7 @@ public class DDBlockStateProvider extends BlockStateProvider {
         simpleBlockItem(block.get(), offModel);
     }
 
-    public void verticalSlabBlockWithItem(DeferredHolder<Block, ? extends Block> block, Block parentBlock) {
+    private void verticalSlabBlockWithItem(DeferredHolder<Block, ? extends Block> block, Block parentBlock) {
         String blockName = block.getId().getPath();
         ResourceLocation texture = blockTexture(parentBlock);
 
@@ -643,7 +650,7 @@ public class DDBlockStateProvider extends BlockStateProvider {
         simpleBlockItem(block.get(), defaultModel);
     }
 
-    public void verticalPlanksBlockWithItem(DeferredHolder<Block, ? extends Block> block, DeferredHolder<Block, ? extends Block> parentBlock) {
+    private void verticalPlanksBlockWithItem(DeferredHolder<Block, ? extends Block> block, DeferredHolder<Block, ? extends Block> parentBlock) {
         String blockName = block.getId().getPath();
         ResourceLocation texture = blockTexture(parentBlock.get());
 
@@ -654,7 +661,7 @@ public class DDBlockStateProvider extends BlockStateProvider {
         simpleBlockItem(block.get(), defaultModel);
     }
 
-    public void postBlockWithItem(DeferredHolder<Block, ? extends Block> block, Block parentBlock) {
+    private void postBlockWithItem(DeferredHolder<Block, ? extends Block> block, Block parentBlock) {
         String blockName = block.getId().getPath();
         ResourceLocation texture = blockTexture(parentBlock);
 
@@ -706,7 +713,7 @@ public class DDBlockStateProvider extends BlockStateProvider {
     }
 
 
-    public void crystalHuskBlock(DeferredHolder<Block, ? extends Block> block) {
+    private void crystalHuskBlock(DeferredHolder<Block, ? extends Block> block) {
         getVariantBuilder(block.get()).forAllStates(state -> {
             int growth = state.getValue(DDBlockStateProperties.CRYSTAL_GROWTH_LEVEL);
             int heat = state.getValue(DDBlockStateProperties.HEAT_LEVEL);
@@ -736,7 +743,7 @@ public class DDBlockStateProvider extends BlockStateProvider {
         simpleBlockItem(block.get(), models().getExistingFile(modLoc("block/crystal_husk")));
     }
 
-    public void livingCrystalBlock(DeferredHolder<Block, ? extends Block> block) {
+    private void livingCrystalBlock(DeferredHolder<Block, ? extends Block> block) {
         getVariantBuilder(block.get()).forAllStates(state -> {
             int heat = state.getValue(DDBlockStateProperties.HEAT_LEVEL);
 
@@ -762,7 +769,7 @@ public class DDBlockStateProvider extends BlockStateProvider {
         simpleBlockItem(block.get(), models().getExistingFile(modLoc("block/living_crystal")));
     }
 
-    public void geyserBlock(DeferredHolder<Block, ? extends Block> blockHolder) {
+    private void geyserBlock(DeferredHolder<Block, ? extends Block> blockHolder) {
         var sideTexture = modLoc("block/geyser");
         var bottomTexture = modLoc("block/darkslate_top");
         var topTexture = modLoc("block/geyser_top");

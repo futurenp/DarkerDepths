@@ -11,6 +11,7 @@ import com.naterbobber.darkerdepths.block.generic.*;
 import com.naterbobber.darkerdepths.compat.CompatID;
 import com.naterbobber.darkerdepths.compat.DDCompat;
 import com.naterbobber.darkerdepths.item.BlockItemWithHoverText;
+import com.naterbobber.darkerdepths.util.Colors;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.BlockItem;
@@ -74,25 +75,6 @@ public class DDBlocks {
             blockProperties(1.25f, 2.5f, SoundType.TUFF, true);
     public static final BlockBehaviour.Properties GLIST_BRICKS_PROPERTIES =
             blockProperties(1.5f, 3.5f, SoundType.TUFF_BRICKS, true);
-
-    private static final List<String> COLORS = ImmutableList.of(
-            "white",
-            "light_gray",
-            "gray",
-            "black",
-            "brown",
-            "red",
-            "orange",
-            "yellow",
-            "lime",
-            "green",
-            "cyan",
-            "light_blue",
-            "blue",
-            "purple",
-            "magenta",
-            "pink"
-    );
 
     public static final DeferredBlock<RotatedPillarBlock> STRIPPED_PETRIFIED_LOG = registerBlock("stripped_petrified_log",
             () -> new RotatedPillarBlock(PETRIFIED_LOG_PROPERTIES));
@@ -505,7 +487,7 @@ public class DDBlocks {
         Supplier<StringLightsBlock> supplier = () -> new StringLightsBlock(
                 BlockBehaviour.Properties.of().lightLevel(state -> 7).strength(0.1F).sound(SoundType.CANDLE).noOcclusion().noCollission());
 
-        COLORS.forEach(color -> {
+        Colors.BASE_16.forEach(color -> {
             var holder = registerBlock(color + "_string_lights", supplier);
             STRING_LIGHTS.add(holder);
         });

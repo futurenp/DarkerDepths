@@ -1,0 +1,6 @@
+{
+  "parent": "darkerdepths:block/tomb_bed",
+  "textures": {
+    "texture": "darkerdepths:block/tomb_bed_light_blue"
+  }
+}

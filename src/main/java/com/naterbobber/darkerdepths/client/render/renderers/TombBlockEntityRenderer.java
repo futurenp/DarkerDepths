@@ -8,11 +8,14 @@ import com.naterbobber.darkerdepths.block.DDBlockStateProperties;
 import com.naterbobber.darkerdepths.block.blockentities.TombBlockEntity;
 import com.naterbobber.darkerdepths.block.custom.TombBlock;
 import com.naterbobber.darkerdepths.client.models.TombModel;
+import com.naterbobber.darkerdepths.util.Colors;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
 import net.minecraft.client.renderer.texture.OverlayTexture;
+import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
@@ -24,15 +27,27 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.client.model.data.ModelData;
 import net.neoforged.neoforge.common.Tags;
 import software.bernie.geckolib.cache.object.BakedGeoModel;
 import software.bernie.geckolib.renderer.GeoBlockRenderer;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import static net.minecraft.world.phys.AABB.encapsulatingFullBlocks;
 
 @OnlyIn(Dist.CLIENT)
 public class TombBlockEntityRenderer extends GeoBlockRenderer<TombBlockEntity> {
     public final EntityRenderDispatcher dispatcher;
+
+    public static final Map<String, ModelResourceLocation> BED_MODELS = new HashMap<>();
+
+    static {
+        for (var color : Colors.BASE_16) {
+            BED_MODELS.put(color, ModelResourceLocation.standalone(DarkerDepths.id("block/tomb_bed_" + color)));
+        }
+    }
 
     public TombBlockEntityRenderer(BlockEntityRendererProvider.Context context) {
         super(new TombModel());
@@ -66,45 +81,23 @@ public class TombBlockEntityRenderer extends GeoBlockRenderer<TombBlockEntity> {
             return;
         }
 
-        var texture = DarkerDepths.id("textures/entity/tomb/colors/" + textureName + ".png");
-        var consumer = bufferSource.getBuffer(RenderType.entityCutout(texture));
+        var bakedModel = Minecraft.getInstance().getModelManager().getModel(BED_MODELS.get(textureName));
+        var consumer = bufferSource.getBuffer(RenderType.solid());
 
         poseStack.pushPose();
-        poseStack.translate(0.0, 0, 0.0);
+        poseStack.translate(-0.5, 0.0, 0.0);
 
-        var pose = poseStack.last();
-
-        float length = 38.0F / 16.0F;
-        float width = 1F;
-        float height = 8/16F;
-
-        consumer.addVertex(pose, -length / 2, height, width)
-                .setColor(255, 255, 255, 255)
-                .setUv(1.0F, 0.0F)
-                .setOverlay(OverlayTexture.NO_OVERLAY)
-                .setLight(packedLight)
-                .setNormal(pose, 0.0F, 1.0F, 0.0F);
-
-        consumer.addVertex(pose, length / 2, height, width)
-                .setColor(255, 255, 255, 255)
-                .setUv(0.0F, 0.0F)
-                .setOverlay(OverlayTexture.NO_OVERLAY)
-                .setLight(packedLight)
-                .setNormal(pose, 0.0F, 1.0F, 0.0F);
-
-        consumer.addVertex(pose, length / 2, height, 0.0F)
-                .setColor(255, 255, 255, 255)
-                .setUv(0.0F, 1.0F)
-                .setOverlay(OverlayTexture.NO_OVERLAY)
-                .setLight(packedLight)
-                .setNormal(pose, 0.0F, 1.0F, 0.0F);
-
-        consumer.addVertex(pose, -length / 2, height, 0.0F)
-                .setColor(255, 255, 255, 255)
-                .setUv(1.0F, 1.0F)
-                .setOverlay(OverlayTexture.NO_OVERLAY)
-                .setLight(packedLight)
-                .setNormal(pose, 0.0F, 1.0F, 0.0F);
+        Minecraft.getInstance().getBlockRenderer().getModelRenderer().renderModel(
+                poseStack.last(),
+                consumer,
+                null,
+                bakedModel,
+                1.0F, 1.0F, 1.0F,
+                packedLight,
+                OverlayTexture.NO_OVERLAY,
+                ModelData.EMPTY,
+                RenderType.solid()
+        );
 
         poseStack.popPose();
     }
