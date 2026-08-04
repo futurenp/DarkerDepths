@@ -494,9 +494,9 @@ public class DDBlocks {
     }
 
     public static final DeferredBlock<GlowshroomLampBlock> GLOWSHROOM_LAMP = registerBlock("glowshroom_lamp",
-            () -> new GlowshroomLampBlock(BlockBehaviour.Properties.of().strength(0.3f, 0.3f).lightLevel(state -> state.getValue(BlockStateProperties.LIT) ? 15 : 0).sound(SoundType.GLASS)));
+            () -> new GlowshroomLampBlock(BlockBehaviour.Properties.of().strength(0.3f, 0.3f).lightLevel(state -> state.getValue(BlockStateProperties.LIT) ? 11 : 0).sound(SoundType.GLASS)));
     public static final DeferredBlock<GlowshroomLanternBlock> GLOWSHROOM_LANTERN = registerBlock("glowshroom_lantern",
-            () -> new GlowshroomLanternBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LANTERN)));
+            () -> new GlowshroomLanternBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LANTERN).lightLevel(state -> 10)));
 
     public static final DeferredBlock<RopeBlock> ROPE = registerNoTabBlock("rope",
             () -> new RopeBlock(blockProperties(0.1f, SoundType.WOOL, false).noOcclusion()));
