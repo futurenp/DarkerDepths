@@ -25,6 +25,8 @@ public class DDSoundEvents {
     public static final DeferredHolder<SoundEvent, SoundEvent> ENTITY_GLOWSHROOM_MONSTER_HURT           = registerSoundEvent("entity.glowshroom_monster.hurt");
     public static final DeferredHolder<SoundEvent, SoundEvent> ENTITY_GLOWSHROOM_MONSTER_DEATH          = registerSoundEvent("entity.glowshroom_monster.death");
     public static final DeferredHolder<SoundEvent, SoundEvent> BLOCK_DEATH_ANCHOR_SOUL_BINDING          = registerSoundEvent("block.death_anchor.soul_binding");
+    public static final DeferredHolder<SoundEvent, SoundEvent> ENTITY_SCORCHER_PASSIVE                  = registerSoundEvent("entity.scorcher.passive");
+    public static final DeferredHolder<SoundEvent, SoundEvent> ENTITY_SCORCHER_SIGHT                    = registerSoundEvent("entity.scorcher.sight");
 
     public static DeferredHolder<SoundEvent, SoundEvent> registerSoundEvent(String name) {
         return SOUND_EVENTS.register(name, () -> SoundEvent.createVariableRangeEvent(DarkerDepths.id(name)));

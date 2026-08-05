@@ -6,6 +6,7 @@ import com.mojang.serialization.Dynamic;
 import com.naterbobber.darkerdepths.client.screen_effects.ScorcherFlashHandler;
 import com.naterbobber.darkerdepths.init.DDBlocks;
 import com.naterbobber.darkerdepths.init.DDParticleTypes;
+import com.naterbobber.darkerdepths.init.DDSoundEvents;
 import com.naterbobber.darkerdepths.network.packets.ScorcherFlashPacket;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -271,23 +272,23 @@ public class ScorcherEntity extends Mob implements GeoEntity {
     }
 
     @Override
-    protected @org.jetbrains.annotations.Nullable SoundEvent getAmbientSound() {
-        return SoundEvents.BLAZE_AMBIENT;
+    protected @Nullable SoundEvent getAmbientSound() {
+        return DDSoundEvents.ENTITY_SCORCHER_PASSIVE.get();
     }
 
     @Override
-    protected @org.jetbrains.annotations.Nullable SoundEvent getHurtSound(DamageSource damageSource) {
+    protected @Nullable SoundEvent getHurtSound(DamageSource damageSource) {
         return SoundEvents.BLAZE_HURT;
     }
 
     @Override
-    protected @org.jetbrains.annotations.Nullable SoundEvent getDeathSound() {
+    protected @Nullable SoundEvent getDeathSound() {
         return SoundEvents.BLAZE_DEATH;
     }
 
     @Override
     public float getVoicePitch() {
-        return 0.5F;
+        return super.getVoicePitch();
     }
 
     @Override
@@ -308,7 +309,8 @@ public class ScorcherEntity extends Mob implements GeoEntity {
             if (this.isAlive() && this.hasBeamTarget()) {
                 LivingEntity target = this.getBeamTarget();
                 if (target != null && this.tickCount % 20 == 0) {
-                    this.level().playSound(null, target.blockPosition(), net.minecraft.sounds.SoundEvents.GUARDIAN_ATTACK, net.minecraft.sounds.SoundSource.HOSTILE, 1.5F, 0.8F + this.random.nextFloat() * 0.2F);
+                    this.level().playSound(null, target.getX(), target.getY(), target.getZ(),
+                            DDSoundEvents.ENTITY_SCORCHER_SIGHT.get(), SoundSource.HOSTILE, 1.5F, 1F + this.random.nextFloat() * 0.2F);
                 }
             }
 

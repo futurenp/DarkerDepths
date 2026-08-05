@@ -79,5 +79,19 @@
     "sounds": [
       "darkerdepths:entity/void_soul_knight/light_swing"
     ]
+  },
+  "entity.scorcher.passive": {
+    "category": "entity",
+    "subtitle": "Scorcher Whispers",
+    "sounds": [
+      "darkerdepths:entity/scorcher/scorcher_passive"
+    ]
+  },
+  "entity.scorcher.sight": {
+    "category": "entity",
+    "subtitle": "Scorcher Sees",
+    "sounds": [
+      "darkerdepths:entity/scorcher/scorcher_sight"
+    ]
   }
 }
