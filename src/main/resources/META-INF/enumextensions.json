@@ -5,7 +5,7 @@
       "name": "DARKERDEPTHS_GLOWING_MYCOSES",
       "constructor": "(Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;)V",
       "parameters": {
-        "class": "com/naterbobber/darkerdepths/util/DDEnumProxies",
+        "class": "com/naterbobber/darkerdepths/common/util/DDEnumProxies",
         "field": "GLOWING_MYCOSES_PROXY"
       }
     }

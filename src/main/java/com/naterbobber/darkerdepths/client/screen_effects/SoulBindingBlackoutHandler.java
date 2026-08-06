@@ -1,10 +1,9 @@
 package com.naterbobber.darkerdepths.client.screen_effects;
 
 import com.naterbobber.darkerdepths.client.screen_effects.render.SoulBindingBlackoutRenderer;
-import com.naterbobber.darkerdepths.init.DDSoundEvents;
+import com.naterbobber.darkerdepths.common.init.DDSoundEvents;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.DeathScreen;
-import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.sounds.SoundSource;
 
 public class SoulBindingBlackoutHandler {

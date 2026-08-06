@@ -1,9 +1,6 @@
 package com.naterbobber.darkerdepths.client.models;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
-import com.naterbobber.darkerdepths.block.blockentities.ParanoiaAltarBlockEntity;
-import com.naterbobber.darkerdepths.block.custom.ParanoiaAltarBlock;
-import com.naterbobber.darkerdepths.item.ParanoiaAltarItem;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;

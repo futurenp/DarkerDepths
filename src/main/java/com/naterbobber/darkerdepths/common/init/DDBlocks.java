@@ -1,0 +1,550 @@
+package com.naterbobber.darkerdepths.common.init;
+
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.Maps;
+import com.naterbobber.darkerdepths.DarkerDepths;
+import com.naterbobber.darkerdepths.common.block.DDBlockSetTypes;
+import com.naterbobber.darkerdepths.common.block.DDBlockStateProperties;
+import com.naterbobber.darkerdepths.common.block.custom.*;
+import com.naterbobber.darkerdepths.common.block.custom.darkslate.*;
+import com.naterbobber.darkerdepths.common.block.generic.*;
+import com.naterbobber.darkerdepths.common.block.custom.*;
+import com.naterbobber.darkerdepths.common.block.custom.darkslate.*;
+import com.naterbobber.darkerdepths.common.block.generic.*;
+import com.naterbobber.darkerdepths.common.compat.CompatID;
+import com.naterbobber.darkerdepths.common.compat.DDCompat;
+import com.naterbobber.darkerdepths.common.item.BlockItemWithHoverText;
+import com.naterbobber.darkerdepths.common.util.Colors;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.material.PushReaction;
+import net.neoforged.neoforge.registries.DeferredBlock;
+import net.neoforged.neoforge.registries.DeferredItem;
+import net.neoforged.neoforge.registries.DeferredRegister;
+
+import java.util.*;
+import java.util.function.Supplier;
+
+public class DDBlocks {
+    public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(DarkerDepths.MOD_ID);
+    public static final Map<DeferredItem<? extends Item>, List<CompatID>> COMPAT = Maps.newLinkedHashMap();
+
+    public static final BlockBehaviour.Properties PETRIFIED_LOG_PROPERTIES =
+            blockProperties(2.4f, 3.0f, SoundType.STEM, true);
+    public static final BlockBehaviour.Properties PETRIFIED_PLANKS_PROPERTIES =
+            blockProperties(2.5f, 3.0f, SoundType.WOOD, true);
+    public static final BlockBehaviour.Properties PETRIFIED_BUTTON_PROPERTIES =
+            blockProperties(0.5f, SoundType.WOOD, true);
+    public static final BlockBehaviour.Properties PETRIFIED_SIGN_PROPERTIES =
+            blockProperties(1.0f, SoundType.WOOD, true).noCollission();
+    public static final BlockBehaviour.Properties DARKSLATE_PROPERTIES =
+            blockProperties(3.5f, 6.5f, SoundType.DEEPSLATE, true);
+    public static final BlockBehaviour.Properties DARKSLATE_BRICKS_PROPERTIES =
+            blockProperties(4.0f, 7.5f, SoundType.DEEPSLATE_BRICKS, true);
+    public static final BlockBehaviour.Properties ARIDROCK_PROPERTIES =
+            blockProperties(1.5f, 6.0f, SoundType.STONE, true).mapColor(MapColor.SAND);
+    public static final BlockBehaviour.Properties ARIDROCK_BRICKS_PROPERTIES =
+            blockProperties(2.0f, 6.0f, SoundType.STONE, true).mapColor(MapColor.SAND);
+    public static final BlockBehaviour.Properties DUSKROCK_PROPERTIES =
+            blockProperties(1.25f, 4.0f, SoundType.TUFF, true);
+    public static final BlockBehaviour.Properties DUSKROCK_BRICKS_PROPERTIES =
+            blockProperties(1.5f, 5.0f, SoundType.STONE, true);
+    public static final BlockBehaviour.Properties LIVING_CRYSTAL_PROPERTIES =
+            blockProperties(4.0f, 7.5f, SoundType.DEEPSLATE, true).randomTicks();
+    public static final BlockBehaviour.Properties FORSAKEN_BRONZE_PROPERTIES =
+            blockProperties(8.0f, 15.0f, SoundType.NETHERITE_BLOCK, true);
+
+    public static final BlockBehaviour.Properties GLOWSHROOM_PLANKS_PROPERTIES =
+            blockProperties(1.2f, 1.8f, SoundType.WOOD, false);
+    public static final BlockBehaviour.Properties GLOWSHROOM_STEM_PROPERTIES =
+            blockProperties(1.2f, 2.0f, SoundType.STEM, false);
+    public static final BlockBehaviour.Properties GLOWSHROOM_BUTTON_PROPERTIES =
+            blockProperties(0.5f, SoundType.WOOD, false);
+    public static final BlockBehaviour.Properties GLOWSHROOM_SIGN_PROPERTIES =
+            blockProperties(1.0f, SoundType.WOOD, false).noCollission();
+
+    public static final BlockBehaviour.Properties GRIMESTONE_PROPERTIES =
+            blockProperties(2.0f, 5f, SoundType.DEEPSLATE, true);
+    public static final BlockBehaviour.Properties GRIMESTONE_BRICKS_PROPERTIES =
+            blockProperties(2.5f, 6.0f, SoundType.DEEPSLATE_BRICKS, true);
+
+    public static final BlockBehaviour.Properties GLIST_PROPERTIES =
+            blockProperties(1.25f, 2.5f, SoundType.TUFF, true);
+    public static final BlockBehaviour.Properties GLIST_BRICKS_PROPERTIES =
+            blockProperties(1.5f, 3.5f, SoundType.TUFF_BRICKS, true);
+
+    public static final DeferredBlock<RotatedPillarBlock> STRIPPED_PETRIFIED_LOG = registerBlock("stripped_petrified_log",
+            () -> new RotatedPillarBlock(PETRIFIED_LOG_PROPERTIES));
+    public static final DeferredBlock<RotatedPillarBlock> STRIPPED_PETRIFIED_WOOD = registerBlock("stripped_petrified_wood",
+            () -> new RotatedPillarBlock(PETRIFIED_LOG_PROPERTIES));
+    public static final DeferredBlock<DDLogBlock> PETRIFIED_LOG = registerBlock("petrified_log",
+            () -> new DDLogBlock(PETRIFIED_LOG_PROPERTIES, STRIPPED_PETRIFIED_LOG.get()));
+    public static final DeferredBlock<RotatedPillarBlock> PETRIFIED_WOOD = registerBlock("petrified_wood",
+            () -> new DDLogBlock(PETRIFIED_LOG_PROPERTIES, STRIPPED_PETRIFIED_WOOD.get()));
+    public static final DeferredBlock<Block> PETRIFIED_PLANKS = registerBlock("petrified_planks",
+            () -> new Block(PETRIFIED_PLANKS_PROPERTIES));
+    public static final DeferredBlock<RotatedPillarBlock> PETRIFIED_BOARDS = registerCompatBlock(List.of(), "petrified_boards",
+            () -> new RotatedPillarBlock(PETRIFIED_PLANKS_PROPERTIES));
+    public static final DeferredBlock<Block> VERTICAL_PETRIFIED_PLANKS = registerCompatBlock(List.of(DDCompat.QUARK), "vertical_petrified_planks",
+            () -> new Block(PETRIFIED_PLANKS_PROPERTIES));
+    public static final DeferredBlock<StairBlock> PETRIFIED_STAIRS = registerBlock("petrified_stairs",
+            () -> new StairBlock(PETRIFIED_PLANKS.get().defaultBlockState(), PETRIFIED_PLANKS_PROPERTIES));
+    public static final DeferredBlock<SlabBlock> PETRIFIED_SLAB = registerBlock("petrified_slab",
+            () -> new SlabBlock(PETRIFIED_PLANKS_PROPERTIES));
+    public static final DeferredBlock<VerticalSlabBlock> PETRIFIED_VERTICAL_SLAB = registerCompatBlock(List.of(DDCompat.QUARK), "petrified_vertical_slab",
+            () -> new VerticalSlabBlock(PETRIFIED_PLANKS_PROPERTIES));
+    public static final DeferredBlock<Block> TRIMMED_PETRIFIED_PLANKS = registerCompatBlock(List.of(DDCompat.NO_MANS_LAND), "trimmed_petrified_planks",
+            () -> new ConnectedPillarBlock(PETRIFIED_PLANKS_PROPERTIES));
+    public static final DeferredBlock<FenceBlock> PETRIFIED_FENCE = registerBlock("petrified_fence",
+            () -> new FenceBlock(PETRIFIED_PLANKS_PROPERTIES));
+    public static final DeferredBlock<FenceGateBlock> PETRIFIED_FENCE_GATE = registerBlock("petrified_fence_gate",
+            () -> new FenceGateBlock(DDWoodType.PETRIFIED, blockProperties(2.5f, 3.0f, SoundType.WOOD, true).forceSolidOn()));
+    public static final DeferredBlock<DoorBlock> PETRIFIED_DOOR = registerBlock("petrified_door",
+            () -> new DoorBlock(DDBlockSetTypes.PETRIFIED, PETRIFIED_PLANKS_PROPERTIES));
+    public static final DeferredBlock<TrapDoorBlock> PETRIFIED_TRAPDOOR = registerBlock("petrified_trapdoor",
+            () -> new TrapDoorBlock(DDBlockSetTypes.PETRIFIED, PETRIFIED_PLANKS_PROPERTIES));
+    public static final DeferredBlock<Block> PETRIFIED_BOOKSHELF = registerCompatBlock(List.of(DDCompat.NO_MANS_LAND, DDCompat.QUARK, DDCompat.WOODWORKS),"petrified_bookshelf",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.BOOKSHELF)));
+    public static final DeferredBlock<PressurePlateBlock> PETRIFIED_PRESSURE_PLATE = registerBlock("petrified_pressure_plate",
+            () -> new PressurePlateBlock(DDBlockSetTypes.PETRIFIED, PETRIFIED_PLANKS_PROPERTIES));
+    public static final DeferredBlock<ButtonBlock> PETRIFIED_BUTTON = registerBlock("petrified_button",
+            () -> new ButtonBlock(DDBlockSetTypes.PETRIFIED, 30, PETRIFIED_BUTTON_PROPERTIES));
+    public static final DeferredBlock<DDStandingSignBlock> PETRIFIED_SIGN = registerNoTabBlock("petrified_sign",
+            () -> new DDStandingSignBlock(DDWoodType.PETRIFIED, PETRIFIED_SIGN_PROPERTIES));
+    public static final DeferredBlock<DDWallSignBlock> PETRIFIED_WALL_SIGN = registerNoTabBlock("petrified_wall_sign",
+            () -> new DDWallSignBlock(PETRIFIED_SIGN_PROPERTIES, DDWoodType.PETRIFIED));
+    public static final DeferredBlock<DDCeilingHangingSignBlock> PETRIFIED_HANGING_SIGN = registerNoTabBlock("petrified_hanging_sign",
+            () -> new DDCeilingHangingSignBlock(DDWoodType.PETRIFIED, PETRIFIED_SIGN_PROPERTIES));
+    public static final DeferredBlock<DDWallHangingSignBlock> PETRIFIED_WALL_HANGING_SIGN = registerNoTabBlock("petrified_wall_hanging_sign",
+            () -> new DDWallHangingSignBlock(DDWoodType.PETRIFIED, PETRIFIED_SIGN_PROPERTIES));
+    public static final DeferredBlock<WoodPostBlock> STRIPPED_PETRIFIED_POST = registerCompatBlock(List.of(DDCompat.QUARK), "stripped_petrified_post",
+            () -> new WoodPostBlock(blockProperties(2.4f, 3.0f, SoundType.STEM, true).noOcclusion()));
+    public static final DeferredBlock<WoodPostBlock> PETRIFIED_POST = registerCompatBlock(List.of(DDCompat.QUARK), "petrified_post",
+            () -> new WoodPostBlock(blockProperties(2.4f, 3.0f, SoundType.STEM, true).noOcclusion()));
+
+    public static final DeferredBlock<PorousBlock> POROUS_PETRIFIED_LOG = registerBlock("porous_petrified_log",
+            () -> new PorousBlock(blockProperties(2.4f, 3.0f, SoundType.STEM, true).randomTicks().lightLevel(value -> 6)));
+    public static final DeferredBlock<RotatedPillarBlock> ARIDROCK = registerBlock("aridrock",
+            () -> new RotatedPillarBlock(ARIDROCK_PROPERTIES));
+    public static final DeferredBlock<StairBlock> ARIDROCK_STAIRS = registerBlock("aridrock_stairs",
+            () -> new StairBlock(ARIDROCK.get().defaultBlockState(), ARIDROCK_PROPERTIES));
+    public static final DeferredBlock<SlabBlock> ARIDROCK_SLAB = registerBlock("aridrock_slab",
+            () -> new SlabBlock(ARIDROCK_PROPERTIES));
+    public static final DeferredBlock<VerticalSlabBlock> ARIDROCK_VERTICAL_SLAB = registerCompatBlock(List.of(DDCompat.QUARK), "aridrock_vertical_slab",
+            () -> new VerticalSlabBlock(ARIDROCK_PROPERTIES));
+    public static final DeferredBlock<WallBlock> ARIDROCK_WALL = registerBlock("aridrock_wall",
+            () -> new WallBlock(ARIDROCK_PROPERTIES));
+    public static final DeferredBlock<Block> POLISHED_ARIDROCK = registerBlock("polished_aridrock",
+            () -> new Block(ARIDROCK_PROPERTIES));
+    public static final DeferredBlock<StairBlock> POLISHED_ARIDROCK_STAIRS = registerBlock("polished_aridrock_stairs",
+            () -> new StairBlock(POLISHED_ARIDROCK.get().defaultBlockState(), ARIDROCK_PROPERTIES));
+    public static final DeferredBlock<SlabBlock> POLISHED_ARIDROCK_SLAB = registerBlock("polished_aridrock_slab",
+            () -> new SlabBlock(ARIDROCK_PROPERTIES));
+    public static final DeferredBlock<VerticalSlabBlock> POLISHED_ARIDROCK_VERTICAL_SLAB = registerCompatBlock(List.of(DDCompat.QUARK), "polished_aridrock_vertical_slab",
+            () -> new VerticalSlabBlock(ARIDROCK_PROPERTIES));
+    public static final DeferredBlock<Block> ARIDROCK_BRICKS = registerBlock("aridrock_bricks",
+            () -> new Block(ARIDROCK_BRICKS_PROPERTIES));
+    public static final DeferredBlock<StairBlock> ARIDROCK_BRICKS_STAIRS = registerBlock("aridrock_bricks_stairs",
+            () -> new StairBlock(ARIDROCK_BRICKS.get().defaultBlockState(), ARIDROCK_BRICKS_PROPERTIES));
+    public static final DeferredBlock<SlabBlock> ARIDROCK_BRICKS_SLAB = registerBlock("aridrock_bricks_slab",
+            () -> new SlabBlock(ARIDROCK_BRICKS_PROPERTIES));
+    public static final DeferredBlock<VerticalSlabBlock> ARIDROCK_BRICKS_VERTICAL_SLAB = registerCompatBlock(List.of(DDCompat.QUARK), "aridrock_bricks_vertical_slab",
+            () -> new VerticalSlabBlock(ARIDROCK_BRICKS_PROPERTIES));
+    public static final DeferredBlock<WallBlock> ARIDROCK_BRICKS_WALL = registerBlock("aridrock_bricks_wall",
+            () -> new WallBlock(ARIDROCK_BRICKS_PROPERTIES));
+    public static final DeferredBlock<Block> CHISELED_ARIDROCK_BRICKS = registerBlock("chiseled_aridrock_bricks",
+            () -> new Block(ARIDROCK_BRICKS_PROPERTIES));
+    public static final DeferredBlock<Block> CRACKED_ARIDROCK_BRICKS = registerBlock("cracked_aridrock_bricks",
+            () -> new Block(ARIDROCK_BRICKS_PROPERTIES));
+    public static final DeferredBlock<ConnectedRotatablePillarBlock> ARIDROCK_PILLAR = registerBlock("aridrock_pillar",
+            () -> new ConnectedRotatablePillarBlock(ARIDROCK_BRICKS_PROPERTIES));
+    public static final DeferredBlock<Block> SKULL_WALL = registerBlock("skull_wall",
+            () -> new Block(ARIDROCK_BRICKS_PROPERTIES));
+    public static final DeferredBlock<DuskrockBlock> DUSKROCK = registerBlock("duskrock",
+            () -> new DuskrockBlock(DUSKROCK_PROPERTIES));
+    public static final DeferredBlock<StairBlock> DUSKROCK_STAIRS = registerBlock("duskrock_stairs",
+            () -> new StairBlock(DUSKROCK.get().defaultBlockState(), DUSKROCK_PROPERTIES));
+    public static final DeferredBlock<SlabBlock> DUSKROCK_SLAB = registerBlock("duskrock_slab",
+            () -> new SlabBlock(DUSKROCK_PROPERTIES));
+    public static final DeferredBlock<VerticalSlabBlock> DUSKROCK_VERTICAL_SLAB = registerCompatBlock(List.of(DDCompat.QUARK), "duskrock_vertical_slab",
+            () -> new VerticalSlabBlock(DUSKROCK_PROPERTIES));
+    public static final DeferredBlock<WallBlock> DUSKROCK_WALL = registerBlock("duskrock_wall",
+            () -> new WallBlock(DUSKROCK_PROPERTIES));
+    public static final DeferredBlock<Block> POLISHED_DUSKROCK = registerBlock("polished_duskrock",
+            () -> new Block(DUSKROCK_PROPERTIES));
+    public static final DeferredBlock<StairBlock> POLISHED_DUSKROCK_STAIRS = registerBlock("polished_duskrock_stairs",
+            () -> new StairBlock(POLISHED_DUSKROCK.get().defaultBlockState(), DUSKROCK_PROPERTIES));
+    public static final DeferredBlock<SlabBlock> POLISHED_DUSKROCK_SLAB = registerBlock("polished_duskrock_slab",
+            () -> new SlabBlock(DUSKROCK_PROPERTIES));
+    public static final DeferredBlock<VerticalSlabBlock> POLISHED_DUSKROCK_VERTICAL_SLAB = registerCompatBlock(List.of(DDCompat.QUARK), "polished_duskrock_vertical_slab",
+            () -> new VerticalSlabBlock(DUSKROCK_PROPERTIES));
+    public static final DeferredBlock<Block> DUSKROCK_BRICKS = registerBlock("duskrock_bricks",
+            () -> new Block(DUSKROCK_BRICKS_PROPERTIES));
+    public static final DeferredBlock<StairBlock> DUSKROCK_BRICKS_STAIRS = registerBlock("duskrock_bricks_stairs",
+            () -> new StairBlock(DUSKROCK_BRICKS.get().defaultBlockState(), DUSKROCK_BRICKS_PROPERTIES));
+    public static final DeferredBlock<SlabBlock> DUSKROCK_BRICKS_SLAB = registerBlock("duskrock_bricks_slab",
+            () -> new SlabBlock(DUSKROCK_BRICKS_PROPERTIES));
+    public static final DeferredBlock<VerticalSlabBlock> DUSKROCK_BRICKS_VERTICAL_SLAB = registerCompatBlock(List.of(DDCompat.QUARK), "duskrock_bricks_vertical_slab",
+            () -> new VerticalSlabBlock(DUSKROCK_BRICKS_PROPERTIES));
+    public static final DeferredBlock<WallBlock> DUSKROCK_BRICKS_WALL = registerBlock("duskrock_bricks_wall",
+            () -> new WallBlock(DUSKROCK_BRICKS_PROPERTIES));
+    public static final DeferredBlock<Block> CHISELED_DUSKROCK_BRICKS = registerBlock("chiseled_duskrock_bricks",
+            () -> new Block(DUSKROCK_BRICKS_PROPERTIES));
+    public static final DeferredBlock<Block> CRACKED_DUSKROCK_BRICKS = registerBlock("cracked_duskrock_bricks",
+            () -> new Block(DUSKROCK_BRICKS_PROPERTIES));
+    public static final DeferredBlock<ConnectedRotatablePillarBlock> DUSKROCK_PILLAR = registerBlock("duskrock_pillar",
+            () -> new ConnectedRotatablePillarBlock(DUSKROCK_BRICKS_PROPERTIES));
+    public static final DeferredBlock<VoidSoulJarBlock> VOID_SOUL_JAR = registerNoTabBlock("void_soul_jar",
+            () -> new VoidSoulJarBlock(BlockBehaviour.Properties.of().strength(0.8f).sound(SoundType.GLASS).lightLevel(value -> 5)));
+    public static final DeferredBlock<Block> FORSAKEN_BRONZE_BLOCK = registerBlock("forsaken_bronze_block",
+            () -> new Block(FORSAKEN_BRONZE_PROPERTIES));
+    public static final DeferredBlock<DeathAnchorBlock> DEATH_ANCHOR = registerTooltipBlock("death_anchor",
+            () -> new DeathAnchorBlock(FORSAKEN_BRONZE_PROPERTIES),
+            List.of(Component.translatable("tooltip.darkerdepths.death_anchor.shift_desc_1").withStyle(ChatFormatting.GOLD),
+                    Component.translatable("tooltip.darkerdepths.death_anchor.shift_desc_2").withStyle(ChatFormatting.GOLD)));
+
+    private static final List<String> TOMB_TYPES = ImmutableList.of(
+            "duskrock",
+            "darkslate",
+            "aridrock",
+            "glist",
+            "grimestone",
+            "andesite",
+            "granite",
+            "basalt",
+            "blackstone",
+            "diorite",
+            "tuff",
+            "deepslate",
+            "calcite",
+            "dripstone",
+            "prismarine",
+            "dark_prismarine"
+    );
+
+    public static final Map<String, DeferredBlock<TombBlock>> TOMBS = new HashMap<>();
+
+    static {
+        Supplier<TombBlock> supplier = () -> new TombBlock(blockProperties(4.0f, 10.0f, SoundType.DEEPSLATE, true).noOcclusion());
+        TOMB_TYPES.forEach(name -> {
+            if(name.equals("duskrock")) {
+                name = "tomb";
+            } else {
+                name += "_tomb";
+            }
+
+            TOMBS.put(name, registerBlock(name, supplier));
+        });
+    }
+
+    public static final DeferredBlock<ParanoiaAltarBlock> PARANOIA_ALTAR = registerNoTabBlock("paranoia_altar",
+            () -> new ParanoiaAltarBlock(blockProperties(2.5f, 3.0f, SoundType.DEEPSLATE, true).lightLevel(level -> 9).noOcclusion()));
+    public static final DeferredBlock<Block> ARID_DEEPSLATE = registerBlock("arid_deepslate",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE).randomTicks()));
+    public static final DeferredBlock<VoidSoulTorchBlock> VOID_SOUL_TORCH = registerNoTabBlock("void_soul_torch",
+            () -> new VoidSoulTorchBlock(DDParticleTypes.VOID_SOUL_FLAME::get, BlockBehaviour.Properties.of().strength(0.0F, 1.0F).noCollission().sound(SoundType.WOOD).lightLevel(state -> 10)));
+    public static final DeferredBlock<WallVoidSoulTorchBlock> WALL_VOID_SOUL_TORCH = registerNoTabBlock("wall_void_soul_torch",
+            () -> new WallVoidSoulTorchBlock(DDParticleTypes.VOID_SOUL_FLAME::get, BlockBehaviour.Properties.of().strength(0.0F, 1.0F).noCollission().sound(SoundType.WOOD).lootFrom(VOID_SOUL_TORCH).lightLevel(state -> 12)));
+    public static final DeferredBlock<PetrifiedRootBlock> PETRIFIED_ROOTS = registerBlock("petrified_roots",
+            () -> new PetrifiedRootBlock(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).offsetType(BlockBehaviour.OffsetType.XZ).noCollission().instabreak().sound(SoundType.HANGING_ROOTS)));
+    public static final DeferredBlock<PetrifiedRootPlantBlock> PETRIFIED_ROOTS_PLANT = registerNoTabBlock("petrified_roots_plant",
+            () -> new PetrifiedRootPlantBlock(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).offsetType(BlockBehaviour.OffsetType.XZ).noCollission().instabreak().sound(SoundType.HANGING_ROOTS)));
+    public static final DeferredBlock<DrySproutsBlock> DRY_SPROUTS = registerBlock("dry_sprouts",
+            () -> new DrySproutsBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DEAD_BUSH).offsetType(BlockBehaviour.OffsetType.XZ)));
+    public static final DeferredBlock<Block> AMBER_BLOCK = registerBlock("amber_block",
+            () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(1.0f).sound(SoundType.AMETHYST).lightLevel(value -> 7)));
+    public static final DeferredBlock<AmethystClusterBlock> AMBER_CLUSTER = registerBlock("amber_cluster",
+            () -> new AmberClusterBlock(6, 3, BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(1.0f).sound(SoundType.SMALL_AMETHYST_BUD).lightLevel(value -> 7)));
+
+
+    public static final DeferredBlock<RotatableDarkslateBlock> DARKSLATE = registerBlock("darkslate",
+            () -> new RotatableDarkslateBlock(DARKSLATE_PROPERTIES));
+    public static final DeferredBlock<DarkslateStairBlock> DARKSLATE_STAIRS = registerBlock("darkslate_stairs",
+            () -> new DarkslateStairBlock(DARKSLATE.get().defaultBlockState(), DARKSLATE_PROPERTIES));
+    public static final DeferredBlock<DarkslateSlabBlock> DARKSLATE_SLAB = registerBlock("darkslate_slab",
+            () -> new DarkslateSlabBlock(DARKSLATE_PROPERTIES));
+    public static final DeferredBlock<DarkslateVerticalSlabBlock> DARKSLATE_VERTICAL_SLAB = registerCompatBlock(List.of(DDCompat.QUARK), "darkslate_vertical_slab",
+            () -> new DarkslateVerticalSlabBlock(DARKSLATE_PROPERTIES));
+    public static final DeferredBlock<DarkslateWallBlock> DARKSLATE_WALL = registerBlock("darkslate_wall",
+            () -> new DarkslateWallBlock(DARKSLATE_PROPERTIES));
+    public static final DeferredBlock<DarkslateBlock> POLISHED_DARKSLATE = registerBlock("polished_darkslate",
+            () -> new DarkslateBlock(DARKSLATE_PROPERTIES));
+    public static final DeferredBlock<DarkslateStairBlock> POLISHED_DARKSLATE_STAIRS = registerBlock("polished_darkslate_stairs",
+            () -> new DarkslateStairBlock(POLISHED_DARKSLATE.get().defaultBlockState(), DARKSLATE_PROPERTIES));
+    public static final DeferredBlock<DarkslateSlabBlock> POLISHED_DARKSLATE_SLAB = registerBlock("polished_darkslate_slab",
+            () -> new DarkslateSlabBlock(DARKSLATE_PROPERTIES));
+    public static final DeferredBlock<DarkslateVerticalSlabBlock> POLISHED_DARKSLATE_VERTICAL_SLAB = registerCompatBlock(List.of(DDCompat.QUARK), "polished_darkslate_vertical_slab",
+            () -> new DarkslateVerticalSlabBlock(DARKSLATE_PROPERTIES));
+    public static final DeferredBlock<DarkslateBlock> DARKSLATE_BRICKS = registerBlock("darkslate_bricks",
+            () -> new DarkslateBlock(DARKSLATE_BRICKS_PROPERTIES));
+    public static final DeferredBlock<DarkslateStairBlock> DARKSLATE_BRICKS_STAIRS = registerBlock("darkslate_bricks_stairs",
+            () -> new DarkslateStairBlock(DARKSLATE_BRICKS.get().defaultBlockState(), DARKSLATE_BRICKS_PROPERTIES));
+    public static final DeferredBlock<DarkslateSlabBlock> DARKSLATE_BRICKS_SLAB = registerBlock("darkslate_bricks_slab",
+            () -> new DarkslateSlabBlock(DARKSLATE_BRICKS_PROPERTIES));
+    public static final DeferredBlock<DarkslateVerticalSlabBlock> DARKSLATE_BRICKS_VERTICAL_SLAB = registerCompatBlock(List.of(DDCompat.QUARK), "darkslate_bricks_vertical_slab",
+            () -> new DarkslateVerticalSlabBlock(DARKSLATE_BRICKS_PROPERTIES));
+    public static final DeferredBlock<DarkslateWallBlock> DARKSLATE_BRICKS_WALL = registerBlock("darkslate_bricks_wall",
+            () -> new DarkslateWallBlock(DARKSLATE_BRICKS_PROPERTIES));
+    public static final DeferredBlock<DarkslateBlock> CHISELED_DARKSLATE_BRICKS = registerBlock("chiseled_darkslate_bricks",
+            () -> new DarkslateBlock(DARKSLATE_BRICKS_PROPERTIES));
+    public static final DeferredBlock<DarkslateBlock> CRACKED_DARKSLATE_BRICKS = registerBlock("cracked_darkslate_bricks",
+            () -> new DarkslateBlock(DARKSLATE_BRICKS_PROPERTIES));
+    public static final DeferredBlock<ConnectedRotatableDarkslatePillarBlock> DARKSLATE_PILLAR = registerBlock("darkslate_pillar",
+            () -> new ConnectedRotatableDarkslatePillarBlock(DARKSLATE_BRICKS_PROPERTIES));
+    public static final DeferredBlock<GeyserBlock> GEYSER = registerBlock("geyser",
+            () -> new GeyserBlock(blockProperties(3.5f, 6.5f, SoundType.DEEPSLATE, true).randomTicks()));
+    public static final DeferredBlock<ScorchedRemainsBushBlock> SCORCHED_REMAINS = registerBlock("scorched_remains",
+            () -> new ScorchedRemainsBushBlock(BlockBehaviour.Properties.of().instabreak().noOcclusion().noCollission().sound(SoundType.WART_BLOCK).offsetType(BlockBehaviour.OffsetType.XZ)));
+    public static final DeferredBlock<ScorchedRemainsFullBlock> SCORCHED_REMAINS_BLOCK = registerBlock("scorched_remains_block",
+            () -> new ScorchedRemainsFullBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.NETHER_WART_BLOCK).sound(SoundType.WART_BLOCK)));
+    public static final DeferredBlock<StoneMelonBlock> STONE_MELON = registerBlock("stone_melon",
+            () -> new StoneMelonBlock(BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_GRAY).requiresCorrectToolForDrops().strength(1.0f).sound(SoundType.DEEPSLATE)));
+    public static final DeferredBlock<CrystalHuskBlock> CRYSTAL_HUSK = registerBlock("dead_living_crystal",
+            () -> new CrystalHuskBlock(LIVING_CRYSTAL_PROPERTIES));
+    public static final DeferredBlock<LivingCrystalBlock> LIVING_CRYSTAL = registerBlock("living_crystal",
+            () -> new LivingCrystalBlock(LIVING_CRYSTAL_PROPERTIES));
+    public static final DeferredBlock<CrystalMelonBlock> CRYSTAL_MELON = registerTooltipBlock("crystal_melon",
+            () -> new CrystalMelonBlock(blockProperties(1.5f, 1.0f, SoundType.AMETHYST, true).lightLevel(value -> 10)),
+            List.of(Component.translatable("tooltip.darkerdepths.crystal_melon.shift_desc_1").withStyle(ChatFormatting.AQUA),
+                    Component.translatable("tooltip.darkerdepths.crystal_melon.shift_desc_2").withStyle(ChatFormatting.AQUA)
+            )
+    );
+    public static final DeferredBlock<MagmaPadBlock> MAGMA_PAD = registerNoTabBlock("magma_pad",
+            () -> new MagmaPadBlock(BlockBehaviour.Properties.of().strength(0.1F).lightLevel(state -> 3).sound(DDSoundTypes.GRIMESTONE.get()).noOcclusion().pushReaction(PushReaction.DESTROY)));
+    public static final DeferredBlock<AshFullBlock> ASH_BLOCK = registerTooltipBlock("ash_block",
+            () -> new AshFullBlock(blockProperties(0.2f, SoundType.SNOW, false).mapColor(MapColor.COLOR_BLACK).randomTicks()),
+            List.of(Component.translatable("tooltip.darkerdepths.legacy.shift_desc").withStyle(ChatFormatting.RED)));
+    public static final DeferredBlock<AshBlock> ASH = registerTooltipBlock("ash",
+            () -> new AshBlock(blockProperties(0.1f, SoundType.SNOW, true).mapColor(MapColor.COLOR_BLACK).randomTicks()),
+            List.of(Component.translatable("tooltip.darkerdepths.legacy.shift_desc").withStyle(ChatFormatting.RED)));
+    public static final DeferredBlock<ScorcherLightBlock> SCORCHER_LIGHT_BLOCK = registerNoTabBlock("scorcher_light_block",
+            () -> new ScorcherLightBlock(Block.Properties.ofFullCopy(Blocks.LIGHT)));
+
+
+    public static final DeferredBlock<GrimestoneBlock> GRIMESTONE = registerBlock("grimestone",
+            () -> new GrimestoneBlock(GRIMESTONE_PROPERTIES));
+    public static final DeferredBlock<StairBlock> GRIMESTONE_STAIRS = registerBlock("grimestone_stairs",
+            () -> new StairBlock(GRIMESTONE.get().defaultBlockState(), GRIMESTONE_PROPERTIES));
+    public static final DeferredBlock<SlabBlock> GRIMESTONE_SLAB = registerBlock("grimestone_slab",
+            () -> new SlabBlock(GRIMESTONE_PROPERTIES));
+    public static final DeferredBlock<VerticalSlabBlock> GRIMESTONE_VERTICAL_SLAB = registerCompatBlock(List.of(DDCompat.QUARK), "grimestone_vertical_slab",
+            () -> new VerticalSlabBlock(GRIMESTONE_PROPERTIES));
+    public static final DeferredBlock<WallBlock> GRIMESTONE_WALL = registerBlock("grimestone_wall",
+            () -> new WallBlock(GRIMESTONE_PROPERTIES));
+    public static final DeferredBlock<MossyGrimestoneBlock> MOSSY_GRIMESTONE = registerBlock("mossy_grimestone",
+            () -> new MossyGrimestoneBlock(blockProperties(2.0f, 5f, SoundType.DEEPSLATE, true).randomTicks()));
+    public static final DeferredBlock<Block> POLISHED_GRIMESTONE = registerBlock("polished_grimestone",
+            () -> new Block(GRIMESTONE_PROPERTIES));
+    public static final DeferredBlock<StairBlock> POLISHED_GRIMESTONE_STAIRS = registerBlock("polished_grimestone_stairs",
+            () -> new StairBlock(POLISHED_GRIMESTONE.get().defaultBlockState(), GRIMESTONE_PROPERTIES));
+    public static final DeferredBlock<SlabBlock> POLISHED_GRIMESTONE_SLAB = registerBlock("polished_grimestone_slab",
+            () -> new SlabBlock(GRIMESTONE_PROPERTIES));
+    public static final DeferredBlock<VerticalSlabBlock> POLISHED_GRIMESTONE_VERTICAL_SLAB = registerCompatBlock(List.of(DDCompat.QUARK), "polished_grimestone_vertical_slab",
+            () -> new VerticalSlabBlock(GRIMESTONE_PROPERTIES));
+    public static final DeferredBlock<Block> GRIMESTONE_BRICKS = registerBlock("grimestone_bricks",
+            () -> new Block(GRIMESTONE_BRICKS_PROPERTIES));
+    public static final DeferredBlock<StairBlock> GRIMESTONE_BRICKS_STAIRS = registerBlock("grimestone_bricks_stairs",
+            () -> new StairBlock(GRIMESTONE_BRICKS.get().defaultBlockState(), GRIMESTONE_BRICKS_PROPERTIES));
+    public static final DeferredBlock<SlabBlock> GRIMESTONE_BRICKS_SLAB = registerBlock("grimestone_bricks_slab",
+            () -> new SlabBlock(GRIMESTONE_BRICKS_PROPERTIES));
+    public static final DeferredBlock<VerticalSlabBlock> GRIMESTONE_BRICKS_VERTICAL_SLAB = registerCompatBlock(List.of(DDCompat.QUARK), "grimestone_bricks_vertical_slab",
+            () -> new VerticalSlabBlock(GRIMESTONE_BRICKS_PROPERTIES));
+    public static final DeferredBlock<WallBlock> GRIMESTONE_BRICKS_WALL = registerBlock("grimestone_bricks_wall",
+            () -> new WallBlock(GRIMESTONE_BRICKS_PROPERTIES));
+    public static final DeferredBlock<Block> MOSSY_GRIMESTONE_BRICKS = registerBlock("mossy_grimestone_bricks",
+            () -> new Block(GRIMESTONE_BRICKS_PROPERTIES));
+    public static final DeferredBlock<StairBlock> MOSSY_GRIMESTONE_BRICKS_STAIRS = registerBlock("mossy_grimestone_bricks_stairs",
+            () -> new StairBlock(MOSSY_GRIMESTONE_BRICKS.get().defaultBlockState(), GRIMESTONE_BRICKS_PROPERTIES));
+    public static final DeferredBlock<SlabBlock> MOSSY_GRIMESTONE_BRICKS_SLAB = registerBlock("mossy_grimestone_bricks_slab",
+            () -> new SlabBlock(GRIMESTONE_BRICKS_PROPERTIES));
+    public static final DeferredBlock<VerticalSlabBlock> MOSSY_GRIMESTONE_BRICKS_VERTICAL_SLAB = registerCompatBlock(List.of(DDCompat.QUARK), "mossy_grimestone_bricks_vertical_slab",
+            () -> new VerticalSlabBlock(GRIMESTONE_BRICKS_PROPERTIES));
+    public static final DeferredBlock<WallBlock> MOSSY_GRIMESTONE_BRICKS_WALL = registerBlock("mossy_grimestone_bricks_wall",
+            () -> new WallBlock(GRIMESTONE_BRICKS_PROPERTIES));
+    public static final DeferredBlock<Block> CHISELED_GRIMESTONE_BRICKS = registerBlock("chiseled_grimestone_bricks",
+            () -> new Block(GRIMESTONE_BRICKS_PROPERTIES));
+    public static final DeferredBlock<Block> CRACKED_GRIMESTONE_BRICKS = registerBlock("cracked_grimestone_bricks",
+            () -> new Block(GRIMESTONE_BRICKS_PROPERTIES));
+    public static final DeferredBlock<ConnectedRotatablePillarBlock> GRIMESTONE_PILLAR = registerBlock("grimestone_pillar",
+            () -> new ConnectedRotatablePillarBlock(GRIMESTONE_BRICKS_PROPERTIES));
+
+    public static final DeferredBlock<Block> GLIST = registerBlock("glist",
+            () -> new Block(GLIST_PROPERTIES));
+    public static final DeferredBlock<StairBlock> GLIST_STAIRS = registerBlock("glist_stairs",
+            () -> new StairBlock(GLIST.get().defaultBlockState(), GLIST_PROPERTIES));
+    public static final DeferredBlock<SlabBlock> GLIST_SLAB = registerBlock("glist_slab",
+            () -> new SlabBlock(GLIST_PROPERTIES));
+    public static final DeferredBlock<VerticalSlabBlock> GLIST_VERTICAL_SLAB = registerCompatBlock(List.of(DDCompat.QUARK), "glist_vertical_slab",
+            () -> new VerticalSlabBlock(GLIST_PROPERTIES));
+    public static final DeferredBlock<WallBlock> GLIST_WALL = registerBlock("glist_wall",
+            () -> new WallBlock(GLIST_PROPERTIES));
+    public static final DeferredBlock<Block> POLISHED_GLIST = registerBlock("polished_glist",
+            () -> new Block(GLIST_PROPERTIES));
+    public static final DeferredBlock<StairBlock> POLISHED_GLIST_STAIRS = registerBlock("polished_glist_stairs",
+            () -> new StairBlock(POLISHED_GLIST.get().defaultBlockState(), GLIST_PROPERTIES));
+    public static final DeferredBlock<SlabBlock> POLISHED_GLIST_SLAB = registerBlock("polished_glist_slab",
+            () -> new SlabBlock(GLIST_PROPERTIES));
+    public static final DeferredBlock<VerticalSlabBlock> POLISHED_GLIST_VERTICAL_SLAB = registerCompatBlock(List.of(DDCompat.QUARK), "polished_glist_vertical_slab",
+            () -> new VerticalSlabBlock(GLIST_PROPERTIES));
+    public static final DeferredBlock<Block> GLIST_BRICKS = registerBlock("glist_bricks",
+            () -> new Block(GLIST_BRICKS_PROPERTIES));
+    public static final DeferredBlock<StairBlock> GLIST_BRICKS_STAIRS = registerBlock("glist_bricks_stairs",
+            () -> new StairBlock(GLIST_BRICKS.get().defaultBlockState(), GLIST_BRICKS_PROPERTIES));
+    public static final DeferredBlock<SlabBlock> GLIST_BRICKS_SLAB = registerBlock("glist_bricks_slab",
+            () -> new SlabBlock(GLIST_BRICKS_PROPERTIES));
+    public static final DeferredBlock<VerticalSlabBlock> GLIST_BRICKS_VERTICAL_SLAB = registerCompatBlock(List.of(DDCompat.QUARK), "glist_bricks_vertical_slab",
+            () -> new VerticalSlabBlock(GLIST_BRICKS_PROPERTIES));
+    public static final DeferredBlock<WallBlock> GLIST_BRICKS_WALL = registerBlock("glist_bricks_wall",
+            () -> new WallBlock(GLIST_BRICKS_PROPERTIES));
+    public static final DeferredBlock<Block> CHISELED_GLIST_BRICKS = registerBlock("chiseled_glist_bricks",
+            () -> new Block(GLIST_BRICKS_PROPERTIES));
+    public static final DeferredBlock<Block> CRACKED_GLIST_BRICKS = registerBlock("cracked_glist_bricks",
+            () -> new Block(GLIST_BRICKS_PROPERTIES));
+    public static final DeferredBlock<ConnectedRotatablePillarBlock> GLIST_PILLAR = registerBlock("glist_pillar",
+            () -> new ConnectedRotatablePillarBlock(GLIST_BRICKS_PROPERTIES));
+
+    public static final DeferredBlock<RotatedPillarBlock> STRIPPED_GLOWSHROOM_STEM = registerBlock("stripped_glowshroom_stem",
+            () -> new RotatedPillarBlock(GLOWSHROOM_STEM_PROPERTIES));
+    public static final DeferredBlock<RotatedPillarBlock> STRIPPED_GLOWSHROOM_HYPHAE = registerBlock("stripped_glowshroom_hyphae",
+            () -> new RotatedPillarBlock(GLOWSHROOM_STEM_PROPERTIES));
+    public static final DeferredBlock<DDLogBlock> GLOWSHROOM_STEM = registerBlock("glowshroom_stem",
+            () -> new DDLogBlock(GLOWSHROOM_STEM_PROPERTIES, STRIPPED_GLOWSHROOM_STEM.get()));
+    public static final DeferredBlock<DDLogBlock> GLOWSHROOM_HYPHAE = registerBlock("glowshroom_hyphae",
+            () -> new DDLogBlock(GLOWSHROOM_STEM_PROPERTIES, STRIPPED_GLOWSHROOM_HYPHAE.get()));
+    public static final DeferredBlock<Block> GLOWSHROOM_PLANKS = registerBlock("glowshroom_planks",
+            () -> new Block(GLOWSHROOM_PLANKS_PROPERTIES));
+    public static final DeferredBlock<RotatedPillarBlock> GLOWSHROOM_BOARDS = registerCompatBlock(List.of(), "glowshroom_boards",
+            () -> new RotatedPillarBlock(GLOWSHROOM_PLANKS_PROPERTIES));
+    public static final DeferredBlock<Block> VERTICAL_GLOWSHROOM_PLANKS = registerCompatBlock(List.of(DDCompat.QUARK), "vertical_glowshroom_planks",
+            () -> new Block(GLOWSHROOM_PLANKS_PROPERTIES));
+    public static final DeferredBlock<StairBlock> GLOWSHROOM_STAIRS = registerBlock("glowshroom_stairs",
+            () -> new StairBlock(GLOWSHROOM_PLANKS.get().defaultBlockState(), GLOWSHROOM_PLANKS_PROPERTIES));
+    public static final DeferredBlock<SlabBlock> GLOWSHROOM_SLAB = registerBlock("glowshroom_slab",
+            () -> new SlabBlock(GLOWSHROOM_PLANKS_PROPERTIES));
+    public static final DeferredBlock<VerticalSlabBlock> GLOWSHROOM_VERTICAL_SLAB = registerCompatBlock(List.of(DDCompat.QUARK), "glowshroom_vertical_slab",
+            () -> new VerticalSlabBlock(GLOWSHROOM_PLANKS_PROPERTIES));
+    public static final DeferredBlock<Block> TRIMMED_GLOWSHROOM_PLANKS = registerCompatBlock(List.of(DDCompat.NO_MANS_LAND), "trimmed_glowshroom_planks",
+            () -> new ConnectedPillarBlock(GLOWSHROOM_PLANKS_PROPERTIES));
+    public static final DeferredBlock<FenceBlock> GLOWSHROOM_FENCE = registerBlock("glowshroom_fence",
+            () -> new FenceBlock(GLOWSHROOM_PLANKS_PROPERTIES));
+    public static final DeferredBlock<FenceGateBlock> GLOWSHROOM_FENCE_GATE = registerBlock("glowshroom_fence_gate",
+            () -> new FenceGateBlock(DDWoodType.GLOWSHROOM, blockProperties(1.2f, 1.8f, SoundType.WOOD, true).forceSolidOn()));
+    public static final DeferredBlock<DoorBlock> GLOWSHROOM_DOOR = registerBlock("glowshroom_door",
+            () -> new DoorBlock(DDBlockSetTypes.GLOWSHROOM, GLOWSHROOM_PLANKS_PROPERTIES));
+    public static final DeferredBlock<TrapDoorBlock> GLOWSHROOM_TRAPDOOR = registerBlock("glowshroom_trapdoor",
+            () -> new TrapDoorBlock(DDBlockSetTypes.GLOWSHROOM, GLOWSHROOM_PLANKS_PROPERTIES));
+    public static final DeferredBlock<Block> GLOWSHROOM_BOOKSHELF = registerCompatBlock(List.of(DDCompat.NO_MANS_LAND, DDCompat.QUARK, DDCompat.WOODWORKS),"glowshroom_bookshelf",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.BOOKSHELF)));
+    public static final DeferredBlock<PressurePlateBlock> GLOWSHROOM_PRESSURE_PLATE = registerBlock("glowshroom_pressure_plate",
+            () -> new PressurePlateBlock(DDBlockSetTypes.GLOWSHROOM, GLOWSHROOM_PLANKS_PROPERTIES));
+    public static final DeferredBlock<ButtonBlock> GLOWSHROOM_BUTTON = registerBlock("glowshroom_button",
+            () -> new ButtonBlock(DDBlockSetTypes.GLOWSHROOM, 30, GLOWSHROOM_BUTTON_PROPERTIES));
+    public static final DeferredBlock<DDStandingSignBlock> GLOWSHROOM_SIGN = registerNoTabBlock("glowshroom_sign",
+            () -> new DDStandingSignBlock(DDWoodType.GLOWSHROOM, GLOWSHROOM_SIGN_PROPERTIES));
+    public static final DeferredBlock<DDWallSignBlock> GLOWSHROOM_WALL_SIGN = registerNoTabBlock("glowshroom_wall_sign",
+            () -> new DDWallSignBlock(GLOWSHROOM_SIGN_PROPERTIES, DDWoodType.GLOWSHROOM));
+    public static final DeferredBlock<DDCeilingHangingSignBlock> GLOWSHROOM_HANGING_SIGN = registerNoTabBlock("glowshroom_hanging_sign",
+            () -> new DDCeilingHangingSignBlock(DDWoodType.GLOWSHROOM, GLOWSHROOM_SIGN_PROPERTIES));
+    public static final DeferredBlock<DDWallHangingSignBlock> GLOWSHROOM_WALL_HANGING_SIGN = registerNoTabBlock("glowshroom_wall_hanging_sign",
+            () -> new DDWallHangingSignBlock(DDWoodType.GLOWSHROOM, GLOWSHROOM_SIGN_PROPERTIES));
+    public static final DeferredBlock<WoodPostBlock> STRIPPED_GLOWSHROOM_POST = registerCompatBlock(List.of(DDCompat.QUARK), "stripped_glowshroom_post",
+            () -> new WoodPostBlock(blockProperties(1.2f, 2.0f, SoundType.STEM, true).noOcclusion()));
+    public static final DeferredBlock<WoodPostBlock> GLOWSHROOM_POST = registerCompatBlock(List.of(DDCompat.QUARK), "glowshroom_post",
+            () -> new WoodPostBlock(blockProperties(1.2f, 2.0f, SoundType.STEM, true).noOcclusion()));
+
+    public static final DeferredBlock<GlowshroomPileusBlock> GLOWSHROOM_PILEUS = registerBlock("glowshroom_block",
+            () -> new GlowshroomPileusBlock(BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.CORAL_BLOCK).randomTicks()));
+    public static final DeferredBlock<Block> DEAD_GLOWSHROOM_PILEUS = registerBlock("dead_glowshroom_pileus",
+            () -> new Block(BlockBehaviour.Properties.of().strength(0.8F).sound(SoundType.NETHERRACK)));
+    public static final DeferredBlock<GlowshroomHeartBlock> GLOWSHROOM_HEART = registerBlock("glowshroom_heart",
+            () -> new GlowshroomHeartBlock(BlockBehaviour.Properties.of().strength(2.0f, 3.0f).sound(SoundType.SHROOMLIGHT).lightLevel(value -> 15)));
+
+    public static final DeferredBlock<SproutsBlock> MOSSY_SPROUTS = registerBlock("mossy_sprouts",
+            () -> new SproutsBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SHORT_GRASS).sound(SoundType.WET_GRASS).offsetType(BlockBehaviour.OffsetType.XZ)));
+    public static final DeferredBlock<GulbsBlock> GULBS = registerBlock("gulbs",
+            () -> new GulbsBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SHORT_GRASS).sound(SoundType.WET_GRASS).offsetType(BlockBehaviour.OffsetType.XZ).lightLevel(value -> 4)));
+    public static final DeferredBlock<GlowshroomBlock> GLOWSHROOM = registerBlock("glowshroom",
+            () -> new GlowshroomBlock(BlockBehaviour.Properties.of().offsetType(BlockBehaviour.OffsetType.XZ).strength(0.0F, 1.0F).sound(SoundType.SLIME_BLOCK).lightLevel((state) -> 3 + (2 * state.getValue(GlowshroomBlock.GLOWSHROOM_CLUSTERS))).noCollission()));
+    public static final DeferredBlock<ShelfGlowshroomBlock> SHELF_GLOWSHROOM = registerBlock("shelf_glowshroom",
+            () -> new ShelfGlowshroomBlock(BlockBehaviour.Properties.of().strength(0.0F, 1.0F).sound(SoundType.SLIME_BLOCK).lightLevel((state) -> state.getValue(DDBlockStateProperties.LARGE) ? 8 : 5).noCollission().randomTicks()));
+    public static final DeferredBlock<BaseShelfGlowshroomBlock> DEAD_SHELF_GLOWSHROOM = registerBlock("dead_shelf_glowshroom",
+            () -> new BaseShelfGlowshroomBlock(BlockBehaviour.Properties.of().strength(0.1F, 1.0F).sound(SoundType.NETHERRACK).noCollission()));
+    public static final DeferredBlock<GlimmeringVinesBlock> GLIMMERING_VINES = registerBlock("glimmering_vines",
+            () -> new GlimmeringVinesBlock(BlockBehaviour.Properties.of().noCollission().noOcclusion().lightLevel(value -> 9).sound(SoundType.SPORE_BLOSSOM)));
+    public static final DeferredBlock<GlimmeringVinePlantBlock> GLIMMERING_VINE_PLANT = registerNoTabBlock("glimmering_vine_plant",
+            () -> new GlimmeringVinePlantBlock(BlockBehaviour.Properties.ofFullCopy(GLIMMERING_VINES.get()).sound(SoundType.SPORE_BLOSSOM)));
+    public static final DeferredBlock<FlowerPotBlock> POTTED_GLOWSHROOM = registerNoTabBlock("potted_glowshroom",
+            () -> new FlowerPotBlock(GLOWSHROOM.get(), BlockBehaviour.Properties.of().instabreak().noOcclusion().pushReaction(PushReaction.DESTROY).lightLevel((state) -> 5)));
+    public static final DeferredBlock<GlowspursBlock> GLOWSPURS = registerBlock("glowspurs",
+            () -> new GlowspursBlock(BlockBehaviour.Properties.of().strength(0.2F).lightLevel(value -> 3).sound(SoundType.WET_GRASS).noCollission()));
+
+    public static List<DeferredBlock<? extends Block>> STRING_LIGHTS = new ArrayList<>();
+
+    static {
+        Supplier<StringLightsBlock> supplier = () -> new StringLightsBlock(
+                BlockBehaviour.Properties.of().lightLevel(state -> 7).strength(0.1F).sound(SoundType.CANDLE).noOcclusion().noCollission());
+
+        Colors.BASE_16.forEach(color -> {
+            var holder = registerBlock(color + "_string_lights", supplier);
+            STRING_LIGHTS.add(holder);
+        });
+    }
+
+    public static final DeferredBlock<GlowshroomLampBlock> GLOWSHROOM_LAMP = registerBlock("glowshroom_lamp",
+            () -> new GlowshroomLampBlock(BlockBehaviour.Properties.of().strength(0.3f, 0.3f).lightLevel(state -> state.getValue(BlockStateProperties.LIT) ? 12 : 0).sound(SoundType.GLASS)));
+    public static final DeferredBlock<GlowshroomLanternBlock> GLOWSHROOM_LANTERN = registerBlock("glowshroom_lantern",
+            () -> new GlowshroomLanternBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LANTERN).lightLevel(state -> 12)));
+
+    public static final DeferredBlock<RopeBlock> ROPE = registerNoTabBlock("rope",
+            () -> new RopeBlock(blockProperties(0.1f, SoundType.WOOL, false).noOcclusion()));
+
+    public static final DeferredBlock<MobPlacerBlock> MOB_PLACER = registerNoTabBlock("mob_placer",
+            () -> new MobPlacerBlock(Block.Properties.ofFullCopy(Blocks.BEDROCK)));
+
+
+    public static <B extends Block> DeferredBlock<B> registerBlock(String name, Supplier<? extends B> blocks) {
+        DeferredBlock<B> block = BLOCKS.register(name, blocks);
+        DDItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
+        return block;
+    }
+
+    public static <B extends Block> DeferredBlock<B> registerNoTabBlock(String name, Supplier<? extends B> blocks) {
+        DeferredBlock<B> block = BLOCKS.register(name, blocks);
+        return block;
+    }
+
+    public static <B extends Block> DeferredBlock<B> registerTooltipBlock(String name, Supplier<? extends B> blocks, List<Component> tooltips) {
+        DeferredBlock<B> block = BLOCKS.register(name, blocks);
+        DDItems.ITEMS.register(name, () -> new BlockItemWithHoverText(block.get(), new Item.Properties(), tooltips));
+        return block;
+    }
+
+    public static <B extends Block> DeferredBlock<B> registerCompatBlock(List<CompatID> modIds, String key, Supplier<B> blockSupplier) {
+        DeferredBlock<B> block = BLOCKS.register(key, blockSupplier);
+        DeferredItem<BlockItem> item = DDItems.ITEMS.register(key, () -> new BlockItem(block.get(), new Item.Properties()));
+        COMPAT.put(item, modIds);
+        return block;
+    }
+
+    public static BlockBehaviour.Properties blockProperties(float destroyTime, float explosionResistance, SoundType sound, boolean requiresTool) {
+        if (requiresTool) {
+            return BlockBehaviour.Properties.of().strength(destroyTime, explosionResistance).sound(sound).requiresCorrectToolForDrops();
+        } else {
+            return BlockBehaviour.Properties.of().strength(destroyTime, explosionResistance).sound(sound);
+        }
+    }
+
+    public static BlockBehaviour.Properties blockProperties(float destroyTime, SoundType sound, boolean requiresTool) {
+        if (requiresTool) {
+            return BlockBehaviour.Properties.of().strength(destroyTime).sound(sound).requiresCorrectToolForDrops();
+        } else {
+            return BlockBehaviour.Properties.of().strength(destroyTime).sound(sound);
+        }
+    }
+}

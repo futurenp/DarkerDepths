@@ -2,7 +2,7 @@ package com.naterbobber.darkerdepths.client.render.renderers;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.client.render.DDRenderTypes;
-import com.naterbobber.darkerdepths.item.GlowshroomCapItem;
+import com.naterbobber.darkerdepths.common.item.GlowshroomCapItem;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;

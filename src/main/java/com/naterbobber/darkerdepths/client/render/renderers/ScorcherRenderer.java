@@ -2,8 +2,8 @@ package com.naterbobber.darkerdepths.client.render.renderers;
 
 import com.naterbobber.darkerdepths.client.models.DDDefaultEntityModel;
 import com.naterbobber.darkerdepths.client.render.DDRenderTypes;
-import com.naterbobber.darkerdepths.entities.ScorcherEntity;
-import com.naterbobber.darkerdepths.init.DDEntityTypes;
+import com.naterbobber.darkerdepths.common.entities.ScorcherEntity;
+import com.naterbobber.darkerdepths.common.init.DDEntityTypes;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;

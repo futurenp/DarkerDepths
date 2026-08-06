@@ -1,18 +1,12 @@
 package com.naterbobber.darkerdepths.client.models;
 
-import com.naterbobber.darkerdepths.DarkerDepths;
-import com.naterbobber.darkerdepths.client.render.DDRenderTypes;
-import com.naterbobber.darkerdepths.entities.BodySnatcherEntity;
-import com.naterbobber.darkerdepths.init.DDEntityTypes;
-import net.minecraft.client.renderer.RenderType;
-import net.minecraft.resources.ResourceLocation;
+import com.naterbobber.darkerdepths.common.entities.BodySnatcherEntity;
+import com.naterbobber.darkerdepths.common.init.DDEntityTypes;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animation.AnimationState;
 import software.bernie.geckolib.cache.object.GeoBone;
 import software.bernie.geckolib.constant.DataTickets;
-import software.bernie.geckolib.model.DefaultedEntityGeoModel;
 import software.bernie.geckolib.model.data.EntityModelData;
 
 @OnlyIn(Dist.CLIENT)

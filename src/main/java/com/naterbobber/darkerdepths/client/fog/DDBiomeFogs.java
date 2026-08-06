@@ -1,7 +1,7 @@
 package com.naterbobber.darkerdepths.client.fog;
 
-import com.naterbobber.darkerdepths.config.DDConfig;
-import com.naterbobber.darkerdepths.util.DDResourceKeys;
+import com.naterbobber.darkerdepths.common.config.DDConfig;
+import com.naterbobber.darkerdepths.common.util.DDResourceKeys;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.biome.Biome;
 import software.bernie.geckolib.util.Color;

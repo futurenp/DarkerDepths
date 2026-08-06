@@ -1,7 +1,7 @@
 package com.naterbobber.darkerdepths.client.render.renderers;
 
 import com.naterbobber.darkerdepths.client.models.ParanoiaAltarModel;
-import com.naterbobber.darkerdepths.item.ParanoiaAltarItem;
+import com.naterbobber.darkerdepths.common.item.ParanoiaAltarItem;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import software.bernie.geckolib.renderer.GeoItemRenderer;

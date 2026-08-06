@@ -4,7 +4,7 @@ import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.client.models.BodySnatcherModel;
 import com.naterbobber.darkerdepths.client.render.DDRenderTypes;
 import com.naterbobber.darkerdepths.client.render.renderers.layers.DDRenderLayer;
-import com.naterbobber.darkerdepths.entities.BodySnatcherEntity;
+import com.naterbobber.darkerdepths.common.entities.BodySnatcherEntity;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;

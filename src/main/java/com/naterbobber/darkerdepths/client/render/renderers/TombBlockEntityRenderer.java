@@ -4,11 +4,11 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
 import com.naterbobber.darkerdepths.DarkerDepths;
-import com.naterbobber.darkerdepths.block.DDBlockStateProperties;
-import com.naterbobber.darkerdepths.block.blockentities.TombBlockEntity;
-import com.naterbobber.darkerdepths.block.custom.TombBlock;
+import com.naterbobber.darkerdepths.common.block.DDBlockStateProperties;
+import com.naterbobber.darkerdepths.common.block.blockentities.TombBlockEntity;
+import com.naterbobber.darkerdepths.common.block.custom.TombBlock;
 import com.naterbobber.darkerdepths.client.models.TombModel;
-import com.naterbobber.darkerdepths.util.Colors;
+import com.naterbobber.darkerdepths.common.util.Colors;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
@@ -16,14 +16,11 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.resources.model.ModelResourceLocation;
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.monster.Skeleton;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.phys.AABB;
 import net.neoforged.api.distmarker.Dist;
@@ -81,13 +78,7 @@ public class TombBlockEntityRenderer extends GeoBlockRenderer<TombBlockEntity> {
                 });
 
         model.getBone("top")
-                .ifPresent(bone -> {
-                    if(isOpen && animatable.isMirroredTop()) {
-                        bone.setHidden(true);
-                    } else {
-                        bone.setHidden(false);
-                    }
-                });
+                .ifPresent(bone -> bone.setHidden(isOpen && animatable.isMirroredTop()));
 
         super.preRender(
                 poseStack,

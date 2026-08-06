@@ -1,13 +1,10 @@
 package com.naterbobber.darkerdepths;
 
-import com.naterbobber.darkerdepths.compat.DDCompat;
-import com.naterbobber.darkerdepths.init.DDEnchantmentEffects;
-import com.naterbobber.darkerdepths.config.DDConfig;
-import com.naterbobber.darkerdepths.events.RegisterEvents;
-import com.naterbobber.darkerdepths.init.*;
-import com.naterbobber.darkerdepths.network.DDNetwork;
-import com.naterbobber.darkerdepths.init.DDFeatures;
-import com.naterbobber.darkerdepths.init.DDStructureProcessorTypes;
+import com.naterbobber.darkerdepths.common.compat.DDCompat;
+import com.naterbobber.darkerdepths.common.init.*;
+import com.naterbobber.darkerdepths.common.config.DDConfig;
+import com.naterbobber.darkerdepths.common.events.RegisterEvents;
+import com.naterbobber.darkerdepths.common.network.DDNetwork;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;

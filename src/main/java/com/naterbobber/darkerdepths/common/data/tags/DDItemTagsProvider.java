@@ -1,0 +1,75 @@
+package com.naterbobber.darkerdepths.common.data.tags;
+
+import com.naterbobber.darkerdepths.DarkerDepths;
+import com.naterbobber.darkerdepths.common.block.blocksets.DDBlockSets;
+import com.naterbobber.darkerdepths.common.block.blocksets.WoodBlockSet;
+import com.naterbobber.darkerdepths.common.init.DDBlocks;
+import com.naterbobber.darkerdepths.common.init.DDItems;
+import com.naterbobber.darkerdepths.common.util.DDTags;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.data.PackOutput;
+import net.minecraft.data.tags.ItemTagsProvider;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.world.level.block.Block;
+import net.neoforged.neoforge.common.Tags;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.concurrent.CompletableFuture;
+
+public class DDItemTagsProvider extends ItemTagsProvider {
+
+    public DDItemTagsProvider(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> provider, CompletableFuture<TagLookup<Block>> blockTagsProvider, @Nullable ExistingFileHelper existingFileHelper) {
+        super(packOutput, provider, blockTagsProvider, DarkerDepths.MOD_ID, existingFileHelper);
+    }
+
+    @Override
+    protected void addTags(HolderLookup.Provider provider) {
+        this.tag(ItemTags.STONE_CRAFTING_MATERIALS).add(
+                DDBlocks.DARKSLATE.get().asItem(),
+                DDBlocks.ARIDROCK.get().asItem(),
+                DDBlocks.DUSKROCK.get().asItem(),
+                DDBlocks.GRIMESTONE.get().asItem(),
+                DDBlocks.GLIST.get().asItem()
+        );
+
+        this.tag(ItemTags.STONE_TOOL_MATERIALS).add(
+                DDBlocks.DARKSLATE.get().asItem(),
+                DDBlocks.ARIDROCK.get().asItem(),
+                DDBlocks.DUSKROCK.get().asItem(),
+                DDBlocks.GRIMESTONE.get().asItem(),
+                DDBlocks.GLIST.get().asItem()
+        );
+
+        this.tag(DDTags.Items.STILETTO_ENCHANTABLE).add(DDItems.STILETTO.get());
+        this.tag(ItemTags.SWORD_ENCHANTABLE).add(DDItems.STILETTO.get());
+        this.tag(ItemTags.SHARP_WEAPON_ENCHANTABLE).add(DDItems.STILETTO.get());
+
+        this.tag(ItemTags.DURABILITY_ENCHANTABLE).add(
+                DDItems.STILETTO.get(),
+                DDItems.GLOWSHROOM_CAP.get()
+        );
+
+        this.tag(ItemTags.BEACON_PAYMENT_ITEMS).add(DDItems.FORSAKEN_BRONZE_INGOT.get());
+
+        this.tag(Tags.Items.ROPES).add(DDItems.ROPE.get());
+        this.tag(Tags.Items.INGOTS).add(DDItems.FORSAKEN_BRONZE_INGOT.get());
+
+        this.copy(Tags.Blocks.STORAGE_BLOCKS, Tags.Items.STORAGE_BLOCKS);
+
+        DDBlockSets.WOOD_BLOCK_SETS.forEach(this::tagWoodSet);
+    }
+
+    private void tagWoodSet(WoodBlockSet blockSet) {
+        this.tag(ItemTags.PLANKS).add(DDBlocks.PETRIFIED_PLANKS.get().asItem());
+        this.tag(ItemTags.CHEST_BOATS).add(blockSet.getChestBoat().get());
+        this.tag(ItemTags.BOATS).add(blockSet.getBoat().get());
+        this.tag(blockSet.getLogTag()).add(
+                blockSet.getLog().get().asItem(),
+                blockSet.getStrippedLog().get().asItem(),
+                blockSet.getWood().get().asItem(),
+                blockSet.getStrippedWood().get().asItem());
+
+        this.tag(ItemTags.LOGS).addTags(blockSet.getLogTag());
+    }
+}

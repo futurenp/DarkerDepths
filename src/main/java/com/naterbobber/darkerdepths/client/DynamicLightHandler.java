@@ -1,7 +1,7 @@
 package com.naterbobber.darkerdepths.client;
 
-import com.naterbobber.darkerdepths.compat.DDCompat;
-import com.naterbobber.darkerdepths.init.DDItems;
+import com.naterbobber.darkerdepths.common.compat.DDCompat;
+import com.naterbobber.darkerdepths.common.init.DDItems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.EquipmentSlot;

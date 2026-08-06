@@ -2,13 +2,12 @@ package com.naterbobber.darkerdepths.client.fog.modifiers;
 
 import com.mojang.blaze3d.shaders.FogShape;
 import com.naterbobber.darkerdepths.client.fog.FogModifier;
-import com.naterbobber.darkerdepths.init.DDItems;
-import com.naterbobber.darkerdepths.init.DDMobEffects;
+import com.naterbobber.darkerdepths.common.init.DDItems;
+import com.naterbobber.darkerdepths.common.init.DDMobEffects;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.neoforged.neoforge.client.event.ViewportEvent;
 

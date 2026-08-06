@@ -6,8 +6,8 @@ import com.naterbobber.darkerdepths.client.screen_effects.render.SoulBindingBlac
 import com.naterbobber.darkerdepths.client.screen_effects.render.ScorcherFlashRenderer;
 import com.naterbobber.darkerdepths.client.screen_effects.ScorcherFlashHandler;
 import com.naterbobber.darkerdepths.client.fog.FogManager;
-import com.naterbobber.darkerdepths.init.DDMobEffects;
-import com.naterbobber.darkerdepths.util.DDEnumProxies;
+import com.naterbobber.darkerdepths.common.init.DDMobEffects;
+import com.naterbobber.darkerdepths.common.util.DDEnumProxies;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.player.LocalPlayer;

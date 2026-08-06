@@ -1,6 +1,6 @@
 package com.naterbobber.darkerdepths.client.render;
 
-import com.naterbobber.darkerdepths.config.DDConfig;
+import com.naterbobber.darkerdepths.common.config.DDConfig;
 import net.minecraft.client.renderer.RenderStateShard;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;

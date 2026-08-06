@@ -1,7 +1,6 @@
 package com.naterbobber.darkerdepths.client.particle.geyser;
 
-import com.naterbobber.darkerdepths.DarkerDepths;
-import com.naterbobber.darkerdepths.block.DDBlockStateProperties;
+import com.naterbobber.darkerdepths.common.block.DDBlockStateProperties;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.CampfireSmokeParticle;
 import net.minecraft.client.particle.Particle;

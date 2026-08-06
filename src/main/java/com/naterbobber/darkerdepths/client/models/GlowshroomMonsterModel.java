@@ -1,7 +1,7 @@
 package com.naterbobber.darkerdepths.client.models;
 
-import com.naterbobber.darkerdepths.entities.GlowshroomMonsterEntity;
-import com.naterbobber.darkerdepths.init.DDEntityTypes;
+import com.naterbobber.darkerdepths.common.entities.GlowshroomMonsterEntity;
+import com.naterbobber.darkerdepths.common.init.DDEntityTypes;
 import net.minecraft.client.renderer.RenderType;
 import software.bernie.geckolib.animation.AnimationState;
 import software.bernie.geckolib.cache.object.GeoBone;

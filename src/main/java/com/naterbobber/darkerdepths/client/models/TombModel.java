@@ -1,15 +1,12 @@
 package com.naterbobber.darkerdepths.client.models;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
-import com.naterbobber.darkerdepths.block.blockentities.TombBlockEntity;
-import com.naterbobber.darkerdepths.block.generic.DDLogBlock;
-import com.naterbobber.darkerdepths.init.DDBlocks;
+import com.naterbobber.darkerdepths.common.block.blockentities.TombBlockEntity;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import software.bernie.geckolib.model.DefaultedBlockGeoModel;
-import software.bernie.geckolib.model.GeoModel;
 
 @OnlyIn(Dist.CLIENT)
 public class TombModel extends DefaultedBlockGeoModel<TombBlockEntity> {

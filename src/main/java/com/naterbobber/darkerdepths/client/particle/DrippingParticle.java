@@ -1,6 +1,6 @@
 package com.naterbobber.darkerdepths.client.particle;
 
-import com.naterbobber.darkerdepths.init.DDParticleTypes;
+import com.naterbobber.darkerdepths.common.init.DDParticleTypes;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.ParticleProvider;

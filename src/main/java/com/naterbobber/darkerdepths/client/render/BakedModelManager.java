@@ -1,11 +1,10 @@
 package com.naterbobber.darkerdepths.client.render;
 
-import com.naterbobber.darkerdepths.block.DDBlockStateProperties;
-import com.naterbobber.darkerdepths.init.DDBlocks;
+import com.naterbobber.darkerdepths.common.block.DDBlockStateProperties;
+import com.naterbobber.darkerdepths.common.init.DDBlocks;
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.block.BlockModelShaper;
-import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.api.distmarker.Dist;
