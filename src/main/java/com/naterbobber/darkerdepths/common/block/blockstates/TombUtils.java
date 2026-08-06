@@ -61,50 +61,39 @@ public class TombUtils {
         }
     }
 
-    public record Shape(VoxelShape bottom, VoxelShape edgeWalls, VoxelShape bed, VoxelShape edgeWallsFull,
-                        VoxelShape top) {
-        public static Shape of(VoxelShape bottom, VoxelShape edgeWalls, VoxelShape bed, VoxelShape edgeWallsFull, VoxelShape top) {
-            return new Shape(bottom, edgeWalls, bed, edgeWallsFull, top);
-        }
-
-        public static Shape mirrored(Shape existing, Direction.Axis axisMirror) {
+    public record Shape(
+            VoxelShape closed,
+            VoxelShape openEmpty,
+            VoxelShape openBed
+    ) {
+        public static Shape of(
+                VoxelShape bottom,
+                VoxelShape edgeWalls,
+                VoxelShape bed,
+                VoxelShape edgeWallsFull,
+                VoxelShape top
+        ) {
             return new Shape(
-                    VoxelShapeUtils.mirror(existing.bottom, axisMirror),
-                    VoxelShapeUtils.mirror(existing.edgeWalls, axisMirror),
-                    VoxelShapeUtils.mirror(existing.bed, axisMirror),
-                    VoxelShapeUtils.mirror(existing.edgeWallsFull, axisMirror),
-                    VoxelShapeUtils.mirror(existing.top, axisMirror)
+                    Shapes.or(bottom, edgeWallsFull, top).optimize(),
+                    Shapes.or(bottom, edgeWalls).optimize(),
+                    Shapes.or(bottom, edgeWalls, bed).optimize()
             );
         }
 
-        public Shape mirrored(Direction.Axis axisMirror) {
+        public Shape mirrored(Direction.Axis axis) {
             return new Shape(
-                    VoxelShapeUtils.mirror(this.bottom, axisMirror),
-                    VoxelShapeUtils.mirror(this.edgeWalls, axisMirror),
-                    VoxelShapeUtils.mirror(this.bed, axisMirror),
-                    VoxelShapeUtils.mirror(this.edgeWallsFull, axisMirror),
-                    VoxelShapeUtils.mirror(this.top, axisMirror)
+                    VoxelShapeUtils.mirror(closed, axis).optimize(),
+                    VoxelShapeUtils.mirror(openEmpty, axis).optimize(),
+                    VoxelShapeUtils.mirror(openBed, axis).optimize()
             );
-        }
-
-        public VoxelShape closed() {
-            return Shapes.or(bottom, edgeWallsFull, top).optimize();
-        }
-
-        public VoxelShape openEmpty() {
-            return Shapes.or(bottom, edgeWalls);
-        }
-
-        public VoxelShape openBed() {
-            return Shapes.or(bottom, edgeWalls, bed).optimize();
         }
 
         public VoxelShape getVoxelShape(boolean bed, boolean open) {
-            if(!open) {
-                return closed();
-            } else {
-                return bed ? openBed() : openEmpty();
+            if (!open) {
+                return closed;
             }
+
+            return bed ? openBed : openEmpty;
         }
     }
 }
