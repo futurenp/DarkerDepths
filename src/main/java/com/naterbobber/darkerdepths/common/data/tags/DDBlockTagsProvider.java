@@ -32,6 +32,7 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
         generateWoodBlockSetTags();
         generateStoneBlockSetTags();
         generateTombTags();
+        generateStringLightTags();
     }
 
     private void generateMinableTags() {
@@ -316,6 +317,14 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
             this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(block);
             this.tag(BlockTags.NEEDS_STONE_TOOL).add(block);
             this.tag(DDTags.Blocks.CARRYON_BLACKLIST).add(block);
+        });
+    }
+
+    private void generateStringLightTags() {
+        DDBlocks.STRING_LIGHTS.forEach((holder) -> {
+            var block = holder.get();
+            this.tag(BlockTags.MINEABLE_WITH_HOE).add(block);
+            this.tag(DDTags.Blocks.STRING_LIGHTS).add(block);
         });
     }
 

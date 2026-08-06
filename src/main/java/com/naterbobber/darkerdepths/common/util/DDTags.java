@@ -60,6 +60,7 @@ public class DDTags {
         public static final TagKey<Block> GRIME_SURFACE = TAGS.create("grime_surface");
         public static final TagKey<Block> POSTS = TAGS.create("posts", DDCompat.QUARK);
         public static final TagKey<Block> CARRYON_BLACKLIST = TAGS.create("block_blacklist", DDCompat.CARRYON);
+        public static final TagKey<Block> STRING_LIGHTS = TAGS.create("string_lights");
     }
     public static class Fluids {
         private static final TagFactory<Fluid> TAGS = make(Registries.FLUID);

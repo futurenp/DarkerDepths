@@ -206,40 +206,6 @@ public class DDBlocks {
             List.of(Component.translatable("tooltip.darkerdepths.death_anchor.shift_desc_1").withStyle(ChatFormatting.GOLD),
                     Component.translatable("tooltip.darkerdepths.death_anchor.shift_desc_2").withStyle(ChatFormatting.GOLD)));
 
-    private static final List<String> TOMB_TYPES = ImmutableList.of(
-            "duskrock",
-            "darkslate",
-            "aridrock",
-            "glist",
-            "grimestone",
-            "andesite",
-            "granite",
-            "basalt",
-            "blackstone",
-            "diorite",
-            "tuff",
-            "deepslate",
-            "calcite",
-            "dripstone",
-            "prismarine",
-            "dark_prismarine"
-    );
-
-    public static final Map<String, DeferredBlock<TombBlock>> TOMBS = new HashMap<>();
-
-    static {
-        Supplier<TombBlock> supplier = () -> new TombBlock(blockProperties(4.0f, 10.0f, SoundType.DEEPSLATE, true).noOcclusion());
-        TOMB_TYPES.forEach(name -> {
-            if(name.equals("duskrock")) {
-                name = "tomb";
-            } else {
-                name += "_tomb";
-            }
-
-            TOMBS.put(name, registerBlock(name, supplier));
-        });
-    }
-
     public static final DeferredBlock<ParanoiaAltarBlock> PARANOIA_ALTAR = registerNoTabBlock("paranoia_altar",
             () -> new ParanoiaAltarBlock(blockProperties(2.5f, 3.0f, SoundType.DEEPSLATE, true).lightLevel(level -> 9).noOcclusion()));
     public static final DeferredBlock<Block> ARID_DEEPSLATE = registerBlock("arid_deepslate",
@@ -481,6 +447,45 @@ public class DDBlocks {
     public static final DeferredBlock<GlowspursBlock> GLOWSPURS = registerBlock("glowspurs",
             () -> new GlowspursBlock(BlockBehaviour.Properties.of().strength(0.2F).lightLevel(value -> 3).sound(SoundType.WET_GRASS).noCollission()));
 
+    public static final DeferredBlock<GlowshroomLampBlock> GLOWSHROOM_LAMP = registerBlock("glowshroom_lamp",
+            () -> new GlowshroomLampBlock(BlockBehaviour.Properties.of().strength(0.3f, 0.3f).lightLevel(state -> state.getValue(BlockStateProperties.LIT) ? 12 : 0).sound(SoundType.GLASS)));
+    public static final DeferredBlock<GlowshroomLanternBlock> GLOWSHROOM_LANTERN = registerBlock("glowshroom_lantern",
+            () -> new GlowshroomLanternBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LANTERN).lightLevel(state -> 12)));
+
+    private static final List<String> TOMB_TYPES = ImmutableList.of(
+            "duskrock",
+            "darkslate",
+            "aridrock",
+            "glist",
+            "grimestone",
+            "andesite",
+            "granite",
+            "basalt",
+            "blackstone",
+            "diorite",
+            "tuff",
+            "deepslate",
+            "calcite",
+            "dripstone",
+            "prismarine",
+            "dark_prismarine"
+    );
+
+    public static final Map<String, DeferredBlock<TombBlock>> TOMBS = new HashMap<>();
+
+    static {
+        Supplier<TombBlock> supplier = () -> new TombBlock(blockProperties(4.0f, 10.0f, SoundType.DEEPSLATE, true).noOcclusion());
+        TOMB_TYPES.forEach(name -> {
+            if(name.equals("duskrock")) {
+                name = "tomb";
+            } else {
+                name += "_tomb";
+            }
+
+            TOMBS.put(name, registerBlock(name, supplier));
+        });
+    }
+
     public static List<DeferredBlock<? extends Block>> STRING_LIGHTS = new ArrayList<>();
 
     static {
@@ -492,11 +497,6 @@ public class DDBlocks {
             STRING_LIGHTS.add(holder);
         });
     }
-
-    public static final DeferredBlock<GlowshroomLampBlock> GLOWSHROOM_LAMP = registerBlock("glowshroom_lamp",
-            () -> new GlowshroomLampBlock(BlockBehaviour.Properties.of().strength(0.3f, 0.3f).lightLevel(state -> state.getValue(BlockStateProperties.LIT) ? 12 : 0).sound(SoundType.GLASS)));
-    public static final DeferredBlock<GlowshroomLanternBlock> GLOWSHROOM_LANTERN = registerBlock("glowshroom_lantern",
-            () -> new GlowshroomLanternBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LANTERN).lightLevel(state -> 12)));
 
     public static final DeferredBlock<RopeBlock> ROPE = registerNoTabBlock("rope",
             () -> new RopeBlock(blockProperties(0.1f, SoundType.WOOL, false).noOcclusion()));
