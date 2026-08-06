@@ -95,9 +95,12 @@ repositories {
 
 dependencies {
     implementation("software.bernie.geckolib:geckolib-neoforge-${project.minecraft_version}:4.8.4")
-    implementation("com.terraformersmc:biolith-neoforge:${project.biolith_version}")
-    compileOnly("com.github.glitchfiend:TerraBlender-neoforge:${project.minecraft_version}-${project.terrablender_version}")
+    compileOnly("com.terraformersmc:biolith-neoforge:${project.biolith_version}")
+    implementation("com.github.glitchfiend:TerraBlender-neoforge:${project.minecraft_version}-${project.terrablender_version}")
+//    implementation "curse.maven:feature-recycler-1077985:5829420"
     implementation("curse.maven:spark-361579:6225208")
+    implementation "curse.maven:actually-additions-228404:8281896"
+    implementation "curse.maven:patchouli-306770:7730942"
 //    compileOnly "maven.modrinth:no-mans-land:h56TqJQD"
 //    compileOnly "maven.modrinth:biolith:byVGeYWw"
 //    runtimeOnly "maven.modrinth:no-mans-land:h56TqJQD"
