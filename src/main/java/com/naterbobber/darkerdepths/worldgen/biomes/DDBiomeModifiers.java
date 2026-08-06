@@ -63,7 +63,7 @@ public class DDBiomeModifiers {
                 getPlacedFeature(
                         context,
                         DARKSLATE_VEGETATION,
-                        PETRIFIED_ROOTS
+                        MOLTEN_CAVERN_PETRIFIED_ROOTS
                 ),
                 GenerationStep.Decoration.VEGETAL_DECORATION
         ));
@@ -90,7 +90,7 @@ public class DDBiomeModifiers {
                         context,
                         AMBER_PLACEMENT,
                         PETRIFIED_BRANCH,
-                        PETRIFIED_ROOTS,
+                        SANDY_CATACOMBS_PETRIFIED_ROOTS,
                         ARID_VEGETATION
                 ),
                 GenerationStep.Decoration.VEGETAL_DECORATION)

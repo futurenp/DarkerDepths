@@ -115,7 +115,8 @@ public class DDResourceKeys {
         public static final ResourceKey<PlacedFeature> CATACOMBS_LAVA_LINING = createKey("catacombs_lava_lining");
         public static final ResourceKey<PlacedFeature> DUSKROCK_STRIPE = createKey("duskrock_stripe");
         public static final ResourceKey<PlacedFeature> GLIMMERING_VINES = createKey("glimmering_vines");
-        public static final ResourceKey<PlacedFeature> PETRIFIED_ROOTS = createKey("petrified_roots");
+        public static final ResourceKey<PlacedFeature> SANDY_CATACOMBS_PETRIFIED_ROOTS = createKey("sandy_catacombs_petrified_roots");
+        public static final ResourceKey<PlacedFeature> MOLTEN_CAVERN_PETRIFIED_ROOTS = createKey("molten_cavern_petrified_roots");
         public static final ResourceKey<PlacedFeature> CRYSTAL_HUSK_ORE = createKey("crystal_husk_ore");
         public static final ResourceKey<PlacedFeature> DUSKROCK_ORE = createKey("duskrock_ore");
         public static final ResourceKey<PlacedFeature> SCORCHED_REMAINS_PILE = createKey("scorched_remains_pile");

@@ -3,7 +3,7 @@
   "biomes": "darkerdepths:molten_cavern",
   "features": [
     "darkerdepths:darkslate_vegetation",
-    "darkerdepths:petrified_roots"
+    "darkerdepths:molten_cavern_petrified_roots"
   ],
   "step": "vegetal_decoration"
 }

@@ -4,7 +4,7 @@
   "features": [
     "darkerdepths:amber",
     "darkerdepths:petrified_branch",
-    "darkerdepths:petrified_roots",
+    "darkerdepths:sandy_catacombs_petrified_roots",
     "darkerdepths:arid_vegetation"
   ],
   "step": "vegetal_decoration"
