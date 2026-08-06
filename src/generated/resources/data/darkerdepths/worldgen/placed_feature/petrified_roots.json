@@ -29,14 +29,8 @@
       "direction_of_search": "up",
       "max_steps": 12,
       "target_condition": {
-        "type": "minecraft:matching_blocks",
-        "blocks": [
-          "darkerdepths:darkslate",
-          "darkerdepths:aridrock",
-          "darkerdepths:duskrock",
-          "minecraft:packed_mud",
-          "minecraft:tuff"
-        ]
+        "type": "minecraft:has_sturdy_face",
+        "direction": "down"
       }
     },
     {
