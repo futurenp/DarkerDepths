@@ -1,6 +1,6 @@
 package com.naterbobber.darkerdepths.common.block.blockentities;
 
-import com.naterbobber.darkerdepths.common.block.custom.ParanoiaAltarBlock;
+import com.naterbobber.darkerdepths.common.block.unique.ParanoiaAltarBlock;
 import com.naterbobber.darkerdepths.common.config.DDConfig;
 import com.naterbobber.darkerdepths.common.entities.BodySnatcherEntity;
 import com.naterbobber.darkerdepths.common.init.DDBlockEntityTypes;

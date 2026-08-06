@@ -4,7 +4,7 @@ import com.naterbobber.darkerdepths.common.block.blockstates.PillarState;
 import com.naterbobber.darkerdepths.common.block.blockstates.PostState;
 import com.naterbobber.darkerdepths.common.block.blockstates.TombUtils;
 import com.naterbobber.darkerdepths.common.block.blockstates.VerticalSlabState;
-import com.naterbobber.darkerdepths.common.block.custom.RopeBlock;
+import com.naterbobber.darkerdepths.common.block.unique.RopeBlock;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;

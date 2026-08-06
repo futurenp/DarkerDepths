@@ -1,8 +1,8 @@
 package com.naterbobber.darkerdepths.common.data.loot;
 
 import com.naterbobber.darkerdepths.common.block.DDBlockStateProperties;
-import com.naterbobber.darkerdepths.common.block.custom.AshBlock;
-import com.naterbobber.darkerdepths.common.block.custom.GlowshroomBlock;
+import com.naterbobber.darkerdepths.common.block.unique.AshBlock;
+import com.naterbobber.darkerdepths.common.block.unique.GlowshroomBlock;
 import com.naterbobber.darkerdepths.common.block.generic.VerticalSlabBlock;
 import com.naterbobber.darkerdepths.common.block.blocksets.DDBlockSets;
 import com.naterbobber.darkerdepths.common.init.DDBlocks;

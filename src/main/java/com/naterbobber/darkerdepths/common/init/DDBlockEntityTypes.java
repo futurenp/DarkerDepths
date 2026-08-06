@@ -2,8 +2,7 @@ package com.naterbobber.darkerdepths.common.init;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.common.block.blockentities.*;
-import com.naterbobber.darkerdepths.common.block.blockentities.*;
-import com.naterbobber.darkerdepths.common.block.custom.TombBlock;
+import com.naterbobber.darkerdepths.common.block.unique.TombBlock;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.neoforged.neoforge.registries.DeferredBlock;

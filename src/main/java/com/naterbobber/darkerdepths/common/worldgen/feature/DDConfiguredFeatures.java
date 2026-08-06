@@ -2,13 +2,12 @@ package com.naterbobber.darkerdepths.common.worldgen.feature;
 
 import com.google.common.collect.ImmutableList;
 import com.naterbobber.darkerdepths.common.block.DDBlockStateProperties;
-import com.naterbobber.darkerdepths.common.block.custom.AshBlock;
-import com.naterbobber.darkerdepths.common.block.custom.GlowshroomBlock;
-import com.naterbobber.darkerdepths.common.block.custom.GlowspursBlock;
+import com.naterbobber.darkerdepths.common.block.unique.AshBlock;
+import com.naterbobber.darkerdepths.common.block.unique.GlowshroomBlock;
+import com.naterbobber.darkerdepths.common.block.unique.GlowspursBlock;
 import com.naterbobber.darkerdepths.common.init.DDBlocks;
 import com.naterbobber.darkerdepths.common.init.DDFeatures;
 import com.naterbobber.darkerdepths.common.util.DDTags;
-import com.naterbobber.darkerdepths.common.worldgen.feature.config.*;
 import com.naterbobber.darkerdepths.common.worldgen.feature.config.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

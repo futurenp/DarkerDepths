@@ -2,7 +2,7 @@ package com.naterbobber.darkerdepths.common.block.blockentities;
 
 import com.naterbobber.darkerdepths.common.block.DDBlockStateProperties;
 import com.naterbobber.darkerdepths.common.block.generic.IHeatableBlock;
-import com.naterbobber.darkerdepths.common.block.custom.GeyserBlock;
+import com.naterbobber.darkerdepths.common.block.unique.GeyserBlock;
 import com.naterbobber.darkerdepths.common.init.DDBlockEntityTypes;
 import com.naterbobber.darkerdepths.common.init.DDCriteria;
 import com.naterbobber.darkerdepths.common.init.DDParticleTypes;

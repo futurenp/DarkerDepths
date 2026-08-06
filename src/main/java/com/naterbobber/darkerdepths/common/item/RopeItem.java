@@ -1,6 +1,6 @@
 package com.naterbobber.darkerdepths.common.item;
 
-import com.naterbobber.darkerdepths.common.block.custom.RopeBlock;
+import com.naterbobber.darkerdepths.common.block.unique.RopeBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.BlockItem;

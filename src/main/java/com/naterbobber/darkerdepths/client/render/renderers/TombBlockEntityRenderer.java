@@ -6,7 +6,7 @@ import com.mojang.math.Axis;
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.common.block.DDBlockStateProperties;
 import com.naterbobber.darkerdepths.common.block.blockentities.TombBlockEntity;
-import com.naterbobber.darkerdepths.common.block.custom.TombBlock;
+import com.naterbobber.darkerdepths.common.block.unique.TombBlock;
 import com.naterbobber.darkerdepths.client.models.TombModel;
 import com.naterbobber.darkerdepths.common.util.Colors;
 import net.minecraft.client.Minecraft;

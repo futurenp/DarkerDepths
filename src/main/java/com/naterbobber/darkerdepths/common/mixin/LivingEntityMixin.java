@@ -1,6 +1,6 @@
 package com.naterbobber.darkerdepths.common.mixin;
 
-import com.naterbobber.darkerdepths.common.block.custom.TombBlock;
+import com.naterbobber.darkerdepths.common.block.unique.TombBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;

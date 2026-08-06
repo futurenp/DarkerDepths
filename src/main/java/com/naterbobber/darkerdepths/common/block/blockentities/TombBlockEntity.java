@@ -2,7 +2,7 @@ package com.naterbobber.darkerdepths.common.block.blockentities;
 
 import com.naterbobber.darkerdepths.common.block.DDBlockStateProperties;
 import com.naterbobber.darkerdepths.common.block.blockstates.TombUtils;
-import com.naterbobber.darkerdepths.common.block.custom.TombBlock;
+import com.naterbobber.darkerdepths.common.block.unique.TombBlock;
 import com.naterbobber.darkerdepths.common.init.DDBlockEntityTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
