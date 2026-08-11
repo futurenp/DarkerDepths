@@ -32,23 +32,6 @@ public class DDDefaultEntityModel<T extends GeoEntity> extends DefaultedEntityGe
         return new DDDefaultEntityModel<>(entityType);
     }
 
-    protected DDDefaultEntityModel(String location) {
-        super(DarkerDepths.id(location), true);
-    }
-
-    protected DDDefaultEntityModel(String location, Function<ResourceLocation, RenderType> renderTypeFactory) {
-        this(location);
-        this.renderTypeFactory = renderTypeFactory;
-    }
-
-    public static <T extends GeoEntity> DDDefaultEntityModel<T> withStringLocRenderType(String location, Function<ResourceLocation, RenderType> renderTypeFactory) {
-        return new DDDefaultEntityModel<>(location, renderTypeFactory);
-    }
-
-    public static <T extends GeoEntity> DDDefaultEntityModel<T> withStringLoc(String location) {
-        return new DDDefaultEntityModel<>(location);
-    }
-
     @Override
     public @Nullable RenderType getRenderType(T animatable, ResourceLocation texture) {
         if(renderTypeFactory == null) {

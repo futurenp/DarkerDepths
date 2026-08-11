@@ -2,6 +2,7 @@ package com.naterbobber.darkerdepths.common.block.generic;
 
 import com.google.common.collect.ImmutableMap;
 import com.naterbobber.darkerdepths.common.api.StringLightHandler;
+import com.naterbobber.darkerdepths.common.util.DDTags;
 import com.naterbobber.darkerdepths.common.util.VoxelShapeUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -338,7 +339,7 @@ public class StringLightsBlock extends Block {
             Direction lightDirection
     ) {
         var neighborState = level.getBlockState(pos.relative(relative));
-        if (!neighborState.is(this) || neighborState.getValue(BOTTOM) != state.getValue(BOTTOM)) {
+        if (!neighborState.is(DDTags.Blocks.STRING_LIGHTS) || neighborState.getValue(BOTTOM) != state.getValue(BOTTOM)) {
             return false;
         }
 
