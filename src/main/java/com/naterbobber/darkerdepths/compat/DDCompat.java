@@ -7,4 +7,5 @@ public class DDCompat {
     public static final CompatID BLUEPRINT = CompatID.createCompatID("blueprint");
     public static final CompatID TERRABLENDER = CompatID.createCompatID("terrablender");
     public static final CompatID BIOLITH = CompatID.createCompatID("biolith");
+    public static final CompatID SABLE = CompatID.createCompatID("sable");
 }

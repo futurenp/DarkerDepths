@@ -1,6 +1,6 @@
-package com.naterbobber.darkerdepths.common.mixin;
+package com.naterbobber.darkerdepths.mixin;
 
-import com.naterbobber.darkerdepths.common.compat.SableCompat;
+import com.naterbobber.darkerdepths.compat.SableCompat;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.LevelChunk;

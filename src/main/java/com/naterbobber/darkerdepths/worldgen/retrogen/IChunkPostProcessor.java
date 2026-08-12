@@ -1,8 +1,14 @@
 package com.naterbobber.darkerdepths.worldgen.retrogen;
 
+import com.naterbobber.darkerdepths.compat.DDCompat;
+import com.naterbobber.darkerdepths.compat.SableCompat;
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.FullChunkStatus;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.ChunkPos;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.ChunkAccess;
+import net.minecraft.world.level.chunk.LevelChunk;
 
 public interface IChunkPostProcessor {
     String getNbtTag();
@@ -15,4 +21,64 @@ public interface IChunkPostProcessor {
 
     /** Called if a chunk unloads mid-process so we can clean up memory */
     default void clearSuspendedState(ChunkPos pos) {}
+
+    /** Returns a 3x3 array of the local chunks **/
+    default ChunkAccess[][] getLocalChunks(ServerLevel level, ChunkAccess chunk) {
+        var chunkPos = chunk.getPos();
+
+        var localChunks = new ChunkAccess[3][3];
+        for (int cx = -1; cx <= 1; cx++) {
+            for (int cz = -1; cz <= 1; cz++) {
+                localChunks[cx + 1][cz + 1] = level.getChunkSource().getChunkNow(chunkPos.x + cx, chunkPos.z + cz);
+            }
+        }
+
+        return localChunks;
+    }
+
+    /** More optimized version of setBlock for process use **/
+    default void setBlockFast(ServerLevel level, BlockPos pos, BlockState state, int flags) {
+        if (level.isOutsideBuildHeight(pos)) {
+            return;
+        }
+
+        var levelChunk = level.getChunkAt(pos);
+        pos = pos.immutable();
+
+        if(DDCompat.SABLE.isLoaded()) {
+            SableCompat.beginSuppression(levelChunk, pos);
+        }
+
+        BlockState previousState;
+
+        try {
+            previousState = levelChunk.setBlockState(pos, state, (flags & 64) != 0);
+        } finally {
+            if(DDCompat.SABLE.isLoaded()) {
+                SableCompat.endSuppression();
+            }
+        }
+
+        if (previousState != null) {
+            markAndNotifyBlock(level, pos, levelChunk, previousState, state, flags);
+        }
+    }
+
+    /** Simplified markAndNotify block, also needed to avoid conflict with Lithium's mixins */
+    default void markAndNotifyBlock(ServerLevel level, BlockPos blockPos, LevelChunk levelChunk, BlockState newBlockState, BlockState oldBlockState, int flags) {
+        var currentState = level.getBlockState(blockPos);
+        if (currentState == oldBlockState) {
+            if (newBlockState != currentState) {
+                level.setBlocksDirty(blockPos, newBlockState, currentState);
+            }
+
+            if (level.isClientSide || levelChunk != null && levelChunk.getFullStatus().isOrAfter(FullChunkStatus.BLOCK_TICKING)) {
+                level.sendBlockUpdated(blockPos, newBlockState, oldBlockState, flags);
+            }
+
+            level.onBlockStateChange(blockPos, newBlockState, currentState);
+            oldBlockState.onBlockStateChange(level, blockPos, newBlockState);
+        }
+
+    }
 }

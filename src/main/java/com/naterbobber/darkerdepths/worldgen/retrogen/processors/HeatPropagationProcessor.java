@@ -3,23 +3,17 @@ package com.naterbobber.darkerdepths.worldgen.retrogen.processors;
 import com.naterbobber.darkerdepths.block.DDBlockStateProperties;
 import com.naterbobber.darkerdepths.block.generic.HeatableBlock;
 import com.naterbobber.darkerdepths.config.DDConfig;
-import com.naterbobber.darkerdepths.init.DDBlocks;
 import com.naterbobber.darkerdepths.util.DDTags;
 import com.naterbobber.darkerdepths.worldgen.retrogen.IChunkPostProcessor;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.server.level.FullChunkStatus;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.ChunkPos;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.ChunkAccess;
-import net.minecraft.world.level.chunk.LevelChunk;
 import net.minecraft.world.level.chunk.LevelChunkSection;
-import net.neoforged.neoforge.common.util.BlockSnapshot;
 
-import javax.annotation.Nullable;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
@@ -145,37 +139,5 @@ public class HeatPropagationProcessor implements IChunkPostProcessor {
             }
         }
         return queue;
-    }
-
-    private static void setBlockFast(ServerLevel level, BlockPos pos, BlockState oldBlockState, int flags) {
-        if (level.isOutsideBuildHeight(pos)) {
-            return;
-        }
-
-        LevelChunk levelchunk = level.getChunkAt(pos);
-        pos = pos.immutable();
-
-        BlockState newBlockState = levelchunk.setBlockState(pos, oldBlockState, false);
-
-        if (newBlockState != null) {
-            markAndNotifyBlock(level, pos, levelchunk, newBlockState, oldBlockState, flags);
-        }
-    }
-
-    public static void markAndNotifyBlock(ServerLevel level, BlockPos blockPos, @Nullable LevelChunk levelchunk, BlockState newBlockState, BlockState oldBlockState, int flags) {
-        BlockState currentState = level.getBlockState(blockPos);
-        if (currentState == oldBlockState) {
-            if (newBlockState != currentState) {
-                level.setBlocksDirty(blockPos, newBlockState, currentState);
-            }
-
-            if (level.isClientSide || levelchunk != null && levelchunk.getFullStatus().isOrAfter(FullChunkStatus.BLOCK_TICKING)) {
-                level.sendBlockUpdated(blockPos, newBlockState, oldBlockState, flags);
-            }
-
-            level.onBlockStateChange(blockPos, newBlockState, currentState);
-            oldBlockState.onBlockStateChange(level, blockPos, newBlockState);
-        }
-
     }
 }
