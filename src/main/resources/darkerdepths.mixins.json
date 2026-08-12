@@ -8,7 +8,8 @@
     "PlayerMixin",
     "RotatedPillarBlockMixin",
     "ServerGamePacketListenerImplMixin",
-    "LivingEntityMixin"
+    "LivingEntityMixin",
+    "SableCommonEventsMixin"
   ],
   "client": [
     "BlockLightEngineMixin"

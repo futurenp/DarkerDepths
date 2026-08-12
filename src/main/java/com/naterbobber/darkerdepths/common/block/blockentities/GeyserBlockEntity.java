@@ -1,5 +1,6 @@
 package com.naterbobber.darkerdepths.common.block.blockentities;
 
+import com.naterbobber.darkerdepths.client.particle.DDClientParticleUtils;
 import com.naterbobber.darkerdepths.common.block.DDBlockStateProperties;
 import com.naterbobber.darkerdepths.common.block.generic.IHeatableBlock;
 import com.naterbobber.darkerdepths.common.block.unique.GeyserBlock;
@@ -159,9 +160,9 @@ public class GeyserBlockEntity extends BlockEntity implements IHeatableBlock {
             double randX = rand.nextDouble();
             double randY = rand.nextDouble();
             double randZ = rand.nextDouble();
-            level.addAlwaysVisibleParticle(
+            DDClientParticleUtils.addDistanceParticle(
                     particle,
-                    true,
+                    128,
                     x + randX,
                     y + randY,
                     z + randZ,

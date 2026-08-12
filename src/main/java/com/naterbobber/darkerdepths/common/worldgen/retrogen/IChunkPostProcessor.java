@@ -1,5 +1,7 @@
 package com.naterbobber.darkerdepths.common.worldgen.retrogen;
 
+import com.naterbobber.darkerdepths.common.compat.DDCompat;
+import com.naterbobber.darkerdepths.common.compat.SableCompat;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.FullChunkStatus;
 import net.minecraft.server.level.ServerLevel;
@@ -22,9 +24,9 @@ public interface IChunkPostProcessor {
 
     /** Returns a 3x3 array of the local chunks **/
     default ChunkAccess[][] getLocalChunks(ServerLevel level, ChunkAccess chunk) {
-        ChunkPos chunkPos = chunk.getPos();
+        var chunkPos = chunk.getPos();
 
-        ChunkAccess[][] localChunks = new ChunkAccess[3][3];
+        var localChunks = new ChunkAccess[3][3];
         for (int cx = -1; cx <= 1; cx++) {
             for (int cz = -1; cz <= 1; cz++) {
                 localChunks[cx + 1][cz + 1] = level.getChunkSource().getChunkNow(chunkPos.x + cx, chunkPos.z + cz);
@@ -35,30 +37,42 @@ public interface IChunkPostProcessor {
     }
 
     /** More optimized version of setBlock for process use **/
-    default void setBlockFast(ServerLevel level, BlockPos pos, BlockState oldBlockState, int flags) {
+    default void setBlockFast(ServerLevel level, BlockPos pos, BlockState state, int flags) {
         if (level.isOutsideBuildHeight(pos)) {
             return;
         }
 
-        LevelChunk levelchunk = level.getChunkAt(pos);
+        var levelChunk = level.getChunkAt(pos);
         pos = pos.immutable();
 
-        BlockState newBlockState = levelchunk.setBlockState(pos, oldBlockState, (flags & 64) != 0);
+        if(DDCompat.SABLE.isLoaded()) {
+            SableCompat.beginSuppression(levelChunk, pos);
+        }
 
-        if (newBlockState != null) {
-            markAndNotifyBlock(level, pos, levelchunk, newBlockState, oldBlockState, flags);
+        BlockState previousState;
+
+        try {
+            previousState = levelChunk.setBlockState(pos, state, (flags & 64) != 0);
+        } finally {
+            if(DDCompat.SABLE.isLoaded()) {
+                SableCompat.endSuppression();
+            }
+        }
+
+        if (previousState != null) {
+            markAndNotifyBlock(level, pos, levelChunk, previousState, state, flags);
         }
     }
 
     /** Simplified markAndNotify block, also needed to avoid conflict with Lithium's mixins */
-    default void markAndNotifyBlock(ServerLevel level, BlockPos blockPos, LevelChunk levelchunk, BlockState newBlockState, BlockState oldBlockState, int flags) {
-        BlockState currentState = level.getBlockState(blockPos);
+    default void markAndNotifyBlock(ServerLevel level, BlockPos blockPos, LevelChunk levelChunk, BlockState newBlockState, BlockState oldBlockState, int flags) {
+        var currentState = level.getBlockState(blockPos);
         if (currentState == oldBlockState) {
             if (newBlockState != currentState) {
                 level.setBlocksDirty(blockPos, newBlockState, currentState);
             }
 
-            if (level.isClientSide || levelchunk != null && levelchunk.getFullStatus().isOrAfter(FullChunkStatus.BLOCK_TICKING)) {
+            if (level.isClientSide || levelChunk != null && levelChunk.getFullStatus().isOrAfter(FullChunkStatus.BLOCK_TICKING)) {
                 level.sendBlockUpdated(blockPos, newBlockState, oldBlockState, flags);
             }
 

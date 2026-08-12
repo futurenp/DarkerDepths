@@ -3,11 +3,13 @@ package com.naterbobber.darkerdepths.common.entities;
 import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
 import com.mojang.serialization.Dynamic;
+import com.naterbobber.darkerdepths.client.particle.DDClientParticleUtils;
 import com.naterbobber.darkerdepths.client.screen_effects.ScorcherFlashHandler;
 import com.naterbobber.darkerdepths.common.init.DDBlocks;
 import com.naterbobber.darkerdepths.common.init.DDParticleTypes;
 import com.naterbobber.darkerdepths.common.init.DDSoundEvents;
 import com.naterbobber.darkerdepths.common.network.packets.ScorcherFlashPacket;
+import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
@@ -303,28 +305,43 @@ public class ScorcherEntity extends Mob implements GeoEntity {
         this.applyBeamPushback();
 
         if (!this.level().isClientSide()) {
-
             this.applyFlashEffect();
 
             if (this.isAlive() && this.hasBeamTarget()) {
-                LivingEntity target = this.getBeamTarget();
+                var target = this.getBeamTarget();
+
                 if (target != null && this.tickCount % 20 == 0) {
-                    this.level().playSound(null, target.getX(), target.getY(), target.getZ(),
-                            DDSoundEvents.ENTITY_SCORCHER_SIGHT.get(), SoundSource.HOSTILE, 1.5F, 1F + this.random.nextFloat() * 0.2F);
+                    this.level().playSound(
+                            null,
+                            target.getX(),
+                            target.getY(),
+                            target.getZ(),
+                            DDSoundEvents.ENTITY_SCORCHER_SIGHT.get(),
+                            SoundSource.HOSTILE,
+                            1.5F,
+                            1F + this.random.nextFloat() * 0.2F
+                    );
                 }
             }
 
             this.setDeltaMovement(this.getDeltaMovement().multiply(1.0, 0.0, 1.0));
 
-            if (this.isAlive() && this.tickCount % 2 == 0) {
-                spawnSearchlightParticles();
-            }
-
             var state = this.level().getBlockState(getOnPos().above());
-            if((state.is(BlockTags.REPLACEABLE) || state.is(BlockTags.AIR) && !state.is(DDBlocks.SCORCHER_LIGHT_BLOCK.get())) && this.isAlive()) {
-                var lightState = DDBlocks.SCORCHER_LIGHT_BLOCK.get().defaultBlockState().setValue(BlockStateProperties.LEVEL, 10);
+
+            if ((state.is(BlockTags.REPLACEABLE)
+                    || state.is(BlockTags.AIR) && !state.is(DDBlocks.SCORCHER_LIGHT_BLOCK.get()))
+                    && this.isAlive()) {
+
+                var lightState = DDBlocks.SCORCHER_LIGHT_BLOCK.get()
+                        .defaultBlockState()
+                        .setValue(BlockStateProperties.LEVEL, 10);
+
                 this.level().setBlock(getOnPos().above(), lightState, 3);
             }
+        }
+
+        if (this.level().isClientSide() && this.isAlive() && this.tickCount % 2 == 0) {
+            spawnSearchlightParticles();
         }
     }
 
@@ -437,36 +454,54 @@ public class ScorcherEntity extends Mob implements GeoEntity {
     }
 
     private void spawnSearchlightParticles() {
-        if (!(this.level() instanceof ServerLevel serverLevel)) return;
-
-        Vec3 start = this.getEyePosition();
-        Vec3 look = this.getViewVector(1.0F);
-        double maxDist = 64.0;
-
-        HitResult hit = this.level().clip(new ClipContext(start, start.add(look.scale(maxDist)), ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, this));
-        double actualDist = hit.getType() == HitResult.Type.MISS ? maxDist : hit.getLocation().distanceTo(start);
-
-        int numParticles = Math.min((int) (actualDist * 1.5), 40);
-
-        Vec3 up = new Vec3(0, 1, 0);
-        if (Math.abs(look.y) > 0.99) {
-            up = new Vec3(1, 0, 0);
+        if (!(this.level() instanceof ClientLevel clientLevel)) {
+            return;
         }
-        Vec3 right = look.cross(up).normalize();
-        Vec3 upOrth = right.cross(look).normalize();
 
-        for (int i = 0; i < numParticles; i++) {
-            double d = this.random.nextDouble() * actualDist;
-            double angle = this.random.nextDouble() * Math.PI * 2;
+        var start = this.getEyePosition();
+        var look = this.getViewVector(1.0F);
+        var end = start.add(look.scale(64.0));
 
-            Vec3 trajectory = look.add(right.scale(Math.cos(angle) * 0.10)).add(upOrth.scale(Math.sin(angle) * 0.10)).normalize();
-            Vec3 particlePos = start.add(trajectory.scale(d));
+        var hit = clientLevel.clip(new ClipContext(
+                start,
+                end,
+                ClipContext.Block.COLLIDER,
+                ClipContext.Fluid.NONE,
+                this
+        ));
 
-            for (ServerPlayer player : serverLevel.players()) {
-                serverLevel.sendParticles(player, DDParticleTypes.SCORCHER_SEARCHLIGHT.get(), true,
-                        particlePos.x, particlePos.y + 0.15, particlePos.z,
-                        0, trajectory.x, trajectory.y, trajectory.z, 0.25);
-            }
+        var actualDist = hit.getLocation().distanceTo(start);
+
+        var numParticles = Math.min((int) (actualDist * 1.5), 40);
+
+        var up = Math.abs(look.y) > 0.99
+                ? new Vec3(1, 0, 0)
+                : new Vec3(0, 1, 0);
+
+        var right = look.cross(up).normalize();
+        var upOrth = right.cross(look).normalize();
+
+        for (var i = 0; i < numParticles; i++) {
+            var distance = this.random.nextDouble() * actualDist;
+            var angle = this.random.nextDouble() * Math.PI * 2.0;
+
+            var trajectory = look
+                    .add(right.scale(Math.cos(angle) * 0.10))
+                    .add(upOrth.scale(Math.sin(angle) * 0.10))
+                    .normalize();
+
+            var particlePos = start.add(trajectory.scale(distance));
+
+            DDClientParticleUtils.addDistanceParticle(
+                    DDParticleTypes.SCORCHER_SEARCHLIGHT.get(),
+                    96,
+                    particlePos.x,
+                    particlePos.y + 0.15,
+                    particlePos.z,
+                    0,
+                    0,
+                    0
+            );
         }
     }
 

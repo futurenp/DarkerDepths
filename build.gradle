@@ -106,6 +106,7 @@ dependencies {
     implementation("curse.maven:lambdynamiclights-393442:7958146")
     implementation "curse.maven:every-compat-628539:8316235"
     implementation "curse.maven:selene-499980:8419104"
+    implementation "curse.maven:sable-1312371:8263584"
 //    implementation("curse.maven:better-combat-by-daedelus-639842:7721843")
 //    implementation "curse.maven:cloth-config-348521:5729127"
 //    implementation "curse.maven:playeranimator-658587:7389814"

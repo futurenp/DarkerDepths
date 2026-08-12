@@ -9,4 +9,5 @@ public class DDCompat {
     public static final CompatID BIOLITH = CompatID.create("biolith");
     public static final CompatID LAMB_DYNAMIC_LIGHTS = CompatID.createList("lambdynlights", "lambdynlights_api", "lambdynlights_runtime");
     public static final CompatID CARRYON = CompatID.create("carryon");
+    public static final CompatID SABLE = CompatID.create("sable");
 }
