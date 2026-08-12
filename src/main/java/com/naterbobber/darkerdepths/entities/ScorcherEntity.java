@@ -485,6 +485,7 @@ public class ScorcherEntity extends Mob implements GeoEntity {
                     .normalize();
 
             var particlePos = start.add(trajectory.scale(distance));
+            var particleSpeed = 0.25;
 
             DDClientParticleUtils.addDistanceParticle(
                     DDParticleTypes.SCORCHER_SEARCHLIGHT.get(),
@@ -492,9 +493,9 @@ public class ScorcherEntity extends Mob implements GeoEntity {
                     particlePos.x,
                     particlePos.y + 0.15,
                     particlePos.z,
-                    0,
-                    0,
-                    0
+                    trajectory.x * particleSpeed,
+                    trajectory.y * particleSpeed,
+                    trajectory.z * particleSpeed
             );
         }
     }
