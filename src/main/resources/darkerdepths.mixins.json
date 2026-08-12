@@ -7,7 +7,8 @@
     "HuskMixin",
     "PlayerMixin",
     "RotatedPillarBlockMixin",
-    "ServerGamePacketListenerImplMixin"
+    "ServerGamePacketListenerImplMixin",
+    "SableCommonEventsMixin"
   ],
   "client": [
     "BlockLightEngineMixin"

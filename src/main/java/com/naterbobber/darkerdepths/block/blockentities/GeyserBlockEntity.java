@@ -161,9 +161,9 @@ public class GeyserBlockEntity extends BlockEntity implements HeatableBlock {
             double randX = rand.nextDouble();
             double randY = rand.nextDouble();
             double randZ = rand.nextDouble();
-            level.addAlwaysVisibleParticle(
+            DDClientParticleUtils.addDistanceParticle(
                     particle,
-                    true,
+                    128,
                     x + randX,
                     y + randY,
                     z + randZ,
