@@ -24,8 +24,8 @@ public class DDDataMapProvider extends DataMapProvider {
 
     @Override
     protected void gather(HolderLookup.Provider provider) {
-        addFuel(DDBlocks.SCORCHED_REMAINS_BLOCK, 4800);
-        addFuel(DDBlocks.SCORCHED_REMAINS, 2000);
+        addFuel(DDBlocks.SCORCHED_REMAINS_BLOCK, 2400);
+        addFuel(DDBlocks.SCORCHED_REMAINS, 1000);
         addCompostable(DDBlocks.GLOWSHROOM, 0.5F);
         addCompostable(DDItems.GLOW_GRIME, 0.5F);
         addCompostable(DDBlocks.GLOWSHROOM_PILEUS, 0.85F);

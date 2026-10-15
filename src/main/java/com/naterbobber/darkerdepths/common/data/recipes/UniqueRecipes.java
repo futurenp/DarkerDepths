@@ -146,14 +146,14 @@ public class UniqueRecipes {
                 .save(recipeOutput,DarkerDepths.id("forsaken_bronze_ingot_from_scrap"));
 
         ShapelessRecipeBuilder
-                .shapeless(RecipeCategory.MISC, DDBlocks.SCORCHED_REMAINS.get())
+                .shapeless(RecipeCategory.MISC, DDBlocks.SCORCHED_REMAINS.get(), 2)
                 .requires(Items.ROTTEN_FLESH)
                 .requires(Items.CHARCOAL)
                 .unlockedBy("has_rotten_flesh", has(Items.ROTTEN_FLESH))
                 .save(recipeOutput);
 
         ShapelessRecipeBuilder
-                .shapeless(RecipeCategory.MISC, DDBlocks.SCORCHED_REMAINS_BLOCK.get())
+                .shapeless(RecipeCategory.MISC, DDBlocks.SCORCHED_REMAINS_BLOCK.get(), 2)
                 .requires(Items.ROTTEN_FLESH)
                 .requires(Items.CHARCOAL)
                 .requires(Items.ROTTEN_FLESH)
