@@ -9,7 +9,9 @@ import com.naterbobber.darkerdepths.common.init.DDBlocks;
 import com.naterbobber.darkerdepths.common.init.DDParticleTypes;
 import com.naterbobber.darkerdepths.common.init.DDSoundEvents;
 import com.naterbobber.darkerdepths.common.network.packets.ScorcherFlashPacket;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.client.renderer.entity.BlazeRenderer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
@@ -32,13 +34,13 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.behavior.Behavior;
 import net.minecraft.world.entity.ai.memory.MemoryModuleType;
 import net.minecraft.world.entity.ai.sensing.SensorType;
-import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.schedule.Activity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.MagmaBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.phys.HitResult;
@@ -55,6 +57,12 @@ import javax.annotation.Nullable;
 import java.util.Map;
 
 public class ScorcherEntity extends Mob implements GeoEntity {
+    private static final double DETECTION_RANGE = 48.0D;
+    private static final double HEARING_RANGE = 32.0D;
+    private static final double VIEW_CONE_HALF_ANGLE = Math.toRadians(11.0D);
+    private static final double VIEW_CONE_MIN_DOT = Math.cos(VIEW_CONE_HALF_ANGLE);
+    private static final int TARGET_MEMORY_TICKS = 20;
+
     private final AnimatableInstanceCache geoCache = GeckoLibUtil.createInstanceCache(this);
     private static final EntityDataAccessor<Boolean> DATA_STARED_AT = SynchedEntityData.defineId(ScorcherEntity.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Integer> DATA_TARGET_ID = SynchedEntityData.defineId(ScorcherEntity.class, EntityDataSerializers.INT);
@@ -182,6 +190,10 @@ public class ScorcherEntity extends Mob implements GeoEntity {
         if (this.getTarget() != null) {
             this.setTarget(null);
         }
+        this.clearScorcherBeam();
+    }
+
+    private void clearScorcherBeam() {
         if (this.entityData.get(DATA_STARED_AT)) {
             this.entityData.set(DATA_STARED_AT, false);
         }
@@ -216,7 +228,7 @@ public class ScorcherEntity extends Mob implements GeoEntity {
     public static AttributeSupplier.Builder createAttributes() {
         return Mob.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 40.0D)
-                .add(Attributes.FOLLOW_RANGE, 48.0D)
+                .add(Attributes.FOLLOW_RANGE, DETECTION_RANGE)
                 .add(Attributes.KNOCKBACK_RESISTANCE, 1.0D);
     }
 
@@ -399,27 +411,20 @@ public class ScorcherEntity extends Mob implements GeoEntity {
             }
         }
 
-        if (target instanceof Player player) {
-            Vec3 playerLook = player.getViewVector(1.0F).normalize();
-            Vec3 toScorcher = this.getEyePosition().subtract(player.getEyePosition());
-
-            double distance = toScorcher.length();
-            toScorcher = toScorcher.normalize();
-
-            double dotProduct = playerLook.dot(toScorcher);
-            double threshold = 1.0D - (0.1D / Math.max(distance, 1.0D));
-
-            if (dotProduct > threshold && player.hasLineOfSight(this)) {
-
-                if (player instanceof ServerPlayer serverPlayer) {
-                    PacketDistributor.sendToPlayer(
-                            serverPlayer,
-                            new ScorcherFlashPacket(40)
-                    );
-                }
-
-            }
+        if (target instanceof ServerPlayer player && this.isPlayerLookingAtMe(player)) {
+            PacketDistributor.sendToPlayer(player, new ScorcherFlashPacket(40));
         }
+    }
+
+    private boolean isPlayerLookingAtMe(Player player) {
+        if (this.distanceToSqr(player) > DETECTION_RANGE * DETECTION_RANGE) return false;
+
+        Vec3 toScorcher = this.getEyePosition().subtract(player.getEyePosition());
+        double distance = toScorcher.length();
+        double threshold = 1.0D - (0.1D / Math.max(distance, 1.0D));
+
+        return player.getViewVector(1.0F).normalize().dot(toScorcher.normalize()) > threshold
+                && player.hasLineOfSight(this);
     }
 
     private void applyBeamPushback() {
@@ -480,14 +485,15 @@ public class ScorcherEntity extends Mob implements GeoEntity {
 
         var right = look.cross(up).normalize();
         var upOrth = right.cross(look).normalize();
+        var spread = this.hasBeamTarget() ? 0.10D : Math.tan(VIEW_CONE_HALF_ANGLE);
 
         for (var i = 0; i < numParticles; i++) {
             var distance = this.random.nextDouble() * actualDist;
             var angle = this.random.nextDouble() * Math.PI * 2.0;
 
             var trajectory = look
-                    .add(right.scale(Math.cos(angle) * 0.10))
-                    .add(upOrth.scale(Math.sin(angle) * 0.10))
+                    .add(right.scale(Math.cos(angle) * spread))
+                    .add(upOrth.scale(Math.sin(angle) * spread))
                     .normalize();
 
             var particlePos = start.add(trajectory.scale(distance));
@@ -532,6 +538,11 @@ public class ScorcherEntity extends Mob implements GeoEntity {
         }
 
         @Override
+        protected boolean timedOut(long gameTime) {
+            return false;
+        }
+
+        @Override
         protected void tick(ServerLevel level, ScorcherEntity entity, long gameTime) {
             if (this.pauseTicks > 0) {
                 this.pauseTicks--;
@@ -562,15 +573,8 @@ public class ScorcherEntity extends Mob implements GeoEntity {
         private int losLostTicks = 0;
         private Vec3 lastKnownPos = null;
 
-        private final TargetingConditions playerTargetConditions = TargetingConditions.forNonCombat().range(48.0).ignoreLineOfSight().selector((entity) -> {
-            if (entity instanceof Player player) {
-                return !player.isCreative() && !player.isSpectator() && player.level().getDifficulty() != Difficulty.PEACEFUL;
-            }
-            return true;
-        });
-
         public ScorcherStareBehavior() {
-            super(Map.of(), 320);
+            super(Map.of());
         }
 
         @Override
@@ -581,6 +585,11 @@ public class ScorcherEntity extends Mob implements GeoEntity {
         @Override
         protected boolean canStillUse(ServerLevel level, ScorcherEntity entity, long gameTime) {
             return true;
+        }
+
+        @Override
+        protected boolean timedOut(long gameTime) {
+            return false;
         }
 
         @Override
@@ -605,29 +614,55 @@ public class ScorcherEntity extends Mob implements GeoEntity {
             if (potentialTarget == null || !potentialTarget.isAlive() || potentialTarget.level().getDifficulty() == Difficulty.PEACEFUL) return false;
             if (potentialTarget instanceof Player player && (player.isSpectator() || player.isCreative())) return false;
             if (potentialTarget instanceof ScorcherEntity) return false;
-            if (entity.distanceToSqr(potentialTarget) > 48 * 48) return false;
+            if (potentialTarget.level() != entity.level()) return false;
+            if (entity.distanceToSqr(potentialTarget) > DETECTION_RANGE * DETECTION_RANGE) return false;
+
             return true;
         }
 
         private void findNewTarget(ServerLevel level, ScorcherEntity entity) {
             LivingEntity attacker = entity.getLastHurtByMob();
+            this.target = null;
 
             if (isValidTarget(entity, attacker) && hasForgivingLineOfSight(entity, attacker)) {
                 this.target = attacker;
             } else {
-                this.target = level.getNearestPlayer(this.playerTargetConditions, entity);
+                double nearestDistance = Double.MAX_VALUE;
+                for (Player player : level.players()) {
+                    double distance = entity.distanceToSqr(player);
+                    if (distance < nearestDistance && isValidTarget(entity, player)
+                            && (canHearPlayer(entity, player) || canSeePlayer(entity, player)
+                            || entity.isPlayerLookingAtMe(player))) {
+                        this.target = player;
+                        nearestDistance = distance;
+                    }
+                }
             }
 
             this.losTicks = 0;
             this.losLostTicks = 0;
             this.lastKnownPos = null;
 
-            if (this.target != null && hasForgivingLineOfSight(entity, this.target)) {
-                entity.setScorcherTarget(this.target);
-            } else {
-                this.target = null;
-                entity.clearScorcherTarget();
+            entity.clearScorcherTarget();
+            if (this.target != null) {
+                entity.setTarget(this.target);
+                this.lastKnownPos = this.target.getEyePosition();
             }
+        }
+
+        private boolean canSeePlayer(ScorcherEntity entity, Player player) {
+            Vec3 toPlayer = player.getEyePosition().subtract(entity.getEyePosition());
+            return entity.getViewVector(1.0F).dot(toPlayer.normalize()) >= VIEW_CONE_MIN_DOT
+                    && hasForgivingLineOfSight(entity, player);
+        }
+
+        private boolean canHearPlayer(ScorcherEntity entity, LivingEntity target) {
+            return target instanceof Player player
+                    && !player.isCrouching()
+                    && player.isSprinting()
+                    && !player.isPassenger()
+                    && player.getKnownMovement().horizontalDistanceSqr() > 1.0E-4D
+                    && entity.distanceToSqr(player) <= HEARING_RANGE * HEARING_RANGE;
         }
 
         private void handleLineOfSight(ScorcherEntity entity) {
@@ -670,21 +705,26 @@ public class ScorcherEntity extends Mob implements GeoEntity {
         }
 
         private void handleLostLineOfSight(ScorcherEntity entity) {
-            this.losLostTicks++;
             this.losTicks = 0;
+            entity.clearScorcherBeam();
+
+            if (canHearPlayer(entity, this.target)) {
+                this.losLostTicks = 0;
+                this.lastKnownPos = this.target.getEyePosition();
+            } else {
+                this.losLostTicks++;
+            }
 
             if (this.lastKnownPos != null) {
                 entity.getLookControl().setLookAt(this.lastKnownPos.x, this.lastKnownPos.y, this.lastKnownPos.z, 30.0F, 30.0F);
             }
 
-            if (this.losLostTicks > 20) {
+            if (this.losLostTicks > TARGET_MEMORY_TICKS) {
                 if (this.target == entity.getLastHurtByMob()) {
                     entity.setLastHurtByMob(null);
                 }
                 this.target = null;
                 entity.clearScorcherTarget();
-            } else {
-                entity.entityData.set(DATA_SHAKING, false);
             }
         }
 
