@@ -235,6 +235,7 @@
   "block.darkerdepths.yellow_string_lights": "Yellow String Lights",
   "death.attack.glowshroom_slam_damage": "%1$s was slammed to death.",
   "death.attack.soul_binding_damage": "%1$s's soul was consumed by the Death Anchor.",
+  "death.attack.soul_binding_damage.player": "%1$s's soul was consumed by the Death Anchor.",
   "death.attack.void_soul_damage": "%1$s's soul was reclaimed.",
   "effect.darkerdepths.glowing_mycoses": "Glowing Mycoses",
   "effect.darkerdepths.glowing_mycoses_active": "Glowing Mycoses Active",

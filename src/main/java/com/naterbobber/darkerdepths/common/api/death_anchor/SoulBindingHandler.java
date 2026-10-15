@@ -9,7 +9,6 @@ import com.naterbobber.darkerdepths.common.util.DDResourceKeys;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -40,17 +39,16 @@ public class SoulBindingHandler {
             boolean exists = newServer.getPoiManager().existsAtPosition(poiKey, pos);
             if (!exists) return;
 
+            var teleportPos = findSafeTeleportPosition(player, newServer, pos.above())
+                    .orElseGet(() -> Vec3.atBottomCenterOf(pos.above()));
+
             event.setCanceled(true);
             player.setHealth(1.0F);
             player.addEffect(new MobEffectInstance(DDMobEffects.SOUL_BINDING, 200, 0, true, false));
 
-            var uncheckedTeleportPos = pos.above();
-
-            if (!serverLevel.getBlockState(uncheckedTeleportPos).isAir()) {
-                checkAlternateTeleportPositions(player, serverLevel, uncheckedTeleportPos);
-            }
-
-            player.teleportTo(newServer, uncheckedTeleportPos.getX() + 0.5D, uncheckedTeleportPos.getY(), uncheckedTeleportPos.getZ() + 0.5D, Set.of(), 0, 0);
+            player.teleportTo(newServer, teleportPos.x, teleportPos.y, teleportPos.z, Set.of(), 0, 0);
+            player.fallDistance = 0.0F;
+            player.setDeltaMovement(Vec3.ZERO);
             handleHealthDebuff(player, deathAnchorExtension);
 
             if (player instanceof ServerPlayer serverPlayer) {
@@ -61,29 +59,18 @@ public class SoulBindingHandler {
         }
     }
 
-    private static void checkAlternateTeleportPositions(Player player, ServerLevel serverLevel, BlockPos uncheckedTeleportPos) {
-        var teleportPos = new BlockPos.MutableBlockPos();
+    private static Optional<Vec3> findSafeTeleportPosition(Player player, ServerLevel destinationLevel, BlockPos preferredPos) {
+        var preferred = DismountHelper.findSafeDismountLocation(player.getType(), destinationLevel, preferredPos, true);
+        if (preferred != null) return Optional.of(preferred);
 
-        boolean safe = false;
-        int radius = 1;
-        for (int y = -radius; y <= radius; y++) {
-            for (int x = -radius; x <= radius; x++) {
-                for (int z = -radius; z <= radius; z++) {
-                    teleportPos.set(uncheckedTeleportPos.offset(x, y, z));
-                    Vec3 vec3 = DismountHelper.findSafeDismountLocation(player.getType(), serverLevel, teleportPos, true);
-                    if (vec3 != null) {
-                        uncheckedTeleportPos = BlockPos.containing(vec3);
-                        safe = true;
-                    }
-                }
+        for (var candidate : BlockPos.withinManhattan(preferredPos, 1, 1, 1)) {
+            if (candidate.equals(preferredPos)) continue;
+            var landing = DismountHelper.findSafeDismountLocation(player.getType(), destinationLevel, candidate, true);
+            if (landing != null) {
+                return Optional.of(landing);
             }
         }
-        if (!safe) {
-            if (serverLevel.getBlockState(uncheckedTeleportPos).is(BlockTags.FEATURES_CANNOT_REPLACE) && serverLevel.getBlockState(uncheckedTeleportPos.above()).is(BlockTags.FEATURES_CANNOT_REPLACE)) {
-                serverLevel.destroyBlock(uncheckedTeleportPos, false);
-                serverLevel.destroyBlock(uncheckedTeleportPos.above(), false);
-            }
-        }
+        return Optional.empty();
     }
 
     private static void handleHealthDebuff(Player player, IDeathAnchorExtension deathAnchorExtension) {
