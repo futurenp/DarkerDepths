@@ -24,7 +24,7 @@ public class BakedModelManager {
     public static void modify(ModelEvent.ModifyBakingResult event) {
         var models = new ArrayList<BlockBaker>();
 
-        models.add(BlockBaker.builder(event, DDBlocks.SHELF_GLOWSHROOM, DDBlocks.DEAD_SHELF_GLOWSHROOM)
+        models.add(BlockBaker.builder(event, DDBlocks.SHELF_GLOWSHROOM)
                 .dynamicSettings(blockState -> {
                     if(blockState.getValue(DDBlockStateProperties.LARGE)) {
                         return DirectionalOffsetBakedModel.Settings.of(DirectionalOffsetBakedModel.OffsetType.Y)

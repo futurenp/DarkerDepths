@@ -65,23 +65,23 @@ public class GlowshroomCapItem extends ArmorItem implements GeoItem {
             livingEntity.addEffect(new MobEffectInstance(DDMobEffects.GLOWING_MYCOSES, MobEffectInstance.INFINITE_DURATION, 0, false, false, true));
         }
 
-        if(slotId == 39 && level.isDay()) {
-            if(livingEntity instanceof Player player) {
-                if(level.getGameTime() % 20 != 0) return;
-
-                if(level.canSeeSky(livingEntity.blockPosition())) {
-                    level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.CANDLE_EXTINGUISH, SoundSource.PLAYERS, 1.0F, 1.0F);
-
-                    var cap = livingEntity.getItemBySlot(EquipmentSlot.HEAD);
-                    var damage = cap.getDamageValue();
-                    if(damage + 1 < cap.getMaxDamage()) {
-                        cap.setDamageValue(cap.getDamageValue() + 2);
-                    } else {
-                        livingEntity.setItemSlot(EquipmentSlot.HEAD, ItemStack.EMPTY);
-                    }
-                }
-            }
-        }
+//        if(slotId == 39 && level.isDay()) {
+//            if(livingEntity instanceof Player player) {
+//                if(level.getGameTime() % 20 != 0) return;
+//
+//                if(level.canSeeSky(livingEntity.blockPosition())) {
+//                    level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.CANDLE_EXTINGUISH, SoundSource.PLAYERS, 1.0F, 1.0F);
+//
+//                    var cap = livingEntity.getItemBySlot(EquipmentSlot.HEAD);
+//                    var damage = cap.getDamageValue();
+//                    if(damage + 1 < cap.getMaxDamage()) {
+//                        cap.setDamageValue(cap.getDamageValue() + 2);
+//                    } else {
+//                        livingEntity.setItemSlot(EquipmentSlot.HEAD, ItemStack.EMPTY);
+//                    }
+//                }
+//            }
+//        }
     }
 
     @Override

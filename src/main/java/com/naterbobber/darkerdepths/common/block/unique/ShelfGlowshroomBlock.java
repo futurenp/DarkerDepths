@@ -1,7 +1,5 @@
 package com.naterbobber.darkerdepths.common.block.unique;
 
-import com.naterbobber.darkerdepths.common.block.generic.ISunlightSensitiveGlowshroomBlock;
-import com.naterbobber.darkerdepths.common.init.DDBlocks;
 import com.naterbobber.darkerdepths.common.init.DDParticleTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -22,7 +20,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.phys.BlockHitResult;
 
-public class ShelfGlowshroomBlock extends BaseShelfGlowshroomBlock implements ISunlightSensitiveGlowshroomBlock {
+public class ShelfGlowshroomBlock extends BaseShelfGlowshroomBlock {
 
     public ShelfGlowshroomBlock(Properties properties) {
         super(properties);
@@ -49,8 +47,6 @@ public class ShelfGlowshroomBlock extends BaseShelfGlowshroomBlock implements IS
 
     @Override
     protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
-        checkSunlight(level, pos);
-
         var chance = state.getValue(LARGE) ? 0.5 : 0.35;
         if(random.nextDouble() > chance) return;
 
@@ -77,14 +73,6 @@ public class ShelfGlowshroomBlock extends BaseShelfGlowshroomBlock implements IS
 
             spawnParticlesAndSound(level, topCropPos, DDParticleTypes.GLOWSHROOM_GROWTH.get(), 8);
         }
-    }
-
-    @Override
-    public BlockState getDeadGlowshroomState(BlockState existingState) {
-        return DDBlocks.DEAD_SHELF_GLOWSHROOM.get()
-                .defaultBlockState()
-                .setValue(LARGE, existingState.getValue(LARGE))
-                .setValue(FACING, existingState.getValue(FACING));
     }
 
     public static void spawnParticlesAndSound(ServerLevel level, BlockPos pos, SimpleParticleType particle, int count) {
