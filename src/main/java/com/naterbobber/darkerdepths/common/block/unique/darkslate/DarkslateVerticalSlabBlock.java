@@ -6,7 +6,10 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
@@ -29,6 +32,19 @@ public class DarkslateVerticalSlabBlock extends VerticalSlabBlock implements IHe
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         int neighborHeat = getHighestNeighborHeat(context.getLevel(), context.getClickedPos());
         return super.getStateForPlacement(context).setValue(HEAT_LEVEL, IHeatableBlock.calculateNewHeat(neighborHeat));
+    }
+
+    @Override
+    public void stepOn(Level level, BlockPos pos, BlockState state, Entity entity) {
+        if(state.getValue(HEAT_LEVEL) < 4) {
+            return;
+        }
+
+        if (!entity.isSteppingCarefully() && entity instanceof LivingEntity) {
+            entity.hurt(level.damageSources().hotFloor(), 1.0F);
+        }
+
+        super.stepOn(level, pos, state, entity);
     }
 
     @Override
