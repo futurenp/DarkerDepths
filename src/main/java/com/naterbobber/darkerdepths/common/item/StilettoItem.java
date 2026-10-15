@@ -6,6 +6,7 @@ import com.naterbobber.darkerdepths.common.init.DDItems;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.Holder;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
@@ -22,6 +23,7 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.common.ItemAbilities;
 import net.neoforged.neoforge.common.ItemAbility;
 import org.apache.commons.lang3.mutable.MutableFloat;
@@ -38,7 +40,7 @@ public class StilettoItem extends SwordItem {
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
 
-        ItemStack itemStack = player.getItemInHand(hand);
+        var itemStack = player.getItemInHand(hand);
 
         if (player.isFallFlying() || player.isCrouching()) {
             return InteractionResultHolder.pass(itemStack);
@@ -47,12 +49,16 @@ public class StilettoItem extends SwordItem {
         itemStack.hurtAndBreak(2, player, LivingEntity.getSlotForHand(hand));
 
         double dash = 1.85D;
-        player.addDeltaMovement(player.getLookAngle().multiply(1.0D, 1.5D, 1.0D).normalize().multiply(dash, dash / 2.0D, dash));
+        var dashMovement = player.getLookAngle().multiply(1.0D, 1.5D, 1.0D).normalize().multiply(dash, dash / 2.0D, dash);
+        player.addDeltaMovement(dashMovement);
 
         player.playSound(SoundEvents.PLAYER_ATTACK_SWEEP, 1.0F, 1.0F);
         if (level instanceof ServerLevel serverLevel) {
-            MutableFloat mutableFloat = new MutableFloat(0.0F);
-            EnchantmentHelper.runIterationOnItem(itemStack, (holder, i) -> holder.value().modifyItemFilteredCount(DDEnchantmentEffects.QUICK_DASH_DURATION.get(), serverLevel, i, itemStack, mutableFloat));
+            spawnDashParticles(serverLevel, player, dashMovement);
+            var mutableFloat = new MutableFloat(0.0F);
+            EnchantmentHelper.runIterationOnItem(itemStack,
+                    (holder, i) ->
+                            holder.value().modifyItemFilteredCount(DDEnchantmentEffects.QUICK_DASH_DURATION.get(), serverLevel, i, itemStack, mutableFloat));
             int quickDash = Math.max(0, mutableFloat.intValue());
 
             int cooldown = 200;
@@ -67,6 +73,22 @@ public class StilettoItem extends SwordItem {
         }
 
         return InteractionResultHolder.success(itemStack);
+    }
+
+    private static void spawnDashParticles(ServerLevel level, Player player, Vec3 dashMovement) {
+        var direction = dashMovement.normalize();
+        var center = player.position().add(0.0D, player.getBbHeight() * 0.5D, 0.0D);
+        var origin = center.subtract(direction.scale(0.35D));
+        var random = player.getRandom();
+
+        for (int i = 0; i < 8; i++) {
+            double speed = 0.1D + random.nextDouble() * 0.15D;
+            level.sendParticles(ParticleTypes.CLOUD,
+                    origin.x + (random.nextDouble() - 0.5D) * 0.5D,
+                    origin.y + (random.nextDouble() - 0.5D) * 0.5D,
+                    origin.z + (random.nextDouble() - 0.5D) * 0.5D,
+                    0, -direction.x * speed, -direction.y * speed, -direction.z * speed, 1.0D);
+        }
     }
 
     @Override
