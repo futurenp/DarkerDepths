@@ -2,6 +2,7 @@ package com.naterbobber.darkerdepths.common.events;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
 import com.naterbobber.darkerdepths.common.api.ITombBedExtension;
+import com.naterbobber.darkerdepths.common.api.StringLightHandler;
 import com.naterbobber.darkerdepths.common.config.DDConfig;
 import com.naterbobber.darkerdepths.common.init.DDBlocks;
 import com.naterbobber.darkerdepths.common.init.DDCriteria;
@@ -27,10 +28,26 @@ import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerSpawnPhantomsEvent;
+import net.neoforged.neoforge.event.server.ServerStoppedEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 
 @EventBusSubscriber(modid = DarkerDepths.MOD_ID)
 public class PlayerEvents {
+
+    @SubscribeEvent
+    public static void onPlayerLoggedOut(PlayerEvent.PlayerLoggedOutEvent event) {
+        StringLightHandler.removePlacement(event.getEntity().getUUID());
+    }
+
+    @SubscribeEvent
+    public static void onPlayerChangedDimension(PlayerEvent.PlayerChangedDimensionEvent event) {
+        StringLightHandler.removePlacement(event.getEntity().getUUID());
+    }
+
+    @SubscribeEvent
+    public static void onServerStopped(ServerStoppedEvent event) {
+        StringLightHandler.clearPlacements();
+    }
 
     @SubscribeEvent
     public static void onApplySupercharge(PlayerInteractEvent.RightClickItem event) {

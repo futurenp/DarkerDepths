@@ -6,6 +6,8 @@ import com.naterbobber.darkerdepths.common.util.DDTags;
 import com.naterbobber.darkerdepths.common.util.VoxelShapeUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -99,10 +101,12 @@ public class StringLightsBlock extends Block {
 
         if (StringLightHandler.getBlockInfo(uuid) == null) {
             StringLightHandler.setPlacement(player, pos, selectedState);
+            spawnPlacementParticles(level, pos, selectedState, selectedDirection, ParticleTypes.ELECTRIC_SPARK, 8);
         } else if (connectStrings(level, state, pos, player, selectedDirection)) {
             StringLightHandler.removePlacement(uuid);
         } else {
             StringLightHandler.setPlacement(player, pos, selectedState);
+            spawnPlacementParticles(level, pos, selectedState, selectedDirection, ParticleTypes.ELECTRIC_SPARK, 8);
         }
 
         level.playSound(null, pos, SoundEvents.CANDLE_HIT, SoundSource.BLOCKS, 1.0F, 1.0F);
@@ -530,10 +534,28 @@ public class StringLightsBlock extends Block {
             }
         }
 
-        blocksToPlace.forEach((placePos, placeState) ->
-                level.setBlock(placePos, placeState, Block.UPDATE_ALL));
+        blocksToPlace.forEach((placePos, placeState) -> {
+            if (level.setBlock(placePos, placeState, Block.UPDATE_ALL)) {
+                spawnPlacementParticles(level, placePos, placeState, baseDirection, ParticleTypes.HAPPY_VILLAGER, 4);
+            }
+        });
 
         return true;
+    }
+
+    private static void spawnPlacementParticles(Level level, BlockPos pos, BlockState state, Direction direction, SimpleParticleType particle, int count) {
+        if (!(level instanceof ServerLevel serverLevel)) {
+            return;
+        }
+
+        double x = pos.getX() + 0.5D - direction.getStepX() * 0.4D;
+        double y = pos.getY() + (state.getValue(BOTTOM) ? 0.25D : 0.75D);
+        double z = pos.getZ() + 0.5D - direction.getStepZ() * 0.4D;
+        double spreadX = direction.getAxis() == Direction.Axis.X ? 0.03D : 0.3D;
+        double spreadZ = direction.getAxis() == Direction.Axis.Z ? 0.03D : 0.3D;
+
+        serverLevel.sendParticles(particle,
+                x, y, z, count, spreadX, 0.15D, spreadZ, 0.02D);
     }
 
     private BlockState createSingleSideState(BlockState state, Direction direction) {

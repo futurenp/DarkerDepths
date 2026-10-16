@@ -27,5 +27,9 @@ public class StringLightHandler {
         placementInfo.remove(uuid);
     }
 
+    public static void clearPlacements() {
+        placementInfo.clear();
+    }
+
     public record BlockInfo(BlockPos pos, BlockState state) {}
 }
