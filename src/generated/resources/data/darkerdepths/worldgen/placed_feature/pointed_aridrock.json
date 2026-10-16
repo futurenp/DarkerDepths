@@ -2,49 +2,49 @@
   "feature": "darkerdepths:pointed_aridrock",
   "placement": [
     {
-      "count": 144,
-      "type": "minecraft:count"
+      "type": "minecraft:count",
+      "count": 144
     },
     {
       "type": "minecraft:in_square"
     },
     {
+      "type": "minecraft:height_range",
       "height": {
-        "min_inclusive": {
-          "above_bottom": 0
-        },
+        "type": "minecraft:uniform",
         "max_inclusive": {
           "absolute": 256
         },
-        "type": "minecraft:uniform"
-      },
-      "type": "minecraft:height_range"
+        "min_inclusive": {
+          "above_bottom": 0
+        }
+      }
     },
     {
+      "type": "minecraft:environment_scan",
+      "allowed_search_condition": {
+        "type": "minecraft:matching_block_tag",
+        "tag": "minecraft:air"
+      },
       "direction_of_search": "down",
+      "max_steps": 32,
       "target_condition": {
+        "type": "minecraft:all_of",
         "predicates": [
           {
-            "tag": "minecraft:air",
-            "type": "minecraft:matching_block_tag"
+            "type": "minecraft:matching_block_tag",
+            "tag": "minecraft:air"
           },
           {
+            "type": "minecraft:solid",
             "offset": [
               0,
               -1,
               0
-            ],
-            "type": "minecraft:solid"
+            ]
           }
-        ],
-        "type": "minecraft:all_of"
-      },
-      "allowed_search_condition": {
-        "tag": "minecraft:air",
-        "type": "minecraft:matching_block_tag"
-      },
-      "max_steps": 32,
-      "type": "minecraft:environment_scan"
+        ]
+      }
     },
     {
       "type": "minecraft:biome"

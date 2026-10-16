@@ -1,7 +1,8 @@
 {
+  "type": "darkerdepths:pointed_aridrock",
   "config": {
-    "valid_floor_blocks": "darkerdepths:aridrock",
     "height": {
+      "type": "minecraft:weighted_list",
       "distribution": [
         {
           "data": 1,
@@ -23,9 +24,8 @@
           "data": 5,
           "weight": 10
         }
-      ],
-      "type": "minecraft:weighted_list"
-    }
-  },
-  "type": "darkerdepths:pointed_aridrock"
+      ]
+    },
+    "valid_floor_blocks": "darkerdepths:aridrock"
+  }
 }
