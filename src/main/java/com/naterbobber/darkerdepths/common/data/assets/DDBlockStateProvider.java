@@ -6,6 +6,7 @@ import com.naterbobber.darkerdepths.common.block.blocksets.DDBlockSets;
 import com.naterbobber.darkerdepths.common.block.blockstates.PostState;
 import com.naterbobber.darkerdepths.common.block.blockstates.VerticalSlabState;
 import com.naterbobber.darkerdepths.common.block.unique.GlimmeringVinePlantBlock;
+import com.naterbobber.darkerdepths.common.block.unique.PointedAridrockBlock;
 import com.naterbobber.darkerdepths.common.block.generic.StringLightsBlock;
 import com.naterbobber.darkerdepths.common.block.unique.TombBlock;
 import com.naterbobber.darkerdepths.common.block.unique.darkslate.DarkslateSlabBlock;
@@ -236,6 +237,8 @@ public class DDBlockStateProvider extends BlockStateProvider {
         var block = holder.get();
 
         switch (block) {
+            case PointedAridrockBlock b -> pointedDripstoneBlockWithItem(holder);
+            case PointedDripstoneBlock b -> pointedDripstoneBlockWithItem(holder);
             case DoorBlock b -> doorBlockWithItem(holder);
             case TrapDoorBlock b -> trapdoorBlockWithItem(holder);
             case BushBlock b -> crossBlockWithItem(holder);
@@ -247,6 +250,32 @@ public class DDBlockStateProvider extends BlockStateProvider {
             case TombBlock b -> tombBlockWithItem(holder);
             default -> simpleBlockWithItem(holder);
         }
+    }
+
+    private void pointedDripstoneBlockWithItem(DeferredHolder<Block, ? extends Block> holder) {
+        var block = holder.get();
+        var name = holder.getId().getPath();
+        var variants = new HashMap<String, BlockModelBuilder>();
+
+        for (var direction : Direction.Plane.VERTICAL) {
+            for (var thickness : DripstoneThickness.values()) {
+                var suffix = "_" + direction.getSerializedName() + "_" + thickness.getSerializedName();
+                var model = models().withExistingParent(name + suffix, mcLoc("block/pointed_dripstone"))
+                        .texture("cross", modLoc("block/" + name + suffix))
+                        .renderType("cutout");
+                variants.put(suffix, model);
+            }
+        }
+
+        getVariantBuilder(block).forAllStatesExcept(state -> {
+            var direction = state.getValue(PointedDripstoneBlock.TIP_DIRECTION);
+            var thickness = state.getValue(PointedDripstoneBlock.THICKNESS);
+            var suffix = "_" + direction.getSerializedName() + "_" + thickness.getSerializedName();
+            return ConfiguredModel.builder().modelFile(variants.get(suffix)).build();
+        }, PointedDripstoneBlock.WATERLOGGED);
+
+        itemModels().withExistingParent(name, mcLoc("item/generated"))
+                .texture("layer0", modLoc("block/" + name + "_up_tip"));
     }
 
     private void simpleItem(DeferredHolder<Item, ? extends Item> item) {

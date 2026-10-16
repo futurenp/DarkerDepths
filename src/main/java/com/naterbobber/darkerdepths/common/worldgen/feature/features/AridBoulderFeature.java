@@ -5,9 +5,7 @@ import com.naterbobber.darkerdepths.common.init.DDBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.DripstoneUtils;
@@ -17,6 +15,7 @@ import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConf
 import java.util.function.Predicate;
 
 public class AridBoulderFeature extends Feature<NoneFeatureConfiguration> {
+    private static final int SHAPE_RADIUS = 7;
 
     public AridBoulderFeature(Codec<NoneFeatureConfiguration> codece) {
         super(codece);
@@ -24,21 +23,22 @@ public class AridBoulderFeature extends Feature<NoneFeatureConfiguration> {
 
     @Override
     public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> context) {
-        BlockPos blockpos = context.origin();
-        WorldGenLevel world = context.level();
-        RandomSource random = context.random();
+        var blockpos = context.origin();
+        var world = context.level();
+        var random = context.random();
         if (!world.isEmptyBlock(blockpos) || !world.getBlockState(blockpos.below()).is(DDBlocks.ARIDROCK)) {
             return false;
         } else {
             boolean flag = false;
-            int radius = 7;
+            double thickness = Mth.nextDouble(random, 0.2D, 1.25D);
+            int radius = Mth.ceil(SHAPE_RADIUS * thickness);
             int height = Mth.nextInt(random, 8, 10);
             for (int x = -radius; x <= radius; x++) {
                 for (int z = -radius; z <= radius; z++) {
                     for (int y = 0; y <= height; y++) {
-                        BlockPos blockPos = new BlockPos(blockpos.getX() + x, blockpos.getY() - 3 + y, blockpos.getZ() + z);
+                        var blockPos = new BlockPos(blockpos.getX() + x, blockpos.getY() - 3 + y, blockpos.getZ() + z);
                         if (y > 1) {
-                            flag = this.generateBoulder(world, flag, radius, x, z, y, blockPos);
+                            flag = this.generateBoulder(world, flag, thickness, x, z, y, blockPos);
                         }
                     }
                 }
@@ -47,25 +47,27 @@ public class AridBoulderFeature extends Feature<NoneFeatureConfiguration> {
         }
     }
 
-    private boolean generateBoulder(WorldGenLevel world, boolean flag, int radius, int x, int z, int y, BlockPos blockPos) {
-        if (y * (x * x) + ((y * y) / 4) + y * (z * z) <= radius * radius) {
+    private boolean generateBoulder(WorldGenLevel world, boolean flag, double thickness, int x, int z, int y, BlockPos blockPos) {
+        double scaledX = x / thickness;
+        double scaledZ = z / thickness;
+        if (y * (scaledX * scaledX + scaledZ * scaledZ) + ((y * y) / 4) <= SHAPE_RADIUS * SHAPE_RADIUS) {
             if (world.isStateAtPosition(blockPos.below(), (state) -> DripstoneUtils.isEmptyOrWater(state) || state.is(DDBlocks.DRY_SPROUTS.get()))) {
                 if (blockPos.below().getY() < world.getMinBuildHeight()) {
                     return false;
                 }
-                return this.generateBoulder(world, flag, radius, x / 2, z / 2, y, blockPos.below());
+                return this.generateBoulder(world, flag, thickness, x / 2, z / 2, y, blockPos.below());
             }
 
             replaceLavaColumn(world, blockPos.below());
 
-            Predicate<BlockState> canBeReplaced = (blockState) ->
+            var canBeReplaced = (Predicate<BlockState>) (blockState) ->
                     DripstoneUtils.isEmptyOrWaterOrLava(blockState) ||
                             blockState.is(BlockTags.BASE_STONE_OVERWORLD) ||
                             blockState.is(DDBlocks.DRY_SPROUTS.get()) ||
                             blockState.is(Blocks.GLOW_LICHEN);
 
             if (canBeReplaced.test(world.getBlockState(blockPos))) {
-                Block block = y % 4 == 0 ? DDBlocks.ARIDROCK.get() : Blocks.PACKED_MUD;
+                var block = y % 4 == 0 ? DDBlocks.ARIDROCK.get() : Blocks.PACKED_MUD;
                 world.setBlock(blockPos, block.defaultBlockState(), 2);
                 flag = true;
             }

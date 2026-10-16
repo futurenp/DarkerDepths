@@ -29,6 +29,8 @@ public class DDFeatures {
     public static final DeferredHolder<Feature<?>, LavaVegetationPatchFeature> LAVA_VEGETATION_PATCH_FEATURE = FEATURES.register("lava_vegetation_patch", () -> new LavaVegetationPatchFeature(VegetationPatchConfiguration.CODEC));
     public static final DeferredHolder<Feature<?>, CorrespondentLayersFeature> CORRESPONDENT_LAYER = FEATURES.register("correspondent_layer", () -> new CorrespondentLayersFeature(CorrespondentLayersConfig.CODEC));
     public static final DeferredHolder<Feature<?>, AridBoulderFeature> ARID_BOULDER = FEATURES.register("arid_boulder", () -> new AridBoulderFeature(NoneFeatureConfiguration.CODEC));
+    public static final DeferredHolder<Feature<?>, PointedAridrockFeature> POINTED_ARIDROCK = FEATURES.register("pointed_aridrock", () -> new PointedAridrockFeature(PointedAridrockConfig.CODEC));
+    public static final DeferredHolder<Feature<?>, PointedAridrockCeilingFeature> POINTED_ARIDROCK_CEILING = FEATURES.register("pointed_aridrock_ceiling", () -> new PointedAridrockCeilingFeature(PointedAridrockCeilingConfig.CODEC));
     public static final DeferredHolder<Feature<?>, CliffPlateuFeature> CLIFF_PLATEU = FEATURES.register("cliff_plateu", () -> new CliffPlateuFeature(CliffPlateuConfig.CODEC));
     public static final DeferredHolder<Feature<?>, CatacombsLavaLiningFeature> CATACOMBS_LAVA_LINING = FEATURES.register("catacombs_lava_lining", () -> new CatacombsLavaLiningFeature(NoneFeatureConfiguration.CODEC));
     public static final DeferredHolder<Feature<?>, LimestoneStripeFeature> DUSKROCK_STRIPE = FEATURES.register("limestone_stripe", () -> new LimestoneStripeFeature(NoneFeatureConfiguration.CODEC));

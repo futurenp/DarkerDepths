@@ -200,6 +200,8 @@ public class DDPlacedFeatures {
                 BiomeFilter.biome()
         );
 
+        registerPointedAridrock(context);
+
         PlacementUtils.register(context, ARID_BOULDER, lookup.getOrThrow(DDResourceKeys.ConfiguredFeatures.ARID_BOULDER),
                 CountPlacement.of(UniformInt.of(192, 256)),
                 InSquarePlacement.spread(),
@@ -261,6 +263,28 @@ public class DDPlacedFeatures {
                         Blocks.TUFF),
                         BlockPredicate.ONLY_IN_AIR_PREDICATE, 12),
                 RandomOffsetPlacement.vertical(ConstantInt.of(-1)),
+                BiomeFilter.biome());
+    }
+
+    private static void registerPointedAridrock(BootstrapContext<PlacedFeature> context) {
+        var lookup = context.lookup(Registries.CONFIGURED_FEATURE);
+        PlacementUtils.register(context, POINTED_ARIDROCK, lookup.getOrThrow(DDResourceKeys.ConfiguredFeatures.POINTED_ARIDROCK),
+                CountPlacement.of(144),
+                InSquarePlacement.spread(),
+                PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
+                EnvironmentScanPlacement.scanningFor(Direction.DOWN,
+                        BlockPredicate.allOf(BlockPredicate.matchesTag(BlockTags.AIR),
+                                BlockPredicate.solid(new BlockPos(0, -1, 0))),
+                        BlockPredicate.matchesTag(BlockTags.AIR), 32),
+                BiomeFilter.biome());
+        PlacementUtils.register(context, POINTED_ARIDROCK_CEILING, lookup.getOrThrow(DDResourceKeys.ConfiguredFeatures.POINTED_ARIDROCK_CEILING),
+                CountPlacement.of(36),
+                InSquarePlacement.spread(),
+                PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
+                EnvironmentScanPlacement.scanningFor(Direction.UP,
+                        BlockPredicate.allOf(BlockPredicate.matchesTag(BlockTags.AIR),
+                                BlockPredicate.solid(new BlockPos(0, 1, 0))),
+                        BlockPredicate.matchesTag(BlockTags.AIR), 32),
                 BiomeFilter.biome());
     }
 }

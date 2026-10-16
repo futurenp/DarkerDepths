@@ -129,6 +129,8 @@ public class DDBlocks {
             () -> new PorousBlock(blockProperties(2.4f, 3.0f, SoundType.STEM, true).randomTicks().lightLevel(value -> 6)));
     public static final DeferredBlock<RotatedPillarBlock> ARIDROCK = registerBlock("aridrock",
             () -> new RotatedPillarBlock(ARIDROCK_PROPERTIES));
+    public static final DeferredBlock<PointedAridrockBlock> POINTED_ARIDROCK = registerBlock("pointed_aridrock",
+            () -> new PointedAridrockBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.POINTED_DRIPSTONE).mapColor(MapColor.SAND)));
     public static final DeferredBlock<StairBlock> ARIDROCK_STAIRS = registerBlock("aridrock_stairs",
             () -> new StairBlock(ARIDROCK.get().defaultBlockState(), ARIDROCK_PROPERTIES));
     public static final DeferredBlock<SlabBlock> ARIDROCK_SLAB = registerBlock("aridrock_slab",

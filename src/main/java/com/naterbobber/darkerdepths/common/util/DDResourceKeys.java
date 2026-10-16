@@ -85,6 +85,8 @@ public class DDResourceKeys {
         public static final ResourceKey<ConfiguredFeature<?, ?>> ARID_SURFACE = createKey("arid_surface");
         public static final ResourceKey<ConfiguredFeature<?, ?>> GRIME_SURFACE = createKey("grime_surface");
         public static final ResourceKey<ConfiguredFeature<?, ?>> ARID_BOULDER = createKey("arid_boulder");
+        public static final ResourceKey<ConfiguredFeature<?, ?>> POINTED_ARIDROCK = createKey("pointed_aridrock");
+        public static final ResourceKey<ConfiguredFeature<?, ?>> POINTED_ARIDROCK_CEILING = createKey("pointed_aridrock_ceiling");
         public static final ResourceKey<ConfiguredFeature<?, ?>> CATACOMBS_LAVA_LINING = createKey("catacombs_lava_lining");
         public static final ResourceKey<ConfiguredFeature<?, ?>> DUSKROCK_STRIPE = createKey("duskrock_stripe");
         public static final ResourceKey<ConfiguredFeature<?, ?>> GLIMMERING_VINES_WITH_BASE = createKey("glimmering_vines_with_base");
@@ -123,6 +125,8 @@ public class DDResourceKeys {
         public static final ResourceKey<PlacedFeature> ARID_VEGETATION = createKey("arid_vegetation");
         public static final ResourceKey<PlacedFeature> DARKSLATE_SURFACE = createKey("darkslate_surface");
         public static final ResourceKey<PlacedFeature> ARID_BOULDER = createKey("arid_boulder");
+        public static final ResourceKey<PlacedFeature> POINTED_ARIDROCK = createKey("pointed_aridrock");
+        public static final ResourceKey<PlacedFeature> POINTED_ARIDROCK_CEILING = createKey("pointed_aridrock_ceiling");
         public static final ResourceKey<PlacedFeature> CATACOMBS_LAVA_LINING = createKey("catacombs_lava_lining");
         public static final ResourceKey<PlacedFeature> DUSKROCK_STRIPE = createKey("duskrock_stripe");
         public static final ResourceKey<PlacedFeature> GLIMMERING_VINES_WITH_BASE = createKey("glimmering_vines_with_base");

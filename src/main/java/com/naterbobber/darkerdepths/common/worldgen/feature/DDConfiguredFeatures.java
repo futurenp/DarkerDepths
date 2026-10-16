@@ -71,6 +71,32 @@ public class DDConfiguredFeatures {
         FeatureUtils.register(context, ARID_BOULDER, DDFeatures.ARID_BOULDER.get(), FeatureConfiguration.NONE);
         FeatureUtils.register(context, CATACOMBS_LAVA_LINING, DDFeatures.CATACOMBS_LAVA_LINING.get(), FeatureConfiguration.NONE);
         FeatureUtils.register(context, DUSKROCK_STRIPE, DDFeatures.DUSKROCK_STRIPE.get(), FeatureConfiguration.NONE);
+        FeatureUtils.register(context, POINTED_ARIDROCK, DDFeatures.POINTED_ARIDROCK.get(), new PointedAridrockConfig(
+                HolderSet.direct(DDBlocks.ARIDROCK.getDelegate()),
+                new WeightedListInt(SimpleWeightedRandomList.<IntProvider>builder()
+                        .add(ConstantInt.of(1), 10)
+                        .add(ConstantInt.of(2), 30)
+                        .add(ConstantInt.of(3), 30)
+                        .add(ConstantInt.of(4), 20)
+                        .add(ConstantInt.of(5), 10)
+                        .build()
+                )
+        ));
+        FeatureUtils.register(context, POINTED_ARIDROCK_CEILING, DDFeatures.POINTED_ARIDROCK_CEILING.get(), new PointedAridrockCeilingConfig(
+                context.lookup(Registries.BLOCK).getOrThrow(BlockTags.BASE_STONE_OVERWORLD),
+                new WeightedListInt(SimpleWeightedRandomList.<IntProvider>builder()
+                        .add(ConstantInt.of(1), 10)
+                        .add(ConstantInt.of(2), 30)
+                        .add(ConstantInt.of(3), 25)
+                        .add(ConstantInt.of(4), 10)
+                        .add(ConstantInt.of(5), 10)
+                        .build()
+                ),
+                UniformInt.of(3, 5),
+                UniformInt.of(1, 2),
+                4,
+                0.15F
+        ));
         FeatureUtils.register(context, MOLTEN_SPRING, Feature.SPRING, new SpringConfiguration(
                 Fluids.LAVA.defaultFluidState(),
                 false, 4,
@@ -390,4 +416,5 @@ public class DDConfiguredFeatures {
                 true)
         );
     }
+
 }

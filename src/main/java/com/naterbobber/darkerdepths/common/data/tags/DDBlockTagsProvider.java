@@ -47,6 +47,7 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
         );
 
         this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(
+                DDBlocks.POINTED_ARIDROCK.get(),
                 DDBlocks.CRYSTAL_HUSK.get(),
                 DDBlocks.LIVING_CRYSTAL.get(),
                 DDBlocks.AMBER_BLOCK.get(),
