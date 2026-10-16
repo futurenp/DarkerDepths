@@ -42,6 +42,9 @@ public class DDBiomeTagsProvider extends BiomeTagsProvider {
         this.tag(DDTags.Biomes.HAS_ROPE_MINE_DESERT).add(Biomes.DESERT);
 
         this.tag(BiomeTags.HAS_MINESHAFT).addOptional(DDResourceKeys.Biomes.GLOWSHROOM_FOREST.location());
+        this.tag(BiomeTags.MINESHAFT_BLOCKING)
+                .addOptional(DDResourceKeys.Biomes.MOLTEN_CAVERN.location())
+                .addOptional(DDResourceKeys.Biomes.SANDY_CATACOMBS.location());
 
         this.tag(DDTags.Biomes.HAS_PETRIFIED_MINESHAFT).addOptional(DDResourceKeys.Biomes.MOLTEN_CAVERN.location());
         this.tag(DDTags.Biomes.HAS_PETRIFIED_MINESHAFT).addOptional(DDResourceKeys.Biomes.SANDY_CATACOMBS.location());

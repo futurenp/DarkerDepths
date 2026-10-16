@@ -1,11 +1,10 @@
 package com.naterbobber.darkerdepths.common.worldgen.structures;
 
+import com.naterbobber.darkerdepths.common.init.DDStructurePieceTypes;
+import com.naterbobber.darkerdepths.common.util.DDTags;
 import com.google.common.collect.Lists;
 import com.mojang.logging.LogUtils;
-import com.mojang.serialization.DataResult;
 import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
 import javax.annotation.Nullable;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -103,7 +102,7 @@ public class DDMineshaftPieces {
         private final int numSections;
 
         public MineShaftCorridor(CompoundTag tag) {
-            super(StructurePieceType.MINE_SHAFT_CORRIDOR, tag);
+            super(DDStructurePieceTypes.PETRIFIED_MINESHAFT_CORRIDOR.get(), tag);
             this.hasRails = tag.getBoolean("hr");
             this.spiderCorridor = tag.getBoolean("sc");
             this.hasPlacedSpider = tag.getBoolean("hps");
@@ -119,7 +118,7 @@ public class DDMineshaftPieces {
         }
 
         public MineShaftCorridor(int genDepth, RandomSource random, BoundingBox boundingBox, Direction orientation, DDMineshaftStructure.Type type) {
-            super(StructurePieceType.MINE_SHAFT_CORRIDOR, genDepth, type, boundingBox);
+            super(DDStructurePieceTypes.PETRIFIED_MINESHAFT_CORRIDOR.get(), genDepth, type, boundingBox);
             this.setOrientation(orientation);
             this.hasRails = random.nextInt(3) == 0;
             this.spiderCorridor = !this.hasRails && random.nextInt(23) == 0;
@@ -447,7 +446,7 @@ public class DDMineshaftPieces {
         private final boolean isTwoFloored;
 
         public MineShaftCrossing(CompoundTag tag) {
-            super(StructurePieceType.MINE_SHAFT_CROSSING, tag);
+            super(DDStructurePieceTypes.PETRIFIED_MINESHAFT_CROSSING.get(), tag);
             this.isTwoFloored = tag.getBoolean("tf");
             this.direction = Direction.from2DDataValue(tag.getInt("D"));
         }
@@ -459,7 +458,7 @@ public class DDMineshaftPieces {
         }
 
         public MineShaftCrossing(int genDepth, BoundingBox boundingBox, @Nullable Direction direction, DDMineshaftStructure.Type type) {
-            super(StructurePieceType.MINE_SHAFT_CROSSING, genDepth, type, boundingBox);
+            super(DDStructurePieceTypes.PETRIFIED_MINESHAFT_CROSSING.get(), genDepth, type, boundingBox);
             this.direction = direction;
             this.isTwoFloored = boundingBox.getYSpan() > 3;
         }
@@ -608,7 +607,8 @@ public class DDMineshaftPieces {
             int i1 = Math.min(this.boundingBox.maxY() + 1, boundingBox.maxY());
             int j1 = Math.min(this.boundingBox.maxZ() + 1, boundingBox.maxZ());
             BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos((i + l) / 2, (j + i1) / 2, (k + j1) / 2);
-            if (level.getBiome(blockpos$mutableblockpos).is(BiomeTags.MINESHAFT_BLOCKING)) {
+            var biome = level.getBiome(blockpos$mutableblockpos);
+            if (biome.is(BiomeTags.MINESHAFT_BLOCKING) && !biome.is(DDTags.Biomes.HAS_PETRIFIED_MINESHAFT)) {
                 return true;
             } else {
                 for(int k1 = i; k1 <= l; ++k1) {
@@ -667,18 +667,15 @@ public class DDMineshaftPieces {
         private final List<BoundingBox> childEntranceBoxes = Lists.newLinkedList();
 
         public MineShaftRoom(int genDepth, RandomSource random, int x, int z, DDMineshaftStructure.Type type) {
-            super(StructurePieceType.MINE_SHAFT_ROOM, genDepth, type, new BoundingBox(x, 50, z, x + 7 + random.nextInt(6), 54 + random.nextInt(6), z + 7 + random.nextInt(6)));
+            super(DDStructurePieceTypes.PETRIFIED_MINESHAFT_ROOM.get(), genDepth, type, new BoundingBox(x, 50, z, x + 7 + random.nextInt(6), 54 + random.nextInt(6), z + 7 + random.nextInt(6)));
             this.type = type;
         }
 
         public MineShaftRoom(CompoundTag tag) {
-            super(StructurePieceType.MINE_SHAFT_ROOM, tag);
-            DataResult var10000 = BoundingBox.CODEC.listOf().parse(NbtOps.INSTANCE, tag.getList("Entrances", 11));
-            Logger var10001 = DDMineshaftPieces.LOGGER;
-            Objects.requireNonNull(var10001);
-            Optional var2 = var10000.resultOrPartial();
-            List var3 = this.childEntranceBoxes;
-            Objects.requireNonNull(var3);
+            super(DDStructurePieceTypes.PETRIFIED_MINESHAFT_ROOM.get(), tag);
+            BoundingBox.CODEC.listOf().parse(NbtOps.INSTANCE, tag.getList("Entrances", Tag.TAG_INT_ARRAY))
+                    .resultOrPartial(LOGGER::error)
+                    .ifPresent(this.childEntranceBoxes::addAll);
         }
 
         public void addChildren(StructurePiece piece, StructurePieceAccessor pieces, RandomSource random) {
@@ -767,21 +764,20 @@ public class DDMineshaftPieces {
 
         protected void addAdditionalSaveData(StructurePieceSerializationContext context, CompoundTag tag) {
             super.addAdditionalSaveData(context, tag);
-            DataResult var10000 = BoundingBox.CODEC.listOf().encodeStart(NbtOps.INSTANCE, this.childEntranceBoxes);
-            Logger var10001 = DDMineshaftPieces.LOGGER;
-            Objects.requireNonNull(var10001);
-            var10000.resultOrPartial().ifPresent((p_227930_) -> tag.put("Entrances", (Tag) p_227930_));
+            BoundingBox.CODEC.listOf().encodeStart(NbtOps.INSTANCE, this.childEntranceBoxes)
+                    .resultOrPartial(LOGGER::error)
+                    .ifPresent(value -> tag.put("Entrances", value));
         }
     }
 
     public static class MineShaftStairs extends MineShaftPiece {
         public MineShaftStairs(int genDepth, BoundingBox boundingBox, Direction orientation, DDMineshaftStructure.Type type) {
-            super(StructurePieceType.MINE_SHAFT_STAIRS, genDepth, type, boundingBox);
+            super(DDStructurePieceTypes.PETRIFIED_MINESHAFT_STAIRS.get(), genDepth, type, boundingBox);
             this.setOrientation(orientation);
         }
 
         public MineShaftStairs(CompoundTag tag) {
-            super(StructurePieceType.MINE_SHAFT_STAIRS, tag);
+            super(DDStructurePieceTypes.PETRIFIED_MINESHAFT_STAIRS.get(), tag);
         }
 
         @Nullable
