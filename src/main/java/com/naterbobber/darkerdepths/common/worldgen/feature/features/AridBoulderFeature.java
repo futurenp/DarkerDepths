@@ -30,9 +30,9 @@ public class AridBoulderFeature extends Feature<NoneFeatureConfiguration> {
             return false;
         } else {
             boolean flag = false;
-            double thickness = Mth.nextDouble(random, 0.2D, 1.25D);
+            double thickness = Mth.nextDouble(random, 0.3D, 1D);
             int radius = Mth.ceil(SHAPE_RADIUS * thickness);
-            int height = Mth.nextInt(random, 8, 10);
+            int height = Mth.nextInt(random, 7, 14);
             for (int x = -radius; x <= radius; x++) {
                 for (int z = -radius; z <= radius; z++) {
                     for (int y = 0; y <= height; y++) {
@@ -67,7 +67,7 @@ public class AridBoulderFeature extends Feature<NoneFeatureConfiguration> {
                             blockState.is(Blocks.GLOW_LICHEN);
 
             if (canBeReplaced.test(world.getBlockState(blockPos))) {
-                var block = y % 4 == 0 ? DDBlocks.ARIDROCK.get() : Blocks.PACKED_MUD;
+                var block = y % 4 == 0 ? DDBlocks.ARIDROCK.get() : DDBlocks.DEHYDRATED_DIRT.get();
                 world.setBlock(blockPos, block.defaultBlockState(), 2);
                 flag = true;
             }

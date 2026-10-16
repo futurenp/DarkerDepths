@@ -114,7 +114,16 @@ public class DDBiomeModifiers {
                         GenerationStep.Decoration.RAW_GENERATION)
         );
 
-        registerPointedAridrock(context);
+        context.register(ADD_SANDY_CATACOMBS_UNDERGROUND_DECORATION, new BiomeModifiers.AddFeaturesBiomeModifier(
+                getBiome(context, SANDY_CATACOMBS),
+                getPlacedFeature(
+                        context,
+                        CATACOMBS_LAVA_LINING,
+                        POINTED_ARIDROCK,
+                        POINTED_ARIDROCK_CEILING
+                ),
+                GenerationStep.Decoration.UNDERGROUND_DECORATION)
+        );
     }
 
     private static void registerGlowshroomForest(BootstrapContext<BiomeModifier> context) {
@@ -170,16 +179,4 @@ public class DDBiomeModifiers {
         return HolderSet.direct(bootstapContext.lookup(Registries.BIOME).getOrThrow(biome));
     }
 
-    private static void registerPointedAridrock(BootstrapContext<BiomeModifier> context) {
-        context.register(ADD_SANDY_CATACOMBS_UNDERGROUND_DECORATION, new BiomeModifiers.AddFeaturesBiomeModifier(
-                        getBiome(context, SANDY_CATACOMBS),
-                        getPlacedFeature(
-                                context,
-                                CATACOMBS_LAVA_LINING,
-                                POINTED_ARIDROCK,
-                                POINTED_ARIDROCK_CEILING
-                        ),
-                        GenerationStep.Decoration.UNDERGROUND_DECORATION)
-        );
-    }
 }

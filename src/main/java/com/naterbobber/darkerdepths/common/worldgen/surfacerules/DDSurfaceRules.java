@@ -15,7 +15,7 @@ public class DDSurfaceRules {
     private static final SurfaceRules.RuleSource ARIDROCK =
             SurfaceRules.state(DDBlocks.ARIDROCK.get().defaultBlockState());
     private static final SurfaceRules.RuleSource PACKED_MUD =
-            SurfaceRules.state(Blocks.PACKED_MUD.defaultBlockState());
+            SurfaceRules.state(DDBlocks.DEHYDRATED_DIRT.get().defaultBlockState());
     private static final SurfaceRules.RuleSource MAGMA =
             SurfaceRules.state(Blocks.MAGMA_BLOCK.defaultBlockState());
     private static final SurfaceRules.RuleSource GRIMESTONE =

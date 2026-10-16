@@ -31,7 +31,7 @@
         }
       ]
     },
-    "pointed_chance": 0.15,
+    "pointed_chance": 0.09,
     "radius": {
       "type": "minecraft:uniform",
       "max_inclusive": 5,

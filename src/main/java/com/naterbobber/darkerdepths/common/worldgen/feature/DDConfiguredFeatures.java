@@ -74,7 +74,7 @@ public class DDConfiguredFeatures {
         FeatureUtils.register(context, POINTED_ARIDROCK, DDFeatures.POINTED_ARIDROCK.get(), new PointedAridrockConfig(
                 HolderSet.direct(DDBlocks.ARIDROCK.getDelegate()),
                 new WeightedListInt(SimpleWeightedRandomList.<IntProvider>builder()
-                        .add(ConstantInt.of(1), 10)
+                        .add(ConstantInt.of(1), 30)
                         .add(ConstantInt.of(2), 30)
                         .add(ConstantInt.of(3), 30)
                         .add(ConstantInt.of(4), 20)
@@ -95,7 +95,7 @@ public class DDConfiguredFeatures {
                 UniformInt.of(3, 5),
                 UniformInt.of(1, 2),
                 4,
-                0.15F
+                0.09F
         ));
         FeatureUtils.register(context, MOLTEN_SPRING, Feature.SPRING, new SpringConfiguration(
                 Fluids.LAVA.defaultFluidState(),
@@ -208,9 +208,9 @@ public class DDConfiguredFeatures {
 
         ));
 
-        FeatureUtils.register(context, SHORT_PETRIFIED_BRANCH, DDFeatures.PETRIFIED_BRANCH.get(), new PetrifiedBranchConfig(4, 8));
+        FeatureUtils.register(context, SHORT_PETRIFIED_BRANCH, DDFeatures.PETRIFIED_BRANCH.get(), new PetrifiedBranchConfig(3, 5, false));
 
-        FeatureUtils.register(context, LONG_PETRIFIED_BRANCH, DDFeatures.PETRIFIED_BRANCH.get(), new PetrifiedBranchConfig(8, 16));
+        FeatureUtils.register(context, LONG_PETRIFIED_BRANCH, DDFeatures.PETRIFIED_BRANCH.get(), new PetrifiedBranchConfig(8, 16, true));
 
         FeatureUtils.register(context, PETRIFIED_BRANCH, Feature.RANDOM_BOOLEAN_SELECTOR, new RandomBooleanFeatureConfiguration(
                 PlacementUtils.inlinePlaced(lookup.getOrThrow(SHORT_PETRIFIED_BRANCH)),
