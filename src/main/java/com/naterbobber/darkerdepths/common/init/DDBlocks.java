@@ -165,8 +165,8 @@ public class DDBlocks {
             () -> new PointedAridrockBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.POINTED_DRIPSTONE).mapColor(MapColor.SAND)));
     public static final DeferredBlock<Block> SKULL_WALL = registerBlock("skull_wall",
             () -> new Block(ARIDROCK_BRICKS_PROPERTIES));
-    public static final DeferredBlock<DuskrockBlock> DUSKROCK = registerBlock("duskrock",
-            () -> new DuskrockBlock(DUSKROCK_PROPERTIES));
+    public static final DeferredBlock<Block> DUSKROCK = registerBlock("duskrock",
+            () -> new Block(DUSKROCK_PROPERTIES));
     public static final DeferredBlock<StairBlock> DUSKROCK_STAIRS = registerBlock("duskrock_stairs",
             () -> new StairBlock(DUSKROCK.get().defaultBlockState(), DUSKROCK_PROPERTIES));
     public static final DeferredBlock<SlabBlock> DUSKROCK_SLAB = registerBlock("duskrock_slab",
@@ -199,7 +199,7 @@ public class DDBlocks {
             () -> new Block(DUSKROCK_BRICKS_PROPERTIES));
     public static final DeferredBlock<ConnectedRotatablePillarBlock> DUSKROCK_PILLAR = registerBlock("duskrock_pillar",
             () -> new ConnectedRotatablePillarBlock(DUSKROCK_BRICKS_PROPERTIES));
-    public static final DeferredBlock<Block> DEHYDRATED_DIRT = registerBlock("dehydrated_dirt",
+    public static final DeferredBlock<Block> DRY_DIRT = registerBlock("dry_dirt",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.DIRT)));
     public static final DeferredBlock<VoidSoulJarBlock> VOID_SOUL_JAR = registerNoTabBlock("void_soul_jar",
             () -> new VoidSoulJarBlock(BlockBehaviour.Properties.of().strength(0.8f).sound(SoundType.GLASS).lightLevel(value -> 5)));

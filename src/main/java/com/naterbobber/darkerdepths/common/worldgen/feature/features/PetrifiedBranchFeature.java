@@ -40,9 +40,11 @@ public class PetrifiedBranchFeature extends Feature<PetrifiedBranchConfig> {
         if (!config.large()) {
             length = Math.min(length, 5);
         }
+
         if (length == 0) {
             return false;
         }
+
         var shape = new LinkedHashMap<BlockPos, BlockState>();
         var facing = Direction.Plane.HORIZONTAL.getRandomDirection(random);
         if (config.large()) {
@@ -147,11 +149,12 @@ public class PetrifiedBranchFeature extends Feature<PetrifiedBranchConfig> {
                     return false;
                 }
                 int index = tops.size();
-                tops.add(top);
-                lengths[index] = Math.min(Math.max(2, length - random.nextInt(2)), top.getY() - origin.getY() + 5);
-                if (lengths[index] < 2) {
+                int maxLength = Math.min(5, top.getY() - origin.getY() + 5);
+                if (maxLength < 2) {
                     return false;
                 }
+                tops.add(top);
+                lengths[index] = Math.clamp(length - random.nextInt(2), 2, maxLength);
             }
         }
 

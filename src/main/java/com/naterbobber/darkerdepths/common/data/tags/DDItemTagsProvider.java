@@ -9,6 +9,7 @@ import com.naterbobber.darkerdepths.common.util.DDTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.Tags;
@@ -56,6 +57,7 @@ public class DDItemTagsProvider extends ItemTagsProvider {
         this.tag(Tags.Items.INGOTS).add(DDItems.FORSAKEN_BRONZE_INGOT.get());
 
         this.copy(Tags.Blocks.STORAGE_BLOCKS, Tags.Items.STORAGE_BLOCKS);
+        this.copy(BlockTags.DIRT, ItemTags.DIRT);
 
         DDBlockSets.WOOD_BLOCK_SETS.forEach(this::tagWoodSet);
     }

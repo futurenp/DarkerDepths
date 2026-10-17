@@ -50,7 +50,7 @@ public class AridBoulderFeature extends Feature<NoneFeatureConfiguration> {
     private boolean generateBoulder(WorldGenLevel world, boolean flag, double thickness, int x, int z, int y, BlockPos blockPos) {
         double scaledX = x / thickness;
         double scaledZ = z / thickness;
-        if (y * (scaledX * scaledX + scaledZ * scaledZ) + ((y * y) / 4) <= SHAPE_RADIUS * SHAPE_RADIUS) {
+        if (y * (scaledX * scaledX + scaledZ * scaledZ) + ((double) (y * y) / 4) <= SHAPE_RADIUS * SHAPE_RADIUS) {
             if (world.isStateAtPosition(blockPos.below(), (state) -> DripstoneUtils.isEmptyOrWater(state) || state.is(DDBlocks.DRY_SPROUTS.get()))) {
                 if (blockPos.below().getY() < world.getMinBuildHeight()) {
                     return false;
@@ -67,7 +67,7 @@ public class AridBoulderFeature extends Feature<NoneFeatureConfiguration> {
                             blockState.is(Blocks.GLOW_LICHEN);
 
             if (canBeReplaced.test(world.getBlockState(blockPos))) {
-                var block = y % 4 == 0 ? DDBlocks.ARIDROCK.get() : DDBlocks.DEHYDRATED_DIRT.get();
+                var block = y % 4 == 0 ? DDBlocks.ARIDROCK.get() : DDBlocks.DRY_DIRT.get();
                 world.setBlock(blockPos, block.defaultBlockState(), 2);
                 flag = true;
             }

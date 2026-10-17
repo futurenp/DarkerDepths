@@ -148,7 +148,7 @@ public class DDConfiguredFeatures {
                 HolderSet.direct(
                         DDBlocks.ARIDROCK.getDelegate(),
                         DDBlocks.DUSKROCK.getDelegate(),
-                        Blocks.PACKED_MUD.builtInRegistryHolder()),
+                        DDBlocks.DRY_DIRT.getDelegate()),
                 15,
                 4,
                 3,

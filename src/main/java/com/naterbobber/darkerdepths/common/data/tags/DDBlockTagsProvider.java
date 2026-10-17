@@ -70,7 +70,8 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
 
         this.tag(BlockTags.MINEABLE_WITH_SHOVEL).add(
                 DDBlocks.ASH.get(),
-                DDBlocks.ASH_BLOCK.get()
+                DDBlocks.ASH_BLOCK.get(),
+                DDBlocks.DRY_DIRT.get()
         );
     }
 
@@ -127,6 +128,13 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
                 DDBlocks.DARKSLATE.get()
         );
 
+        this.tag(BlockTags.DIRT).add(DDBlocks.DRY_DIRT.get());
+        this.tag(BlockTags.CONVERTABLE_TO_MUD).add(DDBlocks.DRY_DIRT.get());
+        this.tag(BlockTags.SNIFFER_DIGGABLE_BLOCK).add(DDBlocks.DRY_DIRT.get());
+        this.tag(BlockTags.ARMADILLO_SPAWNABLE_ON).add(DDBlocks.DRY_DIRT.get());
+        this.tag(BlockTags.FOXES_SPAWNABLE_ON).add(DDBlocks.DRY_DIRT.get());
+        this.tag(BlockTags.WOLVES_SPAWNABLE_ON).add(DDBlocks.DRY_DIRT.get());
+
         this.tag(BlockTags.DEEPSLATE_ORE_REPLACEABLES).add(
                 DDBlocks.MOSSY_GRIMESTONE.get(),
                 Blocks.PACKED_MUD
@@ -142,7 +150,7 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
         this.tag(DDTags.Blocks.ARID_GROUND).add(
                 DDBlocks.ARIDROCK.get(),
                 DDBlocks.DUSKROCK.get(),
-                Blocks.PACKED_MUD
+                DDBlocks.DRY_DIRT.get()
         );
 
         this.tag(DDTags.Blocks.GRIME_GROUND).add(

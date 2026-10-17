@@ -22,7 +22,7 @@
     "valid_floor_blocks": [
       "darkerdepths:aridrock",
       "darkerdepths:duskrock",
-      "minecraft:packed_mud"
+      "darkerdepths:dry_dirt"
     ],
     "xz_radius": 4,
     "y_height": 3

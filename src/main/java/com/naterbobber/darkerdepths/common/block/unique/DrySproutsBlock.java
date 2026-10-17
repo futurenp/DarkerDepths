@@ -1,7 +1,9 @@
 package com.naterbobber.darkerdepths.common.block.unique;
 
 import com.naterbobber.darkerdepths.common.init.DDBlocks;
+import com.naterbobber.darkerdepths.common.util.DDTags;
 import net.minecraft.core.BlockPos;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -24,13 +26,7 @@ public class DrySproutsBlock extends DeadBushBlock {
 
     @Override
     protected boolean mayPlaceOn(BlockState state, BlockGetter world, BlockPos pos) {
-        return state.is(DDBlocks.ARIDROCK.get()) ||
-                state.is(DDBlocks.DUSKROCK.get()) ||
-                state.is(DDBlocks.ARID_DEEPSLATE.get()) ||
-                state.is(Blocks.MUD) ||
-                state.is(Blocks.PACKED_MUD) ||
-                state.is(net.minecraft.tags.BlockTags.DIRT) ||
-                super.mayPlaceOn(state, world, pos);
+        return state.is(DDTags.Blocks.ARID_GROUND) || state.is(BlockTags.DIRT);
     }
 
 }

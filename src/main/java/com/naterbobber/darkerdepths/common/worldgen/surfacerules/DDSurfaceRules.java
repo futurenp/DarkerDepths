@@ -14,8 +14,8 @@ public class DDSurfaceRules {
             SurfaceRules.state(DDBlocks.ARID_DEEPSLATE.get().defaultBlockState());
     private static final SurfaceRules.RuleSource ARIDROCK =
             SurfaceRules.state(DDBlocks.ARIDROCK.get().defaultBlockState());
-    private static final SurfaceRules.RuleSource PACKED_MUD =
-            SurfaceRules.state(DDBlocks.DEHYDRATED_DIRT.get().defaultBlockState());
+    private static final SurfaceRules.RuleSource DRY_DIRT =
+            SurfaceRules.state(DDBlocks.DRY_DIRT.get().defaultBlockState());
     private static final SurfaceRules.RuleSource MAGMA =
             SurfaceRules.state(Blocks.MAGMA_BLOCK.defaultBlockState());
     private static final SurfaceRules.RuleSource GRIMESTONE =
@@ -32,13 +32,13 @@ public class DDSurfaceRules {
             SurfaceRules.state(Blocks.TUFF.defaultBlockState());
 
     private static final SurfaceRules.RuleSource DUSKROCK_NOISE = SurfaceRules.ifTrue(
-            new AxisNoiseConditionSource(DDResourceKeys.Noises.DUSKROCK, -0.15, 0.15, true, true, true),
+            new AxisNoiseConditionSource(DDResourceKeys.Noises.DUSKROCK, -0.2, 0.2, true, true, true),
             SurfaceRules.sequence(
                     SurfaceRules.ifTrue(
-                            new AxisNoiseConditionSource(DDResourceKeys.Noises.DUSKROCK, -0.09, 0.09, true, true, true),
+                            new AxisNoiseConditionSource(DDResourceKeys.Noises.DUSKROCK, -0.08, 0.08, true, true, true),
                             DUSKROCK
                     ),
-                    PACKED_MUD
+                    DRY_DIRT
             )
     );
 
@@ -66,7 +66,7 @@ public class DDSurfaceRules {
                             SurfaceRules.stoneDepthCheck(3, false, 0, CaveSurface.FLOOR),
                             SurfaceRules.sequence(
                                     DUSKROCK_NOISE,
-                                    PACKED_MUD
+                                    DRY_DIRT
                             )
                     ),
 
