@@ -200,7 +200,7 @@ public class DDBlocks {
     public static final DeferredBlock<ConnectedRotatablePillarBlock> DUSKROCK_PILLAR = registerBlock("duskrock_pillar",
             () -> new ConnectedRotatablePillarBlock(DUSKROCK_BRICKS_PROPERTIES));
     public static final DeferredBlock<Block> DRY_DIRT = registerBlock("dry_dirt",
-            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.DIRT)));
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.DIRT).sound(SoundType.ROOTED_DIRT)));
     public static final DeferredBlock<VoidSoulJarBlock> VOID_SOUL_JAR = registerNoTabBlock("void_soul_jar",
             () -> new VoidSoulJarBlock(BlockBehaviour.Properties.of().strength(0.8f).sound(SoundType.GLASS).lightLevel(value -> 5)));
     public static final DeferredBlock<Block> FORSAKEN_BRONZE_BLOCK = registerBlock("forsaken_bronze_block",

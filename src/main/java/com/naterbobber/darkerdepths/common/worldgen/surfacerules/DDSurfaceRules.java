@@ -32,7 +32,7 @@ public class DDSurfaceRules {
             SurfaceRules.state(Blocks.TUFF.defaultBlockState());
 
     private static final SurfaceRules.RuleSource DUSKROCK_NOISE = SurfaceRules.ifTrue(
-            new AxisNoiseConditionSource(DDResourceKeys.Noises.DUSKROCK, -0.2, 0.2, true, true, true),
+            new AxisNoiseConditionSource(DDResourceKeys.Noises.DUSKROCK, -0.25, 0.25, true, true, true),
             SurfaceRules.sequence(
                     SurfaceRules.ifTrue(
                             new AxisNoiseConditionSource(DDResourceKeys.Noises.DUSKROCK, -0.08, 0.08, true, true, true),
@@ -66,7 +66,7 @@ public class DDSurfaceRules {
                             SurfaceRules.stoneDepthCheck(3, false, 0, CaveSurface.FLOOR),
                             SurfaceRules.sequence(
                                     DUSKROCK_NOISE,
-                                    DRY_DIRT
+                                    ARIDROCK
                             )
                     ),
 
