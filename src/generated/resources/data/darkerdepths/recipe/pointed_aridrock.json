@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "X": {
+      "item": "darkerdepths:aridrock"
+    }
+  },
+  "pattern": [
+    " X ",
+    "XXX"
+  ],
+  "result": {
+    "count": 6,
+    "id": "darkerdepths:pointed_aridrock"
+  }
+}

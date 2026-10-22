@@ -218,6 +218,13 @@ public class UniqueRecipes {
                 .pattern("#X#")
                 .pattern(" # ")
                 .unlockedBy("has_aridrock", has(DDBlocks.ARIDROCK.get())).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, DDBlocks.POINTED_ARIDROCK.get(), 6)
+                .define('X', DDBlocks.ARIDROCK.get())
+                .pattern(" X ")
+                .pattern("XXX")
+                .unlockedBy("has_aridrock", has(DDBlocks.ARIDROCK.get())).save(recipeOutput);
+
     }
 
     public static Criterion<InventoryChangeTrigger.TriggerInstance> has(MinMaxBounds.Ints count, ItemLike item) {
