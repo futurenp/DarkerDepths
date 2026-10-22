@@ -25,7 +25,7 @@ public class DDConfigBuilder {
     public final ModConfigSpec.BooleanValue USE_DEFAULTS_TERRABLENDER;
     public final ModConfigSpec.IntValue OVERWORLD_BIOME_WEIGHT_TERRABLENDER;
     public final ModConfigSpec.BooleanValue DISABLE_HEATABLE_BLOCK_BAKING;
-    public final ModConfigSpec.IntValue HEAT_BAKE_BUDGET;
+    public final ModConfigSpec.DoubleValue HEAT_BAKE_TIME_BUDGET_MS;
     public final ModConfigSpec.BooleanValue DARKER_DEPTHS_SHADERS;
 
     public DDConfigBuilder(ModConfigSpec.Builder builder) {
@@ -122,13 +122,12 @@ public class DDConfigBuilder {
 
 
         builder.push("Performance");
-        HEAT_BAKE_BUDGET = builder.comment("Blocks like Darkslate are 'baked' into generation so that all of their stages are set correctly after world generation. \n" +
-                "This budget controls how many resources are provided to bake each tick. \n" +
-                "Setting this to a high value will result in more lag when generating, but will finish baking faster. \n" +
-                "Recommended to keep this value low (< 2500) as baking is typically not a priority.\n" +
-                "A value too low will result in worse performance overall as chunks will repeatedly have to be revisited as baking has not completed.")
-                .defineInRange("heat_bake_budget",2500, 500, Integer.MAX_VALUE);
-
+        HEAT_BAKE_TIME_BUDGET_MS = builder.comment("Controls how quickly blocks like Darkslate heat up near lava in newly generated areas.",
+                        "Lower values may reduce lag while exploring, but blocks will take longer to heat up.",
+                        "Higher values make heating finish sooner, but may cause more lag.",
+                        "Measured in milliseconds. The game aims to spend no more than this amount of time on heating each update.",
+                        "Recommended: leave at 1.0 unless you notice lag or heating takes too long.")
+                .defineInRange("heat_bake_time_budget_ms", 1.0, 0.1, 20.0);
         DISABLE_HEATABLE_BLOCK_BAKING = builder.comment("Disable baking heatable blocks (not recommended!)\n" +
                 "Blocks such as Darkslate will not generate with the correct stages and will not be updated to be correct heat values upon generation if true.\n" +
                 "Baking does require additional resources, so disabling should improve world gen performance.")

@@ -2,30 +2,23 @@ package com.naterbobber.darkerdepths.common.worldgen.retrogen.processors;
 
 import com.naterbobber.darkerdepths.common.block.DDBlockStateProperties;
 import com.naterbobber.darkerdepths.common.block.generic.IHeatableBlock;
-import com.naterbobber.darkerdepths.common.config.DDConfig;
 import com.naterbobber.darkerdepths.common.util.DDTags;
 import com.naterbobber.darkerdepths.common.worldgen.retrogen.IChunkPostProcessor;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.ChunkAccess;
-import net.minecraft.world.level.chunk.LevelChunkSection;
+import net.minecraft.world.level.chunk.LevelChunk;
 
-import java.util.LinkedList;
+import java.util.HashMap;
 import java.util.Map;
-import java.util.Queue;
-import java.util.concurrent.ConcurrentHashMap;
 
 public class HeatPropagationProcessor implements IChunkPostProcessor {
+    private record Job(ChunkPos pos, HeatBakeTask task) {}
 
-    private record HeatNode(BlockPos pos, int heat) {}
-
-    private final Map<ChunkPos, Queue<HeatNode>> suspendedQueues = new ConcurrentHashMap<>();
-
-    private static final int OPS_BUDGET_PER_TICK = DDConfig.CONFIG.HEAT_BAKE_BUDGET.get();
+    private final Map<ServerLevel, Job> jobs = new HashMap<>();
 
     @Override
     public String getNbtTag() {
@@ -34,103 +27,90 @@ public class HeatPropagationProcessor implements IChunkPostProcessor {
 
     @Override
     public boolean requiresProcessing(ChunkAccess chunk) {
-        for (LevelChunkSection section : chunk.getSections()) {
-            if (section.hasOnlyAir()) continue;
-
-            if (section.getStates().maybeHas(state -> state.is(DDTags.Blocks.HEATABLE))) {
-                return true;
-            }
+        for (var section : chunk.getSections()) {
+            if (!section.hasOnlyAir() && section.getStates().maybeHas(HeatPropagationProcessor::isHeatable)) return true;
         }
         return false;
     }
 
     @Override
-    public boolean processChunk(ServerLevel level, ChunkAccess chunk) {
-        ChunkPos chunkPos = chunk.getPos();
-        ChunkAccess[][] localChunks = getLocalChunks(level, chunk);
-        Queue<HeatNode> queue = suspendedQueues.get(chunkPos);
-
-        if (queue == null) {
-            queue = buildInitialQueue(chunk);
+    public boolean processChunk(ServerLevel level, LevelChunk chunk, LevelChunk[][] localChunks, long deadline) {
+        var job = jobs.get(level);
+        if (job == null || !job.pos().equals(chunk.getPos())) {
+            job = new Job(chunk.getPos(), new HeatBakeTask(chunk.getPos().x, chunk.getPos().z,
+                    chunk.getMinBuildHeight(), chunk.getHeight()));
+            jobs.put(level, job);
         }
 
-        int opsCompletedThisTick = 0;
-        BlockPos.MutableBlockPos mutableNeighbor = new BlockPos.MutableBlockPos();
+        var pos = new BlockPos.MutableBlockPos();
+        var access = new HeatBakeTask.Access() {
+            private LevelChunk chunkAt(int x, int z) {
+                return localChunks[(x >> 4) - chunk.getPos().x + 1][(z >> 4) - chunk.getPos().z + 1];
+            }
 
-        while (!queue.isEmpty() && opsCompletedThisTick < OPS_BUDGET_PER_TICK) {
-            HeatNode node = queue.poll();
-            opsCompletedThisTick++;
+            private BlockState stateAt(int x, int y, int z) {
+                var neighbor = chunkAt(x, z);
+                return neighbor.getSection(neighbor.getSectionIndex(y)).getBlockState(x & 15, y & 15, z & 15);
+            }
 
-            int targetHeat = IHeatableBlock.calculateNewHeat(node.heat());
-            if (targetHeat <= 0) continue;
-
-            for (Direction direction : Direction.values()) {
-                mutableNeighbor.setWithOffset(node.pos(), direction);
-
-                int gridX = ((mutableNeighbor.getX() >> 4) - chunkPos.x) + 1;
-                int gridZ = ((mutableNeighbor.getZ() >> 4) - chunkPos.z) + 1;
-
-
-                if (gridX < 0 || gridX > 2 || gridZ < 0 || gridZ > 2) continue;
-
-                ChunkAccess neighborChunk = localChunks[gridX][gridZ];
-                if (neighborChunk == null) continue;
-
-
-                BlockState neighborState = neighborChunk.getBlockState(mutableNeighbor);
-
-                if (neighborState.is(DDTags.Blocks.HEATABLE) && neighborState.hasProperty(DDBlockStateProperties.HEAT_LEVEL)) {
-                    int currentHeat = neighborState.getValue(DDBlockStateProperties.HEAT_LEVEL);
-
-                    if (targetHeat > currentHeat) {
-                        setBlockFast(level, mutableNeighbor, neighborState.setValue(DDBlockStateProperties.HEAT_LEVEL, targetHeat), Block.UPDATE_CLIENTS | Block.UPDATE_KNOWN_SHAPE | Block.UPDATE_NONE);
-                        queue.add(new HeatNode(mutableNeighbor.immutable(), targetHeat));
+            @Override
+            public boolean hasSourcesInSection(int sectionY) {
+                for (var row : localChunks) {
+                    for (var neighbor : row) {
+                        var section = neighbor.getSection(sectionY - neighbor.getMinSection());
+                        if (!section.hasOnlyAir() && section.getStates().maybeHas(HeatPropagationProcessor::isSource)) return true;
                     }
                 }
+                return false;
             }
-        }
 
-        if (queue.isEmpty()) {
-            suspendedQueues.remove(chunkPos);
+            @Override
+            public int sourceHeat(int x, int y, int z) {
+                var state = stateAt(x, y, z);
+                return isSource(state) ? IHeatableBlock.determineHeat(state) : 0;
+            }
+
+            @Override
+            public boolean isHeatable(int x, int y, int z) {
+                return HeatPropagationProcessor.isHeatable(stateAt(x, y, z));
+            }
+
+            @Override
+            public void applyHeat(int x, int y, int z, int heat) {
+                var state = stateAt(x, y, z);
+                if (heat > state.getValue(DDBlockStateProperties.HEAT_LEVEL)) {
+                    pos.set(x, y, z);
+                    setBlockFast(level, chunk, pos, state.setValue(DDBlockStateProperties.HEAT_LEVEL, heat),
+                            Block.UPDATE_CLIENTS | Block.UPDATE_KNOWN_SHAPE);
+                }
+            }
+        };
+
+        if (job.task().advance(access, deadline, System::nanoTime)) {
+            jobs.remove(level);
             return true;
-        } else {
-            suspendedQueues.put(chunkPos, queue);
-            return false;
+        }
+        return false;
+    }
+
+    private static boolean isHeatable(BlockState state) {
+        return state.is(DDTags.Blocks.HEATABLE) && state.hasProperty(DDBlockStateProperties.HEAT_LEVEL);
+    }
+
+    private static boolean isSource(BlockState state) {
+        return state.is(DDTags.Blocks.HEAT_PROVIDER) || state.getFluidState().is(DDTags.Fluids.HEAT_PROVIDER);
+    }
+
+    @Override
+    public void clearSuspendedState(ServerLevel level, ChunkPos pos) {
+        var job = jobs.get(level);
+        if (job != null && Math.abs((long) job.pos().x - pos.x) <= 1 && Math.abs((long) job.pos().z - pos.z) <= 1) {
+            jobs.remove(level);
         }
     }
 
     @Override
-    public void clearSuspendedState(ChunkPos pos) {
-        suspendedQueues.remove(pos);
-    }
-
-    private Queue<HeatNode> buildInitialQueue(ChunkAccess chunk) {
-        Queue<HeatNode> queue = new LinkedList<>();
-        int startX = chunk.getPos().getMinBlockX();
-        int startZ = chunk.getPos().getMinBlockZ();
-        int minSectionIndex = chunk.getMinSection();
-
-        for (int i = 0; i < chunk.getSections().length; i++) {
-            LevelChunkSection section = chunk.getSections()[i];
-            if (section.hasOnlyAir()) continue;
-
-            boolean hasHeatProvider = section.getStates().maybeHas(state -> state.is(DDTags.Blocks.HEAT_PROVIDER));
-
-            if (hasHeatProvider) {
-                int sectionMinY = (minSectionIndex + i) * 16;
-
-                for (int x = 0; x < 16; x++) {
-                    for (int y = 0; y < 16; y++) {
-                        for (int z = 0; z < 16; z++) {
-                            BlockState currentState = section.getBlockState(x, y, z);
-                            if (currentState.is(DDTags.Blocks.HEAT_PROVIDER)) {
-                                queue.add(new HeatNode(new BlockPos(startX + x, sectionMinY + y, startZ + z), IHeatableBlock.determineHeat(currentState)));
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        return queue;
+    public void clearSuspendedState() {
+        jobs.clear();
     }
 }

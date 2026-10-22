@@ -240,12 +240,8 @@ public class DDPlacedFeatures {
                 RandomOffsetPlacement.vertical(ConstantInt.of(1)),
                 BiomeFilter.biome());
 
-        PlacementUtils.register(context, CATACOMBS_LAVA_LINING, lookup.getOrThrow(DDResourceKeys.ConfiguredFeatures.CATACOMBS_LAVA_LINING), List.of(
-                CountPlacement.of(96),
-                InSquarePlacement.spread(),
-                HeightRangePlacement.uniform(VerticalAnchor.absolute(-63), VerticalAnchor.absolute(-1)),
-                BlockPredicateFilter.forPredicate(BlockPredicate.not(BlockPredicate.matchesBlocks(Blocks.AIR))),
-                BiomeFilter.biome()));
+        PlacementUtils.register(context, CATACOMBS_LAVA_LINING,
+                lookup.getOrThrow(DDResourceKeys.ConfiguredFeatures.CATACOMBS_LAVA_LINING), List.of());
 
         PlacementUtils.register(context, DUSKROCK_STRIPE, lookup.getOrThrow(DDResourceKeys.ConfiguredFeatures.DUSKROCK_STRIPE),
                 CountPlacement.of(UniformInt.of(96, 128)),

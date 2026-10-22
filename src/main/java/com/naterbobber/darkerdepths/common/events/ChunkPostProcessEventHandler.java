@@ -8,16 +8,15 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.level.ChunkDataEvent;
 import net.neoforged.neoforge.event.level.ChunkEvent;
 import net.neoforged.neoforge.event.server.ServerAboutToStartEvent;
-import net.neoforged.neoforge.event.tick.LevelTickEvent;
+import net.neoforged.neoforge.event.server.ServerStoppedEvent;
+import net.neoforged.neoforge.event.tick.ServerTickEvent;
 
 @EventBusSubscriber(modid = DarkerDepths.MOD_ID)
 public class ChunkPostProcessEventHandler {
 
     @SubscribeEvent
     public static void onChunkLoad(ChunkDataEvent.Load event) {
-        if (event.getLevel() instanceof ServerLevel serverLevel) {
-            ChunkPostProcessManager.handleChunkLoadData(serverLevel, event.getChunk().getPos(), event.getData());
-        }
+        ChunkPostProcessManager.handleChunkLoadData(event.getChunk(), event.getData());
     }
 
     @SubscribeEvent
@@ -28,21 +27,22 @@ public class ChunkPostProcessEventHandler {
     }
 
     @SubscribeEvent
-    public static void onLevelTick(LevelTickEvent.Post event) {
-        if (!event.getLevel().isClientSide() && event.getLevel() instanceof ServerLevel serverLevel) {
-            ChunkPostProcessManager.processQueueTick(serverLevel);
-        }
+    public static void onServerTick(ServerTickEvent.Post event) {
+        ChunkPostProcessManager.processQueueTick(event.getServer());
     }
 
     @SubscribeEvent
     public static void onChunkSave(ChunkDataEvent.Save event) {
-        if (event.getLevel() instanceof ServerLevel serverLevel) {
-            ChunkPostProcessManager.handleChunkSaveData(serverLevel, event.getChunk().getPos(), event.getData());
-        }
+        ChunkPostProcessManager.handleChunkSaveData(event.getChunk(), event.getData());
     }
 
     @SubscribeEvent
     public static void onServerStart(ServerAboutToStartEvent event) {
+        ChunkPostProcessManager.clearMemory();
+    }
+
+    @SubscribeEvent
+    public static void onServerStop(ServerStoppedEvent event) {
         ChunkPostProcessManager.clearMemory();
     }
 

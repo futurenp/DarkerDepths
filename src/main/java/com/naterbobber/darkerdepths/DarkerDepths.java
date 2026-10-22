@@ -48,6 +48,7 @@ public class DarkerDepths {
         DDActivities.ACTIVITIES.register(modEventBus);
         DDMemoryModuleTypes.MEMORY_MODULE_TYPES.register(modEventBus);
         DDDataComponents.DATA_COMPONENTS.register(modEventBus);
+        DDDataAttachments.ATTACHMENTS.register(modEventBus);
         DDCriteria.TRIGGERS.register(modEventBus);
         DDWorldCarvers.WORLD_CARVERS.register(modEventBus);
     }
