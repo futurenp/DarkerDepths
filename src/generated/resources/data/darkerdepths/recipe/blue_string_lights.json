@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "D": {
+      "item": "minecraft:blue_dye"
+    },
+    "G": {
+      "item": "darkerdepths:glow_grime"
+    },
+    "S": {
+      "item": "minecraft:string"
+    }
+  },
+  "pattern": [
+    "SSS",
+    "GDG"
+  ],
+  "result": {
+    "count": 6,
+    "id": "darkerdepths:blue_string_lights"
+  }
+}

@@ -14,6 +14,8 @@ import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.item.DyeItem;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
@@ -22,6 +24,18 @@ import java.util.*;
 
 public class UniqueRecipes {
     public static void create(RecipeOutput recipeOutput) {
+        for (var lights : DDBlocks.STRING_LIGHTS) {
+            var color = DyeColor.byName(lights.getId().getPath().replace("_string_lights", ""), DyeColor.WHITE);
+            ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, lights.get(), 6)
+                    .define('S', Items.STRING)
+                    .define('G', DDItems.GLOW_GRIME.get())
+                    .define('D', DyeItem.byColor(color))
+                    .pattern("SSS")
+                    .pattern("GDG")
+                    .unlockedBy("has_glow_grime", has(DDItems.GLOW_GRIME.get()))
+                    .save(recipeOutput);
+        }
+
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.BUILDING_BLOCKS, DDBlocks.POROUS_PETRIFIED_LOG.get())
                 .define('#', DDItems.AMBER.get())
