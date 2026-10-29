@@ -7,6 +7,7 @@ import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.biome.MobSpawnSettings;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
@@ -24,6 +25,14 @@ import static com.naterbobber.darkerdepths.common.util.DDResourceKeys.PlacedFeat
 
 public class DDBiomeModifiers {
     public static void bootstrap(BootstrapContext<BiomeModifier> context) {
+        context.register(ADD_DESERT_ARID_PATCH, new BiomeModifiers.AddFeaturesBiomeModifier(
+                getBiome(context, Biomes.DESERT),
+                getPlacedFeature(context, ARID_PATCH),
+                GenerationStep.Decoration.LOCAL_MODIFICATIONS));
+        context.register(ADD_SAVANNA_ARID_PATCH, new BiomeModifiers.AddFeaturesBiomeModifier(
+                getBiome(context, Biomes.SAVANNA),
+                getPlacedFeature(context, ARID_PATCH),
+                GenerationStep.Decoration.LOCAL_MODIFICATIONS));
         registerMoltenCavern(context);
         registerSandyCatacombs(context);
         registerGlowshroomForest(context);

@@ -37,6 +37,8 @@ public class DDResourceKeys {
     }
     
     public static class BiomeModifiers {
+        public static final ResourceKey<BiomeModifier> ADD_DESERT_ARID_PATCH = createKey("add_desert_arid_patch");
+        public static final ResourceKey<BiomeModifier> ADD_SAVANNA_ARID_PATCH = createKey("add_savanna_arid_patch");
         public static final ResourceKey<BiomeModifier> ADD_MOLTEN_CAVERNS_TOP_LAYER_MODIFICATIONS = createKey("add_molten_cavern_top_layer_modifications");
         public static final ResourceKey<BiomeModifier> ADD_MOLTEN_CAVERNS_VEGETAL_FEATURES = createKey("add_molten_cavern_vegetal_features");
         public static final ResourceKey<BiomeModifier> ADD_MOLTEN_CAVERNS_RAW_GENERATION = createKey("add_molten_cavern_raw_generation");
@@ -58,6 +60,7 @@ public class DDResourceKeys {
     }
 
     public static class ConfiguredFeatures {
+        public static final ResourceKey<ConfiguredFeature<?, ?>> ARID_PATCH = createKey("arid_patch");
         public static final ResourceKey<ConfiguredFeature<?, ?>> GLOWSHROOM_PATCH = createKey("glowshroom_patch");
         public static final ResourceKey<ConfiguredFeature<?, ?>> HUGE_GLOWSHROOM = createKey("huge_glowshroom");
         public static final ResourceKey<ConfiguredFeature<?, ?>> HUGE_GLOWSHROOM_PLANTED = createKey("huge_glowshroom_planted");
@@ -105,6 +108,7 @@ public class DDResourceKeys {
     }
 
     public static class PlacedFeatures {
+        public static final ResourceKey<PlacedFeature> ARID_PATCH = createKey("arid_patch");
         public static final ResourceKey<PlacedFeature> HUGE_GLOWSHROOM = createKey("huge_glowshroom");
         public static final ResourceKey<PlacedFeature> SMUSHED_GLOWSHROOM = createKey("smushed_glowshroom");
         public static final ResourceKey<PlacedFeature> GLOWSHROOM_PATCH = createKey("glowshroom_patch");

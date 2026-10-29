@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "minecraft:desert",
+  "features": "darkerdepths:arid_patch",
+  "step": "local_modifications"
+}

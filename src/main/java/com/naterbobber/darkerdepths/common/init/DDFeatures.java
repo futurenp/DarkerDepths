@@ -17,6 +17,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 public class DDFeatures {
 
     public static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(Registries.FEATURE, DarkerDepths.MOD_ID);
+    public static final DeferredHolder<Feature<?>, AridPatchFeature> ARID_PATCH = FEATURES.register("arid_patch", () -> new AridPatchFeature(NoneFeatureConfiguration.CODEC));
 
     public static final DeferredHolder<Feature<?>, ReplaceListFeature> REPLACE_LIST = FEATURES.register("replace_list", () -> new ReplaceListFeature(ReplaceListConfig.CODEC));
     public static final DeferredHolder<Feature<?>, ReplaceListLayeredFeature> REPLACE_LIST_LAYERED = FEATURES.register("replace_list_layered", () -> new ReplaceListLayeredFeature(ReplaceListLayeredConfig.CODEC));

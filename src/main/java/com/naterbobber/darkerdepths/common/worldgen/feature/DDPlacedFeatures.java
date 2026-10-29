@@ -26,6 +26,12 @@ public class DDPlacedFeatures {
     public static void bootstrap(BootstrapContext<PlacedFeature> context) {
         HolderGetter<ConfiguredFeature<?, ?>> lookup = context.lookup(Registries.CONFIGURED_FEATURE);
 
+        PlacementUtils.register(context, ARID_PATCH, lookup.getOrThrow(DDResourceKeys.ConfiguredFeatures.ARID_PATCH),
+                RarityFilter.onAverageOnceEvery(17),
+                InSquarePlacement.spread(),
+                PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
+                BiomeFilter.biome());
+
         PlacementUtils.register(context, HUGE_GLOWSHROOM, lookup.getOrThrow(DDResourceKeys.ConfiguredFeatures.HUGE_GLOWSHROOM),
                 CountPlacement.of(UniformInt.of(12, 16)),
                 InSquarePlacement.spread(),
