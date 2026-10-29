@@ -113,6 +113,13 @@ public class UniqueRecipes {
                 .unlockedBy("has_darkslate", has(DDBlocks.DARKSLATE.get())).save(recipeOutput);
 
         ShapelessRecipeBuilder
+                .shapeless(RecipeCategory.BUILDING_BLOCKS, DDBlocks.DRY_DIRT.get(), 3)
+                .requires(Blocks.DIRT, 2)
+                .requires(Blocks.SAND)
+                .unlockedBy("has_sand", has(Blocks.SAND))
+                .save(recipeOutput);
+
+        ShapelessRecipeBuilder
                 .shapeless(RecipeCategory.MISC, DDItems.GLOW_GRIME.get())
                 .requires(DDBlocks.GLOWSHROOM.get())
                 .unlockedBy("has_glowshroom", has(DDBlocks.GLOWSHROOM.get()))
