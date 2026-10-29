@@ -67,7 +67,7 @@ public class AridBoulderFeature extends Feature<NoneFeatureConfiguration> {
                             blockState.is(Blocks.GLOW_LICHEN);
 
             if (canBeReplaced.test(world.getBlockState(blockPos))) {
-                var block = y % 4 == 0 ? DDBlocks.ARIDROCK.get() : DDBlocks.DRY_DIRT.get();
+                var block = y % 4 == 0 ? DDBlocks.ARIDROCK.get() : DDBlocks.DUSKROCK.get();
                 world.setBlock(blockPos, block.defaultBlockState(), 2);
                 flag = true;
             }
