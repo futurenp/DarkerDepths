@@ -1,0 +1,22 @@
+{
+	"textures": {
+		"0": "darkerdepths:block/void_soul_torch",
+		"particle": "darkerdepths:block/petrified_planks"
+	},
+	"elements": [
+		{
+			"from": [6.4, 7.4, 6.4],
+			"to": [9.6, 10.6, 9.6],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 7, 8]},
+			"faces": {
+				"north": {"uv": [5, 3, 7, 5], "texture": "#0"},
+				"east": {"uv": [5, 3, 7, 5], "texture": "#0"},
+				"south": {"uv": [5, 3, 7, 5], "texture": "#0"},
+				"west": {"uv": [5, 3, 7, 5], "texture": "#0"},
+				"up": {"uv": [5, 3, 7, 5], "texture": "#0"},
+				"down": {"uv": [5, 3, 7, 5], "texture": "#0"}
+			},
+			"shade": false
+		}
+	]
+}

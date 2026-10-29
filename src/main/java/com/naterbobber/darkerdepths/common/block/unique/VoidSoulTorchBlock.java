@@ -1,5 +1,9 @@
 package com.naterbobber.darkerdepths.common.block.unique;
 
+import com.naterbobber.darkerdepths.common.block.blockentities.VoidSoulTorchBlockEntity;
+import net.minecraft.world.level.block.EntityBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
@@ -14,7 +18,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 import java.util.function.Supplier;
 
-public class VoidSoulTorchBlock extends TorchBlock {
+public class VoidSoulTorchBlock extends TorchBlock implements EntityBlock {
     protected final Supplier<ParticleOptions> customParticleSupplier;
     private static final VoxelShape SHAPE = Block.box(6.0, 0.0, 6.0, 10.0, 11.0, 10.0);
 
@@ -30,9 +34,14 @@ public class VoidSoulTorchBlock extends TorchBlock {
     }
 
     @Override
+    public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+        return new VoidSoulTorchBlockEntity(pos, state);
+    }
+
+    @Override
     public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
         double x = (double)pos.getX() + 0.5D;
-        double y = (double)pos.getY() + 0.62D;
+        double y = (double)pos.getY() + 0.59D;
         double z = (double)pos.getZ() + 0.5D;
         level.addParticle(this.customParticleSupplier.get(), x, y, z, 0.0D, 0.0D, 0.0D);
     }

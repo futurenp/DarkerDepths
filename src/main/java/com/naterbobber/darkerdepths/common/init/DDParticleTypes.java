@@ -25,7 +25,6 @@ public class DDParticleTypes {
 
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> VOID_SOUL = register("void_soul");
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> VOID_SOUL_FLAME = register("void_soul_flame");
-    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> VOID_SOUL_FLAME_SMOKE = register("void_soul_flame_smoke");
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> VOID_SOUL_SMOKE = register("void_soul_smoke");
 
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> GEYSER_PASSIVE_SMOKE = register("geyser_passive_smoke");

@@ -30,6 +30,14 @@ final public class DDRenderTypes {
         return createRenderType("inverted_cube", stateBuilder);
     }
 
+    public static RenderType torchShell(ResourceLocation textureLocation) {
+        var stateBuilder = stateBuilderWithTexture(textureLocation)
+                .setShaderState(RENDERTYPE_ENTITY_CUTOUT_SHADER)
+                .setWriteMaskState(COLOR_WRITE);
+
+        return createRenderType("torch_shell", stateBuilder);
+    }
+
     public static RenderType emissiveSolid(ResourceLocation textureLocation) {
         var stateBuilder = stateBuilderWithTexture(textureLocation)
                 .setShaderState(RENDERTYPE_EYES_SHADER);

@@ -12,6 +12,8 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 public class DDBlockEntityTypes {
 
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister.create(BuiltInRegistries.BLOCK_ENTITY_TYPE, DarkerDepths.MOD_ID);
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<VoidSoulTorchBlockEntity>> VOID_SOUL_TORCH = BLOCK_ENTITIES.register("void_soul_torch",
+            () -> BlockEntityType.Builder.of(VoidSoulTorchBlockEntity::new, DDBlocks.VOID_SOUL_TORCH.get(), DDBlocks.WALL_VOID_SOUL_TORCH.get()).build(null));
 
 
 

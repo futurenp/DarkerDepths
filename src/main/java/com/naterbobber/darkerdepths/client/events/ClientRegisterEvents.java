@@ -12,7 +12,6 @@ import com.naterbobber.darkerdepths.client.particle.geyser.GeyserBurstSmokeParti
 import com.naterbobber.darkerdepths.client.particle.geyser.GeyserPassiveSmokeParticle;
 import com.naterbobber.darkerdepths.client.particle.void_soul.VoidSoulDeathParticle;
 import com.naterbobber.darkerdepths.client.particle.void_soul.VoidSoulFlameParticle;
-import com.naterbobber.darkerdepths.client.particle.void_soul.VoidSoulFlameSmokeParticle;
 import com.naterbobber.darkerdepths.client.particle.void_soul.VoidSoulParticle;
 import com.naterbobber.darkerdepths.client.render.DDRenderTypes;
 import com.naterbobber.darkerdepths.client.render.DDShaders;
@@ -56,6 +55,7 @@ public class ClientRegisterEvents {
         event.registerBlockEntityRenderer(DDBlockEntityTypes.TOMB.get(), TombBlockEntityRenderer::new);
         event.registerBlockEntityRenderer(DDBlockEntityTypes.PARANOIA_ALTAR.get(), ParanoiaAltarBlockEntityRenderer::new);
         event.registerBlockEntityRenderer(DDBlockEntityTypes.VOID_SOUL_JAR.get(), VoidSoulJarBlockEntityRenderer::new);
+        event.registerBlockEntityRenderer(DDBlockEntityTypes.VOID_SOUL_TORCH.get(), VoidSoulTorchBlockEntityRenderer::new);
     }
 
     @SubscribeEvent
@@ -68,6 +68,10 @@ public class ClientRegisterEvents {
 
     @SubscribeEvent
     public static void registerAdditionalModels(ModelEvent.RegisterAdditional event) {
+        event.register(VoidSoulTorchBlockEntityRenderer.STANDING_GLOW);
+        event.register(VoidSoulTorchBlockEntityRenderer.WALL_GLOW);
+        event.register(VoidSoulTorchBlockEntityRenderer.STANDING_SHELL);
+        event.register(VoidSoulTorchBlockEntityRenderer.WALL_SHELL);
         for (var color : Colors.BASE_16) {
             event.register(ModelResourceLocation
                     .standalone(DarkerDepths.id("block/tomb_bed_" + color)));
@@ -84,7 +88,6 @@ public class ClientRegisterEvents {
         // Void Soul
         event.registerSpriteSet(DDParticleTypes.VOID_SOUL.get(), VoidSoulParticle.Provider::new);
         event.registerSpriteSet(DDParticleTypes.VOID_SOUL_FLAME.get(), VoidSoulFlameParticle.Provider::new);
-        event.registerSpriteSet(DDParticleTypes.VOID_SOUL_FLAME_SMOKE.get(), VoidSoulFlameSmokeParticle.Provider::new);
         event.registerSpriteSet(DDParticleTypes.VOID_SOUL_SMOKE.get(), VoidSoulDeathParticle.Provider::new);
 
         // Geyser
