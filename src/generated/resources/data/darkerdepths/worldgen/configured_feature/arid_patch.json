@@ -1,4 +1,6 @@
 {
   "type": "darkerdepths:arid_patch",
-  "config": {}
+  "config": {
+    "requires_sandy_catacombs": true
+  }
 }

@@ -4,6 +4,7 @@ import com.mojang.serialization.Codec;
 import com.naterbobber.darkerdepths.common.init.DDBlocks;
 import com.naterbobber.darkerdepths.common.init.DDFeatures;
 import com.naterbobber.darkerdepths.common.util.DDResourceKeys;
+import com.naterbobber.darkerdepths.common.worldgen.feature.config.AridPatchConfig;
 import com.naterbobber.darkerdepths.common.worldgen.feature.config.PointedAridrockConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderSet;
@@ -17,18 +18,17 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
-import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import net.minecraft.world.level.levelgen.synth.SimplexNoise;
 
-public class AridPatchFeature extends Feature<NoneFeatureConfiguration> {
+public class AridPatchFeature extends Feature<AridPatchConfig> {
     private static final double PATCH_SCALE = 2.025D;
 
-    public AridPatchFeature(Codec<NoneFeatureConfiguration> codec) {
+    public AridPatchFeature(Codec<AridPatchConfig> codec) {
         super(codec);
     }
 
     @Override
-    public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> context) {
+    public boolean place(FeaturePlaceContext<AridPatchConfig> context) {
         var level = context.level();
         var origin = context.origin();
         var random = context.random();
@@ -38,7 +38,7 @@ public class AridPatchFeature extends Feature<NoneFeatureConfiguration> {
         boolean savanna = biome.is(Biomes.SAVANNA);
         if ((!desert && !savanna)
                 || !isReplaceable(level, center, desert)
-                || !hasCatacombsBelow(level, center)) {
+                || (context.config().requiresSandyCatacombs() && !hasCatacombsBelow(level, center))) {
             return false;
         }
         if (savanna && random.nextInt(4) == 0) {

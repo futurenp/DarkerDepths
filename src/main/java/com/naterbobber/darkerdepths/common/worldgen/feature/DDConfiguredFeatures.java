@@ -61,7 +61,7 @@ public class DDConfiguredFeatures {
 
 
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
-        FeatureUtils.register(context, ARID_PATCH, DDFeatures.ARID_PATCH.get(), FeatureConfiguration.NONE);
+        FeatureUtils.register(context, ARID_PATCH, DDFeatures.ARID_PATCH.get(), new AridPatchConfig(true));
         HolderGetter<ConfiguredFeature<?, ?>> lookup = context.lookup(Registries.CONFIGURED_FEATURE);
         FeatureUtils.register(context, GLOWSHROOM_PATCH, DDFeatures.RANDOM_GLOWSHROOM_PATCHES.get(), FeatureConfiguration.NONE);
         FeatureUtils.register(context, HUGE_GLOWSHROOM, DDFeatures.HUGE_GLOWSHROOM.get(), FeatureConfiguration.NONE);
