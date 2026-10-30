@@ -41,6 +41,7 @@ public class ClientRegisterEvents {
 
     @SubscribeEvent
     public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
+        event.registerBlockEntityRenderer(DDBlockEntityTypes.DEATH_ANCHOR.get(), DeathAnchorBlockEntityRenderer::new);
         event.registerBlockEntityRenderer(DDBlockEntityTypes.DD_SIGN.get(), GlowshroomSignRenderer::new);
         event.registerBlockEntityRenderer(DDBlockEntityTypes.DD_HANGING_SIGN.get(), GlowshroomHangingSignRenderer::new);
         event.registerEntityRenderer(DDEntityTypes.PETRIFIED_BOAT.get(), context -> new PetrifiedBoatRenderer(context, false));
@@ -68,6 +69,7 @@ public class ClientRegisterEvents {
 
     @SubscribeEvent
     public static void registerAdditionalModels(ModelEvent.RegisterAdditional event) {
+        event.register(DeathAnchorBlockEntityRenderer.GLOW);
         event.register(VoidSoulTorchBlockEntityRenderer.STANDING_GLOW);
         event.register(VoidSoulTorchBlockEntityRenderer.WALL_GLOW);
         event.register(VoidSoulTorchBlockEntityRenderer.STANDING_SHELL);

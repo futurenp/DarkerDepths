@@ -1,5 +1,6 @@
 package com.naterbobber.darkerdepths.common.block.unique;
 
+import com.naterbobber.darkerdepths.common.block.blockentities.DeathAnchorBlockEntity;
 import com.naterbobber.darkerdepths.common.init.DDBlocks;
 import com.naterbobber.darkerdepths.common.init.DDItems;
 import com.naterbobber.darkerdepths.common.init.DDPoiTypes;
@@ -19,6 +20,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.EntityBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -29,13 +32,18 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 import java.util.Optional;
 
-public class DeathAnchorBlock extends Block {
+public class DeathAnchorBlock extends Block implements EntityBlock {
     private static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 14.0D, 16.0D);
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
 
     public DeathAnchorBlock(Properties properties) {
         super(properties);
         this.registerDefaultState(this.stateDefinition.any().setValue(POWERED, false));
+    }
+
+    @Override
+    public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+        return new DeathAnchorBlockEntity(pos, state);
     }
 
     @Override
