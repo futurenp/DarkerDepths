@@ -126,8 +126,8 @@ public class DDConfigBuilder {
                         "Lower values may reduce lag while exploring, but blocks will take longer to heat up.",
                         "Higher values make heating finish sooner, but may cause more lag.",
                         "Measured in milliseconds. The game aims to spend no more than this amount of time on heating each update.",
-                        "Recommended: leave at 1.0 unless you notice lag or heating takes too long.")
-                .defineInRange("heat_bake_time_budget_ms", 1.0, 0.1, 20.0);
+                        "Recommended: leave at 5.0 unless you notice lag or heating takes too long.")
+                .defineInRange("heat_bake_time_budget_ms", 5.0, 0.1, 20.0);
         DISABLE_HEATABLE_BLOCK_BAKING = builder.comment("Disable baking heatable blocks (not recommended!)\n" +
                 "Blocks such as Darkslate will not generate with the correct stages and will not be updated to be correct heat values upon generation if true.\n" +
                 "Baking does require additional resources, so disabling should improve world gen performance.")

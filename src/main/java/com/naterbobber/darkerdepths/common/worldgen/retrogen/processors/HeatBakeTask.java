@@ -17,12 +17,14 @@ public final class HeatBakeTask {
 
     public interface Access {
         boolean hasSourcesInSection(int sectionY);
+        boolean selectSourceSection(int x, int y, int z);
         int sourceHeat(int x, int y, int z);
         boolean isHeatable(int x, int y, int z);
         void applyHeat(int x, int y, int z, int heat);
     }
 
-    private record HeatNode(int blockIndex, int heat) {}
+    private record HeatNode(int blockIndex, int heat) {
+    }
 
     private final int minX;
     private final int minY;
@@ -31,6 +33,7 @@ public final class HeatBakeTask {
     private final byte[] highestVisitedHeat;
     private final ArrayDeque<HeatNode> pendingHeat = new ArrayDeque<>();
     private int nextSourceIndex;
+    private int sourceRunEnd;
 
     public HeatBakeTask(int chunkX, int chunkZ, int minY, int height) {
         this.minX = chunkX * CHUNK_SIZE - BORDER;
@@ -41,6 +44,8 @@ public final class HeatBakeTask {
     }
 
     public boolean advance(Access access, long deadline, LongSupplier clock) {
+        sourceRunEnd = nextSourceIndex;
+
         while (clock.getAsLong() < deadline) {
             if (!pendingHeat.isEmpty()) {
                 propagateNextNode(access);
@@ -50,11 +55,13 @@ public final class HeatBakeTask {
                 return true;
             }
         }
+
         return nextSourceIndex == highestVisitedHeat.length && pendingHeat.isEmpty();
     }
 
     private void propagateNextNode(Access access) {
         var node = pendingHeat.removeFirst();
+
         if (highestVisitedHeat[node.blockIndex()] == node.heat()) {
             spreadHeat(access, node.blockIndex(), node.heat());
         }
@@ -70,9 +77,21 @@ public final class HeatBakeTask {
             return;
         }
 
-        int sourceIndex = nextSourceIndex++;
+        int sourceIndex = nextSourceIndex;
         int worldX = localX(sourceIndex) + minX;
         int worldZ = localZ(sourceIndex) + minZ;
+
+        if (sourceIndex >= sourceRunEnd) {
+            int runLength = Math.min(CHUNK_SIZE - (worldX & 15), SCAN_WIDTH - localX(sourceIndex));
+            sourceRunEnd = sourceIndex + runLength;
+
+            if (!access.selectSourceSection(worldX, worldY, worldZ)) {
+                nextSourceIndex = sourceRunEnd;
+                return;
+            }
+        }
+
+        nextSourceIndex++;
         int sourceHeat = access.sourceHeat(worldX, worldY, worldZ);
 
         if (sourceHeat > 1) {
@@ -82,7 +101,10 @@ public final class HeatBakeTask {
 
     private void spreadHeat(Access access, int sourceIndex, int sourceHeat) {
         int neighborHeat = sourceHeat - 1;
-        if (neighborHeat <= 0) return;
+
+        if (neighborHeat <= 0) {
+            return;
+        }
 
         int sourceX = localX(sourceIndex);
         int sourceY = localY(sourceIndex);
@@ -94,20 +116,30 @@ public final class HeatBakeTask {
     }
 
     private void visitNeighbor(Access access, int x, int y, int z, int heat) {
-        if (!isWithinScanArea(x, y, z)) return;
+        if (!isWithinScanArea(x, y, z)) {
+            return;
+        }
 
         int blockIndex = y * BLOCKS_PER_LAYER + z * SCAN_WIDTH + x;
-        if (highestVisitedHeat[blockIndex] >= heat) return;
+
+        if (highestVisitedHeat[blockIndex] >= heat) {
+            return;
+        }
 
         int worldX = x + minX;
         int worldY = y + minY;
         int worldZ = z + minZ;
-        if (!access.isHeatable(worldX, worldY, worldZ)) return;
+
+        if (!access.isHeatable(worldX, worldY, worldZ)) {
+            return;
+        }
 
         highestVisitedHeat[blockIndex] = (byte) heat;
+
         if (isInsideTargetChunk(x, z)) {
             access.applyHeat(worldX, worldY, worldZ, heat);
         }
+
         if (heat > 1) {
             pendingHeat.addLast(new HeatNode(blockIndex, heat));
         }
