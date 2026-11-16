@@ -444,8 +444,9 @@ public class DDBlocks {
             () -> new GlimmeringVinePlantBlock(BlockBehaviour.Properties.ofFullCopy(GLIMMERING_VINES.get()).sound(SoundType.SPORE_BLOSSOM)));
     public static final DeferredBlock<FlowerPotBlock> POTTED_GLOWSHROOM = registerNoTabBlock("potted_glowshroom",
             () -> new FlowerPotBlock(GLOWSHROOM.get(), BlockBehaviour.Properties.of().instabreak().noOcclusion().pushReaction(PushReaction.DESTROY).lightLevel((state) -> 5)));
-    public static final DeferredBlock<GlowspursBlock> GLOWSPURS = registerBlock("glowspurs",
-            () -> new GlowspursBlock(BlockBehaviour.Properties.of().strength(0.2F).lightLevel(value -> 3).sound(SoundType.WET_GRASS).noCollission()));
+    public static final DeferredBlock<GlowspursBlock> GLOWSPURS = registerTooltipBlock("glowspurs",
+            () -> new GlowspursBlock(BlockBehaviour.Properties.of().strength(0.2F).lightLevel(value -> 3).sound(SoundType.WET_GRASS).noCollission()),
+            List.of(Component.translatable("tooltip.darkerdepths.legacy.shift_desc").withStyle(ChatFormatting.RED)));
 
     public static final DeferredBlock<GlowshroomLampBlock> GLOWSHROOM_LAMP = registerBlock("glowshroom_lamp",
             () -> new GlowshroomLampBlock(BlockBehaviour.Properties.of().strength(0.3f, 0.3f).lightLevel(state -> state.getValue(BlockStateProperties.LIT) ? 12 : 0).sound(SoundType.GLASS)));

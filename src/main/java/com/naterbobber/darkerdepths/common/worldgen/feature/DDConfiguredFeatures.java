@@ -4,7 +4,6 @@ import com.google.common.collect.ImmutableList;
 import com.naterbobber.darkerdepths.common.block.DDBlockStateProperties;
 import com.naterbobber.darkerdepths.common.block.unique.AshBlock;
 import com.naterbobber.darkerdepths.common.block.unique.GlowshroomBlock;
-import com.naterbobber.darkerdepths.common.block.unique.GlowspursBlock;
 import com.naterbobber.darkerdepths.common.init.DDBlocks;
 import com.naterbobber.darkerdepths.common.init.DDFeatures;
 import com.naterbobber.darkerdepths.common.util.DDTags;
@@ -132,10 +131,6 @@ public class DDConfiguredFeatures {
                                 .add(DDBlocks.GLOWSHROOM.get().defaultBlockState().setValue(GlowshroomBlock.GLOWSHROOM_CLUSTERS, 1), 4)
                                 .add(DDBlocks.GLOWSHROOM.get().defaultBlockState().setValue(GlowshroomBlock.GLOWSHROOM_CLUSTERS, 2), 3)
                                 .add(DDBlocks.GLOWSHROOM.get().defaultBlockState().setValue(GlowshroomBlock.GLOWSHROOM_CLUSTERS, 3), 2)
-                                .add(DDBlocks.GLOWSPURS.get().defaultBlockState().setValue(GlowspursBlock.FACING, Direction.NORTH), 1)
-                                .add(DDBlocks.GLOWSPURS.get().defaultBlockState().setValue(GlowspursBlock.FACING, Direction.EAST), 1)
-                                .add(DDBlocks.GLOWSPURS.get().defaultBlockState().setValue(GlowspursBlock.FACING, Direction.SOUTH), 1)
-                                .add(DDBlocks.GLOWSPURS.get().defaultBlockState().setValue(GlowspursBlock.FACING, Direction.WEST), 1)
                                 .add(DDBlocks.MOSSY_SPROUTS.get().defaultBlockState(), 200)
                 )
         ));

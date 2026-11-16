@@ -33,46 +33,6 @@
         },
         {
           "data": {
-            "Name": "darkerdepths:glowspurs",
-            "Properties": {
-              "facing": "north",
-              "powered": "false"
-            }
-          },
-          "weight": 1
-        },
-        {
-          "data": {
-            "Name": "darkerdepths:glowspurs",
-            "Properties": {
-              "facing": "east",
-              "powered": "false"
-            }
-          },
-          "weight": 1
-        },
-        {
-          "data": {
-            "Name": "darkerdepths:glowspurs",
-            "Properties": {
-              "facing": "south",
-              "powered": "false"
-            }
-          },
-          "weight": 1
-        },
-        {
-          "data": {
-            "Name": "darkerdepths:glowspurs",
-            "Properties": {
-              "facing": "west",
-              "powered": "false"
-            }
-          },
-          "weight": 1
-        },
-        {
-          "data": {
             "Name": "darkerdepths:mossy_sprouts"
           },
           "weight": 200

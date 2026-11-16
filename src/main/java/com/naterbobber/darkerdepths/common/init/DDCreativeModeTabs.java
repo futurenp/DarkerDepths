@@ -65,7 +65,8 @@ public class DDCreativeModeTabs {
 
     private static final Set<DeferredBlock<? extends Block>> HIDDEN_BLOCKS = Set.of(
             DDBlocks.ASH,
-            DDBlocks.ASH_BLOCK
+            DDBlocks.ASH_BLOCK,
+            DDBlocks.GLOWSPURS
     );
 
     private static final Map<String, DeferredBlock> ITEM_PLACEMENT_MODIFIER_MAP_IDS = ITEM_PLACEMENT_MODIFIER_MAP
