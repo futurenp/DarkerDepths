@@ -51,6 +51,7 @@ public class DarkerDepths {
         DDDataAttachments.ATTACHMENTS.register(modEventBus);
         DDCriteria.TRIGGERS.register(modEventBus);
         DDWorldCarvers.WORLD_CARVERS.register(modEventBus);
+        DDConditions.CONDITIONS.register(modEventBus);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {

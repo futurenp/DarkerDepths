@@ -1,9 +1,11 @@
 package com.naterbobber.darkerdepths.common.data;
 
 import com.naterbobber.darkerdepths.DarkerDepths;
+import com.naterbobber.darkerdepths.common.conditions.RopeMinesEnabledCondition;
 import com.naterbobber.darkerdepths.common.damage.DDDamageTypes;
 import com.naterbobber.darkerdepths.common.enchantment.DDEnchantments;
 import com.naterbobber.darkerdepths.common.init.DDStructures;
+import com.naterbobber.darkerdepths.common.util.DDResourceKeys;
 import com.naterbobber.darkerdepths.common.worldgen.DDNoiseData;
 import com.naterbobber.darkerdepths.common.worldgen.biomes.DDBiomeModifiers;
 import com.naterbobber.darkerdepths.common.worldgen.biomes.DDBiomes;
@@ -40,7 +42,12 @@ public class DDDatapackBuiltinEntriesProvider extends DatapackBuiltinEntriesProv
 
 
     public DDDatapackBuiltinEntriesProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
-        super(output, registries, BUILDER, Set.of(DarkerDepths.MOD_ID));
+        super(output, registries, BUILDER, conditions -> {
+            var condition = new RopeMinesEnabledCondition();
+
+            conditions.accept(DDResourceKeys.StructureSets.ROPE_MINE_FOREST_SET, condition);
+            conditions.accept(DDResourceKeys.StructureSets.ROPE_MINE_DESERT_SET, condition);
+        }, Set.of(DarkerDepths.MOD_ID));
     }
 
 }

@@ -135,10 +135,7 @@ public class DDBlockTagsProvider extends BlockTagsProvider {
         this.tag(BlockTags.FOXES_SPAWNABLE_ON).add(DDBlocks.DRY_DIRT.get());
         this.tag(BlockTags.WOLVES_SPAWNABLE_ON).add(DDBlocks.DRY_DIRT.get());
 
-        this.tag(BlockTags.DEEPSLATE_ORE_REPLACEABLES).add(
-                DDBlocks.MOSSY_GRIMESTONE.get(),
-                Blocks.PACKED_MUD
-        );
+        this.tag(BlockTags.DEEPSLATE_ORE_REPLACEABLES).add(DDBlocks.MOSSY_GRIMESTONE.get());
 
         this.tag(BlockTags.OVERWORLD_CARVER_REPLACEABLES).add(
                 DDBlocks.ARID_DEEPSLATE.get(),

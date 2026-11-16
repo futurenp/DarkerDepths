@@ -1,4 +1,9 @@
 {
+  "neoforge:conditions": [
+    {
+      "type": "darkerdepths:rope_mines_enabled"
+    }
+  ],
   "placement": {
     "type": "minecraft:random_spread",
     "salt": 1234567890,

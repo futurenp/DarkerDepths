@@ -21,6 +21,7 @@ public class DDConfigBuilder {
     public final DDBiomeConfigBuilder SANDY_CATACOMBS;
     public final DDBiomeConfigBuilder GLOWSHROOM_FOREST;
     public final DDBiomeConfigBuilder MOLTEN_CAVERN;
+    public final ModConfigSpec.BooleanValue GENERATE_ROPE_MINES;
     public final ModConfigSpec.BooleanValue PRIORITIZE_TERRABLENDER;
     public final ModConfigSpec.BooleanValue USE_DEFAULTS_TERRABLENDER;
     public final ModConfigSpec.IntValue OVERWORLD_BIOME_WEIGHT_TERRABLENDER;
@@ -92,6 +93,10 @@ public class DDConfigBuilder {
         SANDY_CATACOMBS_FOG_MIN = builder.comment("Min fog distance:").defineInRange("min_fog", -10, -1000, 1000);
         SANDY_CATACOMBS_FOG_MAX = builder.comment("Max fog distance:").defineInRange("max_fog", 128, -1000, 1000);
         builder.pop(2);
+
+        builder.push("Structures");
+        GENERATE_ROPE_MINES = builder.comment("Rope Mines").define("generate_rope_mines", true);
+        builder.pop();
 
         builder.push("Supercharges");
         SUPERCHARGE_DURATION = builder.comment("Duration of the supercharge buff in minutes")
