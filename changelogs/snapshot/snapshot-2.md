@@ -3,7 +3,7 @@
 ## Gameplay
 
 * String Lights
-  * All 16 colors now have crafting recipes.
+  * Now have crafting recipes.
   * Three string, two Glow Grime, and one matching dye make six String Lights.
 * Dry Dirt
   * Can now be crafted with two dirt and one sand to make three Dry Dirt.
@@ -18,9 +18,11 @@
   * I have scrapped this for this update, and will return to the idea and fleshing this out in the future. Glowshroom Cap now gives haste again and the Glowshroom Heart no longer is a block entity.
 * Glowspurs
   * No longer generate and are hidden from the creative tab.
-  * Existing Glowspurs remain, with the same legacy tooltip as Ash blocks.
+  * Existing Glowspurs remain, marked as legacy items.
 * Gulbs
-  * Removed the block and its assets.
+  * Removed.
+* Glowshroom monster
+  * Fixed issues with its model and texture, head now pivots correctly.
 
 ## Sandy Catacombs
 
@@ -37,12 +39,9 @@
   * Updated the flame and smoke particles, glowing effect, and item texture.
   * The glowing parts are now visible through fog.
 * Death Anchors
-  * Powered Death Anchors have new glowing textures, including an animated top.
   * The glow is now visible through fog.
 * Duskrock
   * Updated the remaining Duskrock Pillar and Tomb textures to match the new palette.
-* Glowshroom Heart
-  * Updated its texture.
 
 ## Performance
 
