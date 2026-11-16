@@ -14,6 +14,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -96,9 +97,19 @@ public class LivingEvents {
 
     @SubscribeEvent
     public static void onMobEffectRemove(MobEffectEvent.Remove event) {
-        if (event.getEffect() == DDMobEffects.SOUL_BINDING.get()) {
+        var effect = event.getEffect();
+
+        if (effect == DDMobEffects.SOUL_BINDING.get()) {
             event.setCanceled(true);
         }
+
+        var entity = event.getEntity();
+
+        if(effect.is(MobEffects.DIG_SPEED) &&
+                entity.getItemBySlot(EquipmentSlot.HEAD).is(DDItems.GLOWSHROOM_CAP.get())) {
+            event.setCanceled(true);
+        }
+
     }
 
     @SubscribeEvent
@@ -122,10 +133,14 @@ public class LivingEvents {
         if (existingItem.is(DDItems.GLOWSHROOM_CAP.get())) {
             if (
                     !newItem.is(DDItems.GLOWSHROOM_CAP.get())
-                    && player.getEffect(DDMobEffects.GLOWING_MYCOSES) != null
-                    && player.getEffect(DDMobEffects.GLOWING_MYCOSES).getDuration() == -1) {
+                    && player.getEffect(MobEffects.DIG_SPEED) != null
+                    && player.getEffect(MobEffects.DIG_SPEED).getDuration() == -1) {
 
-                player.removeEffect(DDMobEffects.GLOWING_MYCOSES);
+                player.removeEffect(MobEffects.DIG_SPEED);
+            }
+        } else {
+            if(newItem.is(DDItems.GLOWSHROOM_CAP.get())) {
+                player.addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, -1, 0, false, false, true));
             }
         }
     }
@@ -140,11 +155,12 @@ public class LivingEvents {
 
         GlowshroomMycosesHandler.handleFleshEat(player, item);
 
+
         if(item.is(Items.MILK_BUCKET)) {
             if(StreamSupport.stream(player.getArmorSlots().spliterator(), false)
                     .anyMatch(armor -> armor.is(DDItems.GLOWSHROOM_CAP.get()))) {
                 player.addEffect(new MobEffectInstance(
-                                DDMobEffects.GLOWING_MYCOSES,
+                                MobEffects.DIG_SPEED,
                                 MobEffectInstance.INFINITE_DURATION,
                                 0,
                                 false,

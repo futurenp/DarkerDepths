@@ -8,7 +8,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.BaseEntityBlock;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
@@ -17,7 +17,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class GlowshroomHeartBlock extends BaseEntityBlock {
+public class GlowshroomHeartBlock extends Block {
     public static final MapCodec<GlowshroomHeartBlock> CODEC = simpleCodec(GlowshroomHeartBlock::new);
 
     public GlowshroomHeartBlock(Properties properties) {
@@ -25,14 +25,16 @@ public class GlowshroomHeartBlock extends BaseEntityBlock {
     }
 
     @Override
-    protected @NotNull MapCodec<? extends BaseEntityBlock> codec() {
+    protected @NotNull MapCodec<? extends Block> codec() {
         return CODEC;
     }
 
+    /*
     @Override
     public @Nullable BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
         return new GlowshroomHeartBlockEntity(blockPos, blockState);
     }
+    */
 
     @Override
     public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
@@ -45,6 +47,7 @@ public class GlowshroomHeartBlock extends BaseEntityBlock {
         return RenderShape.MODEL;
     }
 
+    /*
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level worldIn, BlockState state, BlockEntityType<T> blockEntityType) {
@@ -56,4 +59,5 @@ public class GlowshroomHeartBlock extends BaseEntityBlock {
                     (level, pos, blockState, blockEntity) -> blockEntity.tick(level, pos, blockState));
         }
     }
+    */
 }

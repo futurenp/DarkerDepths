@@ -10,6 +10,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -52,37 +53,52 @@ public class GlowshroomCapItem extends ArmorItem implements GeoItem {
         });
     }
 
-    @Override
-    public void inventoryTick(ItemStack stack, Level level, Entity entity, int slotId, boolean isSelected) {
-        if(level.isClientSide) return;
-        if(!(entity instanceof LivingEntity livingEntity)) return;
-
-        if(!livingEntity.getItemBySlot(EquipmentSlot.HEAD).is(this)) {
-            return;
-        }
-
-        if(!livingEntity.hasEffect(DDMobEffects.GLOWING_MYCOSES)) {
-            livingEntity.addEffect(new MobEffectInstance(DDMobEffects.GLOWING_MYCOSES, MobEffectInstance.INFINITE_DURATION, 0, false, false, true));
-        }
-
-//        if(slotId == 39 && level.isDay()) {
-//            if(livingEntity instanceof Player player) {
-//                if(level.getGameTime() % 20 != 0) return;
-//
-//                if(level.canSeeSky(livingEntity.blockPosition())) {
-//                    level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.CANDLE_EXTINGUISH, SoundSource.PLAYERS, 1.0F, 1.0F);
-//
-//                    var cap = livingEntity.getItemBySlot(EquipmentSlot.HEAD);
-//                    var damage = cap.getDamageValue();
-//                    if(damage + 1 < cap.getMaxDamage()) {
-//                        cap.setDamageValue(cap.getDamageValue() + 2);
-//                    } else {
-//                        livingEntity.setItemSlot(EquipmentSlot.HEAD, ItemStack.EMPTY);
-//                    }
-//                }
-//            }
+//    @Override
+//    public void inventoryTick(ItemStack stack, Level level, Entity entity, int slotId, boolean isSelected) {
+//        if (level.isClientSide) {
+//            return;
 //        }
-    }
+//
+//        if (!(entity instanceof LivingEntity livingEntity)) {
+//            return;
+//        }
+//
+//        if (!livingEntity.getItemBySlot(EquipmentSlot.HEAD).is(this)) {
+//            return;
+//        }
+//
+//        var mycoses = livingEntity.getEffect(DDMobEffects.GLOWING_MYCOSES);
+//
+//        if (mycoses != null && mycoses.isInfiniteDuration()) {
+//            livingEntity.removeEffect(DDMobEffects.GLOWING_MYCOSES);
+//        }
+//
+//        livingEntity.addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, 40, 0, false, false, true));
+//
+//        /*
+//        if(!livingEntity.hasEffect(DDMobEffects.GLOWING_MYCOSES)) {
+//            livingEntity.addEffect(new MobEffectInstance(DDMobEffects.GLOWING_MYCOSES, MobEffectInstance.INFINITE_DURATION, 0, false, false, true));
+//        }
+//        */
+//
+////        if(slotId == 39 && level.isDay()) {
+////            if(livingEntity instanceof Player player) {
+////                if(level.getGameTime() % 20 != 0) return;
+////
+////                if(level.canSeeSky(livingEntity.blockPosition())) {
+////                    level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.CANDLE_EXTINGUISH, SoundSource.PLAYERS, 1.0F, 1.0F);
+////
+////                    var cap = livingEntity.getItemBySlot(EquipmentSlot.HEAD);
+////                    var damage = cap.getDamageValue();
+////                    if(damage + 1 < cap.getMaxDamage()) {
+////                        cap.setDamageValue(cap.getDamageValue() + 2);
+////                    } else {
+////                        livingEntity.setItemSlot(EquipmentSlot.HEAD, ItemStack.EMPTY);
+////                    }
+////                }
+////            }
+////        }
+//    }
 
     @Override
     public void appendHoverText(ItemStack pStack, TooltipContext context, List<Component> pTooltipComponents, TooltipFlag tooltipFlag) {

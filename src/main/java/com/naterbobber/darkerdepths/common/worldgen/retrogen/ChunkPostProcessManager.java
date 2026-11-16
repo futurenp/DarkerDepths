@@ -17,19 +17,36 @@ import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
+import java.util.TreeSet;
 
 public class ChunkPostProcessManager {
     private static final List<IChunkPostProcessor> PROCESSORS = List.of(new HeatPropagationProcessor());
 
     private static final Map<ServerLevel, LinkedHashMap<ChunkPos, LevelChunk>> PROCESS_QUEUE = new HashMap<>();
-    private static final Map<ServerLevel, Set<ChunkPos>> PENDING_CHUNKS = new HashMap<>();
+    private static final Map<ServerLevel, LinkedHashSet<ChunkPos>> PENDING_CHUNKS = new HashMap<>();
     private static final Map<ServerLevel, ChunkPos> ACTIVE_CHUNKS = new HashMap<>();
+    private static final LinkedHashMap<ServerLevel, QueueRefresh> QUEUE_REFRESHES = new LinkedHashMap<>();
 
     private static int ticksUntilQueueRefresh;
     private static int firstDimension;
 
-    private record Candidate(LevelChunk chunk, long distance) {
+    private record Candidate(ChunkPos pos, long distance) {
+    }
+
+    private static final class QueueRefresh {
+        private final List<ChunkProcessingPriority.PlayerChunk> players;
+        private final int radius;
+        private final TreeSet<Candidate> candidates = new TreeSet<>(Comparator.comparingLong(Candidate::distance)
+                .thenComparingInt(candidate -> candidate.pos().x)
+                .thenComparingInt(candidate -> candidate.pos().z));
+        private final LinkedHashMap<ChunkPos, LevelChunk> queue = new LinkedHashMap<>();
+        private int remainingChunks;
+
+        private QueueRefresh(ServerLevel level, int radius, int remainingChunks) {
+            this.players = playerChunks(level);
+            this.radius = radius;
+            this.remainingChunks = remainingChunks;
+        }
     }
 
     public static void handleChunkLoadData(ChunkAccess chunk, CompoundTag data) {
@@ -63,17 +80,19 @@ public class ChunkPostProcessManager {
     }
 
     public static void processQueueTick(MinecraftServer server) {
-        long deadline = System.nanoTime() + (long) (DDConfig.CONFIG.HEAT_BAKE_TIME_BUDGET_MS.get() * 1_000_000);
-
-        if (ticksUntilQueueRefresh-- <= 0) {
-            refreshQueues(server);
-            ticksUntilQueueRefresh = 19;
-        }
-
         if (DDConfig.CONFIG.DISABLE_HEATABLE_BLOCK_BAKING.get()) {
             PROCESSORS.forEach(IChunkPostProcessor::clearSuspendedState);
+            QUEUE_REFRESHES.clear();
+            ACTIVE_CHUNKS.clear();
+            ticksUntilQueueRefresh = 0;
             return;
         }
+
+        long startTime = System.nanoTime();
+        long budget = (long) (DDConfig.CONFIG.HEAT_BAKE_TIME_BUDGET_MS.get() * 1_000_000);
+        long deadline = startTime + budget;
+
+        refreshQueues(server, startTime + budget / 2);
 
         var levels = new ArrayList<ServerLevel>();
         server.getAllLevels().forEach(levels::add);
@@ -100,57 +119,90 @@ public class ChunkPostProcessManager {
         return players;
     }
 
-    private static void refreshQueues(MinecraftServer server) {
-        int radius = server.getPlayerList().getSimulationDistance();
-
-        for (var entry : PENDING_CHUNKS.entrySet()) {
-            var level = entry.getKey();
-            var players = playerChunks(level);
-            var candidates = new ArrayList<Candidate>();
-            var iterator = entry.getValue().iterator();
-
-            while (iterator.hasNext()) {
-                var pos = iterator.next();
-                var chunk = level.getChunkSource().getChunkNow(pos.x, pos.z);
-                var tags = chunk == null ? null : chunk.getExistingDataOrNull(DDDataAttachments.PENDING_PROCESSORS.get());
-
-                if (tags == null || tags.isEmpty()) {
-                    iterator.remove();
-                    continue;
-                }
-
-                long distance = ChunkProcessingPriority.distance(pos.x, pos.z, players, radius);
-
-                if (distance != Long.MAX_VALUE) {
-                    candidates.add(new Candidate(chunk, distance));
-                }
+    private static void refreshQueues(MinecraftServer server, long deadline) {
+        if (QUEUE_REFRESHES.isEmpty()) {
+            if (ticksUntilQueueRefresh-- > 0) {
+                return;
             }
 
-            candidates.sort(Comparator.comparingLong(Candidate::distance));
-            var queue = new LinkedHashMap<ChunkPos, LevelChunk>();
+            int radius = server.getPlayerList().getSimulationDistance();
 
-            for (var candidate : candidates) {
-                queue.put(candidate.chunk().getPos(), candidate.chunk());
+            for (var entry : PENDING_CHUNKS.entrySet()) {
+                QUEUE_REFRESHES.put(entry.getKey(), new QueueRefresh(entry.getKey(), radius, entry.getValue().size()));
+            }
+        }
+
+        while (!QUEUE_REFRESHES.isEmpty() && System.nanoTime() < deadline) {
+            var entry = QUEUE_REFRESHES.firstEntry();
+            var level = entry.getKey();
+            var refresh = entry.getValue();
+
+            if (!advanceQueueRefresh(level, refresh, deadline)) {
+                return;
             }
 
             var active = ACTIVE_CHUNKS.get(level);
 
             if (active != null) {
-                var chunk = queue.remove(active);
+                var chunk = refresh.queue.remove(active);
 
                 if (chunk != null) {
-                    queue.putFirst(active, chunk);
+                    refresh.queue.putFirst(active, chunk);
                 } else {
                     clearActiveChunk(level);
                 }
             }
 
-            if (queue.isEmpty()) {
+            if (refresh.queue.isEmpty()) {
                 PROCESS_QUEUE.remove(level);
             } else {
-                PROCESS_QUEUE.put(level, queue);
+                PROCESS_QUEUE.put(level, refresh.queue);
+            }
+
+            QUEUE_REFRESHES.pollFirstEntry();
+        }
+
+        if (QUEUE_REFRESHES.isEmpty()) {
+            ticksUntilQueueRefresh = 19;
+        }
+    }
+
+    private static boolean advanceQueueRefresh(ServerLevel level, QueueRefresh refresh, long deadline) {
+        var pending = PENDING_CHUNKS.get(level);
+
+        while (System.nanoTime() < deadline) {
+            if (refresh.remainingChunks > 0 && pending != null && !pending.isEmpty()) {
+                var pos = pending.removeFirst();
+                refresh.remainingChunks--;
+
+                var chunk = level.getChunkSource().getChunkNow(pos.x, pos.z);
+                var tags = chunk == null ? null : chunk.getExistingDataOrNull(DDDataAttachments.PENDING_PROCESSORS.get());
+
+                if (tags == null || tags.isEmpty()) {
+                    continue;
+                }
+
+                pending.addLast(pos);
+                long distance = ChunkProcessingPriority.distance(pos.x, pos.z, refresh.players, refresh.radius);
+
+                if (distance != Long.MAX_VALUE) {
+                    refresh.candidates.add(new Candidate(pos, distance));
+                }
+            } else if (!refresh.candidates.isEmpty()) {
+                refresh.remainingChunks = 0;
+                var pos = refresh.candidates.pollFirst().pos();
+                var chunk = level.getChunkSource().getChunkNow(pos.x, pos.z);
+                var tags = chunk == null ? null : chunk.getExistingDataOrNull(DDDataAttachments.PENDING_PROCESSORS.get());
+
+                if (tags != null && !tags.isEmpty()) {
+                    refresh.queue.put(pos, chunk);
+                }
+            } else {
+                return true;
             }
         }
+
+        return false;
     }
 
     private static void clearActiveChunk(ServerLevel level) {
@@ -240,6 +292,12 @@ public class ChunkPostProcessManager {
     }
 
     public static void handleChunkUnload(ServerLevel level, ChunkPos pos) {
+        var refresh = QUEUE_REFRESHES.get(level);
+
+        if (refresh != null) {
+            refresh.queue.remove(pos);
+        }
+
         var pending = PENDING_CHUNKS.get(level);
 
         if (pending != null) {
@@ -305,6 +363,7 @@ public class ChunkPostProcessManager {
         PROCESS_QUEUE.clear();
         PENDING_CHUNKS.clear();
         ACTIVE_CHUNKS.clear();
+        QUEUE_REFRESHES.clear();
 
         ticksUntilQueueRefresh = 0;
         PROCESSORS.forEach(IChunkPostProcessor::clearSuspendedState);
